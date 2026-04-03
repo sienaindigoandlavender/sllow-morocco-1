@@ -404,6 +404,7 @@ const nextConfig = {
       { source: '/s-7AB-ni/', destination: 'https://darija.io', permanent: true },
       
       // Missing stories — GSC 404 cleanup April 2026
+      { source: '/stories/gladiator-country', destination: '/stories', permanent: true },
       { source: '/stories/14km-gap', destination: '/stories', permanent: true },
       { source: '/stories/the-free-people', destination: '/stories', permanent: true },
       { source: '/stories/solar-compass', destination: '/stories', permanent: true },
@@ -451,6 +452,7 @@ const nextConfig = {
       // Darija dictionary leaks (catch-all not matching these)
       { source: '/darija/dictionary/work-08627', destination: 'https://darija.io', permanent: true },
       { source: '/darija/dictionary/health-06582', destination: 'https://darija.io', permanent: true },
+      { source: '/darija/dictionary/verbs-03233', destination: 'https://darija.io', permanent: true },
 
       // /start-here redirect REMOVED — page exists, linked from homepage + morocco guides
       { source: '/agadir', destination: '/destinations/agadir', permanent: true },
