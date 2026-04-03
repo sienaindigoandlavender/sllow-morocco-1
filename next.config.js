@@ -432,7 +432,26 @@ const nextConfig = {
       { source: '/morocco-travel-guide', destination: '/morocco/travel-guide', permanent: true },
       { source: '/morocco-money-guide', destination: '/morocco/food-and-tipping', permanent: true },
       { source: '/3-day-marrakech-to-fes-via-merzouga', destination: '/journeys', permanent: true },
-      
+
+      // ============================================
+      // GSC "Crawled — not indexed" fixes — April 3, 2026
+      // ============================================
+      // Old Squarespace pages
+      { source: '/faqs', destination: '/faq', permanent: true },
+      { source: '/sustainable-travel', destination: '/about', permanent: true },
+      { source: '/what-to-expect', destination: '/plan-your-trip', permanent: true },
+      { source: '/marrakech-2', destination: '/marrakech', permanent: true },
+      { source: '/journal', destination: '/stories', permanent: true },
+      // Old journey slugs
+      { source: '/the-compass-of-morocco', destination: '/journeys', permanent: true },
+      { source: '/the-southern-loop-from-dunes-to-the-sea', destination: '/journeys', permanent: true },
+      { source: '/sahara-trek-4-fs-to-merzouga-and-back', destination: '/journeys', permanent: true },
+      { source: '/the-imilchil-weddings-a-festival-of-promise', destination: '/journeys', permanent: true },
+      { source: '/sahara-journey-the-ounila-valley-and-kasbah-des-cads', destination: '/journeys', permanent: true },
+      // Darija dictionary leaks (catch-all not matching these)
+      { source: '/darija/dictionary/work-08627', destination: 'https://darija.io', permanent: true },
+      { source: '/darija/dictionary/health-06582', destination: 'https://darija.io', permanent: true },
+
       // /start-here redirect REMOVED — page exists, linked from homepage + morocco guides
       { source: '/agadir', destination: '/destinations/agadir', permanent: true },
     ];
