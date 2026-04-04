@@ -99,7 +99,7 @@ export default function HomeContent({
           className="absolute inset-0 w-full h-full object-cover opacity-55"
           poster="/images/hero-poster.jpg"
         >
-          <source src="/videos/hero.mp4" type="video/mp4" />
+          <source src="https://res.cloudinary.com/dngrqk2wz/video/upload/v1775316406/Maroko_Project_clip_3_imsx6u.mp4" type="video/mp4" />
         </video>
 
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-black/30" />
@@ -126,19 +126,6 @@ export default function HomeContent({
                 Plan a Journey
               </Link>
             </div>
-          </div>
-
-          <div className="hidden md:flex absolute bottom-24 right-14 gap-12">
-            {[
-              { n: "223", label: "Places" },
-              { n: "105", label: "Journeys" },
-              { n: "308", label: "Stories" },
-            ].map((s) => (
-              <div key={s.label} className="text-right">
-                <div className="text-white/45 text-xl font-light">{s.n}</div>
-                <div className="text-white/20 text-[10px] tracking-[0.1em] uppercase">{s.label}</div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
