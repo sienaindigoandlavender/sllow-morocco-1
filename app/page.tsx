@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { getJourneys, getStories, getPlaces, getWebsiteSettings, getTestimonials } from "@/lib/supabase";
+import { getJourneys, getStories, getPlaces, getWebsiteSettings, getTestimonials, getDestinations } from "@/lib/supabase";
 import HomeContent from "./HomeContent";
 
 export const metadata: Metadata = {
-  title: "Slow Morocco | The Definitive Cultural Guide to Morocco",
-  description: "The slow guide to Morocco. History, architecture, food, music, and craft — written for people who want to understand, not just visit.",
+  title: "Slow Morocco | Morocco, Decoded",
+  description: "Private journeys through a country most guides only scratch the surface of. 223 places, 105 journeys, 308 stories.",
   alternates: { canonical: "https://www.slowmorocco.com" },
   openGraph: {
-    title: "Slow Morocco | The Definitive Cultural Guide to Morocco",
-    description: "The slow guide to Morocco. History, architecture, food, music, and craft — written for people who want to understand, not just visit.",
+    title: "Slow Morocco | Morocco, Decoded",
+    description: "Private journeys through a country most guides only scratch the surface of. 223 places, 105 journeys, 308 stories.",
     url: "https://www.slowmorocco.com",
   },
 };
@@ -22,15 +22,17 @@ export default async function HomePage() {
   let places: any[] = [];
   let mapPlaces: any[] = [];
   let testimonials: any[] = [];
+  let destinations: any[] = [];
   let settings: Record<string, string> = {};
 
   try {
-    const [journeysData, storiesData, placesData, settingsData, testimonialsData] = await Promise.all([
+    const [journeysData, storiesData, placesData, settingsData, testimonialsData, destinationsData] = await Promise.all([
       getJourneys({ published: true }),
       getStories({ published: true }),
       getPlaces({ published: true }),
       getWebsiteSettings(),
       getTestimonials({ published: true }),
+      getDestinations({ published: true }),
     ]);
 
     // Format journeys
@@ -119,6 +121,15 @@ export default async function HomePage() {
       author: t.author,
       journeyTitle: t.journey_title || "",
     }));
+
+    // Format destinations
+    destinations = destinationsData.map((d) => ({
+      slug: d.slug,
+      title: d.title,
+      subtitle: d.subtitle || "",
+      hero_image: d.hero_image || "",
+      region: d.region || "",
+    }));
   } catch (error) {
     console.error("Homepage data fetch error:", error);
   }
@@ -132,6 +143,7 @@ export default async function HomePage() {
       mapPlaces={mapPlaces}
       testimonials={testimonials}
       settings={settings}
+      destinations={destinations}
     />
   );
 }
