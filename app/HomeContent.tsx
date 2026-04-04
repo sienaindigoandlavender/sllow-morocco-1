@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { cloudinaryUrl } from "@/lib/cloudinary";
 import Link from "next/link";
 
@@ -69,7 +69,6 @@ export default function HomeContent({
 }: HomeContentProps) {
   const [activeTab, setActiveTab] = useState<"cities" | "journeys" | "day-trips">("cities");
   const [testimonialIndex, setTestimonialIndex] = useState(0);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     if (testimonials.length <= 1) return;
@@ -87,29 +86,23 @@ export default function HomeContent({
     <main className="min-h-screen bg-white">
 
       {/* ══════════════════════════════════════════════════
-          HERO — Full-screen video
+          HERO — Immersive full-bleed image
           ══════════════════════════════════════════════════ */}
-      <section className="relative h-screen min-h-[600px] overflow-hidden bg-[#0a0a0a]">
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-55"
-          poster="/images/hero-poster.jpg"
-        >
-          <source src="https://res.cloudinary.com/dngrqk2wz/video/upload/v1775316406/Maroko_Project_clip_3_imsx6u.mp4" type="video/mp4" />
-        </video>
+      <section className="relative h-[110vh] min-h-[700px] overflow-hidden bg-[#0a0a0a]">
+        <img
+          src="https://res.cloudinary.com/dngrqk2wz/image/upload/w_2400,q_auto,f_auto/v1775318518/kasbah_bguxzs.jpg"
+          alt="Morocco"
+          className="absolute inset-0 w-full h-full object-cover object-top"
+        />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
 
-        <div className="relative z-10 h-full flex flex-col justify-end px-8 md:px-10 lg:px-14 pb-16 md:pb-24">
+        <div className="relative z-10 h-full flex flex-col justify-end px-8 md:px-10 lg:px-14 pb-20 md:pb-28">
           <div className="max-w-3xl">
-            <h1 className="text-white text-4xl md:text-6xl lg:text-7xl font-light tracking-[-0.02em] leading-[1.08] mb-4">
+            <h1 className="text-white text-4xl md:text-6xl lg:text-[5.5rem] font-light tracking-[-0.03em] leading-[1.05] mb-5">
               Morocco, decoded.
             </h1>
-            <p className="text-white/55 text-base md:text-lg max-w-xl mb-10 leading-relaxed">
+            <p className="text-white/50 text-base md:text-lg max-w-lg mb-12 leading-relaxed">
               Private journeys through a country most guides only scratch the surface of.
             </p>
             <div className="flex flex-wrap gap-4">
