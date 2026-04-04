@@ -69,6 +69,23 @@ export default function HomeContent({
 }: HomeContentProps) {
   const [activeTab, setActiveTab] = useState<"cities" | "journeys" | "day-trips">("cities");
   const [testimonialIndex, setTestimonialIndex] = useState(0);
+  const [heroIndex, setHeroIndex] = useState(0);
+
+  const heroImages = [
+    "https://res.cloudinary.com/dngrqk2wz/image/upload/w_2400,q_auto,f_auto/v1775334808/1_oqxsit.png",
+    "https://res.cloudinary.com/dngrqk2wz/image/upload/w_2400,q_auto,f_auto/v1775335043/Bernadeta_Kupiec_-_Morocco-605_ajx3h2.jpg",
+    "https://res.cloudinary.com/dngrqk2wz/image/upload/w_2400,q_auto,f_auto/v1775334905/2_hmpek7.png",
+    "https://res.cloudinary.com/dngrqk2wz/image/upload/w_2400,q_auto,f_auto/v1775334910/3_tzxa54.png",
+    "https://res.cloudinary.com/dngrqk2wz/image/upload/w_2400,q_auto,f_auto/v1775334915/4_dkhnnl.png",
+  ];
+
+  // Slow crossfade — 6 seconds per image
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHeroIndex((prev) => (prev + 1) % heroImages.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     if (testimonials.length <= 1) return;
@@ -86,35 +103,40 @@ export default function HomeContent({
     <main className="min-h-screen bg-white">
 
       {/* ══════════════════════════════════════════════════
-          HERO — Immersive full-bleed image
+          HERO — Crossfading images, quiet and immersive
           ══════════════════════════════════════════════════ */}
       <section className="relative h-[110vh] min-h-[700px] overflow-hidden bg-[#0a0a0a]">
-        <img
-          src="https://res.cloudinary.com/dngrqk2wz/image/upload/w_2400,q_auto,f_auto/v1775318518/kasbah_bguxzs.jpg"
-          alt="Morocco"
-          className="absolute inset-0 w-full h-full object-cover object-top"
-        />
+        {heroImages.map((src, i) => (
+          <img
+            key={i}
+            src={src}
+            alt="Morocco"
+            className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-[2000ms] ease-in-out ${
+              i === heroIndex ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        ))}
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
 
-        <div className="relative z-10 h-full flex flex-col justify-end px-8 md:px-10 lg:px-14 pb-20 md:pb-28">
-          <div className="max-w-3xl">
-            <h1 className="text-white text-4xl md:text-6xl lg:text-[5.5rem] font-light tracking-[-0.03em] leading-[1.05] mb-5">
-              Morocco, decoded.
+        <div className="relative z-10 h-full flex flex-col justify-end px-8 md:px-10 lg:px-14 pb-16 md:pb-24">
+          <div>
+            <h1 className="text-white/90 text-lg md:text-xl tracking-[0.15em] uppercase font-normal mb-3">
+              Morocco, decoded
             </h1>
-            <p className="text-white/50 text-base md:text-lg max-w-lg mb-12 leading-relaxed">
+            <p className="text-white/40 text-sm md:text-base max-w-md mb-10 leading-relaxed tracking-[0.01em]">
               Private journeys through a country most guides only scratch the surface of.
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-3">
               <Link
                 href="/places"
-                className="inline-flex items-center px-8 py-3.5 bg-white text-[#1C1917] text-sm tracking-[0.06em] uppercase hover:bg-white/90 transition-colors"
+                className="inline-flex items-center px-6 py-3 bg-white/90 text-[#1C1917] text-xs tracking-[0.08em] uppercase hover:bg-white transition-colors"
               >
                 Explore Places
               </Link>
               <Link
                 href="/journeys"
-                className="inline-flex items-center px-8 py-3.5 border border-white/30 text-white text-sm tracking-[0.06em] uppercase hover:bg-white/10 transition-colors"
+                className="inline-flex items-center px-6 py-3 border border-white/25 text-white/70 text-xs tracking-[0.08em] uppercase hover:bg-white/10 hover:text-white transition-colors"
               >
                 Plan a Journey
               </Link>
