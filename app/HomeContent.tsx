@@ -117,7 +117,7 @@ export default function HomeContent({
           />
         ))}
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
         <div className="relative z-10 h-full flex flex-col justify-end px-8 md:px-10 lg:px-14 pb-16 md:pb-24">
           <div>
