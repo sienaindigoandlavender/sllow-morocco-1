@@ -36,6 +36,8 @@ export default async function AllPlacesMapPage() {
     hero_image: p.hero_image || "",
     latitude: p.latitude as number,
     longitude: p.longitude as number,
+    related_story_slugs: p.related_story_slugs || [],
+    journey_bridge: p.journey_bridge || "",
   }));
 
   return <AllPlacesMap places={placeData} total={places.length} />;
