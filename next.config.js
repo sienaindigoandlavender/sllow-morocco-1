@@ -416,6 +416,7 @@ const nextConfig = {
       { source: '/stories/marrakech-medina-guide', destination: '/stories', permanent: true },
       { source: '/stories/spice-routes', destination: '/stories', permanent: true },
       { source: '/stories/water-crisis', destination: '/stories/water-crisis-morocco', permanent: true },
+      { source: '/stories/ottoman-north-africa', destination: '/stories', permanent: true },
 
       // Darija dictionary verb pages (catch-all not matching)
       { source: '/darija/dictionary/verbs-04411', destination: 'https://darija.io', permanent: true },
