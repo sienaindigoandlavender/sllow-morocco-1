@@ -15,6 +15,8 @@ interface PlacePin {
   hero_image: string;
   latitude: number;
   longitude: number;
+  related_story_slugs: string[];
+  journey_bridge: string;
 }
 
 interface Props {
@@ -163,6 +165,18 @@ export default function AllPlacesMap({ places, total }: Props) {
           link.href = "https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css";
           document.head.appendChild(link);
         }
+        // Inject pulse animation for map dots
+        if (!document.getElementById("map-pulse-css")) {
+          const style = document.createElement("style");
+          style.id = "map-pulse-css";
+          style.textContent = `
+            @keyframes mapPulse {
+              0%, 100% { transform: scale(1); opacity: 0.15; }
+              50% { transform: scale(1.5); opacity: 0.06; }
+            }
+          `;
+          document.head.appendChild(style);
+        }
       }
 
       if (!mapContainer.current) return;
@@ -224,15 +238,29 @@ export default function AllPlacesMap({ places, total }: Props) {
       const el = document.createElement("div");
 
       if (isSingle) {
-        // Single dot
+        // Glowing dot with pulse animation
         el.style.cssText = `
-          width: 10px; height: 10px;
-          border-radius: 50%;
-          background: ${color};
-          border: 1.5px solid rgba(255,255,255,0.35);
-          cursor: pointer;
-          transition: transform 0.15s, background 0.15s;
+          width: 24px; height: 24px;
           position: relative;
+          cursor: pointer;
+        `;
+        el.innerHTML = `
+          <span style="
+            position: absolute; inset: 0;
+            border-radius: 50%;
+            background: ${color};
+            opacity: 0.15;
+            animation: mapPulse 3s ease-in-out infinite;
+          "></span>
+          <span style="
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: ${color};
+            border: 1.5px solid rgba(255,255,255,0.4);
+          "></span>
         `;
         el.addEventListener("mouseenter", () => {
           el.style.transform = "scale(1.6)";
@@ -616,7 +644,9 @@ export default function AllPlacesMap({ places, total }: Props) {
               </h2>
               {selected.excerpt && (
                 <p className="text-white/50 text-sm leading-relaxed mb-8">
-                  {selected.excerpt}
+                  {selected.excerpt.length > 120
+                    ? selected.excerpt.slice(0, 120).trim() + '\u2026'
+                    : selected.excerpt}
                 </p>
               )}
               <Link
@@ -625,6 +655,39 @@ export default function AllPlacesMap({ places, total }: Props) {
               >
                 Read more →
               </Link>
+
+              {/* Connected stories */}
+              {selected.related_story_slugs.length > 0 && (
+                <div className="mt-6 pt-4" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+                  <p className="text-[9px] tracking-[0.2em] uppercase text-white/25 mb-3">
+                    Stories
+                  </p>
+                  {selected.related_story_slugs.slice(0, 3).map((storySlug) => (
+                    <Link
+                      key={storySlug}
+                      href={`/stories/${storySlug}`}
+                      className="block text-white/50 hover:text-white/80 text-sm py-1.5 transition-colors"
+                    >
+                      {storySlug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())} →
+                    </Link>
+                  ))}
+                </div>
+              )}
+
+              {/* Journey link */}
+              {selected.journey_bridge && (
+                <div className="mt-4 pt-4" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+                  <p className="text-[9px] tracking-[0.2em] uppercase text-white/25 mb-2">
+                    Journey
+                  </p>
+                  <Link
+                    href={`/journeys/${selected.journey_bridge}`}
+                    className="text-[#c9a96e] hover:text-[#d4b96e] text-sm transition-colors"
+                  >
+                    View journey →
+                  </Link>
+                </div>
+              )}
             </div>
           </>
         )}
