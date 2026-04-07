@@ -260,15 +260,23 @@ export default function AllPlacesMap({ places, total }: Props) {
             border-radius: 50%;
             background: ${color};
             border: 1.5px solid rgba(255,255,255,0.4);
+            transition: width 0.15s, height 0.15s;
           "></span>
         `;
+        const innerDot = el.querySelector('span:last-child') as HTMLElement;
         el.addEventListener("mouseenter", () => {
-          el.style.transform = "scale(1.6)";
           el.style.zIndex = "10";
+          if (innerDot) {
+            innerDot.style.width = "12px";
+            innerDot.style.height = "12px";
+          }
         });
         el.addEventListener("mouseleave", () => {
-          el.style.transform = "scale(1)";
           el.style.zIndex = "1";
+          if (innerDot) {
+            innerDot.style.width = "8px";
+            innerDot.style.height = "8px";
+          }
         });
         el.addEventListener("click", (e) => {
           e.stopPropagation();
@@ -441,14 +449,14 @@ export default function AllPlacesMap({ places, total }: Props) {
 
       {/* Category filter pills */}
       <div
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 flex-wrap justify-center px-4"
-        style={{ maxWidth: "90vw" }}
+        className="absolute bottom-6 left-0 right-0 z-20 flex items-center gap-2 px-6 overflow-x-auto"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none", WebkitOverflowScrolling: "touch" }}
       >
         {categories.map((cat) => (
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
-            className="px-3 py-1.5 text-[10px] tracking-[0.15em] uppercase transition-all duration-200 rounded-full"
+            className="px-3 py-1.5 text-[10px] tracking-[0.15em] uppercase transition-all duration-200 rounded-full flex-shrink-0 whitespace-nowrap"
             style={{
               background:
                 activeCategory === cat ? "#ffffff" : "rgba(0,0,0,0.6)",
