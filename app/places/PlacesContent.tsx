@@ -127,25 +127,6 @@ export default function PlacesContent({
         <div className="h-[1px] bg-foreground/12" />
       </section>
 
-      {/* ── Map banner ──────────────────────────────────────────────── */}
-      <section className="px-8 md:px-10 lg:px-14 pb-6">
-        <Link
-          href="/places/map"
-          className="group flex items-center justify-between px-6 py-4 bg-[#1C1917] rounded transition-colors hover:bg-[#282420]"
-        >
-          <div className="flex items-center gap-3">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="text-white/40 flex-shrink-0">
-              <path d="M1 4.5L6.333 2 11.667 4.5 17 2v11.5l-5.333 2.5L6.333 13.5 1 16V4.5z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round"/>
-              <path d="M6.333 2v11.5M11.667 4.5V16" stroke="currentColor" strokeWidth="1.2"/>
-            </svg>
-            <span className="text-white/60 group-hover:text-white/80 text-sm tracking-[0.02em] transition-colors">
-              View all places on one map
-            </span>
-          </div>
-          <span className="text-white/30 group-hover:text-white/50 text-xs transition-colors">→</span>
-        </Link>
-      </section>
-
       {/* ── Filter bar — regions ──────────────────────────────────────── */}
       <section className="px-8 md:px-10 lg:px-14 pb-4 sticky top-16 md:top-20 bg-background z-40">
         <div className="flex items-center justify-between py-3">
@@ -267,6 +248,25 @@ export default function PlacesContent({
             </button>
           </div>
         )}
+      </section>
+
+      {/* ── Map banner ──────────────────────────────────────────────── */}
+      <section className="px-8 md:px-10 lg:px-14 py-10">
+        <Link
+          href="/places/map"
+          className="group flex items-center justify-between px-6 py-4 bg-[#1C1917] rounded transition-colors hover:bg-[#282420]"
+        >
+          <div className="flex items-center gap-3">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="text-white/40 flex-shrink-0">
+              <path d="M1 4.5L6.333 2 11.667 4.5 17 2v11.5l-5.333 2.5L6.333 13.5 1 16V4.5z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round"/>
+              <path d="M6.333 2v11.5M11.667 4.5V16" stroke="currentColor" strokeWidth="1.2"/>
+            </svg>
+            <span className="text-white/60 group-hover:text-white/80 text-sm tracking-[0.02em] transition-colors">
+              View all places on one map
+            </span>
+          </div>
+          <span className="text-white/30 group-hover:text-white/50 text-xs transition-colors">→</span>
+        </Link>
       </section>
 
       {/* ── SEO paragraph ────────────────────────────────────────────── */}
