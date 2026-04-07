@@ -174,6 +174,21 @@ export default function AllPlacesMap({ places, total }: Props) {
               0%, 100% { transform: scale(1); opacity: 0.15; }
               50% { transform: scale(1.5); opacity: 0.06; }
             }
+            .map-dot { cursor: pointer; position: relative; width: 24px; height: 24px; }
+            .map-dot .dot-glow {
+              position: absolute; inset: 0; border-radius: 50%;
+              opacity: 0.15; animation: mapPulse 3s ease-in-out infinite;
+            }
+            .map-dot .dot-core {
+              position: absolute; top: 50%; left: 50%;
+              transform: translate(-50%, -50%);
+              width: 8px; height: 8px; border-radius: 50%;
+              border: 1.5px solid rgba(255,255,255,0.4);
+              transition: box-shadow 0.15s;
+            }
+            .map-dot:hover .dot-core {
+              box-shadow: 0 0 6px 2px rgba(255,255,255,0.3);
+            }
           `;
           document.head.appendChild(style);
         }
@@ -238,46 +253,12 @@ export default function AllPlacesMap({ places, total }: Props) {
       const el = document.createElement("div");
 
       if (isSingle) {
-        // Glowing dot with pulse animation
-        el.style.cssText = `
-          width: 24px; height: 24px;
-          position: relative;
-          cursor: pointer;
-        `;
+        // Glowing dot with pulse animation — all hover via CSS, no JS style mutations
+        el.className = "map-dot";
         el.innerHTML = `
-          <span style="
-            position: absolute; inset: 0;
-            border-radius: 50%;
-            background: ${color};
-            opacity: 0.15;
-            animation: mapPulse 3s ease-in-out infinite;
-          "></span>
-          <span style="
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 8px; height: 8px;
-            border-radius: 50%;
-            background: ${color};
-            border: 1.5px solid rgba(255,255,255,0.4);
-            transition: width 0.15s, height 0.15s;
-          "></span>
+          <span class="dot-glow" style="background:${color}"></span>
+          <span class="dot-core" style="background:${color}"></span>
         `;
-        const innerDot = el.querySelector('span:last-child') as HTMLElement;
-        el.addEventListener("mouseenter", () => {
-          el.style.zIndex = "10";
-          if (innerDot) {
-            innerDot.style.width = "12px";
-            innerDot.style.height = "12px";
-          }
-        });
-        el.addEventListener("mouseleave", () => {
-          el.style.zIndex = "1";
-          if (innerDot) {
-            innerDot.style.width = "8px";
-            innerDot.style.height = "8px";
-          }
-        });
         el.addEventListener("click", (e) => {
           e.stopPropagation();
           setClusterGroup(null);
