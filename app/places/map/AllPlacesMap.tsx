@@ -170,9 +170,9 @@ export default function AllPlacesMap({ places, total }: Props) {
           const style = document.createElement("style");
           style.id = "map-pulse-css";
           style.textContent = `
-            @keyframes mapPulse {
-              0%, 100% { transform: scale(1); opacity: 0.15; }
-              50% { transform: scale(1.5); opacity: 0.06; }
+            @keyframes dotGlow {
+              0%, 100% { box-shadow: 0 0 4px 2px var(--dot-color); }
+              50%      { box-shadow: 0 0 8px 4px var(--dot-color); }
             }
           `;
           document.head.appendChild(style);
@@ -238,46 +238,17 @@ export default function AllPlacesMap({ places, total }: Props) {
       const el = document.createElement("div");
 
       if (isSingle) {
-        // Glowing dot with pulse animation
+        // Single-element glowing dot — no children, no hover mutations
         el.style.cssText = `
-          width: 24px; height: 24px;
-          position: relative;
+          width: 10px; height: 10px;
+          border-radius: 50%;
+          background: ${color};
+          border: 1.5px solid rgba(255,255,255,0.35);
           cursor: pointer;
+          --dot-color: ${color};
+          animation: dotGlow 3s ease-in-out infinite;
+          animation-delay: ${Math.random() * 3}s;
         `;
-        el.innerHTML = `
-          <span style="
-            position: absolute; inset: 0;
-            border-radius: 50%;
-            background: ${color};
-            opacity: 0.15;
-            animation: mapPulse 3s ease-in-out infinite;
-          "></span>
-          <span style="
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 8px; height: 8px;
-            border-radius: 50%;
-            background: ${color};
-            border: 1.5px solid rgba(255,255,255,0.4);
-            transition: width 0.15s, height 0.15s;
-          "></span>
-        `;
-        const innerDot = el.querySelector('span:last-child') as HTMLElement;
-        el.addEventListener("mouseenter", () => {
-          el.style.zIndex = "10";
-          if (innerDot) {
-            innerDot.style.width = "12px";
-            innerDot.style.height = "12px";
-          }
-        });
-        el.addEventListener("mouseleave", () => {
-          el.style.zIndex = "1";
-          if (innerDot) {
-            innerDot.style.width = "8px";
-            innerDot.style.height = "8px";
-          }
-        });
         el.addEventListener("click", (e) => {
           e.stopPropagation();
           setClusterGroup(null);
@@ -302,15 +273,15 @@ export default function AllPlacesMap({ places, total }: Props) {
           font-size: ${Math.max(9, size * 0.38)}px;
           font-weight: 500;
           color: #0e0e0e;
-          transition: transform 0.15s;
+          transition: opacity 0.15s;
           font-family: sans-serif;
         `;
         el.textContent = String(cluster.places.length);
         el.addEventListener("mouseenter", () => {
-          el.style.transform = "scale(1.15)";
+          el.style.opacity = "1";
         });
         el.addEventListener("mouseleave", () => {
-          el.style.transform = "scale(1)";
+          el.style.opacity = "0.85";
         });
         el.addEventListener("click", (e) => {
           e.stopPropagation();

@@ -250,6 +250,25 @@ export default function PlacesContent({
         )}
       </section>
 
+      {/* ── Map banner ──────────────────────────────────────────────── */}
+      <section className="px-8 md:px-10 lg:px-14 py-10">
+        <Link
+          href="/places/map"
+          className="group flex items-center justify-between px-6 py-4 bg-[#1C1917] rounded transition-colors hover:bg-[#282420]"
+        >
+          <div className="flex items-center gap-3">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="text-white/40 flex-shrink-0">
+              <path d="M1 4.5L6.333 2 11.667 4.5 17 2v11.5l-5.333 2.5L6.333 13.5 1 16V4.5z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round"/>
+              <path d="M6.333 2v11.5M11.667 4.5V16" stroke="currentColor" strokeWidth="1.2"/>
+            </svg>
+            <span className="text-white/60 group-hover:text-white/80 text-sm tracking-[0.02em] transition-colors">
+              View all places on one map
+            </span>
+          </div>
+          <span className="text-white/30 group-hover:text-white/50 text-xs transition-colors">→</span>
+        </Link>
+      </section>
+
       {/* ── SEO paragraph ────────────────────────────────────────────── */}
       <section className="px-8 md:px-10 lg:px-14 pb-16 border-t border-foreground/[0.08] pt-14">
         <p className="text-[12.5px] text-foreground/35 leading-[1.7] max-w-2xl">
