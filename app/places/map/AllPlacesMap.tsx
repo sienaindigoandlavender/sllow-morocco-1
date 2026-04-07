@@ -419,6 +419,7 @@ export default function AllPlacesMap({ places, total }: Props) {
           border: "1px solid rgba(255,255,255,0.08)",
           maxHeight: "calc(100dvh - 120px)",
           overflowY: "auto",
+          scrollbarWidth: "none",
         }}
       >
         {Object.entries(CATEGORY_COLORS)
