@@ -129,7 +129,7 @@ export default function HomeContent({
             </p>
             <div className="flex flex-wrap gap-3">
               <Link
-                href="/places/map"
+                href="/places"
                 className="inline-flex items-center px-6 py-3 bg-white/90 text-[#1C1917] text-xs tracking-[0.08em] uppercase hover:bg-white transition-colors"
               >
                 Explore Places

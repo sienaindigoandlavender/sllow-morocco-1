@@ -273,15 +273,15 @@ export default function AllPlacesMap({ places, total }: Props) {
           font-size: ${Math.max(9, size * 0.38)}px;
           font-weight: 500;
           color: #0e0e0e;
-          transition: transform 0.15s;
+          transition: opacity 0.15s;
           font-family: sans-serif;
         `;
         el.textContent = String(cluster.places.length);
         el.addEventListener("mouseenter", () => {
-          el.style.transform = "scale(1.15)";
+          el.style.opacity = "1";
         });
         el.addEventListener("mouseleave", () => {
-          el.style.transform = "scale(1)";
+          el.style.opacity = "0.85";
         });
         el.addEventListener("click", (e) => {
           e.stopPropagation();
