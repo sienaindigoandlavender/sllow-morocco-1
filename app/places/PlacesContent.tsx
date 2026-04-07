@@ -35,6 +35,7 @@ interface PlacesContentProps {
   initialDestinations: Destination[];
   initialPlaces: Place[];
   dataLoaded?: boolean;
+  mapPreviewUrl?: string;
 }
 
 const ITEMS_PER_PAGE = 24;
@@ -44,6 +45,7 @@ export default function PlacesContent({
   initialDestinations,
   initialPlaces,
   dataLoaded = true,
+  mapPreviewUrl = "",
 }: PlacesContentProps) {
   const searchParams = useSearchParams();
   const regionParam = searchParams.get("region");
@@ -251,7 +253,7 @@ export default function PlacesContent({
       </section>
 
       {/* ── Map preview banner ────────────────────────────────────── */}
-      <MapPreviewBanner />
+      {mapPreviewUrl && <MapPreviewBanner imageUrl={mapPreviewUrl} />}
 
       {/* ── SEO paragraph ────────────────────────────────────────────── */}
       <section className="px-8 md:px-10 lg:px-14 pb-16 border-t border-foreground/[0.08] pt-14">
@@ -279,9 +281,7 @@ const PREVIEW_DOTS = [
   { left: "22%", top: "69%", delay: "2.7s" },   // Agadir
 ];
 
-function MapPreviewBanner() {
-  const token = process.env.NEXT_PUBLIC_MAPBOX_TOKEN || "";
-  const staticUrl = `https://api.mapbox.com/styles/v1/mapbox/dark-v11/static/-6.5,31.5,4.8,0/1400x400@2x?access_token=${token}`;
+function MapPreviewBanner({ imageUrl }: { imageUrl: string }) {
 
   return (
     <section className="px-8 md:px-10 lg:px-14 py-10">
@@ -294,7 +294,7 @@ function MapPreviewBanner() {
       <Link href="/places/map" className="group block relative overflow-hidden rounded" style={{ height: "340px" }}>
         {/* Static map image */}
         <img
-          src={staticUrl}
+          src={imageUrl}
           alt="Map of Morocco"
           className="absolute inset-0 w-full h-full object-cover"
         />
