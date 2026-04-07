@@ -453,12 +453,9 @@ export default function AllPlacesMap({ places, total }: Props) {
           ))}
         {/* Count + Search */}
         <div
-          className="flex items-center justify-between mt-3 pt-3"
+          className="flex items-center justify-end mt-3 pt-3"
           style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
         >
-          <p className="text-[10px] tracking-[0.2em] uppercase text-white/30">
-            {count} of {total}
-          </p>
           <button
             onClick={() => setShowSearch((v) => !v)}
             className="text-white/40 hover:text-white/80 transition-colors"
