@@ -327,19 +327,12 @@ export default function AllPlacesMap({ places, total }: Props) {
 
       {/* Header bar */}
       <div
-        className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-6 py-4"
+        className="absolute top-0 left-0 right-0 z-20 flex items-center justify-end px-6 py-4"
         style={{
           background:
             "linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, transparent 100%)",
         }}
       >
-        <Link
-          href="/places"
-          className="text-[10px] tracking-[0.25em] uppercase text-white/50 hover:text-white/80 transition-colors"
-        >
-          ← Places
-        </Link>
-
         <div className="flex items-center gap-3">
           <p className="text-[10px] tracking-[0.25em] uppercase text-white/30">
             {count} of {total}
@@ -481,6 +474,13 @@ export default function AllPlacesMap({ places, total }: Props) {
               </span>
             </div>
           ))}
+        <Link
+          href="/places"
+          className="flex items-center gap-2 mt-3 pt-3 text-[10px] tracking-[0.15em] uppercase text-white/40 hover:text-white/70 transition-colors"
+          style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
+        >
+          ← Back to Places
+        </Link>
       </div>
 
       {/* Cluster list panel */}
