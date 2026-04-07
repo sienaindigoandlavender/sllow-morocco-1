@@ -634,33 +634,6 @@ export default function AllPlacesMap({ places, total }: Props) {
               >
                 Read more →
               </Link>
-
-              {/* Connected stories */}
-              {selected.related_story_slugs.length > 0 && (
-                <div className="mt-6 pt-4" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-                  <p className="text-[9px] tracking-[0.2em] uppercase text-white/25 mb-3">
-                    Stories
-                  </p>
-                  {selected.related_story_slugs.slice(0, 3).map((storySlug) => (
-                    <Link
-                      key={storySlug}
-                      href={`/stories/${storySlug}`}
-                      className="block text-white/50 hover:text-white/80 text-sm py-1.5 transition-colors"
-                    >
-                      {storySlug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())} →
-                    </Link>
-                  ))}
-                </div>
-              )}
-
-              {/* Journey bridge text */}
-              {selected.journey_bridge && (
-                <div className="mt-4 pt-4" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-                  <p className="text-white/40 text-sm italic font-serif leading-relaxed">
-                    {selected.journey_bridge}
-                  </p>
-                </div>
-              )}
             </div>
           </>
         )}
