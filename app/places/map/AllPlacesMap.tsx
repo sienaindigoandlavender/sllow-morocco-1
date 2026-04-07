@@ -170,24 +170,9 @@ export default function AllPlacesMap({ places, total }: Props) {
           const style = document.createElement("style");
           style.id = "map-pulse-css";
           style.textContent = `
-            @keyframes mapPulse {
-              0%, 100% { transform: scale(1); opacity: 0.15; }
-              50% { transform: scale(1.5); opacity: 0.06; }
-            }
-            .map-dot { cursor: pointer; position: relative; width: 24px; height: 24px; }
-            .map-dot .dot-glow {
-              position: absolute; inset: 0; border-radius: 50%;
-              opacity: 0.15; animation: mapPulse 3s ease-in-out infinite;
-            }
-            .map-dot .dot-core {
-              position: absolute; top: 50%; left: 50%;
-              transform: translate(-50%, -50%);
-              width: 8px; height: 8px; border-radius: 50%;
-              border: 1.5px solid rgba(255,255,255,0.4);
-              transition: box-shadow 0.15s;
-            }
-            .map-dot:hover .dot-core {
-              box-shadow: 0 0 6px 2px rgba(255,255,255,0.3);
+            @keyframes dotPulse {
+              0%   { transform: translate(-50%,-50%) scale(1); opacity: 0.6; }
+              100% { transform: translate(-50%,-50%) scale(3.5); opacity: 0; }
             }
           `;
           document.head.appendChild(style);
@@ -253,12 +238,43 @@ export default function AllPlacesMap({ places, total }: Props) {
       const el = document.createElement("div");
 
       if (isSingle) {
-        // Glowing dot with pulse animation — all hover via CSS, no JS style mutations
-        el.className = "map-dot";
-        el.innerHTML = `
-          <span class="dot-glow" style="background:${color}"></span>
-          <span class="dot-core" style="background:${color}"></span>
+        // Glowing dot — fixed-size container, child elements for dot + pulse ring
+        el.style.cssText = `width:20px;height:20px;position:relative;cursor:pointer;`;
+
+        const inner = document.createElement("div");
+        inner.style.cssText = `
+          position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+          width:6px;height:6px;background:${color};border-radius:50%;
+          transition:all 0.25s ease;
+          box-shadow:0 0 0 0 rgba(255,255,255,0.4);
         `;
+
+        const pulse = document.createElement("div");
+        pulse.style.cssText = `
+          position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+          width:6px;height:6px;border-radius:50%;
+          background:${color.replace(')', ',0.25)').replace('rgb', 'rgba').replace('#', '')};
+          opacity:0.25;
+          animation:dotPulse 2.5s ease-out infinite;
+          animation-delay:${Math.random() * 2}s;
+        `;
+        // Set pulse background via computed rgba
+        pulse.style.background = color;
+        pulse.style.opacity = "0.25";
+
+        el.appendChild(pulse);
+        el.appendChild(inner);
+
+        el.addEventListener("mouseenter", () => {
+          inner.style.width = "10px";
+          inner.style.height = "10px";
+          inner.style.boxShadow = `0 0 8px 3px ${color}`;
+        });
+        el.addEventListener("mouseleave", () => {
+          inner.style.width = "6px";
+          inner.style.height = "6px";
+          inner.style.boxShadow = "0 0 0 0 rgba(255,255,255,0.4)";
+        });
         el.addEventListener("click", (e) => {
           e.stopPropagation();
           setClusterGroup(null);
