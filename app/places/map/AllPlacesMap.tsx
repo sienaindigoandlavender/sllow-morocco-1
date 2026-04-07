@@ -653,18 +653,12 @@ export default function AllPlacesMap({ places, total }: Props) {
                 </div>
               )}
 
-              {/* Journey link */}
+              {/* Journey bridge text */}
               {selected.journey_bridge && (
                 <div className="mt-4 pt-4" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-                  <p className="text-[9px] tracking-[0.2em] uppercase text-white/25 mb-2">
-                    Journey
+                  <p className="text-white/40 text-sm italic font-serif leading-relaxed">
+                    {selected.journey_bridge}
                   </p>
-                  <Link
-                    href={`/journeys/${selected.journey_bridge}`}
-                    className="text-[#c9a96e] hover:text-[#d4b96e] text-sm transition-colors"
-                  >
-                    View journey →
-                  </Link>
                 </div>
               )}
             </div>
