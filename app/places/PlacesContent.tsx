@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useRef, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 import { cloudinaryUrl } from "@/lib/cloudinary";
 import Link from "next/link";
@@ -250,24 +250,8 @@ export default function PlacesContent({
         )}
       </section>
 
-      {/* ── Map banner ──────────────────────────────────────────────── */}
-      <section className="px-8 md:px-10 lg:px-14 py-10">
-        <Link
-          href="/places/map"
-          className="group flex items-center justify-between px-6 py-4 bg-[#1C1917] rounded transition-colors hover:bg-[#282420]"
-        >
-          <div className="flex items-center gap-3">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="text-white/40 flex-shrink-0">
-              <path d="M1 4.5L6.333 2 11.667 4.5 17 2v11.5l-5.333 2.5L6.333 13.5 1 16V4.5z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round"/>
-              <path d="M6.333 2v11.5M11.667 4.5V16" stroke="currentColor" strokeWidth="1.2"/>
-            </svg>
-            <span className="text-white/60 group-hover:text-white/80 text-sm tracking-[0.02em] transition-colors">
-              View all places on one map
-            </span>
-          </div>
-          <span className="text-white/30 group-hover:text-white/50 text-xs transition-colors">→</span>
-        </Link>
-      </section>
+      {/* ── Map preview banner ────────────────────────────────────── */}
+      <MapPreviewBanner />
 
       {/* ── SEO paragraph ────────────────────────────────────────────── */}
       <section className="px-8 md:px-10 lg:px-14 pb-16 border-t border-foreground/[0.08] pt-14">
@@ -277,5 +261,123 @@ export default function PlacesContent({
       </section>
 
     </div>
+  );
+}
+
+// ─── Key Moroccan cities for preview dots ──────────────────────────────────
+const PREVIEW_DOTS = [
+  { lat: 31.6295, lng: -7.9811, label: "Marrakech" },
+  { lat: 34.0331, lng: -5.0003, label: "Fes" },
+  { lat: 33.5731, lng: -7.5898, label: "Casablanca" },
+  { lat: 31.5085, lng: -9.7595, label: "Essaouira" },
+  { lat: 35.7595, lng: -5.8340, label: "Tangier" },
+  { lat: 30.9335, lng: -6.9370, label: "Ouarzazate" },
+  { lat: 31.0802, lng: -4.0131, label: "Merzouga" },
+  { lat: 35.1688, lng: -5.2636, label: "Chefchaouen" },
+  { lat: 34.0209, lng: -6.8416, label: "Rabat" },
+  { lat: 30.4278, lng: -9.5981, label: "Agadir" },
+];
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let previewMapboxgl: any = null;
+
+function MapPreviewBanner() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const mapRef = useRef<any>(null);
+  const [ready, setReady] = useState(false);
+
+  const initPreview = useCallback(async () => {
+    if (!containerRef.current || mapRef.current) return;
+
+    if (!previewMapboxgl) {
+      const mb = await import("mapbox-gl");
+      previewMapboxgl = mb.default;
+      previewMapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN || "";
+      if (!document.getElementById("mapbox-gl-css")) {
+        const link = document.createElement("link");
+        link.id = "mapbox-gl-css";
+        link.rel = "stylesheet";
+        link.href = "https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css";
+        document.head.appendChild(link);
+      }
+      if (!document.getElementById("preview-pulse-css")) {
+        const style = document.createElement("style");
+        style.id = "preview-pulse-css";
+        style.textContent = `
+          @keyframes previewGlow {
+            0%, 100% { box-shadow: 0 0 4px 2px #c9a96e; }
+            50%      { box-shadow: 0 0 10px 5px #c9a96e; }
+          }
+        `;
+        document.head.appendChild(style);
+      }
+    }
+
+    if (!containerRef.current) return;
+
+    const m = new previewMapboxgl.Map({
+      container: containerRef.current,
+      style: "mapbox://styles/mapbox/dark-v11",
+      center: [-6.5, 31.5],
+      zoom: 4.8,
+      interactive: false,
+      attributionControl: false,
+    });
+
+    mapRef.current = m;
+
+    m.on("load", () => {
+      PREVIEW_DOTS.forEach((dot, i) => {
+        const el = document.createElement("div");
+        el.style.cssText = `
+          width: 10px; height: 10px;
+          border-radius: 50%;
+          background: #c9a96e;
+          border: 1.5px solid rgba(255,255,255,0.35);
+          animation: previewGlow 3s ease-in-out infinite;
+          animation-delay: ${i * 0.3}s;
+        `;
+        new previewMapboxgl.Marker({ element: el, anchor: "center" })
+          .setLngLat([dot.lng, dot.lat])
+          .addTo(m);
+      });
+      setReady(true);
+    });
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { initPreview(); observer.disconnect(); } },
+      { rootMargin: "200px" }
+    );
+    if (containerRef.current) observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, [initPreview]);
+
+  return (
+    <section className="px-8 md:px-10 lg:px-14 py-10">
+      <Link href="/places/map" className="group block relative overflow-hidden rounded" style={{ height: "320px" }}>
+        {/* Map container */}
+        <div ref={containerRef} className="absolute inset-0" style={{ opacity: ready ? 1 : 0, transition: "opacity 0.8s" }} />
+        {/* Fallback dark bg while loading */}
+        <div className="absolute inset-0 bg-[#1a1a1a]" style={{ zIndex: ready ? -1 : 0 }} />
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 z-10" style={{
+          background: "linear-gradient(to top, rgba(14,14,14,0.85) 0%, rgba(14,14,14,0.3) 50%, rgba(14,14,14,0.15) 100%)",
+        }} />
+        {/* CTA text */}
+        <div className="absolute bottom-0 left-0 right-0 z-20 px-8 pb-8">
+          <p className="text-[10px] tracking-[0.2em] uppercase text-white/30 mb-2">
+            Interactive Map
+          </p>
+          <h3 className="font-serif text-white/80 group-hover:text-white text-2xl md:text-3xl transition-colors">
+            Explore all places on one map
+          </h3>
+          <p className="text-white/35 text-sm mt-2 max-w-md">
+            Every medina, kasbah, oasis, and souk — mapped and searchable.
+          </p>
+        </div>
+      </Link>
+    </section>
   );
 }
