@@ -412,16 +412,19 @@ export default function AllPlacesMap({ places, total }: Props) {
 
       {/* Legend */}
       <div
-        className="absolute top-16 left-4 z-20 hidden md:flex flex-col gap-2 p-3 rounded"
+        className="absolute top-16 left-4 z-20 hidden md:flex flex-col rounded"
         style={{
           background: "rgba(0,0,0,0.55)",
           backdropFilter: "blur(8px)",
           border: "1px solid rgba(255,255,255,0.08)",
           maxHeight: "calc(100dvh - 120px)",
-          overflowY: "auto",
-          scrollbarWidth: "none",
         }}
       >
+        {/* Scrollable categories */}
+        <div
+          className="flex flex-col gap-2 p-3 overflow-y-auto flex-1"
+          style={{ scrollbarWidth: "none" }}
+        >
         {Object.entries(CATEGORY_COLORS)
           .filter(([cat]) =>
             categories.includes(cat)
@@ -451,31 +454,33 @@ export default function AllPlacesMap({ places, total }: Props) {
               </span>
             </div>
           ))}
-        {/* Count + Search */}
-        <div
-          className="flex items-center justify-end mt-3 pt-3"
-          style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
-        >
-          <button
-            onClick={() => setShowSearch((v) => !v)}
-            className="text-white/40 hover:text-white/80 transition-colors"
-            aria-label="Search places"
-            style={{ background: "none", border: "none", cursor: "pointer", padding: "4px" }}
-          >
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-              <circle cx="7" cy="7" r="4.5" stroke="currentColor" strokeWidth="1.2"/>
-              <line x1="10.5" y1="10.5" x2="14" y2="14" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
-            </svg>
-          </button>
         </div>
-        {/* Back link */}
-        <Link
-          href="/places"
-          className="flex items-center gap-2 mt-2 pt-2 text-[10px] tracking-[0.15em] uppercase text-white/40 hover:text-white/70 transition-colors"
-          style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
-        >
-          ← Back to Places
-        </Link>
+        {/* Pinned footer: search + back link */}
+        <div className="flex-shrink-0 px-3 pb-3">
+          <div
+            className="flex items-center justify-end pt-2"
+            style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
+          >
+            <button
+              onClick={() => setShowSearch((v) => !v)}
+              className="text-white/40 hover:text-white/80 transition-colors"
+              aria-label="Search places"
+              style={{ background: "none", border: "none", cursor: "pointer", padding: "4px" }}
+            >
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <circle cx="7" cy="7" r="4.5" stroke="currentColor" strokeWidth="1.2"/>
+                <line x1="10.5" y1="10.5" x2="14" y2="14" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+              </svg>
+            </button>
+          </div>
+          <Link
+            href="/places"
+            className="flex items-center gap-2 mt-2 pt-2 text-[10px] tracking-[0.15em] uppercase text-white/40 hover:text-white/70 transition-colors"
+            style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
+          >
+            ← Back to Places
+          </Link>
+        </div>
       </div>
 
       {/* Cluster list panel */}
