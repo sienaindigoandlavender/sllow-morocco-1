@@ -325,31 +325,7 @@ export default function AllPlacesMap({ places, total }: Props) {
       {/* Map fills entire screen */}
       <div ref={mapContainer} style={{ position: "absolute", inset: 0 }} />
 
-      {/* Header bar */}
-      <div
-        className="absolute top-0 left-0 right-0 z-20 flex items-center justify-end px-6 py-4"
-        style={{
-          background:
-            "linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, transparent 100%)",
-        }}
-      >
-        <div className="flex items-center gap-3">
-          <p className="text-[10px] tracking-[0.25em] uppercase text-white/30">
-            {count} of {total}
-          </p>
-          <button
-            onClick={() => setShowSearch((v) => !v)}
-            className="text-white/40 hover:text-white/80 transition-colors"
-            aria-label="Search places"
-            style={{ background: "none", border: "none", cursor: "pointer", padding: "4px" }}
-          >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <circle cx="7" cy="7" r="4.5" stroke="currentColor" strokeWidth="1.2"/>
-              <line x1="10.5" y1="10.5" x2="14" y2="14" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
-            </svg>
-          </button>
-        </div>
-      </div>
+      {/* (header bar removed — count, search, and back link live in the legend box) */}
 
       {/* Search bar */}
       {showSearch && (
@@ -474,9 +450,30 @@ export default function AllPlacesMap({ places, total }: Props) {
               </span>
             </div>
           ))}
+        {/* Count + Search */}
+        <div
+          className="flex items-center justify-between mt-3 pt-3"
+          style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
+        >
+          <p className="text-[10px] tracking-[0.2em] uppercase text-white/30">
+            {count} of {total}
+          </p>
+          <button
+            onClick={() => setShowSearch((v) => !v)}
+            className="text-white/40 hover:text-white/80 transition-colors"
+            aria-label="Search places"
+            style={{ background: "none", border: "none", cursor: "pointer", padding: "4px" }}
+          >
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <circle cx="7" cy="7" r="4.5" stroke="currentColor" strokeWidth="1.2"/>
+              <line x1="10.5" y1="10.5" x2="14" y2="14" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+            </svg>
+          </button>
+        </div>
+        {/* Back link */}
         <Link
           href="/places"
-          className="flex items-center gap-2 mt-3 pt-3 text-[10px] tracking-[0.15em] uppercase text-white/40 hover:text-white/70 transition-colors"
+          className="flex items-center gap-2 mt-2 pt-2 text-[10px] tracking-[0.15em] uppercase text-white/40 hover:text-white/70 transition-colors"
           style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
         >
           ← Back to Places
