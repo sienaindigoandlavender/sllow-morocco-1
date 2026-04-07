@@ -35,7 +35,6 @@ interface PlacesContentProps {
   initialDestinations: Destination[];
   initialPlaces: Place[];
   dataLoaded?: boolean;
-  mapPreviewUrl?: string;
 }
 
 const ITEMS_PER_PAGE = 24;
@@ -45,7 +44,6 @@ export default function PlacesContent({
   initialDestinations,
   initialPlaces,
   dataLoaded = true,
-  mapPreviewUrl = "",
 }: PlacesContentProps) {
   const searchParams = useSearchParams();
   const regionParam = searchParams.get("region");
@@ -253,7 +251,7 @@ export default function PlacesContent({
       </section>
 
       {/* ── Map preview banner ────────────────────────────────────── */}
-      {mapPreviewUrl && <MapPreviewBanner imageUrl={mapPreviewUrl} />}
+      <MapPreviewBanner />
 
       {/* ── SEO paragraph ────────────────────────────────────────────── */}
       <section className="px-8 md:px-10 lg:px-14 pb-16 border-t border-foreground/[0.08] pt-14">
@@ -266,39 +264,59 @@ export default function PlacesContent({
   );
 }
 
-// ─── Dot positions as percentages of the banner (based on Morocco bounds) ──
-// Rough conversion: lng [-12, -1] → left 0–100%, lat [28, 36] → bottom 0–100%
+// ─── City dot positions (% of banner, tuned to Morocco SVG outline) ────────
 const PREVIEW_DOTS = [
-  { left: "41%", top: "56%", delay: "0s" },     // Marrakech
-  { left: "64%", top: "25%", delay: "0.3s" },   // Fes
-  { left: "40%", top: "31%", delay: "0.6s" },   // Casablanca
-  { left: "20%", top: "56%", delay: "0.9s" },   // Essaouira
-  { left: "56%", top: "4%",  delay: "1.2s" },   // Tangier
-  { left: "46%", top: "58%", delay: "1.5s" },   // Ouarzazate
-  { left: "73%", top: "56%", delay: "1.8s" },   // Merzouga
-  { left: "61%", top: "12%", delay: "2.1s" },   // Chefchaouen
-  { left: "47%", top: "25%", delay: "2.4s" },   // Rabat
-  { left: "22%", top: "69%", delay: "2.7s" },   // Agadir
+  { left: "42%", top: "52%", delay: "0s",    label: "Marrakech" },
+  { left: "58%", top: "22%", delay: "0.4s",  label: "Fes" },
+  { left: "41%", top: "30%", delay: "0.8s",  label: "Casablanca" },
+  { left: "27%", top: "50%", delay: "1.2s",  label: "Essaouira" },
+  { left: "50%", top: "6%",  delay: "1.6s",  label: "Tangier" },
+  { left: "50%", top: "56%", delay: "2.0s",  label: "Ouarzazate" },
+  { left: "68%", top: "52%", delay: "2.4s",  label: "Merzouga" },
+  { left: "54%", top: "12%", delay: "2.8s",  label: "Chefchaouen" },
+  { left: "46%", top: "22%", delay: "3.2s",  label: "Rabat" },
+  { left: "27%", top: "62%", delay: "3.6s",  label: "Agadir" },
 ];
 
-function MapPreviewBanner({ imageUrl }: { imageUrl: string }) {
-
+function MapPreviewBanner() {
   return (
     <section className="px-8 md:px-10 lg:px-14 py-10">
       <style>{`
         @keyframes previewGlow {
-          0%, 100% { box-shadow: 0 0 4px 2px #c9a96e; opacity: 0.9; }
-          50%      { box-shadow: 0 0 10px 5px #c9a96e; opacity: 0.5; }
+          0%, 100% { box-shadow: 0 0 4px 2px #c9a96e; }
+          50%      { box-shadow: 0 0 12px 6px #c9a96e; }
         }
       `}</style>
-      <Link href="/places/map" className="group block relative overflow-hidden rounded" style={{ height: "340px" }}>
-        {/* Static map image */}
-        <img
-          src={imageUrl}
-          alt="Map of Morocco"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        {/* Glowing dots overlay */}
+      <Link href="/places/map" className="group block relative overflow-hidden rounded" style={{ height: "340px", background: "#141414" }}>
+        {/* Morocco SVG outline as background texture */}
+        <svg
+          viewBox="0 0 800 500"
+          className="absolute"
+          style={{ top: "-5%", left: "10%", width: "80%", height: "110%", opacity: 0.08 }}
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M320 30 L380 25 L420 35 L440 28 L480 40 L520 32 L540 45 L560 50
+               L570 80 L560 110 L550 130 L555 160 L540 190 L530 220
+               L520 250 L510 270 L500 290 L480 310 L460 330 L440 350
+               L420 370 L400 385 L380 395 L360 400 L340 410 L320 420
+               L300 430 L280 435 L260 440 L240 445 L220 448 L200 450
+               L180 445 L160 430 L150 410 L155 390 L160 370 L170 350
+               L180 330 L195 310 L210 290 L225 270 L240 250 L250 230
+               L260 210 L265 190 L270 170 L275 150 L280 130 L285 110
+               L290 90 L300 60 L310 45 Z"
+            stroke="rgba(255,255,255,0.5)"
+            strokeWidth="1.5"
+            fill="rgba(255,255,255,0.03)"
+          />
+        </svg>
+        {/* Subtle grid lines */}
+        <div className="absolute inset-0" style={{
+          backgroundImage: "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+        }} />
+        {/* Glowing dots */}
         {PREVIEW_DOTS.map((dot, i) => (
           <span
             key={i}
@@ -306,19 +324,20 @@ function MapPreviewBanner({ imageUrl }: { imageUrl: string }) {
             style={{
               left: dot.left,
               top: dot.top,
-              width: "10px",
-              height: "10px",
+              width: "8px",
+              height: "8px",
               borderRadius: "50%",
               background: "#c9a96e",
-              border: "1.5px solid rgba(255,255,255,0.35)",
+              border: "1.5px solid rgba(255,255,255,0.3)",
               animation: "previewGlow 3s ease-in-out infinite",
               animationDelay: dot.delay,
+              transform: "translate(-50%, -50%)",
             }}
           />
         ))}
-        {/* Gradient overlay */}
+        {/* Gradient overlay at bottom for text readability */}
         <div className="absolute inset-0 z-10" style={{
-          background: "linear-gradient(to top, rgba(14,14,14,0.85) 0%, rgba(14,14,14,0.3) 50%, rgba(14,14,14,0.1) 100%)",
+          background: "linear-gradient(to top, rgba(14,14,14,0.9) 0%, rgba(14,14,14,0.2) 50%, transparent 100%)",
         }} />
         {/* CTA text */}
         <div className="absolute bottom-0 left-0 right-0 z-20 px-8 pb-8">

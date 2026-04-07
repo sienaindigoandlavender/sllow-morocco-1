@@ -89,12 +89,6 @@ async function fetchPlacesData() {
 export default async function PlacesPage() {
   const { regions, destinations, places, dataLoaded } = await fetchPlacesData();
 
-  // Build static map image URL server-side where token is guaranteed
-  const mapToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN || "";
-  const mapPreviewUrl = mapToken
-    ? `https://api.mapbox.com/styles/v1/mapbox/dark-v11/static/-6.5,31.5,4.8,0/1400x400@2x?access_token=${mapToken}`
-    : "";
-
   return (
     <Suspense fallback={<div className="min-h-screen" />}>
       <PlacesContent
@@ -102,7 +96,6 @@ export default async function PlacesPage() {
         initialDestinations={destinations}
         initialPlaces={places}
         dataLoaded={dataLoaded}
-        mapPreviewUrl={mapPreviewUrl}
       />
     </Suspense>
   );
