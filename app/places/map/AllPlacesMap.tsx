@@ -333,21 +333,17 @@ export default function AllPlacesMap({ places, total }: Props) {
             "linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, transparent 100%)",
         }}
       >
-        <div className="flex items-center gap-4">
-          <Link
-            href="/places"
-            className="text-[10px] tracking-[0.25em] uppercase text-white/50 hover:text-white/80 transition-colors"
-          >
-            ← All Places
-          </Link>
-          <span className="text-white/20">|</span>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-white/50">
-            {count} of {total} places
-          </p>
-        </div>
+        <Link
+          href="/places"
+          className="text-[10px] tracking-[0.25em] uppercase text-white/50 hover:text-white/80 transition-colors"
+        >
+          ← Places
+        </Link>
 
         <div className="flex items-center gap-3">
-          {/* Search toggle */}
+          <p className="text-[10px] tracking-[0.25em] uppercase text-white/30">
+            {count} of {total}
+          </p>
           <button
             onClick={() => setShowSearch((v) => !v)}
             className="text-white/40 hover:text-white/80 transition-colors"
@@ -359,9 +355,6 @@ export default function AllPlacesMap({ places, total }: Props) {
               <line x1="10.5" y1="10.5" x2="14" y2="14" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
             </svg>
           </button>
-          <p className="font-serif text-white/70 text-sm tracking-wide hidden md:block">
-            Morocco — All Places
-          </p>
         </div>
       </div>
 
@@ -634,6 +627,33 @@ export default function AllPlacesMap({ places, total }: Props) {
               >
                 Read more →
               </Link>
+
+              {/* Connected stories */}
+              {selected.related_story_slugs.length > 0 && (
+                <div className="mt-6 pt-4" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+                  <p className="text-[9px] tracking-[0.2em] uppercase text-white/25 mb-3">
+                    Stories
+                  </p>
+                  {selected.related_story_slugs.slice(0, 3).map((storySlug) => (
+                    <Link
+                      key={storySlug}
+                      href={`/stories/${storySlug}`}
+                      className="block text-white/50 hover:text-white/80 text-sm py-1.5 transition-colors"
+                    >
+                      {storySlug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())} →
+                    </Link>
+                  ))}
+                </div>
+              )}
+
+              {/* Journey bridge text */}
+              {selected.journey_bridge && (
+                <div className="mt-4 pt-4" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+                  <p className="text-white/40 text-sm italic font-serif leading-relaxed">
+                    {selected.journey_bridge}
+                  </p>
+                </div>
+              )}
             </div>
           </>
         )}
