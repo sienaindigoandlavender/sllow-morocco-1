@@ -4,10 +4,13 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       // Google - explicitly allowed
+      // /darija/ disallowed: all 11,580 paths redirect to darija.io (external).
+      // Blocking stops crawl budget waste and clears "crawled - not indexed" accumulation.
+      // /_next/static/ disallowed: CSS/JS build artifacts with Vercel dpl fingerprints.
       {
         userAgent: 'Googlebot',
         allow: '/',
-        disallow: ['/api/', '/admin/', '/client/', '/proposal/'],
+        disallow: ['/api/', '/admin/', '/client/', '/proposal/', '/darija/', '/_next/static/'],
       },
       // AI Search Crawlers - full access to content + knowledge APIs
       {
