@@ -311,7 +311,11 @@ const nextConfig = {
       { source: '/places/toubkal-trailhead', destination: '/places/imlil-village', permanent: true },
       { source: '/places/volubilis-jewish-presence', destination: '/places/volubilis-jewish-history', permanent: true },
       { source: '/places/musee-du-parfum', destination: '/places/museum-of-perfume-marrakech', permanent: true },
-      { source: '/places/macaal', destination: '/places/macaal-museum-marrakech', permanent: true },
+      { source: '/places/macaal', destination: '/marrakech', permanent: true },
+      { source: '/places/macaal-museum-marrakech', destination: '/marrakech', permanent: true },
+      { source: '/places/slat-al-azama', destination: '/places', permanent: true },
+      { source: '/places/taroudant-medina', destination: '/taroudant', permanent: true },
+      { source: '/stories/moroccan-fashion', destination: '/stories', permanent: true },
       { source: '/places/gnawa-khamlia', destination: '/places/khamlia-gnawa-village', permanent: true },
 
       // ============================================
