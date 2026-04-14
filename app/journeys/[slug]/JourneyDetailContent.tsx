@@ -4,51 +4,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { cloudinaryUrl } from "@/lib/cloudinary";
 import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
-import dynamic from "next/dynamic";
 import { linkGlossaryTermsText } from "@/lib/glossary-linker";
-import {
-  IconClock,
-  IconCamel,
-  IconHiking,
-  IconSurfing,
-  IconCooking,
-  IconSpa,
-  IconShopping,
-  IconCamera,
-  IconMeals,
-  IconMountains,
-  IconDesert,
-  IconMedina,
-  Icon4x4,
-  IconStar,
-} from "@/components/icons";
 import ShareTools from "@/components/ShareTools";
-
-// Map activity keywords to icons
-const getActivityIcon = (activity: string) => {
-  const lower = activity.toLowerCase();
-  if (lower.includes("camel")) return <IconCamel size={20} />;
-  if (lower.includes("hik") || lower.includes("trek")) return <IconHiking size={20} />;
-  if (lower.includes("surf")) return <IconSurfing size={20} />;
-  if (lower.includes("cook") || lower.includes("tagine")) return <IconCooking size={20} />;
-  if (lower.includes("hammam") || lower.includes("spa")) return <IconSpa size={20} />;
-  if (lower.includes("souk") || lower.includes("shop")) return <IconShopping size={20} />;
-  if (lower.includes("photo")) return <IconCamera size={20} />;
-  if (lower.includes("mountain") || lower.includes("atlas")) return <IconMountains size={20} />;
-  if (lower.includes("desert") || lower.includes("dune") || lower.includes("sahara")) return <IconDesert size={20} />;
-  if (lower.includes("medina") || lower.includes("old town")) return <IconMedina size={20} />;
-  if (lower.includes("4x4") || lower.includes("off-road")) return <Icon4x4 size={20} />;
-  return <IconStar size={20} />;
-};
-
-const ItineraryMap = dynamic(() => import("@/components/ItineraryMap"), {
-  ssr: false,
-  loading: () => (
-    <div className="w-full h-[350px] md:h-[400px] bg-[#f5f5f5] flex items-center justify-center">
-      <div className="w-8 h-8 border-2 border-foreground/20 border-t-foreground rounded-full animate-spin" />
-    </div>
-  ),
-});
 
 interface Journey {
   slug: string;
@@ -81,19 +38,95 @@ interface ItineraryDay {
   routeType: string;
 }
 
-// Day image that hides itself if the URL is broken
-function DayImage({ src, alt }: { src: string; alt: string }) {
-  const [failed, setFailed] = useState(false);
-  if (failed) return null;
+// Premium "Gate" — replaces the public day-by-day logistics, map, and travel
+// times. The itinerary stays in the database (see page.tsx) but is no longer
+// rendered on the public journey page. Interested readers convert via the
+// private circle.
+function JourneyGate({ journeyTitle }: { journeyTitle: string }) {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const trimmed = email.trim();
+    if (!trimmed) return;
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(trimmed)) {
+      setStatus("error");
+      return;
+    }
+
+    setStatus("loading");
+    try {
+      const response = await fetch("/api/newsletter/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: trimmed,
+          source_page: typeof window !== "undefined" ? window.location.pathname : "",
+          journey_title: journeyTitle,
+        }),
+      });
+      const data = await response.json();
+      setStatus(data.success ? "success" : "error");
+    } catch {
+      setStatus("error");
+    }
+  };
+
   return (
-    <div className="relative aspect-[3/4] w-full max-w-lg overflow-hidden mb-8">
-      <img
-        src={cloudinaryUrl(src)}
-        alt={alt}
-        className="absolute inset-0 w-full h-full object-cover"
-        onError={() => setFailed(true)}
-      />
-    </div>
+    <section className="border-t border-foreground/10 bg-[#F5F5F0]">
+      <div className="max-w-3xl mx-auto px-8 md:px-12 lg:px-16 py-20 md:py-28">
+        <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/40 mb-5">
+          The Private Circle
+        </p>
+        <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl leading-[1.15] text-foreground mb-8">
+          Access the Full Decoded Itinerary
+        </h2>
+        <p className="text-foreground/70 leading-relaxed text-lg md:text-xl mb-12 max-w-2xl">
+          Our routes are the result of a decade of terroir research.
+          Join our private circle to access the full logistics, maps,
+          and secret detours.
+        </p>
+
+        {status === "success" ? (
+          <p className="font-serif text-xl text-foreground/80">
+            Check your inbox to confirm.
+          </p>
+        ) : (
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col sm:flex-row gap-4 sm:gap-6 sm:items-baseline max-w-xl"
+          >
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                if (status === "error") setStatus("idle");
+              }}
+              placeholder="Email Address"
+              disabled={status === "loading"}
+              required
+              className="flex-1 bg-transparent border-b border-foreground/30 py-3 text-base text-foreground placeholder:text-foreground/40 focus:outline-none focus:border-foreground transition-colors"
+            />
+            <button
+              type="submit"
+              disabled={status === "loading"}
+              className="text-[11px] tracking-[0.2em] uppercase bg-foreground text-background px-8 py-4 hover:bg-foreground/85 transition-colors shrink-0 disabled:opacity-50"
+            >
+              {status === "loading" ? "..." : "Request Access"}
+            </button>
+          </form>
+        )}
+        {status === "error" && (
+          <p className="text-sm text-foreground/60 mt-4">
+            Something went wrong. Try again.
+          </p>
+        )}
+      </div>
+    </section>
   );
 }
 
@@ -468,68 +501,8 @@ export default function JourneyDetailContent({
         </div>
       </div>
 
-      {/* Content */}
-      <section className="py-12 md:py-16">
-        <div className="container mx-auto px-6 lg:px-16 max-w-3xl">
-
-          {itinerary.length > 0 && (
-            <div className="mb-16">
-              <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-4">
-                Your Route
-              </p>
-              <ItineraryMap itinerary={itinerary} />
-            </div>
-          )}
-
-          <div className="space-y-20">
-            {itinerary
-              .sort((a, b) => a.dayNumber - b.dayNumber)
-              .map((day) => (
-                <div key={day.dayNumber}>
-                  {day.imageUrl && (
-                    <DayImage src={day.imageUrl} alt={`Day ${day.dayNumber} - ${day.cityName}`} />
-                  )}
-
-                  <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-3">
-                    Day {day.dayNumber}
-                  </p>
-
-                  <h2 className="font-serif text-2xl md:text-3xl mb-4">
-                    {day.fromCity && day.toCity && day.fromCity !== day.toCity 
-                      ? `${day.fromCity} → ${day.toCity}`
-                      : day.cityName
-                    }
-                  </h2>
-
-                  <div className="flex flex-wrap gap-x-5 gap-y-2 mb-6 text-sm text-muted-foreground">
-                    {day.travelTime && (
-                      <div className="flex items-center gap-2">
-                        <IconClock size={20} />
-                        <span>{day.travelTime}h drive</span>
-                      </div>
-                    )}
-                    {day.activities && (
-                      <div className="flex items-center gap-2">
-                        {getActivityIcon(day.activities)}
-                        <span>{day.activities.replace(/_/g, " ").toLowerCase()}</span>
-                      </div>
-                    )}
-                    {day.meals && (
-                      <div className="flex items-center gap-2">
-                        <IconMeals size={20} />
-                        <span>{day.meals}</span>
-                      </div>
-                    )}
-                  </div>
-
-                  <p className="text-muted-foreground leading-relaxed text-lg">
-                    {linkGlossaryTermsText(day.description)}
-                  </p>
-                </div>
-              ))}
-          </div>
-        </div>
-      </section>
+      {/* Gate — replaces per-day logistics, map, travel times. */}
+      <JourneyGate journeyTitle={journey.title} />
 
       {/* ── Other Journeys — sage editorial panel (journeys first) ──── */}
       {otherJourneys.length > 0 && (

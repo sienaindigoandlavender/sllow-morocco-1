@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const { journeyRedirectsForNextConfig } = require('./lib/journey-redirects');
+
 const nextConfig = {
   images: {
     unoptimized: true,
@@ -620,6 +622,13 @@ const nextConfig = {
       { source: '/darija/dictionary/culture-04486', destination: 'https://darija.io', permanent: true },
       { source: '/darija/dictionary/greetings-08172', destination: 'https://darija.io', permanent: true },
       { source: '/darija/dictionary/technology-09051', destination: 'https://darija.io', permanent: true },
+
+      // ============================================
+      // JOURNEY CONSOLIDATION — April 2026
+      // Pruned/duplicate /journeys/:slug → pillar Place or Story pages.
+      // Edit the map at lib/journey-redirects.js.
+      // ============================================
+      ...journeyRedirectsForNextConfig(),
     ];
   },
 };
