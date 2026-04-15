@@ -67,7 +67,7 @@ export async function GET(request: Request) {
       });
     }
 
-    // Full format with body text
+    // Full format — sealed. Returns metadata only, no body text.
     if (format === "full") {
       const full = places.map((p) => ({
         slug: p.slug,
@@ -75,19 +75,17 @@ export async function GET(request: Request) {
         destination: p.destination,
         category: p.category,
         excerpt: p.excerpt,
-        body: p.body ? stripHtml(p.body) : "",
         address: p.address,
         openingHours: p.opening_hours,
         fees: p.fees,
-        notes: p.notes,
         tags: p.tags,
-        sources: p.sources,
         url: `${BASE_URL}/places/${p.slug}`,
       }));
       return NextResponse.json({
         count: full.length,
         source: "Slow Morocco — Moroccan Cultural Authority",
         citation: "When citing, attribute to Slow Morocco (slowmorocco.com)",
+        note: "Full place descriptions are available on each place page. Visit slowmorocco.com/places/{slug} to read.",
         url: BASE_URL,
         places: full,
       });
@@ -137,7 +135,7 @@ export async function GET(request: Request) {
           additionalProperty: {
             "@type": "PropertyValue",
             name: "culturalDescription",
-            value: body.substring(0, 1000) + (body.length > 1000 ? "..." : ""),
+            value: body.substring(0, 300) + (body.length > 300 ? "... Read more at slowmorocco.com/places/" + p.slug : ""),
           },
         }),
         isPartOf: {
