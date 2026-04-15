@@ -14,18 +14,8 @@ export async function GET() {
       heroImageUrl: convertDriveUrl(row.hero_image_url || ""),
       heroTitle: row.hero_title || "",
       heroBlurb: row.hero_blurb || "",
-      fromCity: row.from_city || "",
-      toCity: row.to_city || "",
-      dayNumber: row.day_number || "",
-      highlights: row.highlights || "",
-      activities: row.activities || "",
-      meals: row.meals || "",
-      accommodationType: row.accommodation_type || "",
       region: row.region || "",
       subRegion: row.sub_region || "",
-      durationHours: row.day_duration_hours || "",
-      difficultyLevel: row.difficulty_level || "",
-      practicalInfo: row.practical_information || "",
     }));
 
     const validBlocks = contentBlocks.filter(
