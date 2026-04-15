@@ -4,18 +4,10 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { cloudinaryUrl } from "@/lib/cloudinary";
 import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
-import dynamic from "next/dynamic";
 import { linkGlossaryTermsText } from "@/lib/glossary-linker";
 import ShareTools from "@/components/ShareTools";
 
-const ItineraryMap = dynamic(() => import("@/components/ItineraryMap"), {
-  ssr: false,
-  loading: () => (
-    <div className="w-full h-[350px] md:h-[400px] bg-[#f5f5f5] flex items-center justify-center">
-      <div className="w-8 h-8 border-2 border-foreground/20 border-t-foreground rounded-full animate-spin" />
-    </div>
-  ),
-});
+
 
 interface Journey {
   slug: string;
@@ -432,14 +424,7 @@ export default function JourneyDetailContent({
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-6 lg:px-16 max-w-3xl">
 
-          {itinerary.length > 0 && (
-            <div className="mb-16">
-              <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-4">
-                Your Route
-              </p>
-              <ItineraryMap itinerary={itinerary} />
-            </div>
-          )}
+
 
           <div className="space-y-20">
             {itinerary
