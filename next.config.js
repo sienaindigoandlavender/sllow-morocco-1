@@ -307,7 +307,7 @@ const nextConfig = {
       { source: '/stories/souk-decoded', destination: '/stories/moroccan-souk-guide', permanent: true },
 
       // Places
-      { source: '/places/ifrane-town', destination: '/places/ifrane-morocco', permanent: true },
+      { source: '/places/ifrane-town', destination: '/ifrane', permanent: true },
       { source: '/places/toubkal-trailhead', destination: '/places/imlil-village', permanent: true },
       { source: '/places/volubilis-jewish-presence', destination: '/places/volubilis-jewish-history', permanent: true },
       { source: '/places/musee-du-parfum', destination: '/places/museum-of-perfume-marrakech', permanent: true },
@@ -408,7 +408,7 @@ const nextConfig = {
       { source: '/s-7AB-ni/', destination: 'https://darija.io', permanent: true },
       
       // Missing stories — GSC 404 cleanup April 2026
-      { source: '/stories/gladiator-country', destination: '/stories', permanent: true },
+      // /stories/gladiator-country is a live story — do NOT redirect
       { source: '/stories/14km-gap', destination: '/stories', permanent: true },
       { source: '/stories/the-free-people', destination: '/stories', permanent: true },
       { source: '/stories/solar-compass', destination: '/stories', permanent: true },
@@ -460,7 +460,7 @@ const nextConfig = {
       { source: '/darija/dictionary/verbs-03233', destination: 'https://darija.io', permanent: true },
 
       // /start-here redirect REMOVED — page exists, linked from homepage + morocco guides
-      { source: '/agadir', destination: '/destinations/agadir', permanent: true },
+      // /agadir is a live destination page — do NOT redirect
 
       // ============================================
       // DEAD PLACE SUB-PAGES — April 8, 2026
