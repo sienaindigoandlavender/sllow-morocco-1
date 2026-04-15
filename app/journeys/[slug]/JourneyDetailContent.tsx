@@ -6,6 +6,7 @@ import { cloudinaryUrl } from "@/lib/cloudinary";
 import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import { linkGlossaryTermsText } from "@/lib/glossary-linker";
 import ShareTools from "@/components/ShareTools";
+import JourneyLetter from "@/components/JourneyLetter";
 
 
 
@@ -449,6 +450,13 @@ export default function JourneyDetailContent({
                 </div>
               ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── Newsletter invitation ──── */}
+      <section className="py-0">
+        <div className="container mx-auto px-6 lg:px-16 max-w-3xl">
+          <JourneyLetter />
         </div>
       </section>
 
