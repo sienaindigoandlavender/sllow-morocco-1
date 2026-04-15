@@ -79,11 +79,11 @@ export default function HomeContent({
     "https://res.cloudinary.com/dngrqk2wz/image/upload/w_2400,q_auto,f_auto/v1775334915/4_dkhnnl.png",
   ];
 
-  // Slow crossfade — 6 seconds per image
+  // Slow crossfade — 12 seconds per image
   useEffect(() => {
     const interval = setInterval(() => {
       setHeroIndex((prev) => (prev + 1) % heroImages.length);
-    }, 6000);
+    }, 12000);
     return () => clearInterval(interval);
   }, []);
 
