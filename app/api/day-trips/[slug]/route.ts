@@ -42,12 +42,6 @@ export async function GET(
       meetingPoint: tripData.meeting_point || "",
       // From routes table
       narrative: routeData?.route_narrative || "",
-      fromCity: routeData?.from_city || "Marrakech",
-      toCity: routeData?.to_city || "",
-      viaCities: routeData?.via_cities || "",
-      travelTime: routeData?.travel_time_hours || "",
-      activities: routeData?.activities || "",
-      difficulty: routeData?.difficulty_level || "",
       region: routeData?.region || "",
       routeImage: routeData?.image_url || "",
     };
