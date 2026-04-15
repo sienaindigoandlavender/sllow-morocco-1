@@ -4,11 +4,11 @@ import HomeContent from "./HomeContent";
 
 export const metadata: Metadata = {
   title: "Slow Morocco | Morocco, Decoded",
-  description: "Private journeys through a country most guides only scratch the surface of. 223 places, 105 journeys, 308 stories.",
+  description: "Original essays on Moroccan history, craft, music, architecture, food, and ecology. Written from Marrakech.",
   alternates: { canonical: "https://www.slowmorocco.com" },
   openGraph: {
     title: "Slow Morocco | Morocco, Decoded",
-    description: "Private journeys through a country most guides only scratch the surface of. 223 places, 105 journeys, 308 stories.",
+    description: "Original essays on Moroccan history, craft, music, architecture, food, and ecology. Written from Marrakech.",
     url: "https://www.slowmorocco.com",
   },
 };
