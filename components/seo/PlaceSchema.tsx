@@ -58,7 +58,7 @@ export default function PlaceSchema({ place }: PlaceSchemaProps) {
     if (cat.includes("mosque")) schemaType = "Mosque";
     else if (cat.includes("museum")) schemaType = "Museum";
     else if (cat.includes("garden") || cat.includes("park")) schemaType = "Park";
-    else if (cat.includes("monument") || cat.includes("historic")) schemaType = "LandmarksOrHistoricalBuildings";
+    else if (cat.includes("monument") || cat.includes("historic")) schemaType = "LandmarkOrHistoricalBuilding";
   }
   const placeJsonLd: Record<string, any> = {
     "@context": "https://schema.org", "@type": schemaType,
@@ -66,7 +66,6 @@ export default function PlaceSchema({ place }: PlaceSchemaProps) {
     name: place.title, description, url: `https://www.slowmorocco.com/places/${place.slug}`,
     image: place.heroImage || "https://www.slowmorocco.com/og-image.jpg",
     address: { "@type": "PostalAddress", ...(place.address && { streetAddress: place.address }), addressLocality: place.destination || "Morocco", addressCountry: "MA" },
-    touristType: ["Cultural tourism", "Sightseeing"],
     containedInPlace: { "@type": "Country", name: "Morocco", alternateName: "Al-Maghrib" },
     isPartOf: { "@type": "WebSite", "@id": "https://www.slowmorocco.com/#website", name: "Slow Morocco" },
     author: SOVEREIGN_ENTITY,
