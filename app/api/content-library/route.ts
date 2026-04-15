@@ -20,7 +20,7 @@ export async function GET() {
 
     const validBlocks = contentBlocks.filter(
       (block) =>
-        block.cityName || block.dayTitle || block.description || block.toCity ||
+        block.cityName || block.dayTitle || block.description ||
         block.heroTitle || block.heroBlurb || block.heroImageUrl
     );
 
