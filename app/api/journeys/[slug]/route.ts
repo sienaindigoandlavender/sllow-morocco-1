@@ -75,15 +75,8 @@ export async function GET(
         return {
           dayNumber: index + 1,
           cityName: "",
-          fromCity: "",
-          toCity: "",
           description: `Route ${routeId} not found`,
           imageUrl: "",
-          travelTime: "",
-          difficulty: "",
-          activities: "",
-          meals: "",
-          routeType: "",
         };
       }
 
@@ -96,15 +89,8 @@ export async function GET(
       return {
         dayNumber: index + 1,
         cityName: route.to_city || "",
-        fromCity: route.from_city || "",
-        toCity: route.to_city || "",
         description: route.route_narrative || "",
         imageUrl,
-        travelTime: route.travel_time_hours || "",
-        difficulty: route.difficulty_level || "",
-        activities: route.activities || "",
-        meals: route.meals || "",
-        routeType: route.route_type || "",
       };
     });
 
