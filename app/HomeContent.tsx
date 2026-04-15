@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { cloudinaryUrl } from "@/lib/cloudinary";
 import Link from "next/link";
 
@@ -21,8 +21,10 @@ interface Story {
   slug: string;
   title: string;
   subtitle?: string;
+  excerpt?: string;
   heroImage?: string;
   category?: string;
+  read_time?: string;
 }
 
 interface Destination {
@@ -51,171 +53,289 @@ interface HomeContentProps {
   destinations: Destination[];
 }
 
-// ─── City list for tab grid ─────────────────────────────────────────────────
-
-const CITY_SLUGS = [
-  "marrakech", "fes", "essaouira", "chefchaouen", "tangier",
-  "casablanca", "rabat", "ouarzazate", "merzouga", "dakhla"
-];
-
 // ─── Main Component ─────────────────────────────────────────────────────────
 
 export default function HomeContent({
   journeys,
-  epicJourneys,
   stories,
-  testimonials,
   destinations = [],
 }: HomeContentProps) {
-  const [activeTab, setActiveTab] = useState<"cities" | "journeys" | "day-trips">("cities");
-  const [testimonialIndex, setTestimonialIndex] = useState(0);
-  const [heroIndex, setHeroIndex] = useState(0);
+  const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
 
-  const heroImages = [
-    "https://res.cloudinary.com/dngrqk2wz/image/upload/w_2400,q_auto,f_auto/v1775334808/1_oqxsit.png",
-    "https://res.cloudinary.com/dngrqk2wz/image/upload/w_2400,q_auto,f_auto/v1775335043/Bernadeta_Kupiec_-_Morocco-605_ajx3h2.jpg",
-    "https://res.cloudinary.com/dngrqk2wz/image/upload/w_2400,q_auto,f_auto/v1775334905/2_hmpek7.png",
-    "https://res.cloudinary.com/dngrqk2wz/image/upload/w_2400,q_auto,f_auto/v1775334910/3_tzxa54.png",
-    "https://res.cloudinary.com/dngrqk2wz/image/upload/w_2400,q_auto,f_auto/v1775334915/4_dkhnnl.png",
-  ];
+  // Split stories into editorial layout slots
+  const lead = stories[0];
+  const secondary = stories.slice(1, 3);
+  const grid = stories.slice(3, 9);
+  const more = stories.slice(9, 14);
 
-  // Slow crossfade — 12 seconds per image
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setHeroIndex((prev) => (prev + 1) % heroImages.length);
-    }, 12000);
-    return () => clearInterval(interval);
-  }, []);
+  // Pick 3 journeys to feature quietly
+  const featuredJourneys = journeys.slice(0, 3);
 
-  useEffect(() => {
-    if (testimonials.length <= 1) return;
-    const interval = setInterval(() => {
-      setTestimonialIndex((prev) => (prev + 1) % testimonials.length);
-    }, 6000);
-    return () => clearInterval(interval);
-  }, [testimonials.length]);
-
-  const cityDestinations = destinations.filter((d) => CITY_SLUGS.includes(d.slug));
-  const topJourneys = journeys.slice(0, 6);
-  const featuredStories = stories.filter((s) => s.heroImage).slice(0, 3);
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      if (res.ok) setSubscribed(true);
+    } catch {}
+  };
 
   return (
     <main className="min-h-screen bg-white">
 
       {/* ══════════════════════════════════════════════════
-          HERO — Crossfading images, quiet and immersive
+          LEAD STORY — Full-bleed hero, magazine cover
           ══════════════════════════════════════════════════ */}
-      <section className="relative h-[110vh] min-h-[700px] overflow-hidden bg-[#0a0a0a]">
-        {heroImages.map((src, i) => (
-          <img
-            key={i}
-            src={src}
-            alt="Morocco"
-            className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-[2000ms] ease-in-out ${
-              i === heroIndex ? "opacity-100" : "opacity-0"
-            }`}
-          />
-        ))}
+      {lead && (
+        <section className="relative h-[85vh] min-h-[600px] overflow-hidden bg-[#0a0a0a]">
+          {lead.heroImage && (
+            <img
+              src={cloudinaryUrl(lead.heroImage, 2400)}
+              alt={lead.title}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-
-        <div className="relative z-10 h-full flex flex-col justify-end px-8 md:px-10 lg:px-14 pb-16 md:pb-24">
-          <div>
-            <h1 className="text-white/90 text-lg md:text-xl tracking-[0.15em] uppercase font-normal mb-3">
-              Morocco, decoded
-            </h1>
-            <p className="text-white/40 text-sm md:text-base max-w-md mb-10 leading-relaxed tracking-[0.01em]">
-              Private journeys through a country most guides only scratch the surface of.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Link
-                href="/places"
-                className="inline-flex items-center px-6 py-3 bg-white/90 text-[#1C1917] text-xs tracking-[0.08em] uppercase hover:bg-white transition-colors"
-              >
-                Explore Places
-              </Link>
-              <Link
-                href="/journeys"
-                className="inline-flex items-center px-6 py-3 border border-white/25 text-white/70 text-xs tracking-[0.08em] uppercase hover:bg-white/10 hover:text-white transition-colors"
-              >
-                Plan a Journey
-              </Link>
-            </div>
+          <div className="relative z-10 h-full flex flex-col justify-end px-8 md:px-10 lg:px-14 pb-14 md:pb-20">
+            <Link href={`/stories/${lead.slug}`} className="group block max-w-2xl">
+              {lead.category && (
+                <span className="text-white/40 text-[11px] tracking-[0.12em] uppercase block mb-3">
+                  {lead.category}
+                </span>
+              )}
+              <h1 className="text-white text-3xl md:text-5xl lg:text-6xl font-light tracking-[-0.02em] leading-[1.1] mb-4 group-hover:text-white/80 transition-colors">
+                {lead.title}
+              </h1>
+              {lead.subtitle && (
+                <p className="text-white/50 text-base md:text-lg leading-relaxed max-w-lg">
+                  {lead.subtitle}
+                </p>
+              )}
+              {lead.read_time && (
+                <span className="text-white/25 text-[11px] tracking-[0.06em] uppercase mt-4 block">
+                  {lead.read_time} min read
+                </span>
+              )}
+            </Link>
           </div>
+        </section>
+      )}
+
+      {/* ══════════════════════════════════════════════════
+          TWO-UP — Secondary stories, asymmetric
+          ══════════════════════════════════════════════════ */}
+      {secondary.length > 0 && (
+        <section className="px-8 md:px-10 lg:px-14 py-16 md:py-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+            {secondary.map((story, i) => (
+              <Link key={story.slug} href={`/stories/${story.slug}`} className="group block">
+                <div className={`relative overflow-hidden bg-[#f0eeeb] mb-5 ${i === 0 ? "aspect-[4/5]" : "aspect-[3/4]"}`}>
+                  {story.heroImage && (
+                    <img
+                      src={cloudinaryUrl(story.heroImage, 800)}
+                      alt={story.title}
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
+                    />
+                  )}
+                </div>
+                {story.category && (
+                  <span className="text-[10px] text-[#1C1917]/30 tracking-[0.1em] uppercase block mb-2">
+                    {story.category}
+                  </span>
+                )}
+                <h2 className="text-xl md:text-2xl font-light tracking-[-0.01em] text-[#1C1917] group-hover:text-[#1C1917]/60 transition-colors leading-snug mb-2">
+                  {story.title}
+                </h2>
+                {story.subtitle && (
+                  <p className="text-sm text-[#1C1917]/40 leading-relaxed line-clamp-2">
+                    {story.subtitle}
+                  </p>
+                )}
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* ══════════════════════════════════════════════════
+          IDENTITY LINE
+          ══════════════════════════════════════════════════ */}
+      <section className="border-y border-[#1C1917]/[0.06] py-12 md:py-16">
+        <div className="px-8 md:px-10 lg:px-14 max-w-3xl">
+          <p className="text-[#1C1917]/70 text-base md:text-lg leading-relaxed">
+            Slow Morocco publishes original essays on Moroccan history, craft, music, architecture, food, and ecology.
+            Written from Marrakech. Based on years of research, not a weekend trip.
+          </p>
+          <Link
+            href="/stories"
+            className="text-[11px] text-[#1C1917]/35 tracking-[0.08em] uppercase mt-6 block hover:text-[#1C1917]/60 transition-colors"
+          >
+            The Edit — 300+ essays →
+          </Link>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════════════
-          NAVIGATE — Tabbed entry points
+          EDITORIAL GRID — 6 stories, varied sizes
           ══════════════════════════════════════════════════ */}
-      <section className="px-8 md:px-10 lg:px-14 py-16 md:py-24">
-        <h2 className="text-2xl md:text-3xl font-light tracking-[-0.01em] text-[#1C1917] mb-10">
-          Start here
-        </h2>
-
-        <div className="flex gap-8 mb-10 border-b border-[#1C1917]/10">
-          {(["cities", "journeys", "day-trips"] as const).map((key) => {
-            const labels = { cities: "By City", journeys: "Journeys", "day-trips": "Day Trips" };
-            return (
-              <button
-                key={key}
-                onClick={() => setActiveTab(key)}
-                className={`pb-3 text-sm tracking-[0.04em] transition-colors ${
-                  activeTab === key
-                    ? "text-[#1C1917] border-b-2 border-[#1C1917]"
-                    : "text-[#1C1917]/40 hover:text-[#1C1917]/60"
-                }`}
+      {grid.length > 0 && (
+        <section className="px-8 md:px-10 lg:px-14 py-16 md:py-24">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-14">
+            {grid.map((story, i) => (
+              <Link
+                key={story.slug}
+                href={`/stories/${story.slug}`}
+                className={`group block ${i === 0 ? "md:col-span-2 md:row-span-2" : ""}`}
               >
-                {labels[key]}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Cities */}
-        {activeTab === "cities" && (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-            {cityDestinations.map((dest) => (
-              <Link key={dest.slug} href={`/${dest.slug}`} className="group block">
-                <div className="aspect-[4/5] relative overflow-hidden bg-[#f0eeeb] mb-3">
-                  {dest.hero_image && (
+                <div className={`relative overflow-hidden bg-[#f0eeeb] mb-4 ${
+                  i === 0 ? "aspect-[16/10]" : "aspect-[4/3]"
+                }`}>
+                  {story.heroImage && (
                     <img
-                      src={cloudinaryUrl(dest.hero_image, 400)}
-                      alt={dest.title}
-                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
+                      src={cloudinaryUrl(story.heroImage, i === 0 ? 1200 : 600)}
+                      alt={story.title}
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
                     />
                   )}
                 </div>
-                <h3 className="text-sm tracking-[0.04em] text-[#1C1917] group-hover:text-[#1C1917]/60 transition-colors">
-                  {dest.title}
+                {story.category && (
+                  <span className="text-[10px] text-[#1C1917]/30 tracking-[0.1em] uppercase block mb-1.5">
+                    {story.category}
+                  </span>
+                )}
+                <h3 className={`font-light tracking-[-0.01em] text-[#1C1917] group-hover:text-[#1C1917]/60 transition-colors leading-snug ${
+                  i === 0 ? "text-xl md:text-2xl" : "text-sm md:text-base"
+                }`}>
+                  {story.title}
                 </h3>
-                {dest.subtitle && (
-                  <p className="text-[11px] text-[#1C1917]/40 mt-0.5 line-clamp-1">{dest.subtitle}</p>
+                {story.subtitle && (
+                  <p className={`text-[#1C1917]/40 leading-relaxed mt-1 line-clamp-2 ${
+                    i === 0 ? "text-sm" : "text-[12px]"
+                  }`}>
+                    {story.subtitle}
+                  </p>
                 )}
               </Link>
             ))}
+          </div>
+        </section>
+      )}
+
+      {/* ══════════════════════════════════════════════════
+          THE LETTER — newsletter, not booking
+          ══════════════════════════════════════════════════ */}
+      <section className="bg-[#1C1917] text-white py-16 md:py-24">
+        <div className="max-w-xl mx-auto px-8 md:px-10 lg:px-14 text-center">
+          <h2 className="text-2xl md:text-3xl font-light tracking-[-0.01em] mb-3">
+            The Slow Morocco Letter
+          </h2>
+          <p className="text-white/40 text-sm leading-relaxed mb-8">
+            Written from the medina. Sent when it matters. No schedule, no spam, no
+            &ldquo;top 10 things to do.&rdquo;
+          </p>
+          {subscribed ? (
+            <p className="text-white/60 text-sm">You&apos;re in.</p>
+          ) : (
+            <form onSubmit={handleSubscribe} className="flex gap-3 max-w-sm mx-auto">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="your@email.com"
+                required
+                className="flex-1 bg-transparent border-b border-white/20 text-white text-sm py-2.5 px-0 placeholder:text-white/20 focus:outline-none focus:border-white/50 transition-colors"
+              />
+              <button
+                type="submit"
+                className="text-[11px] tracking-[0.08em] uppercase text-white/60 hover:text-white transition-colors whitespace-nowrap"
+              >
+                Join →
+              </button>
+            </form>
+          )}
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════
+          MORE STORIES — text-only list, Monocle density
+          ══════════════════════════════════════════════════ */}
+      {more.length > 0 && (
+        <section className="px-8 md:px-10 lg:px-14 py-16 md:py-24">
+          <div className="max-w-3xl">
+            <h2 className="text-[11px] text-[#1C1917]/30 tracking-[0.1em] uppercase mb-8">
+              Also in The Edit
+            </h2>
+            <div className="divide-y divide-[#1C1917]/[0.06]">
+              {more.map((story) => (
+                <Link
+                  key={story.slug}
+                  href={`/stories/${story.slug}`}
+                  className="group flex items-baseline justify-between py-5 gap-4"
+                >
+                  <div className="flex-1">
+                    <h3 className="text-base text-[#1C1917] group-hover:text-[#1C1917]/60 transition-colors">
+                      {story.title}
+                    </h3>
+                    {story.subtitle && (
+                      <p className="text-[12px] text-[#1C1917]/35 mt-0.5 line-clamp-1">
+                        {story.subtitle}
+                      </p>
+                    )}
+                  </div>
+                  {story.category && (
+                    <span className="text-[10px] text-[#1C1917]/25 tracking-[0.06em] uppercase shrink-0">
+                      {story.category}
+                    </span>
+                  )}
+                </Link>
+              ))}
+            </div>
             <Link
-              href="/places"
-              className="group flex items-center justify-center aspect-[4/5] border border-[#1C1917]/10 hover:border-[#1C1917]/20 transition-colors"
+              href="/stories"
+              className="text-[11px] text-[#1C1917]/35 tracking-[0.08em] uppercase mt-8 block hover:text-[#1C1917]/60 transition-colors"
             >
-              <span className="text-sm text-[#1C1917]/40 group-hover:text-[#1C1917]/60 transition-colors tracking-[0.04em]">
-                All places →
-              </span>
+              All stories →
             </Link>
           </div>
-        )}
+        </section>
+      )}
 
-        {/* Journeys */}
-        {activeTab === "journeys" && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {topJourneys.map((j) => (
+      {/* ══════════════════════════════════════════════════
+          JOURNEYS — quiet, present but not the pitch
+          ══════════════════════════════════════════════════ */}
+      {featuredJourneys.length > 0 && (
+        <section className="px-8 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#1C1917]/[0.06]">
+          <div className="flex items-baseline justify-between mb-10">
+            <div>
+              <h2 className="text-[11px] text-[#1C1917]/30 tracking-[0.1em] uppercase mb-2">
+                Private Journeys
+              </h2>
+              <p className="text-[#1C1917]/40 text-sm">
+                We also take people there.
+              </p>
+            </div>
+            <Link
+              href="/journeys"
+              className="text-[11px] text-[#1C1917]/30 tracking-[0.06em] uppercase hover:text-[#1C1917]/60 transition-colors hidden md:block"
+            >
+              All journeys →
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            {featuredJourneys.map((j) => (
               <Link key={j.slug} href={`/journeys/${j.slug}`} className="group block">
                 <div className="aspect-[16/10] relative overflow-hidden bg-[#f0eeeb] mb-3">
                   {j.heroImage && (
                     <img
                       src={cloudinaryUrl(j.heroImage, 600)}
                       alt={j.title}
-                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
                     />
                   )}
                   {j.duration && (
@@ -230,146 +350,45 @@ export default function HomeContent({
                 {j.destinations && (
                   <p className="text-[11px] text-[#1C1917]/40 mt-0.5">{j.destinations}</p>
                 )}
-                {j.price && j.price > 0 && (
-                  <p className="text-[11px] text-[#1C1917]/40 mt-0.5">From €{j.price.toLocaleString()} per person</p>
-                )}
-              </Link>
-            ))}
-            <Link
-              href="/journeys"
-              className="group flex items-center justify-center aspect-[16/10] border border-[#1C1917]/10 hover:border-[#1C1917]/20 transition-colors"
-            >
-              <span className="text-sm text-[#1C1917]/40 group-hover:text-[#1C1917]/60 transition-colors tracking-[0.04em]">
-                All journeys →
-              </span>
-            </Link>
-          </div>
-        )}
-
-        {/* Day Trips */}
-        {activeTab === "day-trips" && (
-          <div className="max-w-2xl">
-            <p className="text-[#1C1917]/60 text-base leading-relaxed mb-8">
-              Half-day and full-day trips from Marrakech into the Atlas Mountains, Essaouira, Ouzoud Falls, and the Agafay Desert. Private transport, local guides, no groups.
-            </p>
-            <Link
-              href="/day-trips"
-              className="inline-flex items-center px-8 py-3.5 bg-[#1C1917] text-white text-sm tracking-[0.06em] uppercase hover:bg-[#1C1917]/80 transition-colors"
-            >
-              View Day Trips
-            </Link>
-          </div>
-        )}
-      </section>
-
-      {/* ══════════════════════════════════════════════════
-          TESTIMONIALS
-          ══════════════════════════════════════════════════ */}
-      {testimonials.length > 0 && (
-        <section className="py-16 md:py-24 border-t border-[#1C1917]/[0.06]">
-          <div className="max-w-3xl mx-auto px-8 md:px-10 text-center">
-            <p className="font-serif text-xl md:text-2xl italic text-[#1C1917]/70 leading-relaxed">
-              &ldquo;{testimonials[testimonialIndex]?.quote}&rdquo;
-            </p>
-            <p className="text-[11px] text-[#1C1917]/35 tracking-[0.1em] uppercase mt-6">
-              {testimonials[testimonialIndex]?.author}
-              {testimonials[testimonialIndex]?.journeyTitle && (
-                <span> — {testimonials[testimonialIndex].journeyTitle}</span>
-              )}
-            </p>
-            {testimonials.length > 1 && (
-              <div className="flex justify-center gap-1.5 mt-6">
-                {testimonials.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setTestimonialIndex(i)}
-                    className={`w-1 h-1 rounded-full transition-colors ${
-                      i === testimonialIndex ? "bg-[#1C1917]/40" : "bg-[#1C1917]/10"
-                    }`}
-                  />
-                ))}
-              </div>
-            )}
-          </div>
-        </section>
-      )}
-
-      {/* ══════════════════════════════════════════════════
-          DEPTH SIGNAL — 3 stories as proof, not as feed
-          ══════════════════════════════════════════════════ */}
-      {featuredStories.length > 0 && (
-        <section className="px-8 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#1C1917]/[0.06]">
-          <div className="flex items-baseline justify-between mb-10">
-            <h2 className="text-2xl md:text-3xl font-light tracking-[-0.01em] text-[#1C1917]">
-              The depth behind the guide
-            </h2>
-            <Link
-              href="/stories"
-              className="text-[11px] text-[#1C1917]/40 tracking-[0.06em] uppercase hover:text-[#1C1917]/60 transition-colors hidden md:block"
-            >
-              All Stories →
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            {featuredStories.map((story) => (
-              <Link key={story.slug} href={`/stories/${story.slug}`} className="group block">
-                <div className="aspect-[16/10] relative overflow-hidden bg-[#f0eeeb] mb-3">
-                  {story.heroImage && (
-                    <img
-                      src={cloudinaryUrl(story.heroImage, 600)}
-                      alt={story.title}
-                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
-                    />
-                  )}
-                </div>
-                {story.category && (
-                  <p className="text-[10px] text-[#1C1917]/35 tracking-[0.06em] uppercase mb-1">{story.category}</p>
-                )}
-                <h3 className="text-sm tracking-[0.02em] text-[#1C1917] group-hover:text-[#1C1917]/60 transition-colors leading-snug">
-                  {story.title}
-                </h3>
-                {story.subtitle && (
-                  <p className="text-[11px] text-[#1C1917]/40 mt-1 line-clamp-2 leading-relaxed">{story.subtitle}</p>
-                )}
               </Link>
             ))}
           </div>
           <Link
-            href="/stories"
-            className="text-[11px] text-[#1C1917]/40 tracking-[0.06em] uppercase hover:text-[#1C1917]/60 transition-colors mt-8 block md:hidden"
+            href="/journeys"
+            className="text-[11px] text-[#1C1917]/35 tracking-[0.06em] uppercase hover:text-[#1C1917]/60 transition-colors mt-8 block md:hidden"
           >
-            All Stories →
+            All journeys →
           </Link>
         </section>
       )}
 
       {/* ══════════════════════════════════════════════════
-          CONVERT
+          DESTINATIONS — compact, navigational
           ══════════════════════════════════════════════════ */}
-      <section className="bg-[#1C1917] text-white py-20 md:py-28">
-        <div className="max-w-2xl mx-auto px-8 md:px-10 lg:px-14 text-center">
-          <h2 className="text-3xl md:text-4xl font-light tracking-[-0.01em] mb-4">
-            Ready to go?
+      {destinations.length > 0 && (
+        <section className="px-8 md:px-10 lg:px-14 py-12 md:py-16 border-t border-[#1C1917]/[0.06]">
+          <h2 className="text-[11px] text-[#1C1917]/30 tracking-[0.1em] uppercase mb-6">
+            By City
           </h2>
-          <p className="text-white/50 text-base leading-relaxed mb-10">
-            Tell us what you&apos;re drawn to. We&apos;ll build something around it.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
+            {destinations.slice(0, 12).map((d) => (
+              <Link
+                key={d.slug}
+                href={`/${d.slug}`}
+                className="text-sm text-[#1C1917]/50 hover:text-[#1C1917] transition-colors py-1"
+              >
+                {d.title}
+              </Link>
+            ))}
             <Link
-              href="/contact"
-              className="inline-flex items-center px-8 py-3.5 bg-white text-[#1C1917] text-sm tracking-[0.06em] uppercase hover:bg-white/90 transition-colors"
+              href="/destinations"
+              className="text-sm text-[#1C1917]/25 hover:text-[#1C1917]/50 transition-colors py-1"
             >
-              Get in Touch
-            </Link>
-            <Link
-              href="/start-here"
-              className="inline-flex items-center px-8 py-3.5 border border-white/20 text-white text-sm tracking-[0.06em] uppercase hover:bg-white/10 transition-colors"
-            >
-              Start Here
+              All →
             </Link>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
     </main>
   );
