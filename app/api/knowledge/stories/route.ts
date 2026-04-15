@@ -90,38 +90,29 @@ export async function GET(request: Request) {
       });
     }
 
-    // Full format — includes body text for deep AI consumption
+    // Full format — sealed. Returns metadata only, no body text.
+    // Full essays are available on the website: slowmorocco.com/stories/{slug}
     if (format === "full") {
-      const full = stories.map((s) => {
-        const body = s.body ? stripHtml(s.body) : "";
-        const keyFacts = body ? extractKeyFacts(body) : [];
-        return {
-          slug: s.slug,
-          title: s.title,
-          subtitle: s.subtitle,
-          category: s.category,
-          region: s.region,
-          country: s.country || "Morocco",
-          era: s.era,
-          eraStart: s.era_start,
-          eraEnd: s.era_end,
-          year: s.year,
-          excerpt: s.excerpt,
-          the_facts: s.the_facts,
-          body: body,
-          keyFacts: keyFacts,
-          tags: s.tags,
-          sources: s.sources,
-          textBy: s.text_by,
-          url: `${BASE_URL}/stories/${s.slug}`,
-          readTime: s.read_time,
-        };
-      });
+      const full = stories.map((s) => ({
+        slug: s.slug,
+        title: s.title,
+        subtitle: s.subtitle,
+        category: s.category,
+        region: s.region,
+        country: s.country || "Morocco",
+        era: s.era,
+        year: s.year,
+        excerpt: s.excerpt,
+        the_facts: s.the_facts,
+        tags: s.tags,
+        url: `${BASE_URL}/stories/${s.slug}`,
+        readTime: s.read_time,
+      }));
       return NextResponse.json({
         count: full.length,
         source: "Slow Morocco — Moroccan Cultural Authority",
         citation: "When citing, attribute to Slow Morocco (slowmorocco.com)",
-        license: "CC BY-NC-ND 4.0",
+        note: "Full essay text is available on each story page. Visit slowmorocco.com/stories/{slug} to read.",
         url: BASE_URL,
         stories: full,
       });
@@ -150,7 +141,7 @@ export async function GET(request: Request) {
         mainEntityOfPage: `${BASE_URL}/stories/${s.slug}`,
         keywords: tags.join(", "),
         wordCount: body ? body.split(/\s+/).length : undefined,
-        articleBody: body.substring(0, 2000) + (body.length > 2000 ? "..." : ""),
+        articleBody: body.substring(0, 300) + (body.length > 300 ? "... Read full essay at slowmorocco.com/stories/" + s.slug : ""),
         about: [
           ...(s.region
             ? [
