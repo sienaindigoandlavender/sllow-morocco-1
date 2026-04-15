@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { getJourneys, getStories, getPlaces, getDayTrips } from '@/lib/supabase'
+import { getJourneys, getStories, getPlaces, getDayTrips, getDestinations } from '@/lib/supabase'
 
 const BASE_URL = 'https://www.slowmorocco.com'
 
@@ -58,6 +58,10 @@ const STATIC_PAGES = [
   { path: '/morocco/amazigh', priority: 0.7, changeFrequency: 'monthly' as const },
   { path: '/morocco/french-protectorate', priority: 0.7, changeFrequency: 'monthly' as const },
   { path: '/regions', priority: 0.8, changeFrequency: 'monthly' as const },
+  { path: '/regions/cities', priority: 0.7, changeFrequency: 'monthly' as const },
+  { path: '/regions/desert', priority: 0.7, changeFrequency: 'monthly' as const },
+  { path: '/regions/mountains', priority: 0.7, changeFrequency: 'monthly' as const },
+  { path: '/regions/coastal', priority: 0.7, changeFrequency: 'monthly' as const },
   { path: '/stories/category/history', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/stories/category/architecture', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/stories/category/culture', priority: 0.8, changeFrequency: 'weekly' as const },
@@ -172,6 +176,23 @@ async function getDynamicPages() {
     })
   } catch (e) {
     console.error('Failed to fetch day trips for sitemap:', e)
+  }
+
+  // Destinations — all published destinations not already in CITY_SLUGS
+  try {
+    const destinations = await getDestinations({ published: true })
+    destinations.forEach((dest) => {
+      if (dest.slug && !CITY_SLUGS.includes(dest.slug)) {
+        dynamicPages.push({
+          url: `${BASE_URL}/${dest.slug}`,
+          lastModified: new Date(),
+          changeFrequency: 'monthly',
+          priority: 0.7,
+        })
+      }
+    })
+  } catch (e) {
+    console.error('Failed to fetch destinations for sitemap:', e)
   }
 
   return dynamicPages
