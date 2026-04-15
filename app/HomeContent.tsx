@@ -1,8 +1,18 @@
 "use client";
 
-import { useState } from "react";
 import { cloudinaryUrl } from "@/lib/cloudinary";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+
+// Lazy load map — it's heavy
+const HomeCityMap = dynamic(() => import("@/components/HomeCityMap"), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full bg-[#0d0d0d] flex items-center justify-center">
+      <p className="text-[10px] tracking-[0.4em] uppercase text-white/15">Morocco</p>
+    </div>
+  ),
+});
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -27,6 +37,14 @@ interface Story {
   read_time?: string;
 }
 
+interface Place {
+  slug: string;
+  title: string;
+  heroImage?: string;
+  destination?: string;
+  category?: string;
+}
+
 interface Destination {
   slug: string;
   title: string;
@@ -46,22 +64,22 @@ interface HomeContentProps {
   journeys: Journey[];
   epicJourneys: Journey[];
   stories: Story[];
-  places: any[];
+  places: Place[];
   mapPlaces: any[];
   testimonials: Testimonial[];
   settings: Record<string, string>;
   destinations: Destination[];
 }
 
-// ─── Vertical tile card — reused throughout ─────────────────────────────────
+// ─── Vertical tile — reused for stories, places, journeys ───────────────────
 
-function StoryTile({ story, imageWidth = 600 }: { story: Story; imageWidth?: number }) {
+function StoryTile({ story }: { story: Story }) {
   return (
     <Link href={`/stories/${story.slug}`} className="group block min-w-0">
       <div className="aspect-[3/4] relative overflow-hidden bg-[#f0eeeb] mb-4">
         {story.heroImage && (
           <img
-            src={cloudinaryUrl(story.heroImage, imageWidth)}
+            src={cloudinaryUrl(story.heroImage, 600)}
             alt={story.title}
             className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
           />
@@ -84,26 +102,47 @@ function StoryTile({ story, imageWidth = 600 }: { story: Story; imageWidth?: num
   );
 }
 
+// ─── Section header with rule line ──────────────────────────────────────────
+
+function SectionHeader({ title, href, linkText = "View All" }: { title: string; href: string; linkText?: string }) {
+  return (
+    <>
+      <div className="flex items-baseline justify-between mb-2">
+        <h2 className="text-[15px] md:text-base font-light tracking-[-0.01em] text-[#0a0a0a]">
+          {title}
+        </h2>
+        <Link
+          href={href}
+          className="text-[11px] text-[#0a0a0a]/35 tracking-[0.04em] hover:text-[#0a0a0a]/60 transition-colors"
+        >
+          {linkText}
+        </Link>
+      </div>
+      <div className="border-t border-[#0a0a0a] mb-10" />
+    </>
+  );
+}
+
 // ─── Main Component ─────────────────────────────────────────────────────────
 
 export default function HomeContent({
   journeys,
   stories,
+  places,
   destinations = [],
 }: HomeContentProps) {
-  // Editorial slots
   const lead = stories[0];
-  const issueRow = stories.slice(1, 7);       // 6 tiles — "Inside the Edit"
-  const feature = stories[7];                   // Centered feature moment
-  const secondRow = stories.slice(8, 14);       // 6 more tiles
+  const issueRow = stories.slice(1, 7);
+  const feature = stories[7];
+  const secondRow = stories.slice(8, 14);
   const featuredJourneys = journeys.slice(0, 6);
+  const featuredPlaces = places.slice(0, 6);
 
   return (
     <main className="min-h-screen bg-white">
 
       {/* ══════════════════════════════════════════════════
           1. HERO — Full viewport, single lead story
-          Title bottom-left, latest stories index bottom-right
           ══════════════════════════════════════════════════ */}
       {lead && (
         <Link href={`/stories/${lead.slug}`} className="group block">
@@ -154,26 +193,11 @@ export default function HomeContent({
       )}
 
       {/* ══════════════════════════════════════════════════
-          2. "THE EDIT" — Section label + rule + 6 vertical tiles
-          Full-width row, not scrolling
+          2. THE EDIT — 6 vertical tiles, full-width row
           ══════════════════════════════════════════════════ */}
       {issueRow.length > 0 && (
         <section className="px-6 md:px-10 lg:px-14 pt-20 md:pt-28 pb-16 md:pb-24">
-          {/* Section header with rule */}
-          <div className="flex items-baseline justify-between mb-2">
-            <h2 className="text-[15px] md:text-base font-light tracking-[-0.01em] text-[#0a0a0a]">
-              The Edit
-            </h2>
-            <Link
-              href="/stories"
-              className="text-[11px] text-[#0a0a0a]/35 tracking-[0.04em] hover:text-[#0a0a0a]/60 transition-colors"
-            >
-              View All
-            </Link>
-          </div>
-          <div className="border-t border-[#0a0a0a] mb-10" />
-
-          {/* 6-tile row — fills the width */}
+          <SectionHeader title="The Edit" href="/stories" />
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5">
             {issueRow.map((story) => (
               <StoryTile key={story.slug} story={story} />
@@ -183,8 +207,25 @@ export default function HomeContent({
       )}
 
       {/* ══════════════════════════════════════════════════
-          3. FEATURE MOMENT — Centered large type + portrait
-          The editorial pause between tile rows
+          3. MAP — Interactive Morocco, visual break
+          Dark, full-width, city dots with hover info
+          ══════════════════════════════════════════════════ */}
+      <section className="relative h-[60vh] min-h-[450px] md:h-[65vh]">
+        <HomeCityMap />
+        {/* Map CTA overlay — bottom right */}
+        <div className="absolute bottom-6 right-6 z-10">
+          <Link
+            href="/places/map"
+            className="text-[10px] tracking-[0.1em] uppercase text-white/40 hover:text-white/70 transition-colors bg-black/40 backdrop-blur-sm px-4 py-2"
+          >
+            Explore 200+ places on map →
+          </Link>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════
+          4. FEATURE MOMENT — Centered large type + portrait
+          Editorial pause
           ══════════════════════════════════════════════════ */}
       {feature && (
         <section className="py-16 md:py-28">
@@ -220,7 +261,42 @@ export default function HomeContent({
       )}
 
       {/* ══════════════════════════════════════════════════
-          4. FULL-BLEED STORY — Image with text overlay
+          5. PLACES — 6 vertical tiles
+          ══════════════════════════════════════════════════ */}
+      {featuredPlaces.length > 0 && (
+        <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.08]">
+          <SectionHeader title="Places" href="/places" />
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5">
+            {featuredPlaces.map((p) => (
+              <Link key={p.slug} href={`/places/${p.slug}`} className="group block min-w-0">
+                <div className="aspect-[3/4] relative overflow-hidden bg-[#f0eeeb] mb-4">
+                  {p.heroImage && (
+                    <img
+                      src={cloudinaryUrl(p.heroImage, 600)}
+                      alt={p.title}
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
+                    />
+                  )}
+                </div>
+                {p.category && (
+                  <span className="text-[10px] text-[#0a0a0a]/40 tracking-[0.1em] uppercase block mb-1">
+                    {p.category}
+                  </span>
+                )}
+                <h3 className="text-[13px] tracking-[0.04em] text-[#0a0a0a] group-hover:text-[#0a0a0a]/50 transition-colors leading-snug uppercase">
+                  {p.title}
+                </h3>
+                {p.destination && (
+                  <p className="text-[12px] text-[#0a0a0a]/40 mt-1">{p.destination}</p>
+                )}
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* ══════════════════════════════════════════════════
+          6. FULL-BLEED STORY — Image with text overlay
           ══════════════════════════════════════════════════ */}
       {secondRow[0] && (
         <Link href={`/stories/${secondRow[0].slug}`} className="group block">
@@ -246,23 +322,11 @@ export default function HomeContent({
       )}
 
       {/* ══════════════════════════════════════════════════
-          5. SECOND TILE ROW — remaining stories
+          7. MORE STORIES — second tile row
           ══════════════════════════════════════════════════ */}
       {secondRow.length > 1 && (
         <section className="px-6 md:px-10 lg:px-14 pt-20 md:pt-28 pb-16 md:pb-24">
-          <div className="flex items-baseline justify-between mb-2">
-            <h2 className="text-[15px] md:text-base font-light tracking-[-0.01em] text-[#0a0a0a]">
-              More from The Edit
-            </h2>
-            <Link
-              href="/stories"
-              className="text-[11px] text-[#0a0a0a]/35 tracking-[0.04em] hover:text-[#0a0a0a]/60 transition-colors"
-            >
-              View All
-            </Link>
-          </div>
-          <div className="border-t border-[#0a0a0a] mb-10" />
-
+          <SectionHeader title="More from The Edit" href="/stories" />
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-5">
             {secondRow.slice(1).map((story) => (
               <StoryTile key={story.slug} story={story} />
@@ -272,23 +336,58 @@ export default function HomeContent({
       )}
 
       {/* ══════════════════════════════════════════════════
-          6. JOURNEYS — Same tile language, own section
+          8. THOUGHT STARTERS — Square image left, large title right
+          Kinfolk "Thought Starters" register
+          ══════════════════════════════════════════════════ */}
+      {stories.length > 14 && (
+        <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.08]">
+          <SectionHeader title="Going Deeper" href="/stories" />
+          <div className="divide-y divide-[#0a0a0a]/[0.08]">
+            {stories.slice(14, 17).map((story) => (
+              <Link
+                key={story.slug}
+                href={`/stories/${story.slug}`}
+                className="group flex gap-6 md:gap-10 py-8 md:py-10 items-start"
+              >
+                {/* Square image — left */}
+                {story.heroImage && (
+                  <div className="w-[140px] md:w-[180px] shrink-0 aspect-square relative overflow-hidden bg-[#f0eeeb]">
+                    <img
+                      src={cloudinaryUrl(story.heroImage, 400)}
+                      alt={story.title}
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
+                    />
+                  </div>
+                )}
+                {/* Title + subtitle — center, large */}
+                <div className="flex-1 min-w-0 pt-1">
+                  <h3 className="text-[clamp(1.2rem,2.5vw,2rem)] font-light text-[#0a0a0a] leading-[1.15] tracking-[-0.01em] uppercase group-hover:text-[#0a0a0a]/50 transition-colors">
+                    {story.title}
+                  </h3>
+                  {story.subtitle && (
+                    <p className="text-[clamp(1rem,2vw,1.5rem)] font-light text-[#0a0a0a]/50 leading-[1.2] mt-1">
+                      {story.subtitle}
+                    </p>
+                  )}
+                </div>
+                {/* Category — far right */}
+                {story.category && (
+                  <span className="text-[10px] text-[#0a0a0a]/30 tracking-[0.06em] uppercase shrink-0 hidden md:block pt-2">
+                    {story.category}
+                  </span>
+                )}
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* ══════════════════════════════════════════════════
+          9. JOURNEYS — Same tile language
           ══════════════════════════════════════════════════ */}
       {featuredJourneys.length > 0 && (
         <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.08]">
-          <div className="flex items-baseline justify-between mb-2">
-            <h2 className="text-[15px] md:text-base font-light tracking-[-0.01em] text-[#0a0a0a]">
-              Private Journeys
-            </h2>
-            <Link
-              href="/journeys"
-              className="text-[11px] text-[#0a0a0a]/35 tracking-[0.04em] hover:text-[#0a0a0a]/60 transition-colors"
-            >
-              View All
-            </Link>
-          </div>
-          <div className="border-t border-[#0a0a0a] mb-10" />
-
+          <SectionHeader title="Private Journeys" href="/journeys" />
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5">
             {featuredJourneys.map((j) => (
               <Link key={j.slug} href={`/journeys/${j.slug}`} className="group block min-w-0">
@@ -312,63 +411,6 @@ export default function HomeContent({
                 {j.destinations && (
                   <p className="text-[12px] text-[#0a0a0a]/40 mt-1">{j.destinations}</p>
                 )}
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* ══════════════════════════════════════════════════
-          7. SPLIT FEATURE — Text left, tall image right
-          Photo essay pattern from Kinfolk
-          ══════════════════════════════════════════════════ */}
-      {stories[7] && stories[7].heroImage && (
-        <section className="border-t border-[#0a0a0a]/[0.08]">
-          <Link href={`/stories/${stories[7].slug}`} className="group block">
-            <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[500px]">
-              <div className="flex flex-col justify-center px-6 md:px-10 lg:px-14 py-16 lg:py-24">
-                {stories[7].category && (
-                  <span className="text-[10px] text-[#0a0a0a]/35 tracking-[0.1em] uppercase block mb-4">
-                    {stories[7].category}
-                  </span>
-                )}
-                <h2 className="text-[clamp(1.4rem,3vw,2.2rem)] font-light text-[#0a0a0a] leading-[1.15] tracking-[-0.01em] uppercase mb-3 group-hover:text-[#0a0a0a]/60 transition-colors">
-                  {stories[7].title}
-                </h2>
-                {stories[7].subtitle && (
-                  <p className="text-[#0a0a0a]/45 text-sm md:text-[15px] leading-relaxed max-w-md">
-                    {stories[7].subtitle}
-                  </p>
-                )}
-              </div>
-              <div className="relative min-h-[400px] lg:min-h-0 overflow-hidden bg-[#f0eeeb]">
-                <img
-                  src={cloudinaryUrl(stories[7].heroImage!, 1200)}
-                  alt={stories[7].title}
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
-                />
-              </div>
-            </div>
-          </Link>
-        </section>
-      )}
-
-      {/* ══════════════════════════════════════════════════
-          8. DESTINATIONS — compact text links
-          ══════════════════════════════════════════════════ */}
-      {destinations.length > 0 && (
-        <section className="px-6 md:px-10 lg:px-14 py-12 md:py-16 border-t border-[#0a0a0a]/[0.08]">
-          <h2 className="text-[11px] text-[#0a0a0a]/30 tracking-[0.1em] uppercase mb-5">
-            By City
-          </h2>
-          <div className="flex flex-wrap gap-x-6 gap-y-1.5">
-            {destinations.slice(0, 12).map((d) => (
-              <Link
-                key={d.slug}
-                href={`/${d.slug}`}
-                className="text-sm text-[#0a0a0a]/50 hover:text-[#0a0a0a] transition-colors py-1"
-              >
-                {d.title}
               </Link>
             ))}
           </div>

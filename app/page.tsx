@@ -82,7 +82,7 @@ export default async function HomePage() {
       return shuffled;
     };
 
-    stories = seededShuffle(allStories, timeBucket).slice(0, 14);
+    stories = seededShuffle(allStories, timeBucket).slice(0, 17);
     journeys = seededShuffle(journeys, timeBucket + 7).slice(0, 8);
 
     // Format settings
