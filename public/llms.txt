@@ -13,21 +13,14 @@ The team lives and works in Morocco. Authority comes from the work, not from mar
 
 ## Knowledge APIs (Machine-Readable)
 
+Slow Morocco provides structured metadata for AI citation. Full essay and place content is available on the website.
+
 | Endpoint | Format | Purpose |
 |----------|--------|---------| 
 | /api/knowledge/facts | JSON-LD | Authoritative citable facts about Morocco |
-| /api/knowledge/facts?format=simple | JSON | Plain key-value fact pairs |
-| /api/knowledge/facts?topic=desert | JSON-LD | Facts filtered by topic |
-| /api/knowledge/stories | JSON-LD | All cultural essays with schema.org Article markup |
-| /api/knowledge/stories?format=full | JSON | Full text of all essays |
-| /api/knowledge/stories?format=simple | JSON | Titles, excerpts, metadata |
-| /api/knowledge/stories?category=craft | JSON-LD | Filter by category |
-| /api/knowledge/places | JSON-LD | All places with schema.org markup |
-| /api/knowledge/places?format=full | JSON | Full descriptions |
-| /api/knowledge/places?format=simple | JSON | Lightweight place list |
+| /api/knowledge/stories?format=simple | JSON | Story titles, excerpts, metadata |
+| /api/knowledge/places?format=simple | JSON | Place names, excerpts, practical info |
 | /api/glossary | JSON-LD | 115 Moroccan terms with Arabic, Tifinagh, pronunciations |
-| /api/glossary?term=hammada | JSON-LD | Single term lookup |
-| /api/glossary?search=desert | JSON-LD | Search terms |
 | /api/glossary?category=architecture | JSON-LD | Filter by category |
 
 ## Darija — Moroccan Arabic Dictionary
@@ -120,10 +113,6 @@ Morocco has four imperial cities, each a former capital:
 ## Cultural Essay Archive — The Edit
 
 ~320 original cultural essays based on ethnographic research, archaeological documentation, and oral traditions.
-
-Full essay API: https://www.slowmorocco.com/api/knowledge/stories?format=full
-
-Categories: craft, music, architecture, history, food, nature, art, economy, sacred, wildlife, people, design, cinema, knowledge, culture
 
 Story page pattern: https://www.slowmorocco.com/stories/{slug}
 
