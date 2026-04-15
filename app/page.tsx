@@ -4,11 +4,11 @@ import HomeContent from "./HomeContent";
 
 export const metadata: Metadata = {
   title: "Slow Morocco | Morocco, Decoded",
-  description: "Original essays on Moroccan history, craft, music, architecture, food, and ecology. Written from Marrakech.",
+  description: "The mosque that pointed the wrong way. The alphabet that refused to die. The salt road that built an empire. Morocco has secrets. We decode them.",
   alternates: { canonical: "https://www.slowmorocco.com" },
   openGraph: {
     title: "Slow Morocco | Morocco, Decoded",
-    description: "Original essays on Moroccan history, craft, music, architecture, food, and ecology. Written from Marrakech.",
+    description: "The mosque that pointed the wrong way. The alphabet that refused to die. The salt road that built an empire. Morocco has secrets. We decode them.",
     url: "https://www.slowmorocco.com",
   },
 };

@@ -90,7 +90,7 @@ function StoryTile({ story }: { story: Story }) {
           {story.category}
         </span>
       )}
-      <h3 className="text-[13px] tracking-[0.04em] text-[#0a0a0a] group-hover:text-[#0a0a0a]/50 transition-colors leading-snug uppercase">
+      <h3 className="text-[13px] tracking-[0.04em] text-[#0a0a0a] group-hover:text-[#0a0a0a]/50 transition-colors leading-snug">
         {story.title}
       </h3>
       {story.subtitle && (
@@ -156,29 +156,10 @@ export default function HomeContent({
             )}
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
 
-            {/* Latest stories index — bottom right */}
-            <div className="absolute bottom-0 right-0 bg-white/95 backdrop-blur-sm px-6 py-5 hidden lg:block w-[320px]">
-              <span className="text-[10px] tracking-[0.12em] uppercase text-[#0a0a0a]/40 block mb-3">
-                Latest Stories
-              </span>
-              <div className="space-y-2">
-                {issueRow.slice(0, 5).map((s) => (
-                  <div key={s.slug} className="flex items-baseline gap-3">
-                    <span className="text-[10px] text-[#0a0a0a]/30 tracking-[0.04em] uppercase shrink-0 w-[80px]">
-                      {s.category}
-                    </span>
-                    <span className="text-[12px] text-[#0a0a0a]/80 leading-tight truncate">
-                      {s.title}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
             {/* Lead story text — bottom left */}
             <div className="relative z-10 h-full flex flex-col justify-end px-6 md:px-10 lg:px-14 pb-10 md:pb-14 lg:pb-16">
               <div className="max-w-xl lg:max-w-lg">
-                <h1 className="text-white text-[clamp(1.6rem,4.5vw,3rem)] font-light tracking-[-0.01em] leading-[1.1] uppercase mb-2">
+                <h1 className="text-white text-[clamp(1.6rem,4.5vw,3rem)] font-light tracking-[-0.01em] leading-[1.1] mb-2">
                   {lead.title}
                 </h1>
                 {lead.subtitle && (
@@ -231,7 +212,7 @@ export default function HomeContent({
         <section className="py-16 md:py-28">
           <Link href={`/stories/${feature.slug}`} className="group block text-center">
             <div className="max-w-3xl mx-auto px-6 md:px-10 mb-10 md:mb-14">
-              <h2 className="text-[clamp(1.8rem,4vw,3.2rem)] font-light text-[#0a0a0a] leading-[1.15] tracking-[-0.02em] uppercase mb-4 group-hover:text-[#0a0a0a]/60 transition-colors">
+              <h2 className="text-[clamp(1.8rem,4vw,3.2rem)] font-light text-[#0a0a0a] leading-[1.15] tracking-[-0.02em] mb-4 group-hover:text-[#0a0a0a]/60 transition-colors">
                 {feature.title}
               </h2>
               {feature.subtitle && (
@@ -283,7 +264,7 @@ export default function HomeContent({
                     {p.category}
                   </span>
                 )}
-                <h3 className="text-[13px] tracking-[0.04em] text-[#0a0a0a] group-hover:text-[#0a0a0a]/50 transition-colors leading-snug uppercase">
+                <h3 className="text-[13px] tracking-[0.04em] text-[#0a0a0a] group-hover:text-[#0a0a0a]/50 transition-colors leading-snug">
                   {p.title}
                 </h3>
                 {p.destination && (
@@ -361,7 +342,7 @@ export default function HomeContent({
                 )}
                 {/* Title + subtitle — center, large */}
                 <div className="flex-1 min-w-0 pt-1">
-                  <h3 className="text-[clamp(1.2rem,2.5vw,2rem)] font-light text-[#0a0a0a] leading-[1.15] tracking-[-0.01em] uppercase group-hover:text-[#0a0a0a]/50 transition-colors">
+                  <h3 className="text-[clamp(1.2rem,2.5vw,2rem)] font-light text-[#0a0a0a] leading-[1.15] tracking-[-0.01em] group-hover:text-[#0a0a0a]/50 transition-colors">
                     {story.title}
                   </h3>
                   {story.subtitle && (
@@ -405,7 +386,7 @@ export default function HomeContent({
                     </div>
                   )}
                 </div>
-                <h3 className="text-[13px] tracking-[0.04em] text-[#0a0a0a] group-hover:text-[#0a0a0a]/50 transition-colors leading-snug uppercase">
+                <h3 className="text-[13px] tracking-[0.04em] text-[#0a0a0a] group-hover:text-[#0a0a0a]/50 transition-colors leading-snug">
                   {j.title}
                 </h3>
                 {j.destinations && (
