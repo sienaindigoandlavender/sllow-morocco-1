@@ -620,6 +620,54 @@ const nextConfig = {
       { source: '/darija/dictionary/culture-04486', destination: 'https://darija.io', permanent: true },
       { source: '/darija/dictionary/greetings-08172', destination: 'https://darija.io', permanent: true },
       { source: '/darija/dictionary/technology-09051', destination: 'https://darija.io', permanent: true },
+
+      // 404 fixes — April 15, 2026 (Ahrefs audit)
+      // Cities: /places/CITY → /CITY
+      { source: '/places/rabat', destination: '/rabat', permanent: true },
+      { source: '/places/tangier', destination: '/tangier', permanent: true },
+      { source: '/places/merzouga', destination: '/merzouga', permanent: true },
+      { source: '/places/essaouira', destination: '/essaouira', permanent: true },
+      { source: '/places/meknes', destination: '/meknes', permanent: true },
+      { source: '/places/casablanca', destination: '/casablanca', permanent: true },
+      { source: '/places/chefchaouen', destination: '/chefchaouen', permanent: true },
+      { source: '/places/ouarzazate', destination: '/ouarzazate', permanent: true },
+      { source: '/places/taghazout', destination: '/taghazout', permanent: true },
+      { source: '/places/tamegroute', destination: '/tamegroute', permanent: true },
+      { source: '/places/moulay-idriss', destination: '/moulay-idriss', permanent: true },
+      { source: '/places/ifrane-morocco', destination: '/ifrane', permanent: true },
+      { source: '/places/taroudant', destination: '/places', permanent: true },
+      { source: '/destinations/agadir', destination: '/agadir', permanent: true },
+      // Landmarks: redirect to actual place slugs
+      { source: '/places/bahia-palace', destination: '/places/palais-bahia', permanent: true },
+      { source: '/places/ben-youssef-madrasa', destination: '/places/ben-youssef-medersa', permanent: true },
+      { source: '/places/taliouine', destination: '/places/saffron-fields-taliouine', permanent: true },
+      // Landmarks without place page: redirect to city
+      { source: '/places/qarawiyyin-mosque', destination: '/fes', permanent: true },
+      { source: '/places/al-qarawiyyin', destination: '/fes', permanent: true },
+      { source: '/places/koutoubia-mosque', destination: '/marrakech', permanent: true },
+      { source: '/places/marrakech-souks', destination: '/marrakech', permanent: true },
+      { source: '/places/jemaa-el-fna', destination: '/marrakech', permanent: true },
+      { source: '/places/aroumd-village', destination: '/imlil', permanent: true },
+      { source: '/places/ait-benhaddou', destination: '/ait-benhaddou', permanent: true },
+      { source: '/places/todra-gorge', destination: '/todra-gorge', permanent: true },
+      // Day trips: old /stories/day-trips/* path
+      { source: '/stories/day-trips/ouzoud-falls', destination: '/day-trips/ouzoud-falls', permanent: true },
+      { source: '/stories/day-trips/essaouira', destination: '/day-trips/essaouira', permanent: true },
+      { source: '/stories/day-trips/agafay-desert', destination: '/day-trips/agafay-desert', permanent: true },
+      { source: '/stories/day-trips/imlil-atlas-hiking', destination: '/day-trips/imlil-atlas-hiking', permanent: true },
+      { source: '/stories/day-trips/ourika-valley', destination: '/day-trips/ourika-valley', permanent: true },
+      { source: '/stories/day-trips/route-of-the-kasbahs', destination: '/day-trips/route-of-the-kasbahs', permanent: true },
+      // Deleted/renamed stories
+      { source: '/stories/the-wandering-poets', destination: '/stories', permanent: true },
+      { source: '/stories/the-friday-couscous', destination: '/stories/the-bread-ovens', permanent: true },
+      { source: '/stories/not-all-desert-is-sand', destination: '/stories/the-singing-sands', permanent: true },
+      { source: '/stories/the-saadian-dynasty', destination: '/stories/the-sugar-kings-grave', permanent: true },
+      { source: '/stories/almohad-atlas', destination: '/stories/the-berber-caliphate', permanent: true },
+      // URL encoding fix
+      { source: '/stories/category/before%20you%20go', destination: '/stories/category/before-you-go', permanent: true },
+      // Old policy page slugs
+      { source: '/cancellation-policy', destination: '/cancellations-and-refunds', permanent: true },
+      { source: '/payment-booking', destination: '/payments', permanent: true },
     ];
   },
 };
