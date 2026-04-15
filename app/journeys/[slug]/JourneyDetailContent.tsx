@@ -6,40 +6,7 @@ import { cloudinaryUrl } from "@/lib/cloudinary";
 import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import dynamic from "next/dynamic";
 import { linkGlossaryTermsText } from "@/lib/glossary-linker";
-import {
-  IconClock,
-  IconCamel,
-  IconHiking,
-  IconSurfing,
-  IconCooking,
-  IconSpa,
-  IconShopping,
-  IconCamera,
-  IconMeals,
-  IconMountains,
-  IconDesert,
-  IconMedina,
-  Icon4x4,
-  IconStar,
-} from "@/components/icons";
 import ShareTools from "@/components/ShareTools";
-
-// Map activity keywords to icons
-const getActivityIcon = (activity: string) => {
-  const lower = activity.toLowerCase();
-  if (lower.includes("camel")) return <IconCamel size={20} />;
-  if (lower.includes("hik") || lower.includes("trek")) return <IconHiking size={20} />;
-  if (lower.includes("surf")) return <IconSurfing size={20} />;
-  if (lower.includes("cook") || lower.includes("tagine")) return <IconCooking size={20} />;
-  if (lower.includes("hammam") || lower.includes("spa")) return <IconSpa size={20} />;
-  if (lower.includes("souk") || lower.includes("shop")) return <IconShopping size={20} />;
-  if (lower.includes("photo")) return <IconCamera size={20} />;
-  if (lower.includes("mountain") || lower.includes("atlas")) return <IconMountains size={20} />;
-  if (lower.includes("desert") || lower.includes("dune") || lower.includes("sahara")) return <IconDesert size={20} />;
-  if (lower.includes("medina") || lower.includes("old town")) return <IconMedina size={20} />;
-  if (lower.includes("4x4") || lower.includes("off-road")) return <Icon4x4 size={20} />;
-  return <IconStar size={20} />;
-};
 
 const ItineraryMap = dynamic(() => import("@/components/ItineraryMap"), {
   ssr: false,
@@ -70,15 +37,8 @@ interface Journey {
 interface ItineraryDay {
   dayNumber: number;
   cityName: string;
-  fromCity: string;
-  toCity: string;
   description: string;
   imageUrl: string;
-  travelTime: string;
-  difficulty: string;
-  activities: string;
-  meals: string;
-  routeType: string;
 }
 
 // Day image that hides itself if the URL is broken
@@ -495,32 +455,8 @@ export default function JourneyDetailContent({
                   </p>
 
                   <h2 className="font-serif text-2xl md:text-3xl mb-4">
-                    {day.fromCity && day.toCity && day.fromCity !== day.toCity 
-                      ? `${day.fromCity} → ${day.toCity}`
-                      : day.cityName
-                    }
+                    {day.cityName}
                   </h2>
-
-                  <div className="flex flex-wrap gap-x-5 gap-y-2 mb-6 text-sm text-muted-foreground">
-                    {day.travelTime && (
-                      <div className="flex items-center gap-2">
-                        <IconClock size={20} />
-                        <span>{day.travelTime}h drive</span>
-                      </div>
-                    )}
-                    {day.activities && (
-                      <div className="flex items-center gap-2">
-                        {getActivityIcon(day.activities)}
-                        <span>{day.activities.replace(/_/g, " ").toLowerCase()}</span>
-                      </div>
-                    )}
-                    {day.meals && (
-                      <div className="flex items-center gap-2">
-                        <IconMeals size={20} />
-                        <span>{day.meals}</span>
-                      </div>
-                    )}
-                  </div>
 
                   <p className="text-muted-foreground leading-relaxed text-lg">
                     {linkGlossaryTermsText(day.description)}
