@@ -306,17 +306,9 @@ Return ONLY valid JSON:
       days: orderedRoutes.map((route: any, index: number) => ({
         dayNumber: index + 1,
         cityName: route.to_city || route.from_city || "",
-        fromCity: route.from_city || "",
-        toCity: route.to_city || "",
         description: route.route_narrative || "",
         imageUrl: route.image_url || route.hero_image_url || "",
-        travelTime: String(route.travel_time_hours || ""),
-        difficulty: route.difficulty_level || "",
-        activities: route.activities || "",
-        meals: route.meals || "",
-        routeType: route.route_type || "",
         dayTitle: route.day_title || "",
-        highlights: route.highlights || "",
       })),
     };
 
