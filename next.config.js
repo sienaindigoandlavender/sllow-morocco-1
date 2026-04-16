@@ -414,7 +414,7 @@ const nextConfig = {
       { source: '/stories/solar-compass', destination: '/stories', permanent: true },
       { source: '/stories/marriages-divorces-morocco', destination: '/stories', permanent: true },
       { source: '/stories/the-tea-road', destination: '/stories', permanent: true },
-      { source: '/stories/amazigh-identity', destination: '/stories', permanent: true },
+      { source: '/stories/amazigh-identity', destination: '/stories/amazigh-identity-map', permanent: true },
       { source: '/stories/weather-portraits', destination: '/stories', permanent: true },
       { source: '/stories/the-stone-language', destination: '/stories', permanent: true },
       { source: '/stories/marrakech-medina-guide', destination: '/stories', permanent: true },
@@ -681,6 +681,9 @@ const nextConfig = {
       { source: '/journeys/12-Day-Grand-Tour-Western-Arc', destination: '/journeys', permanent: true },
       { source: '/journeys/4-Day-Sahara-&-Valleys-Journey', destination: '/journeys', permanent: true },
       { source: '/journeys/7-day-morocco-highlights', destination: '/journeys', permanent: true },
+
+      // CRITICAL: highest impression page (5,254) was a 404
+      { source: '/stories/oldest-universities', destination: '/stories/the-oldest-library', permanent: true },
     ];
   },
 };
