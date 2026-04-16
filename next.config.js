@@ -668,6 +668,14 @@ const nextConfig = {
       // Old policy page slugs
       { source: '/cancellation-policy', destination: '/cancellations-and-refunds', permanent: true },
       { source: '/payment-booking', destination: '/payments', permanent: true },
+
+      // GSC 404 cleanup — April 16, 2026
+      { source: '/stories/phosphate-kingdom', destination: '/stories/morocco-phosphate-mining', permanent: true },
+      { source: '/stories/scent-atlas', destination: '/stories', permanent: true },
+      { source: '/stories/solar-atlas', destination: '/stories', permanent: true },
+      { source: '/stories/wedding-atlas', destination: '/stories/moroccan-wedding-economy', permanent: true },
+      { source: '/places/mellah-of-sefrou', destination: '/places', permanent: true },
+      { source: '/places/musee-musique', destination: '/places', permanent: true },
     ];
   },
 };
