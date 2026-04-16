@@ -676,6 +676,11 @@ const nextConfig = {
       { source: '/stories/wedding-atlas', destination: '/stories/moroccan-wedding-economy', permanent: true },
       { source: '/places/mellah-of-sefrou', destination: '/places', permanent: true },
       { source: '/places/musee-musique', destination: '/places', permanent: true },
+
+      // Crawled-not-indexed journey slugs — April 16, 2026
+      { source: '/journeys/12-Day-Grand-Tour-Western-Arc', destination: '/journeys', permanent: true },
+      { source: '/journeys/4-Day-Sahara-&-Valleys-Journey', destination: '/journeys', permanent: true },
+      { source: '/journeys/7-day-morocco-highlights', destination: '/journeys', permanent: true },
     ];
   },
 };
