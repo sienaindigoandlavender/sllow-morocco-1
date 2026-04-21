@@ -95,7 +95,7 @@ function FAQAccordion({ items }: { items: Array<{ q: string; a: string }> }) {
               {item.q}
             </span>
             <ChevronDown
-              className={`w-5 h-5 flex-shrink-0 mt-1 text-muted-foreground transition-transform duration-300 ${
+              className={`w-5 h-5 flex-shrink-0 mt-1 text-foreground/70 transition-transform duration-300 ${
                 openIndex === i ? "rotate-180" : ""
               }`}
             />
@@ -105,7 +105,7 @@ function FAQAccordion({ items }: { items: Array<{ q: string; a: string }> }) {
               openIndex === i ? "max-h-96 pb-5" : "max-h-0"
             }`}
           >
-            <p className="text-[15px] leading-relaxed text-muted-foreground">
+            <p className="text-[15px] leading-relaxed text-foreground/70">
               {item.a}
             </p>
           </div>
@@ -153,7 +153,7 @@ export default function PlaceDetailContent({
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
         <div className="absolute top-24 left-6 lg:left-16 right-6 lg:right-16 flex items-center justify-between">
-          <Link href="/places" className="inline-flex items-center gap-2 text-foreground/80 hover:text-foreground transition-colors">
+          <Link href="/places" className="inline-flex items-center gap-2 text-white/90 hover:text-white transition-colors">
             <ChevronLeft className="w-4 h-4" />
             <span className="text-sm">Explore all places</span>
           </Link>
@@ -196,36 +196,36 @@ export default function PlaceDetailContent({
               <div className="flex flex-wrap gap-8 md:gap-12 py-6">
                 {place.openingHours && (
                   <div className="flex items-center gap-3">
-                    <Clock className="w-4 h-4 text-muted-foreground" />
+                    <Clock className="w-4 h-4 text-foreground/70" />
                     <div>
-                      <p className="text-[11px] tracking-[0.12em] uppercase text-muted-foreground">Hours</p>
+                      <p className="text-[11px] tracking-[0.12em] uppercase text-foreground/70">Hours</p>
                       <p className="text-sm">{place.openingHours}</p>
                     </div>
                   </div>
                 )}
                 {place.fees && (
                   <div className="flex items-center gap-3">
-                    <Ticket className="w-4 h-4 text-muted-foreground" />
+                    <Ticket className="w-4 h-4 text-foreground/70" />
                     <div>
-                      <p className="text-[11px] tracking-[0.12em] uppercase text-muted-foreground">Entry</p>
+                      <p className="text-[11px] tracking-[0.12em] uppercase text-foreground/70">Entry</p>
                       <p className="text-sm">{place.fees}</p>
                     </div>
                   </div>
                 )}
                 {place.visitDurationMinutes && (
                   <div className="flex items-center gap-3">
-                    <Timer className="w-4 h-4 text-muted-foreground" />
+                    <Timer className="w-4 h-4 text-foreground/70" />
                     <div>
-                      <p className="text-[11px] tracking-[0.12em] uppercase text-muted-foreground">Duration</p>
+                      <p className="text-[11px] tracking-[0.12em] uppercase text-foreground/70">Duration</p>
                       <p className="text-sm">{place.visitDurationMinutes} minutes</p>
                     </div>
                   </div>
                 )}
                 {place.address && (
                   <div className="flex items-center gap-3">
-                    <MapPin className="w-4 h-4 text-muted-foreground" />
+                    <MapPin className="w-4 h-4 text-foreground/70" />
                     <div>
-                      <p className="text-[11px] tracking-[0.12em] uppercase text-muted-foreground">Location</p>
+                      <p className="text-[11px] tracking-[0.12em] uppercase text-foreground/70">Location</p>
                       <p className="text-sm">{place.address}</p>
                     </div>
                   </div>
@@ -239,7 +239,7 @@ export default function PlaceDetailContent({
             <section className="py-16 md:py-20">
               <div className="container mx-auto px-6 lg:px-16">
                 <div className="max-w-3xl">
-                  <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-display italic">{place.excerpt}</p>
+                  <p className="text-xl md:text-2xl text-foreground/70 leading-relaxed font-display italic">{place.excerpt}</p>
                 </div>
               </div>
             </section>
@@ -268,7 +268,7 @@ export default function PlaceDetailContent({
             <section key={section.key} className={`py-16 md:py-20 ${i % 2 === 1 ? "bg-sand" : ""}`}>
               <div className="container mx-auto px-6 lg:px-16">
                 <div className="max-w-3xl">
-                  <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-4">{String(i + 1).padStart(2, "0")}</p>
+                  <p className="text-xs tracking-[0.2em] uppercase text-foreground/70 mb-4">{String(i + 1).padStart(2, "0")}</p>
                   <h2 className="font-serif text-2xl md:text-3xl mb-8">{section.title}</h2>
                   <div
                     className="prose prose-lg max-w-none [&>p]:text-[15px] [&>p]:leading-[1.8] [&>p]:text-[#262626]"
@@ -287,19 +287,19 @@ export default function PlaceDetailContent({
                   {place.bestTimeToVisit && (
                     <div>
                       <div className="flex items-center gap-3 mb-4">
-                        <Compass className="w-4 h-4 text-muted-foreground" />
+                        <Compass className="w-4 h-4 text-foreground/70" />
                         <h3 className="font-serif text-lg">Best Time to Visit</h3>
                       </div>
-                      <p className="text-[15px] leading-[1.8] text-muted-foreground">{place.bestTimeToVisit}</p>
+                      <p className="text-[15px] leading-[1.8] text-foreground/70">{place.bestTimeToVisit}</p>
                     </div>
                   )}
                   {place.gettingThere && (
                     <div>
                       <div className="flex items-center gap-3 mb-4">
-                        <Navigation className="w-4 h-4 text-muted-foreground" />
+                        <Navigation className="w-4 h-4 text-foreground/70" />
                         <h3 className="font-serif text-lg">Getting There</h3>
                       </div>
-                      <p className="text-[15px] leading-[1.8] text-muted-foreground">{place.gettingThere}</p>
+                      <p className="text-[15px] leading-[1.8] text-foreground/70">{place.gettingThere}</p>
                     </div>
                   )}
                 </div>
@@ -312,8 +312,8 @@ export default function PlaceDetailContent({
             <section className="py-12 bg-sand">
               <div className="container mx-auto px-6 lg:px-16">
                 <div className="max-w-3xl">
-                  <p className="text-xs tracking-[0.1em] uppercase text-muted-foreground mb-3">Local Tip</p>
-                  <p className="text-[15px] leading-[1.8] text-muted-foreground italic">{place.notes}</p>
+                  <p className="text-xs tracking-[0.1em] uppercase text-foreground/70 mb-3">Local Tip</p>
+                  <p className="text-[15px] leading-[1.8] text-foreground/70 italic">{place.notes}</p>
                 </div>
               </div>
             </section>
@@ -336,7 +336,7 @@ export default function PlaceDetailContent({
             <section className="py-16 md:py-20 bg-sand">
               <div className="container mx-auto px-6 lg:px-16">
                 <div className="mb-10">
-                  <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-3">Walking Distance</p>
+                  <p className="text-xs tracking-[0.2em] uppercase text-foreground/70 mb-3">Walking Distance</p>
                   <h2 className="font-serif text-2xl md:text-3xl">Nearby</h2>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -348,7 +348,7 @@ export default function PlaceDetailContent({
             />
                         )}
                       </div>
-                      <p className="text-xs tracking-[0.12em] uppercase text-muted-foreground mb-1">{np.category}</p>
+                      <p className="text-xs tracking-[0.12em] uppercase text-foreground/70 mb-1">{np.category}</p>
                       <h3 className="font-serif text-sm group-hover:opacity-70 transition-opacity">{np.title}</h3>
                     </Link>
                   ))}
@@ -376,7 +376,7 @@ export default function PlaceDetailContent({
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
               <div className="lg:col-span-2">
                 {place.excerpt && (
-                  <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-12 font-display italic">{place.excerpt}</p>
+                  <p className="text-xl md:text-2xl text-foreground/70 leading-relaxed mb-12 font-display italic">{place.excerpt}</p>
                 )}
                 {place.body && (
                   <div className="prose prose-lg max-w-none" dangerouslySetInnerHTML={{ __html: formatBody(place.body) }} />
@@ -414,35 +414,35 @@ export default function PlaceDetailContent({
                   <h3 className="font-serif text-lg mb-6">Visitor Information</h3>
                   {place.address && (
                     <div className="flex gap-3 mb-4">
-                      <MapPin className="w-4 h-4 text-muted-foreground flex-shrink-0 mt-1" />
+                      <MapPin className="w-4 h-4 text-foreground/70 flex-shrink-0 mt-1" />
                       <div>
-                        <p className="text-xs tracking-[0.1em] uppercase text-muted-foreground mb-1">Address</p>
+                        <p className="text-xs tracking-[0.1em] uppercase text-foreground/70 mb-1">Address</p>
                         <p className="text-sm">{place.address}</p>
                       </div>
                     </div>
                   )}
                   {place.openingHours && (
                     <div className="flex gap-3 mb-4">
-                      <Clock className="w-4 h-4 text-muted-foreground flex-shrink-0 mt-1" />
+                      <Clock className="w-4 h-4 text-foreground/70 flex-shrink-0 mt-1" />
                       <div>
-                        <p className="text-xs tracking-[0.1em] uppercase text-muted-foreground mb-1">Hours</p>
+                        <p className="text-xs tracking-[0.1em] uppercase text-foreground/70 mb-1">Hours</p>
                         <p className="text-sm">{place.openingHours}</p>
                       </div>
                     </div>
                   )}
                   {place.fees && (
                     <div className="flex gap-3 mb-4">
-                      <Ticket className="w-4 h-4 text-muted-foreground flex-shrink-0 mt-1" />
+                      <Ticket className="w-4 h-4 text-foreground/70 flex-shrink-0 mt-1" />
                       <div>
-                        <p className="text-xs tracking-[0.1em] uppercase text-muted-foreground mb-1">Entry Fee</p>
+                        <p className="text-xs tracking-[0.1em] uppercase text-foreground/70 mb-1">Entry Fee</p>
                         <p className="text-sm">{place.fees}</p>
                       </div>
                     </div>
                   )}
                   {place.notes && (
                     <div className="mt-6 pt-6 border-t border-border">
-                      <p className="text-xs tracking-[0.1em] uppercase text-muted-foreground mb-2">Tips</p>
-                      <p className="text-sm text-muted-foreground">{place.notes}</p>
+                      <p className="text-xs tracking-[0.1em] uppercase text-foreground/70 mb-2">Tips</p>
+                      <p className="text-sm text-foreground/70">{place.notes}</p>
                     </div>
                   )}
                   <div className="mt-8">
@@ -469,9 +469,9 @@ export default function PlaceDetailContent({
         <section className={`py-24 md:py-32 ${isAttraction ? "bg-background border-t border-foreground/10" : "bg-sand mt-16"}`}>
           <div className="container mx-auto px-6 lg:px-16">
             <div className="text-center mb-16">
-              <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-4">Explore More</p>
+              <p className="text-xs tracking-[0.2em] uppercase text-foreground/70 mb-4">Explore More</p>
               <h2 className="text-2xl md:text-3xl tracking-[0.15em] font-light mb-4">Related Stories</h2>
-              <p className="text-muted-foreground max-w-xl mx-auto">
+              <p className="text-foreground/70 max-w-xl mx-auto">
                 Discover the history and culture of {place.destination.charAt(0).toUpperCase() + place.destination.slice(1)}
               </p>
             </div>
@@ -486,7 +486,7 @@ export default function PlaceDetailContent({
                       {story.heroImage && (<img src={cloudinaryUrl(story.heroImage)} alt={story.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />)}
                     </div>
-                    <p className="text-xs tracking-[0.15em] uppercase text-muted-foreground mb-1">{story.category}</p>
+                    <p className="text-xs tracking-[0.15em] uppercase text-foreground/70 mb-1">{story.category}</p>
                     <h3 className="font-serif text-base group-hover:opacity-70 transition-opacity">{story.title}</h3>
                   </Link>
                 ))}
@@ -507,9 +507,9 @@ export default function PlaceDetailContent({
         <section className="py-24 md:py-32 bg-background border-t border-border">
           <div className="container mx-auto px-6 lg:px-16">
             <div className="text-center mb-16">
-              <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-4">Explore More</p>
+              <p className="text-xs tracking-[0.2em] uppercase text-foreground/70 mb-4">Explore More</p>
               <h2 className="text-2xl md:text-3xl tracking-[0.15em] font-light mb-4">Related Journeys</h2>
-              <p className="text-muted-foreground max-w-xl mx-auto">
+              <p className="text-foreground/70 max-w-xl mx-auto">
                 Curated routes that pass through {place.destination.charAt(0).toUpperCase() + place.destination.slice(1)}
               </p>
             </div>
@@ -524,7 +524,7 @@ export default function PlaceDetailContent({
                       {journey.heroImage && (<img src={cloudinaryUrl(journey.heroImage)} alt={journey.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />)}
                     </div>
-                    <p className="text-xs tracking-[0.15em] uppercase text-muted-foreground mb-1">{journey.durationDays || journey.duration} Days</p>
+                    <p className="text-xs tracking-[0.15em] uppercase text-foreground/70 mb-1">{journey.durationDays || journey.duration} Days</p>
                     <h3 className="font-serif text-lg group-hover:opacity-70 transition-opacity">{journey.title}</h3>
                   </Link>
                 ))}
@@ -544,7 +544,7 @@ export default function PlaceDetailContent({
       {place.sources && (
         <section className="py-8 border-t border-border">
           <div className="container mx-auto px-6 lg:px-16">
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs text-foreground/70">
               <span className="font-medium">Sources:</span> {place.sources}
             </p>
           </div>
