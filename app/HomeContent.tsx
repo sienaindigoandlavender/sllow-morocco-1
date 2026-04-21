@@ -232,7 +232,7 @@ export default function HomeContent({
       <section className="px-6 md:px-10 lg:px-14 pt-14 md:pt-20 pb-8 md:pb-12 border-b border-[#0a0a0a]/[0.08]">
         <div className="grid md:grid-cols-3 gap-10 md:gap-12 lg:gap-16">
           <Link href="/stories" className="group block">
-            <span className="text-[10px] text-[#0a0a0a]/40 tracking-[0.14em] uppercase block mb-4">
+            <span className="text-[clamp(2.75rem,5vw,4rem)] font-light text-[#0a0a0a]/20 tracking-[-0.02em] leading-none block mb-5 md:mb-6">
               01
             </span>
             <h3 className="text-[18px] md:text-[19px] font-light tracking-[-0.01em] text-[#0a0a0a] mb-3 group-hover:text-[#0a0a0a]/50 transition-colors">
@@ -244,7 +244,7 @@ export default function HomeContent({
           </Link>
 
           <Link href="/journeys" className="group block">
-            <span className="text-[10px] text-[#0a0a0a]/40 tracking-[0.14em] uppercase block mb-4">
+            <span className="text-[clamp(2.75rem,5vw,4rem)] font-light text-[#0a0a0a]/20 tracking-[-0.02em] leading-none block mb-5 md:mb-6">
               02
             </span>
             <h3 className="text-[18px] md:text-[19px] font-light tracking-[-0.01em] text-[#0a0a0a] mb-3 group-hover:text-[#0a0a0a]/50 transition-colors">
@@ -256,7 +256,7 @@ export default function HomeContent({
           </Link>
 
           <Link href="/plan-your-trip" className="group block">
-            <span className="text-[10px] text-[#0a0a0a]/40 tracking-[0.14em] uppercase block mb-4">
+            <span className="text-[clamp(2.75rem,5vw,4rem)] font-light text-[#0a0a0a]/20 tracking-[-0.02em] leading-none block mb-5 md:mb-6">
               03
             </span>
             <h3 className="text-[18px] md:text-[19px] font-light tracking-[-0.01em] text-[#0a0a0a] mb-3 group-hover:text-[#0a0a0a]/50 transition-colors">
