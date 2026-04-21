@@ -132,15 +132,15 @@ function StoryTile({ story }: { story: Story }) {
 function SectionHeader({ title, href, linkText = "View All" }: { title: string; href: string; linkText?: string }) {
   return (
     <>
-      <div className="flex items-baseline justify-between mb-2">
+      <div className="flex items-baseline justify-between mb-3">
         <h2 className="text-[15px] md:text-base font-light tracking-[-0.01em] text-[#0a0a0a]">
           {title}
         </h2>
         <Link
           href={href}
-          className="text-[11px] text-[#0a0a0a]/55 tracking-[0.04em] hover:text-[#0a0a0a]/80 transition-colors"
+          className="text-[11px] tracking-[0.08em] uppercase text-[#0a0a0a]/55 hover:text-[#0a0a0a] transition-colors"
         >
-          {linkText}
+          {linkText} →
         </Link>
       </div>
       <div className="border-t border-[#0a0a0a] mb-10" />
@@ -199,7 +199,7 @@ export default function HomeContent({
       {/* ══════════════════════════════════════════════════
           2. ORIENTATION — Three pathways (editorial table of contents)
           ══════════════════════════════════════════════════ */}
-      <section className="px-6 md:px-10 lg:px-14 py-14 md:py-20 border-b border-[#0a0a0a]/[0.08]">
+      <section className="px-6 md:px-10 lg:px-14 pt-14 md:pt-20 pb-10 md:pb-14 border-b border-[#0a0a0a]/[0.08]">
         <div className="grid md:grid-cols-3 gap-10 md:gap-12 lg:gap-16">
           <Link href="/stories" className="group block">
             <span className="text-[10px] text-[#0a0a0a]/40 tracking-[0.14em] uppercase block mb-4">
@@ -209,7 +209,7 @@ export default function HomeContent({
               Explore Morocco
             </h3>
             <p className="text-[13.5px] text-[#0a0a0a]/55 leading-relaxed">
-              Stories, places, and systems that decode the country.
+              Essays on history, craft, and kitchens, mapped to over a hundred places.
             </p>
           </Link>
 
@@ -221,7 +221,7 @@ export default function HomeContent({
               Private Journeys
             </h3>
             <p className="text-[13.5px] text-[#0a0a0a]/55 leading-relaxed">
-              Thoughtful itineraries shaped around pace, region, and interest.
+              Private routes shaped around pace, region, and what you came to understand.
             </p>
           </Link>
 
@@ -233,7 +233,7 @@ export default function HomeContent({
               Plan Your Trip
             </h3>
             <p className="text-[13.5px] text-[#0a0a0a]/55 leading-relaxed">
-              Practical guidance before you go.
+              Visas, seasons, money, and the things locals assume you already know.
             </p>
           </Link>
         </div>
@@ -244,10 +244,10 @@ export default function HomeContent({
           Appears early so visitors see the service layer immediately.
           ══════════════════════════════════════════════════ */}
       {featuredJourneys.length > 0 && (
-        <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24">
+        <section className="px-6 md:px-10 lg:px-14 pt-10 md:pt-14 pb-16 md:pb-24">
           <SectionHeader title="Private Journeys" href="/journeys" />
           <p className="text-[#0a0a0a]/55 text-[14px] md:text-[15px] leading-relaxed max-w-2xl mb-12 md:mb-14">
-            Curated private journeys — not packaged tours. Each route is designed around a distinct Morocco: the first passage, the desert arc, and the deeper country.
+            Private journeys — curated, never packaged. Each route traces a different Morocco: the first passage, the desert arc, the deeper country.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
             {featuredJourneys.map((j) => {
