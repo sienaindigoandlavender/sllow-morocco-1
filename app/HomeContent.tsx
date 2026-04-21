@@ -2,6 +2,17 @@
 
 import { cloudinaryUrl } from "@/lib/cloudinary";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+
+// Lazy load map — it's heavy
+const HomeCityMap = dynamic(() => import("@/components/HomeCityMap"), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full bg-[#0d0d0d] flex items-center justify-center">
+      <p className="text-[10px] tracking-[0.4em] uppercase text-white/15">Morocco</p>
+    </div>
+  ),
+});
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -358,22 +369,23 @@ export default function HomeContent({
             <p className="text-[13.5px] text-[#0a0a0a]/55 leading-relaxed mb-5">
               Over a hundred entries across medinas, valleys, coast, and the long south.
             </p>
-            <div className="flex items-center gap-4">
-              <span className="text-[11px] tracking-[0.12em] uppercase text-[#0a0a0a]/45 group-hover:text-[#0a0a0a] transition-colors">
-                Browse places →
-              </span>
-            </div>
+            <span className="text-[11px] tracking-[0.12em] uppercase text-[#0a0a0a]/45 group-hover:text-[#0a0a0a] transition-colors">
+              Browse places →
+            </span>
           </Link>
         </div>
 
-        {/* Map link — quiet secondary access to the mapped places */}
-        <div className="mt-12 md:mt-16 pt-8 md:pt-10 border-t border-[#0a0a0a]/[0.08]">
-          <Link
-            href="/places/map"
-            className="inline-block text-[11px] tracking-[0.12em] uppercase text-[#0a0a0a]/45 hover:text-[#0a0a0a] transition-colors"
-          >
-            Explore places on the map →
-          </Link>
+        {/* Morocco map — visual anchor for the practical block */}
+        <div className="relative mt-12 md:mt-16 h-[50vh] min-h-[400px] md:h-[55vh] overflow-hidden bg-[#0a0a0a]">
+          <HomeCityMap />
+          <div className="absolute bottom-5 right-5 z-10">
+            <Link
+              href="/places/map"
+              className="text-[10px] tracking-[0.1em] uppercase text-white/45 hover:text-white transition-colors bg-black/40 backdrop-blur-sm px-4 py-2"
+            >
+              Explore places on the map →
+            </Link>
+          </div>
         </div>
       </section>
 
