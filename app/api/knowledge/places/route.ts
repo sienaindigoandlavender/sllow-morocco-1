@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getPlaces, getDestinations, getRegions } from "@/lib/supabase";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 const BASE_URL = "https://www.slowmorocco.com";
 
