@@ -141,6 +141,14 @@ interface RelatedStory {
   score: number;
 }
 
+interface RelatedPlace {
+  slug: string;
+  title: string;
+  category?: string;
+  destination?: string;
+  heroImage?: string;
+}
+
 interface NavItem {
   slug: string;
   title: string;
@@ -151,6 +159,7 @@ interface JourneyDetailContentProps {
   itinerary: ItineraryDay[];
   otherJourneys: Journey[];
   relatedStories: RelatedStory[];
+  relatedPlaces?: RelatedPlace[];
   slug: string;
   prevJourney?: NavItem | null;
   nextJourney?: NavItem | null;
@@ -161,6 +170,7 @@ export default function JourneyDetailContent({
   itinerary,
   otherJourneys,
   relatedStories,
+  relatedPlaces = [],
   slug,
   prevJourney,
   nextJourney,
@@ -453,12 +463,90 @@ export default function JourneyDetailContent({
         </div>
       </section>
 
+      {/* ── Plan this journey — inquiry block ─────────────────────── */}
+      <section className="py-16 md:py-24 border-t border-foreground/[0.08]">
+        <div className="container mx-auto px-6 lg:px-16 max-w-3xl">
+          <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/40 mb-4">
+            Private Journeys
+          </p>
+          <h2 className="font-serif text-2xl md:text-[1.75rem] text-foreground mb-5 leading-tight">
+            Plan this journey.
+          </h2>
+          <p className="text-foreground/55 text-[14px] md:text-[15px] leading-relaxed max-w-xl mb-8">
+            This route is private, and shaped around how you want to move through the country. Tell us what you&apos;re hoping to find — we&apos;ll design the trip around it.
+          </p>
+          <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
+            <Link
+              href={`/plan-your-trip?journey=${slug}`}
+              className="inline-block text-[11px] tracking-[0.12em] uppercase text-foreground hover:text-foreground/55 transition-colors"
+            >
+              Plan this journey →
+            </Link>
+            <Link
+              href={`/plan-your-trip?journey=${slug}`}
+              className="inline-block text-[11px] tracking-[0.12em] uppercase text-foreground/55 hover:text-foreground transition-colors"
+            >
+              Ask about this route →
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ── Newsletter invitation ──── */}
       <section className="py-0">
         <div className="container mx-auto px-6 lg:px-16 max-w-3xl">
           <JourneyLetter />
         </div>
       </section>
+
+      {/* ── Places on this route — 6-col grid ─────────────────────── */}
+      {relatedPlaces.length > 0 && (
+        <section className="py-20 md:py-28 border-t border-foreground/[0.08]">
+          <div className="px-8 md:px-10 lg:px-14">
+            <div className="text-center mb-14 md:mb-16">
+              <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/30 mb-3">
+                On the Ground
+              </p>
+              <h2 className="font-serif text-2xl md:text-[1.75rem] text-foreground/80">
+                Places on this route.
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-4 md:gap-x-5 gap-y-10">
+              {relatedPlaces.slice(0, 6).map((place) => (
+                <Link key={place.slug} href={`/places/${place.slug}`} className="group block">
+                  <div className="aspect-[29/39] relative overflow-hidden bg-[#e8e6e1] mb-3.5">
+                    {place.heroImage && (
+                      <img
+                        src={cloudinaryUrl(place.heroImage, 480)}
+                        alt={place.title}
+                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-[1.2s] ease-out"
+                      />
+                    )}
+                  </div>
+                  {place.category && (
+                    <p className="text-[10px] text-foreground/40 mb-1.5">
+                      {place.category}
+                    </p>
+                  )}
+                  <h3 className="text-[12px] tracking-[0.04em] uppercase leading-[1.35] text-foreground group-hover:text-foreground/60 transition-colors duration-500">
+                    {place.title}
+                  </h3>
+                </Link>
+              ))}
+            </div>
+
+            <div className="text-center mt-12">
+              <Link
+                href="/places"
+                className="text-[11px] tracking-[0.15em] uppercase text-foreground/35 hover:text-foreground/60 transition-colors"
+              >
+                Explore places
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ── Other Journeys — sage editorial panel (journeys first) ──── */}
       {otherJourneys.length > 0 && (

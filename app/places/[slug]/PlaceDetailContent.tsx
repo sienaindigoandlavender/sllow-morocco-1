@@ -362,8 +362,8 @@ export default function PlaceDetailContent({
             <section className="py-12 border-t border-foreground/10">
               <div className="container mx-auto px-6 lg:px-16 max-w-3xl">
                 <p className="text-foreground/60 italic font-serif text-lg leading-relaxed">{place.journeyBridge}</p>
-                <Link href="/plan-your-trip" className="inline-block mt-4 text-xs tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground/70 transition-colors">
-                  Tell us about your trip →
+                <Link href={`/plan-your-trip?place=${place.slug}`} className="inline-block mt-4 text-xs tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground/70 transition-colors">
+                  Plan a private journey →
                 </Link>
               </div>
             </section>
@@ -403,8 +403,8 @@ export default function PlaceDetailContent({
                 {place.journeyBridge && (
                   <div className="my-12 py-8 border-t border-b border-foreground/10">
                     <p className="text-foreground/60 italic font-serif text-lg leading-relaxed">{place.journeyBridge}</p>
-                    <Link href="/plan-your-trip" className="inline-block mt-4 text-xs tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground/70 transition-colors">
-                      Tell us about your trip →
+                    <Link href={`/plan-your-trip?place=${place.slug}`} className="inline-block mt-4 text-xs tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground/70 transition-colors">
+                      Plan a private journey →
                     </Link>
                   </div>
                 )}
@@ -446,8 +446,8 @@ export default function PlaceDetailContent({
                     </div>
                   )}
                   <div className="mt-8">
-                    <Link href="/plan-your-trip" className="block w-full bg-foreground text-background text-center py-3 text-xs tracking-[0.15em] uppercase hover:bg-foreground/90 transition-colors">
-                      Include in Your Journey
+                    <Link href={`/plan-your-trip?place=${place.slug}`} className="block w-full bg-foreground text-background text-center py-3 text-xs tracking-[0.15em] uppercase hover:bg-foreground/90 transition-colors">
+                      Plan a private journey
                     </Link>
                   </div>
                 </div>

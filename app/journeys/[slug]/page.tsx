@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
-import { getJourneyBySlug, getRoutesByIds, getJourneys, getStories, getAllPlaceFirstImages } from "@/lib/supabase";
-import { findRelatedStories } from "@/lib/content-matcher";
+import { getJourneyBySlug, getRoutesByIds, getJourneys, getStories, getPlaces, getAllPlaceFirstImages } from "@/lib/supabase";
+import { findRelatedStories, parseDestinations } from "@/lib/content-matcher";
 import JourneyDetailContent from "./JourneyDetailContent";
 
 export const revalidate = 3600;
@@ -179,6 +179,31 @@ async function getOtherJourneys(currentSlug: string) {
   }
 }
 
+async function getRelatedPlacesSSR(journey: Journey) {
+  try {
+    if (!journey.destinations) return [];
+    const destList = parseDestinations(journey.destinations);
+    if (destList.length === 0) return [];
+
+    const allPlaces = await getPlaces({ published: true });
+    return allPlaces
+      .filter((p) => {
+        const dest = (p.destination || "").toLowerCase().trim();
+        return dest.length > 0 && destList.includes(dest);
+      })
+      .slice(0, 6)
+      .map((p) => ({
+        slug: p.slug,
+        title: p.title,
+        category: p.category || "",
+        destination: p.destination || "",
+        heroImage: p.hero_image || "",
+      }));
+  } catch {
+    return [];
+  }
+}
+
 async function getRelatedStoriesSSR(journey: Journey) {
   try {
     const allStories = await getStories({ published: true });
@@ -217,6 +242,7 @@ export default async function JourneyDetailPage({
 
   const otherJourneys = await getOtherJourneys(slug);
   const relatedStories = await getRelatedStoriesSSR(data.journey);
+  const relatedPlaces = await getRelatedPlacesSSR(data.journey);
 
   // Find prev/next journeys
   const allJourneys = await getJourneys({ published: true });
@@ -231,6 +257,7 @@ export default async function JourneyDetailPage({
       itinerary={data.itinerary}
       otherJourneys={otherJourneys}
       relatedStories={relatedStories}
+      relatedPlaces={relatedPlaces}
       slug={slug}
       prevJourney={prevJourney}
       nextJourney={nextJourney}

@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
-import { getStoryBySlug, getStories, getJourneys, getStoryImages } from "@/lib/supabase";
+import { getStoryBySlug, getStories, getJourneys, getStoryImages, getPlaces } from "@/lib/supabase";
 import { findRelatedJourneys } from "@/lib/content-matcher";
 import StoryDetailContent from "./StoryDetailContent";
 
@@ -138,6 +138,26 @@ async function getRelatedStories(currentStory: Story, currentSlug: string) {
   }
 }
 
+async function getRelatedPlacesSSR(storySlug: string) {
+  try {
+    const allPlaces = await getPlaces({ published: true });
+    // Curator-pinned only: places whose related_story_slugs include this story.
+    // Region fallback is intentionally omitted per spec — protects editorial quality.
+    return allPlaces
+      .filter((p: any) => Array.isArray(p.related_story_slugs) && p.related_story_slugs.includes(storySlug))
+      .slice(0, 3)
+      .map((p: any) => ({
+        slug: p.slug,
+        title: p.title,
+        category: p.category || "",
+        destination: p.destination || "",
+        heroImage: p.hero_image || "",
+      }));
+  } catch {
+    return [];
+  }
+}
+
 async function getRelatedJourneysSSR(story: Story) {
   try {
     const allJourneys = await getJourneys({ published: true });
@@ -178,6 +198,7 @@ export default async function StoryPage({
   const { story, mapData, externalLinks } = storyResult;
   const relatedStories = await getRelatedStories(story, slug);
   const relatedJourneys = await getRelatedJourneysSSR(story);
+  const relatedPlaces = await getRelatedPlacesSSR(slug);
   const storyImages = await getStoryImages(slug);
 
   // Find prev/next stories
@@ -221,6 +242,7 @@ export default async function StoryPage({
         images={storyImages}
         relatedStories={relatedStories}
         relatedJourneys={relatedJourneys}
+        relatedPlaces={relatedPlaces}
         slug={slug}
         mapData={mapData}
         externalLinks={externalLinks}
