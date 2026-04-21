@@ -153,18 +153,19 @@ function SectionHeader({ title, href, linkText = "View All" }: { title: string; 
 export default function HomeContent({
   journeys,
   stories,
+  places,
 }: HomeContentProps) {
   const lead = stories[0];
-  const editStories = stories.slice(1, 5);          // 4 items only
-  const deeperStories = stories.slice(5, 8);        // 3 items for Deeper reading
-  const featuredJourneys = journeys.slice(0, 3);    // 3 journeys only
+  const editStories = stories.slice(1, 5);          // 4 items
+  const deeperStories = stories.slice(5, 8);        // 3 items
+  const featuredJourneys = journeys.slice(0, 3);    // 3 items
+  const featuredPlaces = places.slice(0, 6);        // 6 items
 
   return (
     <main className="min-h-screen bg-white">
 
       {/* ══════════════════════════════════════════════════
-          1. HERO — Lead story + supporting line + two CTAs
-          The hero is a stage; only the story block links to it.
+          1. HERO — Lead story. Stage, not a link.
           ══════════════════════════════════════════════════ */}
       {lead && (
         <section className="relative h-screen min-h-[720px] overflow-hidden bg-[#0a0a0a]">
@@ -177,11 +178,10 @@ export default function HomeContent({
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
 
-          {/* Hero text — bottom left */}
           <div className="relative z-10 h-full flex flex-col justify-end px-6 md:px-10 lg:px-14 pb-10 md:pb-14 lg:pb-16">
             <Link
               href={`/stories/${lead.slug}`}
-              className="group block max-w-xl lg:max-w-lg mb-8 md:mb-10"
+              className="group block max-w-xl lg:max-w-lg"
             >
               <h1 className="text-white text-[clamp(1.6rem,4.5vw,3rem)] font-light tracking-[-0.01em] leading-[1.1] mb-2 group-hover:text-white/80 transition-colors">
                 {lead.title}
@@ -192,34 +192,12 @@ export default function HomeContent({
                 </p>
               )}
             </Link>
-
-            {/* Service layer — supporting line + two CTAs */}
-            <div className="max-w-2xl">
-              <p className="text-white/70 text-[13px] md:text-sm leading-relaxed mb-5">
-                Stories, places, and private journeys for travellers who want to understand Morocco more deeply.
-              </p>
-              <div className="flex flex-wrap gap-3 md:gap-4">
-                <Link
-                  href="/stories"
-                  className="inline-block border border-white/30 px-5 md:px-6 py-2.5 text-[11px] tracking-[0.14em] uppercase text-white hover:bg-white hover:text-[#0a0a0a] transition-colors"
-                >
-                  Explore Morocco
-                </Link>
-                <Link
-                  href="/journeys"
-                  className="inline-block border border-white bg-white px-5 md:px-6 py-2.5 text-[11px] tracking-[0.14em] uppercase text-[#0a0a0a] hover:bg-transparent hover:text-white transition-colors"
-                >
-                  Private Journeys
-                </Link>
-              </div>
-            </div>
           </div>
         </section>
       )}
 
       {/* ══════════════════════════════════════════════════
-          2. ORIENTATION — Three entry points for first-time visitors
-          Clean 3-column, no cards, no borders, editorial register
+          2. ORIENTATION — Three pathways (editorial table of contents)
           ══════════════════════════════════════════════════ */}
       <section className="px-6 md:px-10 lg:px-14 py-14 md:py-20 border-b border-[#0a0a0a]/[0.08]">
         <div className="grid md:grid-cols-3 gap-10 md:gap-12 lg:gap-16">
@@ -230,12 +208,9 @@ export default function HomeContent({
             <h3 className="text-[18px] md:text-[19px] font-light tracking-[-0.01em] text-[#0a0a0a] mb-3 group-hover:text-[#0a0a0a]/50 transition-colors">
               Explore Morocco
             </h3>
-            <p className="text-[13.5px] text-[#0a0a0a]/55 leading-relaxed mb-5">
-              Deep essays on the country's history, craft, kitchens, and quieter corners.
+            <p className="text-[13.5px] text-[#0a0a0a]/55 leading-relaxed">
+              Stories, places, and systems that decode the country.
             </p>
-            <span className="text-[11px] tracking-[0.12em] uppercase text-[#0a0a0a]/45 group-hover:text-[#0a0a0a] transition-colors">
-              Read the stories →
-            </span>
           </Link>
 
           <Link href="/journeys" className="group block">
@@ -245,12 +220,9 @@ export default function HomeContent({
             <h3 className="text-[18px] md:text-[19px] font-light tracking-[-0.01em] text-[#0a0a0a] mb-3 group-hover:text-[#0a0a0a]/50 transition-colors">
               Private Journeys
             </h3>
-            <p className="text-[13.5px] text-[#0a0a0a]/55 leading-relaxed mb-5">
-              Bespoke itineraries, designed around the people and places you've read about.
+            <p className="text-[13.5px] text-[#0a0a0a]/55 leading-relaxed">
+              Thoughtful itineraries shaped around pace, region, and interest.
             </p>
-            <span className="text-[11px] tracking-[0.12em] uppercase text-[#0a0a0a]/45 group-hover:text-[#0a0a0a] transition-colors">
-              View journeys →
-            </span>
           </Link>
 
           <Link href="/plan-your-trip" className="group block">
@@ -260,12 +232,9 @@ export default function HomeContent({
             <h3 className="text-[18px] md:text-[19px] font-light tracking-[-0.01em] text-[#0a0a0a] mb-3 group-hover:text-[#0a0a0a]/50 transition-colors">
               Plan Your Trip
             </h3>
-            <p className="text-[13.5px] text-[#0a0a0a]/55 leading-relaxed mb-5">
-              Tell us what you want to understand. We'll design the trip around it.
+            <p className="text-[13.5px] text-[#0a0a0a]/55 leading-relaxed">
+              Practical guidance before you go.
             </p>
-            <span className="text-[11px] tracking-[0.12em] uppercase text-[#0a0a0a]/45 group-hover:text-[#0a0a0a] transition-colors">
-              Start a conversation →
-            </span>
           </Link>
         </div>
       </section>
@@ -332,70 +301,87 @@ export default function HomeContent({
       )}
 
       {/* ══════════════════════════════════════════════════
-          5. PRACTICAL MOROCCO — Travel intelligence utility block
-          Visa / Before You Go / Places, followed by the Morocco map.
+          5. PLACES — Six vertical tiles + embedded Morocco map
+          ══════════════════════════════════════════════════ */}
+      {featuredPlaces.length > 0 && (
+        <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.08]">
+          <SectionHeader title="Places" href="/places" />
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5">
+            {featuredPlaces.map((p) => (
+              <Link key={p.slug} href={`/places/${p.slug}`} className="group block min-w-0">
+                <div className="aspect-[3/4] relative overflow-hidden bg-[#f0eeeb] mb-4">
+                  {p.heroImage && (
+                    <img
+                      src={cloudinaryUrl(p.heroImage, 600)}
+                      alt={p.title}
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
+                    />
+                  )}
+                </div>
+                {p.category && (
+                  <span className="text-[10px] text-[#0a0a0a]/40 tracking-[0.1em] uppercase block mb-1">
+                    {p.category}
+                  </span>
+                )}
+                <h3 className="text-[13px] tracking-[0.04em] text-[#0a0a0a] group-hover:text-[#0a0a0a]/50 transition-colors leading-snug">
+                  {p.title}
+                </h3>
+                {p.destination && (
+                  <p className="text-[12px] text-[#0a0a0a]/40 mt-1">{p.destination}</p>
+                )}
+              </Link>
+            ))}
+          </div>
+
+          {/* Morocco map — visual anchor for Places */}
+          <div className="relative mt-12 md:mt-16 h-[50vh] min-h-[400px] md:h-[55vh] overflow-hidden bg-[#0a0a0a]">
+            <HomeCityMap />
+            <div className="absolute bottom-5 right-5 z-10">
+              <Link
+                href="/places/map"
+                className="text-[10px] tracking-[0.1em] uppercase text-white/45 hover:text-white transition-colors bg-black/40 backdrop-blur-sm px-4 py-2"
+              >
+                Explore places on the map →
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ══════════════════════════════════════════════════
+          6. THE VISA — Dedicated editorial note
           ══════════════════════════════════════════════════ */}
       <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.08]">
-        <SectionHeader title="Practical Morocco" href="/start-here" linkText="More" />
-        <div className="grid md:grid-cols-3 gap-10 md:gap-12 lg:gap-16">
-          <Link href="/visa-info" className="group block">
-            <h3 className="text-[17px] md:text-[18px] font-light tracking-[-0.01em] text-[#0a0a0a] mb-3 group-hover:text-[#0a0a0a]/50 transition-colors">
-              Visa
-            </h3>
-            <p className="text-[13.5px] text-[#0a0a0a]/55 leading-relaxed mb-5">
-              Who needs one, how long it takes, which passports walk straight in.
-            </p>
-            <span className="text-[11px] tracking-[0.12em] uppercase text-[#0a0a0a]/45 group-hover:text-[#0a0a0a] transition-colors">
-              Read the visa guide →
-            </span>
-          </Link>
+        <Link href="/visa-info" className="group block max-w-3xl">
+          <span className="text-[10px] text-[#0a0a0a]/40 tracking-[0.14em] uppercase block mb-4">
+            The Visa
+          </span>
+          <h2 className="text-[clamp(1.4rem,3vw,2.2rem)] font-light tracking-[-0.01em] text-[#0a0a0a] leading-[1.2] mb-6 group-hover:text-[#0a0a0a]/55 transition-colors">
+            Citizens of 65+ countries enter visa-free — here is what you actually need.
+          </h2>
+          <span className="text-[11px] tracking-[0.12em] uppercase text-[#0a0a0a]/45 group-hover:text-[#0a0a0a] transition-colors">
+            Read the visa guide →
+          </span>
+        </Link>
+      </section>
 
-          <Link href="/start-here" className="group block">
-            <h3 className="text-[17px] md:text-[18px] font-light tracking-[-0.01em] text-[#0a0a0a] mb-3 group-hover:text-[#0a0a0a]/50 transition-colors">
-              Before You Go
-            </h3>
-            <p className="text-[13.5px] text-[#0a0a0a]/55 leading-relaxed mb-5">
-              Money, language, seasons, and the quiet assumptions that trip travellers up.
-            </p>
-            <span className="text-[11px] tracking-[0.12em] uppercase text-[#0a0a0a]/45 group-hover:text-[#0a0a0a] transition-colors">
-              Practical notes →
-            </span>
-          </Link>
-
-          <Link href="/places" className="group block">
-            <h3 className="text-[17px] md:text-[18px] font-light tracking-[-0.01em] text-[#0a0a0a] mb-3 group-hover:text-[#0a0a0a]/50 transition-colors">
-              Places
-            </h3>
-            <p className="text-[13.5px] text-[#0a0a0a]/55 leading-relaxed mb-5">
-              Over a hundred entries across medinas, valleys, coast, and the long south.
-            </p>
-            <span className="text-[11px] tracking-[0.12em] uppercase text-[#0a0a0a]/45 group-hover:text-[#0a0a0a] transition-colors">
-              Browse places →
-            </span>
-          </Link>
-        </div>
-
-        {/* Morocco map — visual anchor for the practical block */}
-        <div className="relative mt-12 md:mt-16 h-[50vh] min-h-[400px] md:h-[55vh] overflow-hidden bg-[#0a0a0a]">
-          <HomeCityMap />
-          <div className="absolute bottom-5 right-5 z-10">
-            <Link
-              href="/places/map"
-              className="text-[10px] tracking-[0.1em] uppercase text-white/45 hover:text-white transition-colors bg-black/40 backdrop-blur-sm px-4 py-2"
-            >
-              Explore places on the map →
-            </Link>
-          </div>
+      {/* ══════════════════════════════════════════════════
+          7. EDITORIAL INTERLUDE — The month begins when the moon says so
+          ══════════════════════════════════════════════════ */}
+      <section className="px-6 md:px-10 lg:px-14 py-20 md:py-32 border-t border-[#0a0a0a]/[0.08]">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-[clamp(1.5rem,3.4vw,2.6rem)] font-light tracking-[-0.015em] text-[#0a0a0a] leading-[1.2]">
+            The month begins when the moon says so. The city stops. Then the smell of harira.
+          </h2>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════════════
-          6. DEEPER READING — Single secondary editorial block
-          Kinfolk-style list: square image + large title
+          8. GOING DEEPER — Kinfolk-style list: square image + large title
           ══════════════════════════════════════════════════ */}
       {deeperStories.length > 0 && (
         <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.08]">
-          <SectionHeader title="Deeper Reading" href="/stories" />
+          <SectionHeader title="Going Deeper" href="/stories" />
           <div className="divide-y divide-[#0a0a0a]/[0.08]">
             {deeperStories.map((story) => (
               <Link
@@ -434,27 +420,22 @@ export default function HomeContent({
       )}
 
       {/* ══════════════════════════════════════════════════
-          7. FINAL CTA — Restrained invitation to Private Journeys
+          9. PRIVATE JOURNEYS CTA STRIP — Final invitation
           ══════════════════════════════════════════════════ */}
-      <section className="px-6 md:px-10 lg:px-14 py-20 md:py-28 border-t border-[#0a0a0a]/[0.08]">
+      <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.08]">
         <div className="max-w-2xl">
-          <p className="text-[#0a0a0a] text-[clamp(1.2rem,2.4vw,1.8rem)] font-light leading-[1.25] tracking-[-0.01em] mb-8">
-            For travellers who want a slower, sharper, more considered Morocco.
+          <h2 className="text-[clamp(1.3rem,2.6vw,1.9rem)] font-light tracking-[-0.01em] text-[#0a0a0a] leading-[1.2] mb-4">
+            Private Journeys
+          </h2>
+          <p className="text-[#0a0a0a]/55 text-[14px] md:text-[15px] leading-relaxed mb-6">
+            Quietly designed routes across Morocco, shaped around how you want to move through the country.
           </p>
-          <div className="flex flex-wrap gap-3 md:gap-4">
-            <Link
-              href="/journeys"
-              className="inline-block border border-[#0a0a0a] bg-[#0a0a0a] px-6 py-3 text-[11px] tracking-[0.14em] uppercase text-white hover:bg-transparent hover:text-[#0a0a0a] transition-colors"
-            >
-              View Private Journeys
-            </Link>
-            <Link
-              href="/plan-your-trip"
-              className="inline-block border border-[#0a0a0a]/20 px-6 py-3 text-[11px] tracking-[0.14em] uppercase text-[#0a0a0a] hover:border-[#0a0a0a] transition-colors"
-            >
-              Start Planning
-            </Link>
-          </div>
+          <Link
+            href="/journeys"
+            className="inline-block text-[11px] tracking-[0.12em] uppercase text-[#0a0a0a]/55 hover:text-[#0a0a0a] transition-colors"
+          >
+            View Journeys →
+          </Link>
         </div>
       </section>
 
