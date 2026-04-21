@@ -22,6 +22,39 @@ const CITY_SLUGS = [
   'casablanca', 'meknes', 'ouarzazate', 'agadir', 'dakhla', 'chefchaouen',
 ]
 
+// Slugs that exist in Supabase but redirect — exclude from sitemap
+const EXCLUDED_JOURNEY_SLUGS = [
+  'morocco-grand-tour-21-days',
+  'morocco-trekking-8-days',
+  'almond-blossom-tafraoute-5-days',
+  'sahara-to-sea-10-days',
+  '12-Day-Grand-Tour-Western-Arc',
+  'lakes-imilchil-6-days',
+  '7-day-morocco-highlights',
+  '6-day-kasbahs-valleys',
+  'mgoun-massif-trek-7-days',
+]
+
+const EXCLUDED_PLACE_SLUGS = [
+  'akchour-waterfalls',
+  'ait-benhaddou-ksar',
+  'monkey-fingers-dades',
+  'ifrane-town',
+]
+
+const EXCLUDED_STORY_SLUGS = [
+  'languages-of-morocco',
+]
+
+const EXCLUDED_DESTINATION_SLUGS = [
+  'tiznit',
+  'taroudant',
+  'oualidia',
+  'asilah',
+  'el-jadida',
+  'taliouine',
+]
+
 // Static pages with their priorities
 const STATIC_PAGES = [
   { path: '', priority: 1, changeFrequency: 'weekly' as const },
@@ -117,7 +150,7 @@ async function getDynamicPages() {
   try {
     const journeys = await getJourneys({ published: true })
     journeys.forEach((journey) => {
-      if (journey.slug) {
+      if (journey.slug && !EXCLUDED_JOURNEY_SLUGS.includes(journey.slug)) {
         dynamicPages.push({
           url: safeSitemapUrl(BASE_URL, '/journeys', journey.slug),
           lastModified: new Date(),
@@ -133,7 +166,7 @@ async function getDynamicPages() {
   try {
     const stories = await getStories({ published: true })
     stories.forEach((story) => {
-      if (story.slug) {
+      if (story.slug && !EXCLUDED_STORY_SLUGS.includes(story.slug)) {
         dynamicPages.push({
           url: safeSitemapUrl(BASE_URL, '/stories', story.slug),
           lastModified: new Date(),
@@ -149,7 +182,7 @@ async function getDynamicPages() {
   try {
     const places = await getPlaces({ published: true })
     places.forEach((place) => {
-      if (place.slug) {
+      if (place.slug && !EXCLUDED_PLACE_SLUGS.includes(place.slug)) {
         dynamicPages.push({
           url: safeSitemapUrl(BASE_URL, '/places', place.slug),
           lastModified: new Date(),
@@ -182,7 +215,7 @@ async function getDynamicPages() {
   try {
     const destinations = await getDestinations({ published: true })
     destinations.forEach((dest) => {
-      if (dest.slug && !CITY_SLUGS.includes(dest.slug)) {
+      if (dest.slug && !CITY_SLUGS.includes(dest.slug) && !EXCLUDED_DESTINATION_SLUGS.includes(dest.slug)) {
         dynamicPages.push({
           url: `${BASE_URL}/${dest.slug}`,
           lastModified: new Date(),
