@@ -87,13 +87,22 @@ function formatRoute(raw?: string): string | null {
     .split(",")
     .map((part) => part.trim())
     .filter(Boolean)
-    .map((part) =>
-      part
-        .split("-")
-        .map((word) => (word ? word[0].toUpperCase() + word.slice(1).toLowerCase() : word))
-        .join(" ")
-    )
+    .map(prettifyLabel)
     .join(" → ");
+}
+
+// Turn a slug-shaped string like "draa-valley" / "imperial_city" into
+// "Draa Valley" / "Imperial City". Leaves already-human strings alone.
+function prettifyLabel(raw?: string): string {
+  if (!raw) return "";
+  const trimmed = raw.trim();
+  if (!trimmed) return "";
+  if (/\s/.test(trimmed) && !/[-_]/.test(trimmed)) return trimmed;
+  return trimmed
+    .split(/[-_]+/)
+    .filter(Boolean)
+    .map((word) => word[0].toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
 }
 
 // ─── Vertical tile — reused for stories ─────────────────────────────────────
@@ -320,14 +329,14 @@ export default function HomeContent({
                 </div>
                 {p.category && (
                   <span className="text-[10px] text-[#0a0a0a]/55 tracking-[0.1em] uppercase block mb-1">
-                    {p.category}
+                    {prettifyLabel(p.category)}
                   </span>
                 )}
                 <h3 className="text-[13px] tracking-[0.04em] text-[#0a0a0a] group-hover:text-[#0a0a0a]/70 transition-colors leading-snug">
                   {p.title}
                 </h3>
                 {p.destination && (
-                  <p className="text-[12px] text-[#0a0a0a]/55 mt-1">{p.destination}</p>
+                  <p className="text-[12px] text-[#0a0a0a]/55 mt-1">{prettifyLabel(p.destination)}</p>
                 )}
               </Link>
             ))}
