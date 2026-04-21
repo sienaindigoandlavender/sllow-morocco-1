@@ -142,35 +142,36 @@ export default function HomeContent({
     <main className="min-h-screen bg-white">
 
       {/* ══════════════════════════════════════════════════
-          1. HERO — Full viewport, single lead story
+          1. HERO — Full viewport, single lead story (stage, not a link)
           ══════════════════════════════════════════════════ */}
       {lead && (
-        <Link href={`/stories/${lead.slug}`} className="group block">
-          <section className="relative h-screen min-h-[700px] overflow-hidden bg-[#0a0a0a]">
-            {lead.heroImage && (
-              <img
-                src={cloudinaryUrl(lead.heroImage, 2400)}
-                alt={lead.title}
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-[1200ms]"
-              />
-            )}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+        <section className="relative h-screen min-h-[700px] overflow-hidden bg-[#0a0a0a]">
+          {lead.heroImage && (
+            <img
+              src={cloudinaryUrl(lead.heroImage, 2400)}
+              alt={lead.title}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
 
-            {/* Lead story text — bottom left */}
-            <div className="relative z-10 h-full flex flex-col justify-end px-6 md:px-10 lg:px-14 pb-10 md:pb-14 lg:pb-16">
-              <div className="max-w-xl lg:max-w-lg">
-                <h1 className="text-white text-[clamp(1.6rem,4.5vw,3rem)] font-light tracking-[-0.01em] leading-[1.1] mb-2">
-                  {lead.title}
-                </h1>
-                {lead.subtitle && (
-                  <p className="text-white/55 text-sm md:text-[15px] leading-relaxed">
-                    {lead.subtitle}
-                  </p>
-                )}
-              </div>
-            </div>
-          </section>
-        </Link>
+          {/* Lead story text — bottom left */}
+          <div className="relative z-10 h-full flex flex-col justify-end px-6 md:px-10 lg:px-14 pb-10 md:pb-14 lg:pb-16">
+            <Link
+              href={`/stories/${lead.slug}`}
+              className="group block max-w-xl lg:max-w-lg"
+            >
+              <h1 className="text-white text-[clamp(1.6rem,4.5vw,3rem)] font-light tracking-[-0.01em] leading-[1.1] mb-2 group-hover:text-white/80 transition-colors">
+                {lead.title}
+              </h1>
+              {lead.subtitle && (
+                <p className="text-white/55 text-sm md:text-[15px] leading-relaxed">
+                  {lead.subtitle}
+                </p>
+              )}
+            </Link>
+          </div>
+        </section>
       )}
 
       {/* ══════════════════════════════════════════════════
@@ -188,7 +189,60 @@ export default function HomeContent({
       )}
 
       {/* ══════════════════════════════════════════════════
-          3. MAP — Interactive Morocco, visual break
+          3. FEATURED JOURNEY — Editorial brand ad between sections
+          One journey, presented like a Kinfolk feature
+          ══════════════════════════════════════════════════ */}
+      {journeys[0] && (
+        <section className="px-6 md:px-10 lg:px-14 py-20 md:py-28 border-t border-[#0a0a0a]/[0.08]">
+          <SectionHeader title="Private Journeys" href="/journeys" />
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
+            {/* Image — left on desktop, top on mobile */}
+            <Link href={`/journeys/${journeys[0].slug}`} className="group block">
+              <div className="aspect-[4/5] relative overflow-hidden bg-[#f0eeeb]">
+                {journeys[0].heroImage && (
+                  <img
+                    src={cloudinaryUrl(journeys[0].heroImage, 1200)}
+                    alt={journeys[0].title}
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
+                  />
+                )}
+              </div>
+            </Link>
+            {/* Text — right on desktop, below on mobile */}
+            <div className="max-w-xl">
+              <h3 className="text-[clamp(1.4rem,3vw,2.2rem)] font-light text-[#0a0a0a] leading-[1.15] tracking-[-0.01em] mb-4">
+                {journeys[0].title}
+              </h3>
+              {journeys[0].description && (
+                <p className="text-[#0a0a0a]/50 text-base md:text-[15px] leading-relaxed font-light mb-8">
+                  {journeys[0].description}
+                </p>
+              )}
+              <div className="flex flex-wrap items-baseline gap-x-5 gap-y-2 mb-8">
+                {journeys[0].duration && (
+                  <span className="text-[11px] text-[#0a0a0a] tracking-[0.1em] uppercase">
+                    {journeys[0].duration}
+                  </span>
+                )}
+                {journeys[0].destinations && (
+                  <span className="text-[12px] text-[#0a0a0a]/50">
+                    {journeys[0].destinations}
+                  </span>
+                )}
+              </div>
+              <Link
+                href={`/journeys/${journeys[0].slug}`}
+                className="inline-block text-[12px] tracking-[0.06em] text-[#0a0a0a]/40 hover:text-[#0a0a0a] transition-colors"
+              >
+                View this journey →
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ══════════════════════════════════════════════════
+          4. MAP — Interactive Morocco, visual break
           Dark, full-width, city dots with hover info
           ══════════════════════════════════════════════════ */}
       <section className="relative h-[60vh] min-h-[450px] md:h-[65vh]">
@@ -205,7 +259,7 @@ export default function HomeContent({
       </section>
 
       {/* ══════════════════════════════════════════════════
-          4. FEATURE MOMENT — Centered large type + portrait
+          5. FEATURE MOMENT — Centered large type + portrait
           Editorial pause
           ══════════════════════════════════════════════════ */}
       {feature && (
@@ -242,7 +296,7 @@ export default function HomeContent({
       )}
 
       {/* ══════════════════════════════════════════════════
-          5. PLACES — 6 vertical tiles
+          6. PLACES — 6 vertical tiles
           ══════════════════════════════════════════════════ */}
       {featuredPlaces.length > 0 && (
         <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.08]">
@@ -277,7 +331,7 @@ export default function HomeContent({
       )}
 
       {/* ══════════════════════════════════════════════════
-          6. FULL-BLEED STORY — Image with text overlay
+          7. FULL-BLEED STORY — Image with text overlay
           ══════════════════════════════════════════════════ */}
       {secondRow[0] && (
         <Link href={`/stories/${secondRow[0].slug}`} className="group block">
@@ -303,7 +357,7 @@ export default function HomeContent({
       )}
 
       {/* ══════════════════════════════════════════════════
-          7. MORE STORIES — second tile row
+          8. MORE STORIES — second tile row
           ══════════════════════════════════════════════════ */}
       {secondRow.length > 1 && (
         <section className="px-6 md:px-10 lg:px-14 pt-20 md:pt-28 pb-16 md:pb-24">
@@ -317,7 +371,7 @@ export default function HomeContent({
       )}
 
       {/* ══════════════════════════════════════════════════
-          8. THOUGHT STARTERS — Square image left, large title right
+          9. THOUGHT STARTERS — Square image left, large title right
           Kinfolk "Thought Starters" register
           ══════════════════════════════════════════════════ */}
       {stories.length > 14 && (
@@ -364,11 +418,14 @@ export default function HomeContent({
       )}
 
       {/* ══════════════════════════════════════════════════
-          9. JOURNEYS — Same tile language
+          10. JOURNEYS — Same tile language, soft-sell intro line
           ══════════════════════════════════════════════════ */}
       {featuredJourneys.length > 0 && (
         <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.08]">
           <SectionHeader title="Private Journeys" href="/journeys" />
+          <p className="text-[#0a0a0a]/40 text-sm leading-relaxed max-w-lg mb-10">
+            For travellers who want Morocco explained, not just shown. Private journeys designed around the stories, places, and people in these pages.
+          </p>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5">
             {featuredJourneys.map((j) => (
               <Link key={j.slug} href={`/journeys/${j.slug}`} className="group block min-w-0">
@@ -397,6 +454,23 @@ export default function HomeContent({
           </div>
         </section>
       )}
+
+      {/* ══════════════════════════════════════════════════
+          11. CLOSING LINE — Soft invitation to a conversation
+          ══════════════════════════════════════════════════ */}
+      <section className="px-6 md:px-10 lg:px-14 py-16 md:py-20 border-t border-[#0a0a0a]/[0.08]">
+        <div className="max-w-lg">
+          <p className="text-[#0a0a0a]/35 text-sm leading-relaxed">
+            Every journey begins with a conversation. Tell us what you want to understand about Morocco, and we will design the trip around it.
+          </p>
+          <Link
+            href="/plan-your-trip"
+            className="inline-block mt-4 text-[12px] tracking-[0.06em] text-[#0a0a0a]/40 hover:text-[#0a0a0a] transition-colors"
+          >
+            Start a conversation →
+          </Link>
+        </div>
+      </section>
 
     </main>
   );
