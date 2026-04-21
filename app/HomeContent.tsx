@@ -105,6 +105,27 @@ function prettifyLabel(raw?: string): string {
     .join(" ");
 }
 
+// Overrides for Moroccan place slugs where the proper spelling carries
+// a diacritic, apostrophe, or English-vs-French rendering that plain
+// title-casing cannot produce.
+const PLACE_LABELS: Record<string, string> = {
+  "ait-benhaddou":  "Aït Benhaddou",
+  "mhamid":         "M'hamid",
+  "m-hamid":        "M'hamid",
+  "fes":            "Fez",
+  "tetouan":        "Tétouan",
+  "oukaimeden":     "Oukaïmeden",
+  "kelaat-mgouna":  "Kelaat M'Gouna",
+  "kelaa-mgouna":   "Kelaa M'Gouna",
+};
+
+function prettifyPlace(raw?: string): string {
+  if (!raw) return "";
+  const key = raw.trim().toLowerCase();
+  if (!key) return "";
+  return PLACE_LABELS[key] ?? prettifyLabel(raw);
+}
+
 // ─── Vertical tile — reused for stories ─────────────────────────────────────
 
 function StoryTile({ story }: { story: Story }) {
@@ -138,7 +159,7 @@ function StoryTile({ story }: { story: Story }) {
 
 // ─── Section header with rule line ──────────────────────────────────────────
 
-function SectionHeader({ title, href, linkText = "View All" }: { title: string; href: string; linkText?: string }) {
+function SectionHeader({ title, href, linkText = "More" }: { title: string; href: string; linkText?: string }) {
   return (
     <>
       <div className="flex items-baseline justify-between mb-4">
@@ -336,7 +357,7 @@ export default function HomeContent({
                   {p.title}
                 </h3>
                 {p.destination && (
-                  <p className="text-[12px] text-[#0a0a0a]/55 mt-1">{prettifyLabel(p.destination)}</p>
+                  <p className="text-[12px] text-[#0a0a0a]/55 mt-1">{prettifyPlace(p.destination)}</p>
                 )}
               </Link>
             ))}
@@ -443,7 +464,7 @@ export default function HomeContent({
             href="/journeys"
             className="inline-block text-[11px] tracking-[0.12em] uppercase text-[#0a0a0a]/55 hover:text-[#0a0a0a] transition-colors"
           >
-            View Journeys →
+            See the journeys →
           </Link>
         </div>
       </section>
