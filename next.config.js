@@ -684,6 +684,19 @@ const nextConfig = {
 
       // CRITICAL: highest impression page (5,254) was a 404
       { source: '/stories/oldest-universities', destination: '/stories/the-oldest-library', permanent: true },
+
+      // Crawled-not-indexed dead slugs — April 21, 2026
+      { source: '/journeys/6-day-kasbahs-valleys', destination: '/journeys', permanent: true },
+      { source: '/journeys/almond-blossom-tafraoute-5-days', destination: '/journeys', permanent: true },
+      { source: '/journeys/lakes-imilchil-6-days', destination: '/journeys', permanent: true },
+      { source: '/journeys/mgoun-massif-trek-7-days', destination: '/journeys', permanent: true },
+      { source: '/journeys/morocco-trekking-8-days', destination: '/journeys', permanent: true },
+      { source: '/journeys/sahara-to-sea-10-days', destination: '/journeys', permanent: true },
+      { source: '/journeys/morocco-grand-tour-21-days', destination: '/journeys', permanent: true },
+      { source: '/places/ait-benhaddou-ksar', destination: '/ait-benhaddou', permanent: true },
+      { source: '/places/akchour-waterfalls', destination: '/chefchaouen', permanent: true },
+      { source: '/places/monkey-fingers-dades', destination: '/dades-valley', permanent: true },
+      { source: '/stories/languages-of-morocco', destination: '/stories', permanent: true },
     ];
   },
 };
