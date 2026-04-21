@@ -2,17 +2,6 @@
 
 import { cloudinaryUrl } from "@/lib/cloudinary";
 import Link from "next/link";
-import dynamic from "next/dynamic";
-
-// Lazy load map — it's heavy
-const HomeCityMap = dynamic(() => import("@/components/HomeCityMap"), {
-  ssr: false,
-  loading: () => (
-    <div className="w-full h-full bg-[#0d0d0d] flex items-center justify-center">
-      <p className="text-[10px] tracking-[0.4em] uppercase text-white/15">Morocco</p>
-    </div>
-  ),
-});
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -369,22 +358,19 @@ export default function HomeContent({
             <p className="text-[13.5px] text-[#0a0a0a]/55 leading-relaxed mb-5">
               Over a hundred entries across medinas, valleys, coast, and the long south.
             </p>
-            <span className="text-[11px] tracking-[0.12em] uppercase text-[#0a0a0a]/45 group-hover:text-[#0a0a0a] transition-colors">
-              Browse places →
-            </span>
+            <div className="flex items-center gap-4">
+              <span className="text-[11px] tracking-[0.12em] uppercase text-[#0a0a0a]/45 group-hover:text-[#0a0a0a] transition-colors">
+                Browse places →
+              </span>
+            </div>
           </Link>
         </div>
-      </section>
 
-      {/* ══════════════════════════════════════════════════
-          6. MAP — Interactive Morocco, visual extension of the practical block
-          ══════════════════════════════════════════════════ */}
-      <section className="relative h-[55vh] min-h-[420px] md:h-[60vh]">
-        <HomeCityMap />
-        <div className="absolute bottom-6 right-6 z-10">
+        {/* Map link — quiet secondary access to the mapped places */}
+        <div className="mt-12 md:mt-16 pt-8 md:pt-10 border-t border-[#0a0a0a]/[0.08]">
           <Link
             href="/places/map"
-            className="text-[10px] tracking-[0.1em] uppercase text-white/40 hover:text-white/70 transition-colors bg-black/40 backdrop-blur-sm px-4 py-2"
+            className="inline-block text-[11px] tracking-[0.12em] uppercase text-[#0a0a0a]/45 hover:text-[#0a0a0a] transition-colors"
           >
             Explore places on the map →
           </Link>
@@ -392,8 +378,8 @@ export default function HomeContent({
       </section>
 
       {/* ══════════════════════════════════════════════════
-          7. DEEPER READING — Kinfolk-style list: square image + large title
-          One restrained secondary editorial block.
+          6. DEEPER READING — Single secondary editorial block
+          Kinfolk-style list: square image + large title
           ══════════════════════════════════════════════════ */}
       {deeperStories.length > 0 && (
         <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.08]">
@@ -436,7 +422,7 @@ export default function HomeContent({
       )}
 
       {/* ══════════════════════════════════════════════════
-          8. FINAL CTA — Restrained invitation to Private Journeys
+          7. FINAL CTA — Restrained invitation to Private Journeys
           ══════════════════════════════════════════════════ */}
       <section className="px-6 md:px-10 lg:px-14 py-20 md:py-28 border-t border-[#0a0a0a]/[0.08]">
         <div className="max-w-2xl">
