@@ -58,6 +58,14 @@ interface RelatedJourney {
   score: number;
 }
 
+interface RelatedPlace {
+  slug: string;
+  title: string;
+  category?: string;
+  destination?: string;
+  heroImage?: string;
+}
+
 interface NavItem {
   slug: string;
   title: string;
@@ -68,6 +76,7 @@ interface StoryDetailContentProps {
   images: StoryImage[];
   relatedStories: Story[];
   relatedJourneys: RelatedJourney[];
+  relatedPlaces?: RelatedPlace[];
   slug: string;
   mapData?: any;
   externalLinks?: Array<{ label: string; url: string; type?: string }> | null;
@@ -80,6 +89,7 @@ export default function StoryDetailContent({
   images,
   relatedStories,
   relatedJourneys,
+  relatedPlaces = [],
   slug,
   mapData,
   externalLinks,
@@ -493,6 +503,59 @@ export default function StoryDetailContent({
                 className="text-[11px] tracking-[0.15em] uppercase text-foreground/55 hover:text-foreground/80 transition-colors"
               >
                 All journeys
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ══════════════════════════════════════════════════════════════
+          RELATED PLACES — curator-pinned only
+          ══════════════════════════════════════════════════════════════ */}
+      {relatedPlaces.length > 0 && (
+        <section className="py-20 md:py-28 border-t border-foreground/[0.08]">
+          <div className="px-8 md:px-16 lg:px-20">
+            <div className="text-center mb-14 md:mb-16">
+              <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/50 mb-3">
+                On the Ground
+              </p>
+              <h2 className="font-serif text-2xl md:text-[1.75rem] text-foreground/80">
+                Places in this story.
+              </h2>
+            </div>
+
+            <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-10">
+              {relatedPlaces.slice(0, 3).map((p) => (
+                <Link key={p.slug} href={`/places/${p.slug}`} className="group">
+                  <div className="aspect-[29/39] relative overflow-hidden bg-[#e8e6e1] mb-4">
+                    {p.heroImage ? (
+                      <img
+                        src={cloudinaryUrl(p.heroImage, 480)}
+                        alt={p.title}
+                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-[1.2s] ease-out"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 bg-[#e8e6e1]" />
+                    )}
+                  </div>
+                  {p.category && (
+                    <p className="text-[10px] text-foreground/40 mb-1.5">
+                      {p.category}
+                    </p>
+                  )}
+                  <h3 className="text-[12px] tracking-[0.04em] uppercase leading-[1.35] text-foreground group-hover:text-foreground/80 transition-colors duration-500">
+                    {p.title}
+                  </h3>
+                </Link>
+              ))}
+            </div>
+
+            <div className="text-center mt-12">
+              <Link
+                href="/places"
+                className="text-[11px] tracking-[0.15em] uppercase text-foreground/55 hover:text-foreground/80 transition-colors"
+              >
+                Explore places
               </Link>
             </div>
           </div>
