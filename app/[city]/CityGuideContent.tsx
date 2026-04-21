@@ -57,7 +57,7 @@ interface Story {
 
 interface CityGuideImage {
   id: number;
-  city_slug: string;
+  place_slug: string;
   image_url: string | null;
   caption: string | null;
   image_order: number;

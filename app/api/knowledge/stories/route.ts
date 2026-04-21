@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 import { getStories } from "@/lib/supabase";
 
-// Cache for 1 hour, allow AI crawlers to consume
-export const revalidate = 3600;
+// Route reads query params (request.url) so must be dynamic.
+// Edge caching is handled via Cache-Control headers below.
+export const dynamic = "force-dynamic";
 
 const BASE_URL = "https://www.slowmorocco.com";
 

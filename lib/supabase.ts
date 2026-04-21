@@ -790,11 +790,14 @@ export async function getDestinationBySlug(slug: string) {
 
 // =============================================
 // CITY GUIDE IMAGES
+// Reads from the `place_images` table (the old `city_guide_images`
+// table was removed). City destinations share the slug namespace
+// with the `place_images.place_slug` column.
 // =============================================
 
 export interface CityGuideImage {
   id: number;
-  city_slug: string;
+  place_slug: string;
   image_url: string | null;
   caption: string | null;
   image_order: number;
@@ -802,9 +805,9 @@ export interface CityGuideImage {
 
 export async function getCityGuideImages(citySlug: string) {
   const { data, error } = await supabase
-    .from("city_guide_images")
+    .from("place_images")
     .select("*")
-    .eq("city_slug", citySlug)
+    .eq("place_slug", citySlug)
     .not("image_url", "is", null)
     .order("image_order", { ascending: true });
   if (error) { console.error("Error fetching city guide images:", error); return []; }
@@ -813,16 +816,16 @@ export async function getCityGuideImages(citySlug: string) {
 
 export async function getAllCityGuideFirstImages(): Promise<Record<string, string>> {
   const { data, error } = await supabase
-    .from("city_guide_images")
-    .select("city_slug, image_url")
+    .from("place_images")
+    .select("place_slug, image_url")
     .not("image_url", "is", null)
     .order("image_order", { ascending: true });
   if (error) { console.error("Error fetching all city guide images:", error); return {}; }
-  // Return first image per city
+  // Return first image per city/place
   const result: Record<string, string> = {};
   for (const row of data || []) {
-    if (row.city_slug && row.image_url && !result[row.city_slug]) {
-      result[row.city_slug] = row.image_url;
+    if (row.place_slug && row.image_url && !result[row.place_slug]) {
+      result[row.place_slug] = row.image_url;
     }
   }
   return result;

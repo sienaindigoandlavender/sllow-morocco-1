@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { glossaryData } from "@/lib/glossary-data";
 import { getStories, getJourneys, getPlaces } from "@/lib/supabase";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 const BASE_URL = "https://www.slowmorocco.com";
 
