@@ -71,7 +71,32 @@ interface HomeContentProps {
   destinations: Destination[];
 }
 
-// ─── Vertical tile — reused for stories, places, journeys ───────────────────
+// ─── Helpers ────────────────────────────────────────────────────────────────
+
+// Turn a raw destinations string like "marrakech,ouarzazate,draa-valley,merzouga"
+// into a clean route line: "Marrakech → Ouarzazate → Draa Valley → Merzouga".
+// If the value already looks human-written (contains spaces or separators), leave it.
+function formatRoute(raw?: string): string | null {
+  if (!raw) return null;
+  const trimmed = raw.trim();
+  if (!trimmed) return null;
+  const looksHumanWritten = /[\s·→•]/.test(trimmed) && !/,/.test(trimmed);
+  if (looksHumanWritten) return trimmed;
+
+  return trimmed
+    .split(",")
+    .map((part) => part.trim())
+    .filter(Boolean)
+    .map((part) =>
+      part
+        .split("-")
+        .map((word) => (word ? word[0].toUpperCase() + word.slice(1).toLowerCase() : word))
+        .join(" ")
+    )
+    .join(" → ");
+}
+
+// ─── Vertical tile — reused for stories ─────────────────────────────────────
 
 function StoryTile({ story }: { story: Story }) {
   return (
@@ -129,58 +154,146 @@ export default function HomeContent({
   journeys,
   stories,
   places,
-  destinations = [],
 }: HomeContentProps) {
   const lead = stories[0];
-  const issueRow = stories.slice(1, 7);
-  const feature = stories[7];
-  const secondRow = stories.slice(8, 14);
-  const featuredJourneys = journeys.slice(0, 6);
-  const featuredPlaces = places.slice(0, 6);
+  const editStories = stories.slice(1, 5);          // 4 items
+  const deeperStories = stories.slice(5, 8);        // 3 items
+  const featuredJourneys = journeys.slice(0, 3);    // 3 items
+  const featuredPlaces = places.slice(0, 6);        // 6 items
 
   return (
     <main className="min-h-screen bg-white">
 
       {/* ══════════════════════════════════════════════════
-          1. HERO — Full viewport, single lead story
+          1. HERO — Lead story. Stage, not a link.
           ══════════════════════════════════════════════════ */}
       {lead && (
-        <Link href={`/stories/${lead.slug}`} className="group block">
-          <section className="relative h-screen min-h-[700px] overflow-hidden bg-[#0a0a0a]">
-            {lead.heroImage && (
-              <img
-                src={cloudinaryUrl(lead.heroImage, 2400)}
-                alt={lead.title}
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-[1200ms]"
-              />
-            )}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+        <section className="relative h-screen min-h-[720px] overflow-hidden bg-[#0a0a0a]">
+          {lead.heroImage && (
+            <img
+              src={cloudinaryUrl(lead.heroImage, 2400)}
+              alt={lead.title}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
 
-            {/* Lead story text — bottom left */}
-            <div className="relative z-10 h-full flex flex-col justify-end px-6 md:px-10 lg:px-14 pb-10 md:pb-14 lg:pb-16">
-              <div className="max-w-xl lg:max-w-lg">
-                <h1 className="text-white text-[clamp(1.6rem,4.5vw,3rem)] font-light tracking-[-0.01em] leading-[1.1] mb-2">
-                  {lead.title}
-                </h1>
-                {lead.subtitle && (
-                  <p className="text-white/70 text-sm md:text-[15px] leading-relaxed">
-                    {lead.subtitle}
-                  </p>
-                )}
-              </div>
-            </div>
-          </section>
-        </Link>
+          <div className="relative z-10 h-full flex flex-col justify-end px-6 md:px-10 lg:px-14 pb-10 md:pb-14 lg:pb-16">
+            <Link
+              href={`/stories/${lead.slug}`}
+              className="group block max-w-xl lg:max-w-lg"
+            >
+              <h1 className="text-white text-[clamp(1.6rem,4.5vw,3rem)] font-light tracking-[-0.01em] leading-[1.1] mb-2 group-hover:text-white/80 transition-colors">
+                {lead.title}
+              </h1>
+              {lead.subtitle && (
+                <p className="text-white/55 text-sm md:text-[15px] leading-relaxed">
+                  {lead.subtitle}
+                </p>
+              )}
+            </Link>
+          </div>
+        </section>
       )}
 
       {/* ══════════════════════════════════════════════════
-          2. THE EDIT — 6 vertical tiles, full-width row
+          2. ORIENTATION — Three pathways (editorial table of contents)
           ══════════════════════════════════════════════════ */}
-      {issueRow.length > 0 && (
-        <section className="px-6 md:px-10 lg:px-14 pt-20 md:pt-28 pb-16 md:pb-24">
+      <section className="px-6 md:px-10 lg:px-14 py-14 md:py-20 border-b border-[#0a0a0a]/[0.08]">
+        <div className="grid md:grid-cols-3 gap-10 md:gap-12 lg:gap-16">
+          <Link href="/stories" className="group block">
+            <span className="text-[10px] text-[#0a0a0a]/40 tracking-[0.14em] uppercase block mb-4">
+              01
+            </span>
+            <h3 className="text-[18px] md:text-[19px] font-light tracking-[-0.01em] text-[#0a0a0a] mb-3 group-hover:text-[#0a0a0a]/50 transition-colors">
+              Explore Morocco
+            </h3>
+            <p className="text-[13.5px] text-[#0a0a0a]/55 leading-relaxed">
+              Stories, places, and systems that decode the country.
+            </p>
+          </Link>
+
+          <Link href="/journeys" className="group block">
+            <span className="text-[10px] text-[#0a0a0a]/40 tracking-[0.14em] uppercase block mb-4">
+              02
+            </span>
+            <h3 className="text-[18px] md:text-[19px] font-light tracking-[-0.01em] text-[#0a0a0a] mb-3 group-hover:text-[#0a0a0a]/50 transition-colors">
+              Private Journeys
+            </h3>
+            <p className="text-[13.5px] text-[#0a0a0a]/55 leading-relaxed">
+              Thoughtful itineraries shaped around pace, region, and interest.
+            </p>
+          </Link>
+
+          <Link href="/plan-your-trip" className="group block">
+            <span className="text-[10px] text-[#0a0a0a]/40 tracking-[0.14em] uppercase block mb-4">
+              03
+            </span>
+            <h3 className="text-[18px] md:text-[19px] font-light tracking-[-0.01em] text-[#0a0a0a] mb-3 group-hover:text-[#0a0a0a]/50 transition-colors">
+              Plan Your Trip
+            </h3>
+            <p className="text-[13.5px] text-[#0a0a0a]/55 leading-relaxed">
+              Practical guidance before you go.
+            </p>
+          </Link>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════
+          3. FEATURED PRIVATE JOURNEYS — Three journeys, clean route lines
+          Appears early so visitors see the service layer immediately.
+          ══════════════════════════════════════════════════ */}
+      {featuredJourneys.length > 0 && (
+        <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24">
+          <SectionHeader title="Private Journeys" href="/journeys" />
+          <p className="text-[#0a0a0a]/55 text-[14px] md:text-[15px] leading-relaxed max-w-2xl mb-12 md:mb-14">
+            Curated private journeys — not packaged tours. Each route is designed around a distinct Morocco: the first passage, the desert arc, and the deeper country.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
+            {featuredJourneys.map((j) => {
+              const route = formatRoute(j.destinations);
+              return (
+                <Link key={j.slug} href={`/journeys/${j.slug}`} className="group block min-w-0">
+                  <div className="aspect-[4/5] relative overflow-hidden bg-[#f0eeeb] mb-5">
+                    {j.heroImage && (
+                      <img
+                        src={cloudinaryUrl(j.heroImage, 900)}
+                        alt={j.title}
+                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
+                      />
+                    )}
+                    {j.duration && (
+                      <div className="absolute bottom-3 left-3 bg-white/90 px-2.5 py-1 text-[10px] tracking-[0.08em] uppercase text-[#0a0a0a]">
+                        {j.duration}
+                      </div>
+                    )}
+                  </div>
+                  <h3 className="text-[16px] md:text-[17px] font-light tracking-[-0.01em] text-[#0a0a0a] group-hover:text-[#0a0a0a]/55 transition-colors leading-snug mb-2">
+                    {j.title}
+                  </h3>
+                  {route && (
+                    <p className="text-[12.5px] text-[#0a0a0a]/55 leading-relaxed">
+                      {route}
+                    </p>
+                  )}
+                  <span className="text-[11px] text-[#0a0a0a]/35 tracking-[0.08em] uppercase block mt-3">
+                    Bespoke · Private journey
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+      )}
+
+      {/* ══════════════════════════════════════════════════
+          4. THE EDIT — Trimmed editorial row (4 stories only)
+          ══════════════════════════════════════════════════ */}
+      {editStories.length > 0 && (
+        <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.08]">
           <SectionHeader title="The Edit" href="/stories" />
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5">
-            {issueRow.map((story) => (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            {editStories.map((story) => (
               <StoryTile key={story.slug} story={story} />
             ))}
           </div>
@@ -188,61 +301,7 @@ export default function HomeContent({
       )}
 
       {/* ══════════════════════════════════════════════════
-          3. MAP — Interactive Morocco, visual break
-          Dark, full-width, city dots with hover info
-          ══════════════════════════════════════════════════ */}
-      <section className="relative h-[60vh] min-h-[450px] md:h-[65vh]">
-        <HomeCityMap />
-        {/* Map CTA overlay — bottom right */}
-        <div className="absolute bottom-6 right-6 z-10">
-          <Link
-            href="/places/map"
-            className="text-[10px] tracking-[0.1em] uppercase text-white/60 hover:text-white/70 transition-colors bg-black/40 backdrop-blur-sm px-4 py-2"
-          >
-            Explore 200+ places on map →
-          </Link>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════
-          4. FEATURE MOMENT — Centered large type + portrait
-          Editorial pause
-          ══════════════════════════════════════════════════ */}
-      {feature && (
-        <section className="py-16 md:py-28">
-          <Link href={`/stories/${feature.slug}`} className="group block text-center">
-            <div className="max-w-3xl mx-auto px-6 md:px-10 mb-10 md:mb-14">
-              <h2 className="text-[clamp(1.8rem,4vw,3.2rem)] font-light text-[#0a0a0a] leading-[1.15] tracking-[-0.02em] mb-4 group-hover:text-[#0a0a0a]/80 transition-colors">
-                {feature.title}
-              </h2>
-              {feature.subtitle && (
-                <p className="text-[#0a0a0a]/50 text-base md:text-lg leading-relaxed font-light">
-                  {feature.subtitle}
-                </p>
-              )}
-              {feature.category && (
-                <span className="text-[10px] text-[#0a0a0a]/50 tracking-[0.1em] uppercase mt-4 block">
-                  {feature.category}
-                </span>
-              )}
-            </div>
-            {feature.heroImage && (
-              <div className="max-w-md mx-auto px-6">
-                <div className="aspect-[3/4] relative overflow-hidden bg-[#f0eeeb]">
-                  <img
-                    src={cloudinaryUrl(feature.heroImage, 800)}
-                    alt={feature.title}
-                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
-                  />
-                </div>
-              </div>
-            )}
-          </Link>
-        </section>
-      )}
-
-      {/* ══════════════════════════════════════════════════
-          5. PLACES — 6 vertical tiles
+          5. PLACES — Six vertical tiles + embedded Morocco map
           ══════════════════════════════════════════════════ */}
       {featuredPlaces.length > 0 && (
         <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.08]">
@@ -273,66 +332,65 @@ export default function HomeContent({
               </Link>
             ))}
           </div>
-        </section>
-      )}
 
-      {/* ══════════════════════════════════════════════════
-          6. FULL-BLEED STORY — Image with text overlay
-          ══════════════════════════════════════════════════ */}
-      {secondRow[0] && (
-        <Link href={`/stories/${secondRow[0].slug}`} className="group block">
-          <section className="relative h-[70vh] min-h-[500px] overflow-hidden bg-[#0a0a0a]">
-            {secondRow[0].heroImage && (
-              <img
-                src={cloudinaryUrl(secondRow[0].heroImage, 2400)}
-                alt={secondRow[0].title}
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-[1200ms]"
-              />
-            )}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent" />
-            <div className="relative z-10 px-6 md:px-10 lg:px-14 pt-10 md:pt-14">
-              <span className="text-white/60 text-[11px] tracking-[0.1em] uppercase block mb-2">
-                {secondRow[0].category}
-              </span>
-              <h2 className="text-white text-lg md:text-xl font-light leading-snug max-w-md">
-                {secondRow[0].subtitle || secondRow[0].title}
-              </h2>
+          {/* Morocco map — visual anchor for Places */}
+          <div className="relative mt-12 md:mt-16 h-[50vh] min-h-[400px] md:h-[55vh] overflow-hidden bg-[#0a0a0a]">
+            <HomeCityMap />
+            <div className="absolute bottom-5 right-5 z-10">
+              <Link
+                href="/places/map"
+                className="text-[10px] tracking-[0.1em] uppercase text-white/45 hover:text-white transition-colors bg-black/40 backdrop-blur-sm px-4 py-2"
+              >
+                Explore places on the map →
+              </Link>
             </div>
-          </section>
-        </Link>
-      )}
-
-      {/* ══════════════════════════════════════════════════
-          7. MORE STORIES — second tile row
-          ══════════════════════════════════════════════════ */}
-      {secondRow.length > 1 && (
-        <section className="px-6 md:px-10 lg:px-14 pt-20 md:pt-28 pb-16 md:pb-24">
-          <SectionHeader title="More from The Edit" href="/stories" />
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-5">
-            {secondRow.slice(1).map((story) => (
-              <StoryTile key={story.slug} story={story} />
-            ))}
           </div>
         </section>
       )}
 
       {/* ══════════════════════════════════════════════════
-          8. THOUGHT STARTERS — Square image left, large title right
-          Kinfolk "Thought Starters" register
+          6. THE VISA — Dedicated editorial note
           ══════════════════════════════════════════════════ */}
-      {stories.length > 14 && (
+      <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.08]">
+        <Link href="/visa-info" className="group block max-w-3xl">
+          <span className="text-[10px] text-[#0a0a0a]/40 tracking-[0.14em] uppercase block mb-4">
+            The Visa
+          </span>
+          <h2 className="text-[clamp(1.4rem,3vw,2.2rem)] font-light tracking-[-0.01em] text-[#0a0a0a] leading-[1.2] mb-6 group-hover:text-[#0a0a0a]/55 transition-colors">
+            Citizens of 65+ countries enter visa-free — here is what you actually need.
+          </h2>
+          <span className="text-[11px] tracking-[0.12em] uppercase text-[#0a0a0a]/45 group-hover:text-[#0a0a0a] transition-colors">
+            Read the visa guide →
+          </span>
+        </Link>
+      </section>
+
+      {/* ══════════════════════════════════════════════════
+          7. EDITORIAL INTERLUDE — The month begins when the moon says so
+          ══════════════════════════════════════════════════ */}
+      <section className="px-6 md:px-10 lg:px-14 py-20 md:py-32 border-t border-[#0a0a0a]/[0.08]">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-[clamp(1.5rem,3.4vw,2.6rem)] font-light tracking-[-0.015em] text-[#0a0a0a] leading-[1.2]">
+            The month begins when the moon says so. The city stops. Then the smell of harira.
+          </h2>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════
+          8. GOING DEEPER — Kinfolk-style list: square image + large title
+          ══════════════════════════════════════════════════ */}
+      {deeperStories.length > 0 && (
         <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.08]">
           <SectionHeader title="Going Deeper" href="/stories" />
           <div className="divide-y divide-[#0a0a0a]/[0.08]">
-            {stories.slice(14, 17).map((story) => (
+            {deeperStories.map((story) => (
               <Link
                 key={story.slug}
                 href={`/stories/${story.slug}`}
                 className="group flex gap-6 md:gap-10 py-8 md:py-10 items-start"
               >
-                {/* Square image — left */}
                 {story.heroImage && (
-                  <div className="w-[140px] md:w-[180px] shrink-0 aspect-square relative overflow-hidden bg-[#f0eeeb]">
+                  <div className="w-[120px] md:w-[180px] shrink-0 aspect-square relative overflow-hidden bg-[#f0eeeb]">
                     <img
                       src={cloudinaryUrl(story.heroImage, 400)}
                       alt={story.title}
@@ -340,18 +398,16 @@ export default function HomeContent({
                     />
                   </div>
                 )}
-                {/* Title + subtitle — center, large */}
                 <div className="flex-1 min-w-0 pt-1">
-                  <h3 className="text-[clamp(1.2rem,2.5vw,2rem)] font-light text-[#0a0a0a] leading-[1.15] tracking-[-0.01em] group-hover:text-[#0a0a0a]/70 transition-colors">
+                  <h3 className="text-[clamp(1.15rem,2.5vw,2rem)] font-light text-[#0a0a0a] leading-[1.15] tracking-[-0.01em] group-hover:text-[#0a0a0a]/50 transition-colors">
                     {story.title}
                   </h3>
                   {story.subtitle && (
-                    <p className="text-[clamp(1rem,2vw,1.5rem)] font-light text-[#0a0a0a]/50 leading-[1.2] mt-1">
+                    <p className="text-[clamp(0.95rem,2vw,1.5rem)] font-light text-[#0a0a0a]/50 leading-[1.2] mt-1">
                       {story.subtitle}
                     </p>
                   )}
                 </div>
-                {/* Category — far right */}
                 {story.category && (
                   <span className="text-[10px] text-[#0a0a0a]/50 tracking-[0.06em] uppercase shrink-0 hidden md:block pt-2">
                     {story.category}
@@ -364,39 +420,24 @@ export default function HomeContent({
       )}
 
       {/* ══════════════════════════════════════════════════
-          9. JOURNEYS — Same tile language
+          9. PRIVATE JOURNEYS CTA STRIP — Final invitation
           ══════════════════════════════════════════════════ */}
-      {featuredJourneys.length > 0 && (
-        <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.08]">
-          <SectionHeader title="Private Journeys" href="/journeys" />
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5">
-            {featuredJourneys.map((j) => (
-              <Link key={j.slug} href={`/journeys/${j.slug}`} className="group block min-w-0">
-                <div className="aspect-[3/4] relative overflow-hidden bg-[#f0eeeb] mb-4">
-                  {j.heroImage && (
-                    <img
-                      src={cloudinaryUrl(j.heroImage, 600)}
-                      alt={j.title}
-                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
-                    />
-                  )}
-                  {j.duration && (
-                    <div className="absolute bottom-3 left-3 bg-white/90 px-2 py-1 text-[10px] tracking-[0.06em] uppercase text-[#0a0a0a]">
-                      {j.duration}
-                    </div>
-                  )}
-                </div>
-                <h3 className="text-[13px] tracking-[0.04em] text-[#0a0a0a] group-hover:text-[#0a0a0a]/70 transition-colors leading-snug">
-                  {j.title}
-                </h3>
-                {j.destinations && (
-                  <p className="text-[12px] text-[#0a0a0a]/55 mt-1">{j.destinations}</p>
-                )}
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
+      <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.08]">
+        <div className="max-w-2xl">
+          <h2 className="text-[clamp(1.3rem,2.6vw,1.9rem)] font-light tracking-[-0.01em] text-[#0a0a0a] leading-[1.2] mb-4">
+            Private Journeys
+          </h2>
+          <p className="text-[#0a0a0a]/55 text-[14px] md:text-[15px] leading-relaxed mb-6">
+            Quietly designed routes across Morocco, shaped around how you want to move through the country.
+          </p>
+          <Link
+            href="/journeys"
+            className="inline-block text-[11px] tracking-[0.12em] uppercase text-[#0a0a0a]/55 hover:text-[#0a0a0a] transition-colors"
+          >
+            View Journeys →
+          </Link>
+        </div>
+      </section>
 
     </main>
   );
