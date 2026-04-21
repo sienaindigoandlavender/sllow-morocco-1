@@ -111,11 +111,11 @@ function StoryTile({ story }: { story: Story }) {
         )}
       </div>
       {story.category && (
-        <span className="text-[10px] text-[#0a0a0a]/40 tracking-[0.1em] uppercase block mb-1">
+        <span className="text-[10px] text-[#0a0a0a]/55 tracking-[0.1em] uppercase block mb-1">
           {story.category}
         </span>
       )}
-      <h3 className="text-[13px] tracking-[0.04em] text-[#0a0a0a] group-hover:text-[#0a0a0a]/50 transition-colors leading-snug">
+      <h3 className="text-[13px] tracking-[0.04em] text-[#0a0a0a] group-hover:text-[#0a0a0a]/70 transition-colors leading-snug">
         {story.title}
       </h3>
       {story.subtitle && (
@@ -138,7 +138,7 @@ function SectionHeader({ title, href, linkText = "View All" }: { title: string; 
         </h2>
         <Link
           href={href}
-          className="text-[11px] text-[#0a0a0a]/35 tracking-[0.04em] hover:text-[#0a0a0a]/60 transition-colors"
+          className="text-[11px] text-[#0a0a0a]/55 tracking-[0.04em] hover:text-[#0a0a0a]/80 transition-colors"
         >
           {linkText}
         </Link>
@@ -319,15 +319,15 @@ export default function HomeContent({
                   )}
                 </div>
                 {p.category && (
-                  <span className="text-[10px] text-[#0a0a0a]/40 tracking-[0.1em] uppercase block mb-1">
+                  <span className="text-[10px] text-[#0a0a0a]/55 tracking-[0.1em] uppercase block mb-1">
                     {p.category}
                   </span>
                 )}
-                <h3 className="text-[13px] tracking-[0.04em] text-[#0a0a0a] group-hover:text-[#0a0a0a]/50 transition-colors leading-snug">
+                <h3 className="text-[13px] tracking-[0.04em] text-[#0a0a0a] group-hover:text-[#0a0a0a]/70 transition-colors leading-snug">
                   {p.title}
                 </h3>
                 {p.destination && (
-                  <p className="text-[12px] text-[#0a0a0a]/40 mt-1">{p.destination}</p>
+                  <p className="text-[12px] text-[#0a0a0a]/55 mt-1">{p.destination}</p>
                 )}
               </Link>
             ))}
@@ -409,7 +409,7 @@ export default function HomeContent({
                   )}
                 </div>
                 {story.category && (
-                  <span className="text-[10px] text-[#0a0a0a]/30 tracking-[0.06em] uppercase shrink-0 hidden md:block pt-2">
+                  <span className="text-[10px] text-[#0a0a0a]/50 tracking-[0.06em] uppercase shrink-0 hidden md:block pt-2">
                     {story.category}
                   </span>
                 )}

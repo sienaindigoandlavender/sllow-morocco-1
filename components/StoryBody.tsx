@@ -137,7 +137,7 @@ function InlineImageBlock({ img }: { img: InlineImage }) {
         />
       </div>
       {(img.caption || img.attribution) && (
-        <figcaption className="text-[11px] text-foreground/35 mt-3 px-4 md:px-8 flex items-start justify-between gap-4">
+        <figcaption className="text-[11px] text-foreground/55 mt-3 px-4 md:px-8 flex items-start justify-between gap-4">
           <span className="italic">{img.caption}</span>
           {img.attribution && (
             <span className="flex-shrink-0 text-right">
