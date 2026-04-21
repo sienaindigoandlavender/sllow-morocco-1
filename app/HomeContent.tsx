@@ -411,7 +411,7 @@ export default function HomeContent({
           ══════════════════════════════════════════════════ */}
       {deeperStories.length > 0 && (
         <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.08]">
-          <SectionHeader title="Going Deeper" href="/stories" linkText="More stories" />
+          <SectionHeader title="Going Deeper" href="/stories" linkText="Read deeper" />
           <div className="divide-y divide-[#0a0a0a]/[0.08]">
             {deeperStories.map((story) => (
               <Link
