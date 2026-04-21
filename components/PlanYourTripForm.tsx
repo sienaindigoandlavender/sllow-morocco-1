@@ -17,6 +17,7 @@ interface PlanYourTripFormProps {
   apiEndpoint?: string;
   onSuccess?: () => void;
   darkMode?: boolean;
+  initialJourney?: string; // slug to pre-select in the journey dropdown
 }
 
 export default function PlanYourTripForm({
@@ -25,9 +26,10 @@ export default function PlanYourTripForm({
   apiEndpoint = "/api/plan-your-trip",
   onSuccess,
   darkMode = false,
+  initialJourney = "",
 }: PlanYourTripFormProps) {
   const [formData, setFormData] = useState({
-    journey: "",
+    journey: initialJourney,
     month: "",
     year: "",
     travelers: "",
@@ -185,9 +187,9 @@ export default function PlanYourTripForm({
   if (status === "success") {
     return (
       <div className="max-w-lg mx-auto text-center py-16">
-        <h2 className={`font-serif text-3xl md:text-4xl mb-6 ${darkMode ? 'text-white' : ''}`}>Thank You</h2>
+        <h2 className={`font-serif text-3xl md:text-4xl mb-6 ${darkMode ? 'text-white' : ''}`}>Thank you. We&apos;ll be in touch.</h2>
         <p className={`text-lg mb-8 ${darkMode ? 'text-white/60' : 'text-muted-foreground'}`}>
-          We've received your journey request and will be in touch within 24 hours, usually sooner.
+          We&apos;ve received your journey request and will be in touch within 24 hours, usually sooner.
         </p>
         <a 
           href="/" 
@@ -513,7 +515,7 @@ export default function PlanYourTripForm({
               : 'bg-[#c4a882] text-white hover:bg-[#b09670]'
           }`}
         >
-          {status === "loading" ? "Sending..." : "Submit"}
+          {status === "loading" ? "Sending..." : "Send inquiry"}
         </button>
       </div>
     </form>
