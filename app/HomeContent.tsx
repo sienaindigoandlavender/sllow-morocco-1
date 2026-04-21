@@ -449,6 +449,9 @@ export default function HomeContent({
                 {j.destinations && (
                   <p className="text-[12px] text-[#0a0a0a]/40 mt-1">{j.destinations}</p>
                 )}
+                <span className="text-[12px] text-[#0a0a0a]/30 tracking-[0.04em] block mt-3">
+                  Bespoke · Private journey
+                </span>
               </Link>
             ))}
           </div>
