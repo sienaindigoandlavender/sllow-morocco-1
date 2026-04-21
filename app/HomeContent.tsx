@@ -239,7 +239,7 @@ export default function HomeContent({
               Explore Morocco
             </h3>
             <p className="text-[13.5px] text-[#0a0a0a]/55 leading-relaxed">
-              Deep essays on history, craft, and kitchens, mapped to over a hundred places.
+              Essays and places that reveal the country slowly — the layers most visitors pass straight through.
             </p>
           </Link>
 
@@ -251,7 +251,7 @@ export default function HomeContent({
               Private Journeys
             </h3>
             <p className="text-[13.5px] text-[#0a0a0a]/55 leading-relaxed">
-              Private routes, shaped to pace, region, and the questions you came with.
+              Private routes into the Morocco most visitors only skim.
             </p>
           </Link>
 
@@ -275,7 +275,7 @@ export default function HomeContent({
           ══════════════════════════════════════════════════ */}
       {featuredJourneys.length > 0 && (
         <section className="px-6 md:px-10 lg:px-14 pt-8 md:pt-12 pb-16 md:pb-24">
-          <SectionHeader title="Private Journeys" href="/journeys" />
+          <SectionHeader title="Private Journeys" href="/journeys" linkText="Explore journeys" />
           <p className="text-[#0a0a0a]/55 text-[14px] md:text-[15px] leading-relaxed max-w-2xl mb-12 md:mb-14">
             Private journeys are written, not packaged. Each route traces a different Morocco: the first passage, the desert arc, the deeper country.
           </p>
@@ -321,7 +321,7 @@ export default function HomeContent({
           ══════════════════════════════════════════════════ */}
       {editStories.length > 0 && (
         <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.08]">
-          <SectionHeader title="The Edit" href="/stories" />
+          <SectionHeader title="The Edit" href="/stories" linkText="Read the stories" />
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {editStories.map((story) => (
               <StoryTile key={story.slug} story={story} />
@@ -335,7 +335,7 @@ export default function HomeContent({
           ══════════════════════════════════════════════════ */}
       {featuredPlaces.length > 0 && (
         <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.08]">
-          <SectionHeader title="Places" href="/places" />
+          <SectionHeader title="Places" href="/places" linkText="Explore places" />
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5">
             {featuredPlaces.map((p) => (
               <Link key={p.slug} href={`/places/${p.slug}`} className="group block min-w-0">
@@ -390,7 +390,7 @@ export default function HomeContent({
             Citizens of 65+ countries enter visa-free — here is what you actually need.
           </h2>
           <span className="text-[11px] tracking-[0.12em] uppercase text-[#0a0a0a]/45 group-hover:text-[#0a0a0a] transition-colors">
-            Read the visa guide →
+            See the visa guide →
           </span>
         </Link>
       </section>
@@ -411,7 +411,7 @@ export default function HomeContent({
           ══════════════════════════════════════════════════ */}
       {deeperStories.length > 0 && (
         <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.08]">
-          <SectionHeader title="Going Deeper" href="/stories" />
+          <SectionHeader title="Going Deeper" href="/stories" linkText="More stories" />
           <div className="divide-y divide-[#0a0a0a]/[0.08]">
             {deeperStories.map((story) => (
               <Link
@@ -457,15 +457,23 @@ export default function HomeContent({
           <h2 className="text-[clamp(1.3rem,2.6vw,1.9rem)] font-light tracking-[-0.01em] text-[#0a0a0a] leading-[1.2] mb-4">
             Private Journeys
           </h2>
-          <p className="text-[#0a0a0a]/55 text-[14px] md:text-[15px] leading-relaxed mb-6">
-            Quietly designed routes across Morocco, shaped around how you want to move through the country.
+          <p className="text-[#0a0a0a]/55 text-[14px] md:text-[15px] leading-relaxed mb-8">
+            Quietly designed routes into the Morocco most visitors only skim. Private, and shaped around how you want to move through the country.
           </p>
-          <Link
-            href="/journeys"
-            className="inline-block text-[11px] tracking-[0.12em] uppercase text-[#0a0a0a]/55 hover:text-[#0a0a0a] transition-colors"
-          >
-            See the journeys →
-          </Link>
+          <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
+            <Link
+              href="/plan-your-trip"
+              className="inline-block text-[11px] tracking-[0.12em] uppercase text-[#0a0a0a] hover:text-[#0a0a0a]/55 transition-colors"
+            >
+              Plan a private journey →
+            </Link>
+            <Link
+              href="/journeys"
+              className="inline-block text-[11px] tracking-[0.12em] uppercase text-[#0a0a0a]/55 hover:text-[#0a0a0a] transition-colors"
+            >
+              Explore journeys →
+            </Link>
+          </div>
         </div>
       </section>
 

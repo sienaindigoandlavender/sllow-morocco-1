@@ -39,7 +39,7 @@ export default function NewsletterBanner() {
           Written from the medina. Sent when it matters.
         </p>
         {subscribed ? (
-          <p className="text-white/50 text-sm">You&apos;re in.</p>
+          <p className="text-white/50 text-sm">The letter will find you.</p>
         ) : (
           <form onSubmit={handleSubscribe} className="flex gap-3 max-w-xs mx-auto">
             <input
@@ -55,7 +55,7 @@ export default function NewsletterBanner() {
               disabled={isSubscribing}
               className="text-[11px] tracking-[0.08em] uppercase text-white/40 hover:text-white transition-colors whitespace-nowrap disabled:opacity-50"
             >
-              {isSubscribing ? "..." : "Join →"}
+              {isSubscribing ? "..." : "Receive the letter →"}
             </button>
           </form>
         )}

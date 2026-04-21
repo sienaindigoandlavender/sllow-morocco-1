@@ -146,7 +146,7 @@ export default function Footer() {
                 </span>
               </Link>
               <p className="text-sm text-white/30 leading-relaxed max-w-xs">
-                The definitive cultural guide to Morocco.
+                Routes into a slower, stranger Morocco.
               </p>
             </div>
 
