@@ -111,7 +111,7 @@ function JourneysCarousel({ journeys }: { journeys: Journey[] }) {
             </div>
             <h3 className="font-serif text-lg mb-1">{journey.title}</h3>
             <div className="flex items-baseline justify-between">
-              <p className="text-xs text-muted-foreground tracking-wide">
+              <p className="text-xs text-foreground/70 tracking-wide">
                 {journey.durationDays} Days
               </p>
             </div>
@@ -446,7 +446,7 @@ export default function JourneyDetailContent({
                     <DayImage src={day.imageUrl} alt={`Day ${day.dayNumber} - ${day.cityName}`} />
                   )}
 
-                  <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-3">
+                  <p className="text-xs tracking-[0.2em] uppercase text-foreground/70 mb-3">
                     Day {day.dayNumber}
                   </p>
 
@@ -454,7 +454,7 @@ export default function JourneyDetailContent({
                     {day.cityName}
                   </h2>
 
-                  <p className="text-muted-foreground leading-relaxed text-lg">
+                  <p className="text-foreground/75 leading-relaxed text-lg">
                     {linkGlossaryTermsText(day.description)}
                   </p>
                 </div>
@@ -553,7 +553,7 @@ export default function JourneyDetailContent({
         <section className="bg-[#c8c4b8]/30 py-20 md:py-28">
           <div className="px-8 md:px-10 lg:px-14">
             <div className="text-center mb-14 md:mb-16">
-              <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/30 mb-3">
+              <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/55 mb-3">
                 Explore More
               </p>
               <h2 className="font-serif text-2xl md:text-[1.75rem] text-foreground/80">
@@ -573,7 +573,7 @@ export default function JourneyDetailContent({
                       />
                     )}
                   </div>
-                  <p className="text-[10px] text-foreground/40 mb-1.5">
+                  <p className="text-[10px] text-foreground/60 mb-1.5">
                     {journey.durationDays} Days
                   </p>
                   <h3 className="text-[12px] tracking-[0.04em] uppercase leading-[1.35] text-foreground group-hover:text-foreground/60 transition-colors duration-500">
@@ -586,7 +586,7 @@ export default function JourneyDetailContent({
             <div className="text-center mt-12">
               <Link
                 href="/journeys"
-                className="text-[11px] tracking-[0.15em] uppercase text-foreground/35 hover:text-foreground/60 transition-colors"
+                className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground transition-colors"
               >
                 All journeys
               </Link>

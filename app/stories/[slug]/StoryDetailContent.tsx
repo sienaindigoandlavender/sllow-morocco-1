@@ -407,7 +407,7 @@ export default function StoryDetailContent({
         <section className="bg-[#c8c4b8]/30 py-20 md:py-28">
           <div className="px-8 md:px-16 lg:px-20">
             <div className="text-center mb-14 md:mb-16">
-              <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/50 mb-3">
+              <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/60 mb-3">
                 Keep Reading
               </p>
               <h2 className="font-serif text-2xl md:text-[1.75rem] text-foreground/80">
@@ -430,7 +430,7 @@ export default function StoryDetailContent({
                     )}
                   </div>
                   {s.category && (
-                    <p className="text-[10px] text-foreground/40 mb-1.5">
+                    <p className="text-[10px] text-foreground/60 mb-1.5">
                       {s.category}
                     </p>
                   )}
@@ -438,7 +438,7 @@ export default function StoryDetailContent({
                     {s.title}
                   </h3>
                   {s.excerpt && (
-                    <p className="text-[11.5px] text-foreground/45 leading-[1.5] mt-1 line-clamp-2">
+                    <p className="text-[11.5px] text-foreground/65 leading-[1.5] mt-1 line-clamp-2">
                       {s.excerpt}
                     </p>
                   )}
@@ -485,7 +485,7 @@ export default function StoryDetailContent({
                       />
                     )}
                   </div>
-                  <p className="text-[10px] text-foreground/40 mb-1.5">
+                  <p className="text-[10px] text-foreground/60 mb-1.5">
                     {journey.duration && journey.duration > 0
                       ? `${journey.duration}-Day Journey`
                       : "Private Journey"}
@@ -539,7 +539,7 @@ export default function StoryDetailContent({
                     )}
                   </div>
                   {p.category && (
-                    <p className="text-[10px] text-foreground/40 mb-1.5">
+                    <p className="text-[10px] text-foreground/60 mb-1.5">
                       {p.category}
                     </p>
                   )}
