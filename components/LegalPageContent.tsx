@@ -49,8 +49,10 @@ export default function LegalPageContent({
     return (
       <div className="min-h-screen bg-background text-foreground pt-32 pb-24">
         <div className="container mx-auto px-6 lg:px-16 max-w-3xl">
+          <h1 className="font-serif text-4xl md:text-5xl text-foreground mb-8">
+            {fallbackTitle}
+          </h1>
           <div className="animate-pulse space-y-6">
-            <div className="h-10 bg-foreground/5 rounded w-1/3" />
             <div className="h-4 bg-foreground/5 rounded w-full" />
             <div className="h-4 bg-foreground/5 rounded w-5/6" />
             <div className="h-4 bg-foreground/5 rounded w-4/6" />

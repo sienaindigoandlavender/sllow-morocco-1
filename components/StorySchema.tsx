@@ -24,9 +24,10 @@ export default function StorySchema({
     "description": excerpt,
     "image": heroImage,
     "author": {
-      "@type": "Person",
+      "@type": "Organization",
       "name": "Slow Morocco",
-      "url": "https://www.slowmorocco.com/about"
+      "url": "https://www.slowmorocco.com",
+      "@id": "https://www.slowmorocco.com/#organization"
     },
     "publisher": {
       "@type": "Organization",

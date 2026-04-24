@@ -7,6 +7,7 @@ import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import { linkGlossaryTermsText } from "@/lib/glossary-linker";
 import ShareTools from "@/components/ShareTools";
 import JourneyLetter from "@/components/JourneyLetter";
+import TouristTripSchema from "@/components/seo/TouristTripSchema";
 
 
 
@@ -176,10 +177,28 @@ export default function JourneyDetailContent({
   nextJourney,
 }: JourneyDetailContentProps) {
 
+  const tripSchema = (
+    <TouristTripSchema
+      journey={{
+        title: journey.title,
+        slug: journey.slug,
+        description: journey.description || journey.arcDescription,
+        heroImage: journey.heroImage || undefined,
+        durationDays: journey.durationDays || 7,
+        duration: journey.duration || `${journey.durationDays || 7} days`,
+        startCity: journey.startCity || "Marrakech",
+        destinations: journey.destinations || undefined,
+        price: journey.price || undefined,
+        epicPrice: journey.epicPrice || undefined,
+      }}
+    />
+  );
+
   // EPIC Journey Layout
   if (journey.journeyType === 'epic') {
     return (
       <div className="bg-background min-h-screen text-foreground">
+        {tripSchema}
         {/* Hero Image */}
         <section className="relative h-[70vh] md:h-[80vh]">
           {journey.heroImage ? (
@@ -382,6 +401,7 @@ export default function JourneyDetailContent({
   // Regular Journey Layout
   return (
     <div className="bg-background min-h-screen">
+      {tripSchema}
       {/* Hero Image with title overlay */}
       <section className="relative h-[100svh] min-h-[600px] bg-[#f0f0f0]">
         {journey.heroImage && (

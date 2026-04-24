@@ -440,6 +440,7 @@ export default function MoroccoContent({ cities, stories, cityImages = {} }: Pro
               { href: "/morocco/cooking-class", title: "Moroccan cooking class", desc: "The spice logic, the tagine layers, the couscous technique." },
               { href: "/morocco/souk-guide", title: "Souk navigation", desc: "The spatial logic of the medina. What to buy and how to bargain." },
               { href: "/morocco/desert-camp", title: "Desert camp", desc: "Erg Chebbi vs Erg Chigaga. What a night in the Sahara actually involves." },
+              { href: "/overnight/agafay-desert", title: "Agafay overnight", desc: "Stone desert 40 minutes from Marrakech. A one-night taste of silence when the Sahara is too far." },
               { href: "/morocco/atlas-trekking", title: "Atlas trekking", desc: "From Ourika day hikes to the Toubkal summit (4,167m)." },
               { href: "/morocco/surfing", title: "Surfing the Atlantic", desc: "Taghazout, Essaouira, Dakhla. Season, levels, what each offers." },
             ].map((guide) => (

@@ -241,6 +241,7 @@ export default function BestTimeToVisitPage() {
           <div className="flex flex-wrap gap-4">
             <Link href="/morocco/travel-guide" className="text-sm text-foreground/50 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Morocco travel guide →</Link>
             <Link href="/morocco/is-morocco-safe" className="text-sm text-foreground/50 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Is Morocco safe? →</Link>
+            <Link href="/dossiers/bird-atlas" className="text-sm text-foreground/50 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Bird atlas — migration windows →</Link>
             <Link href="/start-here" className="text-sm text-foreground/50 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Get your orientation →</Link>
           </div>
         </div>
