@@ -7,6 +7,10 @@ export default function robots(): MetadataRoute.Robots {
       // /darija/ disallowed: all 11,580 paths redirect to darija.io (external).
       // Blocking stops crawl budget waste and clears "crawled - not indexed" accumulation.
       // /_next/static/ disallowed: CSS/JS build artifacts with Vercel dpl fingerprints.
+      // /darija/ disallowed: ~10,000 dictionary pages migrated to darija.io (March 2026).
+      // Google indexed them during Feb-Mar 2026. They 301 to darija.io and will
+      // drop from GSC "page with redirect" count as Google processes the 301s over ~4-8 weeks.
+      // No action needed — this is expected post-migration behavior.
       {
         userAgent: 'Googlebot',
         allow: '/',

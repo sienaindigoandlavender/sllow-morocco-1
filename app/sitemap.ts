@@ -322,7 +322,6 @@ const STATIC_PAGES = [
   { path: '/day-trips', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/guides', priority: 0.6, changeFrequency: 'monthly' as const },
   { path: '/glossary', priority: 0.7, changeFrequency: 'monthly' as const },
-  { path: '/jewish-heritage-morocco', priority: 0.8, changeFrequency: 'monthly' as const },
   { path: '/morocco-world-cup-2030', priority: 0.8, changeFrequency: 'monthly' as const },
   { path: '/overnight/agafay-desert', priority: 0.8, changeFrequency: 'monthly' as const },
   { path: '/sahara-tour-from-marrakech', priority: 0.9, changeFrequency: 'monthly' as const },
