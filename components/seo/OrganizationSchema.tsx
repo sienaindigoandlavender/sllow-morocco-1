@@ -4,7 +4,7 @@ export default function OrganizationSchema() {
     "@type": "Organization",
     "@id": "https://www.slowmorocco.com/#organization",
     name: "Slow Morocco",
-    alternateName: ["Slow Morocco Travel", "Moroccan Cultural Authority"],
+    alternateName: ["Slow Morocco Travel"],
     url: "https://www.slowmorocco.com",
     logo: {
       "@type": "ImageObject",
@@ -121,11 +121,18 @@ export default function OrganizationSchema() {
       "Ethical Tourism",
       "Slow Travel Movement",
     ],
-    // Additional trust signals
-    award: "20+ years of authentic Moroccan network building",
-    ethicsPolicy: "No commission-based recommendations. No cousin's carpet shop. No tourist tagine rooftops.",
-    keywords:
-      "Transformative Travel, Moroccan Cultural Authority, Anti-Tourism, Slow Travel Morocco, Private Morocco Tours, Amazigh Culture, Gnawa Music, Authentic Morocco, Cultural Immersion, Ethical Tourism",
+    keywords: [
+      "Transformative Travel",
+      "Moroccan Cultural Authority",
+      "Anti-Tourism",
+      "Slow Travel Morocco",
+      "Private Morocco Tours",
+      "Amazigh Culture",
+      "Gnawa Music",
+      "Authentic Morocco",
+      "Cultural Immersion",
+      "Ethical Tourism",
+    ],
   };
 
   return (

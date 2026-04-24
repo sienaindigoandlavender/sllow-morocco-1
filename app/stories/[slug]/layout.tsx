@@ -36,16 +36,14 @@ export async function generateMetadata({
       description: description,
       url: `https://www.slowmorocco.com/stories/${slug}`,
       type: "article",
-      images: heroImage
-        ? [
-            {
-              url: heroImage,
-              width: 1200,
-              height: 630,
-              alt: title,
-            },
-          ]
-        : undefined,
+      images: [
+        {
+          url: heroImage || "https://www.slowmorocco.com/og-image.jpg",
+          width: 1200,
+          height: 630,
+          alt: heroImage ? title : "Slow Morocco — Private Journeys Through Morocco",
+        },
+      ],
       ...(story.created_at && {
         publishedTime: story.created_at,
       }),
@@ -54,7 +52,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: `${title} | Slow Morocco`,
       description: description,
-      images: heroImage ? [heroImage] : undefined,
+      images: [heroImage || "https://www.slowmorocco.com/og-image.jpg"],
     },
     alternates: {
       canonical: `https://www.slowmorocco.com/stories/${slug}`,

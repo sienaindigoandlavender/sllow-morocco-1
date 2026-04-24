@@ -91,6 +91,7 @@ export default function RootLayout({
             gtag('config', 'G-CSBQECNF60');
           `}
         </Script>
+        <link rel="alternate" type="text/plain" title="AI-readable content index" href="/llms.txt" />
       </head>
       <body>
         <StructuredData />

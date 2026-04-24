@@ -7,6 +7,7 @@ import ShareTools from "@/components/ShareTools";
 import SeasonalBadge from "@/components/SeasonalBadge";
 import dynamic from "next/dynamic";
 import NewsletterCapture from "@/components/NewsletterCapture";
+import ArticleSchema from "@/components/seo/ArticleSchema";
 
 const StoryMapRenderer = dynamic(() => import("@/components/StoryMapRenderer"), { ssr: false });
 
@@ -149,6 +150,16 @@ export default function StoryDetailContent({
     <div className="bg-background text-foreground min-h-screen">
       {/* JSON-LD */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
+      <ArticleSchema
+        story={{
+          title: story.title,
+          slug: story.slug,
+          excerpt: story.excerpt || story.subtitle || undefined,
+          heroImage: story.heroImage || undefined,
+          category: story.category || undefined,
+          author: "Slow Morocco",
+        }}
+      />
 
       {/* ══════════════════════════════════════════════════════════════
           HERO — Full-bleed image with title overlaid (Kinfolk style)

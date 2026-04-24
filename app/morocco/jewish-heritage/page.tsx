@@ -46,6 +46,7 @@ export default function JewishHeritagePage() {
         </div>
         <div className="flex flex-wrap gap-4 pt-4 border-t border-foreground/[0.08]">
           <Link href="/stories/jewish-heritage-morocco" className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Read: Jewish Morocco →</Link>
+          <Link href="/jewish-heritage-morocco" className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Interactive map: 60+ sites →</Link>
           <Link href="/places/bayt-dakira" className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Bayt Dakira, Essaouira →</Link>
         </div>
       </div>
