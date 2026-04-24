@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     "Morocco Jewish tour",
     "Mohammed V Jews Morocco",
   ],
-  alternates: { canonical: `${BASE_URL}/jewish-heritage-morocco` },
+  alternates: { canonical: `${BASE_URL}/stories/jewish-heritage-morocco` },
   openGraph: {
     title: "Jewish Heritage of Morocco — Interactive Map",
     description:
