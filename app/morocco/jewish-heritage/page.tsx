@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Jewish Heritage in Morocco: Mellah, Synagogues and History",
   description: "Morocco had one of the oldest and most significant Jewish communities in the world. The Mellah quarters, ancient synagogues, and the Diaspora Museum in Casablanca. A guide for visitors.",
-  alternates: { canonical: "https://www.slowmorocco.com/morocco/jewish-heritage" },
+  alternates: { canonical: "https://www.slowmorocco.com/stories/jewish-heritage-morocco" },
 };
 
 export default function JewishHeritagePage() {

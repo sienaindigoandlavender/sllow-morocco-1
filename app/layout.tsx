@@ -55,9 +55,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  alternates: {
-    canonical: "https://www.slowmorocco.com",
-  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
