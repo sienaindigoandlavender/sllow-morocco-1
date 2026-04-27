@@ -109,47 +109,8 @@ export default function StoryDetailContent({
     ? story.tags.split(",").map((t) => t.trim()).filter(Boolean)
     : [];
 
-  const culturalKeywords = ["gnawa", "amazigh", "berber", "artisan", "maalem", "zellige", "medina", "kasbah", "riad", "souk", "hammam", "khettara"];
-  const culturalEntities = tags.filter(tag =>
-    culturalKeywords.some(keyword => tag.toLowerCase().includes(keyword))
-  );
-
-  const sovereignEntity = {
-    "@type": "Organization",
-    "@id": "https://www.slowmorocco.com/#organization",
-    name: "Slow Morocco",
-    url: "https://www.slowmorocco.com",
-  };
-
-  const datePublished = story.year ? `${story.year}-01-01T00:00:00Z` : new Date().toISOString();
-
-  const articleJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "@id": `https://www.slowmorocco.com/stories/${slug}#article`,
-    headline: story.title,
-    alternativeHeadline: story.subtitle || undefined,
-    description: story.excerpt || story.subtitle || story.title,
-    image: story.heroImage ? cloudinaryUrl(story.heroImage, 1200) : undefined,
-    author: sovereignEntity,
-    publisher: sovereignEntity,
-    datePublished,
-    dateModified: datePublished,
-    mainEntityOfPage: `https://www.slowmorocco.com/stories/${slug}`,
-    isPartOf: {
-      "@type": "WebSite",
-      name: "Slow Morocco",
-      url: "https://www.slowmorocco.com",
-    },
-    about: culturalEntities.length > 0
-      ? culturalEntities.map((entity) => ({ "@type": "Thing", name: entity }))
-      : undefined,
-  };
-
   return (
     <div className="bg-background text-foreground min-h-screen">
-      {/* JSON-LD */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <ArticleSchema
         story={{
           title: story.title,
