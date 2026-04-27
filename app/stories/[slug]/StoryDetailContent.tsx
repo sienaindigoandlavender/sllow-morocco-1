@@ -333,6 +333,17 @@ export default function StoryDetailContent({
           )}
         </footer>
 
+        {/* Ecosystem: Practical questions on Derb */}
+        <div className="mt-12 pt-8 border-t border-foreground/[0.08]">
+          <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 mb-4">Practical questions</p>
+          <div className="flex flex-wrap gap-3">
+            <a href="https://derb.so" target="_blank" rel="noopener noreferrer"
+               className="text-sm text-foreground/50 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">
+              Derb — Urban Reference for Morocco →
+            </a>
+          </div>
+        </div>
+
       </article>
 
       {/* ══════════════════════════════════════════════════════════════
