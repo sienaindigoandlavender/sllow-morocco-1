@@ -610,6 +610,7 @@ const nextConfig = {
       { source: '/stories/shadow-moucharabieh', destination: '/stories', permanent: true },
       { source: '/stories/tea-ceremony', destination: '/stories', permanent: true },
       { source: '/stories/water-equation', destination: '/stories', permanent: true },
+      { source: '/stories/wildlife-atlas', destination: '/stories/wildlife-atlas-morocco', permanent: true },
 
       // Missing redirects — April 8, 2026
       { source: '/tetouan', destination: '/destinations', permanent: true },
