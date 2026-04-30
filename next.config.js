@@ -409,13 +409,10 @@ const nextConfig = {
       
       // Missing stories — GSC 404 cleanup April 2026
       // /stories/gladiator-country is a live story — do NOT redirect
-      { source: '/stories/14km-gap', destination: '/stories', permanent: true },
-      { source: '/stories/the-free-people', destination: '/stories', permanent: true },
       { source: '/stories/solar-compass', destination: '/stories', permanent: true },
       { source: '/stories/marriages-divorces-morocco', destination: '/stories', permanent: true },
       { source: '/stories/the-tea-road', destination: '/stories', permanent: true },
       { source: '/stories/amazigh-identity', destination: '/stories/amazigh-identity-map', permanent: true },
-      { source: '/stories/weather-portraits', destination: '/stories', permanent: true },
       { source: '/stories/the-stone-language', destination: '/stories', permanent: true },
       { source: '/stories/marrakech-medina-guide', destination: '/stories', permanent: true },
       { source: '/stories/spice-routes', destination: '/stories', permanent: true },
@@ -613,7 +610,6 @@ const nextConfig = {
       { source: '/stories/shadow-moucharabieh', destination: '/stories', permanent: true },
       { source: '/stories/tea-ceremony', destination: '/stories', permanent: true },
       { source: '/stories/water-equation', destination: '/stories', permanent: true },
-      { source: '/stories/wildlife-atlas', destination: '/stories', permanent: true },
 
       // Missing redirects — April 8, 2026
       { source: '/tetouan', destination: '/destinations', permanent: true },
