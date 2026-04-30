@@ -173,7 +173,7 @@ const serviceSchema = {
     name: "Slow Morocco",
     url: "https://www.slowmorocco.com",
     sameAs: [
-      "https://www.dancingwiththelions.com",
+      "https://www.dancewithlions.com",
       "https://www.slowmorocco.com"
     ],
   },
@@ -252,7 +252,7 @@ const webPageSchema = {
     "@type": "Organization",
     name: "Slow Morocco",
     url: "https://www.slowmorocco.com",
-    sameAs: ["https://www.dancingwiththelions.com"]
+    sameAs: ["https://www.dancewithlions.com"]
   },
 };
 

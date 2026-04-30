@@ -217,7 +217,7 @@ Slow Morocco is one title in the Dancing with Lions catalogue. Other titles shar
 - **Darija Dictionary** (dharija.space) — 10,000+ words, machine-readable.
 - **Riad di Siena** (riaddisiena.com) — Boutique guesthouse. Sanctuary voice.
 - **Tilwen** — Moroccan rug e-commerce.
-- **DWL Data Platform** (dancingwiththelions.com) — 173 intelligence modules on Africa.
+- **DWL Data Platform** (dancewithlions.com) — 173 intelligence modules on Africa.
 
 Do not modify anything related to other properties unless explicitly asked.
 

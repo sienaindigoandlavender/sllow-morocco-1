@@ -83,7 +83,7 @@ const pageJsonLd = {
     "@type": "Person",
     name: "Slow Morocco",
     jobTitle: "Publisher",
-    worksFor: { "@type": "Organization", name: "Dancing with Lions", url: "https://www.dancingwiththelions.com" },
+    worksFor: { "@type": "Organization", name: "Dancing with Lions", url: "https://www.dancewithlions.com" },
   },
   publisher: {
     "@type": "Organization",
@@ -92,7 +92,7 @@ const pageJsonLd = {
     parentOrganization: {
       "@type": "Organization",
       name: "Dancing with Lions",
-      url: "https://www.dancingwiththelions.com",
+      url: "https://www.dancewithlions.com",
     },
   },
   about: { "@type": "Country", name: "Morocco" },
@@ -191,7 +191,7 @@ const datasetJsonLd = {
   creator: {
     "@type": "Organization",
     name: "Dancing with Lions",
-    url: "https://www.dancingwiththelions.com",
+    url: "https://www.dancewithlions.com",
   },
   keywords: "Morocco, safety, infrastructure, demographics, World Cup 2030, climate, flights, cost of living",
   spatialCoverage: { "@type": "Place", name: "Morocco" },

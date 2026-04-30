@@ -245,7 +245,7 @@ export default function Footer() {
       <section className="py-2.5 bg-[#080808]">
         <div className="container mx-auto px-8 md:px-16 lg:px-20">
           <p className="text-[9px] tracking-[0.15em] uppercase text-white/50 text-center">
-            Powered by <a href="https://www.dancingwiththelions.com" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors">Dancing with Lions</a>
+            Powered by <a href="https://www.dancewithlions.com" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors">Dancing with Lions</a>
           </p>
         </div>
       </section>

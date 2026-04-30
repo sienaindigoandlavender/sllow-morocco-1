@@ -627,7 +627,7 @@ export default function MoroccoLifeContent() {
 
             <div className="border-t border-[#e5e5e5] pt-6">
               <p className="text-[10px] font-mono text-[#aaa] leading-relaxed">
-                Compiled by Dancing with Lions · dancingwiththelions.com · Data sourced from World Bank, IEP, Numbeo, HCP Morocco, ANRT, IMF, and official government sources · Last reviewed March 2026 · © Dancing with Lions 2026
+                Compiled by Dancing with Lions · dancewithlions.com · Data sourced from World Bank, IEP, Numbeo, HCP Morocco, ANRT, IMF, and official government sources · Last reviewed March 2026 · © Dancing with Lions 2026
               </p>
             </div>
           </section>
