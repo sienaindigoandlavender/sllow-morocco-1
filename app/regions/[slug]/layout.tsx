@@ -21,7 +21,7 @@ export default async function RegionLayout({
     "publisher": {
       "@type": "Organization",
       "name": "Slow Morocco",
-      "sameAs": [BASE_URL, "https://www.dancingwiththelions.com"],
+      "sameAs": [BASE_URL, "https://www.dancewithlions.com"],
     },
     "about": {
       "@type": "Place",

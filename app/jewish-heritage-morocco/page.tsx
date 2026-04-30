@@ -68,7 +68,7 @@ const jsonLd = {
     parentOrganization: {
       "@type": "Organization",
       name: "Dancing with Lions",
-      url: "https://www.dancingwithlions.com",
+      url: "https://www.dancewithlions.com",
     },
   },
   author: {

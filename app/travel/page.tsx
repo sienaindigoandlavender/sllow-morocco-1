@@ -52,7 +52,7 @@ const howToJsonLd = {
     "@type": "Person",
     name: "Slow Morocco",
     jobTitle: "Publisher",
-    worksFor: { "@type": "Organization", name: "Dancing with Lions", url: "https://www.dancingwiththelions.com" },
+    worksFor: { "@type": "Organization", name: "Dancing with Lions", url: "https://www.dancewithlions.com" },
   },
   publisher: {
     "@type": "Organization",
@@ -190,7 +190,7 @@ const articleJsonLd = {
     parentOrganization: {
       "@type": "Organization",
       name: "Dancing with Lions",
-      url: "https://www.dancingwiththelions.com",
+      url: "https://www.dancewithlions.com",
     },
   },
   about: { "@type": "Country", name: "Morocco" },
