@@ -18,6 +18,7 @@ interface Story {
   category?: string;
   sourceType?: string;
   heroImage?: string;
+  heroImageAlt?: string;
   heroCaption?: string;
   excerpt?: string;
   body?: string;
@@ -129,7 +130,7 @@ export default function StoryDetailContent({
         <section className="relative h-[100svh] min-h-[600px]">
           <img
             src={cloudinaryUrl(story.heroImage, 1920)}
-            alt={story.title}
+            alt={story.heroImageAlt || story.title}
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/15" />

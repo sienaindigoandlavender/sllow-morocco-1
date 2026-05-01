@@ -53,6 +53,7 @@ interface Story {
   category?: string;
   sourceType?: string;
   heroImage?: string;
+  heroImageAlt?: string;
   heroCaption?: string;
   excerpt?: string;
   body?: string;
@@ -82,6 +83,7 @@ async function getStoryData(slug: string) {
     category: storyData.category ?? undefined,
     sourceType: storyData.source_type ?? undefined,
     heroImage: storyData.hero_image ?? undefined,
+    heroImageAlt: storyData.hero_image_alt ?? undefined,
     heroCaption: storyData.hero_caption ?? undefined,
     excerpt: storyData.excerpt ?? undefined,
     body: storyData.body ? storyData.body.replace(/<br\s*\/?>/gi, '\n') : undefined,

@@ -603,6 +603,7 @@ export interface Story {
   category: string | null;
   source_type: string | null;
   hero_image: string | null;
+  hero_image_alt: string | null;
   mj_prompt: string | null;
   hero_caption: string | null;
   excerpt: string | null;
