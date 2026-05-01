@@ -660,6 +660,8 @@ export interface Story {
     url: string;
     type?: string;
   }> | null;
+  index_status: 'index' | 'noindex' | 'redirect' | null;
+  redirect_to: string | null;
   created_at: string;
   updated_at: string;
 }
