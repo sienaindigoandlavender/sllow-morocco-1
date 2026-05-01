@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { Metadata } from "next";
 import { getStoryBySlug, getStories, getJourneys, getStoryImages, getPlaces } from "@/lib/supabase";
 import { findRelatedJourneys } from "@/lib/content-matcher";
@@ -7,6 +7,14 @@ import StoryDetailContent from "./StoryDetailContent";
 export const revalidate = 3600;
 
 const BASE_URL = "https://www.slowmorocco.com";
+
+// redirect_to may be a full URL, an absolute path, or a bare story slug.
+function resolveRedirectTarget(value: string): string {
+  const v = value.trim();
+  if (/^https?:\/\//i.test(v)) return v;
+  if (v.startsWith("/")) return v;
+  return `/stories/${v}`;
+}
 
 export async function generateMetadata({
   params,
@@ -20,9 +28,12 @@ export async function generateMetadata({
   const title = `${story.title} | Slow Morocco`;
   const description = story.excerpt || story.subtitle || `${story.title} — a cultural essay by Slow Morocco.`;
 
+  const robots = story.index_status === "noindex" ? { index: false, follow: true } : undefined;
+
   return {
     title,
     description,
+    ...(robots ? { robots } : {}),
     alternates: { canonical: `${BASE_URL}/stories/${slug}` },
     openGraph: {
       title: story.title,
@@ -189,6 +200,13 @@ export default async function StoryPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+
+  // Honour index_status/redirect_to before doing any other fetching.
+  const rawStory = await getStoryBySlug(slug);
+  if (rawStory?.index_status === "redirect" && rawStory.redirect_to) {
+    permanentRedirect(resolveRedirectTarget(rawStory.redirect_to));
+  }
+
   const storyResult = await getStoryData(slug);
 
   if (!storyResult) {
