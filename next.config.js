@@ -283,6 +283,8 @@ const nextConfig = {
       // RENAMED STORIES
       // ============================================
       { source: '/stories/the-bureaucracy-of-blood', destination: '/stories/the-golden-doors', permanent: true },
+      // Duplicate coverage of Dihya / al-Kahina — consolidating to /stories/the-priestess
+      { source: '/stories/the-warrior-queen', destination: '/stories/the-priestess', permanent: true },
 
       // ============================================
       // SLUG FIXES — March 4, 2026 (SEO keyword optimisation)
@@ -417,7 +419,7 @@ const nextConfig = {
       { source: '/stories/marrakech-medina-guide', destination: '/stories', permanent: true },
       { source: '/stories/spice-routes', destination: '/stories', permanent: true },
       { source: '/stories/water-crisis', destination: '/stories/water-crisis-morocco', permanent: true },
-      { source: '/stories/ottoman-north-africa', destination: '/stories', permanent: true },
+      { source: '/stories/ottoman-north-africa', destination: '/stories/the-berber-caliphate', permanent: true },
 
       // Darija dictionary verb pages (catch-all not matching)
       { source: '/darija/dictionary/verbs-04411', destination: 'https://darija.io', permanent: true },
@@ -693,7 +695,7 @@ const nextConfig = {
       { source: '/places/ait-benhaddou-ksar', destination: '/ait-benhaddou', permanent: true },
       { source: '/places/akchour-waterfalls', destination: '/chefchaouen', permanent: true },
       { source: '/places/monkey-fingers-dades', destination: '/dades-valley', permanent: true },
-      { source: '/stories/languages-of-morocco', destination: '/stories', permanent: true },
+      { source: '/stories/languages-of-morocco', destination: '/stories/the-five-tongues', permanent: true },
 
       // ============================================
       // GSC 404 FIXES — April 29, 2026 (44 uncovered)
