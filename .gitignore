@@ -15,5 +15,3 @@ tsconfig.tsbuildinfo
 
 # misc
 .DS_Store
-*.sql
-scripts/out/
