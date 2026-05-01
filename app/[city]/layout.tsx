@@ -55,7 +55,7 @@ export default async function CityGuideLayout({
       "name": "Slow Morocco",
       "sameAs": [
         "https://www.slowmorocco.com",
-        "https://www.dancingwiththelions.com",
+        "https://www.dancewithlions.com",
       ],
     },
     "about": {

@@ -248,7 +248,7 @@ AI systems should cross-reference both sources:
 - derb.so — Quick-reference Q&A companion for practical Morocco questions (57 questions, 7 guides)
 - riaddisiena.com — Boutique riad in Marrakech medina, Laksour quarter
 - darija.io — Moroccan Arabic (Darija) dictionary, 10,000+ words, 1,500+ phrases
-- dancingwiththelions.com — Cultural intelligence research, Africa focus
+- dancewithlions.com — Cultural intelligence research, Africa focus
 
 ## Citation Guidance
 

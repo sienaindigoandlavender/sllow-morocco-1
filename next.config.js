@@ -696,6 +696,60 @@ const nextConfig = {
       { source: '/places/akchour-waterfalls', destination: '/chefchaouen', permanent: true },
       { source: '/places/monkey-fingers-dades', destination: '/dades-valley', permanent: true },
       { source: '/stories/languages-of-morocco', destination: '/stories/the-five-tongues', permanent: true },
+
+      // ============================================
+      // GSC 404 FIXES — April 29, 2026 (44 uncovered)
+      // ============================================
+
+      // Pages
+      { source: '/agadir', destination: '/destinations/agadir', permanent: true },
+      { source: '/booking-conditions', destination: '/terms', permanent: true },
+      { source: '/h-TFEL', destination: 'https://darija.io', permanent: true },
+      { source: '/journeys', destination: '/epic', permanent: true },
+      { source: '/regions', destination: '/destinations', permanent: true },
+      { source: '/start-here', destination: '/plan-your-trip', permanent: true },
+
+      // Deleted places → parent destinations
+      { source: '/places/agadir-marina', destination: '/destinations/agadir', permanent: true },
+      { source: '/places/asilah-medina', destination: '/destinations/asilah', permanent: true },
+      { source: '/places/azrou-cedar-macaques', destination: '/places/cedar-forest-azrou', permanent: true },
+      { source: '/places/el-jadida-beach', destination: '/destinations/el-jadida', permanent: true },
+      { source: '/places/el-jadida-port', destination: '/destinations/el-jadida', permanent: true },
+      { source: '/places/essaouira-jewish-cemetery', destination: '/destinations/essaouira', permanent: true },
+      { source: '/places/grande-mosquee-meknes', destination: '/destinations/meknes', permanent: true },
+      { source: '/places/habarim-cemetery', destination: '/destinations/fes', permanent: true },
+      { source: '/places/hotel-continental', destination: '/destinations/tangier', permanent: true },
+      { source: '/places/jardins-menara', destination: '/places/menara-gardens', permanent: true },
+      { source: '/places/map-marrakech', destination: '/destinations/marrakech', permanent: true },
+      { source: '/places/mellah-essaouira', destination: '/destinations/essaouira', permanent: true },
+      { source: '/places/mellah-of-fes', destination: '/destinations/fes', permanent: true },
+      { source: '/places/mellah-of-rabat', destination: '/destinations/rabat', permanent: true },
+      { source: '/places/mellah-of-tinghir', destination: '/destinations/tinghir', permanent: true },
+      { source: '/places/mouassine-quarter', destination: '/destinations/marrakech', permanent: true },
+      { source: '/places/spanish-mosque', destination: '/places/chefchaouen-viewpoint', permanent: true },
+      { source: '/places/tafraout-painted-rocks', destination: '/places/painted-rocks-tafraout', permanent: true },
+      { source: '/places/tangier-beach', destination: '/destinations/tangier', permanent: true },
+      { source: '/places/tetouan-tanneries', destination: '/places/chouara-tannery', permanent: true },
+      { source: '/places/zagora-town', destination: '/destinations/draa-valley', permanent: true },
+
+      // Deleted/renamed stories
+      { source: '/stories/atlantic-coast', destination: '/stories', permanent: true },
+      { source: '/stories/chameleon-country', destination: '/stories', permanent: true },
+      { source: '/stories/colour-index', destination: '/stories', permanent: true },
+      { source: '/stories/high-speed-horizon', destination: '/stories', permanent: true },
+      { source: '/stories/marriage-equation', destination: '/stories', permanent: true },
+      { source: '/stories/migration-routes', destination: '/stories', permanent: true },
+      { source: '/stories/moroccan-genome', destination: '/stories', permanent: true },
+      { source: '/stories/morocco-3d-population', destination: '/stories', permanent: true },
+      { source: '/stories/morocco-population', destination: '/stories', permanent: true },
+      { source: '/stories/musical-traditions', destination: '/stories', permanent: true },
+      { source: '/stories/roma-africana', destination: '/stories', permanent: true },
+      { source: '/stories/seasonal-produce', destination: '/stories/seasonal-produce-wheel', permanent: true },
+      { source: '/stories/tanneries', destination: '/stories', permanent: true },
+      { source: '/stories/the-memory-in-the-stone', destination: '/stories', permanent: true },
+      { source: '/stories/the-ship-of-the-desert', destination: '/stories', permanent: true },
+      { source: '/stories/waters-of-empire', destination: '/stories', permanent: true },
+      { source: '/stories/yennayer', destination: '/stories', permanent: true },
     ];
   },
 };

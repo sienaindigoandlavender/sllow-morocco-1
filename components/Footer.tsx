@@ -171,8 +171,9 @@ export default function Footer() {
                 <li><Link href="/journeys" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Journeys</Link></li>
                 <li><Link href="/stories/category/before-you-go" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Before You Go</Link></li>
                 <li><Link href="/glossary" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Glossary</Link></li>
-                <li><Link href="/darija" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Darija Dictionary</Link></li>
-                <li><a href="https://www.derb.so" target="_blank" rel="noopener noreferrer" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Derb — City Guide</a></li>
+                <li><a href="https://darija.io" target="_blank" rel="noopener noreferrer" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Darija Dictionary</a></li>
+                <li><a href="https://derb.so" target="_blank" rel="noopener noreferrer" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Derb — City Guide</a></li>
+                <li><a href="https://www.riaddisiena.com" target="_blank" rel="noopener noreferrer" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Riad di Siena</a></li>
               </ul>
             </div>
 
@@ -244,7 +245,7 @@ export default function Footer() {
       <section className="py-2.5 bg-[#080808]">
         <div className="container mx-auto px-8 md:px-16 lg:px-20">
           <p className="text-[9px] tracking-[0.15em] uppercase text-white/50 text-center">
-            Powered by <a href="https://www.dancingwiththelions.com" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors">Dancing with Lions</a>
+            Powered by <a href="https://www.dancewithlions.com" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors">Dancing with Lions</a>
           </p>
         </div>
       </section>

@@ -86,7 +86,7 @@ const jsonLd = {
         "parentOrganization": {
           "@type": "Organization",
           "name": "Dancing with Lions",
-          "url": "https://www.dancingwiththelions.com",
+          "url": "https://www.dancewithlions.com",
         },
       },
       "mainEntityOfPage": "https://www.slowmorocco.com/stories/bird-atlas-morocco",
