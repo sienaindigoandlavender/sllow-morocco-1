@@ -115,7 +115,7 @@ export default function StoryDetailContent({
         story={{
           title: story.title,
           slug: story.slug,
-          excerpt: story.excerpt || story.subtitle || undefined,
+          excerpt: story.excerpt || undefined,
           heroImage: story.heroImage || undefined,
           category: story.category || undefined,
           author: "Slow Morocco",

@@ -230,7 +230,7 @@ export default async function StoryPage({
     "@context": "https://schema.org",
     "@type": "Article",
     headline: story.title,
-    description: story.excerpt || story.subtitle || "",
+    description: story.excerpt || "",
     url: `${BASE_URL}/stories/${slug}`,
     dateModified: new Date().toISOString(),
     author: {
