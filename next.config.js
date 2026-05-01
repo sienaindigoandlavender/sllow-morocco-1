@@ -283,6 +283,8 @@ const nextConfig = {
       // RENAMED STORIES
       // ============================================
       { source: '/stories/the-bureaucracy-of-blood', destination: '/stories/the-golden-doors', permanent: true },
+      // Duplicate coverage of Dihya / al-Kahina — consolidating to /stories/the-priestess
+      { source: '/stories/the-warrior-queen', destination: '/stories/the-priestess', permanent: true },
 
       // ============================================
       // SLUG FIXES — March 4, 2026 (SEO keyword optimisation)

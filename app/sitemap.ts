@@ -223,6 +223,7 @@ const EXCLUDED_PLACE_SLUGS = [
 
 const EXCLUDED_STORY_SLUGS = [
   'languages-of-morocco',
+  'the-warrior-queen',
 ]
 
 const EXCLUDED_DESTINATION_SLUGS = [
