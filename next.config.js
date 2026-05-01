@@ -693,7 +693,7 @@ const nextConfig = {
       { source: '/places/ait-benhaddou-ksar', destination: '/ait-benhaddou', permanent: true },
       { source: '/places/akchour-waterfalls', destination: '/chefchaouen', permanent: true },
       { source: '/places/monkey-fingers-dades', destination: '/dades-valley', permanent: true },
-      { source: '/stories/languages-of-morocco', destination: '/stories', permanent: true },
+      { source: '/stories/languages-of-morocco', destination: '/stories/the-five-tongues', permanent: true },
     ];
   },
 };
