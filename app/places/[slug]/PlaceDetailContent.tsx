@@ -508,30 +508,30 @@ export default function PlaceDetailContent({
           <div className="container mx-auto px-6 lg:px-16">
             <div className="text-center mb-16">
               <p className="text-xs tracking-[0.2em] uppercase text-foreground/70 mb-4">Explore More</p>
-              <h2 className="text-2xl md:text-3xl tracking-[0.15em] font-light mb-4">Related Journeys</h2>
+              <h2 className="text-2xl md:text-3xl tracking-[0.15em] font-light mb-4">Multi-day journeys featuring this place</h2>
               <p className="text-foreground/70 max-w-xl mx-auto">
                 Curated routes that pass through {place.destination.charAt(0).toUpperCase() + place.destination.slice(1)}
               </p>
             </div>
-            <div className="relative max-w-5xl mx-auto">
-              <button onClick={() => { const c = document.getElementById('related-journeys-carousel'); if (c) c.scrollBy({ left: -300, behavior: 'smooth' }); }} className="absolute -left-4 top-1/3 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-background/80 border border-foreground/10 flex items-center justify-center hover:bg-background hover:border-foreground/20 transition-all opacity-70 hover:opacity-100" aria-label="Previous">
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><polyline points="10,3 5,8 10,13" /></svg>
-              </button>
-              <div id="related-journeys-carousel" className="flex gap-6 overflow-x-auto scrollbar-hide" style={{ scrollbarWidth: 'none' }}>
-                {relatedJourneys.map((journey: any) => (
-                  <Link key={journey.slug} href={`/journeys/${journey.slug}`} className="group flex-shrink-0 w-[280px]">
-                    <div className="relative aspect-[4/5] mb-4 overflow-hidden bg-[#e8e0d4]">
-                      {journey.heroImage && (<img src={cloudinaryUrl(journey.heroImage)} alt={journey.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-            />)}
-                    </div>
-                    <p className="text-xs tracking-[0.15em] uppercase text-foreground/70 mb-1">{journey.durationDays || journey.duration} Days</p>
-                    <h3 className="font-serif text-lg group-hover:opacity-70 transition-opacity">{journey.title}</h3>
-                  </Link>
-                ))}
-              </div>
-              <button onClick={() => { const c = document.getElementById('related-journeys-carousel'); if (c) c.scrollBy({ left: 300, behavior: 'smooth' }); }} className="absolute -right-4 top-1/3 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-background/80 border border-foreground/10 flex items-center justify-center hover:bg-background hover:border-foreground/20 transition-all opacity-70 hover:opacity-100" aria-label="Next">
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><polyline points="6,3 11,8 6,13" /></svg>
-              </button>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              {relatedJourneys.slice(0, 3).map((journey: any) => (
+                <Link key={journey.slug} href={`/journeys/${journey.slug}`} className="group">
+                  <div className="relative aspect-[4/5] mb-4 overflow-hidden bg-[#e8e0d4]">
+                    {journey.heroImage && (
+                      <img
+                        src={cloudinaryUrl(journey.heroImage)}
+                        alt={journey.title}
+                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      />
+                    )}
+                  </div>
+                  <p className="text-xs tracking-[0.15em] uppercase text-foreground/70 mb-1">{journey.durationDays || journey.duration} Days</p>
+                  <h3 className="font-serif text-lg group-hover:opacity-70 transition-opacity mb-2">{journey.title}</h3>
+                  {journey.description && (
+                    <p className="text-sm text-foreground/70 leading-relaxed line-clamp-3">{journey.description}</p>
+                  )}
+                </Link>
+              ))}
             </div>
             <div className="text-center mt-12">
               <Link href="/journeys" className="text-xs tracking-[0.2em] uppercase border-b border-foreground pb-1 hover:opacity-60 transition-opacity">View All Journeys</Link>
