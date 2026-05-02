@@ -246,8 +246,6 @@ const nextConfig = {
       // GSC 404 FIXES - Feb 24 2026
       // ============================================
       { source: '/es', destination: '/', permanent: true },
-      { source: '/es/', destination: '/', permanent: true },
-      { source: '/journal/Blog%20Post%20Title%20One-xfxd6', destination: '/', permanent: true },
       
       // ============================================
       // GSC 404 FIXES - Feb 2026
@@ -272,8 +270,7 @@ const nextConfig = {
       { source: '/who-we-are', destination: '/about', permanent: true },
       // Edge cases: trailing slashes, spaces, ampersands
       { source: '/stories/', destination: '/stories', permanent: true },
-      { source: '/journal/Blog%20Post%20Title%20One-xfxd6', destination: '/', permanent: true },
-      
+
       // ============================================
       // STORY → STORIES (URL consolidation)
       // ============================================
@@ -362,9 +359,6 @@ const nextConfig = {
       // URL encoding variant (space in filename)
       { source: '/journal/Blog Post Title One-xfxd6', destination: '/', permanent: true },
 
-      // 8-day variant missing from original batch
-      { source: '/8-day-the-writers-morocco-voices-in-the-light', destination: '/journeys', permanent: true },
-
       // ============================================
       // DARIJA → DARIJA.IO MIGRATION — March 26, 2026
       // Moves 10,000+ dictionary pages off slowmorocco.com
@@ -427,14 +421,6 @@ const nextConfig = {
 
       // Missing place slugs
       { source: '/places/ifrane', destination: '/ifrane', permanent: true },
-      { source: '/places/bab-bou-jeloud', destination: '/fes', permanent: true },
-
-      // Missing old page slugs
-      { source: '/getting-around-morocco', destination: '/morocco/getting-around', permanent: true },
-      { source: '/getting-to-morocco', destination: '/travel', permanent: true },
-      { source: '/morocco-travel-guide', destination: '/morocco/travel-guide', permanent: true },
-      { source: '/morocco-money-guide', destination: '/morocco/food-and-tipping', permanent: true },
-      { source: '/3-day-marrakech-to-fes-via-merzouga', destination: '/journeys', permanent: true },
 
       // ============================================
       // GSC "Crawled — not indexed" fixes — April 3, 2026
@@ -444,7 +430,6 @@ const nextConfig = {
       { source: '/sustainable-travel', destination: '/about', permanent: true },
       { source: '/what-to-expect', destination: '/plan-your-trip', permanent: true },
       { source: '/marrakech-2', destination: '/marrakech', permanent: true },
-      { source: '/journal', destination: '/stories', permanent: true },
       // Old journey slugs
       { source: '/the-compass-of-morocco', destination: '/journeys', permanent: true },
       { source: '/the-southern-loop-from-dunes-to-the-sea', destination: '/journeys', permanent: true },
@@ -518,7 +503,6 @@ const nextConfig = {
       { source: '/places/larache-souks', destination: '/places', permanent: true },
       { source: '/places/larache-spanish-quarter', destination: '/places', permanent: true },
       { source: '/places/loukkos-estuary', destination: '/places', permanent: true },
-      { source: '/places/macaal', destination: '/marrakech', permanent: true },
       { source: '/places/marshan-tangier', destination: '/tangier', permanent: true },
       { source: '/places/mausoleum-moulay-ali-cherif', destination: '/places', permanent: true },
       { source: '/places/medersa-sale', destination: '/places', permanent: true },
