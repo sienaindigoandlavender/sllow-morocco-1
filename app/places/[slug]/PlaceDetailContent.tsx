@@ -540,6 +540,35 @@ export default function PlaceDetailContent({
         </section>
       )}
 
+      {/* Nearby Places (standard layout — attraction layout renders its own above) */}
+      {!isAttraction && nearbyPlaces.length > 0 && (
+        <section className="py-16 md:py-20 bg-sand">
+          <div className="container mx-auto px-6 lg:px-16">
+            <div className="mb-10">
+              <p className="text-xs tracking-[0.2em] uppercase text-foreground/70 mb-3">Walking Distance</p>
+              <h2 className="font-serif text-2xl md:text-3xl">Nearby</h2>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {nearbyPlaces.map((np) => (
+                <Link key={np.slug} href={`/places/${np.slug}`} className="group">
+                  <div className="relative aspect-[4/3] mb-3 overflow-hidden bg-[#e8e0d4]">
+                    {np.heroImage && (
+                      <img
+                        src={cloudinaryUrl(np.heroImage)}
+                        alt={np.title}
+                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      />
+                    )}
+                  </div>
+                  <p className="text-xs tracking-[0.12em] uppercase text-foreground/70 mb-1">{np.category}</p>
+                  <h3 className="font-serif text-sm group-hover:opacity-70 transition-opacity">{np.title}</h3>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Sources */}
       {place.sources && (
         <section className="py-8 border-t border-border">
