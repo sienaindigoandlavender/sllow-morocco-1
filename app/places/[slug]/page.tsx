@@ -24,7 +24,7 @@ export async function generateMetadata({
   const title = isAttraction
     ? `${place.title}, Marrakech — Visitor Guide | Slow Morocco`
     : `${place.title} | Slow Morocco`;
-  const description = place.notes || place.excerpt || `${place.title}, ${place.destination || "Morocco"} — travel guide by Slow Morocco.`;
+  const description = place.excerpt || place.notes || `${place.title}, ${place.destination || "Morocco"} — travel guide by Slow Morocco.`;
 
   return {
     title,
