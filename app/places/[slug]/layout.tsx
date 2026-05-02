@@ -18,7 +18,8 @@ export async function generateMetadata({
 
   const title = place.title;
   const bodyText = place.body?.replace(/<[^>]*>/g, '') || '';
-  const description = bodyText.slice(0, 160) || 
+  const description = place.excerpt?.slice(0, 160) ||
+    bodyText.slice(0, 160) ||
     `Discover ${place.title} in ${place.destination || 'Morocco'} - a guide from Slow Morocco.`;
   const heroImage = place.hero_image ? convertDriveUrl(place.hero_image) : null;
 
