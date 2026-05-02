@@ -309,10 +309,9 @@ const nextConfig = {
       { source: '/stories/souk-decoded', destination: '/stories/moroccan-souk-guide', permanent: true },
 
       // Places
-      { source: '/places/ifrane-town', destination: '/ifrane', permanent: true },
       { source: '/places/toubkal-trailhead', destination: '/places/imlil-village', permanent: true },
       { source: '/places/volubilis-jewish-presence', destination: '/places/volubilis-jewish-history', permanent: true },
-      { source: '/places/musee-du-parfum', destination: '/places/museum-of-perfume-marrakech', permanent: true },
+      { source: '/places/musee-du-parfum', destination: '/destinations/marrakech', permanent: true },
       { source: '/places/macaal', destination: '/marrakech', permanent: true },
       { source: '/places/macaal-museum-marrakech', destination: '/marrakech', permanent: true },
       { source: '/places/slat-al-azama', destination: '/places', permanent: true },
@@ -358,7 +357,6 @@ const nextConfig = {
       { source: '/morocco-money-guide', destination: '/morocco/food-and-tipping', permanent: true },
       
       // Place pages that don't exist
-      { source: '/places/ifrane', destination: '/places/ifrane-morocco', permanent: true },
       { source: '/places/bab-bou-jeloud', destination: '/fes', permanent: true },
       
       // URL encoding variant (space in filename)
@@ -750,6 +748,12 @@ const nextConfig = {
       { source: '/stories/the-ship-of-the-desert', destination: '/stories', permanent: true },
       { source: '/stories/waters-of-empire', destination: '/stories', permanent: true },
       { source: '/stories/yennayer', destination: '/stories', permanent: true },
+
+      // ============================================
+      // DELETION REDIRECTS — May 2, 2026
+      // ============================================
+      { source: '/places/museum-of-perfume-marrakech', destination: '/destinations/marrakech', permanent: true },
+      { source: '/places/rose-valley-kelaat', destination: '/places/rose-valley', permanent: true },
     ];
   },
 };
