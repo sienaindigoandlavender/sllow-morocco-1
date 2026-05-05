@@ -738,6 +738,31 @@ const nextConfig = {
       // ============================================
       { source: '/places/museum-of-perfume-marrakech', destination: '/destinations/marrakech', permanent: true },
       { source: '/places/rose-valley-kelaat', destination: '/places/rose-valley', permanent: true },
+
+      // ============================================
+      // GSC 404 cleanup — May 5, 2026 (18 new sources; 125 of the 143 in
+      // the brief were already redirected and were skipped to avoid duplicates)
+      // ============================================
+      // Places — city-prefix slugs map to the live city guide; rest fall back to /places
+      { source: '/places/ait-benhaddou-sunrise', destination: '/ait-benhaddou', permanent: true },
+      { source: '/places/chaim-pinto-synagogue', destination: '/essaouira', permanent: true },
+      { source: '/places/dar-si-said', destination: '/marrakech', permanent: true },
+      { source: '/places/ibn-danan-synagogue', destination: '/fes', permanent: true },
+      { source: '/places/musee-patrimoine-immateriel', destination: '/marrakech', permanent: true },
+      { source: '/places/shrine-of-moulay-ighi', destination: '/places', permanent: true },
+      { source: '/places/shrine-of-rabbi-amram-ben-diwan', destination: '/places', permanent: true },
+      { source: '/places/tangier-port', destination: '/tangier', permanent: true },
+      { source: '/places/tetouan-mellah', destination: '/places', permanent: true },
+      { source: '/places/tomb-of-rabbi-shlomo-bel-hench', destination: '/places', permanent: true },
+      { source: '/places/volubilis-jewish-history', destination: '/places', permanent: true },
+      // Stories — destinations per the brief
+      { source: '/stories/argan-constellation', destination: '/stories', permanent: true },
+      { source: '/stories/automotive-industry', destination: '/stories', permanent: true },
+      { source: '/stories/bird-atlas', destination: '/dossiers/bird-atlas', permanent: true },
+      { source: '/stories/jewish-heritage', destination: '/jewish-heritage-morocco', permanent: true },
+      { source: '/stories/morocco-economy', destination: '/stories', permanent: true },
+      { source: '/stories/pulse-medina', destination: '/stories', permanent: true },
+      { source: '/stories/the-build', destination: '/stories', permanent: true },
     ];
   },
 };

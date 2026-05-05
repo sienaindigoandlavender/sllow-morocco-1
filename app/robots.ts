@@ -4,17 +4,17 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       // Google - explicitly allowed
-      // /darija/ disallowed: all 11,580 paths redirect to darija.io (external).
-      // Blocking stops crawl budget waste and clears "crawled - not indexed" accumulation.
-      // /_next/static/ disallowed: CSS/JS build artifacts with Vercel dpl fingerprints.
-      // /darija/ disallowed: ~10,000 dictionary pages migrated to darija.io (March 2026).
-      // Google indexed them during Feb-Mar 2026. They 301 to darija.io and will
-      // drop from GSC "page with redirect" count as Google processes the 301s over ~4-8 weeks.
-      // No action needed — this is expected post-migration behavior.
+      // /darija/* is now ALLOWED so Google can fetch it and follow the 301
+      // redirects to darija.io. Was previously blocked here, which made the
+      // pages "indexed though blocked" and stalled migration of ~10,000 dictionary
+      // pages off slowmorocco.com. Removing the disallow lets Google process
+      // the redirects normally — the URLs will deindex from slowmorocco.com
+      // and the link equity transfers to darija.io.
+      // /_next/static/ stays disallowed: CSS/JS build artifacts.
       {
         userAgent: 'Googlebot',
         allow: '/',
-        disallow: ['/api/', '/admin/', '/client/', '/proposal/', '/darija/', '/_next/static/'],
+        disallow: ['/api/', '/admin/', '/client/', '/proposal/', '/_next/static/'],
       },
       // AI Search Crawlers - full access to content + knowledge APIs
       {
