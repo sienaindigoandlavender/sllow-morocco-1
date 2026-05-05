@@ -11,7 +11,7 @@ Required env:
 
 Expected `pinterest_queue` columns (subset used here):
   id, queue_position, status, board_id, board_name,
-  title, description, link, image_url, alt_text,
+  pin_title, pin_description, link_url, image_url, alt_text,
   pinned_at, pinterest_pin_id, error_message
 """
 
@@ -91,8 +91,10 @@ def create_pin(access_token: str, row: dict[str, Any], board_id: str) -> dict[st
             "url": row["image_url"],
         },
     }
-    for src, dst in (("title", "title"), ("description", "description"),
-                     ("link", "link"), ("alt_text", "alt_text")):
+    for src, dst in (("pin_title", "title"),
+                     ("pin_description", "description"),
+                     ("link_url", "link"),
+                     ("alt_text", "alt_text")):
         if row.get(src):
             body[dst] = row[src]
 
