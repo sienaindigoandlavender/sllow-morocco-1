@@ -308,7 +308,7 @@ const nextConfig = {
       // Places
       { source: '/places/toubkal-trailhead', destination: '/places/imlil-village', permanent: true },
       { source: '/places/volubilis-jewish-presence', destination: '/places/volubilis-jewish-history', permanent: true },
-      { source: '/places/musee-du-parfum', destination: '/destinations/marrakech', permanent: true },
+      { source: '/places/musee-du-parfum', destination: '/marrakech', permanent: true },
       { source: '/places/macaal', destination: '/marrakech', permanent: true },
       { source: '/places/macaal-museum-marrakech', destination: '/marrakech', permanent: true },
       { source: '/places/slat-al-azama', destination: '/places', permanent: true },
@@ -692,27 +692,27 @@ const nextConfig = {
       { source: '/start-here', destination: '/plan-your-trip', permanent: true },
 
       // Deleted places → parent destinations
-      { source: '/places/agadir-marina', destination: '/destinations/agadir', permanent: true },
-      { source: '/places/asilah-medina', destination: '/destinations/asilah', permanent: true },
+      { source: '/places/agadir-marina', destination: '/agadir', permanent: true },
+      { source: '/places/asilah-medina', destination: '/destinations', permanent: true },
       { source: '/places/azrou-cedar-macaques', destination: '/places/cedar-forest-azrou', permanent: true },
-      { source: '/places/el-jadida-beach', destination: '/destinations/el-jadida', permanent: true },
-      { source: '/places/el-jadida-port', destination: '/destinations/el-jadida', permanent: true },
-      { source: '/places/essaouira-jewish-cemetery', destination: '/destinations/essaouira', permanent: true },
-      { source: '/places/grande-mosquee-meknes', destination: '/destinations/meknes', permanent: true },
-      { source: '/places/habarim-cemetery', destination: '/destinations/fes', permanent: true },
-      { source: '/places/hotel-continental', destination: '/destinations/tangier', permanent: true },
+      { source: '/places/el-jadida-beach', destination: '/destinations', permanent: true },
+      { source: '/places/el-jadida-port', destination: '/destinations', permanent: true },
+      { source: '/places/essaouira-jewish-cemetery', destination: '/essaouira', permanent: true },
+      { source: '/places/grande-mosquee-meknes', destination: '/meknes', permanent: true },
+      { source: '/places/habarim-cemetery', destination: '/fes', permanent: true },
+      { source: '/places/hotel-continental', destination: '/tangier', permanent: true },
       { source: '/places/jardins-menara', destination: '/places/menara-gardens', permanent: true },
-      { source: '/places/map-marrakech', destination: '/destinations/marrakech', permanent: true },
-      { source: '/places/mellah-essaouira', destination: '/destinations/essaouira', permanent: true },
-      { source: '/places/mellah-of-fes', destination: '/destinations/fes', permanent: true },
-      { source: '/places/mellah-of-rabat', destination: '/destinations/rabat', permanent: true },
-      { source: '/places/mellah-of-tinghir', destination: '/destinations/tinghir', permanent: true },
-      { source: '/places/mouassine-quarter', destination: '/destinations/marrakech', permanent: true },
+      { source: '/places/map-marrakech', destination: '/marrakech', permanent: true },
+      { source: '/places/mellah-essaouira', destination: '/essaouira', permanent: true },
+      { source: '/places/mellah-of-fes', destination: '/fes', permanent: true },
+      { source: '/places/mellah-of-rabat', destination: '/rabat', permanent: true },
+      { source: '/places/mellah-of-tinghir', destination: '/destinations', permanent: true },
+      { source: '/places/mouassine-quarter', destination: '/marrakech', permanent: true },
       { source: '/places/spanish-mosque', destination: '/places/chefchaouen-viewpoint', permanent: true },
       { source: '/places/tafraout-painted-rocks', destination: '/places/painted-rocks-tafraout', permanent: true },
-      { source: '/places/tangier-beach', destination: '/destinations/tangier', permanent: true },
+      { source: '/places/tangier-beach', destination: '/tangier', permanent: true },
       { source: '/places/tetouan-tanneries', destination: '/places/chouara-tannery', permanent: true },
-      { source: '/places/zagora-town', destination: '/destinations/draa-valley', permanent: true },
+      { source: '/places/zagora-town', destination: '/draa-valley', permanent: true },
 
       // Deleted/renamed stories
       { source: '/stories/atlantic-coast', destination: '/stories', permanent: true },
@@ -736,7 +736,7 @@ const nextConfig = {
       // ============================================
       // DELETION REDIRECTS — May 2, 2026
       // ============================================
-      { source: '/places/museum-of-perfume-marrakech', destination: '/destinations/marrakech', permanent: true },
+      { source: '/places/museum-of-perfume-marrakech', destination: '/marrakech', permanent: true },
       { source: '/places/rose-valley-kelaat', destination: '/places/rose-valley', permanent: true },
 
       // ============================================
