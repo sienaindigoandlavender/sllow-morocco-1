@@ -684,7 +684,6 @@ const nextConfig = {
       // ============================================
 
       // Pages
-      { source: '/agadir', destination: '/destinations/agadir', permanent: true },
       { source: '/booking-conditions', destination: '/terms', permanent: true },
       { source: '/h-TFEL', destination: 'https://darija.io', permanent: true },
       { source: '/journeys', destination: '/epic', permanent: true },
@@ -759,7 +758,7 @@ const nextConfig = {
       { source: '/stories/argan-constellation', destination: '/stories', permanent: true },
       { source: '/stories/automotive-industry', destination: '/stories', permanent: true },
       { source: '/stories/bird-atlas', destination: '/dossiers/bird-atlas', permanent: true },
-      { source: '/stories/jewish-heritage', destination: '/jewish-heritage-morocco', permanent: true },
+      { source: '/stories/jewish-heritage', destination: '/stories/jewish-heritage-morocco', permanent: true },
       { source: '/stories/morocco-economy', destination: '/stories', permanent: true },
       { source: '/stories/pulse-medina', destination: '/stories', permanent: true },
       { source: '/stories/the-build', destination: '/stories', permanent: true },

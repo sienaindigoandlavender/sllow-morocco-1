@@ -580,6 +580,23 @@ export default function PlaceDetailContent({
         </section>
       )}
 
+      {/* Back to destination guide */}
+      {place.destination && (
+        <section className="py-12 md:py-16 border-t border-foreground/10">
+          <div className="container mx-auto px-6 lg:px-16 text-center">
+            <Link
+              href={`/${place.destination.toLowerCase().replace(/\s+/g, '-')}`}
+              className="inline-flex items-center gap-2 text-foreground/70 hover:text-foreground transition-colors"
+            >
+              <ChevronLeft className="w-4 h-4" />
+              <span className="text-sm tracking-[0.15em] uppercase">
+                More in {place.destination.charAt(0).toUpperCase() + place.destination.slice(1)}
+              </span>
+            </Link>
+          </div>
+        </section>
+      )}
+
       {/* Prev / Next places */}
       {(prevPlace || nextPlace) && (
         <div className="border-t border-foreground/10">
