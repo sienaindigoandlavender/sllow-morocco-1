@@ -32,6 +32,8 @@ export async function generateMetadata({
   const dest = displayDestination(place.destination);
   // Title is bare; root layout's title.template ("%s | Slow Morocco") appends the brand.
   const title = dest ? `${place.title}, ${dest}` : place.title;
+  // OG title is richer than the SERP title — readable on social shares.
+  const ogTitle = dest ? `${place.title}, ${dest} — Slow Morocco` : `${place.title} — Slow Morocco`;
   const description = place.excerpt || place.notes || `${place.title}${dest ? `, ${dest}` : ""} — travel guide by Slow Morocco.`;
 
   return {
@@ -39,7 +41,7 @@ export async function generateMetadata({
     description: typeof description === "string" ? description.slice(0, 160) : "",
     alternates: { canonical: `${BASE_URL}/places/${slug}` },
     openGraph: {
-      title: place.title,
+      title: ogTitle,
       description: typeof description === "string" ? description.slice(0, 160) : "",
       url: `${BASE_URL}/places/${slug}`,
       siteName: "Slow Morocco",
