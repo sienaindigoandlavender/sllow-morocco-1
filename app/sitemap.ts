@@ -249,7 +249,6 @@ const EXCLUDED_DESTINATION_SLUGS = [
   'tangier-2',
   'taroudant',
   'tata',
-  'tetouan',
   'tiznit',
   'zagora-the-draa-valley',
 ]
