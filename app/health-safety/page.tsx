@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import LegalPageContent from "@/components/LegalPageContent";
 
 export const metadata: Metadata = {
-  title: "Health & Safety | Slow Morocco",
+  title: "Health & Safety",
   description:
     "Health and safety guidance for travelling in Morocco — vaccinations, water, sun protection, medical facilities, and how Slow Morocco keeps you safe.",
   alternates: {

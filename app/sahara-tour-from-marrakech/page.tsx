@@ -3,7 +3,7 @@ import Script from "next/script";
 import SaharaLandingContent from "./SaharaLandingContent";
 
 export const metadata: Metadata = {
-  title: "3-Day Sahara Desert Tour from Marrakech | Slow Morocco",
+  title: "3-Day Sahara Desert Tour from Marrakech",
   description: "Private 3-day desert journey from Marrakech through Ouarzazate, the Draa Valley, and into the Erg Chebbi dunes at Merzouga. €450 per person, minimum 2. Private driver, desert camp included.",
   alternates: { canonical: "https://www.slowmorocco.com/sahara-tour-from-marrakech" },
   openGraph: {

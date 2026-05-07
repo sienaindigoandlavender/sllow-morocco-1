@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Day Tours from Marrakech | Slow Morocco",
+  title: "Day Tours from Marrakech",
   description:
     "Private day trips from Marrakech. Essaouira, Atlas Mountains, Ouzoud Falls, and more. English-speaking driver, flexible itinerary, book online.",
   openGraph: {

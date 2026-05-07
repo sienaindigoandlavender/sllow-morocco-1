@@ -4,7 +4,7 @@ import { glossaryData, getAllTerms } from "@/lib/glossary-data";
 import NewsletterCapture from "@/components/NewsletterCapture";
 
 export const metadata: Metadata = {
-  title: "Moroccan Glossary | Slow Morocco",
+  title: "Moroccan Glossary",
   description: "Authoritative definitions for Moroccan geography, architecture, culture, and travel terminology. Desert types (erg, hammada, reg), architectural terms (riad, kasbah, medina), cultural vocabulary (Amazigh, Gnaoua, zellige).",
   keywords: [
     "Morocco glossary",

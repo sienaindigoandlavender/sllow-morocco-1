@@ -4,7 +4,7 @@ import JewishHeritageContent from "./JewishHeritageContent";
 const BASE_URL = "https://www.slowmorocco.com";
 
 export const metadata: Metadata = {
-  title: "Jewish Heritage of Morocco — Interactive Map of 60+ Sites | Slow Morocco",
+  title: "Jewish Heritage of Morocco — Interactive Map of 60+ Sites",
   description:
     "Explore 2,000 years of Jewish Morocco: 60+ synagogues, mellahs, cemeteries, pilgrimage shrines, and museums across 18 cities. From the oldest mellah in Fes (1438) to the only Jewish museum in the Arab world in Casablanca. Research by Dancing with Lions.",
   keywords: [

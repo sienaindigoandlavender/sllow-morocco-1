@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!cat) return {};
 
   return {
-    title: `${cat.label} — Stories — Slow Morocco`,
+    title: `${cat.label} — Stories`,
     description: cat.description,
     openGraph: {
       title: `${cat.label} — Slow Morocco`,

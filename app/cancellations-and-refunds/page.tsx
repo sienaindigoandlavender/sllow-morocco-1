@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import LegalPageContent from "@/components/LegalPageContent";
 
 export const metadata: Metadata = {
-  title: "Cancellations & Refunds | Slow Morocco",
+  title: "Cancellations & Refunds",
   description:
     "Cancellation policy and refund schedule for Slow Morocco journeys — clear terms, no surprises.",
   alternates: {

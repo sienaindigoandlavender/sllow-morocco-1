@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import LegalPageContent from "@/components/LegalPageContent";
 
 export const metadata: Metadata = {
-  title: "Intellectual Property | Slow Morocco",
+  title: "Intellectual Property",
   description:
     "Intellectual property policy for Slow Morocco — copyright, content licensing, photography usage, and attribution requirements for our cultural research.",
   alternates: {

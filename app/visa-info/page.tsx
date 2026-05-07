@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import LegalPageContent from "@/components/LegalPageContent";
 
 export const metadata: Metadata = {
-  title: "Visa Information | Slow Morocco",
+  title: "Visa Information",
   description:
     "Morocco visa and entry requirements — visa-free access for US, UK, EU, and Canadian citizens, passport validity rules, and border procedures.",
   alternates: {

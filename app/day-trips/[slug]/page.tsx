@@ -16,7 +16,7 @@ export async function generateMetadata({
   const trip = await getDayTripBySlug(slug);
   if (!trip) return { title: "Day Trip Not Found" };
 
-  const title = `${trip.title} | Day Trips | Slow Morocco`;
+  const title = `${trip.title} | Day Trips`;
   const description = trip.short_description || `${trip.title} — day trip from Marrakech by Slow Morocco.`;
 
   return {

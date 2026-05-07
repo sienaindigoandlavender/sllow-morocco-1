@@ -3,7 +3,7 @@ import FAQSchema from "@/components/seo/FAQSchema";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata: Metadata = {
-  title: "Morocco Journeys & Tours | Private Itineraries | Slow Morocco",
+  title: "Morocco Journeys & Tours | Private Itineraries",
   description: "Explore 100+ curated Morocco journeys: Sahara desert tours, Atlas Mountain trekking, Imperial Cities, Fes & Marrakech cultural tours, coastal escapes. Private, customizable itineraries with local guides. 2-21 day trips from €500.",
   keywords: [
     "Morocco tours",

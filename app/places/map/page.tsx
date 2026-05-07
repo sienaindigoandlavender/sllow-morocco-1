@@ -3,7 +3,7 @@ import { getPlaces } from "@/lib/supabase";
 import AllPlacesMap from "./AllPlacesMap";
 
 export const metadata: Metadata = {
-  title: "All Places on One Map | Slow Morocco",
+  title: "All Places on One Map",
   description:
     "Every place in the Slow Morocco atlas — Morocco mapped in one view. Medinas, kasbahs, oases, tanneries, shrines, souks, and more.",
   openGraph: {

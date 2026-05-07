@@ -25,7 +25,7 @@ export async function generateMetadata({
   const story = await getStoryBySlug(slug);
   if (!story) return { title: "Story Not Found" };
 
-  const title = `${story.title} | Slow Morocco`;
+  const title = `${story.title}`;
   const description = story.excerpt || story.subtitle || `${story.title} — a cultural essay by Slow Morocco.`;
 
   const robots = story.index_status === "noindex" ? { index: false, follow: true } : undefined;

@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Agafay Desert Overnight | Stone Desert Camp Near Marrakech | Slow Morocco",
+  title: "Agafay Desert Overnight | Stone Desert Camp Near Marrakech",
   description:
     "One night in Morocco's stone desert. Sunset camel ride, dinner under the stars, silence you can feel. Private luxury camp just 45 minutes from Marrakech.",
   openGraph: {

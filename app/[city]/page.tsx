@@ -31,8 +31,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const BASE_URL = "https://www.slowmorocco.com";
   const titleSuffix = destination.subtitle
-    ? `${destination.title} — ${destination.subtitle} | Slow Morocco`
-    : `${destination.title}, Morocco — Slow Morocco`;
+    ? `${destination.title} — ${destination.subtitle}`
+    : `${destination.title}, Morocco`;
   const description =
     destination.excerpt ||
     `Everything you need to know before you go to ${destination.title}. Places, stories, and cultural context from Slow Morocco.`;

@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!region) return {};
 
   return {
-    title: `${region.title} — Morocco Regions — Slow Morocco`,
+    title: `${region.title} — Morocco Regions`,
     description: region.description || region.subtitle || undefined,
     alternates: { canonical: `https://www.slowmorocco.com/regions/${params.slug}` },
     openGraph: {
