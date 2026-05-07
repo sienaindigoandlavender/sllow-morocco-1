@@ -597,7 +597,8 @@ const nextConfig = {
       { source: '/stories/wildlife-atlas', destination: '/stories/wildlife-atlas-morocco', permanent: true },
 
       // Missing redirects — April 8, 2026
-      { source: '/tetouan', destination: '/destinations', permanent: true },
+      // /tetouan redirect removed May 7 2026: /tetouan is now a live destination
+      // hub served by /[city]/page.tsx after the destinations row was populated.
       { source: '/darija/dictionary/culture-04486', destination: 'https://darija.io', permanent: true },
       { source: '/darija/dictionary/greetings-08172', destination: 'https://darija.io', permanent: true },
       { source: '/darija/dictionary/technology-09051', destination: 'https://darija.io', permanent: true },

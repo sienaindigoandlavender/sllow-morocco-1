@@ -33,6 +33,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const titleSuffix = destination.subtitle
     ? `${destination.title} — ${destination.subtitle}`
     : `${destination.title}, Morocco`;
+  // OG title carries the brand and region (template doesn't fire on OG titles).
+  const ogTitle = `${destination.title}, ${destination.region || "Morocco"} — Slow Morocco`;
   const description =
     destination.excerpt ||
     `Everything you need to know before you go to ${destination.title}. Places, stories, and cultural context from Slow Morocco.`;
@@ -41,7 +43,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: titleSuffix,
     description,
     openGraph: {
-      title: titleSuffix,
+      title: ogTitle,
       description,
       url: `${BASE_URL}/${params.city}`,
       images: destination.hero_image
