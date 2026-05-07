@@ -28,12 +28,23 @@ interface Place {
   category: string;
   heroImage: string;
   excerpt: string;
+  featured?: boolean;
+}
+
+interface Cluster {
+  slug: string;
+  title: string;
+  href: string;
+  count: number;
+  places: Place[];
 }
 
 interface PlacesContentProps {
   initialRegions: Region[];
   initialDestinations: Destination[];
   initialPlaces: Place[];
+  clusters?: Cluster[];
+  featured?: Place[];
   dataLoaded?: boolean;
 }
 
@@ -43,6 +54,8 @@ export default function PlacesContent({
   initialRegions,
   initialDestinations,
   initialPlaces,
+  clusters = [],
+  featured = [],
   dataLoaded = true,
 }: PlacesContentProps) {
   const searchParams = useSearchParams();
@@ -118,14 +131,39 @@ export default function PlacesContent({
 
       {/* ── Page header ──────────────────────────────────────────────── */}
       <section className="pt-28 md:pt-36 pb-8 px-8 md:px-10 lg:px-14">
-        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground mb-3">
+        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground mb-4">
           Places
         </h1>
-        <p className="text-sm text-foreground/45 max-w-xl mb-10">
-          The villages, valleys, and hidden corners that make Morocco worth slowing down for.
+        <p className="text-sm text-foreground/55 max-w-2xl mb-3 leading-relaxed">
+          The Slow Morocco atlas — {initialPlaces.length}+ medinas, kasbahs, oases, museums, souks, and shrines, with maps, stories, and local context for every entry.
+        </p>
+        <p className="text-sm text-foreground/45 max-w-2xl mb-10 leading-relaxed">
+          Browse by destination below, jump to a city guide, or scroll the full list. Every place links to its city, its related stories, and the journeys that pass through it.
         </p>
         <div className="h-[1px] bg-foreground/12" />
       </section>
+
+      {/* ── Destination clusters — text-link nav, fully crawlable ─────── */}
+      {clusters.length > 0 && (
+        <section className="px-8 md:px-10 lg:px-14 py-10 border-b border-foreground/[0.08]">
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/35 mb-5">
+            Browse by destination
+          </p>
+          <ul className="flex flex-wrap gap-x-6 gap-y-3">
+            {clusters.map((c) => (
+              <li key={c.slug}>
+                <Link
+                  href={c.href}
+                  className="text-sm text-foreground/70 hover:text-foreground border-b border-foreground/15 hover:border-foreground/40 pb-0.5 transition-colors"
+                >
+                  {c.title}
+                  <span className="text-foreground/35 ml-1">({c.count})</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {/* ── Filter bar — regions ──────────────────────────────────────── */}
       <section className="px-8 md:px-10 lg:px-14 pb-4 sticky top-16 md:top-20 bg-background z-40">
@@ -250,8 +288,70 @@ export default function PlacesContent({
         )}
       </section>
 
+      {/* ── Featured places — text-link strip ─────────────────────────── */}
+      {featured.length > 0 && (
+        <section className="px-8 md:px-10 lg:px-14 py-12 border-t border-foreground/[0.08]">
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/35 mb-5">
+            Featured places
+          </p>
+          <ul className="flex flex-wrap gap-x-6 gap-y-3">
+            {featured.map((p) => (
+              <li key={p.slug}>
+                <Link
+                  href={`/places/${p.slug}`}
+                  className="text-sm text-foreground/70 hover:text-foreground border-b border-foreground/15 hover:border-foreground/40 pb-0.5 transition-colors"
+                >
+                  {p.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
       {/* ── Map preview banner ────────────────────────────────────── */}
       <MapPreviewBanner />
+
+      {/* ── Full text-link index, grouped by destination ──────────────
+          Every published place is a static link in the initial HTML so
+          crawlers can follow them without depending on the client-side
+          paginated grid above.
+          ──────────────────────────────────────────────────────────── */}
+      {clusters.length > 0 && (
+        <section className="px-8 md:px-10 lg:px-14 py-14 border-t border-foreground/[0.08]">
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/35 mb-3">
+            All places, by destination
+          </p>
+          <p className="text-[12.5px] text-foreground/45 max-w-2xl leading-relaxed mb-10">
+            Every place in the atlas, listed in full. The grid above paginates; this index does not — use it to skim the whole catalogue or to jump to a destination cluster.
+          </p>
+          <div className="space-y-10">
+            {clusters.map((c) => (
+              <div key={c.slug}>
+                <Link
+                  href={c.href}
+                  className="inline-block text-sm tracking-[0.04em] text-foreground hover:text-foreground/70 border-b border-foreground/30 hover:border-foreground/60 pb-0.5 mb-4 transition-colors"
+                >
+                  {c.title}
+                  <span className="text-foreground/40 ml-2 text-[12px]">({c.count})</span>
+                </Link>
+                <ul className="flex flex-wrap gap-x-5 gap-y-2">
+                  {c.places.map((p) => (
+                    <li key={p.slug}>
+                      <Link
+                        href={`/places/${p.slug}`}
+                        className="text-[13px] text-foreground/60 hover:text-foreground transition-colors"
+                      >
+                        {p.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* ── SEO paragraph ────────────────────────────────────────────── */}
       <section className="px-8 md:px-10 lg:px-14 pb-16 border-t border-foreground/[0.08] pt-14">

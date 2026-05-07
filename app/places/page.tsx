@@ -40,7 +40,15 @@ interface PlaceItem {
   category: string;
   heroImage: string;
   excerpt: string;
+  featured?: boolean;
 }
+
+// Destinations the /[city] route serves as a live city/region hub. Used by
+// the cluster links — anything else falls back to /destinations.
+const KNOWN_HUB_DESTINATIONS = new Set([
+  "marrakech", "fes", "tangier", "rabat", "essaouira", "casablanca",
+  "meknes", "ouarzazate", "agadir", "dakhla", "chefchaouen",
+]);
 
 async function fetchPlacesData() {
   try {
@@ -76,6 +84,7 @@ async function fetchPlacesData() {
         category: p.category || "",
         heroImage: img ? convertDriveUrl(img) : "",
         excerpt: p.excerpt || "",
+        featured: !!p.featured,
       };
     });
 
@@ -86,8 +95,45 @@ async function fetchPlacesData() {
   }
 }
 
+// Build the destination clusters: every destination that has at least one
+// published place, with its place count and the URL to the relevant hub
+// (live /[city] guide for known cities, otherwise the listing page).
+function buildClusters(
+  destinations: DestinationItem[],
+  places: PlaceItem[],
+): Array<{ slug: string; title: string; href: string; count: number; places: PlaceItem[] }> {
+  const byDest = new Map<string, PlaceItem[]>();
+  for (const p of places) {
+    if (!p.destination) continue;
+    const arr = byDest.get(p.destination) || [];
+    arr.push(p);
+    byDest.set(p.destination, arr);
+  }
+  const destLookup = new Map(destinations.map((d) => [d.slug, d]));
+
+  return Array.from(byDest.entries())
+    .map(([slug, items]) => {
+      const dest = destLookup.get(slug);
+      const title = dest?.title || slug.charAt(0).toUpperCase() + slug.slice(1).replace(/-/g, " ");
+      const href = KNOWN_HUB_DESTINATIONS.has(slug)
+        ? `/${slug}`
+        : destLookup.has(slug)
+        ? `/${slug}`
+        : "/destinations";
+      const sortedItems = [...items].sort((a, b) => a.title.localeCompare(b.title));
+      return { slug, title, href, count: items.length, places: sortedItems };
+    })
+    .filter((c) => c.count > 0)
+    .sort((a, b) => b.count - a.count);
+}
+
 export default async function PlacesPage() {
   const { regions, destinations, places, dataLoaded } = await fetchPlacesData();
+
+  const clusters = buildClusters(destinations, places);
+  const featured = places
+    .filter((p) => p.featured)
+    .slice(0, 8);
 
   return (
     <Suspense fallback={<div className="min-h-screen" />}>
@@ -95,6 +141,8 @@ export default async function PlacesPage() {
         initialRegions={regions}
         initialDestinations={destinations}
         initialPlaces={places}
+        clusters={clusters}
+        featured={featured}
         dataLoaded={dataLoaded}
       />
     </Suspense>
