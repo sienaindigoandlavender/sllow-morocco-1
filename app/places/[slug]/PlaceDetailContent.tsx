@@ -580,21 +580,77 @@ export default function PlaceDetailContent({
         </section>
       )}
 
-      {/* Back to destination guide */}
+      {/* Explore-more — compact when other related sections rendered;
+          rich fallback when nothing else rendered (no dead ends). */}
       {place.destination && (
-        <section className="py-12 md:py-16 border-t border-foreground/10">
-          <div className="container mx-auto px-6 lg:px-16 text-center">
-            <Link
-              href={`/${place.destination.toLowerCase().replace(/\s+/g, '-')}`}
-              className="inline-flex items-center gap-2 text-foreground/70 hover:text-foreground transition-colors"
-            >
-              <ChevronLeft className="w-4 h-4" />
-              <span className="text-sm tracking-[0.15em] uppercase">
-                More in {place.destination.charAt(0).toUpperCase() + place.destination.slice(1)}
-              </span>
-            </Link>
-          </div>
-        </section>
+        (() => {
+          const destSlug = place.destination.toLowerCase().replace(/\s+/g, '-');
+          const destDisplay = place.destination.charAt(0).toUpperCase() + place.destination.slice(1);
+          const hasRelated =
+            relatedStories.length > 0 ||
+            relatedJourneys.length > 0 ||
+            nearbyPlaces.length > 0;
+
+          if (hasRelated) {
+            return (
+              <section className="py-12 md:py-16 border-t border-foreground/10">
+                <div className="container mx-auto px-6 lg:px-16 text-center">
+                  <Link
+                    href={`/${destSlug}`}
+                    className="inline-flex items-center gap-2 text-foreground/70 hover:text-foreground transition-colors"
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                    <span className="text-sm tracking-[0.15em] uppercase">
+                      More in {destDisplay}
+                    </span>
+                  </Link>
+                </div>
+              </section>
+            );
+          }
+
+          // Rich fallback — no related cards rendered, give the page a real exit
+          return (
+            <section className="py-16 md:py-24 border-t border-foreground/10">
+              <div className="container mx-auto px-6 lg:px-16">
+                <div className="max-w-xl mx-auto text-center">
+                  <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/50 mb-3">
+                    Keep exploring
+                  </p>
+                  <h2 className="font-serif text-2xl md:text-3xl text-foreground/80 mb-8">
+                    Explore more in {destDisplay}.
+                  </h2>
+                  <ul className="flex flex-wrap justify-center gap-x-7 gap-y-3">
+                    <li>
+                      <Link
+                        href={`/${destSlug}`}
+                        className="text-sm text-foreground/70 hover:text-foreground border-b border-foreground/20 hover:border-foreground/50 pb-0.5 transition-colors"
+                      >
+                        {destDisplay} guide →
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/places"
+                        className="text-sm text-foreground/70 hover:text-foreground border-b border-foreground/20 hover:border-foreground/50 pb-0.5 transition-colors"
+                      >
+                        All places →
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/journeys"
+                        className="text-sm text-foreground/70 hover:text-foreground border-b border-foreground/20 hover:border-foreground/50 pb-0.5 transition-colors"
+                      >
+                        Browse journeys →
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+          );
+        })()
       )}
 
       {/* Prev / Next places */}
