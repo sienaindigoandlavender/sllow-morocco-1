@@ -135,10 +135,10 @@ export default function PlacesContent({
           Places
         </h1>
         <p className="text-sm text-foreground/55 max-w-2xl mb-3 leading-relaxed">
-          The Slow Morocco atlas — {initialPlaces.length}+ medinas, kasbahs, oases, museums, souks, and shrines, with maps, stories, and local context for every entry.
+          Morocco mapped by what's worth slowing down for — medinas, kasbahs, oases, shrines, souks, and ruins, with local context for every entry.
         </p>
         <p className="text-sm text-foreground/45 max-w-2xl mb-10 leading-relaxed">
-          Browse by destination below, jump to a city guide, or scroll the full list. Every place links to its city, its related stories, and the journeys that pass through it.
+          Browse by destination, follow a city guide, or scan the full catalogue below. Every place connects to its stories and the journeys that pass through it.
         </p>
         <div className="h-[1px] bg-foreground/12" />
       </section>
@@ -323,7 +323,7 @@ export default function PlacesContent({
             All places, by destination
           </p>
           <p className="text-[12.5px] text-foreground/45 max-w-2xl leading-relaxed mb-10">
-            Every place in the atlas, listed in full. The grid above paginates; this index does not — use it to skim the whole catalogue or to jump to a destination cluster.
+            Every place in the atlas, listed in full. The grid above paginates — this index doesn't. Use it to scan the whole catalogue or jump straight to a destination.
           </p>
           <div className="space-y-10">
             {clusters.map((c) => (
@@ -356,7 +356,7 @@ export default function PlacesContent({
       {/* ── SEO paragraph ────────────────────────────────────────────── */}
       <section className="px-8 md:px-10 lg:px-14 pb-16 border-t border-foreground/[0.08] pt-14">
         <p className="text-[12.5px] text-foreground/35 leading-[1.7] max-w-2xl">
-          Places across Morocco — from the medinas of Fes and Marrakech to the kasbahs of the south and the Atlantic coast.
+          From the tanneries of Fès and the kasbahs of the Draa Valley to the Atlantic ramparts of Essaouira and the mountain villages above Chefchaouen — the atlas covers Morocco as it's actually experienced, not as it's usually sold.
         </p>
       </section>
 
