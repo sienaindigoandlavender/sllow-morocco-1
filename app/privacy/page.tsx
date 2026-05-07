@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import LegalPageContent from "@/components/LegalPageContent";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Slow Morocco",
+  title: "Privacy Policy",
   description:
     "How Slow Morocco collects, uses, and protects your personal information when booking private journeys and using our cultural platform.",
   alternates: {

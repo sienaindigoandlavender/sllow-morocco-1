@@ -16,15 +16,18 @@ export async function generateMetadata({
     };
   }
 
-  const title = place.title;
+  const dest = place.destination
+    ? place.destination.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
+    : '';
+  const title = dest ? `${place.title}, ${dest}` : place.title;
   const bodyText = place.body?.replace(/<[^>]*>/g, '') || '';
   const description = place.excerpt?.slice(0, 160) ||
     bodyText.slice(0, 160) ||
-    `Discover ${place.title} in ${place.destination || 'Morocco'} - a guide from Slow Morocco.`;
+    `Discover ${place.title} in ${dest || 'Morocco'} - a guide from Slow Morocco.`;
   const heroImage = place.hero_image ? convertDriveUrl(place.hero_image) : null;
 
   return {
-    title: `${title} | ${place.destination || 'Morocco'}`,
+    title,
     description: description,
     keywords: [
       place.title?.toLowerCase(),

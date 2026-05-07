@@ -6,7 +6,7 @@ import { cloudinaryUrl } from "@/lib/cloudinary";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Destinations — Slow Morocco",
+  title: "Destinations",
   description:
     "Every city, valley, mountain, and coast we cover. The definitive guide to Morocco, destination by destination.",
   alternates: {

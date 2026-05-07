@@ -4,7 +4,7 @@ import { getWebsiteTeam, getPageBannerBySlug, convertDriveUrl } from "@/lib/supa
 import { cloudinaryUrl } from "@/lib/cloudinary";
 
 export const metadata: Metadata = {
-  title: "About | Slow Morocco",
+  title: "About",
   description:
     "Slow Morocco is a guide to Morocco built on real knowledge — stories, places, and private journeys for people who want to understand the country, not just visit it.",
   openGraph: {

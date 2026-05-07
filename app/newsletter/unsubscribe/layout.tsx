@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Unsubscribe | Slow Morocco",
+  title: "Unsubscribe",
   robots: {
     index: false,
     follow: false,

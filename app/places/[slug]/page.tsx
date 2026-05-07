@@ -11,6 +11,15 @@ const BASE_URL = "https://www.slowmorocco.com";
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
+// Format a destination slug ("draa-valley") for display ("Draa Valley").
+function displayDestination(slug: string | null | undefined): string {
+  if (!slug) return "";
+  return slug
+    .split("-")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -20,11 +29,10 @@ export async function generateMetadata({
   const place = await getPlaceBySlug(slug);
   if (!place) return { title: "Place Not Found" };
 
-  const isAttraction = !!place.attraction_sections;
-  const title = isAttraction
-    ? `${place.title}, Marrakech — Visitor Guide | Slow Morocco`
-    : `${place.title} | Slow Morocco`;
-  const description = place.excerpt || place.notes || `${place.title}, ${place.destination || "Morocco"} — travel guide by Slow Morocco.`;
+  const dest = displayDestination(place.destination);
+  // Title is bare; root layout's title.template ("%s | Slow Morocco") appends the brand.
+  const title = dest ? `${place.title}, ${dest}` : place.title;
+  const description = place.excerpt || place.notes || `${place.title}${dest ? `, ${dest}` : ""} — travel guide by Slow Morocco.`;
 
   return {
     title,

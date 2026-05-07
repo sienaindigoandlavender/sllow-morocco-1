@@ -6,7 +6,7 @@ import BirdAtlasDossier from "./BirdAtlasDossier";
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  title: "The Bird Atlas — Morocco's Migration Corridor | Slow Morocco",
+  title: "The Bird Atlas — Morocco's Migration Corridor",
   description:
     "Morocco sits on the narrowest crossing between Europe and Africa. Over 500 species recorded. Live migration sightings, the Atlantic flyway mapped, the 12 key sites — from the Gibraltar strait to Khnifiss Lagoon near Tarfaya.",
   keywords: [

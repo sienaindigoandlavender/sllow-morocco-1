@@ -17,7 +17,7 @@ export async function generateMetadata({
   const journey = await getJourneyBySlug(slug);
   if (!journey) return { title: "Journey Not Found" };
 
-  const title = `${journey.title} | Slow Morocco`;
+  const title = `${journey.title}`;
   const duration = journey.duration_days ? `${journey.duration_days}-day` : "";
   const description = journey.short_description || journey.arc_description || `${duration} cultural journey through Morocco. ${journey.destinations || ""}`.trim();
 

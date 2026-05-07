@@ -4,7 +4,7 @@ import WorldCup2030MapContent from "./WorldCup2030MapContent";
 const BASE_URL = "https://www.slowmorocco.com";
 
 export const metadata: Metadata = {
-  title: "Morocco World Cup 2030 — Interactive Stadium & Infrastructure Map | Slow Morocco",
+  title: "Morocco World Cup 2030 — Interactive Stadium & Infrastructure Map",
   description:
     "Morocco's six World Cup 2030 host cities mapped: stadiums, high-speed rail, airports, highways, and hotel capacity. From the 115,000-seat Grand Stade Hassan II in Casablanca to the Atlas foothills of Marrakech. $41 billion in infrastructure. Research by Dancing with Lions.",
   keywords: [

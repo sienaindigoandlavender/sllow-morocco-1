@@ -3,7 +3,7 @@ import FAQSchema from "@/components/seo/FAQSchema";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata: Metadata = {
-  title: "Accessible Morocco Tours | Gentle Journeys for Mobility Challenges | Slow Morocco",
+  title: "Accessible Morocco Tours | Gentle Journeys for Mobility Challenges",
   description: "Private Morocco tours designed for travellers with mobility challenges. Wheelchair-friendly routes, ground-floor riads, shorter drives, accessible vehicles. Experience Marrakech, Fes, the coast & desert at your pace.",
   keywords: [
     "accessible Morocco tours",

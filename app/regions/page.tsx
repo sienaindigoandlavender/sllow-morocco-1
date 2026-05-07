@@ -6,7 +6,7 @@ import { getRegions } from "@/lib/supabase";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Regions of Morocco — Slow Morocco",
+  title: "Regions of Morocco",
   description:
     "Morocco in four landscapes: imperial cities and ancient medinas, Atlas peaks and hidden valleys, Atlantic coast, and the Sahara desert.",
   alternates: { canonical: "https://www.slowmorocco.com/regions" },

@@ -4,7 +4,7 @@ import MoroccoLifeContent from "./MoroccoLifeContent";
 const BASE_URL = "https://www.slowmorocco.com";
 
 export const metadata: Metadata = {
-  title: "Morocco — Safety, Infrastructure, Data & 2030 World Cup | Slow Morocco",
+  title: "Morocco — Safety, Infrastructure, Data & 2030 World Cup",
   description:
     "Morocco in data. Crime index 46.7 (Numbeo 2024), Global Peace Index rank 82nd, 6 FIFA World Cup 2030 host cities, $52B infrastructure investment, flight connections from 12 cities, five climate zones, city profiles, cost of living. Source: Dancing with Lions.",
   keywords: [

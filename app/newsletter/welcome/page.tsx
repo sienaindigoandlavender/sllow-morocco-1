@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "You're in | Slow Morocco",
+  title: "You're in",
   robots: { index: false, follow: false },
 };
 

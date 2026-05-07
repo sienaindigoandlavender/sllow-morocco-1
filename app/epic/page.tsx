@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'EPIC Journeys | Slow Morocco',
+  title: 'EPIC Journeys',
   description: 'Sacred, rare, and unrepeatable private journeys through Morocco. Navigation by stars, Gnawa lila ceremonies, Saharan wildlife tracking, architectural pilgrimages. From €6,000.',
   openGraph: {
     title: 'EPIC Journeys | Slow Morocco',

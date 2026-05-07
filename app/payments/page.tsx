@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import LegalPageContent from "@/components/LegalPageContent";
 
 export const metadata: Metadata = {
-  title: "Payments | Slow Morocco",
+  title: "Payments",
   description:
     "Payment details for Slow Morocco journeys — deposit, balance, accepted methods, and currency.",
   alternates: {

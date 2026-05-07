@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About | Slow Morocco",
+  title: "About",
   description:
     "Slow Morocco designs private journeys through Morocco for people who want to go deeper than the guidebook.",
   openGraph: {
