@@ -663,6 +663,7 @@ export interface Story {
   }> | null;
   index_status: 'index' | 'noindex' | 'redirect' | null;
   redirect_to: string | null;
+  mentioned_place_slugs: string[] | null;
   created_at: string;
   updated_at: string;
 }

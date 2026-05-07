@@ -171,6 +171,29 @@ async function getRelatedPlacesSSR(storySlug: string) {
   }
 }
 
+// Editorially curated from the story side: stories.mentioned_place_slugs is a
+// hand-picked array of place slugs the writer wants to surface for this story.
+// Order is preserved (the array order is the editorial order).
+async function getMentionedPlacesSSR(slugs: string[] | null | undefined) {
+  if (!slugs || slugs.length === 0) return [];
+  try {
+    const allPlaces = await getPlaces({ published: true });
+    const bySlug = new Map(allPlaces.map((p: any) => [p.slug, p]));
+    return slugs
+      .map((s) => bySlug.get(s))
+      .filter((p: any) => Boolean(p))
+      .map((p: any) => ({
+        slug: p.slug,
+        title: p.title,
+        category: p.category || "",
+        destination: p.destination || "",
+        heroImage: p.hero_image || "",
+      }));
+  } catch {
+    return [];
+  }
+}
+
 async function getRelatedJourneysSSR(story: Story) {
   try {
     const allJourneys = await getJourneys({ published: true });
@@ -219,6 +242,7 @@ export default async function StoryPage({
   const relatedStories = await getRelatedStories(story, slug);
   const relatedJourneys = await getRelatedJourneysSSR(story);
   const relatedPlaces = await getRelatedPlacesSSR(slug);
+  const mentionedPlaces = await getMentionedPlacesSSR(rawStory?.mentioned_place_slugs);
   const storyImages = await getStoryImages(slug);
 
   // Find prev/next stories
@@ -263,6 +287,7 @@ export default async function StoryPage({
         relatedStories={relatedStories}
         relatedJourneys={relatedJourneys}
         relatedPlaces={relatedPlaces}
+        mentionedPlaces={mentionedPlaces}
         slug={slug}
         mapData={mapData}
         externalLinks={externalLinks}
