@@ -22,11 +22,9 @@ const STATIC_PAGES = [
   "/manifesto",
   "/whats-included",
   "/visa-info",
-  "/day-trips",
   "/guides",
   "/morocco",
   "/stories/category/before-you-go",
-  "/overnight/agafay-desert",
 ];
 
 interface Journey {

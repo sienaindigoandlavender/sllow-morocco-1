@@ -46,15 +46,13 @@ export default function JourneysContent({
   const [sortBy, setSortBy] = useState<"default" | "alpha">("default");
 
   const allItems = useMemo(() =>
-    [...visibleJourneys, ...dayTrips, ...overnightTrips],
-    [visibleJourneys, dayTrips, overnightTrips]
+    [...visibleJourneys],
+    [visibleJourneys]
   );
 
   const filteredItems = useMemo(() => {
     let result = allItems;
     if (activeFilter === "journeys") result = result.filter((i) => i.type === "journey");
-    else if (activeFilter === "daytrips") result = result.filter((i) => i.type === "daytrip");
-    else if (activeFilter === "overnight") result = result.filter((i) => i.type === "overnight");
     if (sortBy === "alpha") result = [...result].sort((a, b) => a.title.localeCompare(b.title));
     return result;
   }, [allItems, activeFilter, sortBy]);
@@ -73,8 +71,6 @@ export default function JourneysContent({
   const filters = [
     { id: "all", label: "All" },
     { id: "journeys", label: "Multi-Day" },
-    { id: "daytrips", label: "Day Trips" },
-    { id: "overnight", label: "Overnight" },
   ];
 
   return (

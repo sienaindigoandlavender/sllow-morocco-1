@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { getJourneys, getStories, getPlaces, getDayTrips, getDestinations } from '@/lib/supabase'
+import { getJourneys, getStories, getPlaces, getDestinations } from '@/lib/supabase'
 
 const BASE_URL = 'https://www.slowmorocco.com'
 
@@ -319,11 +319,9 @@ const STATIC_PAGES = [
   { path: '/life', priority: 0.9, changeFrequency: 'monthly' as const },
   { path: '/travel', priority: 0.9, changeFrequency: 'monthly' as const },
   { path: '/visa-info', priority: 0.7, changeFrequency: 'monthly' as const },
-  { path: '/day-trips', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/guides', priority: 0.6, changeFrequency: 'monthly' as const },
   { path: '/glossary', priority: 0.7, changeFrequency: 'monthly' as const },
   { path: '/morocco-world-cup-2030', priority: 0.8, changeFrequency: 'monthly' as const },
-  { path: '/overnight/agafay-desert', priority: 0.8, changeFrequency: 'monthly' as const },
   { path: '/sahara-tour-from-marrakech', priority: 0.9, changeFrequency: 'monthly' as const },
   { path: '/go/gentle', priority: 0.7, changeFrequency: 'monthly' as const },
   { path: '/dossiers/bird-atlas', priority: 0.6, changeFrequency: 'monthly' as const },
@@ -346,7 +344,9 @@ async function getDynamicPages() {
   try {
     const journeys = await getJourneys({ published: true })
     journeys.forEach((journey) => {
-      if (journey.slug && !EXCLUDED_JOURNEY_SLUGS.includes(journey.slug)) {
+      const isExcludedType =
+        journey.journey_type === 'daytrip' || journey.journey_type === 'overnight'
+      if (journey.slug && !isExcludedType && !EXCLUDED_JOURNEY_SLUGS.includes(journey.slug)) {
         dynamicPages.push({
           url: safeSitemapUrl(BASE_URL, '/journeys', journey.slug),
           lastModified: new Date(),
@@ -389,22 +389,6 @@ async function getDynamicPages() {
     })
   } catch (e) {
     console.error('Failed to fetch places for sitemap:', e)
-  }
-
-  try {
-    const dayTrips = await getDayTrips({ published: true })
-    dayTrips.forEach((trip) => {
-      if (trip.slug) {
-        dynamicPages.push({
-          url: safeSitemapUrl(BASE_URL, '/day-trips', trip.slug),
-          lastModified: new Date(),
-          changeFrequency: 'weekly',
-          priority: 0.7,
-        })
-      }
-    })
-  } catch (e) {
-    console.error('Failed to fetch day trips for sitemap:', e)
   }
 
   // Destinations — all published destinations not already in CITY_SLUGS

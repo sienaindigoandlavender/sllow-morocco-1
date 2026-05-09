@@ -148,8 +148,11 @@ async function getRelatedContent(place: FormattedPlace) {
       relatedJourneys = allJourneys
         .filter((j) => {
           const destinations = j.destinations?.toLowerCase() || "";
-          const isEpic = j.journey_type === "epic";
-          return destinations.includes(destination) && !isEpic;
+          const isExcludedType =
+            j.journey_type === "epic" ||
+            j.journey_type === "daytrip" ||
+            j.journey_type === "overnight";
+          return destinations.includes(destination) && !isExcludedType;
         })
         .map((j) => ({
           slug: j.slug || "",

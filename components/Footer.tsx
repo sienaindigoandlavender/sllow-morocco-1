@@ -168,7 +168,6 @@ export default function Footer() {
               <ul className="space-y-1">
                 <li><Link href="/places" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Places</Link></li>
                 <li><Link href="/destinations" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Destinations</Link></li>
-                <li><Link href="/journeys" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Journeys</Link></li>
                 <li><Link href="/stories/category/before-you-go" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Before You Go</Link></li>
                 <li><Link href="/glossary" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Glossary</Link></li>
                 <li><a href="https://darija.io" target="_blank" rel="noopener noreferrer" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Darija Dictionary</a></li>

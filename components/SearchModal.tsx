@@ -37,7 +37,6 @@ export default function SearchModal({ isOpen, onClose, initialQuery = "" }: Sear
     { title: "Morocco World Cup 2030", slug: "/morocco-world-cup-2030", subtitle: "Interactive map — stadiums & infrastructure" },
     { title: "Visa Information", slug: "/visa-info", subtitle: "Entry requirements by nationality" },
     { title: "Health & Safety in Morocco", slug: "/health-safety", subtitle: "Vaccinations, water, safety" },
-    { title: "Day Trips from Marrakech", slug: "/day-trips", subtitle: "Atlas, Ouarzazate, Essaouira" },
     { title: "FAQ", slug: "/faq", subtitle: "Frequently asked questions" },
     { title: "Glossary", slug: "/glossary", subtitle: "Moroccan terms explained" },
     { title: "Plan Your Trip", slug: "/plan-your-trip", subtitle: "Start your Morocco journey" },

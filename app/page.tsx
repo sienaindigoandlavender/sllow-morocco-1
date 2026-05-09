@@ -49,7 +49,12 @@ export default async function HomePage() {
       epicPrice: j.epic_price_eur || undefined,
     }));
 
-    journeys = allJourneys.filter((j) => j.journeyType !== "epic");
+    journeys = allJourneys.filter(
+      (j) =>
+        j.journeyType !== "epic" &&
+        j.journeyType !== "daytrip" &&
+        j.journeyType !== "overnight"
+    );
     epicJourneys = allJourneys.filter((j) => j.journeyType === "epic").slice(0, 5);
 
     // Format stories — rotate the lead (hero) story every 3 hours

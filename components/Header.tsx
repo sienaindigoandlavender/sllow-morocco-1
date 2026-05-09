@@ -128,7 +128,6 @@ export default function Header() {
                 { href: "/stories", label: "Stories" },
                 { href: "/places", label: "Places" },
                 { href: "/destinations", label: "Destinations" },
-                { href: "/journeys", label: "Journeys" },
                 { href: "/epic", label: "Epic" },
                 { href: "/stories/category/before-you-go", label: "Before You Go" },
                 { href: "/darija", label: "Darija" },

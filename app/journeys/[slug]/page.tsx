@@ -21,10 +21,16 @@ export async function generateMetadata({
   const duration = journey.duration_days ? `${journey.duration_days}-day` : "";
   const description = journey.short_description || journey.arc_description || `${duration} cultural journey through Morocco. ${journey.destinations || ""}`.trim();
 
+  const shouldNoIndex =
+    journey.journey_type === "daytrip" || journey.journey_type === "overnight";
+
   return {
     title,
     description,
     alternates: { canonical: `${BASE_URL}/journeys/${slug}` },
+    robots: shouldNoIndex
+      ? { index: false, follow: true }
+      : { index: true, follow: true },
     openGraph: {
       title: journey.title,
       description,
@@ -157,7 +163,12 @@ async function getOtherJourneys(currentSlug: string) {
   try {
     const allJourneys = await getJourneys({ published: true });
     return allJourneys
-      .filter((j) => j.slug !== currentSlug)
+      .filter(
+        (j) =>
+          j.slug !== currentSlug &&
+          j.journey_type !== "daytrip" &&
+          j.journey_type !== "overnight"
+      )
       .map((j) => ({
         slug: j.slug || "",
         title: j.title || "",
@@ -246,7 +257,13 @@ export default async function JourneyDetailPage({
 
   // Find prev/next journeys
   const allJourneys = await getJourneys({ published: true });
-  const visibleJourneys = allJourneys.filter((j) => j.show_on_journeys_page !== false && j.journey_type !== "epic");
+  const visibleJourneys = allJourneys.filter(
+    (j) =>
+      j.show_on_journeys_page !== false &&
+      j.journey_type !== "epic" &&
+      j.journey_type !== "daytrip" &&
+      j.journey_type !== "overnight"
+  );
   const currentIndex = visibleJourneys.findIndex((j) => j.slug === slug);
   const prevJourney = currentIndex > 0 ? { slug: visibleJourneys[currentIndex - 1].slug, title: visibleJourneys[currentIndex - 1].title } : null;
   const nextJourney = currentIndex < visibleJourneys.length - 1 ? { slug: visibleJourneys[currentIndex + 1].slug, title: visibleJourneys[currentIndex + 1].title } : null;
