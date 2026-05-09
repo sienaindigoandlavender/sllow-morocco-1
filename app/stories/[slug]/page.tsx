@@ -197,7 +197,9 @@ async function getMentionedPlacesSSR(slugs: string[] | null | undefined) {
 async function getRelatedJourneysSSR(story: Story) {
   try {
     const allJourneys = await getJourneys({ published: true });
-    const journeysForMatcher = allJourneys.map((j) => ({
+    const journeysForMatcher = allJourneys
+      .filter((j) => j.journey_type !== "daytrip" && j.journey_type !== "overnight")
+      .map((j) => ({
       slug: j.slug || "",
       title: j.title || "",
       destinations: j.destinations || "",
