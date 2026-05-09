@@ -75,6 +75,7 @@ async function fetchRegionData(slug: string) {
   const journeys = allJourneys.filter((j) => {
     const focus = (j.focus_type || "").toLowerCase();
     const category = (j.category || "").toLowerCase();
+    if (j.journey_type === "daytrip" || j.journey_type === "overnight") return false;
     return focusKeywords.some(
       (k) => focus.includes(k.toLowerCase()) || category.includes(k.toLowerCase())
     );

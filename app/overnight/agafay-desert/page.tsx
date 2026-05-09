@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   description:
     "One night in the stone desert near Marrakech — sunset camel ride, dinner under the stars, luxury camp with Atlas Mountain views. Private transfer included.",
   alternates: { canonical: "https://www.slowmorocco.com/overnight/agafay-desert" },
+  robots: { index: false, follow: true },
   openGraph: {
     title: "Agafay Desert Overnight | Slow Morocco",
     description:

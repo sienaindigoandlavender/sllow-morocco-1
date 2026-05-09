@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Day Trips",
   description: "Private day trips from Marrakech, Fes, and Casablanca — Atlas Mountains, Essaouira coast, Ouzoud waterfalls, and more. Half-day and full-day excursions.",
   alternates: { canonical: "https://www.slowmorocco.com/day-trips" },
+  robots: { index: false, follow: true },
   openGraph: {
     title: "Day Trips | Slow Morocco",
     description: "Private day trips from Marrakech, Fes, and Casablanca — Atlas Mountains, Essaouira coast, and more.",

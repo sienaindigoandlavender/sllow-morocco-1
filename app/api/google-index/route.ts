@@ -157,8 +157,8 @@ const REDIRECT_PATHS = [
 const STATIC_PAGES = [
   "", "/journeys", "/stories", "/places", "/about", "/plan-your-trip",
   "/manifesto", "/faq", "/contact", "/whats-included", "/visa-info",
-  "/day-trips", "/guides", "/epic", "/glossary",
-  "/overnight/agafay-desert", "/go/gentle",
+  "/guides", "/epic", "/glossary",
+  "/go/gentle",
   "/health-safety", "/travel-insurance", "/cancellation-policy",
   "/terms", "/privacy", "/disclaimer", "/intellectual-property",
 ];
@@ -261,7 +261,6 @@ async function getDynamicUrls(): Promise<string[]> {
     { path: "/api/journeys", key: "journeys", prefix: "/journeys" },
     { path: "/api/stories", key: "stories", prefix: "/story" },
     { path: "/api/places", key: "places", prefix: "/places" },
-    { path: "/api/day-trips", key: "dayTrips", prefix: "/day-trips" },
   ];
 
   for (const ep of endpoints) {

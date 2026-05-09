@@ -15,12 +15,15 @@ export async function GET(request: NextRequest) {
 
   try {
     const allJourneys = await getJourneys({ published: true });
+    const filteredJourneys = allJourneys.filter(
+      (j) => j.journey_type !== "daytrip" && j.journey_type !== "overnight"
+    );
 
     const related = findRelatedJourneys(
       region,
       tags,
       category,
-      allJourneys.map((j) => ({
+      filteredJourneys.map((j) => ({
         slug: j.slug,
         title: j.title,
         destinations: j.destinations || "",

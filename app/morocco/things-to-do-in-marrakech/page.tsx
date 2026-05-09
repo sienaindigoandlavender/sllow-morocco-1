@@ -184,9 +184,6 @@ export default function ThingsToDoMarrakechPage() {
             <p className="text-sm text-foreground/60 leading-relaxed mb-6">
               The Ourika Valley is 35 kilometres south — the first Atlas villages, Berber markets on Monday, and the Setti Fatma waterfalls. The Ouzoud Falls are 150 kilometres northeast — the largest waterfalls in Morocco, with Barbary macaques in the trees above. Imlil is the trailhead for Mount Toubkal and a village that operates at a completely different pace from the city.
             </p>
-            <Link href="/day-trips" className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">
-              See all day trips from Marrakech →
-            </Link>
           </div>
         </div>
 

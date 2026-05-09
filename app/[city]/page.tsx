@@ -73,6 +73,7 @@ async function fetchCityData(citySlug: string) {
 
   // Featured journeys — city is start point or first/only destination
   const featuredJourneys = allJourneys.filter((j) => {
+    if (j.journey_type === "daytrip" || j.journey_type === "overnight") return false;
     const dests = (j.destinations || "").toLowerCase();
     const start = (j.start_city || "").toLowerCase();
     const slug = citySlug.toLowerCase();
@@ -87,6 +88,7 @@ async function fetchCityData(citySlug: string) {
   // Connecting journeys — city appears in route but not as start/primary
   const featuredSlugs = new Set(featuredJourneys.map((j) => j.slug));
   const connectingJourneys = allJourneys.filter((j) => {
+    if (j.journey_type === "daytrip" || j.journey_type === "overnight") return false;
     if (featuredSlugs.has(j.slug)) return false;
     const dests = (j.destinations || "").toLowerCase();
     const slug = citySlug.toLowerCase();

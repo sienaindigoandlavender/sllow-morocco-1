@@ -23,6 +23,7 @@ export async function generateMetadata({
     title,
     description: typeof description === "string" ? description.slice(0, 160) : "",
     alternates: { canonical: `${BASE_URL}/day-trips/${slug}` },
+    robots: { index: false, follow: true },
     openGraph: {
       title: trip.title,
       description: typeof description === "string" ? description.slice(0, 160) : "",
