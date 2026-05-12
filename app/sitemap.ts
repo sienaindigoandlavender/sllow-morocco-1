@@ -16,10 +16,14 @@ function safeSitemapUrl(base: string, prefix: string, slug: string): string {
   return `${base}${prefix}/${encodedSlug}`
 }
 
-// City guide slugs
+// City guides preserved for strategic reasons:
+//   marrakech — host city of Riad di Siena, branded search
+//   fes — anchor for future architecture vertical
+//   rabat — capital, may develop content
+// Others (tangier, essaouira, casablanca, meknes, ouarzazate, agadir,
+// dakhla, chefchaouen) redirected to /destinations per next.config.js
 const CITY_SLUGS = [
-  'marrakech', 'fes', 'tangier', 'rabat', 'essaouira',
-  'casablanca', 'meknes', 'ouarzazate', 'agadir', 'dakhla', 'chefchaouen',
+  'marrakech', 'fes', 'rabat',
 ]
 
 // Slugs that exist in Supabase but redirect — exclude from sitemap
@@ -228,24 +232,32 @@ const EXCLUDED_STORY_SLUGS = [
 
 const EXCLUDED_DESTINATION_SLUGS = [
   'agafay',
+  'agadir',
   'al-hoceima',
   'amizmiz',
   'asilah',
+  'casablanca',
+  'chefchaouen',
   'dades-valley-todra-gorge',
+  'dakhla',
   'el-jadida',
   'ergoud-merzouga',
+  'essaouira',
   'fes-meknes',
   'marrakech-2',
   'marrakech-beyond',
   'marrakech-to-erg-chigaga',
+  'meknes',
   'mhamid-erg-chegaga',
   'oualidia',
+  'ouarzazate',
   'ouarzazate-skoura-details',
   'ouirgane',
   'ourika-valley',
   'tafraoute',
   'taliouine',
   'tamegroute-tamnougalt',
+  'tangier',
   'tangier-2',
   'taroudant',
   'tata',
