@@ -590,6 +590,18 @@ const nextConfig = {
       { source: '/places/zaouia-sidi-ben-slimane', destination: '/marrakech', permanent: true },
       { source: '/places/zaouia-sidi-makhlouf', destination: '/marrakech', permanent: true },
 
+      // ============================================
+      // GSC 404 RESIDUAL CLEANUP — May 11, 2026
+      // Last legacy URLs not caught by prior batches
+      // /tetouan intentionally omitted: now a live destination hub (see May 7 note below).
+      // ============================================
+      { source: '/places/agadir-beach', destination: '/agadir', permanent: true },
+      { source: '/stories/the-desert-that-does-mathematics', destination: '/stories', permanent: true },
+      { source: '/stories/who-is-the-goat', destination: '/stories', permanent: true },
+      { source: '/stories/geometry-of-culture', destination: '/stories', permanent: true },
+      { source: '/stories/from-the-land-of-the-setting-sun', destination: '/stories', permanent: true },
+      { source: '/stories/jewish-atlas', destination: '/stories', permanent: true },
+
       // Dead story slugs — April 8, 2026
       { source: '/stories/shadow-moucharabieh', destination: '/stories', permanent: true },
       { source: '/stories/tea-ceremony', destination: '/stories', permanent: true },
