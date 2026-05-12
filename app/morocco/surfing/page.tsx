@@ -63,7 +63,6 @@ export default function SurfingGuidePage() {
         </div>
         <div className="flex flex-wrap gap-4 pt-4 border-t border-foreground/[0.08]">
           <Link href="/taghazout" className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Taghazout guide →</Link>
-          <Link href="/dakhla" className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Dakhla guide →</Link>
           <Link href="/stories/surf-coast-morocco" className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Read: The surf coast →</Link>
         </div>
       </div>
