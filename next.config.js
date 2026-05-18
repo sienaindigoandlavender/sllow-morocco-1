@@ -790,6 +790,17 @@ const nextConfig = {
       { source: '/stories/morocco-economy', destination: '/stories', permanent: true },
       { source: '/stories/pulse-medina', destination: '/stories', permanent: true },
       { source: '/stories/the-build', destination: '/stories', permanent: true },
+
+      // ============================================
+      // GSC 404 PHASE 3 — May 18, 2026
+      // Four genuinely deleted places + one rename + one stray Darija slug
+      // Verified against Supabase 18 May 2026
+      // ============================================
+      { source: '/places/bab-el-khemis', destination: '/marrakech', permanent: true },
+      { source: '/places/dar-adiyel', destination: '/fes', permanent: true },
+      { source: '/places/lazama-synagogue', destination: '/marrakech', permanent: true },
+      { source: '/places/oukaimeden-plateau', destination: '/places/oukaimeden-ski', permanent: true },
+      { source: '/tsh-BBKK', destination: 'https://darija.io', permanent: true },
     ];
   },
 };
