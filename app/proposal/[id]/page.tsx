@@ -651,7 +651,7 @@ Slow Morocco Team`);
                 <div key={day.dayNumber}>
                   {/* Day Title */}
                   <h2 className="font-serif text-2xl md:text-3xl mb-4">
-                    {day.date ? new Date(day.date + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }) : `Day ${day.dayNumber}`}
+                    {`Day ${day.dayNumber}: `}{day.date ? new Date(day.date + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }) : `Day ${day.dayNumber}`}
                   </h2>
                   <p className="text-xs tracking-[0.15em] uppercase text-muted-foreground mb-6">
                     {day.title}
