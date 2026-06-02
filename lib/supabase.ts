@@ -80,6 +80,7 @@ export interface Route {
   id: string;
   route_narrative: string | null;
   route_description: string | null;
+  proposal_description: string | null;
   image_prompt: string | null;
   image_url: string | null;
   hero_image_url: string | null;
