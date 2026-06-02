@@ -150,6 +150,11 @@ export default function EditQuotePage() {
   // Expanded day panels
   const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(["day-1"]));
 
+  // Helper to update a single quote field without spreading stale state
+  const updateQuoteField = (field: keyof QuoteData, value: string | number) => {
+    setQuote(prev => ({ ...prev, [field]: value }));
+  };
+
   // Apply content from library to a day
   const applyContentToDay = (dayId: string, contentBlock: ContentBlock) => {
     setDays(days.map((d) => {
@@ -341,7 +346,7 @@ export default function EditQuotePage() {
                   <input
                     type="text"
                     value={quote.clientName}
-                    onChange={(e) => setQuote({ ...quote, clientName: e.target.value })}
+                    onChange={(e) => updateQuoteField("clientName", e.target.value)}
                     className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:border-foreground"
                     placeholder="John Smith"
                   />
@@ -351,7 +356,7 @@ export default function EditQuotePage() {
                   <input
                     type="email"
                     value={quote.clientEmail}
-                    onChange={(e) => setQuote({ ...quote, clientEmail: e.target.value })}
+                    onChange={(e) => updateQuoteField("clientEmail", e.target.value)}
                     className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:border-foreground"
                     placeholder="john@example.com"
                   />
@@ -361,7 +366,7 @@ export default function EditQuotePage() {
                   <input
                     type="tel"
                     value={quote.clientPhone}
-                    onChange={(e) => setQuote({ ...quote, clientPhone: e.target.value })}
+                    onChange={(e) => updateQuoteField("clientPhone", e.target.value)}
                     className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:border-foreground"
                     placeholder="+1 555 123 4567"
                   />
@@ -371,7 +376,7 @@ export default function EditQuotePage() {
                   <input
                     type="text"
                     value={quote.clientCountry}
-                    onChange={(e) => setQuote({ ...quote, clientCountry: e.target.value })}
+                    onChange={(e) => updateQuoteField("clientCountry", e.target.value)}
                     className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:border-foreground"
                     placeholder="United States"
                   />
@@ -389,7 +394,7 @@ export default function EditQuotePage() {
                     type="number"
                     min="1"
                     value={quote.travelers}
-                    onChange={(e) => setQuote({ ...quote, travelers: parseInt(e.target.value) || 1 })}
+                    onChange={(e) => updateQuoteField("travelers", parseInt(e.target.value) || 1)}
                     className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:border-foreground"
                   />
                 </div>
@@ -399,7 +404,7 @@ export default function EditQuotePage() {
                     <input
                       type="date"
                       value={quote.startDate}
-                      onChange={(e) => setQuote({ ...quote, startDate: e.target.value })}
+                      onChange={(e) => updateQuoteField("startDate", e.target.value)}
                       className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:border-foreground"
                     />
                   </div>
@@ -408,7 +413,7 @@ export default function EditQuotePage() {
                     <input
                       type="date"
                       value={quote.endDate}
-                      onChange={(e) => setQuote({ ...quote, endDate: e.target.value })}
+                      onChange={(e) => updateQuoteField("endDate", e.target.value)}
                       className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:border-foreground"
                     />
                   </div>
@@ -417,7 +422,7 @@ export default function EditQuotePage() {
                   <label className="block text-sm text-muted-foreground mb-1">Hospitality Level</label>
                   <select
                     value={quote.hospitalityLevel}
-                    onChange={(e) => setQuote({ ...quote, hospitalityLevel: e.target.value })}
+                    onChange={(e) => updateQuoteField("hospitalityLevel", e.target.value)}
                     className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:border-foreground"
                   >
                     <option value="ESSENTIALS">Essentials</option>
@@ -430,7 +435,7 @@ export default function EditQuotePage() {
                   <input
                     type="text"
                     value={quote.totalPrice}
-                    onChange={(e) => setQuote({ ...quote, totalPrice: e.target.value })}
+                    onChange={(e) => updateQuoteField("totalPrice", e.target.value)}
                     className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:border-foreground"
                     placeholder="$4,500 USD"
                   />
@@ -637,7 +642,7 @@ export default function EditQuotePage() {
               <h3 className="font-serif text-lg mb-4">Internal Notes</h3>
               <textarea
                 value={quote.notes}
-                onChange={(e) => setQuote({ ...quote, notes: e.target.value })}
+                onChange={(e) => updateQuoteField("notes", e.target.value)}
                 rows={4}
                 className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:border-foreground resize-none"
                 placeholder="Notes about this quote (not visible to client)..."
