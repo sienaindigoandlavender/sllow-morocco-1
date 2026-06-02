@@ -78,23 +78,23 @@ export default function QuoteDetailPage() {
       .then((data) => {
         if (data.success && data.quote) {
           const q = data.quote;
-          setFirstName(q.firstName || "");
-          setLastName(q.lastName || "");
-          setEmail(q.email || "");
-          setPhone(q.phone || "");
-          setCountry(q.country || "");
-          setJourneyInterest(q.journeyInterest || "");
-          setStartDate(q.startDate || "");
-          setEndDate(q.endDate || "");
-          setStartCity(q.startCity || "");
-          setEndCity(q.endCity || "");
-          setDays(parseInt(q.days) || 7);
-          setTravelers(parseInt(q.travelers) || 2);
-          setLanguage(q.language || "English");
-          setBudget(q.budget || "");
-          setRequests(q.requests || "");
-          setNotes(q.notes || "");
-          setStatus(q.status || "NEW");
+          setFirstName(q.First_Name || "");
+          setLastName(q.Last_Name || "");
+          setEmail(q.Email || "");
+          setPhone(q.Phone || "");
+          setCountry(q.Country || "");
+          setJourneyInterest(q.Journey_Interest || "");
+          setStartDate(q.Start_Date || "");
+          setEndDate(q.End_Date || "");
+          setStartCity(q.Start_City || "");
+          setEndCity(q.End_City || "");
+          setDays(parseInt(q.Days) || 7);
+          setTravelers(parseInt(q.Number_Travelers) || 2);
+          setLanguage(q.Language || "English");
+          setBudget(q.Budget || "");
+          setRequests(q.Requests || "");
+          setNotes(q.Notes || "");
+          setStatus(q.Status || "NEW");
         }
         setLoading(false);
       })
