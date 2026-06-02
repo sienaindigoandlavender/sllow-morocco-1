@@ -85,6 +85,17 @@ export default function ProposalPage() {
   
   // Editable price (admin only)
   const [editablePrice, setEditablePrice] = useState("");
+  
+  // Update a specific day field in the proposal
+  const updateDay = (dayNumber: number, field: string, value: string) => {
+    if (!proposal) return;
+    const updatedDays = proposal.days.map(d => 
+      d.dayNumber === dayNumber ? { ...d, [field]: value } : d
+    );
+    const updated = { ...proposal, days: updatedDays };
+    setProposal(updated);
+    localStorage.setItem(`proposal-${proposalId}`, JSON.stringify(updated));
+  };
 
   // Check if admin mode from URL
   useEffect(() => {
@@ -544,17 +555,29 @@ Slow Morocco Team`);
           <div className="container mx-auto px-6 lg:px-16">
             <div className="flex items-center justify-center gap-8 py-4">
               <button
-                onClick={() => {
-                  // Save price to localStorage and update proposal
-                  const storedProposal = localStorage.getItem(`proposal-${proposalId}`);
-                  if (storedProposal) {
-                    const data = JSON.parse(storedProposal);
-                    data.price = editablePrice;
-                    data.savedAt = new Date().toISOString();
-                    localStorage.setItem(`proposal-${proposalId}`, JSON.stringify(data));
-                    setProposal({ ...proposal!, price: editablePrice });
-                    alert('Proposal saved!');
+                onClick={async () => {
+                  if (!proposal) return;
+                  const updated = { ...proposal, price: editablePrice };
+                  localStorage.setItem(`proposal-${proposalId}`, JSON.stringify(updated));
+                  setProposal(updated);
+                  // Save to Supabase
+                  try {
+                    await fetch(`/api/proposals`, {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({
+                        proposalId,
+                        formattedPrice: editablePrice,
+                        daysList: updated.days,
+                        heroTitle: updated.journeyTitle,
+                        heroBlurb: updated.arcDescription,
+                        heroImageUrl: updated.heroImage,
+                      }),
+                    });
+                  } catch (e) {
+                    console.error('Failed to save to Supabase:', e);
                   }
+                  alert('Proposal saved!');
                 }}
                 className="text-xs tracking-[0.15em] uppercase hover:opacity-70 transition-opacity px-6 py-2"
               >
@@ -650,11 +673,11 @@ Slow Morocco Team`);
               .map((day) => (
                 <div key={day.dayNumber}>
                   {/* Day Title */}
-                  <h2 className="font-serif text-2xl md:text-3xl mb-4">
-                    {`Day ${day.dayNumber}: `}{day.date ? new Date(day.date + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }) : `Day ${day.dayNumber}`}
-                  </h2>
-                  <p className="text-xs tracking-[0.15em] uppercase text-muted-foreground mb-6">
+                  <h2 className="font-serif text-3xl md:text-4xl mb-2">
                     {day.title}
+                  </h2>
+                  <p className="text-xs tracking-[0.15em] uppercase text-muted-foreground mb-8">
+                    {`Day ${day.dayNumber}`}{day.date ? ` — ${new Date(day.date + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}` : ''}
                   </p>
 
                   {/* Route (From → To) - only show if different cities */}
@@ -669,9 +692,32 @@ Slow Morocco Team`);
                   )}
 
                   {/* Day Description */}
-                  <p className="text-muted-foreground leading-relaxed mb-8">
-                    {day.description}
-                  </p>
+                  {isAdmin ? (
+                    <textarea
+                      value={day.description}
+                      onChange={(e) => updateDay(day.dayNumber, 'description', e.target.value)}
+                      rows={5}
+                      className="w-full px-4 py-3 border border-border bg-background text-base text-muted-foreground leading-relaxed mb-8 focus:outline-none focus:border-foreground resize-none"
+                    />
+                  ) : (
+                    <p className="text-muted-foreground leading-relaxed mb-8">
+                      {day.description}
+                    </p>
+                  )}
+
+                  {/* Day Image URL - Admin editable */}
+                  {isAdmin && (
+                    <div className="mb-4">
+                      <label className="block text-xs tracking-[0.1em] uppercase text-muted-foreground mb-2">Image URL</label>
+                      <input
+                        type="text"
+                        value={day.imageUrl || ""}
+                        onChange={(e) => updateDay(day.dayNumber, 'imageUrl', e.target.value)}
+                        placeholder="Cloudinary or image URL"
+                        className="w-full px-4 py-2 border border-border bg-background text-sm focus:outline-none focus:border-foreground"
+                      />
+                    </div>
+                  )}
 
                   {/* Day Image */}
                   {day.imageUrl && (
@@ -680,7 +726,7 @@ Slow Morocco Team`);
                         src={cloudinaryUrl(day.imageUrl)}
                         alt={`Day ${day.dayNumber} - ${day.title}`}
                         className="absolute inset-0 w-full h-full object-cover"
-            />
+                      />
                     </div>
                   )}
                 </div>
