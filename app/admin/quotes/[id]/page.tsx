@@ -200,23 +200,7 @@ export default function QuoteDetailPage() {
       });
       
       const proposalId = `PRP-${Date.now()}`;
-      
-      // Build route points for map
-      const routePoints: { name: string; coords: [number, number] }[] = [];
-      const cityCoords: { [key: string]: [number, number] } = {
-        "Marrakech": [-7.9811, 31.6295],
-        "Casablanca": [-7.5898, 33.5731],
-        "Fes": [-5.0078, 34.0181],
-        "Chefchaouen": [-5.2636, 35.1688],
-        "Essaouira": [-9.7595, 31.5085],
-        "Merzouga": [-4.0133, 31.0802],
-        "Ouarzazate": [-6.8936, 30.9189],
-        "Tamnougalt": [-6.4667, 30.95],
-        "Zagora": [-5.8381, 30.3306],
-        "Tinghir": [-5.5328, 31.5147],
-        "Dades": [-5.9833, 31.4500],
-        "Todra": [-5.5833, 31.5500],
-      };
+
       
       const routePoints: { name: string; coords: [number, number] }[] = [];
       const cityCoords: { [key: string]: [number, number] } = {
