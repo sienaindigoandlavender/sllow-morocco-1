@@ -9,13 +9,15 @@ export async function GET() {
       id: row.id || `content-${index}`,
       cityName: row.to_city || row.from_city || "",
       dayTitle: row.day_title || "",
-      description: row.route_description || "",
+      description: row.proposal_description || row.route_description || "",
       imageUrl: convertDriveUrl(row.image_url || ""),
       heroImageUrl: convertDriveUrl(row.hero_image_url || ""),
       heroTitle: row.hero_title || "",
       heroBlurb: row.hero_blurb || "",
       region: row.region || "",
       subRegion: row.sub_region || "",
+      fromCity: row.from_city || "",
+      toCity: row.to_city || "",
     }));
 
     const validBlocks = contentBlocks.filter(
