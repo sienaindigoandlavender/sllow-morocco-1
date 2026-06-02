@@ -4,6 +4,42 @@ import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 
+// Styled text input — defined outside component to prevent re-render on keystroke
+const TextInput = ({ label, value, onChange, placeholder = "" }: { 
+  label: string; 
+  value: string; 
+  onChange: (v: string) => void;
+  placeholder?: string;
+}) => (
+  <div>
+    <label className="block text-sm text-muted-foreground mb-2">{label}</label>
+    <input
+      type="text"
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      placeholder={placeholder}
+      className="w-full px-4 py-3 border border-border bg-background text-lg focus:outline-none focus:border-foreground transition-colors"
+    />
+  </div>
+);
+
+// Styled number input — defined outside component to prevent re-render on keystroke
+const NumberInput = ({ label, value, onChange }: { 
+  label: string; 
+  value: number; 
+  onChange: (v: number) => void;
+}) => (
+  <div>
+    <label className="block text-sm text-muted-foreground mb-2">{label}</label>
+    <input
+      type="number"
+      value={value}
+      onChange={(e) => onChange(parseInt(e.target.value) || 0)}
+      className="w-full px-4 py-3 border border-border bg-background text-xl font-serif focus:outline-none focus:border-foreground transition-colors"
+    />
+  </div>
+);
+
 export default function QuoteDetailPage() {
   const params = useParams();
   const router = useRouter();
@@ -34,42 +70,6 @@ export default function QuoteDetailPage() {
   const [requests, setRequests] = useState("");
   const [notes, setNotes] = useState("");
   const [status, setStatus] = useState("NEW");
-
-  // Styled text input
-  const TextInput = ({ label, value, onChange, placeholder = "" }: { 
-    label: string; 
-    value: string; 
-    onChange: (v: string) => void;
-    placeholder?: string;
-  }) => (
-    <div>
-      <label className="block text-sm text-muted-foreground mb-2">{label}</label>
-      <input
-        type="text"
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        placeholder={placeholder}
-        className="w-full px-4 py-3 border border-border bg-background text-lg focus:outline-none focus:border-foreground transition-colors"
-      />
-    </div>
-  );
-
-  // Styled number input
-  const NumberInput = ({ label, value, onChange }: { 
-    label: string; 
-    value: number; 
-    onChange: (v: number) => void;
-  }) => (
-    <div>
-      <label className="block text-sm text-muted-foreground mb-2">{label}</label>
-      <input
-        type="number"
-        value={value}
-        onChange={(e) => onChange(parseInt(e.target.value) || 0)}
-        className="w-full px-4 py-3 border border-border bg-background text-xl font-serif focus:outline-none focus:border-foreground transition-colors"
-      />
-    </div>
-  );
 
   // Fetch quote data
   useEffect(() => {
