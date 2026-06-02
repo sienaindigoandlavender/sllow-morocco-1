@@ -56,6 +56,7 @@ export async function GET(
       Itinerary_Doc_Link: data.itinerary_doc_link,
       Proposal_URL: data.proposal_url,
       Notes: data.notes,
+      Notes_Route_Sequence: data.notes_route_sequence,
       Created_Date: data.created_date,
       Last_Updated: data.last_updated,
     };
