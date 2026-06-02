@@ -136,11 +136,8 @@ export default function QuoteDetailPage() {
     setMessage("");
     
     try {
-      console.log("Fetching content library...");
       const contentRes = await fetch("/api/content-library");
       const contentData = await contentRes.json();
-      
-      console.log("Content library response:", contentData);
       
       if (!contentData.success) {
         setMessage(`Error: ${contentData.error || "Failed to fetch content"}`);
@@ -149,26 +146,58 @@ export default function QuoteDetailPage() {
       }
       
       if (!contentData.contentBlocks?.length) {
-        setMessage("Error: No content blocks found in Content_Library. Please add data to the Content_Library tab in your spreadsheet.");
+        setMessage("Error: No content blocks found in the routes library.");
         setGenerating(false);
         return;
       }
       
       const contentBlocks = contentData.contentBlocks;
-      console.log(`Found ${contentBlocks.length} content blocks:`, contentBlocks);
+      const numDays = days || 7;
+      const interestKeywords = (journeyInterest || "").toLowerCase().split(/[\s,]+/);
+      const start = (startCity || "").toLowerCase();
+      const end = (endCity || "").toLowerCase();
       
-      // Find the hero row (Day_Number = 0 or empty, but has heroTitle)
-      const heroBlock = contentBlocks.find((block: any) => 
-        block.heroTitle && (!block.dayNumber || block.dayNumber === "0" || block.dayNumber === 0)
-      ) || contentBlocks[0] || {};
+      // Score each block by relevance to this journey
+      const scored = contentBlocks.map((block: any) => {
+        let score = 0;
+        const from = (block.fromCity || "").toLowerCase();
+        const to = (block.toCity || "").toLowerCase();
+        const desc = (block.description || "").toLowerCase();
+        const city = (block.cityName || "").toLowerCase();
+        if (from === start || city === start) score += 10;
+        if (to === end || city === end) score += 10;
+        interestKeywords.forEach((kw: string) => {
+          if (kw.length > 2 && (from.includes(kw) || to.includes(kw) || desc.includes(kw) || city.includes(kw))) score += 3;
+        });
+        if (block.imageUrl) score += 2;
+        if (block.description) score += 1;
+        if (!block.fromCity && !block.toCity && !block.cityName) score = 0;
+        return { ...block, _score: score };
+      });
       
-      // Get day rows (Day_Number >= 1)
-      const dayBlocks = contentBlocks.filter((block: any) => 
-        block.dayNumber && parseInt(block.dayNumber) >= 1
-      );
-      
-      console.log("Hero block:", heroBlock);
-      console.log("Day blocks:", dayBlocks);
+      const sorted = scored.filter((b: any) => b._score > 0).sort((a: any, b: any) => b._score - a._score);
+      const seen = new Set<string>();
+      const selectedBlocks: any[] = [];
+      for (const block of sorted) {
+        const key = `${block.fromCity}-${block.toCity}`;
+        if (!seen.has(key) && selectedBlocks.length < numDays) {
+          seen.add(key);
+          selectedBlocks.push(block);
+        }
+      }
+      if (selectedBlocks.length < numDays) {
+        for (const block of sorted) {
+          if (selectedBlocks.length >= numDays) break;
+          if (!selectedBlocks.includes(block)) selectedBlocks.push(block);
+        }
+      }
+      selectedBlocks.sort((a: any, b: any) => {
+        const aFrom = (a.fromCity || "").toLowerCase();
+        const bFrom = (b.fromCity || "").toLowerCase();
+        if (aFrom === start) return -1;
+        if (bFrom === start) return 1;
+        return 0;
+      });
       
       const proposalId = `PRP-${Date.now()}`;
       
@@ -189,22 +218,29 @@ export default function QuoteDetailPage() {
         "Todra": [-5.5833, 31.5500],
       };
       
-      const proposalDays = dayBlocks.map((block: any) => {
-        const dayNum = parseInt(block.dayNumber) || 1;
-        console.log(`Processing day ${dayNum}:`, block);
-        
-        // Build route points
+      const routePoints: { name: string; coords: [number, number] }[] = [];
+      const cityCoords: { [key: string]: [number, number] } = {
+        "Marrakech": [-7.9811, 31.6295], "Casablanca": [-7.5898, 33.5731],
+        "Fes": [-5.0078, 34.0181], "Chefchaouen": [-5.2636, 35.1688],
+        "Essaouira": [-9.7595, 31.5085], "Merzouga": [-4.0133, 31.0802],
+        "Ouarzazate": [-6.8936, 30.9189], "Tamnougalt": [-6.4667, 30.95],
+        "Zagora": [-5.8381, 30.3306], "Tinghir": [-5.5328, 31.5147],
+        "Dades": [-5.9833, 31.4500], "Todra": [-5.5833, 31.5500],
+        "Agafay Desert": [-8.1500, 31.4000], "Errachidia": [-4.4261, 31.9314],
+      };
+
+      const proposalDays = selectedBlocks.map((block: any, index: number) => {
+        const dayNum = index + 1;
         if (block.fromCity && cityCoords[block.fromCity] && !routePoints.some(p => p.name === block.fromCity)) {
           routePoints.push({ name: block.fromCity, coords: cityCoords[block.fromCity] });
         }
         if (block.toCity && cityCoords[block.toCity] && !routePoints.some(p => p.name === block.toCity)) {
           routePoints.push({ name: block.toCity, coords: cityCoords[block.toCity] });
         }
-        
         return {
           dayNumber: dayNum,
-          date: startDate ? new Date(new Date(startDate).getTime() + (dayNum - 1) * 24 * 60 * 60 * 1000).toISOString().split('T')[0] : "",
-          title: block.toCity || block.dayTitle || block.fromCity || `Day ${dayNum}`,
+          date: startDate ? new Date(new Date(startDate).getTime() + (dayNum - 1) * 24 * 60 * 60 * 1000).toISOString().split("T")[0] : "",
+          title: block.toCity || block.cityName || block.dayTitle || block.fromCity || `Day ${dayNum}`,
           fromCity: block.fromCity || "",
           toCity: block.toCity || "",
           description: block.description || "",
@@ -217,15 +253,14 @@ export default function QuoteDetailPage() {
         };
       });
       
-      // Calculate price
       const totalPrice = parseFloat(price) || 2450;
       const formattedPrice = `€${totalPrice.toLocaleString()} EUR`;
+      const heroBlock = contentBlocks.find((b: any) => b.heroImageUrl) || {};
       
-      // Get hero content from the hero block
       const proposalData = {
         id: proposalId,
-        journeyTitle: heroBlock.heroTitle || "Your Morocco Journey",
-        arcDescription: heroBlock.heroBlurb || `A ${proposalDays.length}-day journey exploring Morocco's most captivating corners.`,
+        journeyTitle: `${firstName}'s Morocco Journey`,
+        arcDescription: `A ${proposalDays.length}-day journey through Morocco, crafted for ${firstName} ${lastName}.`,
         clientName: `${firstName} ${lastName}`.trim(),
         heroImage: heroBlock.heroImageUrl || proposalDays[0]?.imageUrl || "",
         price: price || "2,450",
