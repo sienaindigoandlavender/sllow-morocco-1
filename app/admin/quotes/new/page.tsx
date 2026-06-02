@@ -221,8 +221,6 @@ function BuildQuoteContent() {
       const contentRes = await fetch("/api/content-library");
       const contentData = await contentRes.json();
       
-      console.log("Content library response:", contentData);
-      
       if (!contentData.success) {
         setMessage(`Error: ${contentData.error || "Failed to fetch content"}`);
         setGenerating(false);
@@ -230,54 +228,113 @@ function BuildQuoteContent() {
       }
       
       if (!contentData.contentBlocks?.length) {
-        setMessage("Error: No content blocks found in Content_Library. Please add data to the Content_Library tab in your spreadsheet.");
+        setMessage("Error: No content blocks found in the routes library.");
         setGenerating(false);
         return;
       }
       
       const contentBlocks = contentData.contentBlocks;
-      console.log(`Found ${contentBlocks.length} content blocks:`, contentBlocks);
+      const numDays = days || 7;
       
-      // Find the hero row (Day_Number = 0 or empty, but has heroTitle)
-      const heroBlock = contentBlocks.find((block: any) => 
-        block.heroTitle && (!block.dayNumber || block.dayNumber === "0" || block.dayNumber === 0)
-      ) || contentBlocks[0] || {};
+      // Build a route sequence from the content library based on startCity, endCity, journeyInterest
+      // Strategy: find blocks that match the journey start/end and interest keywords
+      const interestKeywords = (journeyInterest || "").toLowerCase().split(/[\s,]+/);
+      const start = (startCity || "").toLowerCase();
+      const end = (endCity || "").toLowerCase();
       
-      // Get day rows (Day_Number >= 1)
-      const dayBlocks = contentBlocks.filter((block: any) => 
-        block.dayNumber && parseInt(block.dayNumber) >= 1
-      );
+      // Score each block by relevance
+      const scored = contentBlocks.map((block: any) => {
+        let score = 0;
+        const from = (block.fromCity || "").toLowerCase();
+        const to = (block.toCity || "").toLowerCase();
+        const desc = (block.description || "").toLowerCase();
+        const city = (block.cityName || "").toLowerCase();
+        
+        // Prioritize blocks that match start/end cities
+        if (from === start || city === start) score += 10;
+        if (to === end || city === end) score += 10;
+        
+        // Score by interest keywords
+        interestKeywords.forEach((kw: string) => {
+          if (kw.length > 2) {
+            if (from.includes(kw) || to.includes(kw) || desc.includes(kw) || city.includes(kw)) score += 3;
+          }
+        });
+        
+        // Prefer blocks with images and descriptions
+        if (block.imageUrl) score += 2;
+        if (block.description) score += 1;
+        
+        // Exclude pure hero blocks (no from/to city)
+        if (!block.fromCity && !block.toCity && !block.cityName) score = 0;
+        
+        return { ...block, _score: score };
+      });
       
-      console.log("Hero block:", heroBlock);
-      console.log("Day blocks:", dayBlocks);
+      // Sort by score descending, deduplicate by city
+      const sorted = scored
+        .filter((b: any) => b._score > 0)
+        .sort((a: any, b: any) => b._score - a._score);
+      
+      // Pick top N unique blocks for the number of days
+      const seen = new Set<string>();
+      const selectedBlocks: any[] = [];
+      
+      for (const block of sorted) {
+        const key = `${block.fromCity}-${block.toCity}`;
+        if (!seen.has(key) && selectedBlocks.length < numDays) {
+          seen.add(key);
+          selectedBlocks.push(block);
+        }
+      }
+      
+      // If we don't have enough, fill with remaining blocks
+      if (selectedBlocks.length < numDays) {
+        for (const block of sorted) {
+          if (selectedBlocks.length >= numDays) break;
+          if (!selectedBlocks.includes(block)) {
+            selectedBlocks.push(block);
+          }
+        }
+      }
+      
+      // Sort selected blocks: start city first, end city last
+      selectedBlocks.sort((a: any, b: any) => {
+        const aFrom = (a.fromCity || "").toLowerCase();
+        const bFrom = (b.fromCity || "").toLowerCase();
+        if (aFrom === start) return -1;
+        if (bFrom === start) return 1;
+        const aTo = (a.toCity || "").toLowerCase();
+        const bTo = (b.toCity || "").toLowerCase();
+        if (aTo === end) return 1;
+        if (bTo === end) return -1;
+        return 0;
+      });
       
       const proposalId = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
       
-      const proposalDays = dayBlocks.map((block: any) => {
-        const dayNum = parseInt(block.dayNumber) || 1;
-        console.log(`Processing day ${dayNum}:`, block);
-        return {
-          dayNumber: dayNum,
-          title: block.toCity || block.dayTitle || block.fromCity || `Day ${dayNum}`,
-          fromCity: block.fromCity || "",
-          toCity: block.toCity || "",
-          description: block.description || "",
-          imageUrl: block.imageUrl || "",
-          // Additional metadata
-          durationHours: block.durationHours || "",
-          difficultyLevel: block.difficultyLevel || "",
-          activities: block.activities || "",
-          accommodationType: block.accommodationType || "",
-          meals: block.meals || "",
-          highlights: block.highlights || "",
-        };
-      });
+      const proposalDays = selectedBlocks.map((block: any, index: number) => ({
+        dayNumber: index + 1,
+        title: block.toCity || block.cityName || block.dayTitle || block.fromCity || `Day ${index + 1}`,
+        fromCity: block.fromCity || "",
+        toCity: block.toCity || "",
+        description: block.description || "",
+        imageUrl: block.imageUrl || "",
+        durationHours: block.durationHours || "",
+        difficultyLevel: block.difficultyLevel || "",
+        activities: block.activities || "",
+        accommodationType: block.accommodationType || "",
+        meals: block.meals || "",
+        highlights: block.highlights || "",
+      }));
       
-      // Get hero content from the hero block
+      // Hero: use first block with a heroImageUrl, or first day image
+      const heroBlock = contentBlocks.find((b: any) => b.heroImageUrl) || {};
+      
       const proposalData = {
         id: proposalId,
-        journeyTitle: heroBlock.heroTitle || "Your Morocco Journey",
-        arcDescription: heroBlock.heroBlurb || `A ${proposalDays.length}-day journey exploring Morocco's most captivating corners.`,
+        journeyTitle: `${firstName}'s Morocco Journey` || "Your Morocco Journey",
+        arcDescription: `A ${proposalDays.length}-day journey through Morocco, crafted for ${firstName} ${lastName}.`,
         clientName: `${firstName} ${lastName}`.trim(),
         heroImage: heroBlock.heroImageUrl || proposalDays[0]?.imageUrl || "",
         price: price || "2,450",
@@ -287,8 +344,6 @@ function BuildQuoteContent() {
       console.log("Saving proposal data:", proposalData);
       localStorage.setItem(`proposal-${proposalId}`, JSON.stringify(proposalData));
       
-      // Open in EDIT mode for admin
-      console.log("Opening proposal page in edit mode:", `/proposal/${proposalId}?edit=true`);
       window.open(`/proposal/${proposalId}?edit=true`, '_blank');
       setMessage("Proposal generated!");
     } catch (err) {
