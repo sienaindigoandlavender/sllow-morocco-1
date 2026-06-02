@@ -70,6 +70,7 @@ export default function QuoteDetailPage() {
   const [requests, setRequests] = useState("");
   const [notes, setNotes] = useState("");
   const [status, setStatus] = useState("NEW");
+  const [routeSequence, setRouteSequence] = useState("");
 
   // Fetch quote data
   useEffect(() => {
@@ -95,6 +96,7 @@ export default function QuoteDetailPage() {
           setRequests(q.Requests || "");
           setNotes(q.Notes || "");
           setStatus(q.Status || "NEW");
+          setRouteSequence(q.Notes_Route_Sequence || "");
         }
         setLoading(false);
       })
@@ -113,7 +115,8 @@ export default function QuoteDetailPage() {
       firstName, lastName, email, phone, country,
       journeyInterest, startDate, endDate, startCity, endCity,
       days: days.toString(), travelers: travelers.toString(), 
-      language, budget, requests, notes, status
+      language, budget, requests, notes, status,
+      notes_route_sequence: routeSequence
     };
     
     try {
@@ -153,51 +156,50 @@ export default function QuoteDetailPage() {
       
       const contentBlocks = contentData.contentBlocks;
       const numDays = days || 7;
-      const interestKeywords = (journeyInterest || "").toLowerCase().split(/[\s,]+/);
-      const start = (startCity || "").toLowerCase();
-      const end = (endCity || "").toLowerCase();
       
-      // Score each block by relevance to this journey
-      const scored = contentBlocks.map((block: any) => {
-        let score = 0;
-        const from = (block.fromCity || "").toLowerCase();
-        const to = (block.toCity || "").toLowerCase();
-        const desc = (block.description || "").toLowerCase();
-        const city = (block.cityName || "").toLowerCase();
-        if (from === start || city === start) score += 10;
-        if (to === end || city === end) score += 10;
-        interestKeywords.forEach((kw: string) => {
-          if (kw.length > 2 && (from.includes(kw) || to.includes(kw) || desc.includes(kw) || city.includes(kw))) score += 3;
+      let selectedBlocks: any[] = [];
+      
+      // If route sequence is provided, use it directly
+      if (routeSequence && routeSequence.trim()) {
+        const routeIds = routeSequence.trim().split("\n").map((id: string) => id.trim()).filter((id: string) => id.length > 0);
+        const blockMap = new Map(contentBlocks.map((b: any) => [b.id, b]));
+        selectedBlocks = routeIds.map((id: string) => blockMap.get(id)).filter(Boolean);
+        if (selectedBlocks.length === 0) {
+          setMessage("Error: None of the route IDs were found in the content library. Check your route sequence.");
+          setGenerating(false);
+          return;
+        }
+      } else {
+        // Fall back to smart scoring
+        const interestKeywords = (journeyInterest || "").toLowerCase().split(/[\s,]+/);
+        const start = (startCity || "").toLowerCase();
+        const end = (endCity || "").toLowerCase();
+        const scored = contentBlocks.map((block: any) => {
+          let score = 0;
+          const from = (block.fromCity || "").toLowerCase();
+          const to = (block.toCity || "").toLowerCase();
+          const desc = (block.description || "").toLowerCase();
+          const city = (block.cityName || "").toLowerCase();
+          if (from === start || city === start) score += 10;
+          if (to === end || city === end) score += 10;
+          interestKeywords.forEach((kw: string) => {
+            if (kw.length > 2 && (from.includes(kw) || to.includes(kw) || desc.includes(kw) || city.includes(kw))) score += 3;
+          });
+          if (block.imageUrl) score += 2;
+          if (block.description) score += 1;
+          if (!block.fromCity && !block.toCity && !block.cityName) score = 0;
+          return { ...block, _score: score };
         });
-        if (block.imageUrl) score += 2;
-        if (block.description) score += 1;
-        if (!block.fromCity && !block.toCity && !block.cityName) score = 0;
-        return { ...block, _score: score };
-      });
-      
-      const sorted = scored.filter((b: any) => b._score > 0).sort((a: any, b: any) => b._score - a._score);
-      const seen = new Set<string>();
-      const selectedBlocks: any[] = [];
-      for (const block of sorted) {
-        const key = `${block.fromCity}-${block.toCity}`;
-        if (!seen.has(key) && selectedBlocks.length < numDays) {
-          seen.add(key);
-          selectedBlocks.push(block);
-        }
-      }
-      if (selectedBlocks.length < numDays) {
+        const sorted = scored.filter((b: any) => b._score > 0).sort((a: any, b: any) => b._score - a._score);
+        const seen = new Set<string>();
         for (const block of sorted) {
-          if (selectedBlocks.length >= numDays) break;
-          if (!selectedBlocks.includes(block)) selectedBlocks.push(block);
+          const key = `${block.fromCity}-${block.toCity}`;
+          if (!seen.has(key) && selectedBlocks.length < numDays) {
+            seen.add(key);
+            selectedBlocks.push(block);
+          }
         }
       }
-      selectedBlocks.sort((a: any, b: any) => {
-        const aFrom = (a.fromCity || "").toLowerCase();
-        const bFrom = (b.fromCity || "").toLowerCase();
-        if (aFrom === start) return -1;
-        if (bFrom === start) return 1;
-        return 0;
-      });
       
       const proposalId = `PRP-${Date.now()}`;
 
@@ -472,6 +474,23 @@ export default function QuoteDetailPage() {
                 rows={3}
                 placeholder="Notes for your reference (not visible to client)..."
                 className="w-full px-4 py-3 border border-border bg-background text-lg focus:outline-none focus:border-foreground transition-colors resize-none"
+              />
+            </section>
+
+            {/* Route Sequence */}
+            <section>
+              <h2 className="font-serif text-xl mb-2">Route Sequence</h2>
+              <p className="text-sm text-muted-foreground mb-4">Enter one route ID per line in order. These will be used to generate the proposal day by day. Example:<br/>
+                <code className="text-xs bg-muted px-1">STAY_ESSAOUIRA</code><br/>
+                <code className="text-xs bg-muted px-1">ESS-MAR-NEW</code><br/>
+                <code className="text-xs bg-muted px-1">STAY_MARRAKECH</code>
+              </p>
+              <textarea
+                value={routeSequence}
+                onChange={(e) => setRouteSequence(e.target.value)}
+                rows={12}
+                placeholder={"STAY_ESSAOUIRA\nSTAY_ESSAOUIRA\nESS-MAR-NEW\nSTAY_MARRAKECH\nMAR-AGAFAY\nMAR-TAM-004\nDAD-MER-116\nSTAY_MERZOUGA\nSTAY_MERZOUGA"}
+                className="w-full px-4 py-3 border border-border bg-background text-sm font-mono focus:outline-none focus:border-foreground transition-colors resize-none"
               />
             </section>
 
