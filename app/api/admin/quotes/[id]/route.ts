@@ -114,6 +114,7 @@ export async function PUT(
     if (body.budget !== undefined) updates.budget = body.budget;
     if (body.requests !== undefined) updates.requests = body.requests;
     if (body.notes !== undefined) updates.notes = body.notes;
+    if (body.notes_route_sequence !== undefined) updates.notes_route_sequence = body.notes_route_sequence;
     if (body.firstTimeMorocco !== undefined) updates.first_time_morocco = body.firstTimeMorocco;
     if (body.dreamExperience !== undefined) updates.dream_experience = body.dreamExperience;
     if (body.hearAboutUs !== undefined) updates.hear_about_us = body.hearAboutUs;
