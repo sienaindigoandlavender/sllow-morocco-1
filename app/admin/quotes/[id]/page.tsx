@@ -256,8 +256,9 @@ export default function QuoteDetailPage() {
         journeyTitle: `${firstName}'s Morocco Journey`,
         arcDescription: `An ${proposalDays.length - 1}-night journey through Morocco, crafted for ${firstName} ${lastName}.`,
         clientName: `${firstName} ${lastName}`.trim(),
-        heroImage: heroImage || heroBlock.heroImageUrl || proposalDays[0]?.imageUrl || "",
-        price: price || "2,450",
+        heroImage: heroImage || heroBlock.heroImageUrl || "",
+        price: price || "22,000",
+        travelers: travelers || 4,
         days: proposalDays
       };
       
@@ -304,7 +305,7 @@ export default function QuoteDetailPage() {
       }
       
       console.log("Opening proposal page:", `/proposal/${proposalId}`);
-      window.open(`/proposal/${proposalId}`, '_blank');
+      window.open(`/proposal/${proposalId}?edit=true`, '_blank');
       setMessage("Proposal generated!");
     } catch (err) {
       console.error("Generate error:", err);
