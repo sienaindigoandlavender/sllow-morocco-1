@@ -267,7 +267,7 @@ const SITE_CONFIG: NexusSite = {
   whatsapp: null,
   jurisdiction_country: "Morocco",
   jurisdiction_city: "Marrakech",
-  address_line1: "35 Derb Fhal Zfriti Kennaria",
+  address_line1: "35 Derb Fhal Zfriti, Ksour",
   address_line2: "Marrakech 40000 Morocco",
   site_type: "travel",
   parent_brand: null,
@@ -283,7 +283,7 @@ const LEGAL_PAGES: Record<string, { title: string; sections: { order: number; ti
       { order: 4, title: "Intellectual Property", content: "All content on this site, including text, graphics, logos, images, photography, videos, and design, is the property of Slow Morocco SARL and is protected by copyright laws." },
       { order: 5, title: "Limitation of Liability", content: "To the maximum extent permitted by law, Slow Morocco SARL shall not be liable for indirect, incidental, or consequential damages arising from use of our services." },
       { order: 6, title: "Governing Law", content: "These terms are governed by the laws of Morocco. Any disputes shall be resolved in the courts of Marrakech." },
-      { order: 7, title: "Contact", content: "Slow Morocco SARL, 35 Derb Fhal Zfriti Kennaria, Marrakech 40000 Morocco. Email: hello@slowmorocco.com" },
+      { order: 7, title: "Contact", content: "Slow Morocco SARL, 35 Derb Fhal Zfriti, Ksour, Marrakech 40000 Morocco. Email: hello@slowmorocco.com" },
     ],
   },
   privacy: {
@@ -294,7 +294,7 @@ const LEGAL_PAGES: Record<string, { title: string; sections: { order: number; ti
       { order: 3, title: "How We Use Your Information", content: "To process and manage your bookings, communicate with you about inquiries and reservations, send confirmations and documents, and improve our website and services." },
       { order: 4, title: "Your Rights", content: "You have the right to access, correct, or delete your personal data. To exercise these rights, contact us at hello@slowmorocco.com." },
       { order: 5, title: "Data Security", content: "We implement appropriate security measures including SSL/TLS encryption and secure payment processing." },
-      { order: 6, title: "Contact", content: "Slow Morocco SARL, 35 Derb Fhal Zfriti Kennaria, Marrakech 40000 Morocco. Email: hello@slowmorocco.com" },
+      { order: 6, title: "Contact", content: "Slow Morocco SARL, 35 Derb Fhal Zfriti, Ksour, Marrakech 40000 Morocco. Email: hello@slowmorocco.com" },
     ],
   },
   disclaimer: {
@@ -305,7 +305,7 @@ const LEGAL_PAGES: Record<string, { title: string; sections: { order: number; ti
       { order: 3, title: "Independent Resource", content: "This is an independent resource. We are not affiliated with any government agency or official institution. Information may change\u2014please verify before travel." },
       { order: 4, title: "Photography", content: "Images on this site are representative of destinations and experiences. They may not reflect current conditions and should not be relied upon as exact representations." },
       { order: 5, title: "Limitation of Liability", content: "Slow Morocco SARL shall not be liable for any damages arising from use or inability to use this site, reliance on information provided, or errors or omissions in content." },
-      { order: 6, title: "Contact", content: "Slow Morocco SARL, 35 Derb Fhal Zfriti Kennaria, Marrakech 40000 Morocco. Email: hello@slowmorocco.com" },
+      { order: 6, title: "Contact", content: "Slow Morocco SARL, 35 Derb Fhal Zfriti, Ksour, Marrakech 40000 Morocco. Email: hello@slowmorocco.com" },
     ],
   },
   "intellectual-property": {
@@ -317,7 +317,7 @@ const LEGAL_PAGES: Record<string, { title: string; sections: { order: number; ti
       { order: 4, title: "Permitted Use", content: "You may view content for personal, non-commercial use, share links to our pages, print pages for personal reference, and quote brief excerpts with proper attribution." },
       { order: 5, title: "Prohibited Use", content: "Without written permission, you may not copy, reproduce, or duplicate content, modify or create derivative works, distribute or use content commercially, remove copyright notices, or scrape content using automated tools." },
       { order: 6, title: "Permission Requests", content: "To request permission to use our content, contact hello@slowmorocco.com with subject line 'IP License Request'." },
-      { order: 7, title: "Contact", content: "Slow Morocco SARL, 35 Derb Fhal Zfriti Kennaria, Marrakech 40000 Morocco. Email: hello@slowmorocco.com" },
+      { order: 7, title: "Contact", content: "Slow Morocco SARL, 35 Derb Fhal Zfriti, Ksour, Marrakech 40000 Morocco. Email: hello@slowmorocco.com" },
     ],
   },
   "booking-conditions": {
@@ -331,7 +331,7 @@ const LEGAL_PAGES: Record<string, { title: string; sections: { order: number; ti
       { order: 6, title: "Changes to Your Journey", content: "You can request changes to your itinerary, dates, or accommodation at any time before departure. We will do our best to accommodate changes, but they may incur additional costs if suppliers charge amendment fees or if prices have changed. We will confirm any cost difference before proceeding.\n\nDuring your journey, adjustments on the ground are often possible — an extra night, a change of route, a spontaneous detour. Talk to your guide or contact us directly.\n\nIf we need to adjust your itinerary due to circumstances beyond our control — a road closure, a fully booked riad — we will offer an alternative of equal or higher quality at no additional cost." },
       { order: 7, title: "Complaints", content: "If something goes wrong during your journey, please tell us immediately — by email at hello@slowmorocco.com. Most issues can be resolved on the ground, in real time. If you are not satisfied, you may submit a written complaint within 14 days of your return. We will respond within 30 days." },
       { order: 8, title: "Governing Law", content: "These terms are governed by the laws of the Kingdom of Morocco. Any dispute arising from these terms will be subject to the jurisdiction of the courts of Marrakech." },
-      { order: 9, title: "Contact", content: "Slow Morocco SARL, 35 Derb Fhal Zfriti Kennaria, Marrakech 40000 Morocco. Email: hello@slowmorocco.com" },
+      { order: 9, title: "Contact", content: "Slow Morocco SARL, 35 Derb Fhal Zfriti, Ksour, Marrakech 40000 Morocco. Email: hello@slowmorocco.com" },
     ],
   },
   "payments": {
@@ -343,7 +343,7 @@ const LEGAL_PAGES: Record<string, { title: string; sections: { order: number; ti
       { order: 4, title: "Payment Methods", content: "We accept PayPal and bank transfer. Payment details are included in your invoice. For bank transfers, please use your name and journey dates as the reference." },
       { order: 5, title: "Currency", content: "All prices are quoted in euros (€). If paying in another currency, the exchange rate on the day of payment applies. Any bank transfer fees are the responsibility of the client." },
       { order: 6, title: "What Your Payment Covers", content: "Your payment covers the journey design, coordination, and all services listed in your proposal. Some services are delivered directly by our licensed local partners (transport, guiding), and some are booked through us on your behalf (accommodation, experiences). Your proposal specifies exactly what is included." },
-      { order: 7, title: "Contact", content: "Slow Morocco SARL, 35 Derb Fhal Zfriti Kennaria, Marrakech 40000 Morocco. Email: hello@slowmorocco.com" },
+      { order: 7, title: "Contact", content: "Slow Morocco SARL, 35 Derb Fhal Zfriti, Ksour, Marrakech 40000 Morocco. Email: hello@slowmorocco.com" },
     ],
   },
   "cancellations-and-refunds": {
@@ -355,7 +355,7 @@ const LEGAL_PAGES: Record<string, { title: string; sections: { order: number; ti
       { order: 4, title: "Force Majeure", content: "Neither party is liable for failure to perform due to events beyond reasonable control, including natural disasters, extreme weather, epidemics or pandemics, government actions, civil unrest, strikes, or travel restrictions.\n\nIn such cases, we will work with you to reschedule your journey or provide a refund minus any non-recoverable costs already paid to suppliers." },
       { order: 5, title: "Rescheduling", content: "If you would prefer to reschedule rather than cancel, we are happy to move your journey to new dates subject to availability. One reschedule is permitted at no additional charge if requested more than 30 days before departure. Changes to dates within 30 days of departure may incur supplier amendment fees." },
       { order: 6, title: "Our Liability", content: "Slow Morocco acts as a journey designer and coordinator. We select and work with trusted local partners with care. However, we are not liable for the acts or omissions of third-party suppliers, or for injury, loss, damage, or delay caused by events outside our control. Our total liability for any claim shall not exceed the total amount you paid for your journey." },
-      { order: 7, title: "Contact", content: "Slow Morocco SARL, 35 Derb Fhal Zfriti Kennaria, Marrakech 40000 Morocco. Email: hello@slowmorocco.com" },
+      { order: 7, title: "Contact", content: "Slow Morocco SARL, 35 Derb Fhal Zfriti, Ksour, Marrakech 40000 Morocco. Email: hello@slowmorocco.com" },
     ],
   },
 };
