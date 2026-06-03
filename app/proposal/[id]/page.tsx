@@ -765,6 +765,50 @@ Slow Morocco Team`);
                     </div>
                   )}
 
+                  {/* Day Metadata — subtle icon row */}
+                  {(day.durationHours || day.difficultyLevel || day.meals || day.accommodationType) && (
+                    <div className="flex flex-wrap gap-x-6 gap-y-2 mb-8 text-xs text-muted-foreground/70">
+                      {day.durationHours && (
+                        <div className="flex items-center gap-1.5">
+                          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.2" className="w-3.5 h-3.5">
+                            <circle cx="8" cy="8" r="6.5" />
+                            <line x1="8" y1="4" x2="8" y2="8" />
+                            <line x1="8" y1="8" x2="11" y2="10" />
+                          </svg>
+                          <span>{day.durationHours}</span>
+                        </div>
+                      )}
+                      {day.difficultyLevel && (
+                        <div className="flex items-center gap-1.5">
+                          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.2" className="w-3.5 h-3.5">
+                            <polyline points="1,13 5,7 9,10 15,2" />
+                          </svg>
+                          <span>{day.difficultyLevel}</span>
+                        </div>
+                      )}
+                      {day.accommodationType && (
+                        <div className="flex items-center gap-1.5">
+                          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.2" className="w-3.5 h-3.5">
+                            <rect x="2" y="7" width="12" height="7" />
+                            <polyline points="1,7 8,2 15,7" />
+                          </svg>
+                          <span>{day.accommodationType}</span>
+                        </div>
+                      )}
+                      {day.meals && (
+                        <div className="flex items-center gap-1.5">
+                          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.2" className="w-3.5 h-3.5">
+                            <line x1="5" y1="1" x2="5" y2="6" />
+                            <path d="M3,1 Q3,5 5,6 Q7,5 7,1" />
+                            <line x1="5" y1="6" x2="5" y2="15" />
+                            <line x1="11" y1="1" x2="11" y2="15" />
+                          </svg>
+                          <span>{day.meals}</span>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
                   {/* Day Description */}
                   {isAdmin ? (
                     <textarea
