@@ -381,7 +381,39 @@
 <!-- MAP -->
 <div class="content" style="padding-top:48px; padding-bottom:48px; border-bottom: 1px solid var(--border);">
   <p style="font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); margin-bottom:20px;">Your Route</p>
-  <img src="https://api.mapbox.com/styles/v1/mapbox/light-v11/static/pin-s+1a1a18(-9.7595,31.5085),pin-s+1a1a18(-7.9811,31.6295),pin-s+1a1a18(-8.15,31.4),pin-s+1a1a18(-6.4667,30.95),pin-s+1a1a18(-5.5833,31.55),pin-s+1a1a18(-4.0133,31.0802),pin-s+1a1a18(-4.4261,31.9314),path-2+1a1a18-0.6(-9.7595%2C31.5085%2C-7.9811%2C31.6295%2C-8.15%2C31.4%2C-6.4667%2C30.95%2C-5.5833%2C31.55%2C-4.0133%2C31.0802%2C-4.4261%2C31.9314)/auto/800x420@2x?padding=60&access_token=pk.eyJ1IjoiaW5kaWdvYW5kdmVsW5kbGF2ZW5kZXIiLCJhIjoiY21kN3B0OTZvMGllNjJpcXY0MnZlZHVlciJ9.1-jV-Pze3d7HZseOAhmkCg" alt="Route map" style="width:100%; display:block;" />
+    <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" style="width:100%; background:#f5f0e8; display:block; border: 1px solid #e0dbd0;">
+    <!-- Morocco outline -->
+    <polygon points="419.4,58.9 465.8,49.4 651.6,82.5 721.3,110.8 744.5,148.6 783.2,186.4 791.0,214.7 775.5,247.8 721.3,285.6 659.4,309.2 605.2,332.8 551.0,342.2 489.0,346.9 411.6,356.4 334.2,346.9 256.8,332.8 179.4,309.2 117.4,261.9 101.9,214.7 86.5,167.5 117.4,120.3 179.4,87.2 256.8,58.9 372.9,54.2 419.4,58.9" fill="#ede8de" stroke="#d0c8b8" stroke-width="1"/>
+    <!-- Atlas mountains -->
+    <polyline points="180,300 220,285 265,275 315,268 365,265 415,268 455,275 490,284"
+      fill="none" stroke="#c8bfaf" stroke-width="5" stroke-linecap="round"/>
+    <!-- Sahara suggestion -->
+    <rect x="330" y="310" width="460" height="80" fill="#e8dfc8" opacity="0.4"/>
+    <!-- Route line -->
+    <polyline points="120.6,261.5 258.2,255.8 245.2,266.7 375.5,287.9 443.9,259.6 565.4,281.8 533.5,241.6"
+      fill="none" stroke="#8B7355" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="120.6" cy="261.5" r="5.5" fill="white" stroke="#1a1a18" stroke-width="1.5"/>
+    <circle cx="120.6" cy="261.5" r="3" fill="#1a1a18"/>
+    <text x="108" y="253" text-anchor="end" font-family="Georgia,serif" font-size="11" fill="#1a1a18">Essaouira</text>
+    <circle cx="258.2" cy="255.8" r="5.5" fill="white" stroke="#1a1a18" stroke-width="1.5"/>
+    <circle cx="258.2" cy="255.8" r="3" fill="#1a1a18"/>
+    <text x="272" y="248" text-anchor="start" font-family="Georgia,serif" font-size="11" fill="#1a1a18">Marrakech</text>
+    <circle cx="245.2" cy="266.7" r="5.5" fill="white" stroke="#1a1a18" stroke-width="1.5"/>
+    <circle cx="245.2" cy="266.7" r="3" fill="#1a1a18"/>
+    <text x="232" y="280" text-anchor="end" font-family="Georgia,serif" font-size="11" fill="#1a1a18">Agafay</text>
+    <circle cx="375.5" cy="287.9" r="5.5" fill="white" stroke="#1a1a18" stroke-width="1.5"/>
+    <circle cx="375.5" cy="287.9" r="3" fill="#1a1a18"/>
+    <text x="389" y="280" text-anchor="start" font-family="Georgia,serif" font-size="11" fill="#1a1a18">Tamnougalt</text>
+    <circle cx="443.9" cy="259.6" r="5.5" fill="white" stroke="#1a1a18" stroke-width="1.5"/>
+    <circle cx="443.9" cy="259.6" r="3" fill="#1a1a18"/>
+    <text x="457" y="252" text-anchor="start" font-family="Georgia,serif" font-size="11" fill="#1a1a18">Todra Gorge</text>
+    <circle cx="565.4" cy="281.8" r="5.5" fill="white" stroke="#1a1a18" stroke-width="1.5"/>
+    <circle cx="565.4" cy="281.8" r="3" fill="#1a1a18"/>
+    <text x="579" y="274" text-anchor="start" font-family="Georgia,serif" font-size="11" fill="#1a1a18">The Sahara</text>
+    <circle cx="533.5" cy="241.6" r="5.5" fill="white" stroke="#1a1a18" stroke-width="1.5"/>
+    <circle cx="533.5" cy="241.6" r="3" fill="#1a1a18"/>
+    <text x="547" y="234" text-anchor="start" font-family="Georgia,serif" font-size="11" fill="#1a1a18">Errachidia</text>
+  </svg>
   <p style="font-size:11px; color:var(--muted); margin-top:12px; text-align:center;">Essaouira · Marrakech · Agafay · Tamnougalt · Todra · The Sahara · Errachidia</p>
 </div>
 
