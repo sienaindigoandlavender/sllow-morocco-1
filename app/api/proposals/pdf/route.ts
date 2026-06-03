@@ -145,9 +145,29 @@ body{font-family:'EB Garamond',Georgia,serif;color:#1a1a18;background:white}
   body{margin:0}
   .page{page-break-after:always;break-after:page}
 }
+  .print-btn{
+    position:fixed;top:16px;right:16px;
+    display:flex;align-items:center;gap:6px;
+    background:#2d5016;color:white;border:none;
+    font-family:Helvetica,Arial,sans-serif;
+    font-size:9pt;letter-spacing:.1em;text-transform:uppercase;
+    padding:8px 16px;cursor:pointer;
+    opacity:.9;z-index:100;
+  }
+  .print-btn:hover{opacity:1}
+  @media print{.print-btn{display:none!important}}
 </style>
 </head>
 <body>
+<button class="print-btn" onclick="window.print()">
+  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3">
+    <rect x="2" y="5" width="12" height="8" rx="1"/>
+    <polyline points="4,5 4,1 12,1 12,5"/>
+    <line x1="4" y1="10" x2="12" y2="10"/>
+    <line x1="4" y1="12" x2="9" y2="12"/>
+  </svg>
+  Save as PDF
+</button>
 
 <!-- COVER -->
 <div class="page">
