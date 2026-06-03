@@ -67,9 +67,16 @@ export async function GET(request: Request) {
         imageUrl: day.imageUrl || "",
         durationHours: day.durationHours || "",
         activities: day.activities || "",
+        activitiesDetail: day.activitiesDetail || "",
         difficultyLevel: day.difficultyLevel || "",
         meals: day.meals || "",
+        mealsDetail: day.mealsDetail || "",
+        accommodationType: day.accommodationType || "",
         accommodationName: day.accommodationName || "",
+        roomConfig: day.roomConfig || "",
+        guideIncluded: day.guideIncluded || false,
+        guideLanguage: day.guideLanguage || "",
+        dayNotes: day.dayNotes || "",
       })),
     };
 
