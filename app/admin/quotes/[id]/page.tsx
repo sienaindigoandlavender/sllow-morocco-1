@@ -161,9 +161,14 @@ export default function QuoteDetailPage() {
       
       // If route sequence is provided, use it directly
       if (routeSequence && routeSequence.trim()) {
-        const routeIds = routeSequence.trim().replace(/[\u2013\u2014]/g, "-").split("\n").map((id: string) => id.trim()).filter((id: string) => id.length > 0);
+        const routeIds = routeSequence.trim().replace(/[\u2013\u2014\u2012\u2010]/g, "-").split("\n").map((id: string) => id.trim()).filter((id: string) => id.length > 0);
         const blockMap = new Map(contentBlocks.map((b: any) => [b.id, b]));
-        selectedBlocks = routeIds.map((id: string) => blockMap.get(id)).filter(Boolean);
+        // Use route IDs directly — no deduplication, order matters
+        selectedBlocks = routeIds.map((id: string) => {
+          const block = blockMap.get(id);
+          if (!block) console.warn("Route ID not found in content library:", id);
+          return block;
+        }).filter(Boolean);
         if (selectedBlocks.length === 0) {
           setMessage("Error: None of the route IDs were found in the content library. Check your route sequence.");
           setGenerating(false);
