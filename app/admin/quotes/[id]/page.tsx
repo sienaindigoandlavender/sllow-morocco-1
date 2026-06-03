@@ -604,6 +604,12 @@ export default function QuoteDetailPage() {
                 >
                   {generating ? "Generating..." : "Generate Proposal"}
                 </button>
+                <button
+                  onClick={() => window.open(`/proposal/PROP-${clientId}?edit=true`, '_blank')}
+                  className="w-full py-4 border border-[#2d5016] text-[#2d5016] text-xs tracking-[0.15em] uppercase hover:bg-[#2d5016] hover:text-white transition-colors"
+                >
+                  Edit Proposal
+                </button>
                 <Link
                   href="/admin/quotes/new"
                   className="block w-full py-4 border border-border text-xs tracking-[0.15em] uppercase hover:border-foreground transition-colors text-center"
