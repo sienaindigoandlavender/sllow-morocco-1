@@ -1276,7 +1276,7 @@ Slow Morocco Team`);
                           <span>{day.activitiesDetail}</span>
                         </div>
                       )}
-                      {day.transferType && day.transferType !== 'none' && day.transferDetails && (
+                      {(day.transferDetails || (day.transferType && day.transferType !== 'none')) && (
                         <div className="flex items-center gap-1.5">
                           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.2" className="w-3.5 h-3.5">
                             <rect x="1" y="5" width="14" height="7" rx="1" />
@@ -1284,7 +1284,16 @@ Slow Morocco Team`);
                             <circle cx="4.5" cy="12" r="1.5" fill="currentColor" />
                             <circle cx="11.5" cy="12" r="1.5" fill="currentColor" />
                           </svg>
-                          <span>{day.transferDetails}</span>
+                          <span>{day.transferDetails || day.transferType}</span>
+                        </div>
+                      )}
+                      {day.guideIncluded && (
+                        <div className="flex items-center gap-1.5">
+                          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.2" className="w-3.5 h-3.5">
+                            <circle cx="8" cy="5" r="3" />
+                            <path d="M2,14 Q2,10 8,10 Q14,10 14,14" />
+                          </svg>
+                          <span>{day.guideLanguage || 'English'}-speaking guide</span>
                         </div>
                       )}
                     </div>
