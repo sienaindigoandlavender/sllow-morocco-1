@@ -712,7 +712,7 @@ const nextConfig = {
       // ============================================
 
       // Pages
-      { source: '/booking-conditions', destination: '/terms', permanent: true },
+      // booking-conditions now has its own page — redirect removed June 2026
       { source: '/h-TFEL', destination: 'https://darija.io', permanent: true },
       { source: '/journeys', destination: '/epic', permanent: true },
       { source: '/regions', destination: '/destinations', permanent: true },
