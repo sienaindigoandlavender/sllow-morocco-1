@@ -102,18 +102,23 @@ export default function ProposalPage() {
   // Save proposal days to Supabase
   const saveDaysToSupabase = async (days: any[]) => {
     try {
-      await fetch(`/api/proposals`, {
+      const res = await fetch(`/api/proposals`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           proposalId,
+          clientId: proposalId.replace('PRP-', 'SM-').split('-').slice(0,3).join('-') || null,
           daysList: days,
-          formattedPrice: editablePrice,
+          formattedPrice: editablePrice || proposal?.price,
           heroTitle: proposal?.journeyTitle,
           heroBlurb: proposal?.arcDescription,
           heroImageUrl: proposal?.heroImage,
+          numGuests: String(proposal?.travelers || 4),
         }),
       });
+      const data = await res.json();
+      if (!data.success) console.error('Save failed:', data.error);
+      else console.log('Saved to Supabase:', data.proposalId);
     } catch (e) {
       console.error('Failed to save to Supabase:', e);
     }
