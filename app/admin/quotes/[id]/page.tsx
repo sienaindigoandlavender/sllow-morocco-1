@@ -71,6 +71,7 @@ export default function QuoteDetailPage() {
   const [notes, setNotes] = useState("");
   const [status, setStatus] = useState("NEW");
   const [routeSequence, setRouteSequence] = useState("");
+  const [heroImage, setHeroImage] = useState("");
 
   // Fetch quote data
   useEffect(() => {
@@ -97,6 +98,7 @@ export default function QuoteDetailPage() {
           setNotes(q.Notes || "");
           setStatus(q.Status || "NEW");
           setRouteSequence(q.Notes_Route_Sequence || "");
+          setHeroImage(q.Hero_Image || "");
         }
         setLoading(false);
       })
@@ -116,7 +118,8 @@ export default function QuoteDetailPage() {
       journeyInterest, startDate, endDate, startCity, endCity,
       days: days.toString(), travelers: travelers.toString(), 
       language, budget, requests, notes, status,
-      notes_route_sequence: routeSequence.replace(/[–—]/g, '-')
+      notes_route_sequence: routeSequence.replace(/[–—]/g, '-'),
+      hero_image: heroImage
     };
     
     try {
@@ -253,7 +256,7 @@ export default function QuoteDetailPage() {
         journeyTitle: `${firstName}'s Morocco Journey`,
         arcDescription: `An ${proposalDays.length - 1}-night journey through Morocco, crafted for ${firstName} ${lastName}.`,
         clientName: `${firstName} ${lastName}`.trim(),
-        heroImage: heroBlock.heroImageUrl || proposalDays[0]?.imageUrl || "",
+        heroImage: heroImage || heroBlock.heroImageUrl || proposalDays[0]?.imageUrl || "",
         price: price || "2,450",
         days: proposalDays
       };
@@ -480,6 +483,22 @@ export default function QuoteDetailPage() {
                 placeholder="Notes for your reference (not visible to client)..."
                 className="w-full px-4 py-3 border border-border bg-background text-lg focus:outline-none focus:border-foreground transition-colors resize-none"
               />
+            </section>
+
+            {/* Hero Image */}
+            <section>
+              <h2 className="font-serif text-xl mb-2">Hero Image</h2>
+              <p className="text-sm text-muted-foreground mb-4">Full-bleed banner image for the proposal. Use a cinematic, wide Cloudinary URL.</p>
+              <input
+                type="text"
+                value={heroImage}
+                onChange={(e) => setHeroImage(e.target.value)}
+                placeholder="https://res.cloudinary.com/..."
+                className="w-full px-4 py-3 border border-border bg-background text-sm focus:outline-none focus:border-foreground transition-colors"
+              />
+              {heroImage && (
+                <img src={heroImage} alt="Hero preview" className="mt-4 w-full h-40 object-cover" />
+              )}
             </section>
 
             {/* Route Sequence */}
