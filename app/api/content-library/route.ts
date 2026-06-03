@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { getRoutes, convertDriveUrl } from "@/lib/supabase";
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export async function GET() {
   try {
     const routes = await getRoutes();
@@ -18,6 +21,10 @@ export async function GET() {
       subRegion: row.sub_region || "",
       fromCity: row.from_city || "",
       toCity: row.to_city || "",
+      travelTime: row.travel_time_hours ? `${row.travel_time_hours}h drive` : "",
+      difficulty: row.difficulty_level || "",
+      accommodationType: row.accommodation_type || "",
+      meals: row.meals ? row.meals.replace(/\|/g, ', ') : "",
     }));
 
     const validBlocks = contentBlocks.filter(
