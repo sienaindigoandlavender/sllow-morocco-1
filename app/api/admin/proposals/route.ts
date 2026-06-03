@@ -49,6 +49,7 @@ export async function POST(request: Request) {
               guideIncluded: existingDay.guideIncluded || newDay.guideIncluded,
               guideLanguage: existingDay.guideLanguage || newDay.guideLanguage,
               dayNotes: existingDay.dayNotes || newDay.dayNotes,
+              diningNotes: existingDay.diningNotes || newDay.diningNotes,
               description: existingDay.description || newDay.description,
               imageUrl: existingDay.imageUrl || newDay.imageUrl,
             };
