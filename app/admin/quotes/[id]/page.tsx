@@ -243,7 +243,7 @@ export default function QuoteDetailPage() {
           activities: block.activities || "",
           difficultyLevel: block.difficulty || "",
           meals: block.meals || "",
-          accommodationName: block.accommodation || "",
+          accommodationType: block.accommodationType || "",
         };
       });
       
