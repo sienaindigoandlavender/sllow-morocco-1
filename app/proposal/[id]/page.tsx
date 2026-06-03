@@ -1253,7 +1253,7 @@ Slow Morocco Team`);
                             <rect x="2" y="7" width="12" height="7" />
                             <polyline points="1,7 8,2 15,7" />
                           </svg>
-                          <span>{day.accommodationName || day.accommodationType}</span>
+                          <span>{day.accommodationName || day.accommodationType}{day.roomConfig ? ` · ${day.roomConfig}` : ''}</span>
                         </div>
                       )}
                       {(day.mealsDetail || day.meals) && (
@@ -1265,6 +1265,26 @@ Slow Morocco Team`);
                             <line x1="11" y1="1" x2="11" y2="15" />
                           </svg>
                           <span>{day.mealsDetail || day.meals}</span>
+                        </div>
+                      )}
+                      {day.activitiesDetail && (
+                        <div className="flex items-center gap-1.5">
+                          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.2" className="w-3.5 h-3.5">
+                            <circle cx="8" cy="8" r="2.5" />
+                            <circle cx="8" cy="8" r="6.5" />
+                          </svg>
+                          <span>{day.activitiesDetail}</span>
+                        </div>
+                      )}
+                      {day.transferType && day.transferType !== 'none' && day.transferDetails && (
+                        <div className="flex items-center gap-1.5">
+                          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.2" className="w-3.5 h-3.5">
+                            <rect x="1" y="5" width="14" height="7" rx="1" />
+                            <polyline points="4,5 4,3 12,3 12,5" />
+                            <circle cx="4.5" cy="12" r="1.5" fill="currentColor" />
+                            <circle cx="11.5" cy="12" r="1.5" fill="currentColor" />
+                          </svg>
+                          <span>{day.transferDetails}</span>
                         </div>
                       )}
                     </div>
