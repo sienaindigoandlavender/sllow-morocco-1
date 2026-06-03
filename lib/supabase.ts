@@ -1004,8 +1004,8 @@ export async function getProposalById(proposalId: string) {
 }
 
 export async function createProposal(proposal: Partial<Proposal>) {
-  const { data, error } = await supabase.from("proposals").insert(proposal).select().single();
-  if (error) { console.error("Error creating proposal:", error); return null; }
+  const { data, error } = await supabase.from("proposals").upsert(proposal, { onConflict: "proposal_id" }).select().single();
+  if (error) { console.error("Error creating/updating proposal:", error); return null; }
   return data as Proposal;
 }
 
