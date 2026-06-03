@@ -690,7 +690,7 @@ Slow Morocco Team`);
           <p className="text-xs text-muted-foreground mb-8 tracking-wide">
             Based on the book by{" "}
             <a
-              href="https://www.gutenberg.org/ebooks/36712"
+              href="https://www.gutenberg.org/ebooks/39042"
               target="_blank"
               rel="noopener noreferrer"
               className="underline underline-offset-2 hover:opacity-70 transition-opacity"
