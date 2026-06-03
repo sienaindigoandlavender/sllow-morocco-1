@@ -57,6 +57,12 @@ const cityCoordinates: { [key: string]: [number, number] } = {
   "Ifrane": [-5.1108, 33.5228],
   "Meknes": [-5.5547, 33.8731],
   "Volubilis": [-5.5547, 34.0733],
+  "Agafay": [-8.1500, 31.4000],
+  "Agafay Desert": [-8.1500, 31.4000],
+  "Tamnougalt": [-6.4667, 30.9500],
+  "Errachidia": [-4.4261, 31.9314],
+  "Dades": [-5.9833, 31.4500],
+  "Todra": [-5.5833, 31.5500],
 };
 
 export default function ProposalPage() {
@@ -323,19 +329,37 @@ Slow Morocco Team`);
         // Add markers for each city
         routePoints.forEach((coords, index) => {
           const el = document.createElement('div');
-          el.className = 'marker';
           el.style.cssText = `
-            width: 12px;
-            height: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+          `;
+          const dot = document.createElement('div');
+          dot.style.cssText = `
+            width: 10px;
+            height: 10px;
             background: #1a1a1a;
             border: 2px solid #f5f0e8;
             border-radius: 50%;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
           `;
+          const label = document.createElement('div');
+          label.style.cssText = `
+            margin-top: 4px;
+            font-size: 10px;
+            font-family: serif;
+            color: #1a1a1a;
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+            text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+          `;
+          label.textContent = cities[index] || '';
+          el.appendChild(dot);
+          el.appendChild(label);
 
           new mapboxgl.Marker(el)
             .setLngLat(coords)
-            .setPopup(new mapboxgl.Popup({ offset: 25 }).setText(cities[index] || `Stop ${index + 1}`))
             .addTo(map);
         });
 
@@ -362,9 +386,9 @@ Slow Morocco Team`);
               'line-cap': 'round',
             },
             paint: {
-              'line-color': '#1a1a1a',
-              'line-width': 2,
-              'line-dasharray': [2, 2],
+              'line-color': '#8B7355',
+              'line-width': 1.5,
+              'line-dasharray': [3, 2],
             },
           });
 
