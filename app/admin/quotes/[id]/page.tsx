@@ -602,7 +602,7 @@ export default function QuoteDetailPage() {
                   disabled={generating}
                   className="w-full py-4 bg-green-700 text-white text-xs tracking-[0.15em] uppercase hover:bg-green-800 disabled:opacity-50 transition-colors"
                 >
-                  {generating ? "Generating..." : "Generate Proposal"}
+                  {generating ? "Generating..." : "Generate New Proposal"}
                 </button>
                 <button
                   onClick={() => window.open(`/proposal/PROP-${clientId}?edit=true`, '_blank')}
