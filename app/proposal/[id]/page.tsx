@@ -630,19 +630,6 @@ Slow Morocco Team`);
         </div>
       )}
 
-          {/* Footer links */}
-          <div className="mt-16 pt-8 border-t border-border/50 text-center mb-16">
-            <p className="text-xs text-muted-foreground/60">
-              <a href="/booking-conditions" target="_blank" className="hover:text-foreground transition-colors underline underline-offset-2">Booking Conditions</a>
-              <span className="mx-3">·</span>
-              <a href="/cancellations-and-refunds" target="_blank" className="hover:text-foreground transition-colors underline underline-offset-2">Cancellations & Refunds</a>
-              <span className="mx-3">·</span>
-              <a href="/payments" target="_blank" className="hover:text-foreground transition-colors underline underline-offset-2">Payments</a>
-            </p>
-          </div>
-        </div>
-      </div>
-
       {/* Client Action Bar - Client only */}
       {!isAdmin && (
         <div className="fixed bottom-0 left-0 right-0 z-50 bg-green-700 text-white border-t border-foreground/10 print:hidden">
@@ -909,6 +896,17 @@ Slow Morocco Team`);
             </ul>
             <p className="mt-8 text-sm text-muted-foreground/70 italic">
               International flights and travel insurance are arranged separately.
+            </p>
+          </div>
+
+          {/* Footer links */}
+          <div className="mt-16 pt-8 border-t border-border/50 text-center mb-8">
+            <p className="text-xs text-muted-foreground/60">
+              <a href="/booking-conditions" target="_blank" className="hover:text-foreground transition-colors underline underline-offset-2">Booking Conditions</a>
+              <span className="mx-3">·</span>
+              <a href="/cancellations-and-refunds" target="_blank" className="hover:text-foreground transition-colors underline underline-offset-2">Cancellations &amp; Refunds</a>
+              <span className="mx-3">·</span>
+              <a href="/payments" target="_blank" className="hover:text-foreground transition-colors underline underline-offset-2">Payments</a>
             </p>
           </div>
 
