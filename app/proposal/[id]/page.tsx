@@ -32,6 +32,7 @@ interface ProposalData {
     roomConfig?: string;
     meals?: string;
     mealsDetail?: string;
+    diningNotes?: string;
     activitiesDetail?: string;
     guideIncluded?: boolean;
     guideLanguage?: string;
@@ -688,7 +689,7 @@ Slow Morocco Team`);
             <p className="print-route">{day.fromCity} → {day.toCity}</p>
           )}
           <div className="print-day-practical">
-            {(day.mealsDetail || day.meals) && <p style={{margin: '0 0 6px 0'}}><strong>Meals:</strong> {day.mealsDetail || day.meals}</p>}
+            {(day.mealsDetail || day.meals) && <p style={{margin: '0 0 6px 0'}}><strong>Meals:</strong> {day.mealsDetail || day.meals}{day.diningNotes ? ` · ${day.diningNotes}` : ''}</p>}
             {(day.accommodationName || day.accommodationType) && <p style={{margin: '0 0 6px 0'}}><strong>Accommodation:</strong> {day.accommodationName || day.accommodationType}{day.roomConfig ? ` (${day.roomConfig})` : ''}</p>}
             {(day.activitiesDetail || day.activities) && <p style={{margin: '0 0 6px 0'}}><strong>Activities:</strong> {day.activitiesDetail || day.activities}</p>}
             {day.guideIncluded && <p style={{margin: '0 0 6px 0'}}><strong>Guide:</strong> {day.guideLanguage || 'English'}-speaking official guide</p>}
@@ -754,6 +755,13 @@ Slow Morocco Team`);
                     </label>
                   ))}
                 </div>
+                <input
+                  type="text"
+                  value={day.diningNotes || ''}
+                  onChange={(e) => updateDay(day.dayNumber, 'diningNotes', e.target.value)}
+                  placeholder="e.g. Lunch: La Pergola · Dinner: L'Mida"
+                  className="w-full mt-3 px-4 py-2 border border-border bg-background text-sm focus:outline-none focus:border-foreground"
+                />
               </div>
 
               {/* Accommodation */}
@@ -1264,7 +1272,7 @@ Slow Morocco Team`);
                             <line x1="5" y1="6" x2="5" y2="15" />
                             <line x1="11" y1="1" x2="11" y2="15" />
                           </svg>
-                          <span>{day.mealsDetail || day.meals}</span>
+                          <span>{day.mealsDetail || day.meals}{day.diningNotes ? ` · ${day.diningNotes}` : ""}</span>
                         </div>
                       )}
                       {day.activitiesDetail && (
