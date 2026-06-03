@@ -209,18 +209,8 @@ export default function QuoteDetailPage() {
         }
       }
       
-      // Check if a proposal already exists for this client — reuse the ID
-      let proposalId = `PRP-${Date.now()}`;
-      try {
-        const existingRes = await fetch(`/api/proposals?clientId=${clientId}`, { cache: 'no-store' });
-        const existingData = await existingRes.json();
-        if (existingData.success && existingData.proposal?.id) {
-          proposalId = existingData.proposal.id;
-          console.log("Reusing existing proposal ID:", proposalId);
-        }
-      } catch (e) {
-        console.log("No existing proposal found, creating new one");
-      }
+      // Always use a deterministic proposal ID based on client ID
+      const proposalId = `PROP-${clientId}`;
 
       
       const routePoints: { name: string; coords: [number, number] }[] = [];
