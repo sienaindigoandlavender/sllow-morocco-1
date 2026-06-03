@@ -1102,7 +1102,7 @@ Slow Morocco Team`);
               </button>
               <div className="w-px h-4 bg-white/30" />
               <button
-                onClick={() => window.print()}
+                onClick={() => window.open(`/api/proposals/pdf?id=${proposalId}`, '_blank')}
                 className="text-xs tracking-[0.15em] uppercase hover:opacity-70 transition-opacity px-6 py-2"
               >
                 Print PDF
@@ -1137,9 +1137,11 @@ Slow Morocco Team`);
               >
                 I Have Some Thoughts
               </button>
-              <button
-                onClick={() => window.print()}
-                className="absolute right-6 flex items-center gap-2 text-xs tracking-[0.15em] uppercase hover:opacity-70 transition-opacity px-6 py-2 opacity-60"
+              <a
+                href={`/api/proposals/pdf?id=${proposalId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute right-6 flex items-center gap-2 text-xs tracking-[0.15em] uppercase hover:opacity-70 transition-opacity px-6 py-2 opacity-60 text-white"
               >
                 <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.2" className="w-3.5 h-3.5">
                   <rect x="2" y="5" width="12" height="8" rx="1"/>
@@ -1147,8 +1149,8 @@ Slow Morocco Team`);
                   <line x1="4" y1="10" x2="12" y2="10"/>
                   <line x1="4" y1="12" x2="9" y2="12"/>
                 </svg>
-                Print
-              </button>
+                PDF
+              </a>
             </div>
           </div>
         </div>
