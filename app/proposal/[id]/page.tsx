@@ -630,6 +630,35 @@ Slow Morocco Team`);
         </div>
       )}
 
+          {/* How It Works */}
+          <div id="how-it-works" className="mt-16 pt-16 border-t border-border">
+            <h3 className="font-serif text-xl mb-8">How It Works</h3>
+            <div className="max-w-lg space-y-5 text-muted-foreground">
+              <p>To confirm your journey, a 30% deposit is required. This gives us the green light to begin securing everything on your behalf — properties, guides, experiences. During December in Morocco, the best places fill quickly.</p>
+              <p>The remaining balance is due 45 days before your departure.</p>
+              <div>
+                <p className="text-foreground font-medium mb-3">If you need to cancel:</p>
+                <p className="mb-2">More than 45 days before departure — your deposit is refunded in full, minus any banking or PayPal transaction fees and non-refundable commitments already made with properties. Most hotels refund without issue, though holiday season bookings often carry stricter terms. We will always tell you exactly what can and cannot be recovered.</p>
+                <p>Less than 45 days before departure — no refund is possible. All commitments are locked at this stage.</p>
+              </div>
+              <p>We strongly recommend comprehensive travel insurance that covers trip cancellation — not just medical emergencies. It exists precisely for moments like these.</p>
+              <p>Once you confirm, we will send you a booking agreement. We are radically transparent — no hidden surprises.</p>
+            </div>
+          </div>
+
+          {/* Footer links */}
+          <div className="mt-16 pt-8 border-t border-border/50 text-center mb-16">
+            <p className="text-xs text-muted-foreground/60">
+              <a href="/booking-conditions" target="_blank" className="hover:text-foreground transition-colors underline underline-offset-2">Booking Conditions</a>
+              <span className="mx-3">·</span>
+              <a href="/cancellations-and-refunds" target="_blank" className="hover:text-foreground transition-colors underline underline-offset-2">Cancellations & Refunds</a>
+              <span className="mx-3">·</span>
+              <a href="/payments" target="_blank" className="hover:text-foreground transition-colors underline underline-offset-2">Payments</a>
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* Client Action Bar - Client only */}
       {!isAdmin && (
         <div className="fixed bottom-0 left-0 right-0 z-50 bg-green-700 text-white border-t border-foreground/10 print:hidden">
@@ -700,12 +729,19 @@ Slow Morocco Team`);
           </p>
 
           {/* Arc Description */}
-          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-16 font-display italic">
+          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-12 font-display italic">
             {proposal.arcDescription}
           </p>
 
+          {/* Anchor Navigation */}
+          <nav className="flex gap-8 text-xs tracking-[0.15em] uppercase text-muted-foreground mb-16 border-t border-b border-border/50 py-4">
+            <a href="#itinerary" className="hover:text-foreground transition-colors">Your Journey</a>
+            <a href="#investment" className="hover:text-foreground transition-colors">Your Investment</a>
+            <a href="#how-it-works" className="hover:text-foreground transition-colors">How It Works</a>
+          </nav>
+
           {/* Itinerary */}
-          <div className="space-y-16">
+          <div id="itinerary" className="space-y-16">
             {proposal.days
               .sort((a, b) => a.dayNumber - b.dayNumber)
               .map((day) => (
@@ -772,7 +808,7 @@ Slow Morocco Team`);
           </div>
 
           {/* Pricing Section */}
-          <div className="mt-20 pt-16 border-t border-border">
+          <div id="investment" className="mt-20 pt-16 border-t border-border">
             <div className="text-center">
               <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-6">
                 Your Investment
