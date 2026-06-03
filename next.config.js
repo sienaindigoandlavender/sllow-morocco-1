@@ -801,6 +801,42 @@ const nextConfig = {
       { source: '/places/lazama-synagogue', destination: '/marrakech', permanent: true },
       { source: '/places/oukaimeden-plateau', destination: '/places/oukaimeden-ski', permanent: true },
       { source: '/tsh-BBKK', destination: 'https://darija.io', permanent: true },
+
+      // ============================================
+      // GSC RESIDUAL CLEANUP — JUNE 2026
+      // Targeted fixes to remove lingering 404s and loops
+      // ============================================
+      { source: '/places/simon-attias-synagogue', destination: '/destinations', permanent: true },
+      { source: '/places/fes-el-jdid', destination: '/fes', permanent: true },
+      { source: '/places/nejjarine-fountain', destination: '/fes', permanent: true },
+      { source: '/places/sidi-bouabid-mosque', destination: '/destinations', permanent: true },
+      { source: '/places/cap-ghir', destination: '/destinations', permanent: true },
+      { source: '/places/palace-raisuni-asilah', destination: '/destinations', permanent: true },
+      { source: '/places/bou-jeloud-gardens', destination: '/fes', permanent: true },
+      { source: '/places/asilah-ramparts', destination: '/destinations', permanent: true },
+      { source: '/stories/port-strategy', destination: '/stories', permanent: true },
+      { source: '/stories/anatomy-of-a-riad', destination: '/stories', permanent: true },
+      { source: '/stories/wind-and-sun', destination: '/stories', permanent: true },
+
+      // Legacy Darija tokens causing rogue routing hits
+      { source: '/mu-ZIN', destination: 'https://darija.io', permanent: true },
+      { source: '/SSABI3', destination: 'https://darija.io', permanent: true },
+      { source: '/QBEL', destination: 'https://darija.io', permanent: true },
+      { source: '/DF3', destination: 'https://darija.io', permanent: true },
+      { source: '/LAP-top', destination: 'https://darija.io', permanent: true },
+      { source: '/7AW-mma', destination: 'https://darija.io', permanent: true },
+      { source: '/SIT', destination: 'https://darija.io', permanent: true },
+      { source: '/SIFT', destination: 'https://darija.io', permanent: true },
+      { source: '/SMA3', destination: 'https://darija.io', permanent: true },
+      { source: '/HLF', destination: 'https://darija.io', permanent: true },
+      { source: '/3SH-rin', destination: 'https://darija.io', permanent: true },
+      { source: '/mu-fat-TISH', destination: 'https://darija.io', permanent: true },
+      { source: '/HZ-zm', destination: 'https://darija.io', permanent: true },
+      { source: '/HREB', destination: 'https://darija.io', permanent: true },
+      
+      // Global trailing parameter catch-all rule for remaining deep dictionary trails
+      { source: '/darija/dictionary/:path*', destination: 'https://darija.io/dictionary', permanent: true },
+      
     ];
   },
 };
