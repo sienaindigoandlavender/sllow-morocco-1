@@ -440,6 +440,229 @@ Slow Morocco Team`);
 
   return (
     <div className="bg-background min-h-screen pt-16 md:pt-20">
+      <style>{`
+        @media print {
+          /* Hide everything web-specific */
+          nav, header, footer,
+          .print\:hidden,
+          #map,
+          [id="static-map-fallback"],
+          .fixed,
+          a[href*="gutenberg"],
+          section.py-20 {
+            display: none !important;
+          }
+
+          /* Reset page */
+          * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+          
+          /* Show print pages, hide web content */
+          .print-cover, .print-investment, .print-map, .print-day { display: flex !important; flex-direction: column; }
+          .hidden { display: flex !important; }
+          
+          /* Hide all web-only content */
+          .bg-background > div:not(.print-cover):not(.print-investment):not(.print-map):not(.print-day):not([style*="print"]) { display: none !important; }
+          
+          body { background: white !important; color: black !important; font-family: Georgia, serif; }
+          
+          /* Cover page */
+          .print-cover {
+            display: flex !important;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100vh;
+            padding: 80px 80px;
+            page-break-after: always;
+            border-bottom: none;
+          }
+
+          /* Investment page */
+          .print-investment {
+            page-break-after: always;
+            padding: 60px 80px;
+          }
+
+          /* Each day */
+          .print-day {
+            page-break-after: always;
+            page-break-inside: avoid;
+            padding: 60px 80px;
+          }
+
+          /* Map page */
+          .print-map {
+            page-break-after: always;
+            padding: 60px 80px;
+            height: 100vh;
+          }
+          .print-map #map {
+            display: block !important;
+            height: 600px !important;
+            width: 100% !important;
+          }
+
+          /* Typography */
+          h1 { font-size: 48px; font-weight: normal; margin-bottom: 8px; }
+          h2 { font-size: 28px; font-weight: normal; margin-bottom: 4px; }
+          h3 { font-size: 18px; font-weight: normal; margin-bottom: 16px; }
+          p { font-size: 13px; line-height: 1.7; color: #333; }
+          
+          /* Day meta */
+          .print-day-meta { 
+            font-size: 11px; 
+            letter-spacing: 0.12em; 
+            text-transform: uppercase; 
+            color: #888; 
+            margin-bottom: 20px;
+          }
+          .print-day-practical {
+            font-size: 12px;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+          }
+          .print-day-description {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #555;
+            font-style: italic;
+          }
+
+          /* Hide day images in print */
+          .print-hide-image { display: none !important; }
+
+          /* Header on each page */
+          .print-header {
+            font-size: 10px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #aaa;
+            margin-bottom: 48px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #eee;
+          }
+
+          /* Footer on each page */
+          .print-footer {
+            font-size: 10px;
+            color: #aaa;
+            margin-top: 40px;
+            padding-top: 12px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+          }
+
+          /* What's included list */
+          .print-included li {
+            font-size: 12px;
+            padding: 6px 0;
+            border-bottom: 1px solid #f0f0f0;
+            list-style: none;
+          }
+
+          /* Route arrow */
+          .print-route {
+            font-size: 11px;
+            color: #888;
+            margin-bottom: 12px;
+          }
+
+          /* Icon metadata row */
+          .print-icons {
+            font-size: 11px;
+            color: #888;
+            margin-bottom: 16px;
+          }
+        }
+      `}</style>
+      {/* PRINT COVER PAGE */}
+      <div className="print-cover hidden">
+        <div>
+          <p className="print-header">Slow Morocco</p>
+          <h1 style={{fontSize: '56px', fontFamily: 'Georgia, serif', fontWeight: 'normal', marginBottom: '24px'}}>
+            {proposal.journeyTitle}
+          </h1>
+          <p style={{fontSize: '16px', color: '#888', marginBottom: '48px', fontStyle: 'italic', maxWidth: '480px', lineHeight: '1.8'}}>
+            "From far off, through circuitous corridors, came the scent of citrus-blossom and jasmine, with sometimes a bird&apos;s song before dawn, sometimes a flute&apos;s wail at sunset, and always the call of the muezzin in the night…"
+          </p>
+          <p style={{fontSize: '12px', color: '#aaa', letterSpacing: '0.1em'}}>— Edith Wharton, In Morocco (1920)</p>
+        </div>
+        <div>
+          <p style={{fontSize: '14px', color: '#333', marginBottom: '8px'}}>{proposal.clientName}</p>
+          <p style={{fontSize: '12px', color: '#888'}}>{proposal.travelers || 4} guests &nbsp;·&nbsp; December 20–28, 2026</p>
+          <div className="print-footer">
+            <span>hello@slowmorocco.com</span>
+            <span>slowmorocco.com</span>
+            <span>Marrakech, Morocco</span>
+          </div>
+        </div>
+      </div>
+
+      {/* PRINT INVESTMENT PAGE */}
+      <div className="print-investment hidden">
+        <p className="print-header">Slow Morocco · {proposal.journeyTitle}</p>
+        <h2 style={{fontSize: '32px', fontFamily: 'Georgia, serif', fontWeight: 'normal', marginBottom: '8px'}}>
+          Your Investment
+        </h2>
+        <p style={{fontSize: '48px', fontFamily: 'Georgia, serif', marginBottom: '4px'}}>€{parseInt((proposal.price || "22000").replace(/,/g, '')).toLocaleString()}</p>
+        <p style={{fontSize: '13px', color: '#888', marginBottom: '4px'}}>total for a group of {proposal.travelers || 4}</p>
+        <p style={{fontSize: '13px', color: '#888', marginBottom: '40px'}}>€{Math.round(parseInt((proposal.price || "22000").replace(/,/g, '')) / (proposal.travelers || 4)).toLocaleString()} per person</p>
+        
+        <h3 style={{fontSize: '16px', fontFamily: 'Georgia, serif', fontWeight: 'normal', marginBottom: '16px', paddingBottom: '8px', borderBottom: '1px solid #eee'}}>What&apos;s Included</h3>
+        <ul className="print-included" style={{marginBottom: '40px', paddingLeft: '0'}}>
+          <li>Private transportation throughout with a dedicated driver</li>
+          <li>Handpicked accommodations, selected for character and location</li>
+          <li>All breakfasts, lunches and dinners</li>
+          <li>Entrance fees to attractions included in your programme</li>
+          <li>English-speaking guide in Marrakech</li>
+          <li>24/7 local support throughout your journey</li>
+        </ul>
+
+        <h3 style={{fontSize: '16px', fontFamily: 'Georgia, serif', fontWeight: 'normal', marginBottom: '16px', paddingBottom: '8px', borderBottom: '1px solid #eee'}}>How It Works</h3>
+        <p style={{fontSize: '12px', color: '#444', lineHeight: '1.8', marginBottom: '12px'}}>A 30% deposit confirms your journey. The remaining balance is due 45 days before departure.</p>
+        <p style={{fontSize: '12px', color: '#444', lineHeight: '1.8', marginBottom: '12px'}}>More than 45 days before departure — deposit refunded in full, minus any non-refundable commitments already made. Less than 45 days — no refund possible.</p>
+        <p style={{fontSize: '12px', color: '#444', lineHeight: '1.8', marginBottom: '40px'}}>We strongly recommend comprehensive travel insurance covering trip cancellation.</p>
+        
+        <div className="print-footer">
+          <span>hello@slowmorocco.com</span>
+          <span>slowmorocco.com/booking-conditions</span>
+        </div>
+      </div>
+
+      {/* PRINT MAP PAGE */}
+      <div className="print-map hidden">
+        <p className="print-header">Slow Morocco · Your Route</p>
+        <h2 style={{fontSize: '28px', fontFamily: 'Georgia, serif', fontWeight: 'normal', marginBottom: '24px'}}>Your Route</h2>
+        <div id="map-print" style={{height: '600px', width: '100%', background: '#f5f5f5'}} />
+      </div>
+
+      {/* PRINT ITINERARY PAGES */}
+      {proposal.days.sort((a, b) => a.dayNumber - b.dayNumber).map((day) => (
+        <div key={`print-${day.dayNumber}`} className="print-day hidden">
+          <p className="print-header">Slow Morocco · {proposal.journeyTitle}</p>
+          <h2 style={{fontSize: '36px', fontFamily: 'Georgia, serif', fontWeight: 'normal', marginBottom: '4px'}}>{day.title}</h2>
+          <p className="print-day-meta">
+            Day {day.dayNumber}{day.date ? ` — ${new Date(day.date + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}` : ''}
+          </p>
+          {day.fromCity && day.toCity && day.fromCity !== day.toCity && (
+            <p className="print-route">{day.fromCity} → {day.toCity}</p>
+          )}
+          <div className="print-day-practical">
+            {day.meals && <p style={{margin: '0 0 4px 0'}}><strong>Meals:</strong> {day.meals}</p>}
+            {day.accommodationType && <p style={{margin: '0 0 4px 0'}}><strong>Accommodation:</strong> {day.accommodationType}</p>}
+            {day.activities && <p style={{margin: '0'}}><strong>Activities:</strong> {day.activities}</p>}
+          </div>
+          <p className="print-day-description">{day.description.split('Meals:')[0].trim()}</p>
+          <div className="print-footer">
+            <span>Slow Morocco · hello@slowmorocco.com</span>
+            <span>Day {day.dayNumber} of {proposal.days.length}</span>
+          </div>
+        </div>
+      ))}
+
       {/* Send Email Modal */}
       {showSendModal && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center">
@@ -617,6 +840,13 @@ Slow Morocco Team`);
                 className="text-xs tracking-[0.15em] uppercase hover:opacity-70 transition-opacity px-6 py-2"
               >
                 Preview
+              </button>
+              <div className="w-px h-4 bg-white/30" />
+              <button
+                onClick={() => window.print()}
+                className="text-xs tracking-[0.15em] uppercase hover:opacity-70 transition-opacity px-6 py-2"
+              >
+                Print PDF
               </button>
               <div className="w-px h-4 bg-white/30" />
               <button
