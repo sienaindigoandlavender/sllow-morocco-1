@@ -822,6 +822,22 @@ Slow Morocco Team`);
           </div>
 
           {/* Pricing Section */}
+          {/* What's Included */}
+          <div className="mt-16 pt-16 border-t border-border">
+            <h3 className="font-serif text-xl mb-8">What's Included</h3>
+            <ul className="space-y-3 text-muted-foreground max-w-lg">
+              <li>Private transportation throughout with a dedicated driver</li>
+              <li>Handpicked accommodations, selected for character and location</li>
+              <li>All breakfasts, lunches and dinners</li>
+              <li>Entrance fees to attractions included in your programme</li>
+              <li>English-speaking guide in Marrakech</li>
+              <li>24/7 local support throughout your journey</li>
+            </ul>
+            <p className="mt-8 text-sm text-muted-foreground/70 italic">
+              International flights and travel insurance are arranged separately.
+            </p>
+          </div>
+
           <div id="investment" className="mt-20 pt-16 border-t border-border">
             <div className="text-center">
               <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-6">
@@ -881,22 +897,6 @@ Slow Morocco Team`);
                 </Link>
               )}
             </div>
-          </div>
-
-          {/* What's Included */}
-          <div className="mt-16 pt-16 border-t border-border">
-            <h3 className="font-serif text-xl mb-8">What's Included</h3>
-            <ul className="space-y-3 text-muted-foreground max-w-lg">
-              <li>Private transportation throughout with a dedicated driver</li>
-              <li>Handpicked accommodations, selected for character and location</li>
-              <li>All breakfasts, lunches and dinners</li>
-              <li>Entrance fees to attractions included in your programme</li>
-              <li>English-speaking guide in Marrakech</li>
-              <li>24/7 local support throughout your journey</li>
-            </ul>
-            <p className="mt-8 text-sm text-muted-foreground/70 italic">
-              International flights and travel insurance are arranged separately.
-            </p>
           </div>
 
           {/* Footer links */}
