@@ -13,6 +13,7 @@ interface ProposalData {
   clientName: string;
   heroImage: string;
   price?: string;
+  travelers?: number;
   startDate?: string;
   days: {
     dayNumber: number;
@@ -741,28 +742,28 @@ Slow Morocco Team`);
               </p>
               {isAdmin ? (
                 // Admin: Editable total price
-                <div className="mb-2">
-                  <div className="inline-flex items-center gap-2">
-                    <span className="font-serif text-5xl md:text-6xl">€</span>
-                    <input
-                      type="text"
-                      value={editablePrice}
-                      onChange={(e) => setEditablePrice(e.target.value)}
-                      className="font-serif text-5xl md:text-6xl bg-transparent border-b-2 border-dashed border-foreground/30 focus:border-foreground outline-none text-center w-48"
-                    />
-                  </div>
+                <div className="mb-2 flex justify-center items-center gap-2">
+                  <span className="font-serif text-5xl md:text-6xl">€</span>
+                  <input
+                    type="text"
+                    value={editablePrice}
+                    onChange={(e) => setEditablePrice(e.target.value)}
+                    className="font-serif text-5xl md:text-6xl bg-transparent border-b-2 border-dashed border-foreground/30 focus:border-foreground outline-none text-center w-48"
+                  />
                 </div>
               ) : (
                 // Client: Static total price
                 <p className="font-serif text-5xl md:text-6xl mb-2">
-                  €{proposal.price || "22,000"}
+                  €{parseInt((proposal.price || "22000").replace(/,/g, '')).toLocaleString()}
                 </p>
               )}
               <p className="text-sm text-muted-foreground mb-2">
-                total for your group
+                total for a group of {proposal.travelers || 4}
               </p>
               <p className="text-sm text-muted-foreground mb-8">
-                €{isAdmin ? Math.round(parseInt(editablePrice.replace(/,/g, '')) / 4).toLocaleString() : Math.round(parseInt((proposal.price || "22000").replace(/,/g, '')) / 4).toLocaleString()} per person
+                €{isAdmin 
+                  ? Math.round(parseInt(editablePrice.replace(/,/g, '')) / (proposal.travelers || 4)).toLocaleString() 
+                  : Math.round(parseInt((proposal.price || "22000").replace(/,/g, '')) / (proposal.travelers || 4)).toLocaleString()} per person
               </p>
               <p className="text-sm italic text-muted-foreground max-w-md mx-auto mb-10">
                 All-inclusive. Includes all meals, snacks and water, entrance fees to select attractions. Soft drinks and alcohol are extra.
