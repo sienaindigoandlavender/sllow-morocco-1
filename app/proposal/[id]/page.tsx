@@ -1123,7 +1123,7 @@ Slow Morocco Team`);
       {!isAdmin && (
         <div className="fixed bottom-0 left-0 right-0 z-50 bg-green-700 text-white border-t border-foreground/10 print:hidden">
           <div className="container mx-auto px-6 lg:px-16">
-            <div className="flex items-center justify-center gap-8 py-4">
+            <div className="relative flex items-center justify-center gap-8 py-4">
               <button
                 onClick={() => setShowApproveModal(true)}
                 className="text-xs tracking-[0.15em] uppercase hover:opacity-70 transition-opacity px-6 py-2"
@@ -1136,6 +1136,18 @@ Slow Morocco Team`);
                 className="text-xs tracking-[0.15em] uppercase hover:opacity-70 transition-opacity px-6 py-2"
               >
                 I Have Some Thoughts
+              </button>
+              <button
+                onClick={() => window.print()}
+                className="absolute right-6 flex items-center gap-2 text-xs tracking-[0.15em] uppercase hover:opacity-70 transition-opacity px-6 py-2 opacity-60"
+              >
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.2" className="w-3.5 h-3.5">
+                  <rect x="2" y="5" width="12" height="8" rx="1"/>
+                  <polyline points="4,5 4,1 12,1 12,5"/>
+                  <line x1="4" y1="10" x2="12" y2="10"/>
+                  <line x1="4" y1="12" x2="9" y2="12"/>
+                </svg>
+                Print
               </button>
             </div>
           </div>
