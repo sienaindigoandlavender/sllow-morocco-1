@@ -3,18 +3,22 @@ import { MetadataRoute } from 'next'
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      // Google - explicitly allowed
-      // /darija/* is now ALLOWED so Google can fetch it and follow the 301
-      // redirects to darija.io. Was previously blocked here, which made the
-      // pages "indexed though blocked" and stalled migration of ~10,000 dictionary
-      // pages off slowmorocco.com. Removing the disallow lets Google process
-      // the redirects normally — the URLs will deindex from slowmorocco.com
-      // and the link equity transfers to darija.io.
-      // /_next/static/ stays disallowed: CSS/JS build artifacts.
+      // Googlebot Core - Optimized to allow rendering while protecting data
       {
         userAgent: 'Googlebot',
-        allow: '/',
-        disallow: ['/api/', '/admin/', '/client/', '/proposal/', '/_next/static/'],
+        allow: [
+          '/', 
+          '/_next/static/css/', // Explicitly let Googlebot read your beautiful styling
+          '/_next/static/chunks/' 
+        ],
+        disallow: [
+          '/api/', 
+          '/admin/', 
+          '/client/', 
+          '/proposal/', 
+          '/_next/development/', // Block dev code
+          '/_next/data/'        // Protect underlying JSON data hydration paths
+        ],
       },
       // AI Search Crawlers - full access to content + knowledge APIs
       {
@@ -49,11 +53,18 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: 'Google-Extended',
         allow: ['/', '/api/glossary', '/api/knowledge/'],
       },
-      // Default rules for all other crawlers
+      // Default rules for all other crawlers - mirroring the optimization
       {
         userAgent: '*',
-        allow: '/',
-        disallow: ['/api/', '/admin/', '/client/', '/proposal/'],
+        allow: ['/', '/_next/static/css/', '/_next/static/chunks/'],
+        disallow: [
+          '/api/', 
+          '/admin/', 
+          '/client/', 
+          '/proposal/',
+          '/_next/development/',
+          '/_next/data/'
+        ],
       },
     ],
     sitemap: 'https://www.slowmorocco.com/sitemap.xml',
