@@ -56,7 +56,8 @@ export async function GET(
       Itinerary_Doc_Link: data.itinerary_doc_link,
       Proposal_URL: data.proposal_url,
       Notes: data.notes,
-      Notes_Route_Sequence: data.notes_route_sequence,
+      Notes_Route_Sequence: data.notes_route_sequence ? data.notes_route_sequence.replace(/[\u2013\u2014\u2012]/g, '-') : null,
+      Hero_Image: data.hero_image,
       Created_Date: data.created_date,
       Last_Updated: data.last_updated,
     };
@@ -115,7 +116,8 @@ export async function PUT(
     if (body.budget !== undefined) updates.budget = body.budget;
     if (body.requests !== undefined) updates.requests = body.requests;
     if (body.notes !== undefined) updates.notes = body.notes;
-    if (body.notes_route_sequence !== undefined) updates.notes_route_sequence = body.notes_route_sequence;
+    if (body.notes_route_sequence !== undefined) updates.notes_route_sequence = body.notes_route_sequence.replace(/[\u2013\u2014\u2012]/g, '-');
+    if (body.hero_image !== undefined) updates.hero_image = body.hero_image;
     if (body.firstTimeMorocco !== undefined) updates.first_time_morocco = body.firstTimeMorocco;
     if (body.dreamExperience !== undefined) updates.dream_experience = body.dreamExperience;
     if (body.hearAboutUs !== undefined) updates.hear_about_us = body.hearAboutUs;
