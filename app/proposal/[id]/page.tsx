@@ -28,7 +28,14 @@ interface ProposalData {
     difficultyLevel?: string;
     activities?: string;
     accommodationType?: string;
+    accommodationName?: string;
+    roomConfig?: string;
     meals?: string;
+    mealsDetail?: string;
+    activitiesDetail?: string;
+    guideIncluded?: boolean;
+    guideLanguage?: string;
+    dayNotes?: string;
     highlights?: string;
   }[];
 }
@@ -90,11 +97,34 @@ export default function ProposalPage() {
   const [approvalSubmitted, setApprovalSubmitted] = useState(false);
   const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
   
+  // Save proposal days to Supabase
+  const saveDaysToSupabase = async (days: any[]) => {
+    try {
+      await fetch(`/api/proposals`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          proposalId,
+          daysList: days,
+          formattedPrice: editablePrice,
+          heroTitle: proposal?.journeyTitle,
+          heroBlurb: proposal?.arcDescription,
+          heroImageUrl: proposal?.heroImage,
+        }),
+      });
+    } catch (e) {
+      console.error('Failed to save to Supabase:', e);
+    }
+  };
+
   // Editable price (admin only)
   const [editablePrice, setEditablePrice] = useState("");
   
+  // Which day is being detailed-edited
+  const [editingDayNumber, setEditingDayNumber] = useState<number | null>(null);
+
   // Update a specific day field in the proposal
-  const updateDay = (dayNumber: number, field: string, value: string) => {
+  const updateDay = (dayNumber: number, field: string, value: any) => {
     if (!proposal) return;
     const updatedDays = proposal.days.map(d => 
       d.dayNumber === dayNumber ? { ...d, [field]: value } : d
@@ -651,9 +681,10 @@ Slow Morocco Team`);
             <p className="print-route">{day.fromCity} → {day.toCity}</p>
           )}
           <div className="print-day-practical">
-            {day.meals && <p style={{margin: '0 0 4px 0'}}><strong>Meals:</strong> {day.meals}</p>}
-            {day.accommodationType && <p style={{margin: '0 0 4px 0'}}><strong>Accommodation:</strong> {day.accommodationType}</p>}
-            {day.activities && <p style={{margin: '0'}}><strong>Activities:</strong> {day.activities}</p>}
+            {(day.mealsDetail || day.meals) && <p style={{margin: '0 0 6px 0'}}><strong>Meals:</strong> {day.mealsDetail || day.meals}</p>}
+            {(day.accommodationName || day.accommodationType) && <p style={{margin: '0 0 6px 0'}}><strong>Accommodation:</strong> {day.accommodationName || day.accommodationType}{day.roomConfig ? ` (${day.roomConfig})` : ''}</p>}
+            {(day.activitiesDetail || day.activities) && <p style={{margin: '0 0 6px 0'}}><strong>Activities:</strong> {day.activitiesDetail || day.activities}</p>}
+            {day.guideIncluded && <p style={{margin: '0'}}><strong>Guide:</strong> {day.guideLanguage || 'English'}-speaking official guide</p>}
           </div>
           <p className="print-day-description">{day.description.split('Meals:')[0].trim()}</p>
           <div className="print-footer">
@@ -662,6 +693,185 @@ Slow Morocco Team`);
           </div>
         </div>
       ))}
+
+      {/* Day Detail Editor Modal */}
+      {isAdmin && editingDayNumber !== null && proposal && (() => {
+        const day = proposal.days.find(d => d.dayNumber === editingDayNumber);
+        if (!day) return null;
+        
+        const mealOptions = ['Breakfast', 'Lunch', 'Dinner', 'Snacks'];
+        const activityOptions = [
+          'Medina tour', 'Ksar Ait Benhaddou', 'Hot Air Balloon', 'Camel ride',
+          'Quad biking', 'Horse riding', 'Hammam & Spa', 'Cooking class',
+          'Museum visit', 'Fossil hunting', 'Berber music evening', 'Desert walk'
+        ];
+        const currentMeals = (day.mealsDetail || day.meals || '').split(',').map(m => m.trim()).filter(Boolean);
+        const currentActivities = (day.activitiesDetail || day.activities || '').split(',').map(a => a.trim()).filter(Boolean);
+
+        return (
+          <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/50 p-4">
+            <div className="bg-background w-full max-w-2xl max-h-[90vh] overflow-y-auto p-8">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="font-serif text-2xl">Day {day.dayNumber} — {day.title}</h2>
+                <button onClick={() => setEditingDayNumber(null)} className="text-muted-foreground hover:text-foreground">✕</button>
+              </div>
+
+              {/* Meals */}
+              <div className="mb-6">
+                <h3 className="text-xs tracking-[0.15em] uppercase text-muted-foreground mb-3">Meals Included</h3>
+                <div className="flex flex-wrap gap-3">
+                  {mealOptions.map(meal => (
+                    <label key={meal} className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={currentMeals.includes(meal)}
+                        onChange={(e) => {
+                          const updated = e.target.checked
+                            ? [...currentMeals, meal]
+                            : currentMeals.filter(m => m !== meal);
+                          updateDay(day.dayNumber, 'mealsDetail', updated.join(', '));
+                        }}
+                        className="w-4 h-4"
+                      />
+                      <span className="text-sm">{meal}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              {/* Accommodation */}
+              <div className="mb-6">
+                <h3 className="text-xs tracking-[0.15em] uppercase text-muted-foreground mb-3">Accommodation</h3>
+                <input
+                  type="text"
+                  value={day.accommodationName || ''}
+                  onChange={(e) => updateDay(day.dayNumber, 'accommodationName', e.target.value)}
+                  placeholder="e.g. Riad El Fenn"
+                  className="w-full px-4 py-2 border border-border bg-background text-sm focus:outline-none focus:border-foreground mb-3"
+                />
+                <div className="flex gap-6">
+                  <label className="flex items-center gap-2 cursor-pointer text-sm">
+                    <span className="text-muted-foreground">Double rooms:</span>
+                    <input
+                      type="number"
+                      min="0"
+                      max="10"
+                      value={parseInt((day.roomConfig || '').match(/(\d+) Double/)?.[1] || '0')}
+                      onChange={(e) => {
+                        const singles = (day.roomConfig || '').match(/(\d+) Single/)?.[1] || '0';
+                        const val = `${e.target.value} Double, ${singles} Single`;
+                        updateDay(day.dayNumber, 'roomConfig', val);
+                      }}
+                      className="w-16 px-2 py-1 border border-border bg-background text-sm focus:outline-none"
+                    />
+                  </label>
+                  <label className="flex items-center gap-2 cursor-pointer text-sm">
+                    <span className="text-muted-foreground">Single rooms:</span>
+                    <input
+                      type="number"
+                      min="0"
+                      max="10"
+                      value={parseInt((day.roomConfig || '').match(/(\d+) Single/)?.[1] || '0')}
+                      onChange={(e) => {
+                        const doubles = (day.roomConfig || '').match(/(\d+) Double/)?.[1] || '0';
+                        const val = `${doubles} Double, ${e.target.value} Single`;
+                        updateDay(day.dayNumber, 'roomConfig', val);
+                      }}
+                      className="w-16 px-2 py-1 border border-border bg-background text-sm focus:outline-none"
+                    />
+                  </label>
+                </div>
+              </div>
+
+              {/* Activities */}
+              <div className="mb-6">
+                <h3 className="text-xs tracking-[0.15em] uppercase text-muted-foreground mb-3">Activities</h3>
+                <div className="flex flex-wrap gap-3 mb-3">
+                  {activityOptions.map(activity => (
+                    <label key={activity} className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={currentActivities.includes(activity)}
+                        onChange={(e) => {
+                          const updated = e.target.checked
+                            ? [...currentActivities, activity]
+                            : currentActivities.filter(a => a !== activity);
+                          updateDay(day.dayNumber, 'activitiesDetail', updated.join(', '));
+                        }}
+                        className="w-4 h-4"
+                      />
+                      <span className="text-sm">{activity}</span>
+                    </label>
+                  ))}
+                </div>
+                <input
+                  type="text"
+                  value={day.activitiesDetail || ''}
+                  onChange={(e) => updateDay(day.dayNumber, 'activitiesDetail', e.target.value)}
+                  placeholder="Additional activities or override..."
+                  className="w-full px-4 py-2 border border-border bg-background text-sm focus:outline-none focus:border-foreground"
+                />
+              </div>
+
+              {/* Guide */}
+              <div className="mb-6">
+                <h3 className="text-xs tracking-[0.15em] uppercase text-muted-foreground mb-3">Guide</h3>
+                <div className="flex items-center gap-6">
+                  <label className="flex items-center gap-2 cursor-pointer text-sm">
+                    <input
+                      type="checkbox"
+                      checked={day.guideIncluded || false}
+                      onChange={(e) => updateDay(day.dayNumber, 'guideIncluded', e.target.checked)}
+                      className="w-4 h-4"
+                    />
+                    <span>Guide included</span>
+                  </label>
+                  {day.guideIncluded && (
+                    <input
+                      type="text"
+                      value={day.guideLanguage || 'English'}
+                      onChange={(e) => updateDay(day.dayNumber, 'guideLanguage', e.target.value)}
+                      placeholder="Language"
+                      className="w-32 px-3 py-1 border border-border bg-background text-sm focus:outline-none"
+                    />
+                  )}
+                </div>
+              </div>
+
+              {/* Notes */}
+              <div className="mb-8">
+                <h3 className="text-xs tracking-[0.15em] uppercase text-muted-foreground mb-3">Internal Notes</h3>
+                <textarea
+                  value={day.dayNotes || ''}
+                  onChange={(e) => updateDay(day.dayNumber, 'dayNotes', e.target.value)}
+                  rows={3}
+                  placeholder="Notes for your reference only..."
+                  className="w-full px-4 py-2 border border-border bg-background text-sm focus:outline-none focus:border-foreground resize-none"
+                />
+              </div>
+
+              <div className="flex gap-4">
+                <button
+                  onClick={async () => {
+                    if (!proposal) return;
+                    await saveDaysToSupabase(proposal.days);
+                    setEditingDayNumber(null);
+                  }}
+                  className="flex-1 bg-foreground text-background py-3 text-xs tracking-[0.15em] uppercase hover:opacity-80 transition-opacity"
+                >
+                  Save Day
+                </button>
+                <button
+                  onClick={() => setEditingDayNumber(null)}
+                  className="px-6 border border-border text-xs tracking-[0.15em] uppercase hover:opacity-80 transition-opacity"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
 
       {/* Send Email Modal */}
       {showSendModal && (
@@ -965,8 +1175,18 @@ Slow Morocco Team`);
                     </div>
                   )}
 
+                  {/* Edit Details button — admin only */}
+                  {isAdmin && (
+                    <button
+                      onClick={() => setEditingDayNumber(day.dayNumber)}
+                      className="text-xs tracking-[0.1em] uppercase text-muted-foreground hover:text-foreground border border-border/50 px-3 py-1 mb-6 transition-colors"
+                    >
+                      Edit Day Details
+                    </button>
+                  )}
+
                   {/* Day Metadata — subtle icon row */}
-                  {(day.durationHours || day.difficultyLevel || day.meals || day.accommodationType) && (
+                  {(day.durationHours || day.difficultyLevel || day.mealsDetail || day.meals || day.accommodationName || day.accommodationType) && (
                     <div className="flex flex-wrap gap-x-6 gap-y-2 mb-8 text-xs text-muted-foreground/70">
                       {day.durationHours && (
                         <div className="flex items-center gap-1.5">
@@ -986,16 +1206,16 @@ Slow Morocco Team`);
                           <span>{day.difficultyLevel}</span>
                         </div>
                       )}
-                      {day.accommodationType && (
+                      {(day.accommodationName || day.accommodationType) && (
                         <div className="flex items-center gap-1.5">
                           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.2" className="w-3.5 h-3.5">
                             <rect x="2" y="7" width="12" height="7" />
                             <polyline points="1,7 8,2 15,7" />
                           </svg>
-                          <span>{day.accommodationType}</span>
+                          <span>{day.accommodationName || day.accommodationType}</span>
                         </div>
                       )}
-                      {day.meals && (
+                      {(day.mealsDetail || day.meals) && (
                         <div className="flex items-center gap-1.5">
                           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.2" className="w-3.5 h-3.5">
                             <line x1="5" y1="1" x2="5" y2="6" />
@@ -1003,7 +1223,7 @@ Slow Morocco Team`);
                             <line x1="5" y1="6" x2="5" y2="15" />
                             <line x1="11" y1="1" x2="11" y2="15" />
                           </svg>
-                          <span>{day.meals}</span>
+                          <span>{day.mealsDetail || day.meals}</span>
                         </div>
                       )}
                     </div>
