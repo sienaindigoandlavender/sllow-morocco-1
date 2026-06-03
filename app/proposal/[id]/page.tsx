@@ -658,9 +658,22 @@ Slow Morocco Team`);
           </p>
 
           {/* Title */}
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight mb-8">
+          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight mb-4">
             {proposal.journeyTitle}
           </h1>
+
+          {/* Wharton reference */}
+          <p className="text-xs text-muted-foreground mb-8 tracking-wide">
+            After{" "}
+            <a
+              href="https://www.gutenberg.org/ebooks/36712"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-2 hover:opacity-70 transition-opacity"
+            >
+              Edith Wharton, <em>In Morocco</em> (1920)
+            </a>
+          </p>
 
           {/* Arc Description */}
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-16 font-display italic">
