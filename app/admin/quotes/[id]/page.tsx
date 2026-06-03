@@ -116,7 +116,7 @@ export default function QuoteDetailPage() {
       journeyInterest, startDate, endDate, startCity, endCity,
       days: days.toString(), travelers: travelers.toString(), 
       language, budget, requests, notes, status,
-      notes_route_sequence: routeSequence
+      notes_route_sequence: routeSequence.replace(/[–—]/g, '-')
     };
     
     try {
@@ -139,7 +139,7 @@ export default function QuoteDetailPage() {
     setMessage("");
     
     try {
-      const contentRes = await fetch("/api/content-library");
+      const contentRes = await fetch(`/api/content-library?t=${Date.now()}`, { cache: 'no-store' });
       const contentData = await contentRes.json();
       
       if (!contentData.success) {
@@ -161,7 +161,7 @@ export default function QuoteDetailPage() {
       
       // If route sequence is provided, use it directly
       if (routeSequence && routeSequence.trim()) {
-        const routeIds = routeSequence.trim().split("\n").map((id: string) => id.trim()).filter((id: string) => id.length > 0);
+        const routeIds = routeSequence.trim().replace(/[\u2013\u2014]/g, "-").split("\n").map((id: string) => id.trim()).filter((id: string) => id.length > 0);
         const blockMap = new Map(contentBlocks.map((b: any) => [b.id, b]));
         selectedBlocks = routeIds.map((id: string) => blockMap.get(id)).filter(Boolean);
         if (selectedBlocks.length === 0) {
@@ -246,7 +246,7 @@ export default function QuoteDetailPage() {
       const proposalData = {
         id: proposalId,
         journeyTitle: `${firstName}'s Morocco Journey`,
-        arcDescription: `A ${proposalDays.length}-day journey through Morocco, crafted for ${firstName} ${lastName}.`,
+        arcDescription: `An ${proposalDays.length - 1}-night journey through Morocco, crafted for ${firstName} ${lastName}.`,
         clientName: `${firstName} ${lastName}`.trim(),
         heroImage: heroBlock.heroImageUrl || proposalDays[0]?.imageUrl || "",
         price: price || "2,450",
