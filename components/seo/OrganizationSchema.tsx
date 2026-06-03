@@ -76,7 +76,7 @@ export default function OrganizationSchema() {
       description: "A 300-year-old guesthouse in the heart of Marrakech medina. The physical manifestation of Slow Morocco's philosophy—not a hotel, a house with soul.",
       address: {
         "@type": "PostalAddress",
-        streetAddress: "37 Derb Fhal Zfriti, Kennaria",
+        streetAddress: "35 Derb Fhal Zfriti, Ksour",
         addressLocality: "Marrakech",
         addressRegion: "Marrakech-Safi",
         postalCode: "40000",
