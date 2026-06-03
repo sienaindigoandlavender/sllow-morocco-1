@@ -664,7 +664,7 @@ Slow Morocco Team`);
 
           {/* Wharton reference */}
           <p className="text-xs text-muted-foreground mb-8 tracking-wide">
-            After{" "}
+            Based on the book by{" "}
             <a
               href="https://www.gutenberg.org/ebooks/36712"
               target="_blank"
