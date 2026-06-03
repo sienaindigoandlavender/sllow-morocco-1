@@ -209,7 +209,18 @@ export default function QuoteDetailPage() {
         }
       }
       
-      const proposalId = `PRP-${Date.now()}`;
+      // Check if a proposal already exists for this client — reuse the ID
+      let proposalId = `PRP-${Date.now()}`;
+      try {
+        const existingRes = await fetch(`/api/proposals?clientId=${clientId}`, { cache: 'no-store' });
+        const existingData = await existingRes.json();
+        if (existingData.success && existingData.proposal?.id) {
+          proposalId = existingData.proposal.id;
+          console.log("Reusing existing proposal ID:", proposalId);
+        }
+      } catch (e) {
+        console.log("No existing proposal found, creating new one");
+      }
 
       
       const routePoints: { name: string; coords: [number, number] }[] = [];
