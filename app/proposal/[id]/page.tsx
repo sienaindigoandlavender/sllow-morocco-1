@@ -740,8 +740,8 @@ Slow Morocco Team`);
                 Your Investment
               </p>
               {isAdmin ? (
-                // Admin: Editable price
-                <div className="mb-4">
+                // Admin: Editable total price
+                <div className="mb-2">
                   <div className="inline-flex items-center gap-2">
                     <span className="font-serif text-5xl md:text-6xl">€</span>
                     <input
@@ -753,13 +753,16 @@ Slow Morocco Team`);
                   </div>
                 </div>
               ) : (
-                // Client: Static price
-                <p className="font-serif text-5xl md:text-6xl mb-4">
-                  €{proposal.price || "2,450"}
+                // Client: Static total price
+                <p className="font-serif text-5xl md:text-6xl mb-2">
+                  €{proposal.price || "22,000"}
                 </p>
               )}
+              <p className="text-sm text-muted-foreground mb-2">
+                total for your group
+              </p>
               <p className="text-sm text-muted-foreground mb-8">
-                per person
+                €{isAdmin ? Math.round(parseInt(editablePrice.replace(/,/g, '')) / 4).toLocaleString() : Math.round(parseInt((proposal.price || "22000").replace(/,/g, '')) / 4).toLocaleString()} per person
               </p>
               <p className="text-sm italic text-muted-foreground max-w-md mx-auto mb-10">
                 All-inclusive. Includes all meals, snacks and water, entrance fees to select attractions. Soft drinks and alcohol are extra.
