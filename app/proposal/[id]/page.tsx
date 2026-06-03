@@ -35,6 +35,8 @@ interface ProposalData {
     activitiesDetail?: string;
     guideIncluded?: boolean;
     guideLanguage?: string;
+    transferType?: string;
+    transferDetails?: string;
     dayNotes?: string;
     highlights?: string;
   }[];
@@ -684,7 +686,10 @@ Slow Morocco Team`);
             {(day.mealsDetail || day.meals) && <p style={{margin: '0 0 6px 0'}}><strong>Meals:</strong> {day.mealsDetail || day.meals}</p>}
             {(day.accommodationName || day.accommodationType) && <p style={{margin: '0 0 6px 0'}}><strong>Accommodation:</strong> {day.accommodationName || day.accommodationType}{day.roomConfig ? ` (${day.roomConfig})` : ''}</p>}
             {(day.activitiesDetail || day.activities) && <p style={{margin: '0 0 6px 0'}}><strong>Activities:</strong> {day.activitiesDetail || day.activities}</p>}
-            {day.guideIncluded && <p style={{margin: '0'}}><strong>Guide:</strong> {day.guideLanguage || 'English'}-speaking official guide</p>}
+            {day.guideIncluded && <p style={{margin: '0 0 6px 0'}}><strong>Guide:</strong> {day.guideLanguage || 'English'}-speaking official guide</p>}
+            {day.transferType && day.transferType !== 'none' && day.transferDetails && (
+              <p style={{margin: '0'}}><strong>Transfer:</strong> {day.transferDetails}</p>
+            )}
           </div>
           <p className="print-day-description">{day.description.split('Meals:')[0].trim()}</p>
           <div className="print-footer">
@@ -701,9 +706,16 @@ Slow Morocco Team`);
         
         const mealOptions = ['Breakfast', 'Lunch', 'Dinner', 'Snacks'];
         const activityOptions = [
-          'Medina tour', 'Ksar Ait Benhaddou', 'Hot Air Balloon', 'Camel ride',
-          'Quad biking', 'Horse riding', 'Hammam & Spa', 'Cooking class',
-          'Museum visit', 'Fossil hunting', 'Berber music evening', 'Desert walk'
+          // Culture & Architecture
+          'Medina tour', 'Palais Bahia', 'Palais Badi', 'Dar Si Said',
+          'Medersa Ben Youssef', 'Dar el Bacha', 'Saadian Tombs',
+          'Ksar Ait Benhaddou', 'Kasbah des Caids',
+          // Gardens & Art
+          'Jardin Majorelle', 'Yves Saint Laurent Museum', 'Anima',
+          // Experiences
+          'Hot Air Balloon', 'Camel ride', 'Horse riding', 'Quad biking',
+          'Hammam & Spa', 'Fossil hunting', 'Berber music evening',
+          'Desert walk', 'Cooking class'
         ];
         const currentMeals = (day.mealsDetail || day.meals || '').split(',').map(m => m.trim()).filter(Boolean);
         const currentActivities = (day.activitiesDetail || day.activities || '').split(',').map(a => a.trim()).filter(Boolean);
@@ -836,6 +848,30 @@ Slow Morocco Team`);
                     />
                   )}
                 </div>
+              </div>
+
+              {/* Transfer */}
+              <div className="mb-6">
+                <h3 className="text-xs tracking-[0.15em] uppercase text-muted-foreground mb-3">Transfer</h3>
+                <select
+                  value={day.transferType || 'none'}
+                  onChange={(e) => updateDay(day.dayNumber, 'transferType', e.target.value)}
+                  className="w-full px-4 py-2 border border-border bg-background text-sm focus:outline-none focus:border-foreground mb-3"
+                >
+                  <option value="none">No transfer</option>
+                  <option value="airport_pickup">Airport pickup</option>
+                  <option value="airport_dropoff">Airport drop-off</option>
+                  <option value="intercity">Inter-city transfer</option>
+                </select>
+                {day.transferType && day.transferType !== 'none' && (
+                  <input
+                    type="text"
+                    value={day.transferDetails || ''}
+                    onChange={(e) => updateDay(day.dayNumber, 'transferDetails', e.target.value)}
+                    placeholder="e.g. Essaouira Airport (ESU) — private car — arriving 14:35"
+                    className="w-full px-4 py-2 border border-border bg-background text-sm focus:outline-none focus:border-foreground"
+                  />
+                )}
               </div>
 
               {/* Notes */}
