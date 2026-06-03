@@ -76,6 +76,8 @@ export async function GET(request: Request) {
         roomConfig: day.roomConfig || "",
         guideIncluded: day.guideIncluded || false,
         guideLanguage: day.guideLanguage || "",
+        transferType: day.transferType || "",
+        transferDetails: day.transferDetails || "",
         dayNotes: day.dayNotes || "",
       })),
     };
