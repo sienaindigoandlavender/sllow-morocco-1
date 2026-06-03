@@ -88,6 +88,7 @@ export async function GET(request: Request) {
         difficultyLevel: day.difficultyLevel || "",
         meals: day.meals || "",
         mealsDetail: day.mealsDetail || "",
+        diningNotes: day.diningNotes || "",
         accommodationType: day.accommodationType || "",
         accommodationName: day.accommodationName || "",
         roomConfig: day.roomConfig || "",
