@@ -819,71 +819,20 @@ Slow Morocco Team`);
             </div>
           </div>
 
-          {/* What's Included / Not Included */}
+          {/* What's Included */}
           <div className="mt-16 pt-16 border-t border-border">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
-              {/* What's Included */}
-              <div>
-                <h3 className="font-serif text-xl mb-6">What's Included</h3>
-                <ul className="space-y-3 text-muted-foreground">
-                  <li className="flex items-start gap-3">
-                    <span className="text-foreground mt-1">✓</span>
-                    <span>Private transportation throughout</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-foreground mt-1">✓</span>
-                    <span>Handpicked accommodations</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-foreground mt-1">✓</span>
-                    <span>All breakfasts, lunches & dinners</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-foreground mt-1">✓</span>
-                    <span>Bottled water & snacks</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-foreground mt-1">✓</span>
-                    <span>Entrance fees to select attractions</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-foreground mt-1">✓</span>
-                    <span>English-speaking driver guide</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-foreground mt-1">✓</span>
-                    <span>24/7 local support</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* What's Not Included */}
-              <div>
-                <h3 className="font-serif text-xl mb-6">What's Not Included</h3>
-                <ul className="space-y-3 text-muted-foreground">
-                  <li className="flex items-start gap-3">
-                    <span className="text-foreground/40 mt-1">✗</span>
-                    <span>International flights</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-foreground/40 mt-1">✗</span>
-                    <span>Travel insurance</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-foreground/40 mt-1">✗</span>
-                    <span>Soft drinks & alcohol</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-foreground/40 mt-1">✗</span>
-                    <span>Personal expenses & souvenirs</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-foreground/40 mt-1">✗</span>
-                    <span>Optional activities not mentioned</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
+            <h3 className="font-serif text-xl mb-8">What's Included</h3>
+            <ul className="space-y-3 text-muted-foreground max-w-lg">
+              <li>Private transportation throughout with a dedicated driver</li>
+              <li>Handpicked accommodations, selected for character and location</li>
+              <li>All breakfasts, lunches and dinners</li>
+              <li>Entrance fees to attractions included in your programme</li>
+              <li>English-speaking guide in Marrakech</li>
+              <li>24/7 local support throughout your journey</li>
+            </ul>
+            <p className="mt-8 text-sm text-muted-foreground/70 italic">
+              International flights and travel insurance are arranged separately.
+            </p>
           </div>
 
           {/* Route Map */}
