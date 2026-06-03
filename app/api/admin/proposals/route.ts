@@ -17,7 +17,7 @@ export async function POST(request: Request) {
   try {
     const data = await request.json();
 
-    const proposalId = `PRP-${Date.now()}`;
+    const proposalId = data.proposalId || `PRP-${Date.now()}`;
 
     const proposal = await createProposal({
       proposal_id: proposalId,
