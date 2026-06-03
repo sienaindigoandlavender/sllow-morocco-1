@@ -254,7 +254,7 @@ export default function QuoteDetailPage() {
       const proposalData = {
         id: proposalId,
         journeyTitle: `${firstName} in Morocco`,
-        arcDescription: `An ${proposalDays.length - 1}-night journey through Morocco, crafted for ${firstName} ${lastName}.`,
+        arcDescription: `An ${proposalDays.length - 1}-night journey through Morocco, crafted for Ms. ${firstName} ${lastName}.`,
         clientName: `${firstName} ${lastName}`.trim(),
         heroImage: heroImage || heroBlock.heroImageUrl || "",
         price: price || "22,000",
