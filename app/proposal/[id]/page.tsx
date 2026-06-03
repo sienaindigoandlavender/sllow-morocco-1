@@ -639,14 +639,14 @@ Slow Morocco Team`);
                 onClick={() => setShowApproveModal(true)}
                 className="text-xs tracking-[0.15em] uppercase hover:opacity-70 transition-opacity px-6 py-2"
               >
-                Approve
+                Yes, This Is It
               </button>
               <div className="w-px h-4 bg-white/30" />
               <button
                 onClick={() => setShowFeedbackModal(true)}
                 className="text-xs tracking-[0.15em] uppercase hover:opacity-70 transition-opacity px-6 py-2"
               >
-                Make It Better
+                I Have Some Thoughts
               </button>
             </div>
           </div>
@@ -1006,7 +1006,7 @@ Slow Morocco Team`);
               </div>
             ) : (
               <>
-                <h2 className="font-serif text-2xl mb-4">Make It Better</h2>
+                <h2 className="font-serif text-2xl mb-4">I Have Some Thoughts</h2>
                 <p className="text-muted-foreground mb-6">
                   Tell us what you'd like to change. More time in the desert? A different city? We're here to shape this journey around you.
                 </p>
