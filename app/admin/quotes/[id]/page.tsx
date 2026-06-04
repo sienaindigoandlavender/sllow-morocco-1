@@ -162,6 +162,8 @@ export default function QuoteDetailPage() {
   const [price, setPrice] = useState("");
   const [requests, setRequests] = useState("");
   const [notes, setNotes] = useState("");
+  const [dreamExperience, setDreamExperience] = useState("");
+  const [firstTimeMorocco, setFirstTimeMorocco] = useState("");
   const [status, setStatus] = useState("NEW");
   const [routeSequence, setRouteSequence] = useState("");
   const [heroImage, setHeroImage] = useState("");
@@ -189,6 +191,8 @@ export default function QuoteDetailPage() {
           setBudget(q.Budget || "");
           setRequests(q.Requests || "");
           setNotes(q.Notes || "");
+          setDreamExperience(q.Dream_Experience || "");
+          setFirstTimeMorocco(q.First_Time_Morocco || "");
           setStatus(q.Status || "NEW");
           setRouteSequence(q.Notes_Route_Sequence || "");
           setHeroImage(q.Hero_Image || "");
@@ -225,6 +229,7 @@ export default function QuoteDetailPage() {
       journeyInterest, startDate, endDate, startCity, endCity,
       days: days.toString(), travelers: travelers.toString(), 
       language, budget, requests, notes, status,
+      dreamExperience, firstTimeMorocco,
       notes_route_sequence: routeSequence.replace(/[–—]/g, '-'),
       hero_image: heroImage,
       Status: status // Backend case alignment check
@@ -566,6 +571,33 @@ export default function QuoteDetailPage() {
                 placeholder="Dietary needs, accessibility requirements, special interests..."
                 className="w-full px-4 py-3 border border-border bg-background text-lg focus:outline-none focus:border-foreground transition-colors resize-none"
               />
+            </section>
+
+            {/* Dream Experience */}
+            <section>
+              <h2 className="font-serif text-xl mb-2">Dream Experience</h2>
+              <p className="text-sm text-muted-foreground mb-4">What the client wants to feel, see, or understand — in their own words.</p>
+              <textarea
+                value={dreamExperience}
+                onChange={(e) => setDreamExperience(e.target.value)}
+                rows={4}
+                placeholder="What would make this journey unforgettable for them?"
+                className="w-full px-4 py-3 border border-border bg-background text-lg focus:outline-none focus:border-foreground transition-colors resize-none"
+              />
+            </section>
+
+            {/* First Time Morocco */}
+            <section>
+              <h2 className="font-serif text-xl mb-4">First Time in Morocco?</h2>
+              <select
+                value={firstTimeMorocco}
+                onChange={(e) => setFirstTimeMorocco(e.target.value)}
+                className="w-full px-4 py-3 border border-border bg-background text-lg focus:outline-none focus:border-foreground transition-colors"
+              >
+                <option value="">— Unknown —</option>
+                <option value="Yes">Yes, first time</option>
+                <option value="No">No, been before</option>
+              </select>
             </section>
 
             {/* Internal Notes */}
