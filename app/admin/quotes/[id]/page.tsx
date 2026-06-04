@@ -4,12 +4,12 @@ import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 
-// Pipeline stages in order
+// Pipeline stages mapped to match dashboard keys exactly
 const PIPELINE_STAGES = [
-  { key: "NEW",         label: "New",            desc: "Inquiry received" },
-  { key: "IN_PROGRESS",  label: "In Progress",    desc: "Building itinerary" },
-  { key: "SENT",         label: "Sent",           desc: "Proposal delivered" },
-  { key: "BOOKED",       label: "Booked",         desc: "Deposit confirmed" },
+  { key: "NEW",             label: "New",            desc: "Inquiry received" },
+  { key: "IN_PROGRESS",     label: "In Progress",    desc: "Building itinerary" },
+  { key: "ITINERARY_READY", label: "Ready",          desc: "Proposal built" },
+  { key: "CONFIRMED",       label: "Booked",         desc: "Deposit confirmed" },
 ];
 
 const STAGE_ORDER = PIPELINE_STAGES.map(s => s.key);
@@ -64,7 +64,7 @@ function StatusTimeline({ status, onChange }: { status: string; onChange: (s: st
   );
 }
 
-// Styled text input — defined outside component to prevent re-render on keystroke
+// Styled text input
 const TextInput = ({ label, value, onChange, placeholder = "" }: { 
   label: string; 
   value: string; 
@@ -83,7 +83,7 @@ const TextInput = ({ label, value, onChange, placeholder = "" }: {
   </div>
 );
 
-// Styled number input — defined outside component to prevent re-render on keystroke
+// Styled number input
 const NumberInput = ({ label, value, onChange }: { 
   label: string; 
   value: number; 
@@ -168,14 +168,14 @@ export default function QuoteDetailPage() {
       });
   }, [clientId]);
 
-  // ACTION: Update status only
+  // ACTION: Update status with case safety (handles both Status and status for backend client rules)
   const handleStatusChange = async (newStatus: string) => {
     setStatus(newStatus);
     try {
       await fetch(`/api/admin/quotes/${clientId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ status: newStatus }),
+        body: JSON.stringify({ Status: newStatus, status: newStatus }),
       });
     } catch (err) {
       console.error("Failed to update status:", err);
@@ -193,7 +193,8 @@ export default function QuoteDetailPage() {
       days: days.toString(), travelers: travelers.toString(), 
       language, budget, requests, notes, status,
       notes_route_sequence: routeSequence.replace(/[–—]/g, '-'),
-      hero_image: heroImage
+      hero_image: heroImage,
+      Status: status // Backend case alignment check
     };
     
     try {
@@ -210,7 +211,7 @@ export default function QuoteDetailPage() {
     setSaving(false);
   };
 
-  // ACTION: Generate Proposal
+  // ACTION: Generate Proposal (Fully Automated Workflow Step)
   const handleGenerateProposal = async () => {
     setGenerating(true);
     setMessage("");
@@ -368,9 +369,10 @@ export default function QuoteDetailPage() {
       
       window.open(`/proposal/${proposalId}?edit=true`, '_blank');
       setMessage("Proposal generated!");
-      if (status === "NEW") {
-        await handleStatusChange("IN_PROGRESS");
-      }
+
+      // ➔ AUTOMATION TRIGGER: Advance status directly to ITINERARY_READY in the database
+      await handleStatusChange("ITINERARY_READY");
+
     } catch (err) {
       console.error("Generate error:", err);
       setMessage(`Failed to generate proposal: ${err}`);
@@ -417,17 +419,17 @@ export default function QuoteDetailPage() {
           <div className={`text-xs px-3 py-1 rounded ${
             status === "NEW" ? "bg-green-50 text-green-700" :
             status === "IN_PROGRESS" ? "bg-blue-50 text-blue-700" :
+            status === "ITINERARY_READY" ? "bg-purple-50 text-purple-700" :
             status === "CONFIRMED" ? "bg-emerald-50 text-emerald-700" :
-            status === "CANCELLED" ? "bg-red-50 text-red-700" :
             "bg-gray-50 text-gray-700"
           }`}>
-            {status}
+            {status === "ITINERARY_READY" ? "READY" : status}
           </div>
         </div>
       </header>
 
       <main className="container mx-auto px-6 py-12 max-w-5xl">
-        {/* PIPELINE TIMELINE MOVED HERE TO SPAN HORIZONTALLY AT THE TOP */}
+        {/* Status timeline spanning full-width at the top */}
         <StatusTimeline status={status} onChange={handleStatusChange} />
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
