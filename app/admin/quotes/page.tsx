@@ -28,14 +28,7 @@ type SortField =
   | "Created_Date";
 type SortDirection = "asc" | "desc";
 
-const statusOptions = [
-  "ALL",
-  "NEW",
-  "IN_PROGRESS",
-  "SENT",
-  "BOOKED",
-  "CANCELLED",
-];
+const statusOptions = ["ALL", "NEW", "IN_PROGRESS", "SENT", "BOOKED", "CANCELLED"];
 
 const EditIcon = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -87,6 +80,7 @@ export default function AdminQuotesPage() {
   const [quotes, setQuotes] = useState<Quote[]>([]);
   const [loading, setLoading] = useState(true);
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [duplicatingId, setDuplicatingId] = useState<string | null>(null);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("ALL");
@@ -106,6 +100,35 @@ export default function AdminQuotesPage() {
       });
   }, []);
 
+  const handleDuplicate = async (quote: Quote) => {
+    setDuplicatingId(quote.Client_ID);
+    try {
+      const res = await fetch("/api/admin/quotes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName: quote.First_Name,
+          lastName: quote.Last_Name,
+          email: quote.Email,
+          country: quote.Country,
+          journeyInterest: quote.Journey_Interest,
+          startDate: quote.Start_Date,
+          travelers: quote.Number_Travelers,
+          status: "NEW",
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        window.location.href = `/admin/quotes/${data.clientId}`;
+      } else {
+        alert(`Failed to duplicate: ${data.error}`);
+      }
+    } catch {
+      alert("Duplicate failed. Please try again.");
+    }
+    setDuplicatingId(null);
+  };
+
   const handleDelete = async (clientId: string) => {
     if (!confirm(`Delete quote ${clientId}? This cannot be undone.`)) return;
     setDeletingId(clientId);
@@ -119,7 +142,7 @@ export default function AdminQuotesPage() {
       } else {
         alert(`Failed to delete: ${data.error}`);
       }
-    } catch (err) {
+    } catch {
       alert("Delete failed. Please try again.");
     }
     setDeletingId(null);
@@ -148,46 +171,17 @@ export default function AdminQuotesPage() {
     result.sort((a, b) => {
       let aVal: string | number = "";
       let bVal: string | number = "";
-
       switch (sortField) {
-        case "Client_ID":
-          aVal = a.Client_ID || "";
-          bVal = b.Client_ID || "";
-          break;
-        case "Name":
-          aVal = `${a.First_Name} ${a.Last_Name}`.toLowerCase();
-          bVal = `${b.First_Name} ${b.Last_Name}`.toLowerCase();
-          break;
-        case "Country":
-          aVal = a.Country?.toLowerCase() || "";
-          bVal = b.Country?.toLowerCase() || "";
-          break;
-        case "Email":
-          aVal = a.Email?.toLowerCase() || "";
-          bVal = b.Email?.toLowerCase() || "";
-          break;
-        case "Journey_Interest":
-          aVal = a.Journey_Interest?.toLowerCase() || "";
-          bVal = b.Journey_Interest?.toLowerCase() || "";
-          break;
-        case "Start_Date":
-          aVal = a.Start_Date ? new Date(a.Start_Date).getTime() : 0;
-          bVal = b.Start_Date ? new Date(b.Start_Date).getTime() : 0;
-          break;
-        case "Number_Travelers":
-          aVal = parseInt(a.Number_Travelers) || 0;
-          bVal = parseInt(b.Number_Travelers) || 0;
-          break;
-        case "Status":
-          aVal = a.Status || "";
-          bVal = b.Status || "";
-          break;
-        case "Created_Date":
-          aVal = a.Created_Date ? new Date(a.Created_Date).getTime() : 0;
-          bVal = b.Created_Date ? new Date(b.Created_Date).getTime() : 0;
-          break;
+        case "Client_ID":   aVal = a.Client_ID || ""; bVal = b.Client_ID || ""; break;
+        case "Name":        aVal = `${a.First_Name} ${a.Last_Name}`.toLowerCase(); bVal = `${b.First_Name} ${b.Last_Name}`.toLowerCase(); break;
+        case "Country":     aVal = a.Country?.toLowerCase() || ""; bVal = b.Country?.toLowerCase() || ""; break;
+        case "Email":       aVal = a.Email?.toLowerCase() || ""; bVal = b.Email?.toLowerCase() || ""; break;
+        case "Journey_Interest": aVal = a.Journey_Interest?.toLowerCase() || ""; bVal = b.Journey_Interest?.toLowerCase() || ""; break;
+        case "Start_Date":  aVal = a.Start_Date ? new Date(a.Start_Date).getTime() : 0; bVal = b.Start_Date ? new Date(b.Start_Date).getTime() : 0; break;
+        case "Number_Travelers": aVal = parseInt(a.Number_Travelers) || 0; bVal = parseInt(b.Number_Travelers) || 0; break;
+        case "Status":      aVal = a.Status || ""; bVal = b.Status || ""; break;
+        case "Created_Date": aVal = a.Created_Date ? new Date(a.Created_Date).getTime() : 0; bVal = b.Created_Date ? new Date(b.Created_Date).getTime() : 0; break;
       }
-
       if (aVal < bVal) return sortDirection === "asc" ? -1 : 1;
       if (aVal > bVal) return sortDirection === "asc" ? 1 : -1;
       return 0;
@@ -208,39 +202,16 @@ export default function AdminQuotesPage() {
   const formatDate = (dateStr: string) => {
     if (!dateStr) return "—";
     try {
-      return new Date(dateStr).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-      });
-    } catch {
-      return dateStr;
-    }
+      return new Date(dateStr).toLocaleDateString("en-US", { year: "numeric", month: "2-digit", day: "2-digit" });
+    } catch { return dateStr; }
   };
 
-  const SortHeader = ({
-    field,
-    children,
-  }: {
-    field: SortField;
-    children: React.ReactNode;
-  }) => (
-    <th
-      onClick={() => handleSort(field)}
-      className="text-left p-4 text-xs uppercase tracking-wide text-muted-foreground font-medium cursor-pointer hover:text-foreground select-none"
-    >
+  const SortHeader = ({ field, children }: { field: SortField; children: React.ReactNode }) => (
+    <th onClick={() => handleSort(field)} className="text-left p-4 text-xs uppercase tracking-wide text-muted-foreground font-medium cursor-pointer hover:text-foreground select-none">
       <div className="flex items-center gap-1">
         {children}
         <span className="ml-1">
-          {sortField === field ? (
-            sortDirection === "asc" ? (
-              <SortAscIcon />
-            ) : (
-              <SortDescIcon />
-            )
-          ) : (
-            <SortNeutralIcon />
-          )}
+          {sortField === field ? (sortDirection === "asc" ? <SortAscIcon /> : <SortDescIcon />) : <SortNeutralIcon />}
         </span>
       </div>
     </th>
@@ -248,6 +219,7 @@ export default function AdminQuotesPage() {
 
   return (
     <div className="min-h-screen bg-background">
+
       {/* Search Bar */}
       <div className="border-b border-border bg-muted/30 py-4 px-6">
         <div className="container mx-auto">
@@ -260,15 +232,7 @@ export default function AdminQuotesPage() {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full px-4 py-3 pl-10 border border-border bg-background text-sm focus:outline-none focus:border-foreground"
               />
-              <svg
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-              >
+              <svg className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
                 <circle cx="7" cy="7" r="5" />
                 <path d="M11 11l3 3" />
               </svg>
@@ -298,16 +262,10 @@ export default function AdminQuotesPage() {
             </p>
           </div>
           <div className="flex items-center gap-4">
-            <Link
-              href="/admin/quotes/new"
-              className="text-xs uppercase tracking-wide bg-foreground text-background px-4 py-2 hover:opacity-80 transition-opacity"
-            >
+            <Link href="/admin/quotes/new" className="text-xs uppercase tracking-wide bg-foreground text-background px-4 py-2 hover:opacity-80 transition-opacity">
               New Quote
             </Link>
-            <Link
-              href="/admin"
-              className="text-xs uppercase tracking-wide border border-border px-4 py-2 hover:border-foreground transition-colors"
-            >
+            <Link href="/admin" className="text-xs uppercase tracking-wide border border-border px-4 py-2 hover:border-foreground transition-colors">
               Back to Dashboard
             </Link>
           </div>
@@ -320,9 +278,7 @@ export default function AdminQuotesPage() {
             <div className="w-8 h-8 border-2 border-foreground/20 border-t-foreground rounded-full animate-spin" />
           </div>
         ) : quotes.length === 0 ? (
-          <div className="text-center py-20 text-muted-foreground">
-            No quotes found.
-          </div>
+          <div className="text-center py-20 text-muted-foreground">No quotes found.</div>
         ) : (
           <div className="border border-border rounded-lg overflow-hidden">
             <div className="overflow-x-auto">
@@ -335,37 +291,19 @@ export default function AdminQuotesPage() {
                     <SortHeader field="Journey_Interest">Journey</SortHeader>
                     <SortHeader field="Start_Date">Date</SortHeader>
                     <SortHeader field="Status">Status</SortHeader>
-                    <th className="text-right p-4 text-xs uppercase tracking-wide text-muted-foreground font-medium">
-                      Actions
-                    </th>
+                    <th className="text-right p-4 text-xs uppercase tracking-wide text-muted-foreground font-medium">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border bg-background">
                   {filteredAndSortedQuotes.map((quote) => (
-                    <tr
-                      key={quote.Client_ID}
-                      className="hover:bg-muted/30 transition-colors"
-                    >
+                    <tr key={quote.Client_ID} className="hover:bg-muted/30 transition-colors">
                       <td className="p-4 text-sm font-mono">{quote.Client_ID}</td>
-                      <td className="p-4 text-sm">
-                        {quote.First_Name} {quote.Last_Name}
-                      </td>
-                      <td className="p-4 text-sm text-muted-foreground">
-                        {quote.Email}
-                      </td>
-                      <td className="p-4 text-sm">
-                        {quote.Journey_Interest || "Custom"}
-                      </td>
-                      <td className="p-4 text-sm">
-                        {formatDate(quote.Start_Date)}
-                      </td>
+                      <td className="p-4 text-sm">{quote.First_Name} {quote.Last_Name}</td>
+                      <td className="p-4 text-sm text-muted-foreground">{quote.Email}</td>
+                      <td className="p-4 text-sm">{quote.Journey_Interest || "Custom"}</td>
+                      <td className="p-4 text-sm">{formatDate(quote.Start_Date)}</td>
                       <td className="p-4">
-                        <span
-                          className={`text-xs px-2 py-1 rounded ${
-                            statusColors[quote.Status] ||
-                            "bg-gray-100 text-gray-700"
-                          }`}
-                        >
+                        <span className={`text-xs px-2 py-1 rounded ${statusColors[quote.Status] || "bg-gray-100 text-gray-700"}`}>
                           {quote.Status?.replace(/_/g, " ") || "NEW"}
                         </span>
                       </td>
@@ -379,10 +317,9 @@ export default function AdminQuotesPage() {
                             <EditIcon />
                           </Link>
                           <button
-                            onClick={() =>
-                              alert(`Duplicate ${quote.Client_ID} — coming soon`)
-                            }
-                            className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded transition-colors"
+                            onClick={() => handleDuplicate(quote)}
+                            disabled={duplicatingId === quote.Client_ID}
+                            className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded transition-colors disabled:opacity-40"
                             title="Duplicate"
                           >
                             <DuplicateIcon />
