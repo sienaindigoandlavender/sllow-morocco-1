@@ -110,6 +110,7 @@ export default function QuoteDetailPage() {
   const [saving, setSaving] = useState(false);
   const [generating, setGenerating] = useState(false);
   const [message, setMessage] = useState("");
+  const [hasProposal, setHasProposal] = useState(false);
 
   // Form data
   const [firstName, setFirstName] = useState("");
@@ -160,6 +161,11 @@ export default function QuoteDetailPage() {
           setRouteSequence(q.Notes_Route_Sequence || "");
           setHeroImage(q.Hero_Image || "");
         }
+        // Check if a proposal already exists for this client
+        fetch(`/api/proposals?id=PROP-${clientId}`)
+          .then((r) => r.json())
+          .then((pd) => { if (pd.success && pd.proposal) setHasProposal(true); })
+          .catch(() => {});
         setLoading(false);
       })
       .catch((err) => {
@@ -369,6 +375,7 @@ export default function QuoteDetailPage() {
       
       window.open(`/proposal/${proposalId}?edit=true`, '_blank');
       setMessage("Proposal generated!");
+      setHasProposal(true);
 
       // ➔ AUTOMATION TRIGGER: Advance status directly to ITINERARY_READY in the database
       await handleStatusChange("ITINERARY_READY");
@@ -659,18 +666,14 @@ export default function QuoteDetailPage() {
                   >
                     {generating ? "Generating..." : "Generate New Proposal"}
                   </button>
-                  <button
-                    onClick={() => window.open(`/proposal/PROP-${clientId}?edit=true`, '_blank')}
-                    className="w-full py-4 border border-[#2d5016] text-[#2d5016] text-xs tracking-[0.15em] uppercase hover:bg-[#2d5016] hover:text-white transition-colors"
-                  >
-                    Edit Proposal
-                  </button>
-                  <Link
-                    href="/admin/quotes/new"
-                    className="block w-full py-4 border border-border text-xs tracking-[0.15em] uppercase hover:border-foreground transition-colors text-center"
-                  >
-                    New Quote
-                  </Link>
+                  {hasProposal && (
+                    <button
+                      onClick={() => window.open(`/proposal/PROP-${clientId}?edit=true`, '_blank')}
+                      className="w-full py-4 border border-[#2d5016] text-[#2d5016] text-xs tracking-[0.15em] uppercase hover:bg-[#2d5016] hover:text-white transition-colors"
+                    >
+                      Edit Proposal
+                    </button>
+                  )}
                   <button
                     onClick={handleDelete}
                     className="w-full py-4 text-red-600 text-xs tracking-[0.15em] uppercase hover:bg-red-50 transition-colors"
