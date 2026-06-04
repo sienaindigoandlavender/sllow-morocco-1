@@ -44,6 +44,17 @@ interface ProposalData {
 }
 
 // Morocco city coordinates
+const MEAL_ORDER = ['Breakfast', 'Lunch', 'Dinner', 'Snacks'];
+function sortMeals(mealsStr: string): string {
+  if (!mealsStr) return '';
+  const parts = mealsStr.split(',').map(m => m.trim()).filter(Boolean);
+  return parts.sort((a, b) => {
+    const ai = MEAL_ORDER.findIndex(m => a.toLowerCase().includes(m.toLowerCase()));
+    const bi = MEAL_ORDER.findIndex(m => b.toLowerCase().includes(m.toLowerCase()));
+    return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
+  }).join(', ');
+}
+
 const cityCoordinates: { [key: string]: [number, number] } = {
   "Marrakech": [-7.9811, 31.6295],
   "Marrakesh": [-7.9811, 31.6295],
@@ -707,7 +718,7 @@ Slow Morocco Team`);
             <p className="print-route">{day.fromCity} → {day.toCity}</p>
           )}
           <div className="print-day-practical">
-            {(day.mealsDetail || day.meals) && <p style={{margin: '0 0 6px 0'}}><strong>Meals:</strong> {day.mealsDetail || day.meals}{day.diningNotes ? ` · ${day.diningNotes}` : ''}</p>}
+            {(day.mealsDetail || day.meals) && <p style={{margin: '0 0 6px 0'}}><strong>Meals:</strong> {sortMeals(day.mealsDetail || day.meals || '')}{day.diningNotes ? ` · ${day.diningNotes}` : ''}</p>}
             {(day.accommodationName || day.accommodationType) && <p style={{margin: '0 0 6px 0'}}><strong>Accommodation:</strong> {day.accommodationName || day.accommodationType}{day.roomConfig ? ` (${day.roomConfig})` : ''}</p>}
             {(day.activitiesDetail || day.activities) && <p style={{margin: '0 0 6px 0'}}><strong>Activities:</strong> {day.activitiesDetail || day.activities}</p>}
             {day.guideIncluded && <p style={{margin: '0 0 6px 0'}}><strong>Guide:</strong> {day.guideLanguage || 'English'}-speaking official guide</p>}
@@ -1373,7 +1384,7 @@ Slow Morocco Team`);
                             <line x1="5" y1="6" x2="5" y2="15" />
                             <line x1="11" y1="1" x2="11" y2="15" />
                           </svg>
-                          <span>{day.mealsDetail || day.meals}{day.diningNotes ? ` · ${day.diningNotes}` : ""}</span>
+                          <span>{sortMeals(day.mealsDetail || day.meals || '')}{day.diningNotes ? ` · ${day.diningNotes}` : ""}</span>
                         </div>
                       )}
                       {day.activitiesDetail && (
