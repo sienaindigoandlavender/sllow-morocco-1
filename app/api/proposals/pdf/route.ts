@@ -93,9 +93,9 @@ function buildPdfHtml(proposal: any, days: any[]): string {
   // Determine what's included based on days
   const hasGuide = sortedDays.some(d => d.guideIncluded);
   const hasAllMeals = sortedDays.length > 0 && sortedDays.every(d => d.mealsDetail || d.meals);
-  const uniqueGuideLanguages = [...new Set(
+  const uniqueGuideLanguages = Array.from(new Set(
     sortedDays.filter(d => d.guideIncluded && d.guideLanguage).map(d => d.guideLanguage)
-  )];
+  ));
   const guideEntry = hasGuide
     ? `${uniqueGuideLanguages.join(" & ") || "English"}-speaking official guide in ${routeCities.filter(c =>
         sortedDays.some(d => (d.toCity === c || d.fromCity === c) && d.guideIncluded)
