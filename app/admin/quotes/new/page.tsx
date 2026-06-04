@@ -3,6 +3,7 @@
 import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
+import { getRouteSequenceForJourney } from "@/lib/journey-routes";
 
 // Pipeline stages
 const MAIN_STAGES = [
@@ -181,6 +182,7 @@ function BuildQuoteContent() {
   const [price, setPrice] = useState("");
   const [requests, setRequests] = useState("");
   const [notes, setNotes] = useState("");
+  const [routeSequence, setRouteSequence] = useState("");
   const [firstTimeMorocco, setFirstTimeMorocco] = useState("");
   const [dreamExperience, setDreamExperience] = useState("");
   const [hearAboutUs, setHearAboutUs] = useState("");
@@ -253,6 +255,14 @@ function BuildQuoteContent() {
         setFirstTimeMorocco(q.First_Time_Morocco || "");
         setDreamExperience(q.Dream_Experience || "");
         setHearAboutUs(q.Hear_About_Us || "");
+        // Auto-populate route sequence from journey mapping
+        const existingRoute = q.Notes_Route_Sequence || "";
+        if (existingRoute) {
+          setRouteSequence(existingRoute);
+        } else {
+          const autoRoute = getRouteSequenceForJourney(q.Journey_Interest || "");
+          if (autoRoute) setRouteSequence(autoRoute);
+        }
         setIsExisting(true);
         setSearchResults([]);
         setSearchQuery("");
@@ -273,7 +283,8 @@ function BuildQuoteContent() {
       journeyInterest, startDate, endDate, startCity, endCity,
       days: days.toString(), travelers: travelers.toString(), 
       language, budget, requests, notes,
-      firstTimeMorocco, dreamExperience, hearAboutUs
+      firstTimeMorocco, dreamExperience, hearAboutUs,
+      notes_route_sequence: routeSequence.replace(/[–—]/g, '-'),
     };
     
     try {
@@ -353,7 +364,18 @@ function BuildQuoteContent() {
       
       const contentBlocks = contentData.contentBlocks;
       const numDays = days || 7;
-      
+      const blockMap = new Map(contentBlocks.map((b: any) => [b.id, b]));
+      let selectedBlocks: any[] = [];
+
+      // Use route sequence if set (manual or auto-filled from journey mapping)
+      const activeRouteSequence = routeSequence.trim().replace(/[\u2013\u2014\u2012\u2010]/g, "-");
+      if (activeRouteSequence) {
+        const routeIds = activeRouteSequence.split("\n").map((id: string) => id.trim()).filter((id: string) => id.length > 0);
+        selectedBlocks = routeIds.map((id: string) => blockMap.get(id)).filter(Boolean);
+      }
+
+      // Fall back to keyword scoring if no route sequence
+      if (selectedBlocks.length === 0) {
       // Build a route sequence from the content library based on startCity, endCity, journeyInterest
       // Strategy: find blocks that match the journey start/end and interest keywords
       const interestKeywords = (journeyInterest || "").toLowerCase().split(/[\s,]+/);
@@ -428,7 +450,8 @@ function BuildQuoteContent() {
         if (bTo === end) return -1;
         return 0;
       });
-      
+      } // end fallback keyword scoring
+
       const proposalId = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
       
       const proposalDays = selectedBlocks.map((block: any, index: number) => ({
@@ -642,7 +665,13 @@ function BuildQuoteContent() {
                 />
               </div>
               <div className="mb-6">
-                <TextInput label="Journey Interest" value={journeyInterest} onChange={setJourneyInterest} placeholder="e.g., Sahara Desert, Imperial Cities" />
+                <TextInput label="Journey Interest" value={journeyInterest} onChange={(val) => {
+                  setJourneyInterest(val);
+                  if (!routeSequence) {
+                    const autoRoute = getRouteSequenceForJourney(val);
+                    if (autoRoute) setRouteSequence(autoRoute);
+                  }
+                }} placeholder="e.g., Sahara Desert, Imperial Cities" />
               </div>
               <div className="grid grid-cols-2 gap-6 mb-6">
                 <div>
@@ -722,6 +751,21 @@ function BuildQuoteContent() {
                 rows={3}
                 placeholder="Notes for your reference (not visible to client)..."
                 className="w-full px-0 py-3 border-0 border-b border-border bg-transparent text-lg focus:outline-none focus:border-foreground transition-colors resize-none"
+              />
+            </section>
+
+            {/* Route Sequence */}
+            <section>
+              <h2 className="font-serif text-xl mb-2">Route Sequence</h2>
+              <p className="text-sm text-muted-foreground mb-4">
+                One route ID per line. Auto-filled from journey interest when available.
+              </p>
+              <textarea
+                value={routeSequence}
+                onChange={(e) => setRouteSequence(e.target.value)}
+                rows={10}
+                placeholder={"STAY_ESSAOUIRA_ARR\nSTAY_ESSAOUIRA\nESS-MAR-NEW\n..."}
+                className="w-full px-4 py-3 border border-border bg-background text-sm font-mono focus:outline-none focus:border-foreground transition-colors resize-none"
               />
             </section>
 
