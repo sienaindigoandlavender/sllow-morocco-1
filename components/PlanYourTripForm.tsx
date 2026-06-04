@@ -36,6 +36,8 @@ export default function PlanYourTripForm({
     days: "",
     language: "",
     budgetValue: 5000,
+    dreamExperience: "",
+    firstTimeMorocco: "",
     requests: "",
     firstName: "",
     lastName: "",
@@ -362,6 +364,36 @@ export default function PlanYourTripForm({
             <span>€15,000</span>
           </div>
         </div>
+      </div>
+
+      {/* First time in Morocco */}
+      <div>
+        <label className={labelStyle}>
+          First time in Morocco?
+        </label>
+        <select
+          value={formData.firstTimeMorocco}
+          onChange={(e) => setFormData({ ...formData, firstTimeMorocco: e.target.value })}
+          className={selectStyle}
+        >
+          <option value="">— Select —</option>
+          <option value="Yes">Yes, first time</option>
+          <option value="No">No, I've been before</option>
+        </select>
+      </div>
+
+      {/* Dream experience */}
+      <div>
+        <label className={labelStyle}>
+          Your dream experience
+        </label>
+        <textarea
+          value={formData.dreamExperience}
+          onChange={(e) => setFormData({ ...formData, dreamExperience: e.target.value })}
+          rows={4}
+          className={`${inputStyle} resize-none`}
+          placeholder="What do you want to feel, see, or understand? What would make this journey unforgettable?"
+        />
       </div>
 
       {/* Special Requests */}
