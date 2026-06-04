@@ -1171,7 +1171,7 @@ Slow Morocco Team`);
               </button>
               <div className="w-px h-4 bg-white/30" />
               <button
-                onClick={() => window.open(`/api/proposals/pdf?id=${proposalId}`, '_blank')}
+                onClick={() => window.open(`/api/proposals/pdf-download?id=${proposalId}`, '_blank')}
                 className="text-xs tracking-[0.15em] uppercase hover:opacity-70 transition-opacity px-6 py-2"
               >
                 Print PDF
@@ -1209,7 +1209,7 @@ Slow Morocco Team`);
                 I Have Some Thoughts
               </button>
               <a
-                href={`/api/proposals/pdf?id=${proposalId}`}
+                href={`/api/proposals/pdf-download?id=${proposalId}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="absolute right-6 flex items-center gap-2 text-xs tracking-[0.15em] uppercase hover:opacity-70 transition-opacity px-6 py-2 opacity-60 text-white"
@@ -1274,9 +1274,23 @@ Slow Morocco Team`);
           </p>
 
           {/* Arc Description */}
-          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-12 font-display italic">
-            {proposal.arcDescription}
-          </p>
+          {isAdmin ? (
+            <textarea
+              value={proposal.arcDescription || ""}
+              onChange={(e) => {
+                const updated = { ...proposal, arcDescription: e.target.value };
+                setProposal(updated);
+                localStorage.setItem(`proposal-${proposalId}`, JSON.stringify(updated));
+                if (isAdmin) triggerAutoSave(updated.days);
+              }}
+              rows={2}
+              className="w-full text-lg md:text-xl text-muted-foreground leading-relaxed mb-12 font-display italic bg-transparent border-0 border-b border-dashed border-border focus:outline-none focus:border-foreground resize-none"
+            />
+          ) : (
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-12 font-display italic">
+              {proposal.arcDescription}
+            </p>
+          )}
 
           {/* Anchor Navigation */}
           <nav className="flex gap-8 text-xs tracking-[0.15em] uppercase text-muted-foreground mb-16 border-t border-b border-border/50 py-4">
