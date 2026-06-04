@@ -1606,10 +1606,23 @@ Slow Morocco Team`);
                 </div>
 
                 <button
-                  onClick={() => {
-                    // Send approval email to admin
-                    const mailtoLink = `mailto:hello@slowmorocco.com?subject=Itinerary Approved: ${proposal?.journeyTitle}&body=Client ${proposal?.clientName} has approved the itinerary.%0D%0A%0D%0AProposal: ${window.location.href}%0D%0A%0D%0APlease review and send the final confirmation with payment link.`;
-                    window.open(mailtoLink);
+                  onClick={async () => {
+                    try {
+                      await fetch("/api/proposal-approval", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                          proposalId: proposalId,
+                          clientName: proposal?.clientName || "",
+                          journeyTitle: proposal?.journeyTitle || "",
+                          proposalUrl: window.location.href.split("?")[0],
+                          price: proposal?.price || "",
+                          numGuests: proposal?.travelers || "",
+                        }),
+                      });
+                    } catch (e) {
+                      console.error("Approval notification failed:", e);
+                    }
                     setApprovalSubmitted(true);
                   }}
                   className="w-full bg-foreground text-background px-6 py-4 text-xs tracking-[0.15em] uppercase hover:opacity-90 transition-opacity"
