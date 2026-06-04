@@ -52,20 +52,18 @@ function StatusTimeline({ status, onChange }: { status: string; onChange: (s: st
           );
         })}
       </div>
-      {
-        <div className="flex gap-2 mt-2 pl-1">
-          <button
-            onClick={() => onChange("BOOKED")}
-            className={`flex-1 py-2 text-[10px] tracking-[0.12em] uppercase border transition-colors
-              ${status === "BOOKED" ? "border-emerald-700 bg-emerald-700 text-white" : "border-emerald-700 text-emerald-700 hover:bg-emerald-700 hover:text-white"}`}
-          >Booked</button>
-          <button
-            onClick={() => onChange("ARCHIVED")}
-            className={`flex-1 py-2 text-[10px] tracking-[0.12em] uppercase border transition-colors
-              ${status === "ARCHIVED" ? "border-border bg-muted text-muted-foreground" : "border-border text-muted-foreground hover:bg-muted"}`}
-          >Archived</button>
-        </div>
-      )}
+      <div className="flex gap-2 mt-4">
+        <button
+          onClick={() => onChange("BOOKED")}
+          className={`flex-1 py-2 text-[10px] tracking-[0.12em] uppercase border transition-colors
+            ${status === "BOOKED" ? "border-emerald-700 bg-emerald-700 text-white" : "border-emerald-700 text-emerald-700 hover:bg-emerald-700 hover:text-white"}`}
+        >Booked</button>
+        <button
+          onClick={() => onChange("ARCHIVED")}
+          className={`flex-1 py-2 text-[10px] tracking-[0.12em] uppercase border transition-colors
+            ${status === "ARCHIVED" ? "border-border bg-muted text-muted-foreground" : "border-border text-muted-foreground hover:bg-muted"}`}
+        >Archived</button>
+      </div>
     </div>
   );
 }
