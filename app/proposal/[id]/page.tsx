@@ -822,44 +822,69 @@ Slow Morocco Team`);
 
               {/* Activities */}
               <div className="mb-6">
-                <h3 className="text-xs tracking-[0.15em] uppercase text-muted-foreground mb-3">Activities</h3>
+                <h3 className="text-xs tracking-[0.15em] uppercase text-muted-foreground mb-3">
+                  Activities
+                  {cityActivities.length > 0 && (
+                    <span className="ml-2 normal-case font-normal text-muted-foreground/60">
+                      — {day.toCity || day.title}
+                    </span>
+                  )}
+                </h3>
                 {activitiesLoading ? (
-                  <p className="text-sm text-muted-foreground mb-3">Loading activities...</p>
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
+                    <div className="w-3 h-3 border border-foreground/20 border-t-foreground rounded-full animate-spin" />
+                    Loading activities...
+                  </div>
                 ) : Object.keys(activityGroups).length > 0 ? (
-                  <div className="mb-3 space-y-3">
+                  <div className="mb-4 space-y-4">
                     {Object.entries(activityGroups).map(([category, acts]: [string, any]) => (
                       <div key={category}>
-                        <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">{category}</p>
-                        <div className="flex flex-wrap gap-2">
-                          {acts.map((act: any) => (
-                            <label key={act.id} className="flex items-center gap-1.5 cursor-pointer">
-                              <input
-                                type="checkbox"
-                                checked={currentActivities.includes(act.name)}
-                                onChange={(e) => {
-                                  const updated = e.target.checked
-                                    ? [...currentActivities, act.name]
-                                    : currentActivities.filter((a: string) => a !== act.name);
-                                  updateDay(day.dayNumber, 'activitiesDetail', updated.join(', '));
-                                }}
-                                className="w-3.5 h-3.5"
-                              />
-                              <span className="text-sm">{act.name}</span>
-                            </label>
-                          ))}
+                        <p className="text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-2 border-b border-border pb-1">{category}</p>
+                        <div className="space-y-1.5">
+                          {acts.map((act: any) => {
+                            const isSelected = currentActivities.includes(act.name);
+                            return (
+                              <label key={act.id} className={`flex items-start gap-3 cursor-pointer p-2 rounded transition-colors ${isSelected ? 'bg-foreground/5' : 'hover:bg-muted/50'}`}>
+                                <input
+                                  type="checkbox"
+                                  checked={isSelected}
+                                  onChange={(e) => {
+                                    const updated = e.target.checked
+                                      ? [...currentActivities, act.name]
+                                      : currentActivities.filter((a: string) => a !== act.name);
+                                    updateDay(day.dayNumber, 'activitiesDetail', updated.join(', '));
+                                  }}
+                                  className="w-4 h-4 mt-0.5 flex-shrink-0"
+                                />
+                                <div className="flex-1 min-w-0">
+                                  <div className="flex items-center gap-2">
+                                    <span className={`text-sm ${isSelected ? 'font-medium' : ''}`}>{act.name}</span>
+                                    {act.duration_hours && (
+                                      <span className="text-[10px] text-muted-foreground border border-border px-1.5 py-0.5 rounded flex-shrink-0">
+                                        {act.duration_hours}h
+                                      </span>
+                                    )}
+                                  </div>
+                                  {act.description && (
+                                    <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed line-clamp-2">{act.description}</p>
+                                  )}
+                                </div>
+                              </label>
+                            );
+                          })}
                         </div>
                       </div>
                     ))}
                   </div>
                 ) : (
-                  <p className="text-xs text-muted-foreground mb-3 italic">No activities found for this city — use the text field below.</p>
+                  <p className="text-xs text-muted-foreground mb-3 italic">No activities found for {day.toCity || day.title} — enter manually below.</p>
                 )}
-                <input
-                  type="text"
+                <textarea
                   value={day.activitiesDetail || ''}
                   onChange={(e) => updateDay(day.dayNumber, 'activitiesDetail', e.target.value)}
+                  rows={2}
                   placeholder="Additional activities or override..."
-                  className="w-full px-4 py-2 border border-border bg-background text-sm focus:outline-none focus:border-foreground"
+                  className="w-full px-4 py-2 border border-border bg-background text-sm focus:outline-none focus:border-foreground resize-none"
                 />
               </div>
 
@@ -1280,13 +1305,25 @@ Slow Morocco Team`);
                         setEditingDayNumber(day.dayNumber);
                         setActivitiesLoading(true);
                         try {
+                          const city = day.toCity || day.fromCity || day.title;
                           const res = await fetch('/api/content-library', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ city: day.title || day.toCity })
+                            body: JSON.stringify({ city })
                           });
                           const data = await res.json();
-                          setCityActivities(data.activities || []);
+                          // If no results, try the fromCity fallback
+                          if (!data.activities?.length && day.fromCity && day.fromCity !== city) {
+                            const res2 = await fetch('/api/content-library', {
+                              method: 'POST',
+                              headers: { 'Content-Type': 'application/json' },
+                              body: JSON.stringify({ city: day.fromCity })
+                            });
+                            const data2 = await res2.json();
+                            setCityActivities(data2.activities || []);
+                          } else {
+                            setCityActivities(data.activities || []);
+                          }
                         } catch (e) {
                           setCityActivities([]);
                         }
