@@ -161,12 +161,22 @@ export default function QuoteDetailPage() {
           setRouteSequence(q.Notes_Route_Sequence || "");
           setHeroImage(q.Hero_Image || "");
         }
-        // Check if a proposal already exists for this client
-        fetch(`/api/proposals?id=PROP-${clientId}`)
-          .then((r) => r.json())
-          .then((pd) => { if (pd.success && pd.proposal) setHasProposal(true); })
-          .catch(() => {});
         setLoading(false);
+        // Check localStorage first (instant), then verify against DB
+        const proposalId = `PROP-${clientId}`;
+        if (localStorage.getItem(`proposal-${proposalId}`)) {
+          setHasProposal(true);
+        } else {
+          // Check Supabase via admin proposals list
+          fetch(`/api/admin/proposals`)
+            .then((r) => r.json())
+            .then((pd) => {
+              if (pd.proposals?.some((p: any) => p.proposal_id === proposalId)) {
+                setHasProposal(true);
+              }
+            })
+            .catch(() => {});
+        }
       })
       .catch((err) => {
         console.error("Failed to load quote:", err);
