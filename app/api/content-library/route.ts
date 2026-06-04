@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getRoutes, convertDriveUrl } from "@/lib/supabase";
+import { getRoutes, convertDriveUrl, supabase } from "@/lib/supabase";
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -47,5 +47,30 @@ export async function GET() {
       { success: false, error: error.message, contentBlocks: [] },
       { status: 500 }
     );
+  }
+}
+
+// Separate endpoint for activities by city
+export async function POST(request: Request) {
+  try {
+    const { city } = await request.json();
+    
+    const query = supabase
+      .from("activities")
+      .select("id, name, category, subcategory, duration_hours, description")
+      .eq("active", true)
+      .order("category")
+      .order("name");
+
+    if (city) {
+      query.eq("city", city);
+    }
+
+    const { data, error } = await query;
+    if (error) throw error;
+
+    return NextResponse.json({ success: true, activities: data || [] });
+  } catch (error: any) {
+    return NextResponse.json({ success: false, error: error.message }, { status: 500 });
   }
 }
