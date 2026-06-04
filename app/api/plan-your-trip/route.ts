@@ -25,6 +25,8 @@ export async function POST(request: Request) {
       countryCode,
       country,
       hearAboutUs,
+      dreamExperience,
+      firstTimeMorocco,
     } = body;
 
     // Generate client ID
@@ -55,7 +57,8 @@ export async function POST(request: Request) {
       nights: nights.toString(),
       language,
       hospitality_level: "",
-      dream_experience: "",
+      dream_experience: dreamExperience || "",
+      first_time_morocco: firstTimeMorocco || "",
       requests: requests || "",
       hear_about_us: hearAboutUs || "",
       number_travelers: travelers,
@@ -127,6 +130,8 @@ export async function POST(request: Request) {
             <p><strong>Budget:</strong> ${budget}</p>
             <hr>
             <p><strong>Special Requests:</strong> ${requests || "None"}</p>
+            <p><strong>First time in Morocco:</strong> ${firstTimeMorocco || "Not specified"}</p>
+            <p><strong>Dream Experience:</strong> ${dreamExperience || "Not specified"}</p>
             <p><strong>Heard about us:</strong> ${hearAboutUs || "Not specified"}</p>
             <br>
             <p><a href="${adminUrl}" style="background: #000; color: #fff; padding: 12px 24px; text-decoration: none; display: inline-block;">Build Quote for ${firstName}</a></p>
