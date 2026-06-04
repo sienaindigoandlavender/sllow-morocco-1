@@ -6,10 +6,10 @@ import Link from "next/link";
 
 // Pipeline stages in order
 const PIPELINE_STAGES = [
-  { key: "NEW",          label: "New",           desc: "Inquiry received" },
-  { key: "IN_PROGRESS",  label: "In Progress",   desc: "Building itinerary" },
-  { key: "SENT",         label: "Sent",          desc: "Proposal delivered" },
-  { key: "BOOKED",       label: "Booked",        desc: "Deposit confirmed" },
+  { key: "NEW",         label: "New",            desc: "Inquiry received" },
+  { key: "IN_PROGRESS",  label: "In Progress",    desc: "Building itinerary" },
+  { key: "SENT",         label: "Sent",           desc: "Proposal delivered" },
+  { key: "BOOKED",       label: "Booked",         desc: "Deposit confirmed" },
 ];
 
 const STAGE_ORDER = PIPELINE_STAGES.map(s => s.key);
@@ -17,7 +17,7 @@ const STAGE_ORDER = PIPELINE_STAGES.map(s => s.key);
 function StatusTimeline({ status, onChange }: { status: string; onChange: (s: string) => void }) {
   const currentIdx = STAGE_ORDER.indexOf(status);
   return (
-    <div className="border border-border p-6 mb-8">
+    <div className="border border-border p-6 mb-12 bg-background">
       <p className="text-xs tracking-[0.12em] uppercase text-muted-foreground mb-5">Pipeline</p>
       <div className="flex items-start gap-0">
         {PIPELINE_STAGES.map((stage, i) => {
@@ -168,7 +168,7 @@ export default function QuoteDetailPage() {
       });
   }, [clientId]);
 
-  // ACTION: Update status only (fast, no full form save)
+  // ACTION: Update status only
   const handleStatusChange = async (newStatus: string) => {
     setStatus(newStatus);
     try {
@@ -236,11 +236,9 @@ export default function QuoteDetailPage() {
       
       let selectedBlocks: any[] = [];
       
-      // If route sequence is provided, use it directly
       if (routeSequence && routeSequence.trim()) {
         const routeIds = routeSequence.trim().replace(/[\u2013\u2014\u2012\u2010]/g, "-").split("\n").map((id: string) => id.trim()).filter((id: string) => id.length > 0);
         const blockMap = new Map(contentBlocks.map((b: any) => [b.id, b]));
-        // Use route IDs directly — no deduplication, order matters
         selectedBlocks = routeIds.map((id: string) => {
           const block = blockMap.get(id);
           if (!block) console.warn("Route ID not found in content library:", id);
@@ -252,7 +250,6 @@ export default function QuoteDetailPage() {
           return;
         }
       } else {
-        // Fall back to smart scoring
         const interestKeywords = (journeyInterest || "").toLowerCase().split(/[\s,]+/);
         const start = (startCity || "").toLowerCase();
         const end = (endCity || "").toLowerCase();
@@ -283,10 +280,7 @@ export default function QuoteDetailPage() {
         }
       }
       
-      // Always use a deterministic proposal ID based on client ID
       const proposalId = `PROP-${clientId}`;
-
-      
       const routePoints: { name: string; coords: [number, number] }[] = [];
       const cityCoords: { [key: string]: [number, number] } = {
         "Marrakech": [-7.9811, 31.6295], "Casablanca": [-7.5898, 33.5731],
@@ -337,12 +331,8 @@ export default function QuoteDetailPage() {
         days: proposalDays
       };
       
-      console.log("Saving proposal data:", proposalData);
-      
-      // Save to localStorage for immediate viewing
       localStorage.setItem(`proposal-${proposalId}`, JSON.stringify(proposalData));
       
-      // Save proposal to Supabase
       try {
         const proposalPayload = {
           clientId: clientId,
@@ -371,18 +361,13 @@ export default function QuoteDetailPage() {
         const saveData = await saveRes.json();
         if (!saveData.success) {
           console.warn("Failed to save proposal:", saveData.error);
-        } else {
-          console.log("Proposal saved:", saveData.proposalId);
         }
       } catch (proposalErr) {
         console.warn("Failed to save proposal:", proposalErr);
-        // Continue anyway - localStorage has the data
       }
       
-      console.log("Opening proposal page:", `/proposal/${proposalId}`);
       window.open(`/proposal/${proposalId}?edit=true`, '_blank');
       setMessage("Proposal generated!");
-      // Auto-advance status to IN_PROGRESS if still NEW
       if (status === "NEW") {
         await handleStatusChange("IN_PROGRESS");
       }
@@ -396,7 +381,6 @@ export default function QuoteDetailPage() {
   // ACTION: Delete
   const handleDelete = async () => {
     if (!confirm("Delete this quote?")) return;
-    
     try {
       const res = await fetch(`/api/admin/quotes/${clientId}`, { method: "DELETE" });
       const data = await res.json();
@@ -427,7 +411,7 @@ export default function QuoteDetailPage() {
             <Link href="/admin/quotes" className="text-muted-foreground hover:text-foreground transition-colors">
               ← Back
             </Link>
-            <h1 className="font-serif text-3xl">Quote Details</h1>
+            <h1 className="font-serif text-xl md:text-3xl">Quote Details</h1>
             <span className="text-sm text-muted-foreground font-mono">{clientId}</span>
           </div>
           <div className={`text-xs px-3 py-1 rounded ${
@@ -443,9 +427,12 @@ export default function QuoteDetailPage() {
       </header>
 
       <main className="container mx-auto px-6 py-12 max-w-5xl">
+        {/* PIPELINE TIMELINE MOVED HERE TO SPAN HORIZONTALLY AT THE TOP */}
+        <StatusTimeline status={status} onChange={handleStatusChange} />
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           
-          {/* Left - Form */}
+          {/* Left - Form Layout Inputs */}
           <div className="lg:col-span-2 space-y-12">
             
             {/* Client Information */}
@@ -586,114 +573,111 @@ export default function QuoteDetailPage() {
 
           </div>
 
-          {/* Right - Summary & Actions */}
+          {/* Right Column - Summary Box Cards */}
           <div className="lg:col-span-1">
             <div className="sticky top-8">
               
-              {/* Status Timeline */}
-              <StatusTimeline status={status} onChange={handleStatusChange} />
-
-              <div className="border border-border p-8">
-              <h2 className="font-serif text-xl mb-6">Summary</h2>
-              
-              {/* Client Name */}
-              <div className="mb-8">
-                <p className="text-sm text-muted-foreground mb-1">Client</p>
-                <p className="font-serif text-2xl">
-                  {firstName || lastName ? `${firstName} ${lastName}` : "—"}
-                </p>
-              </div>
-
-              {/* Journey Info */}
-              <div className="space-y-4 mb-8 pb-8 border-b border-border">
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Duration</span>
-                  <span className="font-serif">{days} days</span>
+              <div className="border border-border p-8 bg-background">
+                <h2 className="font-serif text-xl mb-6">Summary</h2>
+                
+                {/* Client Name */}
+                <div className="mb-8">
+                  <p className="text-sm text-muted-foreground mb-1">Client</p>
+                  <p className="font-serif text-2xl">
+                    {firstName || lastName ? `${firstName} ${lastName}` : "—"}
+                  </p>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Travelers</span>
-                  <span className="font-serif">{travelers}</span>
-                </div>
-                {startDate && (
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Start</span>
-                    <span className="font-serif">{new Date(startDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                  </div>
-                )}
-                {endDate && (
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">End</span>
-                    <span className="font-serif">{new Date(endDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                  </div>
-                )}
-                {(startCity || endCity) && (
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Route</span>
-                    <span className="font-serif text-right">{startCity}{startCity && endCity ? " → " : ""}{endCity}</span>
-                  </div>
-                )}
-                {journeyInterest && (
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Interest</span>
-                    <span className="font-serif text-right max-w-[150px]">{journeyInterest}</span>
-                  </div>
-                )}
-                {price && (
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Price</span>
-                    <span className="font-serif text-xl">€{price}</span>
-                  </div>
-                )}
-              </div>
 
-              {/* Message */}
-              {message && (
-                <div className={`mb-6 p-3 text-sm ${
-                  message.includes("Error") || message.includes("Failed") 
-                    ? "bg-red-50 text-red-700" 
-                    : "bg-green-50 text-green-700"
-                }`}>
-                  {message}
+                {/* Journey Info */}
+                <div className="space-y-4 mb-8 pb-8 border-b border-border">
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Duration</span>
+                    <span className="font-serif">{days} days</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Travelers</span>
+                    <span className="font-serif">{travelers}</span>
+                  </div>
+                  {startDate && (
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Start</span>
+                      <span className="font-serif">{new Date(startDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                    </div>
+                  )}
+                  {endDate && (
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">End</span>
+                      <span className="font-serif">{new Date(endDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                    </div>
+                  )}
+                  {(startCity || endCity) && (
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Route</span>
+                      <span className="font-serif text-right">{startCity}{startCity && endCity ? " → " : ""}{endCity}</span>
+                    </div>
+                  )}
+                  {journeyInterest && (
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Interest</span>
+                      <span className="font-serif text-right max-w-[150px]">{journeyInterest}</span>
+                    </div>
+                  )}
+                  {price && (
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Price</span>
+                      <span className="font-serif text-xl">€{price}</span>
+                    </div>
+                  )}
                 </div>
-              )}
 
-              {/* Action Buttons */}
-              <div className="space-y-3">
-                <button
-                  onClick={handleUpdateDatabase}
-                  disabled={saving}
-                  className="w-full py-4 bg-foreground text-background text-xs tracking-[0.15em] uppercase hover:bg-foreground/90 disabled:opacity-50 transition-colors"
-                >
-                  {saving ? "Saving..." : "Update Database"}
-                </button>
-                <button
-                  onClick={handleGenerateProposal}
-                  disabled={generating}
-                  className="w-full py-4 bg-green-700 text-white text-xs tracking-[0.15em] uppercase hover:bg-green-800 disabled:opacity-50 transition-colors"
-                >
-                  {generating ? "Generating..." : "Generate New Proposal"}
-                </button>
-                <button
-                  onClick={() => window.open(`/proposal/PROP-${clientId}?edit=true`, '_blank')}
-                  className="w-full py-4 border border-[#2d5016] text-[#2d5016] text-xs tracking-[0.15em] uppercase hover:bg-[#2d5016] hover:text-white transition-colors"
-                >
-                  Edit Proposal
-                </button>
-                <Link
-                  href="/admin/quotes/new"
-                  className="block w-full py-4 border border-border text-xs tracking-[0.15em] uppercase hover:border-foreground transition-colors text-center"
-                >
-                  New Quote
-                </Link>
-                <button
-                  onClick={handleDelete}
-                  className="w-full py-4 text-red-600 text-xs tracking-[0.15em] uppercase hover:bg-red-50 transition-colors"
-                >
-                  Delete
-                </button>
+                {/* Status Handling Feedback Messages */}
+                {message && (
+                  <div className={`mb-6 p-3 text-sm ${
+                    message.includes("Error") || message.includes("Failed") 
+                      ? "bg-red-50 text-red-700" 
+                      : "bg-green-50 text-green-700"
+                  }`}>
+                    {message}
+                  </div>
+                )}
+
+                {/* Operational Command Buttons */}
+                <div className="space-y-3">
+                  <button
+                    onClick={handleUpdateDatabase}
+                    disabled={saving}
+                    className="w-full py-4 bg-foreground text-background text-xs tracking-[0.15em] uppercase hover:bg-foreground/90 disabled:opacity-50 transition-colors"
+                  >
+                    {saving ? "Saving..." : "Update Database"}
+                  </button>
+                  <button
+                    onClick={handleGenerateProposal}
+                    disabled={generating}
+                    className="w-full py-4 bg-green-700 text-white text-xs tracking-[0.15em] uppercase hover:bg-green-800 disabled:opacity-50 transition-colors"
+                  >
+                    {generating ? "Generating..." : "Generate New Proposal"}
+                  </button>
+                  <button
+                    onClick={() => window.open(`/proposal/PROP-${clientId}?edit=true`, '_blank')}
+                    className="w-full py-4 border border-[#2d5016] text-[#2d5016] text-xs tracking-[0.15em] uppercase hover:bg-[#2d5016] hover:text-white transition-colors"
+                  >
+                    Edit Proposal
+                  </button>
+                  <Link
+                    href="/admin/quotes/new"
+                    className="block w-full py-4 border border-border text-xs tracking-[0.15em] uppercase hover:border-foreground transition-colors text-center"
+                  >
+                    New Quote
+                  </Link>
+                  <button
+                    onClick={handleDelete}
+                    className="w-full py-4 text-red-600 text-xs tracking-[0.15em] uppercase hover:bg-red-50 transition-colors"
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
-              </div>{/* end summary box */}
-            </div>{/* end sticky */}
+            </div>
           </div>
 
         </div>
