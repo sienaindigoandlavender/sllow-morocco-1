@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect } from "react";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import { useSearchParams, useRouter } from "next/navigation";
 
 // Pipeline stages
 const MAIN_STAGES = [
@@ -96,23 +96,7 @@ function StatusTimeline({ status, onChange }: { status: string; onChange: (s: st
     </div>
   );
 }
-interface QuoteData {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  country: string;
-  journeyInterest: string;
-  startDate: string;
-  days: number;
-  travelers: number;
-  language: string;
-  budget: string;
-  requests: string;
-  notes: string;
-}
-
-// Styled text input — defined outside component to prevent re-creation on render
+// Styled text input
 const TextInput = ({ label, value, onChange, placeholder = "" }: { 
   label: string; 
   value: string; 
@@ -120,13 +104,13 @@ const TextInput = ({ label, value, onChange, placeholder = "" }: {
   placeholder?: string;
 }) => (
   <div>
-    <label className="block text-xs tracking-[0.1em] uppercase text-muted-foreground mb-1">{label}</label>
+    <label className="block text-sm text-muted-foreground mb-2">{label}</label>
     <input
       type="text"
       value={value}
       onChange={(e) => onChange(e.target.value)}
       placeholder={placeholder}
-      className="w-full px-0 py-3 border-0 border-b border-border bg-transparent text-lg focus:outline-none focus:border-foreground transition-colors placeholder:text-muted-foreground/30"
+      className="w-full px-4 py-3 border border-border bg-background text-lg focus:outline-none focus:border-foreground transition-colors"
     />
   </div>
 );
@@ -138,31 +122,28 @@ const NumberInput = ({ label, value, onChange }: {
   onChange: (v: number) => void;
 }) => (
   <div>
-    <label className="block text-xs tracking-[0.1em] uppercase text-muted-foreground mb-1">{label}</label>
+    <label className="block text-sm text-muted-foreground mb-2">{label}</label>
     <input
       type="number"
       value={value}
       onChange={(e) => onChange(parseInt(e.target.value) || 0)}
-      className="w-full px-0 py-3 border-0 border-b border-border bg-transparent text-xl font-serif focus:outline-none focus:border-foreground transition-colors"
+      className="w-full px-4 py-3 border border-border bg-background text-xl font-serif focus:outline-none focus:border-foreground transition-colors"
     />
   </div>
 );
 
-function BuildQuoteContent() {
-  const searchParams = useSearchParams();
+export default function QuoteDetailPage() {
+  const params = useParams();
   const router = useRouter();
-  
-  // Search
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState<any[]>([]);
-  const [searching, setSearching] = useState(false);
-  const [clientId, setClientId] = useState("");
-  const [isExisting, setIsExisting] = useState(false);
+  const clientId = params.id as string;
+
+  // Loading state
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [generating, setGenerating] = useState(false);
+  const [message, setMessage] = useState("");
   const [hasProposal, setHasProposal] = useState(false);
-  
-  // Client feedback from revision request
-  const [clientFeedback, setClientFeedback] = useState("");
-  
+
   // Form data
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -181,85 +162,60 @@ function BuildQuoteContent() {
   const [price, setPrice] = useState("");
   const [requests, setRequests] = useState("");
   const [notes, setNotes] = useState("");
-  const [firstTimeMorocco, setFirstTimeMorocco] = useState("");
   const [dreamExperience, setDreamExperience] = useState("");
-  const [hearAboutUs, setHearAboutUs] = useState("");
-  
-  // Status
+  const [firstTimeMorocco, setFirstTimeMorocco] = useState("");
   const [status, setStatus] = useState("NEW");
-  const [saving, setSaving] = useState(false);
-  const [generating, setGenerating] = useState(false);
-  const [message, setMessage] = useState("");
-  
-  // Check for feedback from URL params
+  const [routeSequence, setRouteSequence] = useState("");
+  const [heroImage, setHeroImage] = useState("");
+
+  // Fetch quote data
   useEffect(() => {
-    const feedback = searchParams.get('feedback');
-    if (feedback) {
-      setClientFeedback(decodeURIComponent(feedback));
-    }
-  }, [searchParams]);
+    fetch(`/api/admin/quotes/${clientId}`)
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.success && data.quote) {
+          const q = data.quote;
+          setFirstName(q.First_Name || "");
+          setLastName(q.Last_Name || "");
+          setEmail(q.Email || "");
+          setPhone(q.Phone || "");
+          setCountry(q.Country || "");
+          setJourneyInterest(q.Journey_Interest || "");
+          setStartDate(q.Start_Date || "");
+          setEndDate(q.End_Date || "");
+          setStartCity(q.Start_City || "");
+          setEndCity(q.End_City || "");
+          setDays(parseInt(q.Days) || 7);
+          setTravelers(parseInt(q.Number_Travelers) || 2);
+          setLanguage(q.Language || "English");
+          setBudget(q.Budget || "");
+          setRequests(q.Requests || "");
+          setNotes(q.Notes || "");
+          setDreamExperience(q.Dream_Experience || "");
+          setFirstTimeMorocco(q.First_Time_Morocco || "");
+          setStatus(q.Status || "NEW");
+          setRouteSequence(q.Notes_Route_Sequence || "");
+          setHeroImage(q.Hero_Image || "");
+        }
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Failed to load quote:", err);
+        setLoading(false);
+      });
+  }, [clientId]);
 
-  // Search for existing quotes
-  const handleSearch = async () => {
-    if (!searchQuery.trim()) return;
-    setSearching(true);
-    setSearchResults([]);
-    
+  // ACTION: Update status with case safety (handles both Status and status for backend client rules)
+  const handleStatusChange = async (newStatus: string) => {
+    setStatus(newStatus);
     try {
-      const res = await fetch("/api/admin/quotes");
-      const data = await res.json();
-      
-      if (data.success && data.quotes) {
-        const query = searchQuery.toLowerCase();
-        const results = data.quotes.filter((q: any) =>
-          q.Client_ID?.toLowerCase().includes(query) ||
-          q.First_Name?.toLowerCase().includes(query) ||
-          q.Last_Name?.toLowerCase().includes(query) ||
-          q.Email?.toLowerCase().includes(query)
-        );
-        setSearchResults(results.slice(0, 5));
-      }
+      await fetch(`/api/admin/quotes/${clientId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ Status: newStatus, status: newStatus }),
+      });
     } catch (err) {
-      console.error("Search error:", err);
-    }
-    setSearching(false);
-  };
-
-  // Load selected quote
-  const loadQuote = async (id: string) => {
-    try {
-      const res = await fetch(`/api/admin/quotes/${id}`);
-      const data = await res.json();
-      
-      if (data.success && data.quote) {
-        const q = data.quote;
-        setClientId(q.Client_ID || id);
-        setFirstName(q.First_Name || "");
-        setLastName(q.Last_Name || "");
-        setEmail(q.Email || "");
-        setPhone(q.Phone || "");
-        setCountry(q.Country || "");
-        setJourneyInterest(q.Journey_Interest || "");
-        setStartDate(q.Start_Date || "");
-        setEndDate(q.End_Date || "");
-        setStartCity(q.Start_City || "");
-        setEndCity(q.End_City || "");
-        setDays(parseInt(q.Days) || 7);
-        setTravelers(parseInt(q.Number_Travelers) || 2);
-        setLanguage(q.Language || "English");
-        setBudget(q.Budget || "");
-        setRequests(q.Requests || "");
-        setNotes(q.Notes || "");
-        setFirstTimeMorocco(q.First_Time_Morocco || "");
-        setDreamExperience(q.Dream_Experience || "");
-        setHearAboutUs(q.Hear_About_Us || "");
-        setIsExisting(true);
-        setSearchResults([]);
-        setSearchQuery("");
-        setMessage(`Loaded: ${q.First_Name} ${q.Last_Name}`);
-      }
-    } catch (err) {
-      console.error("Load error:", err);
+      console.error("Failed to update status:", err);
     }
   };
 
@@ -272,41 +228,26 @@ function BuildQuoteContent() {
       firstName, lastName, email, phone, country,
       journeyInterest, startDate, endDate, startCity, endCity,
       days: days.toString(), travelers: travelers.toString(), 
-      language, budget, requests, notes,
-      firstTimeMorocco, dreamExperience, hearAboutUs
+      language, budget, requests, notes, status,
+      dreamExperience, firstTimeMorocco,
+      notes_route_sequence: routeSequence.replace(/[–—]/g, '-'),
+      hero_image: heroImage,
+      Status: status // Backend case alignment check
     };
     
     try {
-      if (isExisting && clientId) {
-        const res = await fetch(`/api/admin/quotes/${clientId}`, {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(quoteData)
-        });
-        const data = await res.json();
-        if (data.success) {
-          setMessage("Quote updated!");
-          setHasProposal(true);
-          if (status === "NEW") handleStatusChange("IN_PROGRESS");
-        } else {
-          setMessage(`Error: ${data.error}`);
-        }
+      const res = await fetch(`/api/admin/quotes/${clientId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(quoteData)
+      });
+      const data = await res.json();
+      if (data.success) {
+        setMessage("Quote updated!");
+        setHasProposal(true);
+        if (status === "NEW") handleStatusChange("IN_PROGRESS");
       } else {
-        const res = await fetch("/api/admin/quotes", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(quoteData)
-        });
-        const data = await res.json();
-        if (data.success) {
-          setClientId(data.clientId);
-          setIsExisting(true);
-          setHasProposal(true);
-          setMessage(`Quote created! ID: ${data.clientId}`);
-          if (status === "NEW") handleStatusChange("IN_PROGRESS");
-        } else {
-          setMessage(`Error: ${data.error}`);
-        }
+        setMessage(`Error: ${data.error}`);
       }
     } catch (err) {
       setMessage("Failed to save");
@@ -314,29 +255,13 @@ function BuildQuoteContent() {
     setSaving(false);
   };
 
-  // ACTION: Update status only
-  const handleStatusChange = async (newStatus: string) => {
-    setStatus(newStatus);
-    if (!clientId) return;
-    try {
-      await fetch(`/api/admin/quotes/${clientId}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ status: newStatus }),
-      });
-    } catch (err) {
-      console.error("Failed to update status:", err);
-    }
-  };
-
-  // ACTION: Generate Proposal
+  // ACTION: Generate Proposal (Fully Automated Workflow Step)
   const handleGenerateProposal = async () => {
     setGenerating(true);
     setMessage("");
     
     try {
-      console.log("Fetching content library...");
-      const contentRes = await fetch("/api/content-library");
+      const contentRes = await fetch(`/api/content-library?t=${Date.now()}`, { cache: 'no-store' });
       const contentData = await contentRes.json();
       
       if (!contentData.success) {
@@ -354,118 +279,145 @@ function BuildQuoteContent() {
       const contentBlocks = contentData.contentBlocks;
       const numDays = days || 7;
       
-      // Build a route sequence from the content library based on startCity, endCity, journeyInterest
-      // Strategy: find blocks that match the journey start/end and interest keywords
-      const interestKeywords = (journeyInterest || "").toLowerCase().split(/[\s,]+/);
-      const start = (startCity || "").toLowerCase();
-      const end = (endCity || "").toLowerCase();
+      let selectedBlocks: any[] = [];
       
-      // Score each block by relevance
-      const scored = contentBlocks.map((block: any) => {
-        let score = 0;
-        const from = (block.fromCity || "").toLowerCase();
-        const to = (block.toCity || "").toLowerCase();
-        const desc = (block.description || "").toLowerCase();
-        const city = (block.cityName || "").toLowerCase();
-        
-        // Prioritize blocks that match start/end cities
-        if (from === start || city === start) score += 10;
-        if (to === end || city === end) score += 10;
-        
-        // Score by interest keywords
-        interestKeywords.forEach((kw: string) => {
-          if (kw.length > 2) {
-            if (from.includes(kw) || to.includes(kw) || desc.includes(kw) || city.includes(kw)) score += 3;
-          }
-        });
-        
-        // Prefer blocks with images and descriptions
-        if (block.imageUrl) score += 2;
-        if (block.description) score += 1;
-        
-        // Exclude pure hero blocks (no from/to city)
-        if (!block.fromCity && !block.toCity && !block.cityName) score = 0;
-        
-        return { ...block, _score: score };
-      });
-      
-      // Sort by score descending, deduplicate by city
-      const sorted = scored
-        .filter((b: any) => b._score > 0)
-        .sort((a: any, b: any) => b._score - a._score);
-      
-      // Pick top N unique blocks for the number of days
-      const seen = new Set<string>();
-      const selectedBlocks: any[] = [];
-      
-      for (const block of sorted) {
-        const key = `${block.fromCity}-${block.toCity}`;
-        if (!seen.has(key) && selectedBlocks.length < numDays) {
-          seen.add(key);
-          selectedBlocks.push(block);
+      if (routeSequence && routeSequence.trim()) {
+        const routeIds = routeSequence.trim().replace(/[\u2013\u2014\u2012\u2010]/g, "-").split("\n").map((id: string) => id.trim()).filter((id: string) => id.length > 0);
+        const blockMap = new Map(contentBlocks.map((b: any) => [b.id, b]));
+        selectedBlocks = routeIds.map((id: string) => {
+          const block = blockMap.get(id);
+          if (!block) console.warn("Route ID not found in content library:", id);
+          return block;
+        }).filter(Boolean);
+        if (selectedBlocks.length === 0) {
+          setMessage("Error: None of the route IDs were found in the content library. Check your route sequence.");
+          setGenerating(false);
+          return;
         }
-      }
-      
-      // If we don't have enough, fill with remaining blocks
-      if (selectedBlocks.length < numDays) {
+      } else {
+        const interestKeywords = (journeyInterest || "").toLowerCase().split(/[\s,]+/);
+        const start = (startCity || "").toLowerCase();
+        const end = (endCity || "").toLowerCase();
+        const scored = contentBlocks.map((block: any) => {
+          let score = 0;
+          const from = (block.fromCity || "").toLowerCase();
+          const to = (block.toCity || "").toLowerCase();
+          const desc = (block.description || "").toLowerCase();
+          const city = (block.cityName || "").toLowerCase();
+          if (from === start || city === start) score += 10;
+          if (to === end || city === end) score += 10;
+          interestKeywords.forEach((kw: string) => {
+            if (kw.length > 2 && (from.includes(kw) || to.includes(kw) || desc.includes(kw) || city.includes(kw))) score += 3;
+          });
+          if (block.imageUrl) score += 2;
+          if (block.description) score += 1;
+          if (!block.fromCity && !block.toCity && !block.cityName) score = 0;
+          return { ...block, _score: score };
+        });
+        const sorted = scored.filter((b: any) => b._score > 0).sort((a: any, b: any) => b._score - a._score);
+        const seen = new Set<string>();
         for (const block of sorted) {
-          if (selectedBlocks.length >= numDays) break;
-          if (!selectedBlocks.includes(block)) {
+          const key = `${block.fromCity}-${block.toCity}`;
+          if (!seen.has(key) && selectedBlocks.length < numDays) {
+            seen.add(key);
             selectedBlocks.push(block);
           }
         }
       }
       
-      // Sort selected blocks: start city first, end city last
-      selectedBlocks.sort((a: any, b: any) => {
-        const aFrom = (a.fromCity || "").toLowerCase();
-        const bFrom = (b.fromCity || "").toLowerCase();
-        if (aFrom === start) return -1;
-        if (bFrom === start) return 1;
-        const aTo = (a.toCity || "").toLowerCase();
-        const bTo = (b.toCity || "").toLowerCase();
-        if (aTo === end) return 1;
-        if (bTo === end) return -1;
-        return 0;
+      const proposalId = `PROP-${clientId}`;
+      const routePoints: { name: string; coords: [number, number] }[] = [];
+      const cityCoords: { [key: string]: [number, number] } = {
+        "Marrakech": [-7.9811, 31.6295], "Casablanca": [-7.5898, 33.5731],
+        "Fes": [-5.0078, 34.0181], "Chefchaouen": [-5.2636, 35.1688],
+        "Essaouira": [-9.7595, 31.5085], "Merzouga": [-4.0133, 31.0802],
+        "Ouarzazate": [-6.8936, 30.9189], "Tamnougalt": [-6.4667, 30.95],
+        "Zagora": [-5.8381, 30.3306], "Tinghir": [-5.5328, 31.5147],
+        "Dades": [-5.9833, 31.4500], "Todra": [-5.5833, 31.5500],
+        "Agafay Desert": [-8.1500, 31.4000], "Errachidia": [-4.4261, 31.9314],
+      };
+
+      const proposalDays = selectedBlocks.map((block: any, index: number) => {
+        const dayNum = index + 1;
+        if (block.fromCity && cityCoords[block.fromCity] && !routePoints.some(p => p.name === block.fromCity)) {
+          routePoints.push({ name: block.fromCity, coords: cityCoords[block.fromCity] });
+        }
+        if (block.toCity && cityCoords[block.toCity] && !routePoints.some(p => p.name === block.toCity)) {
+          routePoints.push({ name: block.toCity, coords: cityCoords[block.toCity] });
+        }
+        return {
+          dayNumber: dayNum,
+          date: startDate ? new Date(new Date(startDate).getTime() + (dayNum - 1) * 24 * 60 * 60 * 1000).toISOString().split("T")[0] : "",
+          title: block.toCity || block.cityName || block.dayTitle || block.fromCity || `Day ${dayNum}`,
+          fromCity: block.fromCity || "",
+          toCity: block.toCity || "",
+          description: block.description || "",
+          imageUrl: block.imageUrl || "",
+          durationHours: block.travelTime || "",
+          activities: block.activities || "",
+          difficultyLevel: block.difficulty || "",
+          meals: block.meals || "",
+          accommodationType: block.accommodationType || "",
+        };
       });
       
-      const proposalId = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-      
-      const proposalDays = selectedBlocks.map((block: any, index: number) => ({
-        dayNumber: index + 1,
-        title: block.toCity || block.cityName || block.dayTitle || block.fromCity || `Day ${index + 1}`,
-        fromCity: block.fromCity || "",
-        toCity: block.toCity || "",
-        description: block.description || "",
-        imageUrl: block.imageUrl || "",
-        durationHours: block.durationHours || "",
-        difficultyLevel: block.difficultyLevel || "",
-        activities: block.activities || "",
-        accommodationType: block.accommodationType || "",
-        meals: block.meals || "",
-        highlights: block.highlights || "",
-      }));
-      
-      // Hero: use first block with a heroImageUrl, or first day image
+      const totalPrice = parseFloat(price) || 2450;
+      const formattedPrice = `€${totalPrice.toLocaleString()} EUR`;
       const heroBlock = contentBlocks.find((b: any) => b.heroImageUrl) || {};
       
       const proposalData = {
         id: proposalId,
-        journeyTitle: `${firstName}'s Morocco Journey` || "Your Morocco Journey",
+        journeyTitle: `${firstName} in Morocco`,
         arcDescription: `An ${proposalDays.length - 1}-night journey through Morocco, crafted for ${firstName} ${lastName}.`,
         clientName: `${firstName} ${lastName}`.trim(),
-        heroImage: heroBlock.heroImageUrl || proposalDays[0]?.imageUrl || "",
-        price: price || "2,450",
+        heroImage: heroImage || heroBlock.heroImageUrl || "",
+        price: price || "22,000",
+        travelers: travelers || 4,
         days: proposalDays
       };
       
-      console.log("Saving proposal data:", proposalData);
       localStorage.setItem(`proposal-${proposalId}`, JSON.stringify(proposalData));
+      
+      try {
+        const proposalPayload = {
+          clientId: clientId,
+          clientName: `${firstName} ${lastName}`.trim(),
+          country: country,
+          heroImageUrl: heroBlock.heroImageUrl || proposalDays[0]?.imageUrl || "",
+          heroTitle: heroBlock.heroTitle || "Your Morocco Journey",
+          heroBlurb: heroBlock.heroBlurb || `A ${proposalDays.length - 1}-night journey exploring Morocco's most captivating corners.`,
+          startDate: startDate,
+          endDate: endDate,
+          days: days,
+          nights: days - 1,
+          numGuests: travelers,
+          totalPrice: totalPrice,
+          formattedPrice: formattedPrice,
+          routePoints: routePoints,
+          daysList: proposalDays,
+        };
+        
+        const saveRes = await fetch("/api/admin/proposals", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(proposalPayload),
+        });
+        
+        const saveData = await saveRes.json();
+        if (!saveData.success) {
+          console.warn("Failed to save proposal:", saveData.error);
+        }
+      } catch (proposalErr) {
+        console.warn("Failed to save proposal:", proposalErr);
+      }
       
       window.open(`/proposal/${proposalId}?edit=true`, '_blank');
       setMessage("Proposal generated!");
       setHasProposal(true);
-      if (status === "NEW") handleStatusChange("IN_PROGRESS");
+
+      // ➔ AUTOMATION TRIGGER: Advance status directly to ITINERARY_READY in the database
+      await handleStatusChange("ITINERARY_READY");
+
     } catch (err) {
       console.error("Generate error:", err);
       setMessage(`Failed to generate proposal: ${err}`);
@@ -473,39 +425,9 @@ function BuildQuoteContent() {
     setGenerating(false);
   };
 
-  // ACTION: New Proposal
-  const handleNewProposal = () => {
-    if (confirm("Clear form and start fresh?")) {
-      setClientId("");
-      setFirstName("");
-      setLastName("");
-      setEmail("");
-      setPhone("");
-      setCountry("");
-      setJourneyInterest("");
-      setStartDate("");
-      setEndDate("");
-      setStartCity("");
-      setEndCity("");
-      setDays(7);
-      setTravelers(2);
-      setLanguage("English");
-      setBudget("");
-      setRequests("");
-      setNotes("");
-      setIsExisting(false);
-      setMessage("");
-    }
-  };
-
   // ACTION: Delete
   const handleDelete = async () => {
-    if (!isExisting || !clientId) {
-      setMessage("No saved quote to delete");
-      return;
-    }
-    if (!confirm(`Delete quote ${clientId}? This cannot be undone.`)) return;
-    
+    if (!confirm("Delete this quote?")) return;
     try {
       const res = await fetch(`/api/admin/quotes/${clientId}`, { method: "DELETE" });
       const data = await res.json();
@@ -519,6 +441,14 @@ function BuildQuoteContent() {
     }
   };
 
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="w-8 h-8 border-2 border-foreground/20 border-t-foreground rounded-full animate-spin" />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -528,74 +458,30 @@ function BuildQuoteContent() {
             <Link href="/admin/quotes" className="text-muted-foreground hover:text-foreground transition-colors">
               ← Back
             </Link>
-            <h1 className="font-serif text-3xl">Build a Quote</h1>
-            {isExisting && clientId && (
-              <span className="text-sm text-muted-foreground font-mono">{clientId}</span>
-            )}
+            <h1 className="font-serif text-xl md:text-3xl">Quote Details</h1>
+            <span className="text-sm text-muted-foreground font-mono">{clientId}</span>
+          </div>
+          <div className={`text-xs px-3 py-1 rounded ${
+            status === "NEW" ? "bg-green-50 text-green-700" :
+            status === "IN_PROGRESS" ? "bg-blue-50 text-blue-700" :
+            status === "ITINERARY_READY" ? "bg-purple-50 text-purple-700" :
+            status === "CONFIRMED" ? "bg-emerald-50 text-emerald-700" :
+            "bg-gray-50 text-gray-700"
+          }`}>
+            {status === "ITINERARY_READY" ? "READY" : status}
           </div>
         </div>
       </header>
 
       <main className="container mx-auto px-6 py-12 max-w-5xl">
+        {/* Status timeline spanning full-width at the top */}
+        <StatusTimeline status={status} onChange={handleStatusChange} />
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           
-          {/* Left - Form */}
+          {/* Left - Form Layout Inputs */}
           <div className="lg:col-span-2 space-y-12">
             
-            {/* Search Existing */}
-            <section>
-              <h2 className="font-serif text-xl mb-6">Find Existing Quote</h2>
-              <div className="flex gap-4">
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-                  placeholder="Search by Client ID, Name, or Email..."
-                  className="flex-1 px-4 py-3 border border-border bg-background text-lg focus:outline-none focus:border-foreground transition-colors"
-                />
-                <button
-                  onClick={handleSearch}
-                  disabled={searching}
-                  className="px-6 py-3 bg-foreground text-background text-sm tracking-wide uppercase hover:bg-foreground/90 disabled:opacity-50 transition-colors"
-                >
-                  {searching ? "..." : "Search"}
-                </button>
-              </div>
-              
-              {searchResults.length > 0 && (
-                <div className="mt-4 border border-border divide-y divide-border">
-                  {searchResults.map((result) => (
-                    <button
-                      key={result.Client_ID}
-                      onClick={() => loadQuote(result.Client_ID)}
-                      className="w-full px-4 py-4 text-left hover:bg-muted/50 transition-colors flex justify-between items-center"
-                    >
-                      <div>
-                        <span className="font-serif">{result.First_Name} {result.Last_Name}</span>
-                        <span className="text-muted-foreground ml-3 text-sm">{result.Email}</span>
-                      </div>
-                      <span className="text-xs font-mono text-muted-foreground">{result.Client_ID}</span>
-                    </button>
-                  ))}
-                </div>
-              )}
-            </section>
-
-            {/* Client Feedback Banner - shown when revision requested */}
-            {clientFeedback && (
-              <section className="bg-amber-50 border border-amber-200 p-6 mb-8">
-                <h3 className="font-serif text-lg mb-2 text-amber-900">📝 Client Revision Request</h3>
-                <p className="text-amber-800 whitespace-pre-wrap">{clientFeedback}</p>
-                <button
-                  onClick={() => setClientFeedback("")}
-                  className="mt-4 text-xs tracking-[0.1em] uppercase text-amber-700 hover:text-amber-900 transition-colors"
-                >
-                  Dismiss
-                </button>
-              </section>
-            )}
-
             {/* Client Information */}
             <section>
               <h2 className="font-serif text-xl mb-6">Client Information</h2>
@@ -615,52 +501,26 @@ function BuildQuoteContent() {
             {/* Journey Details */}
             <section>
               <h2 className="font-serif text-xl mb-6">Journey Details</h2>
-              <div className="grid grid-cols-2 gap-6 mb-6">
-                <div>
-                  <label className="block text-xs tracking-[0.1em] uppercase text-muted-foreground mb-1">First Time in Morocco?</label>
-                  <select
-                    value={firstTimeMorocco}
-                    onChange={(e) => setFirstTimeMorocco(e.target.value)}
-                    className="w-full px-0 py-3 border-0 border-b border-border bg-transparent text-lg focus:outline-none focus:border-foreground transition-colors"
-                  >
-                    <option value="">— Select —</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                    <option value="Unknown">Unknown</option>
-                  </select>
-                </div>
-                <TextInput label="How Did They Find Us?" value={hearAboutUs} onChange={setHearAboutUs} placeholder="e.g., Slow Morocco article, Google, referral" />
-              </div>
-              <div className="mb-6">
-                <label className="block text-xs tracking-[0.1em] uppercase text-muted-foreground mb-1">Expectations / Dream Experience</label>
-                <textarea
-                  value={dreamExperience}
-                  onChange={(e) => setDreamExperience(e.target.value)}
-                  rows={3}
-                  placeholder="What do they want from this trip? What experiences are they looking for?"
-                  className="w-full px-0 py-3 border-0 border-b border-border bg-transparent text-lg focus:outline-none focus:border-foreground transition-colors resize-none"
-                />
-              </div>
               <div className="mb-6">
                 <TextInput label="Journey Interest" value={journeyInterest} onChange={setJourneyInterest} placeholder="e.g., Sahara Desert, Imperial Cities" />
               </div>
               <div className="grid grid-cols-2 gap-6 mb-6">
                 <div>
-                  <label className="block text-xs tracking-[0.1em] uppercase text-muted-foreground mb-1">Start Date</label>
+                  <label className="block text-sm text-muted-foreground mb-2">Start Date</label>
                   <input
                     type="date"
                     value={startDate}
                     onChange={(e) => setStartDate(e.target.value)}
-                    className="w-full px-0 py-3 border-0 border-b border-border bg-transparent text-lg focus:outline-none focus:border-foreground transition-colors"
+                    className="w-full px-4 py-3 border border-border bg-background text-lg focus:outline-none focus:border-foreground transition-colors"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs tracking-[0.1em] uppercase text-muted-foreground mb-1">End Date</label>
+                  <label className="block text-sm text-muted-foreground mb-2">End Date</label>
                   <input
                     type="date"
                     value={endDate}
                     onChange={(e) => setEndDate(e.target.value)}
-                    className="w-full px-0 py-3 border-0 border-b border-border bg-transparent text-lg focus:outline-none focus:border-foreground transition-colors"
+                    className="w-full px-4 py-3 border border-border bg-background text-lg focus:outline-none focus:border-foreground transition-colors"
                   />
                 </div>
               </div>
@@ -672,11 +532,11 @@ function BuildQuoteContent() {
                 <NumberInput label="Days" value={days} onChange={setDays} />
                 <NumberInput label="Travelers" value={travelers} onChange={setTravelers} />
                 <div>
-                  <label className="block text-xs tracking-[0.1em] uppercase text-muted-foreground mb-1">Language</label>
+                  <label className="block text-sm text-muted-foreground mb-2">Language</label>
                   <select
                     value={language}
                     onChange={(e) => setLanguage(e.target.value)}
-                    className="w-full px-0 py-3 border-0 border-b border-border bg-transparent text-lg focus:outline-none focus:border-foreground transition-colors"
+                    className="w-full px-4 py-3 border border-border bg-background text-lg focus:outline-none focus:border-foreground transition-colors"
                   >
                     <option value="English">English</option>
                     <option value="French">French</option>
@@ -686,16 +546,16 @@ function BuildQuoteContent() {
                   </select>
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-3 gap-6">
                 <TextInput label="Budget" value={budget} onChange={setBudget} placeholder="e.g., $2,500 - $4,000" />
                 <div>
-                  <label className="block text-xs tracking-[0.1em] uppercase text-muted-foreground mb-1">Price (€)</label>
+                  <label className="block text-sm text-muted-foreground mb-2">Price (€)</label>
                   <input
                     type="text"
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
                     placeholder="e.g., 2450"
-                    className="w-full px-0 py-3 border-0 border-b border-border bg-transparent text-xl font-serif focus:outline-none focus:border-foreground transition-colors"
+                    className="w-full px-4 py-3 border border-border bg-background text-xl font-serif focus:outline-none focus:border-foreground transition-colors"
                   />
                 </div>
               </div>
@@ -709,8 +569,35 @@ function BuildQuoteContent() {
                 onChange={(e) => setRequests(e.target.value)}
                 rows={4}
                 placeholder="Dietary needs, accessibility requirements, special interests..."
-                className="w-full px-0 py-3 border-0 border-b border-border bg-transparent text-lg focus:outline-none focus:border-foreground transition-colors resize-none"
+                className="w-full px-4 py-3 border border-border bg-background text-lg focus:outline-none focus:border-foreground transition-colors resize-none"
               />
+            </section>
+
+            {/* Dream Experience */}
+            <section>
+              <h2 className="font-serif text-xl mb-2">Dream Experience</h2>
+              <p className="text-sm text-muted-foreground mb-4">What the client wants to feel, see, or understand — in their own words.</p>
+              <textarea
+                value={dreamExperience}
+                onChange={(e) => setDreamExperience(e.target.value)}
+                rows={4}
+                placeholder="What would make this journey unforgettable for them?"
+                className="w-full px-4 py-3 border border-border bg-background text-lg focus:outline-none focus:border-foreground transition-colors resize-none"
+              />
+            </section>
+
+            {/* First Time Morocco */}
+            <section>
+              <h2 className="font-serif text-xl mb-4">First Time in Morocco?</h2>
+              <select
+                value={firstTimeMorocco}
+                onChange={(e) => setFirstTimeMorocco(e.target.value)}
+                className="w-full px-4 py-3 border border-border bg-background text-lg focus:outline-none focus:border-foreground transition-colors"
+              >
+                <option value="">— Unknown —</option>
+                <option value="Yes">Yes, first time</option>
+                <option value="No">No, been before</option>
+              </select>
             </section>
 
             {/* Internal Notes */}
@@ -721,137 +608,159 @@ function BuildQuoteContent() {
                 onChange={(e) => setNotes(e.target.value)}
                 rows={3}
                 placeholder="Notes for your reference (not visible to client)..."
-                className="w-full px-0 py-3 border-0 border-b border-border bg-transparent text-lg focus:outline-none focus:border-foreground transition-colors resize-none"
+                className="w-full px-4 py-3 border border-border bg-background text-lg focus:outline-none focus:border-foreground transition-colors resize-none"
+              />
+            </section>
+
+            {/* Hero Image */}
+            <section>
+              <h2 className="font-serif text-xl mb-2">Hero Image</h2>
+              <p className="text-sm text-muted-foreground mb-4">Full-bleed banner image for the proposal. Use a cinematic, wide Cloudinary URL.</p>
+              <input
+                type="text"
+                value={heroImage}
+                onChange={(e) => setHeroImage(e.target.value)}
+                placeholder="https://res.cloudinary.com/..."
+                className="w-full px-4 py-3 border border-border bg-background text-sm focus:outline-none focus:border-foreground transition-colors"
+              />
+              {heroImage && (
+                <img src={heroImage} alt="Hero preview" className="mt-4 w-full h-40 object-cover" />
+              )}
+            </section>
+
+            {/* Route Sequence */}
+            <section>
+              <h2 className="font-serif text-xl mb-2">Route Sequence</h2>
+              <p className="text-sm text-muted-foreground mb-4">Enter one route ID per line in order. These will be used to generate the proposal day by day. Example:<br/>
+                <code className="text-xs bg-muted px-1">STAY_ESSAOUIRA</code><br/>
+                <code className="text-xs bg-muted px-1">ESS-MAR-NEW</code><br/>
+                <code className="text-xs bg-muted px-1">STAY_MARRAKECH</code>
+              </p>
+              <textarea
+                value={routeSequence}
+                onChange={(e) => setRouteSequence(e.target.value)}
+                rows={12}
+                placeholder={"STAY_ESSAOUIRA\nSTAY_ESSAOUIRA\nESS-MAR-NEW\nSTAY_MARRAKECH\nMAR-AGAFAY\nMAR-TAM-004\nDAD-MER-116\nSTAY_MERZOUGA\nSTAY_MERZOUGA"}
+                className="w-full px-4 py-3 border border-border bg-background text-sm font-mono focus:outline-none focus:border-foreground transition-colors resize-none"
               />
             </section>
 
           </div>
 
-          {/* Right - Summary & Actions */}
+          {/* Right Column - Summary Box Cards */}
           <div className="lg:col-span-1">
             <div className="sticky top-8">
-              <StatusTimeline status={status} onChange={handleStatusChange} />
-              <div className="border border-border p-8">
-              <h2 className="font-serif text-xl mb-6">Summary</h2>
               
-              {/* Client Name */}
-              <div className="mb-8">
-                <p className="text-sm text-muted-foreground mb-1">Client</p>
-                <p className="font-serif text-2xl">
-                  {firstName || lastName ? `${firstName} ${lastName}` : "—"}
-                </p>
-              </div>
-
-              {/* Journey Info */}
-              <div className="space-y-4 mb-8 pb-8 border-b border-border">
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Duration</span>
-                  <span className="font-serif">{days} days</span>
+              <div className="border border-border p-8 bg-background">
+                <h2 className="font-serif text-xl mb-6">Summary</h2>
+                
+                {/* Client Name */}
+                <div className="mb-8">
+                  <p className="text-sm text-muted-foreground mb-1">Client</p>
+                  <p className="font-serif text-2xl">
+                    {firstName || lastName ? `${firstName} ${lastName}` : "—"}
+                  </p>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Travelers</span>
-                  <span className="font-serif">{travelers}</span>
-                </div>
-                {startDate && (
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Start</span>
-                    <span className="font-serif">{new Date(startDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                  </div>
-                )}
-                {endDate && (
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">End</span>
-                    <span className="font-serif">{new Date(endDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                  </div>
-                )}
-                {(startCity || endCity) && (
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Route</span>
-                    <span className="font-serif text-right">{startCity}{startCity && endCity ? " → " : ""}{endCity}</span>
-                  </div>
-                )}
-                {journeyInterest && (
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Interest</span>
-                    <span className="font-serif text-right max-w-[150px]">{journeyInterest}</span>
-                  </div>
-                )}
-                {price && (
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Price</span>
-                    <span className="font-serif text-xl">€{price}</span>
-                  </div>
-                )}
-              </div>
 
-              {/* Message */}
-              {message && (
-                <div className={`mb-6 p-3 text-sm ${
-                  message.includes("Error") || message.includes("Failed") 
-                    ? "bg-red-50 text-red-700" 
-                    : "bg-green-50 text-green-700"
-                }`}>
-                  {message}
+                {/* Journey Info */}
+                <div className="space-y-4 mb-8 pb-8 border-b border-border">
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Duration</span>
+                    <span className="font-serif">{days} days</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Travelers</span>
+                    <span className="font-serif">{travelers}</span>
+                  </div>
+                  {startDate && (
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Start</span>
+                      <span className="font-serif">{new Date(startDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                    </div>
+                  )}
+                  {endDate && (
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">End</span>
+                      <span className="font-serif">{new Date(endDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                    </div>
+                  )}
+                  {(startCity || endCity) && (
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Route</span>
+                      <span className="font-serif text-right">{startCity}{startCity && endCity ? " → " : ""}{endCity}</span>
+                    </div>
+                  )}
+                  {journeyInterest && (
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Interest</span>
+                      <span className="font-serif text-right max-w-[150px]">{journeyInterest}</span>
+                    </div>
+                  )}
+                  {price && (
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Price</span>
+                      <span className="font-serif text-xl">€{price}</span>
+                    </div>
+                  )}
                 </div>
-              )}
 
-              {/* Action Buttons */}
-              <div className="space-y-3">
-                <button
-                  onClick={handleUpdateDatabase}
-                  disabled={saving}
-                  className="w-full py-4 bg-foreground text-background text-xs tracking-[0.15em] uppercase hover:bg-foreground/90 disabled:opacity-50 transition-colors"
-                >
-                  {saving ? "Saving..." : "Update Database"}
-                </button>
-                <button
-                  onClick={handleGenerateProposal}
-                  disabled={generating}
-                  className="w-full py-4 bg-green-700 text-white text-xs tracking-[0.15em] uppercase hover:bg-green-800 disabled:opacity-50 transition-colors"
-                >
-                  {generating ? "Generating..." : "Generate New Proposal"}
-                </button>
-                {hasProposal ? (
+                {/* Status Handling Feedback Messages */}
+                {message && (
+                  <div className={`mb-6 p-3 text-sm ${
+                    message.includes("Error") || message.includes("Failed") 
+                      ? "bg-red-50 text-red-700" 
+                      : "bg-green-50 text-green-700"
+                  }`}>
+                    {message}
+                  </div>
+                )}
+
+                {/* Operational Command Buttons */}
+                <div className="space-y-3">
                   <button
-                    onClick={() => window.open(`/proposal/PROP-${clientId}?edit=true`, '_blank')}
-                    className="w-full py-4 border border-[#2d5016] text-[#2d5016] text-xs tracking-[0.15em] uppercase hover:bg-[#2d5016] hover:text-white transition-colors"
+                    onClick={handleUpdateDatabase}
+                    disabled={saving}
+                    className="w-full py-4 bg-foreground text-background text-xs tracking-[0.15em] uppercase hover:bg-foreground/90 disabled:opacity-50 transition-colors"
                   >
-                    Edit Proposal
+                    {saving ? "Saving..." : "Update Database"}
                   </button>
-                ) : (
                   <button
-                    disabled
-                    title="Save the quote first to unlock"
-                    className="w-full py-4 border border-border text-muted-foreground text-xs tracking-[0.15em] uppercase opacity-40 cursor-not-allowed"
+                    onClick={handleGenerateProposal}
+                    disabled={generating}
+                    className="w-full py-4 bg-green-700 text-white text-xs tracking-[0.15em] uppercase hover:bg-green-800 disabled:opacity-50 transition-colors"
                   >
-                    Edit Proposal
+                    {generating ? "Generating..." : "Generate New Proposal"}
                   </button>
-                )}
-                <button
-                  onClick={handleDelete}
-                  className="w-full py-4 text-red-600 text-xs tracking-[0.15em] uppercase hover:bg-red-50 transition-colors"
-                >
-                  Delete
-                </button>
+                  {hasProposal && (
+                    <button
+                      onClick={() => window.open(`/proposal/PROP-${clientId}?edit=true`, '_blank')}
+                      className="w-full py-4 border border-[#2d5016] text-[#2d5016] text-xs tracking-[0.15em] uppercase hover:bg-[#2d5016] hover:text-white transition-colors"
+                    >
+                      Edit Proposal
+                    </button>
+                  )}
+                  {!hasProposal && (
+                    <button
+                      disabled
+                      title="Save the quote first to unlock"
+                      className="w-full py-4 border border-border text-muted-foreground text-xs tracking-[0.15em] uppercase opacity-40 cursor-not-allowed"
+                    >
+                      Edit Proposal
+                    </button>
+                  )}
+                  <button
+                    onClick={handleDelete}
+                    className="w-full py-4 text-red-600 text-xs tracking-[0.15em] uppercase hover:bg-red-50 transition-colors"
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
-              </div>{/* end summary box */}
-            </div>{/* end sticky */}
+            </div>
           </div>
 
         </div>
       </main>
     </div>
-  );
-}
-
-export default function BuildQuotePage() {
-  return (
-    <Suspense fallback={
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="w-8 h-8 border-2 border-foreground/20 border-t-foreground rounded-full animate-spin" />
-      </div>
-    }>
-      <BuildQuoteContent />
-    </Suspense>
   );
 }
