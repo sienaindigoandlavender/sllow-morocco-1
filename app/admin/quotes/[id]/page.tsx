@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
+import { getRouteSequenceForJourney } from "@/lib/journey-routes";
 
 // Pipeline stages
 const MAIN_STAGES = [
@@ -194,7 +195,19 @@ export default function QuoteDetailPage() {
           setDreamExperience(q.Dream_Experience || "");
           setFirstTimeMorocco(q.First_Time_Morocco || "");
           setStatus(q.Status || "NEW");
-          setRouteSequence(q.Notes_Route_Sequence || "");
+          // Auto-populate route sequence from journey mapping if not already set
+          const existingRoute = q.Notes_Route_Sequence || "";
+          if (existingRoute) {
+            setRouteSequence(existingRoute);
+          } else {
+            const journeySlug = (q.Journey_Interest || "")
+              .toLowerCase()
+              .replace(/\s+/g, "-")
+              .replace(/[^a-z0-9-]/g, "");
+            const autoRoute = getRouteSequenceForJourney(q.Journey_Interest || "") 
+              || getRouteSequenceForJourney(journeySlug);
+            if (autoRoute) setRouteSequence(autoRoute);
+          }
           setHeroImage(q.Hero_Image || "");
         }
         setLoading(false);
