@@ -57,7 +57,8 @@ function StatusTimeline({ status, onChange }: { status: string; onChange: (s: st
       </div>
 
       {/* Terminal stage buttons — shown once SENT */}
-      {(status === "SENT" || isTerminal) && (
+      {/* Always show terminal options — visible at any stage */
+      {
         <div className="flex gap-2 mt-2 pl-1">
           <button
             onClick={() => onChange("BOOKED")}
