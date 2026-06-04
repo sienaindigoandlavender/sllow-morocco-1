@@ -1652,48 +1652,50 @@ Slow Morocco Team`);
 
             {feedbackSubmitted ? (
               <div className="text-center py-8">
-                <h3 className="font-serif text-2xl mb-4">Feedback Received</h3>
-                <p className="text-muted-foreground">
-                  Thank you for your thoughts. We'll review your suggestions and get back to you with an updated itinerary soon.
+                <h3 className="font-serif text-2xl mb-4">Thank you.</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  We've received your thoughts and will come back to you with a revised itinerary shortly.
                 </p>
               </div>
             ) : (
               <>
-                <h2 className="font-serif text-2xl mb-4">I Have Some Thoughts</h2>
-                <p className="text-muted-foreground mb-6">
-                  Tell us what you'd like to change. More time in the desert? A different city? We're here to shape this journey around you.
+                <h2 className="font-serif text-2xl mb-3">I Have Some Thoughts</h2>
+                <p className="text-muted-foreground mb-6 leading-relaxed">
+                  Tell us what you'd like to change. More time somewhere? A different city? Something you'd rather not do? There are no wrong answers.
                 </p>
                 
                 <textarea
                   value={clientFeedback}
                   onChange={(e) => setClientFeedback(e.target.value)}
                   rows={6}
-                  placeholder="I'd love to spend more time in Marrakech, and maybe skip the mountain portion..."
-                  className="w-full px-4 py-3 border border-border bg-background focus:outline-none focus:border-foreground transition-colors resize-none mb-6"
+                  placeholder="I'd love more time in the desert, and I'm curious whether we could swap one of the Marrakech days for somewhere quieter..."
+                  className="w-full px-4 py-3 border border-border bg-background focus:outline-none focus:border-foreground transition-colors resize-none mb-6 text-sm leading-relaxed"
                 />
 
                 <button
-                  onClick={() => {
-                    // Store feedback in localStorage for admin to see
-                    const feedbackData = {
-                      proposalId: proposalId,
-                      clientName: proposal?.clientName,
-                      journeyTitle: proposal?.journeyTitle,
-                      feedback: clientFeedback,
-                      submittedAt: new Date().toISOString(),
-                      proposalUrl: window.location.href
-                    };
-                    localStorage.setItem(`feedback-${proposalId}`, JSON.stringify(feedbackData));
-                    
-                    // Send email notification to admin
-                    const mailtoLink = `mailto:hello@slowmorocco.com?subject=Revision Request: ${proposal?.journeyTitle}&body=Client ${proposal?.clientName} has requested changes:%0D%0A%0D%0A${encodeURIComponent(clientFeedback)}%0D%0A%0D%0AProposal: ${window.location.href}%0D%0A%0D%0AEdit the quote here:%0D%0A${window.location.origin}/admin/quotes/new?feedback=${encodeURIComponent(clientFeedback)}`;
-                    window.open(mailtoLink);
+                  onClick={async () => {
+                    if (!clientFeedback.trim()) return;
+                    try {
+                      await fetch("/api/proposal-feedback", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                          proposalId,
+                          clientName: proposal?.clientName || "",
+                          journeyTitle: proposal?.journeyTitle || "",
+                          feedback: clientFeedback,
+                          proposalUrl: window.location.href.split("?")[0],
+                        }),
+                      });
+                    } catch (e) {
+                      console.error("Feedback submission failed:", e);
+                    }
                     setFeedbackSubmitted(true);
                   }}
                   disabled={!clientFeedback.trim()}
-                  className="w-full bg-foreground text-background px-6 py-4 text-xs tracking-[0.15em] uppercase hover:opacity-90 transition-opacity disabled:opacity-50"
+                  className="w-full bg-foreground text-background px-6 py-4 text-xs tracking-[0.15em] uppercase hover:opacity-90 transition-opacity disabled:opacity-40"
                 >
-                  Send Feedback
+                  Send
                 </button>
               </>
             )}
