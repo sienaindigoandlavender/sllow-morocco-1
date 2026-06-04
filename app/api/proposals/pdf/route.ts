@@ -41,12 +41,31 @@ export async function GET(request: Request) {
 
 function buildPdfHtml(proposal: any, days: any[]): string {
   const clientName = proposal.client_name || "Guest";
-  const price = proposal.formatted_price || proposal.total_price || "22000";
-  const numGuests = parseInt(proposal.num_guests || "4");
-  const priceNum = parseInt(String(price).replace(/,/g, ""));
-  const perPerson = Math.round(priceNum / numGuests).toLocaleString();
-  const priceFormatted = priceNum.toLocaleString();
+  const heroTitle = proposal.hero_title || "Your Journey";
+  const numGuests = parseInt(proposal.num_guests || "2");
+  const price = proposal.formatted_price || proposal.total_price || "";
+  const priceNum = parseInt(String(price).replace(/[^0-9]/g, "")) || 0;
+  const perPerson = numGuests > 0 ? Math.round(priceNum / numGuests).toLocaleString() : "";
+  const priceFormatted = priceNum > 0 ? priceNum.toLocaleString() : price;
 
+  // Build route string from days
+  const sortedDays = [...days].sort((a, b) => a.dayNumber - b.dayNumber);
+  const routeCities: string[] = [];
+  sortedDays.forEach(d => {
+    if (d.fromCity && !routeCities.includes(d.fromCity)) routeCities.push(d.fromCity);
+    if (d.toCity && d.toCity !== d.fromCity && !routeCities.includes(d.toCity)) routeCities.push(d.toCity);
+  });
+  const routeString = routeCities.length > 0
+    ? routeCities.join(" · ")
+    : (proposal.hero_blurb || "");
+
+  const startCity = routeCities[0] || "";
+  const endCity = routeCities[routeCities.length - 1] || "";
+  const routeArrow = startCity && endCity && startCity !== endCity
+    ? `${startCity} &rarr; ${endCity}`
+    : startCity || "";
+
+  // Date formatting
   const formatDate = (d: string) => {
     if (!d) return "";
     try {
@@ -56,31 +75,98 @@ function buildPdfHtml(proposal: any, days: any[]): string {
     } catch { return d; }
   };
 
-  const dayPages = days
-    .sort((a: any, b: any) => a.dayNumber - b.dayNumber)
-    .map((day: any) => {
-      const meals = day.mealsDetail || day.meals || "";
-      const dining = day.diningNotes || "";
-      const mealText = meals + (dining ? `  ·  ${dining}` : "");
-      const accom = day.accommodationName || day.accommodationType || "";
-      const rooms = day.roomConfig || "";
-      const activities = day.activitiesDetail || day.activities || "";
-      const guide = day.guideIncluded ? `${day.guideLanguage || "English"}-speaking official guide` : "";
-      const transfer = day.transferDetails || (day.transferType && day.transferType !== "none" ? day.transferType : "");
+  const formatDateShort = (d: string) => {
+    if (!d) return "";
+    try {
+      return new Date(d + "T12:00:00").toLocaleDateString("en-US", {
+        month: "long", day: "numeric", year: "numeric"
+      });
+    } catch { return d; }
+  };
 
-      const rows = [
-        mealText ? `<tr><td class="lbl">Meals</td><td class="val">${mealText}</td></tr>` : "",
-        accom ? `<tr><td class="lbl">Accommodation</td><td class="val">${accom}${rooms ? ` · ${rooms}` : ""}</td></tr>` : "",
-        activities ? `<tr><td class="lbl">Activities</td><td class="val">${activities}</td></tr>` : "",
-        guide ? `<tr><td class="lbl">Guide</td><td class="val">${guide}</td></tr>` : "",
-        transfer ? `<tr><td class="lbl">Transfer</td><td class="val">${transfer}</td></tr>` : "",
-      ].filter(Boolean).join("");
+  const startDate = proposal.start_date ? formatDateShort(proposal.start_date) : "";
+  const endDate = proposal.end_date ? formatDateShort(proposal.end_date) : "";
+  const dateRange = startDate && endDate ? `${startDate} &ndash; ${endDate}` : startDate || endDate || "";
+  const nights = parseInt(proposal.nights || proposal.days || "0");
+  const nightsLabel = nights > 0 ? `${nights} nights` : "";
 
-      const desc = (day.description || "").split(/Meals:|Accommodation:|Activities:/)[0].trim();
+  // Determine what's included based on days
+  const hasGuide = sortedDays.some(d => d.guideIncluded);
+  const hasAllMeals = sortedDays.length > 0 && sortedDays.every(d => d.mealsDetail || d.meals);
+  const uniqueGuideLanguages = [...new Set(
+    sortedDays.filter(d => d.guideIncluded && d.guideLanguage).map(d => d.guideLanguage)
+  )];
+  const guideEntry = hasGuide
+    ? `${uniqueGuideLanguages.join(" & ") || "English"}-speaking official guide in ${routeCities.filter(c =>
+        sortedDays.some(d => (d.toCity === c || d.fromCity === c) && d.guideIncluded)
+      ).join(", ") || "key cities"}`
+    : null;
 
-      return `
+  // Build dynamic map SVG from route cities
+  const cityCoords: { [key: string]: [number, number] } = {
+    "Tangier":        [305, 55],
+    "Chefchaouen":    [330, 80],
+    "Rabat":          [220, 145],
+    "Casablanca":     [210, 178],
+    "Fes":            [410, 100],
+    "Meknes":         [370, 120],
+    "Essaouira":      [121, 262],
+    "Marrakech":      [258, 256],
+    "Agafay Desert":  [245, 275],
+    "Agafay":         [245, 275],
+    "Ouarzazate":     [310, 295],
+    "Tamnougalt":     [376, 305],
+    "Zagora":         [380, 320],
+    "Dadès":          [430, 270],
+    "Todra":          [455, 265],
+    "Merzouga":       [535, 268],
+    "The Sahara":     [535, 268],
+    "Errachidia":     [510, 240],
+    "Atlas Mountains":[280, 260],
+  };
+
+  const mapCities = routeCities.filter(c => cityCoords[c]);
+  const mapDots = mapCities.map(c => {
+    const [x, y] = cityCoords[c];
+    const isFirst = c === mapCities[0];
+    const isLast = c === mapCities[mapCities.length - 1];
+    const r = (isFirst || isLast) ? 5.5 : 4;
+    const anchor = x < 400 ? "end" : "start";
+    const tx = anchor === "end" ? x - 8 : x + 8;
+    return `<circle cx="${x}" cy="${y}" r="${r}" fill="white" stroke="#1a1a18" stroke-width="1.5"/><circle cx="${x}" cy="${y}" r="${r === 5.5 ? 3 : 2.5}" fill="#1a1a18"/>
+<text x="${tx}" y="${y - 6}" text-anchor="${anchor}" font-family="Georgia,serif" font-size="10" fill="#1a1a18">${c}</text>`;
+  }).join("\n    ");
+
+  const mapLine = mapCities.length > 1
+    ? `<polyline points="${mapCities.map(c => cityCoords[c].join(",")).join(" ")}" fill="none" stroke="#8B7355" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>`
+    : "";
+
+  // Day pages
+  const dayPages = sortedDays.map((day: any) => {
+    const meals = day.mealsDetail || day.meals || "";
+    const dining = day.diningNotes || "";
+    const mealText = meals + (dining ? `  ·  ${dining}` : "");
+    const accom = day.accommodationName || day.accommodationType || "";
+    const rooms = day.roomConfig || "";
+    const activities = day.activitiesDetail || day.activities || "";
+    const guide = day.guideIncluded
+      ? `${day.guideLanguage || "English"}-speaking official guide`
+      : "";
+    const transfer = day.transferDetails || (day.transferType && day.transferType !== "none" ? day.transferType : "");
+
+    const rows = [
+      mealText ? `<tr><td class="lbl">Meals</td><td class="val">${mealText}</td></tr>` : "",
+      accom ? `<tr><td class="lbl">Accommodation</td><td class="val">${accom}${rooms ? ` · ${rooms}` : ""}</td></tr>` : "",
+      activities ? `<tr><td class="lbl">Activities</td><td class="val">${activities}</td></tr>` : "",
+      guide ? `<tr><td class="lbl">Guide</td><td class="val">${guide}</td></tr>` : "",
+      transfer ? `<tr><td class="lbl">Transfer</td><td class="val">${transfer}</td></tr>` : "",
+    ].filter(Boolean).join("");
+
+    const desc = (day.description || "").split(/Meals:|Accommodation:|Activities:/)[0].trim();
+
+    return `
 <div class="page">
-  <div class="hd">SLOW MOROCCO · ${proposal.hero_title || "Your Journey"}</div>
+  <div class="hd">SLOW MOROCCO · ${heroTitle}</div>
   <h2 class="city">${day.title || day.toCity || "Day " + day.dayNumber}</h2>
   <div class="dmeta">Day ${day.dayNumber}${day.date ? " — " + formatDate(day.date) : ""}</div>
   ${day.fromCity && day.toCity && day.fromCity !== day.toCity
@@ -90,13 +176,13 @@ function buildPdfHtml(proposal: any, days: any[]): string {
   <p class="desc">${desc}</p>
   <div class="ft"><span>Slow Morocco · hello@slowmorocco.com</span><span>Day ${day.dayNumber} of ${days.length}</span></div>
 </div>`;
-    }).join("");
+  }).join("");
 
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>${proposal.hero_title || "Your Journey"} — Slow Morocco</title>
+<title>${heroTitle} — Slow Morocco</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;1,400&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
@@ -104,7 +190,6 @@ body{font-family:'EB Garamond',Georgia,serif;color:#1a1a18;background:white}
 .page{width:210mm;min-height:297mm;padding:20mm 22mm 18mm;position:relative;display:flex;flex-direction:column;page-break-after:always;break-after:page}
 .hd{font-family:Helvetica,Arial,sans-serif;font-size:7pt;letter-spacing:.15em;color:#888;text-transform:uppercase;padding-bottom:7pt;border-bottom:.4pt solid #e0dbd0;margin-bottom:22pt}
 .ft{font-family:Helvetica,Arial,sans-serif;font-size:7pt;color:#888;display:flex;justify-content:space-between;padding-top:10pt;border-top:.4pt solid #e0dbd0;margin-top:auto}
-/* cover */
 .cover-logo{font-family:Helvetica,Arial,sans-serif;font-size:8pt;letter-spacing:.2em;color:#888;text-transform:uppercase;padding-bottom:8pt;border-bottom:.4pt solid #e0dbd0;margin-bottom:28pt}
 .cover-title{font-size:40pt;font-weight:normal;line-height:1.1;margin-bottom:18pt}
 .cover-quote{font-style:italic;font-size:11pt;color:#666;line-height:1.8;margin-bottom:8pt;max-width:120mm}
@@ -112,7 +197,6 @@ body{font-family:'EB Garamond',Georgia,serif;color:#1a1a18;background:white}
 .cover-client{font-size:15pt;margin-bottom:5pt;margin-top:28pt}
 .cover-meta{font-family:Helvetica,Arial,sans-serif;font-size:10pt;color:#888;margin-bottom:3pt}
 .cover-hr{border:none;border-top:.4pt solid #e0dbd0;margin:20pt 0 16pt}
-/* investment */
 .inv-lbl{font-family:Helvetica,Arial,sans-serif;font-size:8pt;letter-spacing:.2em;color:#888;text-transform:uppercase;text-align:center;margin-bottom:8pt}
 .inv-price{font-size:50pt;font-weight:normal;text-align:center;line-height:1;margin-bottom:4pt}
 .inv-sub{font-family:Helvetica,Arial,sans-serif;font-size:10pt;color:#888;text-align:center;margin-bottom:3pt}
@@ -124,11 +208,8 @@ body{font-family:'EB Garamond',Georgia,serif;color:#1a1a18;background:white}
 .sec-hr{border:none;border-top:.4pt solid #e0dbd0;margin:10pt 0}
 .how-body{font-size:10pt;color:#444;line-height:1.7;margin-bottom:7pt}
 .how-bold{font-family:Helvetica,Arial,sans-serif;font-weight:bold;font-size:9pt;margin:8pt 0 3pt}
-/* map */
-.map-lbl{font-family:Helvetica,Arial,sans-serif;font-size:8pt;letter-spacing:.2em;color:#888;text-transform:uppercase;margin-bottom:6pt}
 .map-title{font-size:22pt;font-weight:normal;margin-bottom:14pt}
 .map-cities{font-family:Helvetica,Arial,sans-serif;font-size:8pt;color:#888;text-align:center;margin-top:8pt}
-/* days */
 .city{font-size:30pt;font-weight:normal;margin-bottom:3pt;line-height:1.1}
 .dmeta{font-family:Helvetica,Arial,sans-serif;font-size:8pt;letter-spacing:.12em;text-transform:uppercase;color:#888;margin-bottom:10pt}
 .route{font-family:Helvetica,Arial,sans-serif;font-size:9pt;color:#888;margin-bottom:8pt}
@@ -137,25 +218,16 @@ body{font-family:'EB Garamond',Georgia,serif;color:#1a1a18;background:white}
 .pt .val{font-size:10pt;color:#444;padding:4pt 0;vertical-align:top;border-bottom:.3pt solid #e0dbd0}
 .div{border:none;border-top:.4pt solid #e0dbd0;margin:8pt 0 10pt}
 .desc{font-style:italic;font-size:11pt;color:#555;line-height:1.8}
-/* disclaimer */
 .dis-title{font-size:18pt;font-weight:normal;margin:14pt 0 7pt}
 .dis-body{font-size:10pt;color:#444;line-height:1.7;margin-bottom:4pt}
+.print-btn{position:fixed;top:16px;right:16px;display:flex;align-items:center;gap:6px;background:#2d5016;color:white;border:none;font-family:Helvetica,Arial,sans-serif;font-size:9pt;letter-spacing:.1em;text-transform:uppercase;padding:8px 16px;cursor:pointer;opacity:.9;z-index:100}
+.print-btn:hover{opacity:1}
 @media print{
   @page{margin:0;size:A4 portrait}
   body{margin:0}
   .page{page-break-after:always;break-after:page}
+  .print-btn{display:none!important}
 }
-  .print-btn{
-    position:fixed;top:16px;right:16px;
-    display:flex;align-items:center;gap:6px;
-    background:#2d5016;color:white;border:none;
-    font-family:Helvetica,Arial,sans-serif;
-    font-size:9pt;letter-spacing:.1em;text-transform:uppercase;
-    padding:8px 16px;cursor:pointer;
-    opacity:.9;z-index:100;
-  }
-  .print-btn:hover{opacity:1}
-  @media print{.print-btn{display:none!important}}
 </style>
 </head>
 <body>
@@ -172,31 +244,32 @@ body{font-family:'EB Garamond',Georgia,serif;color:#1a1a18;background:white}
 <!-- COVER -->
 <div class="page">
   <div class="cover-logo">Slow Morocco</div>
-  <h1 class="cover-title">${proposal.hero_title || "Your Journey"}</h1>
+  <h1 class="cover-title">${heroTitle}</h1>
   <p class="cover-quote">&ldquo;From far off, through circuitous corridors, came the scent of citrus-blossom and jasmine, with sometimes a bird&rsquo;s song before dawn, sometimes a flute&rsquo;s wail at sunset, and always the call of the muezzin in the night&hellip;&rdquo;</p>
   <p class="cover-attr">&mdash; Edith Wharton, In Morocco (1920)</p>
   <hr class="cover-hr"/>
   <p class="cover-client">${clientName}</p>
-  <p class="cover-meta">${numGuests} guests &nbsp;&middot;&nbsp; December 20&ndash;28, 2026</p>
-  <p class="cover-meta">Essaouira &rarr; Errachidia</p>
+  ${numGuests > 0 ? `<p class="cover-meta">${numGuests} guest${numGuests !== 1 ? "s" : ""}${nightsLabel ? ` &nbsp;&middot;&nbsp; ${nightsLabel}` : ""}</p>` : ""}
+  ${dateRange ? `<p class="cover-meta">${dateRange}</p>` : ""}
+  ${routeArrow ? `<p class="cover-meta">${routeArrow}</p>` : ""}
   <div class="ft" style="margin-top:auto"><span>hello@slowmorocco.com</span><span>slowmorocco.com</span></div>
 </div>
 
 <!-- INVESTMENT -->
 <div class="page">
-  <div class="hd">SLOW MOROCCO &middot; ${proposal.hero_title || "Your Journey"}</div>
+  <div class="hd">SLOW MOROCCO &middot; ${heroTitle}</div>
   <p class="inv-lbl">Your Investment</p>
-  <p class="inv-price">&euro;${priceFormatted}</p>
+  ${priceNum > 0 ? `<p class="inv-price">&euro;${priceFormatted}</p>
   <p class="inv-sub">total for a group of ${numGuests}</p>
-  <p class="inv-sub">&euro;${perPerson} per person</p>
+  ${perPerson ? `<p class="inv-sub">&euro;${perPerson} per person</p>` : ""}` : ""}
   <hr class="sec-hr"/>
   <h2 class="sec-title">What&rsquo;s Included</h2>
   <table class="inc-table"><tbody>
     <tr><td class="inc-dash">&mdash;</td><td>Private transportation throughout with a dedicated driver</td></tr>
     <tr><td class="inc-dash">&mdash;</td><td>Handpicked accommodations, selected for character and location</td></tr>
-    <tr><td class="inc-dash">&mdash;</td><td>All breakfasts, lunches and dinners</td></tr>
+    <tr><td class="inc-dash">&mdash;</td><td>${hasAllMeals ? "All breakfasts, lunches and dinners" : "Meals as listed in the day-by-day itinerary"}</td></tr>
     <tr><td class="inc-dash">&mdash;</td><td>Entrance fees to attractions included in your programme</td></tr>
-    <tr><td class="inc-dash">&mdash;</td><td>English-speaking official guide in Marrakech</td></tr>
+    ${guideEntry ? `<tr><td class="inc-dash">&mdash;</td><td>${guideEntry}</td></tr>` : ""}
     <tr><td class="inc-dash">&mdash;</td><td>24/7 local support throughout your journey</td></tr>
   </tbody></table>
   <p class="not-inc">International flights and travel insurance are arranged separately.</p>
@@ -206,7 +279,7 @@ body{font-family:'EB Garamond',Georgia,serif;color:#1a1a18;background:white}
   <p class="how-bold">If you need to cancel:</p>
   <p class="how-body">More than 45 days before departure &mdash; deposit refunded in full, minus banking fees and any non-refundable commitments already made. Most hotels refund without issue, though Christmas bookings often carry stricter terms.</p>
   <p class="how-body">Less than 45 days before departure &mdash; no refund possible.</p>
-  <p class="how-body">We strongly recommend comprehensive travel insurance covering trip cancellation. Payment accepted by PayPal or international bank transfer. Once you confirm, we send a booking agreement. We are radically transparent &mdash; no hidden surprises.</p>
+  <p class="how-body">We strongly recommend comprehensive travel insurance covering trip cancellation. Payment accepted by PayPal or international bank transfer. Once you confirm, we send a booking agreement.</p>
   <div class="ft"><span>hello@slowmorocco.com</span><span>slowmorocco.com/booking-conditions</span></div>
 </div>
 
@@ -216,31 +289,17 @@ body{font-family:'EB Garamond',Georgia,serif;color:#1a1a18;background:white}
   <h2 class="map-title">Your Route</h2>
   <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" style="width:100%;background:#f5f0e8;border:.5pt solid #e0dbd0">
     <polygon points="419,59 466,49 652,83 721,111 745,149 783,186 791,215 776,248 721,286 659,309 605,333 551,342 489,347 412,356 334,347 257,333 179,309 117,262 102,215 87,168 117,120 179,87 257,59 373,54 419,59" fill="#ede8de" stroke="#d0c8b8" stroke-width="1"/>
-    <polyline points="180,300 220,285 265,275 315,268 365,265 415,268 455,275 490,284" fill="none" stroke="#c8bfaf" stroke-width="5" stroke-linecap="round"/>
-    <polyline points="121,262 258,256 245,267 376,288 444,260 565,282 534,242" fill="none" stroke="#8B7355" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-    <circle cx="121" cy="262" r="5.5" fill="white" stroke="#1a1a18" stroke-width="1.5"/><circle cx="121" cy="262" r="3" fill="#1a1a18"/>
-    <text x="112" y="258" text-anchor="end" font-family="Georgia,serif" font-size="11" fill="#1a1a18">Essaouira</text>
-    <circle cx="258" cy="256" r="5.5" fill="white" stroke="#1a1a18" stroke-width="1.5"/><circle cx="258" cy="256" r="3" fill="#1a1a18"/>
-    <text x="268" y="252" font-family="Georgia,serif" font-size="11" fill="#1a1a18">Marrakech</text>
-    <circle cx="245" cy="267" r="4" fill="white" stroke="#1a1a18" stroke-width="1.5"/><circle cx="245" cy="267" r="2.5" fill="#1a1a18"/>
-    <text x="234" y="282" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="#888">Agafay</text>
-    <circle cx="376" cy="288" r="5.5" fill="white" stroke="#1a1a18" stroke-width="1.5"/><circle cx="376" cy="288" r="3" fill="#1a1a18"/>
-    <text x="386" y="284" font-family="Georgia,serif" font-size="11" fill="#1a1a18">Tamnougalt</text>
-    <circle cx="444" cy="260" r="5.5" fill="white" stroke="#1a1a18" stroke-width="1.5"/><circle cx="444" cy="260" r="3" fill="#1a1a18"/>
-    <text x="454" y="256" font-family="Georgia,serif" font-size="11" fill="#1a1a18">Todra</text>
-    <circle cx="565" cy="282" r="5.5" fill="white" stroke="#1a1a18" stroke-width="1.5"/><circle cx="565" cy="282" r="3" fill="#1a1a18"/>
-    <text x="575" y="278" font-family="Georgia,serif" font-size="11" fill="#1a1a18">The Sahara</text>
-    <circle cx="534" cy="242" r="5.5" fill="white" stroke="#1a1a18" stroke-width="1.5"/><circle cx="534" cy="242" r="3" fill="#1a1a18"/>
-    <text x="544" y="234" font-family="Georgia,serif" font-size="11" fill="#1a1a18">Errachidia</text>
+    ${mapLine}
+    ${mapDots}
   </svg>
-  <p class="map-cities">Essaouira &middot; Marrakech &middot; Agafay &middot; Tamnougalt &middot; Todra Gorge &middot; The Sahara &middot; Errachidia</p>
+  ${routeString ? `<p class="map-cities">${routeString}</p>` : ""}
   <div class="ft" style="margin-top:auto"><span>Slow Morocco</span><span>slowmorocco.com</span></div>
 </div>
 
 <!-- DAYS -->
 ${dayPages}
 
-<!-- DISCLAIMER -->
+<!-- NOTES -->
 <div class="page">
   <div class="hd">SLOW MOROCCO &middot; IMPORTANT NOTES</div>
   <h2 class="dis-title">Accommodation</h2>
