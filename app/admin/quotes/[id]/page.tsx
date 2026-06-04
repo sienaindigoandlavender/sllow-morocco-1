@@ -96,7 +96,6 @@ const Icons = {
 };
 
 export default function EditQuotePage() {
-  // States declared up top first
   const [contentLibrary, setContentLibrary] = useState<ContentBlock[]>([]);
   const [loadingContent, setLoadingContent] = useState(true);
 
@@ -155,6 +154,8 @@ export default function EditQuotePage() {
         .then((data) => {
           if (data.success && data.quote) {
             const q = data.quote;
+            
+            // Restore profile meta text field data
             setQuote({
               clientName: `${q.First_Name || ""} ${q.Last_Name || ""}`.trim(),
               clientEmail: q.Email || "",
@@ -168,6 +169,13 @@ export default function EditQuotePage() {
               totalPrice: q.Price ? `€${q.Price}` : "",
               notes: q.Notes || ""
             });
+
+            // FIXED: Restore the historical array profile of itinerary days from backend record rows!
+            if (q.Days && Array.isArray(q.Days) && q.Days.length > 0) {
+              setDays(q.Days);
+            } else if (q.days && Array.isArray(q.days) && q.days.length > 0) {
+              setDays(q.days);
+            }
           }
         })
         .catch((err) => console.error("Failed to restore initial quote data profile:", err));
@@ -271,6 +279,7 @@ export default function EditQuotePage() {
       Country: quote.clientCountry,
       Status: "IN_PROGRESS",
       Hospitality_Level: quote.hospitalityLevel,
+      Days: days, // Include historical layout state save arrays explicitly!
 
       // 2. Client Controller Parsing Properties (camelCase support)
       firstName: firstName,
@@ -284,7 +293,8 @@ export default function EditQuotePage() {
       hospitalityLevel: quote.hospitalityLevel,
       journeyInterest: quote.journeyInterest,
       notes: quote.notes,
-      status: "IN_PROGRESS"
+      status: "IN_PROGRESS",
+      days: days
     };
 
     try {
