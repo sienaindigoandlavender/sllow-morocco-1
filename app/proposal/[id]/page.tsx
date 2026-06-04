@@ -133,6 +133,21 @@ export default function ProposalPage() {
   const [cityActivities, setCityActivities] = useState<any[]>([]);
   const [activitiesLoading, setActivitiesLoading] = useState(false);
 
+  // Auto-save state
+  const [autoSaveStatus, setAutoSaveStatus] = useState<'idle' | 'saving' | 'saved'>('idle');
+  const autoSaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Debounced save to Supabase
+  const triggerAutoSave = (days: any[]) => {
+    setAutoSaveStatus('saving');
+    if (autoSaveTimer.current) clearTimeout(autoSaveTimer.current);
+    autoSaveTimer.current = setTimeout(async () => {
+      await saveDaysToSupabase(days);
+      setAutoSaveStatus('saved');
+      setTimeout(() => setAutoSaveStatus('idle'), 2000);
+    }, 1200);
+  };
+
   // Update a specific day field in the proposal
   const updateDay = (dayNumber: number, field: string, value: any) => {
     if (!proposal) return;
@@ -142,6 +157,7 @@ export default function ProposalPage() {
     const updated = { ...proposal, days: updatedDays };
     setProposal(updated);
     localStorage.setItem(`proposal-${proposalId}`, JSON.stringify(updated));
+    if (isAdmin) triggerAutoSave(updatedDays);
   };
 
   // Check if admin mode from URL
@@ -908,22 +924,17 @@ Slow Morocco Team`);
                 />
               </div>
 
-              <div className="flex gap-4">
-                <button
-                  onClick={async () => {
-                    if (!proposal) return;
-                    await saveDaysToSupabase(proposal.days);
-                    setEditingDayNumber(null);
-                  }}
-                  className="flex-1 bg-foreground text-background py-3 text-xs tracking-[0.15em] uppercase hover:opacity-80 transition-opacity"
-                >
-                  Save Day
-                </button>
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-muted-foreground italic">
+                  {autoSaveStatus === 'saving' && 'Saving…'}
+                  {autoSaveStatus === 'saved' && '✓ Saved'}
+                  {autoSaveStatus === 'idle' && 'Changes save automatically'}
+                </span>
                 <button
                   onClick={() => setEditingDayNumber(null)}
-                  className="px-6 border border-border text-xs tracking-[0.15em] uppercase hover:opacity-80 transition-opacity"
+                  className="px-6 py-3 border border-border text-xs tracking-[0.15em] uppercase hover:border-foreground transition-colors"
                 >
-                  Cancel
+                  Close
                 </button>
               </div>
             </div>
@@ -1044,6 +1055,13 @@ Slow Morocco Team`);
                     const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(updatedMessage)}`;
                     window.open(mailtoLink);
                     setShowSendModal(false);
+                    // Auto-advance quote status to SENT
+                    const clientId = proposalId.replace('PROP-', '');
+                    fetch(`/api/admin/quotes/${clientId}`, {
+                      method: 'PUT',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({ status: 'SENT' }),
+                    }).catch(() => {});
                   }}
                   className="flex-1 bg-foreground text-background px-6 py-3 text-xs tracking-[0.15em] uppercase hover:opacity-90 transition-opacity"
                 >
@@ -1069,7 +1087,13 @@ Slow Morocco Team`);
       {isAdmin && (
         <div className="fixed bottom-0 left-0 right-0 z-50 bg-green-700 text-white border-t border-foreground/10 print:hidden">
           <div className="container mx-auto px-6 lg:px-16">
-            <div className="flex items-center justify-center gap-8 py-4">
+            <div className="flex items-center justify-between py-4">
+              {/* Auto-save status */}
+              <span className="text-xs text-white/60 italic w-32">
+                {autoSaveStatus === 'saving' && 'Saving…'}
+                {autoSaveStatus === 'saved' && '✓ Saved'}
+              </span>
+              <div className="flex items-center gap-8">
               <button
                 onClick={async () => {
                   if (!proposal) return;
@@ -1123,6 +1147,8 @@ Slow Morocco Team`);
               >
                 Send
               </button>
+              </div>
+              <span className="w-32" />{/* balance spacer */}
             </div>
           </div>
         </div>
