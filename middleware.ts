@@ -5,7 +5,28 @@ export function middleware(request: NextRequest) {
   const hostname = request.headers.get("host") || "";
   const { searchParams, pathname } = request.nextUrl;
 
-  // 1. Redirect non-www to www
+  // ===================================================
+  // 1. BACKEND GATE: Restricted /admin Access (Password Cookie)
+  // ===================================================
+  if (pathname.startsWith('/admin')) {
+    // Let the login view and the internal token auth API process through without structural blocks
+    if (pathname === '/admin/login' || pathname === '/admin/api/auth') {
+      return NextResponse.next();
+    }
+
+    // Read the secure verification session token
+    const sessionToken = request.cookies.get('sm_admin_session')?.value;
+
+    // Force unauthenticated requests straight back to the login gateway
+    if (sessionToken !== 'authenticated_true') {
+      const loginUrl = new URL('/admin/login', request.url);
+      return NextResponse.redirect(loginUrl);
+    }
+  }
+
+  // ===================================================
+  // 2. EXISTING INFRASTRUCTURE: Redirect non-www to www
+  // ===================================================
   if (hostname === "slowmorocco.com") {
     const newUrl = new URL(request.url);
     newUrl.host = "www.slowmorocco.com";
@@ -18,14 +39,18 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(newUrl, 301);
   }
 
-  // 2. Strip trailing slashes (except root /)
+  // ===================================================
+  // 3. EXISTING INFRASTRUCTURE: Strip trailing slashes
+  // ===================================================
   if (pathname !== "/" && pathname.endsWith("/")) {
     const newUrl = new URL(request.url);
     newUrl.pathname = pathname.slice(0, -1);
     return NextResponse.redirect(newUrl, 301);
   }
 
-  // 3. Strip WordPress legacy query parameters (?page_id=, ?p=, ?preview=)
+  // ===================================================
+  // 4. EXISTING INFRASTRUCTURE: Strip WordPress parameters
+  // ===================================================
   if (
     searchParams.has("page_id") ||
     searchParams.has("p") ||
