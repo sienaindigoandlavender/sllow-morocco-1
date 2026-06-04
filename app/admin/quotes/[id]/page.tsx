@@ -56,10 +56,7 @@ function StatusTimeline({ status, onChange }: { status: string; onChange: (s: st
         })}
       </div>
 
-      {/* Terminal stage buttons — shown once SENT */}
-      {/* Always show terminal options — visible at any stage */
-      {
-        <div className="flex gap-2 mt-2 pl-1">
+      <div className="flex gap-2 mt-2 pl-1">
           <button
             onClick={() => onChange("BOOKED")}
             className={`flex-1 py-2 text-[10px] tracking-[0.12em] uppercase border transition-colors
@@ -80,8 +77,7 @@ function StatusTimeline({ status, onChange }: { status: string; onChange: (s: st
           >
             Archived
           </button>
-        </div>
-      )}
+      </div>
     </div>
   );
 }
