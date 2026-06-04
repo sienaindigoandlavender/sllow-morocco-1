@@ -2,7 +2,7 @@
 
 import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 
 interface QuoteData {
   firstName: string;
@@ -58,6 +58,7 @@ const NumberInput = ({ label, value, onChange }: {
 
 function BuildQuoteContent() {
   const searchParams = useSearchParams();
+  const router = useRouter();
   
   // Search
   const [searchQuery, setSearchQuery] = useState("");
@@ -384,14 +385,13 @@ function BuildQuoteContent() {
       setMessage("No saved quote to delete");
       return;
     }
-    if (!confirm("Delete this quote?")) return;
+    if (!confirm(`Delete quote ${clientId}? This cannot be undone.`)) return;
     
     try {
       const res = await fetch(`/api/admin/quotes/${clientId}`, { method: "DELETE" });
       const data = await res.json();
       if (data.success) {
-        handleNewProposal();
-        setMessage("Quote deleted");
+        router.push("/admin/quotes");
       } else {
         setMessage(`Error: ${data.error}`);
       }
