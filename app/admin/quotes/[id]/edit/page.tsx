@@ -96,10 +96,11 @@ const Icons = {
 };
 
 export default function EditQuotePage() {
-  // 1. Declare ALL React hooks up top first so they are available immediately
+  // Content Library data
   const [contentLibrary, setContentLibrary] = useState<ContentBlock[]>([]);
   const [loadingContent, setLoadingContent] = useState(true);
 
+  // Quote metadata
   const [quote, setQuote] = useState<QuoteData>({
     clientName: "",
     clientEmail: "",
@@ -114,6 +115,7 @@ export default function EditQuotePage() {
     notes: "",
   });
 
+  // Itinerary days - start with one empty day
   const [days, setDays] = useState<DayItinerary[]>([
     {
       id: "day-1",
@@ -129,11 +131,12 @@ export default function EditQuotePage() {
     },
   ]);
 
+  // Expanded day panels
   const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(["day-1"]));
 
-  // 2. Run the loaders safely now that quote and setQuote are initialized
+  // Fetch content library and existing quote data on mount
   useEffect(() => {
-    // Load content library blocks
+    // 1. Load the routes library
     fetch("/api/content-library")
       .then((r) => r.json())
       .then((data) => {
@@ -145,7 +148,7 @@ export default function EditQuotePage() {
         setLoadingContent(false);
       });
 
-    // Parse URL parameter dynamically to load existing client data
+    // 2. Extract clientId from URL and load existing client data from Supabase
     const pathSegments = window.location.pathname.split('/');
     const clientId = pathSegments[pathSegments.indexOf('quotes') + 1];
     
@@ -168,6 +171,13 @@ export default function EditQuotePage() {
               totalPrice: q.Price ? `€${q.Price}` : "",
               notes: q.Notes || ""
             });
+            
+            // Check if the database has days arrays stored and load them back safely
+            if (q.Days && Array.isArray(q.Days) && q.Days.length > 0) {
+              setDays(q.Days);
+            } else if (q.days && Array.isArray(q.days) && q.days.length > 0) {
+              setDays(q.days);
+            }
           }
         })
         .catch((err) => console.error("Failed to restore initial quote data profile:", err));
@@ -229,6 +239,7 @@ export default function EditQuotePage() {
   const removeDay = (id: string) => {
     if (days.length <= 1) return;
     const newDays = days.filter((d) => d.id !== id);
+    // Renumber days
     newDays.forEach((d, i) => {
       d.dayNumber = i + 1;
     });
@@ -249,20 +260,23 @@ export default function EditQuotePage() {
     const swapIndex = direction === "up" ? index - 1 : index + 1;
     [newDays[index], newDays[swapIndex]] = [newDays[swapIndex], newDays[index]];
 
+    // Renumber days
     newDays.forEach((d, i) => {
       d.dayNumber = i + 1;
     });
     setDays(newDays);
   };
 
-  // Save quote directly to backend API database endpoints
+  // Save quote to Supabase database
   const handleSave = async () => {
     console.log("Saving quote:", { quote, days });
     
+    // Parse client name split properties safely
     const nameParts = (quote.clientName || "").trim().split(" ");
     const firstName = nameParts[0] || "";
     const lastName = nameParts.slice(1).join(" ") || "";
 
+    // Build the query structural layout to match your database schema expectations
     const quotePayload = {
       firstName: firstName,
       lastName: lastName,
@@ -273,12 +287,17 @@ export default function EditQuotePage() {
       startDate: quote.startDate,
       endDate: quote.endDate,
       hospitalityLevel: quote.hospitalityLevel,
-      journeyInterest: quote.journeyInterest,
+      budget: quote.journeyInterest, // mapping backup fields safely
+      price: quote.totalPrice.replace(/[^\d.]/g, ""), // strip symbols to pass clear text metrics
       notes: quote.notes,
-      status: "IN_PROGRESS" // Fixed parameter targeting case layout rules
+      Status: "IN_PROGRESS", // Satisifies direct backend matching rules
+      status: "IN_PROGRESS",
+      days: days,
+      Days: days
     };
 
     try {
+      // Pull clientId dynamically by tracking window location path segments
       const pathSegments = window.location.pathname.split('/');
       const clientId = pathSegments[pathSegments.indexOf('quotes') + 1];
 
@@ -302,10 +321,14 @@ export default function EditQuotePage() {
 
   // Generate itinerary - saves data and opens the client-ready proposal page
   const handleGenerateItinerary = async () => {
+    // First commit an asynchronous background execution of our save routine
     await handleSave();
 
+    // Pull clientId dynamically by tracking window location path segments
     const pathSegments = window.location.pathname.split('/');
     const clientId = pathSegments[pathSegments.indexOf('quotes') + 1];
+
+    // Generate a clean blueprint proposal ID matching standard records
     const proposalId = `PROP-${clientId}`;
     
     const nameParts = (quote.clientName || "").trim().split(" ");
@@ -331,7 +354,10 @@ export default function EditQuotePage() {
       }))
     };
     
+    // Retain localized caching mechanics for instant preview loads
     localStorage.setItem(`proposal-${proposalId}`, JSON.stringify(proposalData));
+    
+    // Open frontend view
     window.open(`/proposal/${proposalId}?edit=true`, '_blank');
   };
 
@@ -686,7 +712,7 @@ export default function EditQuotePage() {
               ))}
             </div>
 
-            {/* Add Day Button (bottom) */}
+            {/* Add Day Day Button (bottom) */}
             <button
               onClick={addDay}
               className="w-full mt-4 py-4 border-2 border-dashed border-border hover:border-foreground text-muted-foreground hover:text-foreground transition-colors rounded-xl flex items-center justify-center gap-2"
