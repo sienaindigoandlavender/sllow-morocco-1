@@ -688,13 +688,7 @@ function BuildQuoteContent() {
                   disabled={generating}
                   className="w-full py-4 bg-green-700 text-white text-xs tracking-[0.15em] uppercase hover:bg-green-800 disabled:opacity-50 transition-colors"
                 >
-                  {generating ? "Generating..." : "Generate Proposal"}
-                </button>
-                <button
-                  onClick={handleNewProposal}
-                  className="w-full py-4 border border-border text-xs tracking-[0.15em] uppercase hover:border-foreground transition-colors"
-                >
-                  New Proposal
+                  {generating ? "Generating..." : "Generate New Proposal"}
                 </button>
                 <button
                   onClick={handleDelete}
