@@ -233,18 +233,67 @@ export default function EditQuotePage() {
     setDays(newDays);
   };
 
-  // Save quote
-  const handleSave = () => {
+  // Save quote to Supabase database
+  const handleSave = async () => {
     console.log("Saving quote:", { quote, days });
-    alert("Quote saved! (Console log for now)");
+    
+    // Parse client name split properties safely
+    const nameParts = (quote.clientName || "").trim().split(" ");
+    const firstName = nameParts[0] || "";
+    const lastName = nameParts.slice(1).join(" ") || "";
+
+    // Build the query structural layout to match your database schema expectations
+    const quotePayload = {
+      firstName: firstName,
+      lastName: lastName,
+      email: quote.clientEmail,
+      phone: quote.clientPhone,
+      country: quote.clientCountry,
+      travelers: quote.travelers.toString(),
+      startDate: quote.startDate,
+      endDate: quote.endDate,
+      hospitalityLevel: quote.hospitalityLevel,
+      budget: quote.journeyInterest, // mapping backup fields safely
+      price: quote.totalPrice.replace(/[^\d.]/g, ""), // strip symbols to pass clear text metrics
+      notes: quote.notes,
+      Status: "IN_PROGRESS" // Force status to switch directly to In Progress on save!
+    };
+
+    try {
+      // Pull clientId dynamically by tracking window location path segments
+      const pathSegments = window.location.pathname.split('/');
+      const clientId = pathSegments[pathSegments.indexOf('quotes') + 1];
+
+      const res = await fetch(`/api/admin/quotes/${clientId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(quotePayload)
+      });
+      
+      const data = await res.json();
+      if (data.success) {
+        alert("Quote data updated successfully inside Supabase!");
+      } else {
+        alert(`Database rejection: ${data.error}`);
+      }
+    } catch (err) {
+      console.error("Failed database persistence:", err);
+      alert("Failed to submit update script.");
+    }
   };
 
   // Generate itinerary - saves data and opens the client-ready proposal page
-  const handleGenerateItinerary = () => {
-    // Generate a unique proposal ID
-    const proposalId = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+  const handleGenerateItinerary = async () => {
+    // First commit an asynchronous background execution of our save routine
+    await handleSave();
+
+    // Pull clientId dynamically by tracking window location path segments
+    const pathSegments = window.location.pathname.split('/');
+    const clientId = pathSegments[pathSegments.indexOf('quotes') + 1];
+
+    // Generate a clean blueprint proposal ID matching standard records
+    const proposalId = `PROP-${clientId}`;
     
-    // Parse client name for title
     const nameParts = (quote.clientName || "").trim().split(" ");
     const firstName = nameParts[0] || "";
     const lastName = nameParts.slice(1).join(" ") || "";
@@ -252,14 +301,12 @@ export default function EditQuotePage() {
       ? `Bespoke Journey for ${firstName} ${lastName}`.trim()
       : "Your Morocco Journey";
     
-    // Use Day 1's image as hero image (from Content_Library)
     const heroImage = days[0]?.imageUrl || "";
     
-    // Prepare proposal data
     const proposalData = {
       id: proposalId,
       journeyTitle,
-      arcDescription: `A journey crafted for ${quote.clientName || "you"} — ${days.length} days exploring Morocco's most captivating corners, from ancient medinas to sweeping desert landscapes.`,
+      arcDescription: `A journey crafted for ${quote.clientName || "you"} — ${days.length} days exploring Morocco's most captivating corners.`,
       clientName: quote.clientName || "",
       heroImage,
       days: days.map(day => ({
@@ -270,11 +317,11 @@ export default function EditQuotePage() {
       }))
     };
     
-    // Save to localStorage (later: save to database)
+    // Retain localized caching mechanics for instant preview loads
     localStorage.setItem(`proposal-${proposalId}`, JSON.stringify(proposalData));
     
-    // Open the proposal page
-    window.open(`/proposal/${proposalId}`, '_blank');
+    // Open frontend view
+    window.open(`/proposal/${proposalId}?edit=true`, '_blank');
   };
 
   return (
