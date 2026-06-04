@@ -6,7 +6,7 @@ import Footer from "./Footer";
 import NewsletterBanner from "./NewsletterBanner";
 
 // Routes that should NOT have the main header/footer
-const LANDING_PAGE_ROUTES = ["/go"];
+const LANDING_PAGE_ROUTES = ["/go", "/admin", "/proposal"];
 
 export default function LayoutWrapper({
   children,
