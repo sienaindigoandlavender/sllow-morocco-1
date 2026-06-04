@@ -1,733 +1,633 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import { cloudinaryUrl } from "@/lib/cloudinary";
 
-interface ContentBlock {
-  id: string;
-  cityName: string;
-  dayTitle: string;
-  description: string;
-  imageUrl: string;
-  heroImageUrl: string;
-  fromCity: string;
-  toCity: string;
-  dayNumber: string;
-  highlights: string;
-  activities: string;
-  meals: string;
-  accommodationType: string;
-  region: string;
-  subRegion: string;
-}
+// Styled text input — defined outside component to prevent re-render on keystroke
+const TextInput = ({ label, value, onChange, placeholder = "" }: { 
+  label: string; 
+  value: string; 
+  onChange: (v: string) => void;
+  placeholder?: string;
+}) => (
+  <div>
+    <label className="block text-sm text-muted-foreground mb-2">{label}</label>
+    <input
+      type="text"
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      placeholder={placeholder}
+      className="w-full px-4 py-3 border border-border bg-background text-lg focus:outline-none focus:border-foreground transition-colors"
+    />
+  </div>
+);
 
-interface DayItinerary {
-  id: string;
-  dayNumber: number;
-  title: string;
-  fromCity: string;
-  toCity: string;
-  description: string;
-  accommodation: string;
-  meals: string[];
-  activities: string[];
-  imageUrl: string;
-}
+// Styled number input — defined outside component to prevent re-render on keystroke
+const NumberInput = ({ label, value, onChange }: { 
+  label: string; 
+  value: number; 
+  onChange: (v: number) => void;
+}) => (
+  <div>
+    <label className="block text-sm text-muted-foreground mb-2">{label}</label>
+    <input
+      type="number"
+      value={value}
+      onChange={(e) => onChange(parseInt(e.target.value) || 0)}
+      className="w-full px-4 py-3 border border-border bg-background text-xl font-serif focus:outline-none focus:border-foreground transition-colors"
+    />
+  </div>
+);
 
-interface QuoteData {
-  clientName: string;
-  clientEmail: string;
-  clientPhone: string;
-  clientCountry: string;
-  travelers: number;
-  startDate: string;
-  endDate: string;
-  hospitalityLevel: string;
-  journeyInterest: string;
-  totalPrice: string;
-  notes: string;
-}
+export default function QuoteDetailPage() {
+  const params = useParams();
+  const router = useRouter();
+  const clientId = params.id as string;
 
-const defaultDay: Omit<DayItinerary, "id" | "dayNumber"> = {
-  title: "",
-  fromCity: "",
-  toCity: "",
-  description: "",
-  accommodation: "",
-  meals: [],
-  activities: [],
-  imageUrl: "",
-};
+  // Loading state
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [generating, setGenerating] = useState(false);
+  const [message, setMessage] = useState("");
 
-// Icons
-const Icons = {
-  plus: (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2">
-      <line x1="10" y1="4" x2="10" y2="16" />
-      <line x1="4" y1="10" x2="16" y2="10" />
-    </svg>
-  ),
-  trash: (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path d="M2 4h12M5 4V2h6v2M6 7v6M10 7v6M3 4l1 10h8l1-10" />
-    </svg>
-  ),
-  chevronUp: (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M4 10l4-4 4 4" />
-    </svg>
-  ),
-  chevronDown: (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M4 6l4 4 4-4" />
-    </svg>
-  ),
-  grip: (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-      <circle cx="5" cy="4" r="1.5" />
-      <circle cx="11" cy="4" r="1.5" />
-      <circle cx="5" cy="8" r="1.5" />
-      <circle cx="11" cy="8" r="1.5" />
-      <circle cx="5" cy="12" r="1.5" />
-      <circle cx="11" cy="12" r="1.5" />
-    </svg>
-  ),
-};
+  // Form data
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [country, setCountry] = useState("");
+  const [journeyInterest, setJourneyInterest] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [startCity, setStartCity] = useState("");
+  const [endCity, setEndCity] = useState("");
+  const [days, setDays] = useState(7);
+  const [travelers, setTravelers] = useState(2);
+  const [language, setLanguage] = useState("English");
+  const [budget, setBudget] = useState("");
+  const [price, setPrice] = useState("");
+  const [requests, setRequests] = useState("");
+  const [notes, setNotes] = useState("");
+  const [status, setStatus] = useState("NEW");
+  const [routeSequence, setRouteSequence] = useState("");
+  const [heroImage, setHeroImage] = useState("");
 
-export default function EditQuotePage() {
-  const [contentLibrary, setContentLibrary] = useState<ContentBlock[]>([]);
-  const [loadingContent, setLoadingContent] = useState(true);
-
-  const [quote, setQuote] = useState<QuoteData>({
-    clientName: "",
-    clientEmail: "",
-    clientPhone: "",
-    clientCountry: "",
-    travelers: 2,
-    startDate: "",
-    endDate: "",
-    hospitalityLevel: "BOUTIQUE",
-    journeyInterest: "",
-    totalPrice: "",
-    notes: "",
-  });
-
-  const [days, setDays] = useState<DayItinerary[]>([
-    {
-      id: "day-1",
-      dayNumber: 1,
-      title: "",
-      fromCity: "",
-      toCity: "",
-      description: "",
-      accommodation: "",
-      meals: [],
-      activities: [],
-      imageUrl: "",
-    },
-  ]);
-
-  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(["day-1"]));
-
-  // Loaders running cleanly inside useEffect
+  // Fetch quote data
   useEffect(() => {
-    // 1. Load Content Library blocks
-    fetch("/api/content-library")
+    fetch(`/api/admin/quotes/${clientId}`)
       .then((r) => r.json())
       .then((data) => {
-        if (data.success) setContentLibrary(data.contentBlocks || []);
-        setLoadingContent(false);
+        if (data.success && data.quote) {
+          const q = data.quote;
+          setFirstName(q.First_Name || "");
+          setLastName(q.Last_Name || "");
+          setEmail(q.Email || "");
+          setPhone(q.Phone || "");
+          setCountry(q.Country || "");
+          setJourneyInterest(q.Journey_Interest || "");
+          setStartDate(q.Start_Date || "");
+          setEndDate(q.End_Date || "");
+          setStartCity(q.Start_City || "");
+          setEndCity(q.End_City || "");
+          setDays(parseInt(q.Days) || 7);
+          setTravelers(parseInt(q.Number_Travelers) || 2);
+          setLanguage(q.Language || "English");
+          setBudget(q.Budget || "");
+          setRequests(q.Requests || "");
+          setNotes(q.Notes || "");
+          setStatus(q.Status || "NEW");
+          setRouteSequence(q.Notes_Route_Sequence || "");
+          setHeroImage(q.Hero_Image || "");
+        }
+        setLoading(false);
       })
       .catch((err) => {
-        console.error("Failed to load content library:", err);
-        setLoadingContent(false);
+        console.error("Failed to load quote:", err);
+        setLoading(false);
       });
+  }, [clientId]);
 
-    // 2. Parse URL and load existing client quote row data
-    const pathSegments = window.location.pathname.split('/');
-    const clientId = pathSegments[pathSegments.indexOf('quotes') + 1];
+  // ACTION: Update Database
+  const handleUpdateDatabase = async () => {
+    setSaving(true);
+    setMessage("");
     
-    if (clientId) {
-      fetch(`/api/admin/quotes/${clientId}`)
-        .then((r) => r.json())
-        .then((data) => {
-          if (data.success && data.quote) {
-            const q = data.quote;
-            
-            // Restore profile meta text field data
-            setQuote({
-              clientName: `${q.First_Name || ""} ${q.Last_Name || ""}`.trim(),
-              clientEmail: q.Email || "",
-              clientPhone: q.Phone || "",
-              clientCountry: q.Country || "",
-              travelers: parseInt(q.Number_Travelers) || 2,
-              startDate: q.Start_Date || "",
-              endDate: q.End_Date || "",
-              hospitalityLevel: q.Hospitality_Level || "BOUTIQUE",
-              journeyInterest: q.Journey_Interest || "",
-              totalPrice: q.Price ? `€${q.Price}` : "",
-              notes: q.Notes || ""
-            });
-
-            // FIXED: Restore the historical array profile of itinerary days from backend record rows!
-            if (q.Days && Array.isArray(q.Days) && q.Days.length > 0) {
-              setDays(q.Days);
-            } else if (q.days && Array.isArray(q.days) && q.days.length > 0) {
-              setDays(q.days);
-            }
-          }
-        })
-        .catch((err) => console.error("Failed to restore initial quote data profile:", err));
-    }
-  }, []);
-
-  // Helper to update a single quote field without spreading stale state
-  const updateQuoteField = (field: keyof QuoteData, value: string | number) => {
-    setQuote(prev => ({ ...prev, [field]: value }));
-  };
-
-  // Apply content from library to a day
-  const applyContentToDay = (dayId: string, contentBlock: ContentBlock) => {
-    setDays(days.map((d) => {
-      if (d.id === dayId) {
-        return {
-          ...d,
-          title: contentBlock.toCity || contentBlock.dayTitle || contentBlock.cityName,
-          fromCity: contentBlock.fromCity,
-          toCity: contentBlock.toCity,
-          description: contentBlock.description,
-          imageUrl: contentBlock.imageUrl || contentBlock.heroImageUrl,
-          activities: contentBlock.activities ? contentBlock.activities.split(",").map(s => s.trim()) : [],
-          meals: contentBlock.meals ? contentBlock.meals.split(",").map(s => s.trim()) : [],
-          accommodation: contentBlock.accommodationType,
-        };
-      }
-      return d;
-    }));
-  };
-
-  // Toggle day expansion
-  const toggleDay = (id: string) => {
-    const newExpanded = new Set(expandedDays);
-    if (newExpanded.has(id)) {
-      newExpanded.delete(id);
-    } else {
-      newExpanded.add(id);
-    }
-    setExpandedDays(newExpanded);
-  };
-
-  // Add new day
-  const addDay = () => {
-    const newId = `day-${Date.now()}`;
-    const newDayNumber = days.length + 1;
-    setDays([
-      ...days,
-      {
-        id: newId,
-        dayNumber: newDayNumber,
-        ...defaultDay,
-      },
-    ]);
-    setExpandedDays(new Set([...Array.from(expandedDays), newId]));
-  };
-
-  // Remove day
-  const removeDay = (id: string) => {
-    if (days.length <= 1) return;
-    const newDays = days.filter((d) => d.id !== id);
-    newDays.forEach((d, i) => {
-      d.dayNumber = i + 1;
-    });
-    setDays(newDays);
-  };
-
-  // Update day
-  const updateDay = (id: string, field: keyof DayItinerary, value: any) => {
-    setDays(days.map((d) => (d.id === id ? { ...d, [field]: value } : d)));
-  };
-
-  // Move day up/down
-  const moveDay = (index: number, direction: "up" | "down") => {
-    if (direction === "up" && index === 0) return;
-    if (direction === "down" && index === days.length - 1) return;
-
-    const newDays = [...days];
-    const swapIndex = direction === "up" ? index - 1 : index + 1;
-    [newDays[index], newDays[swapIndex]] = [newDays[swapIndex], newDays[index]];
-
-    newDays.forEach((d, i) => {
-      d.dayNumber = i + 1;
-    });
-    setDays(newDays);
-  };
-
-  // Save quote directly to database with multi-case matching keys
-  const handleSave = async () => {
-    console.log("Saving quote:", { quote, days });
-    
-    const nameParts = (quote.clientName || "").trim().split(" ");
-    const firstName = nameParts[0] || "";
-    const lastName = nameParts.slice(1).join(" ") || "";
-
-    const quotePayload = {
-      // 1. Direct Backend Column Format Mapping (PascalCase support)
-      First_Name: firstName,
-      Last_Name: lastName,
-      Email: quote.clientEmail,
-      Country: quote.clientCountry,
-      Status: "IN_PROGRESS",
-      Hospitality_Level: quote.hospitalityLevel,
-      Days: days, // Include historical layout state save arrays explicitly!
-
-      // 2. Client Controller Parsing Properties (camelCase support)
-      firstName: firstName,
-      lastName: lastName,
-      email: quote.clientEmail,
-      phone: quote.clientPhone,
-      country: quote.clientCountry,
-      travelers: quote.travelers.toString(),
-      startDate: quote.startDate,
-      endDate: quote.endDate,
-      hospitalityLevel: quote.hospitalityLevel,
-      journeyInterest: quote.journeyInterest,
-      notes: quote.notes,
-      status: "IN_PROGRESS",
-      days: days
+    const quoteData = {
+      firstName, lastName, email, phone, country,
+      journeyInterest, startDate, endDate, startCity, endCity,
+      days: days.toString(), travelers: travelers.toString(), 
+      language, budget, requests, notes, status,
+      notes_route_sequence: routeSequence.replace(/[–—]/g, '-'),
+      hero_image: heroImage
     };
-
+    
     try {
-      const pathSegments = window.location.pathname.split('/');
-      const clientId = pathSegments[pathSegments.indexOf('quotes') + 1];
-
       const res = await fetch(`/api/admin/quotes/${clientId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(quotePayload)
+        body: JSON.stringify(quoteData)
+      });
+      const data = await res.json();
+      setMessage(data.success ? "Quote updated!" : `Error: ${data.error}`);
+    } catch (err) {
+      setMessage("Failed to save");
+    }
+    setSaving(false);
+  };
+
+  // ACTION: Generate Proposal
+  const handleGenerateProposal = async () => {
+    setGenerating(true);
+    setMessage("");
+    
+    try {
+      const contentRes = await fetch(`/api/content-library?t=${Date.now()}`, { cache: 'no-store' });
+      const contentData = await contentRes.json();
+      
+      if (!contentData.success) {
+        setMessage(`Error: ${contentData.error || "Failed to fetch content"}`);
+        setGenerating(false);
+        return;
+      }
+      
+      if (!contentData.contentBlocks?.length) {
+        setMessage("Error: No content blocks found in the routes library.");
+        setGenerating(false);
+        return;
+      }
+      
+      const contentBlocks = contentData.contentBlocks;
+      const numDays = days || 7;
+      
+      let selectedBlocks: any[] = [];
+      
+      // If route sequence is provided, use it directly
+      if (routeSequence && routeSequence.trim()) {
+        const routeIds = routeSequence.trim().replace(/[\u2013\u2014\u2012\u2010]/g, "-").split("\n").map((id: string) => id.trim()).filter((id: string) => id.length > 0);
+        const blockMap = new Map(contentBlocks.map((b: any) => [b.id, b]));
+        // Use route IDs directly — no deduplication, order matters
+        selectedBlocks = routeIds.map((id: string) => {
+          const block = blockMap.get(id);
+          if (!block) console.warn("Route ID not found in content library:", id);
+          return block;
+        }).filter(Boolean);
+        if (selectedBlocks.length === 0) {
+          setMessage("Error: None of the route IDs were found in the content library. Check your route sequence.");
+          setGenerating(false);
+          return;
+        }
+      } else {
+        // Fall back to smart scoring
+        const interestKeywords = (journeyInterest || "").toLowerCase().split(/[\s,]+/);
+        const start = (startCity || "").toLowerCase();
+        const end = (endCity || "").toLowerCase();
+        const scored = contentBlocks.map((block: any) => {
+          let score = 0;
+          const from = (block.fromCity || "").toLowerCase();
+          const to = (block.toCity || "").toLowerCase();
+          const desc = (block.description || "").toLowerCase();
+          const city = (block.cityName || "").toLowerCase();
+          if (from === start || city === start) score += 10;
+          if (to === end || city === end) score += 10;
+          interestKeywords.forEach((kw: string) => {
+            if (kw.length > 2 && (from.includes(kw) || to.includes(kw) || desc.includes(kw) || city.includes(kw))) score += 3;
+          });
+          if (block.imageUrl) score += 2;
+          if (block.description) score += 1;
+          if (!block.fromCity && !block.toCity && !block.cityName) score = 0;
+          return { ...block, _score: score };
+        });
+        const sorted = scored.filter((b: any) => b._score > 0).sort((a: any, b: any) => b._score - a._score);
+        const seen = new Set<string>();
+        for (const block of sorted) {
+          const key = `${block.fromCity}-${block.toCity}`;
+          if (!seen.has(key) && selectedBlocks.length < numDays) {
+            seen.add(key);
+            selectedBlocks.push(block);
+          }
+        }
+      }
+      
+      // Always use a deterministic proposal ID based on client ID
+      const proposalId = `PROP-${clientId}`;
+
+      
+      const routePoints: { name: string; coords: [number, number] }[] = [];
+      const cityCoords: { [key: string]: [number, number] } = {
+        "Marrakech": [-7.9811, 31.6295], "Casablanca": [-7.5898, 33.5731],
+        "Fes": [-5.0078, 34.0181], "Chefchaouen": [-5.2636, 35.1688],
+        "Essaouira": [-9.7595, 31.5085], "Merzouga": [-4.0133, 31.0802],
+        "Ouarzazate": [-6.8936, 30.9189], "Tamnougalt": [-6.4667, 30.95],
+        "Zagora": [-5.8381, 30.3306], "Tinghir": [-5.5328, 31.5147],
+        "Dades": [-5.9833, 31.4500], "Todra": [-5.5833, 31.5500],
+        "Agafay Desert": [-8.1500, 31.4000], "Errachidia": [-4.4261, 31.9314],
+      };
+
+      const proposalDays = selectedBlocks.map((block: any, index: number) => {
+        const dayNum = index + 1;
+        if (block.fromCity && cityCoords[block.fromCity] && !routePoints.some(p => p.name === block.fromCity)) {
+          routePoints.push({ name: block.fromCity, coords: cityCoords[block.fromCity] });
+        }
+        if (block.toCity && cityCoords[block.toCity] && !routePoints.some(p => p.name === block.toCity)) {
+          routePoints.push({ name: block.toCity, coords: cityCoords[block.toCity] });
+        }
+        return {
+          dayNumber: dayNum,
+          date: startDate ? new Date(new Date(startDate).getTime() + (dayNum - 1) * 24 * 60 * 60 * 1000).toISOString().split("T")[0] : "",
+          title: block.toCity || block.cityName || block.dayTitle || block.fromCity || `Day ${dayNum}`,
+          fromCity: block.fromCity || "",
+          toCity: block.toCity || "",
+          description: block.description || "",
+          imageUrl: block.imageUrl || "",
+          durationHours: block.travelTime || "",
+          activities: block.activities || "",
+          difficultyLevel: block.difficulty || "",
+          meals: block.meals || "",
+          accommodationType: block.accommodationType || "",
+        };
       });
       
+      const totalPrice = parseFloat(price) || 2450;
+      const formattedPrice = `€${totalPrice.toLocaleString()} EUR`;
+      const heroBlock = contentBlocks.find((b: any) => b.heroImageUrl) || {};
+      
+      const proposalData = {
+        id: proposalId,
+        journeyTitle: `${firstName} in Morocco`,
+        arcDescription: `An ${proposalDays.length - 1}-night journey through Morocco, crafted for Ms. ${firstName} ${lastName}.`,
+        clientName: `${firstName} ${lastName}`.trim(),
+        heroImage: heroImage || heroBlock.heroImageUrl || "",
+        price: price || "22,000",
+        travelers: travelers || 4,
+        days: proposalDays
+      };
+      
+      console.log("Saving proposal data:", proposalData);
+      
+      // Save to localStorage for immediate viewing
+      localStorage.setItem(`proposal-${proposalId}`, JSON.stringify(proposalData));
+      
+      // Save proposal to Supabase
+      try {
+        const proposalPayload = {
+          clientId: clientId,
+          clientName: `${firstName} ${lastName}`.trim(),
+          country: country,
+          heroImageUrl: heroBlock.heroImageUrl || proposalDays[0]?.imageUrl || "",
+          heroTitle: heroBlock.heroTitle || "Your Morocco Journey",
+          heroBlurb: heroBlock.heroBlurb || `A ${proposalDays.length}-day journey exploring Morocco's most captivating corners.`,
+          startDate: startDate,
+          endDate: endDate,
+          days: days,
+          nights: days - 1,
+          numGuests: travelers,
+          totalPrice: totalPrice,
+          formattedPrice: formattedPrice,
+          routePoints: routePoints,
+          daysList: proposalDays,
+        };
+        
+        const saveRes = await fetch("/api/admin/proposals", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(proposalPayload),
+        });
+        
+        const saveData = await saveRes.json();
+        if (!saveData.success) {
+          console.warn("Failed to save proposal:", saveData.error);
+        } else {
+          console.log("Proposal saved:", saveData.proposalId);
+        }
+      } catch (proposalErr) {
+        console.warn("Failed to save proposal:", proposalErr);
+        // Continue anyway - localStorage has the data
+      }
+      
+      console.log("Opening proposal page:", `/proposal/${proposalId}`);
+      window.open(`/proposal/${proposalId}?edit=true`, '_blank');
+      setMessage("Proposal generated!");
+    } catch (err) {
+      console.error("Generate error:", err);
+      setMessage(`Failed to generate proposal: ${err}`);
+    }
+    setGenerating(false);
+  };
+
+  // ACTION: Delete
+  const handleDelete = async () => {
+    if (!confirm("Delete this quote?")) return;
+    
+    try {
+      const res = await fetch(`/api/admin/quotes/${clientId}`, { method: "DELETE" });
       const data = await res.json();
       if (data.success) {
-        alert("Quote data updated successfully inside Supabase!");
+        router.push("/admin/quotes");
       } else {
-        alert(`Database rejection: ${data.error}`);
+        setMessage(`Error: ${data.error}`);
       }
     } catch (err) {
-      console.error("Failed database persistence:", err);
-      alert("Failed to submit update script.");
+      setMessage("Failed to delete");
     }
   };
 
-  // Generate itinerary - saves data and opens the client-ready proposal page
-  const handleGenerateItinerary = async () => {
-    await handleSave();
-
-    const pathSegments = window.location.pathname.split('/');
-    const clientId = pathSegments[pathSegments.indexOf('quotes') + 1];
-    const proposalId = `PROP-${clientId}`;
-    
-    const nameParts = (quote.clientName || "").trim().split(" ");
-    const firstName = nameParts[0] || "";
-    const lastName = nameParts.slice(1).join(" ") || "";
-    const journeyTitle = quote.clientName 
-      ? `Bespoke Journey for ${firstName} ${lastName}`.trim()
-      : "Your Morocco Journey";
-    
-    const heroImage = days[0]?.imageUrl || "";
-    
-    const proposalData = {
-      id: proposalId,
-      journeyTitle,
-      arcDescription: `A journey crafted for ${quote.clientName || "you"} — ${days.length} days exploring Morocco's most captivating corners.`,
-      clientName: quote.clientName || "",
-      heroImage,
-      days: days.map(day => ({
-        dayNumber: day.dayNumber,
-        title: day.title || day.toCity || "Morocco",
-        description: day.description || "Your journey continues...",
-        imageUrl: day.imageUrl || ""
-      }))
-    };
-    
-    localStorage.setItem(`proposal-${proposalId}`, JSON.stringify(proposalData));
-    window.open(`/proposal/${proposalId}?edit=true`, '_blank');
-  };
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="w-8 h-8 border-2 border-foreground/20 border-t-foreground rounded-full animate-spin" />
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-muted/50">
+    <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-background border-b border-border py-4 px-6 sticky top-0 z-50">
+      <header className="border-b border-border py-6 px-6">
         <div className="container mx-auto flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Link href="/admin/quotes" className="text-muted-foreground hover:text-foreground transition-colors">
-              ← All Quotes
+              ← Back
             </Link>
-            <h1 className="font-serif text-xl">Edit Quote</h1>
+            <h1 className="font-serif text-3xl">Quote Details</h1>
+            <span className="text-sm text-muted-foreground font-mono">{clientId}</span>
           </div>
-          <div className="flex items-center gap-3">
-            <button
-              onClick={handleGenerateItinerary}
-              className="px-4 py-2 text-sm border border-border hover:border-foreground transition-colors"
-            >
-              Generate Itinerary
-            </button>
-            <button
-              onClick={handleSave}
-              className="px-4 py-2 text-sm bg-foreground text-background hover:bg-foreground/90 transition-colors"
-            >
-              Save Quote
-            </button>
+          <div className={`text-xs px-3 py-1 rounded ${
+            status === "NEW" ? "bg-green-50 text-green-700" :
+            status === "IN_PROGRESS" ? "bg-blue-50 text-blue-700" :
+            status === "CONFIRMED" ? "bg-emerald-50 text-emerald-700" :
+            status === "CANCELLED" ? "bg-red-50 text-red-700" :
+            "bg-gray-50 text-gray-700"
+          }`}>
+            {status}
           </div>
         </div>
       </header>
 
-      {/* Search Existing Journey */}
-      <div className="bg-background border-b border-border py-6 px-6">
-        <div className="container mx-auto max-w-6xl">
-          <div className="flex items-center gap-4">
-            <div className="relative flex-1 max-w-md">
-              <input
-                type="text"
-                placeholder="Search existing journeys to use as template..."
-                className="w-full pl-10 pr-4 py-3 border border-border bg-background text-sm focus:outline-none focus:border-foreground rounded-lg"
-              />
-              <svg 
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" 
-                width="16" 
-                height="16" 
-                viewBox="0 0 16 16" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="1.5"
-              >
-                <circle cx="7" cy="7" r="5" />
-                <path d="M11 11l3 3" />
-              </svg>
-            </div>
-            <span className="text-sm text-muted-foreground">or start from scratch below</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="container mx-auto px-6 py-8 max-w-6xl">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Left Column - Client Info & Summary */}
-          <div className="lg:col-span-1 space-y-6">
+      <main className="container mx-auto px-6 py-12 max-w-5xl">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          
+          {/* Left - Form */}
+          <div className="lg:col-span-2 space-y-12">
+            
             {/* Client Information */}
-            <div className="bg-background border border-border rounded-xl p-6">
-              <h2 className="font-serif text-lg mb-4">Client Information</h2>
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm text-muted-foreground mb-1">Client Name</label>
-                  <input
-                    type="text"
-                    value={quote.clientName}
-                    onChange={(e) => updateQuoteField("clientName", e.target.value)}
-                    className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:border-foreground"
-                    placeholder="John Smith"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm text-muted-foreground mb-1">Email</label>
-                  <input
-                    type="email"
-                    value={quote.clientEmail}
-                    onChange={(e) => updateQuoteField("clientEmail", e.target.value)}
-                    className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:border-foreground"
-                    placeholder="john@example.com"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm text-muted-foreground mb-1">Phone</label>
-                  <input
-                    type="tel"
-                    value={quote.clientPhone}
-                    onChange={(e) => updateQuoteField("clientPhone", e.target.value)}
-                    className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:border-foreground"
-                    placeholder="+1 555 123 4567"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm text-muted-foreground mb-1">Country</label>
-                  <input
-                    type="text"
-                    value={quote.clientCountry}
-                    onChange={(e) => updateQuoteField("clientCountry", e.target.value)}
-                    className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:border-foreground"
-                    placeholder="United States"
-                  />
-                </div>
+            <section>
+              <h2 className="font-serif text-xl mb-6">Client Information</h2>
+              <div className="grid grid-cols-2 gap-6 mb-6">
+                <TextInput label="First Name" value={firstName} onChange={setFirstName} />
+                <TextInput label="Last Name" value={lastName} onChange={setLastName} />
               </div>
-            </div>
+              <div className="mb-6">
+                <TextInput label="Email" value={email} onChange={setEmail} />
+              </div>
+              <div className="grid grid-cols-2 gap-6">
+                <TextInput label="Phone" value={phone} onChange={setPhone} placeholder="+1 555 123 4567" />
+                <TextInput label="Country" value={country} onChange={setCountry} />
+              </div>
+            </section>
 
             {/* Journey Details */}
-            <div className="bg-background border border-border rounded-xl p-6">
-              <h2 className="font-serif text-lg mb-4">Journey Details</h2>
-              <div className="space-y-4">
+            <section>
+              <h2 className="font-serif text-xl mb-6">Journey Details</h2>
+              <div className="mb-6">
+                <TextInput label="Journey Interest" value={journeyInterest} onChange={setJourneyInterest} placeholder="e.g., Sahara Desert, Imperial Cities" />
+              </div>
+              <div className="grid grid-cols-2 gap-6 mb-6">
                 <div>
-                  <label className="block text-sm text-muted-foreground mb-1">Number of Travelers</label>
+                  <label className="block text-sm text-muted-foreground mb-2">Start Date</label>
                   <input
-                    type="number"
-                    min="1"
-                    value={quote.travelers}
-                    onChange={(e) => updateQuoteField("travelers", parseInt(e.target.value) || 1)}
-                    className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:border-foreground"
+                    type="date"
+                    value={startDate}
+                    onChange={(e) => setStartDate(e.target.value)}
+                    className="w-full px-4 py-3 border border-border bg-background text-lg focus:outline-none focus:border-foreground transition-colors"
                   />
                 </div>
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className="block text-sm text-muted-foreground mb-1">Start Date</label>
-                    <input
-                      type="date"
-                      value={quote.startDate}
-                      onChange={(e) => updateQuoteField("startDate", e.target.value)}
-                      className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:border-foreground"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm text-muted-foreground mb-1">End Date</label>
-                    <input
-                      type="date"
-                      value={quote.endDate}
-                      onChange={(e) => updateQuoteField("endDate", e.target.value)}
-                      className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:border-foreground"
-                    />
-                  </div>
-                </div>
                 <div>
-                  <label className="block text-sm text-muted-foreground mb-1">Hospitality Level</label>
-                  <select
-                    value={quote.hospitalityLevel}
-                    onChange={(e) => updateQuoteField("hospitalityLevel", e.target.value)}
-                    className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:border-foreground"
-                  >
-                    <option value="ESSENTIALS">Essentials</option>
-                    <option value="BOUTIQUE">Boutique</option>
-                    <option value="SIGNATURE">Signature</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm text-muted-foreground mb-1">Total Price</label>
+                  <label className="block text-sm text-muted-foreground mb-2">End Date</label>
                   <input
-                    type="text"
-                    value={quote.totalPrice}
-                    onChange={(e) => updateQuoteField("totalPrice", e.target.value)}
-                    className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:border-foreground"
-                    placeholder="$4,500 USD"
+                    type="date"
+                    value={endDate}
+                    onChange={(e) => setEndDate(e.target.value)}
+                    className="w-full px-4 py-3 border border-border bg-background text-lg focus:outline-none focus:border-foreground transition-colors"
                   />
                 </div>
               </div>
-            </div>
+              <div className="grid grid-cols-2 gap-6 mb-6">
+                <TextInput label="Start City" value={startCity} onChange={setStartCity} placeholder="e.g., Marrakech" />
+                <TextInput label="End City" value={endCity} onChange={setEndCity} placeholder="e.g., Casablanca" />
+              </div>
+              <div className="grid grid-cols-3 gap-6 mb-6">
+                <NumberInput label="Days" value={days} onChange={setDays} />
+                <NumberInput label="Travelers" value={travelers} onChange={setTravelers} />
+                <div>
+                  <label className="block text-sm text-muted-foreground mb-2">Language</label>
+                  <select
+                    value={language}
+                    onChange={(e) => setLanguage(e.target.value)}
+                    className="w-full px-4 py-3 border border-border bg-background text-lg focus:outline-none focus:border-foreground transition-colors"
+                  >
+                    <option value="English">English</option>
+                    <option value="French">French</option>
+                    <option value="Spanish">Spanish</option>
+                    <option value="German">German</option>
+                    <option value="Arabic">Arabic</option>
+                  </select>
+                </div>
+              </div>
+              <div className="grid grid-cols-3 gap-6">
+                <TextInput label="Budget" value={budget} onChange={setBudget} placeholder="e.g., $2,500 - $4,000" />
+                <div>
+                  <label className="block text-sm text-muted-foreground mb-2">Price (€)</label>
+                  <input
+                    type="text"
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
+                    placeholder="e.g., 2450"
+                    className="w-full px-4 py-3 border border-border bg-background text-xl font-serif focus:outline-none focus:border-foreground transition-colors"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm text-muted-foreground mb-2">Status</label>
+                  <select
+                    value={status}
+                    onChange={(e) => setStatus(e.target.value)}
+                    className="w-full px-4 py-3 border border-border bg-background text-lg focus:outline-none focus:border-foreground transition-colors"
+                  >
+                    <option value="NEW">New</option>
+                    <option value="IN_PROGRESS">In Progress</option>
+                    <option value="SENT">Sent</option>
+                    <option value="CONFIRMED">Confirmed</option>
+                    <option value="CANCELLED">Cancelled</option>
+                  </select>
+                </div>
+              </div>
+            </section>
 
-            {/* Quick Stats */}
-            <div className="bg-foreground text-background rounded-xl p-6">
-              <h2 className="font-serif text-lg mb-4">Summary</h2>
-              <div className="space-y-3 text-sm">
+            {/* Special Requests */}
+            <section>
+              <h2 className="font-serif text-xl mb-6">Special Requests</h2>
+              <textarea
+                value={requests}
+                onChange={(e) => setRequests(e.target.value)}
+                rows={4}
+                placeholder="Dietary needs, accessibility requirements, special interests..."
+                className="w-full px-4 py-3 border border-border bg-background text-lg focus:outline-none focus:border-foreground transition-colors resize-none"
+              />
+            </section>
+
+            {/* Internal Notes */}
+            <section>
+              <h2 className="font-serif text-xl mb-6">Internal Notes</h2>
+              <textarea
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
+                rows={3}
+                placeholder="Notes for your reference (not visible to client)..."
+                className="w-full px-4 py-3 border border-border bg-background text-lg focus:outline-none focus:border-foreground transition-colors resize-none"
+              />
+            </section>
+
+            {/* Hero Image */}
+            <section>
+              <h2 className="font-serif text-xl mb-2">Hero Image</h2>
+              <p className="text-sm text-muted-foreground mb-4">Full-bleed banner image for the proposal. Use a cinematic, wide Cloudinary URL.</p>
+              <input
+                type="text"
+                value={heroImage}
+                onChange={(e) => setHeroImage(e.target.value)}
+                placeholder="https://res.cloudinary.com/..."
+                className="w-full px-4 py-3 border border-border bg-background text-sm focus:outline-none focus:border-foreground transition-colors"
+              />
+              {heroImage && (
+                <img src={heroImage} alt="Hero preview" className="mt-4 w-full h-40 object-cover" />
+              )}
+            </section>
+
+            {/* Route Sequence */}
+            <section>
+              <h2 className="font-serif text-xl mb-2">Route Sequence</h2>
+              <p className="text-sm text-muted-foreground mb-4">Enter one route ID per line in order. These will be used to generate the proposal day by day. Example:<br/>
+                <code className="text-xs bg-muted px-1">STAY_ESSAOUIRA</code><br/>
+                <code className="text-xs bg-muted px-1">ESS-MAR-NEW</code><br/>
+                <code className="text-xs bg-muted px-1">STAY_MARRAKECH</code>
+              </p>
+              <textarea
+                value={routeSequence}
+                onChange={(e) => setRouteSequence(e.target.value)}
+                rows={12}
+                placeholder={"STAY_ESSAOUIRA\nSTAY_ESSAOUIRA\nESS-MAR-NEW\nSTAY_MARRAKECH\nMAR-AGAFAY\nMAR-TAM-004\nDAD-MER-116\nSTAY_MERZOUGA\nSTAY_MERZOUGA"}
+                className="w-full px-4 py-3 border border-border bg-background text-sm font-mono focus:outline-none focus:border-foreground transition-colors resize-none"
+              />
+            </section>
+
+          </div>
+
+          {/* Right - Summary & Actions */}
+          <div className="lg:col-span-1">
+            <div className="sticky top-8 border border-border p-8">
+              <h2 className="font-serif text-xl mb-6">Summary</h2>
+              
+              {/* Client Name */}
+              <div className="mb-8">
+                <p className="text-sm text-muted-foreground mb-1">Client</p>
+                <p className="font-serif text-2xl">
+                  {firstName || lastName ? `${firstName} ${lastName}` : "—"}
+                </p>
+              </div>
+
+              {/* Journey Info */}
+              <div className="space-y-4 mb-8 pb-8 border-b border-border">
                 <div className="flex justify-between">
-                  <span className="text-background/70">Duration</span>
-                  <span>{days.length} days / {days.length - 1} nights</span>
+                  <span className="text-muted-foreground">Duration</span>
+                  <span className="font-serif">{days} days</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-background/70">Travelers</span>
-                  <span>{quote.travelers}</span>
+                  <span className="text-muted-foreground">Travelers</span>
+                  <span className="font-serif">{travelers}</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-background/70">Level</span>
-                  <span>{quote.hospitalityLevel}</span>
-                </div>
-                {quote.totalPrice && (
-                  <div className="flex justify-between pt-3 border-t border-background/20">
-                    <span className="font-medium">Total</span>
-                    <span className="font-medium">{quote.totalPrice}</span>
+                {startDate && (
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Start</span>
+                    <span className="font-serif">{new Date(startDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                  </div>
+                )}
+                {endDate && (
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">End</span>
+                    <span className="font-serif">{new Date(endDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                  </div>
+                )}
+                {(startCity || endCity) && (
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Route</span>
+                    <span className="font-serif text-right">{startCity}{startCity && endCity ? " → " : ""}{endCity}</span>
+                  </div>
+                )}
+                {journeyInterest && (
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Interest</span>
+                    <span className="font-serif text-right max-w-[150px]">{journeyInterest}</span>
+                  </div>
+                )}
+                {price && (
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Price</span>
+                    <span className="font-serif text-xl">€{price}</span>
                   </div>
                 )}
               </div>
-            </div>
-          </div>
 
-          {/* Right Column - Itinerary Builder */}
-          <div className="lg:col-span-2">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="font-serif text-2xl">Itinerary</h2>
-              <button
-                onClick={addDay}
-                className="flex items-center gap-2 px-4 py-2 text-sm border border-border hover:border-foreground transition-colors rounded-lg"
-              >
-                {Icons.plus}
-                Add Day
-              </button>
-            </div>
-
-            {/* Days */}
-            <div className="space-y-4">
-              {days.map((day, index) => (
-                <div key={day.id} className="bg-background border border-border rounded-xl overflow-hidden">
-                  {/* Day Header */}
-                  <div
-                    className="flex items-center justify-between p-4 cursor-pointer hover:bg-muted/30 transition-colors"
-                    onClick={() => toggleDay(day.id)}
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="text-muted-foreground">{Icons.grip}</span>
-                      <div>
-                        <span className="font-medium">Day {day.dayNumber}</span>
-                        {day.title && <span className="text-muted-foreground ml-2">— {day.title}</span>}
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      {day.fromCity && day.toCity && (
-                        <span className="text-xs text-muted-foreground px-2 py-1 bg-muted rounded">
-                          {day.fromCity} → {day.toCity}
-                        </span>
-                      )}
-                      <span className="text-muted-foreground">
-                        {expandedDays.has(day.id) ? Icons.chevronUp : Icons.chevronDown}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Day Content (expanded) */}
-                  {expandedDays.has(day.id) && (
-                    <div className="border-t border-border p-6">
-                      {/* Content Library Selector */}
-                      {contentLibrary.length > 0 && (
-                        <div className="mb-4 p-3 bg-muted/30 rounded-lg">
-                          <label className="block text-sm text-muted-foreground mb-2">
-                            Quick Fill from Content Library ({contentLibrary.length} blocks available)
-                          </label>
-                          <select
-                            onChange={(e) => {
-                              const content = contentLibrary.find(c => c.id === e.target.value);
-                              if (content) {
-                                applyContentToDay(day.id, content);
-                              }
-                            }}
-                            className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:border-foreground bg-background"
-                            defaultValue=""
-                          >
-                            <option value="" disabled>Select content block...</option>
-                            {contentLibrary.map((content) => (
-                              <option key={content.id} value={content.id}>
-                                {content.fromCity && content.toCity 
-                                  ? `${content.fromCity} → ${content.toCity}`
-                                  : content.toCity || content.dayTitle || content.cityName
-                                } {content.region ? `(${content.region})` : ""}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-                      )}
-
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                        <div>
-                          <label className="block text-sm text-muted-foreground mb-1">Day Title (City)</label>
-                          <input
-                            type="text"
-                            value={day.title}
-                            onChange={(e) => updateDay(day.id, "title", e.target.value)}
-                            className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:border-foreground"
-                            placeholder="e.g., Marrakech"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-sm text-muted-foreground mb-1">Image URL</label>
-                          <input
-                            type="text"
-                            value={day.imageUrl}
-                            onChange={(e) => updateDay(day.id, "imageUrl", e.target.value)}
-                            className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:border-foreground"
-                            placeholder="https://..."
-                          />
-                        </div>
-                      </div>
-
-                      <div className="mb-4">
-                        <label className="block text-sm text-muted-foreground mb-1">Description</label>
-                        <textarea
-                          value={day.description}
-                          onChange={(e) => updateDay(day.id, "description", e.target.value)}
-                          rows={4}
-                          className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:border-foreground resize-none"
-                          placeholder="Describe the day's journey and experiences..."
-                        />
-                      </div>
-
-                      {/* Image Preview */}
-                      {day.imageUrl && (
-                        <div className="mb-4">
-                          <label className="block text-sm text-muted-foreground mb-1">Image Preview</label>
-                          <div className="relative aspect-[16/10] overflow-hidden rounded-lg bg-muted">
-                            <img
-                              src={cloudinaryUrl(day.imageUrl)}
-                              alt={day.title || "Day image"}
-                              className="absolute inset-0 w-full h-full object-cover"
-                              onError={(e) => {
-                                (e.target as HTMLImageElement).style.display = 'none';
-                              }}
-                            />
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Day Actions */}
-                      <div className="flex items-center justify-between pt-4 border-t border-border">
-                        <div className="flex items-center gap-2">
-                          <button
-                            onClick={() => moveDay(index, "up")}
-                            disabled={index === 0}
-                            className="p-2 text-muted-foreground hover:text-foreground disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
-                            title="Move up"
-                          >
-                            {Icons.chevronUp}
-                          </button>
-                          <button
-                            onClick={() => moveDay(index, "down")}
-                            disabled={index === days.length - 1}
-                            className="p-2 text-muted-foreground hover:text-foreground disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
-                            title="Move down"
-                          >
-                            {Icons.chevronDown}
-                          </button>
-                        </div>
-                        <button
-                          onClick={() => removeDay(day.id)}
-                          disabled={days.length <= 1}
-                          className="flex items-center gap-1 px-3 py-1 text-sm text-red-600 hover:bg-red-50 rounded disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
-                        >
-                          {Icons.trash}
-                          Remove Day
-                        </button>
-                      </div>
-                    </div>
-                  )}
+              {/* Message */}
+              {message && (
+                <div className={`mb-6 p-3 text-sm ${
+                  message.includes("Error") || message.includes("Failed") 
+                    ? "bg-red-50 text-red-700" 
+                    : "bg-green-50 text-green-700"
+                }`}>
+                  {message}
                 </div>
-              ))}
-            </div>
+              )}
 
-            {/* Add Day Button (bottom) */}
-            <button
-              onClick={addDay}
-              className="w-full mt-4 py-4 border-2 border-dashed border-border hover:border-foreground text-muted-foreground hover:text-foreground transition-colors rounded-xl flex items-center justify-center gap-2"
-            >
-              {Icons.plus}
-              Add Another Day
-            </button>
-
-            {/* Notes */}
-            <div className="mt-8 bg-background border border-border rounded-xl p-6">
-              <h3 className="font-serif text-lg mb-4">Internal Notes</h3>
-              <textarea
-                value={quote.notes}
-                onChange={(e) => updateQuoteField("notes", e.target.value)}
-                rows={4}
-                className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:border-foreground resize-none"
-                placeholder="Notes about this quote (not visible to client)..."
-              />
+              {/* Action Buttons */}
+              <div className="space-y-3">
+                <button
+                  onClick={handleUpdateDatabase}
+                  disabled={saving}
+                  className="w-full py-4 bg-foreground text-background text-xs tracking-[0.15em] uppercase hover:bg-foreground/90 disabled:opacity-50 transition-colors"
+                >
+                  {saving ? "Saving..." : "Update Database"}
+                </button>
+                <button
+                  onClick={handleGenerateProposal}
+                  disabled={generating}
+                  className="w-full py-4 bg-green-700 text-white text-xs tracking-[0.15em] uppercase hover:bg-green-800 disabled:opacity-50 transition-colors"
+                >
+                  {generating ? "Generating..." : "Generate New Proposal"}
+                </button>
+                <button
+                  onClick={() => window.open(`/proposal/PROP-${clientId}?edit=true`, '_blank')}
+                  className="w-full py-4 border border-[#2d5016] text-[#2d5016] text-xs tracking-[0.15em] uppercase hover:bg-[#2d5016] hover:text-white transition-colors"
+                >
+                  Edit Proposal
+                </button>
+                <Link
+                  href="/admin/quotes/new"
+                  className="block w-full py-4 border border-border text-xs tracking-[0.15em] uppercase hover:border-foreground transition-colors text-center"
+                >
+                  New Quote
+                </Link>
+                <button
+                  onClick={handleDelete}
+                  className="w-full py-4 text-red-600 text-xs tracking-[0.15em] uppercase hover:bg-red-50 transition-colors"
+                >
+                  Delete
+                </button>
+              </div>
             </div>
           </div>
+
         </div>
-      </div>
+      </main>
     </div>
   );
 }

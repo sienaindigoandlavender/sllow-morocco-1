@@ -100,6 +100,22 @@ export default function EditQuotePage() {
   const [contentLibrary, setContentLibrary] = useState<ContentBlock[]>([]);
   const [loadingContent, setLoadingContent] = useState(true);
 
+  // Fetch content library on mount
+  useEffect(() => {
+    fetch("/api/content-library")
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.success) {
+          setContentLibrary(data.contentBlocks || []);
+        }
+        setLoadingContent(false);
+      })
+      .catch((err) => {
+        console.error("Failed to load content library:", err);
+        setLoadingContent(false);
+      });
+  }, []);
+
   // Quote metadata
   const [quote, setQuote] = useState<QuoteData>({
     clientName: "",
@@ -133,56 +149,6 @@ export default function EditQuotePage() {
 
   // Expanded day panels
   const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(["day-1"]));
-
-  // Fetch content library and existing quote data on mount
-  useEffect(() => {
-    // 1. Load the routes library
-    fetch("/api/content-library")
-      .then((r) => r.json())
-      .then((data) => {
-        if (data.success) setContentLibrary(data.contentBlocks || []);
-        setLoadingContent(false);
-      })
-      .catch((err) => {
-        console.error("Failed to load content library:", err);
-        setLoadingContent(false);
-      });
-
-    // 2. Extract clientId from URL and load existing client data from Supabase
-    const pathSegments = window.location.pathname.split('/');
-    const clientId = pathSegments[pathSegments.indexOf('quotes') + 1];
-    
-    if (clientId) {
-      fetch(`/api/admin/quotes/${clientId}`)
-        .then((r) => r.json())
-        .then((data) => {
-          if (data.success && data.quote) {
-            const q = data.quote;
-            setQuote({
-              clientName: `${q.First_Name || ""} ${q.Last_Name || ""}`.trim(),
-              clientEmail: q.Email || "",
-              clientPhone: q.Phone || "",
-              clientCountry: q.Country || "",
-              travelers: parseInt(q.Number_Travelers) || 2,
-              startDate: q.Start_Date || "",
-              endDate: q.End_Date || "",
-              hospitalityLevel: q.Hospitality_Level || "BOUTIQUE",
-              journeyInterest: q.Journey_Interest || "",
-              totalPrice: q.Price ? `€${q.Price}` : "",
-              notes: q.Notes || ""
-            });
-            
-            // Check if the database has days arrays stored and load them back safely
-            if (q.Days && Array.isArray(q.Days) && q.Days.length > 0) {
-              setDays(q.Days);
-            } else if (q.days && Array.isArray(q.days) && q.days.length > 0) {
-              setDays(q.days);
-            }
-          }
-        })
-        .catch((err) => console.error("Failed to restore initial quote data profile:", err));
-    }
-  }, []);
 
   // Helper to update a single quote field without spreading stale state
   const updateQuoteField = (field: keyof QuoteData, value: string | number) => {
@@ -267,70 +233,18 @@ export default function EditQuotePage() {
     setDays(newDays);
   };
 
-  // Save quote to Supabase database
-  const handleSave = async () => {
+  // Save quote
+  const handleSave = () => {
     console.log("Saving quote:", { quote, days });
-    
-    // Parse client name split properties safely
-    const nameParts = (quote.clientName || "").trim().split(" ");
-    const firstName = nameParts[0] || "";
-    const lastName = nameParts.slice(1).join(" ") || "";
-
-    // Build the query structural layout to match your database schema expectations
-    const quotePayload = {
-      firstName: firstName,
-      lastName: lastName,
-      email: quote.clientEmail,
-      phone: quote.clientPhone,
-      country: quote.clientCountry,
-      travelers: quote.travelers.toString(),
-      startDate: quote.startDate,
-      endDate: quote.endDate,
-      hospitalityLevel: quote.hospitalityLevel,
-      budget: quote.journeyInterest, // mapping backup fields safely
-      price: quote.totalPrice.replace(/[^\d.]/g, ""), // strip symbols to pass clear text metrics
-      notes: quote.notes,
-      Status: "IN_PROGRESS", // Satisifies direct backend matching rules
-      status: "IN_PROGRESS",
-      days: days,
-      Days: days
-    };
-
-    try {
-      // Pull clientId dynamically by tracking window location path segments
-      const pathSegments = window.location.pathname.split('/');
-      const clientId = pathSegments[pathSegments.indexOf('quotes') + 1];
-
-      const res = await fetch(`/api/admin/quotes/${clientId}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(quotePayload)
-      });
-      
-      const data = await res.json();
-      if (data.success) {
-        alert("Quote data updated successfully inside Supabase!");
-      } else {
-        alert(`Database rejection: ${data.error}`);
-      }
-    } catch (err) {
-      console.error("Failed database persistence:", err);
-      alert("Failed to submit update script.");
-    }
+    alert("Quote saved! (Console log for now)");
   };
 
   // Generate itinerary - saves data and opens the client-ready proposal page
-  const handleGenerateItinerary = async () => {
-    // First commit an asynchronous background execution of our save routine
-    await handleSave();
-
-    // Pull clientId dynamically by tracking window location path segments
-    const pathSegments = window.location.pathname.split('/');
-    const clientId = pathSegments[pathSegments.indexOf('quotes') + 1];
-
-    // Generate a clean blueprint proposal ID matching standard records
-    const proposalId = `PROP-${clientId}`;
+  const handleGenerateItinerary = () => {
+    // Generate a unique proposal ID
+    const proposalId = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
     
+    // Parse client name for title
     const nameParts = (quote.clientName || "").trim().split(" ");
     const firstName = nameParts[0] || "";
     const lastName = nameParts.slice(1).join(" ") || "";
@@ -338,12 +252,14 @@ export default function EditQuotePage() {
       ? `Bespoke Journey for ${firstName} ${lastName}`.trim()
       : "Your Morocco Journey";
     
+    // Use Day 1's image as hero image (from Content_Library)
     const heroImage = days[0]?.imageUrl || "";
     
+    // Prepare proposal data
     const proposalData = {
       id: proposalId,
       journeyTitle,
-      arcDescription: `A journey crafted for ${quote.clientName || "you"} — ${days.length} days exploring Morocco's most captivating corners.`,
+      arcDescription: `A journey crafted for ${quote.clientName || "you"} — ${days.length} days exploring Morocco's most captivating corners, from ancient medinas to sweeping desert landscapes.`,
       clientName: quote.clientName || "",
       heroImage,
       days: days.map(day => ({
@@ -354,11 +270,11 @@ export default function EditQuotePage() {
       }))
     };
     
-    // Retain localized caching mechanics for instant preview loads
+    // Save to localStorage (later: save to database)
     localStorage.setItem(`proposal-${proposalId}`, JSON.stringify(proposalData));
     
-    // Open frontend view
-    window.open(`/proposal/${proposalId}?edit=true`, '_blank');
+    // Open the proposal page
+    window.open(`/proposal/${proposalId}`, '_blank');
   };
 
   return (
@@ -712,7 +628,7 @@ export default function EditQuotePage() {
               ))}
             </div>
 
-            {/* Add Day Day Button (bottom) */}
+            {/* Add Day Button (bottom) */}
             <button
               onClick={addDay}
               className="w-full mt-4 py-4 border-2 border-dashed border-border hover:border-foreground text-muted-foreground hover:text-foreground transition-colors rounded-xl flex items-center justify-center gap-2"
