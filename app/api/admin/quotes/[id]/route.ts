@@ -98,7 +98,15 @@ export async function PUT(
       last_updated: new Date().toISOString(),
     };
 
-    // Map form fields to DB columns
+    // 1. Flexible Case-Insensitive Status Catching (SaaS Grade)
+    const activeStatus = body.status || body.Status;
+    if (activeStatus !== undefined) updates.status = activeStatus;
+
+    // 2. Flexible Hospitality Level Support
+    const activeHospitality = body.hospitalityLevel || body.Hospitality_Level || body.hospitality_level;
+    if (activeHospitality !== undefined) updates.hospitality_level = activeHospitality;
+
+    // 3. Map Form UI Fields (camelCase layout options)
     if (body.firstName !== undefined) updates.first_name = body.firstName;
     if (body.lastName !== undefined) updates.last_name = body.lastName;
     if (body.email !== undefined) updates.email = body.email;
@@ -122,8 +130,7 @@ export async function PUT(
     if (body.dreamExperience !== undefined) updates.dream_experience = body.dreamExperience;
     if (body.hearAboutUs !== undefined) updates.hear_about_us = body.hearAboutUs;
     
-    // Direct DB column names (from quote detail/edit pages)
-    if (body.Status !== undefined) updates.status = body.Status;
+    // 4. Direct Column DB fallbacks (PascalCase layout structures)
     if (body.First_Name !== undefined) updates.first_name = body.First_Name;
     if (body.Last_Name !== undefined) updates.last_name = body.Last_Name;
     if (body.Email !== undefined) updates.email = body.Email;
