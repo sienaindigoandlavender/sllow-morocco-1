@@ -130,6 +130,8 @@ export default function ProposalPage() {
   
   // Which day is being detailed-edited
   const [editingDayNumber, setEditingDayNumber] = useState<number | null>(null);
+  const [cityActivities, setCityActivities] = useState<any[]>([]);
+  const [activitiesLoading, setActivitiesLoading] = useState(false);
 
   // Update a specific day field in the proposal
   const updateDay = (dayNumber: number, field: string, value: any) => {
@@ -711,18 +713,12 @@ Slow Morocco Team`);
         if (!day) return null;
         
         const mealOptions = ['Breakfast', 'Lunch', 'Dinner', 'Snacks'];
-        const activityOptions = [
-          // Culture & Architecture
-          'Medina tour', 'Palais Bahia', 'Palais Badi', 'Dar Si Said',
-          'Medersa Ben Youssef', 'Dar el Bacha', 'Saadian Tombs',
-          'Ksar Ait Benhaddou', 'Kasbah des Caids',
-          // Gardens & Art
-          'Jardin Majorelle', 'Yves Saint Laurent Museum', 'Anima',
-          // Experiences
-          'Hot Air Balloon', 'Camel ride', 'Horse riding', 'Quad biking',
-          'Hammam & Spa', 'Fossil hunting', 'Berber music evening',
-          'Desert walk', 'Cooking class'
-        ];
+        // Group city activities by category
+        const activityGroups = cityActivities.reduce((acc: any, act: any) => {
+          if (!acc[act.category]) acc[act.category] = [];
+          acc[act.category].push(act);
+          return acc;
+        }, {});
         const currentMeals = (day.mealsDetail || day.meals || '').split(',').map(m => m.trim()).filter(Boolean);
         const currentActivities = (day.activitiesDetail || day.activities || '').split(',').map(a => a.trim()).filter(Boolean);
 
@@ -811,24 +807,37 @@ Slow Morocco Team`);
               {/* Activities */}
               <div className="mb-6">
                 <h3 className="text-xs tracking-[0.15em] uppercase text-muted-foreground mb-3">Activities</h3>
-                <div className="flex flex-wrap gap-3 mb-3">
-                  {activityOptions.map(activity => (
-                    <label key={activity} className="flex items-center gap-2 cursor-pointer">
-                      <input
-                        type="checkbox"
-                        checked={currentActivities.includes(activity)}
-                        onChange={(e) => {
-                          const updated = e.target.checked
-                            ? [...currentActivities, activity]
-                            : currentActivities.filter(a => a !== activity);
-                          updateDay(day.dayNumber, 'activitiesDetail', updated.join(', '));
-                        }}
-                        className="w-4 h-4"
-                      />
-                      <span className="text-sm">{activity}</span>
-                    </label>
-                  ))}
-                </div>
+                {activitiesLoading ? (
+                  <p className="text-sm text-muted-foreground mb-3">Loading activities...</p>
+                ) : Object.keys(activityGroups).length > 0 ? (
+                  <div className="mb-3 space-y-3">
+                    {Object.entries(activityGroups).map(([category, acts]: [string, any]) => (
+                      <div key={category}>
+                        <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">{category}</p>
+                        <div className="flex flex-wrap gap-2">
+                          {acts.map((act: any) => (
+                            <label key={act.id} className="flex items-center gap-1.5 cursor-pointer">
+                              <input
+                                type="checkbox"
+                                checked={currentActivities.includes(act.name)}
+                                onChange={(e) => {
+                                  const updated = e.target.checked
+                                    ? [...currentActivities, act.name]
+                                    : currentActivities.filter((a: string) => a !== act.name);
+                                  updateDay(day.dayNumber, 'activitiesDetail', updated.join(', '));
+                                }}
+                                className="w-3.5 h-3.5"
+                              />
+                              <span className="text-sm">{act.name}</span>
+                            </label>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-xs text-muted-foreground mb-3 italic">No activities found for this city — use the text field below.</p>
+                )}
                 <input
                   type="text"
                   value={day.activitiesDetail || ''}
@@ -1241,7 +1250,22 @@ Slow Morocco Team`);
                   {/* Edit Details button — admin only */}
                   {isAdmin && (
                     <button
-                      onClick={() => setEditingDayNumber(day.dayNumber)}
+                      onClick={async () => {
+                        setEditingDayNumber(day.dayNumber);
+                        setActivitiesLoading(true);
+                        try {
+                          const res = await fetch('/api/content-library', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ city: day.title || day.toCity })
+                          });
+                          const data = await res.json();
+                          setCityActivities(data.activities || []);
+                        } catch (e) {
+                          setCityActivities([]);
+                        }
+                        setActivitiesLoading(false);
+                      }}
                       className="text-xs tracking-[0.1em] uppercase text-muted-foreground hover:text-foreground border border-border/50 px-3 py-1 mb-6 transition-colors"
                     >
                       Edit Day Details
