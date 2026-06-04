@@ -4,6 +4,62 @@ import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
 
+// Pipeline stages
+const PIPELINE_STAGES = [
+  { key: "NEW",         label: "New",         desc: "Inquiry received" },
+  { key: "IN_PROGRESS", label: "In Progress", desc: "Building itinerary" },
+  { key: "SENT",        label: "Sent",        desc: "Proposal delivered" },
+  { key: "BOOKED",      label: "Booked",      desc: "Deposit confirmed" },
+];
+const STAGE_ORDER = PIPELINE_STAGES.map(s => s.key);
+
+function StatusTimeline({ status, onChange }: { status: string; onChange: (s: string) => void }) {
+  const currentIdx = STAGE_ORDER.indexOf(status);
+  return (
+    <div className="border border-border p-6 mb-8">
+      <p className="text-xs tracking-[0.12em] uppercase text-muted-foreground mb-5">Pipeline</p>
+      <div className="flex items-start gap-0">
+        {PIPELINE_STAGES.map((stage, i) => {
+          const isDone = i < currentIdx;
+          const isCurrent = i === currentIdx;
+          const isFuture = i > currentIdx;
+          return (
+            <div key={stage.key} className="flex-1 flex flex-col items-center relative">
+              {i < PIPELINE_STAGES.length - 1 && (
+                <div className={`absolute top-[11px] left-1/2 w-full h-px ${isDone || isCurrent ? "bg-foreground" : "bg-border"}`} />
+              )}
+              <button
+                onClick={() => onChange(stage.key)}
+                title={`Set to ${stage.label}`}
+                className={`relative z-10 w-[22px] h-[22px] rounded-full border-2 transition-all flex items-center justify-center mb-2
+                  ${isCurrent ? "border-foreground bg-foreground" : ""}
+                  ${isDone ? "border-foreground bg-foreground" : ""}
+                  ${isFuture ? "border-border bg-background hover:border-foreground/50" : ""}
+                `}
+              >
+                {isDone && (
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                    <path d="M2 5l2.5 2.5L8 3" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                )}
+                {isCurrent && <div className="w-2 h-2 rounded-full bg-white" />}
+              </button>
+              <span className={`text-[10px] tracking-wide uppercase text-center leading-tight
+                ${isCurrent ? "text-foreground font-medium" : isFuture ? "text-muted-foreground" : "text-foreground/70"}
+              `}>
+                {stage.label}
+              </span>
+              <span className="text-[9px] text-muted-foreground text-center mt-0.5 hidden lg:block">
+                {stage.desc}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 interface QuoteData {
   firstName: string;
   lastName: string;
@@ -94,6 +150,7 @@ function BuildQuoteContent() {
   const [hearAboutUs, setHearAboutUs] = useState("");
   
   // Status
+  const [status, setStatus] = useState("NEW");
   const [saving, setSaving] = useState(false);
   const [generating, setGenerating] = useState(false);
   const [message, setMessage] = useState("");
@@ -217,6 +274,21 @@ function BuildQuoteContent() {
       setMessage("Failed to save");
     }
     setSaving(false);
+  };
+
+  // ACTION: Update status only
+  const handleStatusChange = async (newStatus: string) => {
+    setStatus(newStatus);
+    if (!clientId) return;
+    try {
+      await fetch(`/api/admin/quotes/${clientId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status: newStatus }),
+      });
+    } catch (err) {
+      console.error("Failed to update status:", err);
+    }
   };
 
   // ACTION: Generate Proposal
@@ -355,6 +427,7 @@ function BuildQuoteContent() {
       window.open(`/proposal/${proposalId}?edit=true`, '_blank');
       setMessage("Proposal generated!");
       setHasProposal(true);
+      if (status === "NEW") handleStatusChange("IN_PROGRESS");
     } catch (err) {
       console.error("Generate error:", err);
       setMessage(`Failed to generate proposal: ${err}`);
@@ -618,7 +691,9 @@ function BuildQuoteContent() {
 
           {/* Right - Summary & Actions */}
           <div className="lg:col-span-1">
-            <div className="sticky top-8 border border-border p-8">
+            <div className="sticky top-8">
+              <StatusTimeline status={status} onChange={handleStatusChange} />
+              <div className="border border-border p-8">
               <h2 className="font-serif text-xl mb-6">Summary</h2>
               
               {/* Client Name */}
@@ -721,7 +796,8 @@ function BuildQuoteContent() {
                   Delete
                 </button>
               </div>
-            </div>
+              </div>{/* end summary box */}
+            </div>{/* end sticky */}
           </div>
 
         </div>
