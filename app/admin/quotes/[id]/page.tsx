@@ -4,35 +4,31 @@ import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 
-// Pipeline stages mapped to match dashboard keys exactly
-const PIPELINE_STAGES = [
+// Pipeline stages
+const MAIN_STAGES = [
   { key: "NEW",         label: "New",         desc: "Inquiry received" },
   { key: "IN_PROGRESS", label: "In Progress", desc: "Building itinerary" },
   { key: "SENT",        label: "Sent",        desc: "Proposal delivered" },
 ];
-const TERMINAL_STAGES = [
-  { key: "BOOKED",   label: "Booked",    desc: "Deposit confirmed", color: "emerald" },
-  { key: "ARCHIVED", label: "Archived",  desc: "Not proceeding",    color: "gray" },
-];
-const STAGE_ORDER = [...PIPELINE_STAGES.map(s => s.key), ...TERMINAL_STAGES.map(s => s.key)];
+const STAGE_ORDER = ["NEW", "IN_PROGRESS", "SENT", "BOOKED", "ARCHIVED"];
 
 function StatusTimeline({ status, onChange }: { status: string; onChange: (s: string) => void }) {
-  const isTerminal = TERMINAL_STAGES.some(s => s.key === status);
-  const mainIdx = PIPELINE_STAGES.findIndex(s => s.key === status);
-
+  const mainIdx = MAIN_STAGES.findIndex(s => s.key === status);
+  const isBooked = status === "BOOKED";
+  const isArchived = status === "ARCHIVED";
+  const isTerminal = isBooked || isArchived;
   return (
     <div className="border border-border p-6 mb-8">
-      <p className="text-xs tracking-[0.12em] uppercase text-muted-foreground mb-5">Pipeline</p>
-
-      {/* Main linear stages */}
-      <div className="flex items-start mb-4">
-        {PIPELINE_STAGES.map((stage, i) => {
-          const isDone = !isTerminal && i < mainIdx || isTerminal;
+      <p className="text-xs tracking-[0.12em] uppercase text-muted-foreground mb-6">Pipeline</p>
+      <div className="flex items-start">
+        {/* Main 3 stages */}
+        {MAIN_STAGES.map((stage, i) => {
+          const isDone = isTerminal || i < mainIdx;
           const isCurrent = !isTerminal && i === mainIdx;
           const isFuture = !isTerminal && i > mainIdx;
           return (
-            <div key={stage.key} className="flex-1 flex flex-col items-center relative">
-              {i < PIPELINE_STAGES.length - 1 && (
+            <div key={stage.key} className="flex flex-col items-center relative" style={{ flex: i === 2 ? "0 0 auto" : 1 }}>
+              {i < 2 && (
                 <div className={`absolute top-[11px] left-1/2 w-full h-px ${isDone || isCurrent ? "bg-foreground" : "bg-border"}`} />
               )}
               <button
@@ -54,29 +50,94 @@ function StatusTimeline({ status, onChange }: { status: string; onChange: (s: st
             </div>
           );
         })}
+        {/* Fork: vertical line + two branches */}
+        <div className="flex flex-col items-center" style={{ flex: 1 }}>
+          {/* Horizontal connector from SENT to fork point */}
+          <div className="flex items-start w-full" style={{ paddingTop: 0 }}>
+            <div className={`h-px mt-[11px] flex-1 ${isTerminal ? "bg-foreground" : "bg-border"}`} />
+          </div>
+          {/* Fork branches */}
+          <div className="flex w-full gap-1 mt-1">
+            {/* Booked branch */}
+            <button
+              onClick={() => onChange("BOOKED")}
+              title="Set to Booked"
+              className="flex-1 flex flex-col items-center group"
+            >
+              <div className={`w-[22px] h-[22px] rounded-full border-2 flex items-center justify-center mb-2 transition-all
+                ${isBooked ? "border-emerald-600 bg-emerald-600" : "border-emerald-600 bg-background group-hover:bg-emerald-50"}
+              `}>
+                {isBooked && <div className="w-2 h-2 rounded-full bg-white" />}
+              </div>
+              <span className={`text-[10px] tracking-wide uppercase text-center leading-tight
+                ${isBooked ? "text-emerald-700 font-medium" : "text-emerald-600"}
+              `}>Booked</span>
+              <span className="text-[9px] text-muted-foreground text-center mt-0.5 hidden lg:block">Deposit confirmed</span>
+            </button>
+            {/* Archived branch */}
+            <button
+              onClick={() => onChange("ARCHIVED")}
+              title="Set to Archived"
+              className="flex-1 flex flex-col items-center group"
+            >
+              <div className={`w-[22px] h-[22px] rounded-full border-2 flex items-center justify-center mb-2 transition-all
+                ${isArchived ? "border-foreground/40 bg-foreground/40" : "border-border bg-background group-hover:border-foreground/30"}
+              `}>
+                {isArchived && <div className="w-2 h-2 rounded-full bg-white" />}
+              </div>
+              <span className={`text-[10px] tracking-wide uppercase text-center leading-tight
+                ${isArchived ? "text-foreground/60 font-medium" : "text-muted-foreground"}
+              `}>Archived</span>
+              <span className="text-[9px] text-muted-foreground text-center mt-0.5 hidden lg:block">Not proceeding</span>
+            </button>
+          </div>
+        </div>
       </div>
-
-      <div className="flex gap-2 mt-2 pl-1">
-          <button
-            onClick={() => onChange("BOOKED")}
-            className={`flex-1 py-2 text-[10px] tracking-[0.12em] uppercase border transition-colors
-              ${status === "BOOKED"
-                ? "border-emerald-700 bg-emerald-700 text-white"
-                : "border-emerald-700 text-emerald-700 hover:bg-emerald-700 hover:text-white"
-              }`}
-          >
-            Booked
-          </button>
-          <button
-            onClick={() => onChange("ARCHIVED")}
-            className={`flex-1 py-2 text-[10px] tracking-[0.12em] uppercase border transition-colors
-              ${status === "ARCHIVED"
-                ? "border-border bg-muted text-muted-foreground"
-                : "border-border text-muted-foreground hover:bg-muted"
-              }`}
-          >
-            Archived
-          </button>
+    </div>
+  );
+}
+: { status: string; onChange: (s: string) => void }) {
+  const currentIdx = STAGE_ORDER.indexOf(status);
+  return (
+    <div className="border border-border p-6 mb-8">
+      <p className="text-xs tracking-[0.12em] uppercase text-muted-foreground mb-5">Pipeline</p>
+      <div className="flex items-start">
+        {PIPELINE_STAGES.map((stage, i) => {
+          const isDone = i < currentIdx;
+          const isCurrent = i === currentIdx;
+          const isFuture = i > currentIdx;
+          const isBooked = stage.key === "BOOKED";
+          const isArchived = stage.key === "ARCHIVED";
+          return (
+            <div key={stage.key} className="flex-1 flex flex-col items-center relative">
+              {i < PIPELINE_STAGES.length - 1 && (
+                <div className={`absolute top-[11px] left-1/2 w-full h-px ${isDone || isCurrent ? "bg-foreground" : "bg-border"}`} />
+              )}
+              <button
+                onClick={() => onChange(stage.key)}
+                title={`Set to ${stage.label}`}
+                className={`relative z-10 w-[22px] h-[22px] rounded-full border-2 transition-all flex items-center justify-center mb-2
+                  ${isCurrent && isBooked ? "border-emerald-700 bg-emerald-700" : ""}
+                  ${isCurrent && isArchived ? "border-gray-400 bg-gray-400" : ""}
+                  ${isCurrent && !isBooked && !isArchived ? "border-foreground bg-foreground" : ""}
+                  ${isDone ? "border-foreground bg-foreground" : ""}
+                  ${isFuture ? "border-border bg-background hover:border-foreground/50" : ""}
+                `}
+              >
+                {isDone && <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>}
+                {isCurrent && <div className="w-2 h-2 rounded-full bg-white" />}
+              </button>
+              <span className={`text-[10px] tracking-wide uppercase text-center leading-tight
+                ${isCurrent && isBooked ? "text-emerald-700 font-medium" : ""}
+                ${isCurrent && isArchived ? "text-gray-500 font-medium" : ""}
+                ${isCurrent && !isBooked && !isArchived ? "text-foreground font-medium" : ""}
+                ${isDone ? "text-foreground/70" : ""}
+                ${isFuture ? "text-muted-foreground" : ""}
+              `}>{stage.label}</span>
+              <span className="text-[9px] text-muted-foreground text-center mt-0.5 hidden lg:block">{stage.desc}</span>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
