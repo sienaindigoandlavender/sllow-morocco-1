@@ -96,52 +96,6 @@ function StatusTimeline({ status, onChange }: { status: string; onChange: (s: st
     </div>
   );
 }
-: { status: string; onChange: (s: string) => void }) {
-  const currentIdx = STAGE_ORDER.indexOf(status);
-  return (
-    <div className="border border-border p-6 mb-8">
-      <p className="text-xs tracking-[0.12em] uppercase text-muted-foreground mb-5">Pipeline</p>
-      <div className="flex items-start">
-        {PIPELINE_STAGES.map((stage, i) => {
-          const isDone = i < currentIdx;
-          const isCurrent = i === currentIdx;
-          const isFuture = i > currentIdx;
-          const isBooked = stage.key === "BOOKED";
-          const isArchived = stage.key === "ARCHIVED";
-          return (
-            <div key={stage.key} className="flex-1 flex flex-col items-center relative">
-              {i < PIPELINE_STAGES.length - 1 && (
-                <div className={`absolute top-[11px] left-1/2 w-full h-px ${isDone || isCurrent ? "bg-foreground" : "bg-border"}`} />
-              )}
-              <button
-                onClick={() => onChange(stage.key)}
-                title={`Set to ${stage.label}`}
-                className={`relative z-10 w-[22px] h-[22px] rounded-full border-2 transition-all flex items-center justify-center mb-2
-                  ${isCurrent && isBooked ? "border-emerald-700 bg-emerald-700" : ""}
-                  ${isCurrent && isArchived ? "border-gray-400 bg-gray-400" : ""}
-                  ${isCurrent && !isBooked && !isArchived ? "border-foreground bg-foreground" : ""}
-                  ${isDone ? "border-foreground bg-foreground" : ""}
-                  ${isFuture ? "border-border bg-background hover:border-foreground/50" : ""}
-                `}
-              >
-                {isDone && <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>}
-                {isCurrent && <div className="w-2 h-2 rounded-full bg-white" />}
-              </button>
-              <span className={`text-[10px] tracking-wide uppercase text-center leading-tight
-                ${isCurrent && isBooked ? "text-emerald-700 font-medium" : ""}
-                ${isCurrent && isArchived ? "text-gray-500 font-medium" : ""}
-                ${isCurrent && !isBooked && !isArchived ? "text-foreground font-medium" : ""}
-                ${isDone ? "text-foreground/70" : ""}
-                ${isFuture ? "text-muted-foreground" : ""}
-              `}>{stage.label}</span>
-              <span className="text-[9px] text-muted-foreground text-center mt-0.5 hidden lg:block">{stage.desc}</span>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
 interface QuoteData {
   firstName: string;
   lastName: string;
