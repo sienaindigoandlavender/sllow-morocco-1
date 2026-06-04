@@ -73,6 +73,7 @@ const statusColors: { [key: string]: string } = {
   IN_PROGRESS: "bg-blue-50 text-blue-700",
   SENT: "bg-orange-50 text-orange-700",
   BOOKED: "bg-emerald-50 text-emerald-700",
+  ARCHIVED: "bg-gray-100 text-gray-500",
   CANCELLED: "bg-red-50 text-red-700",
 };
 
