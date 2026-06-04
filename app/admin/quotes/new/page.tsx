@@ -9,20 +9,24 @@ const PIPELINE_STAGES = [
   { key: "NEW",         label: "New",         desc: "Inquiry received" },
   { key: "IN_PROGRESS", label: "In Progress", desc: "Building itinerary" },
   { key: "SENT",        label: "Sent",        desc: "Proposal delivered" },
-  { key: "BOOKED",      label: "Booked",      desc: "Deposit confirmed" },
 ];
-const STAGE_ORDER = PIPELINE_STAGES.map(s => s.key);
+const TERMINAL_STAGES = [
+  { key: "BOOKED",   label: "Booked",   desc: "Deposit confirmed" },
+  { key: "ARCHIVED", label: "Archived", desc: "Not proceeding" },
+];
+const STAGE_ORDER = [...PIPELINE_STAGES.map(s => s.key), ...TERMINAL_STAGES.map(s => s.key)];
 
 function StatusTimeline({ status, onChange }: { status: string; onChange: (s: string) => void }) {
-  const currentIdx = STAGE_ORDER.indexOf(status);
+  const isTerminal = TERMINAL_STAGES.some(s => s.key === status);
+  const mainIdx = PIPELINE_STAGES.findIndex(s => s.key === status);
   return (
     <div className="border border-border p-6 mb-8">
       <p className="text-xs tracking-[0.12em] uppercase text-muted-foreground mb-5">Pipeline</p>
-      <div className="flex items-start gap-0">
+      <div className="flex items-start mb-4">
         {PIPELINE_STAGES.map((stage, i) => {
-          const isDone = i < currentIdx;
-          const isCurrent = i === currentIdx;
-          const isFuture = i > currentIdx;
+          const isDone = (!isTerminal && i < mainIdx) || isTerminal;
+          const isCurrent = !isTerminal && i === mainIdx;
+          const isFuture = !isTerminal && i > mainIdx;
           return (
             <div key={stage.key} className="flex-1 flex flex-col items-center relative">
               {i < PIPELINE_STAGES.length - 1 && (
@@ -37,25 +41,31 @@ function StatusTimeline({ status, onChange }: { status: string; onChange: (s: st
                   ${isFuture ? "border-border bg-background hover:border-foreground/50" : ""}
                 `}
               >
-                {isDone && (
-                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                    <path d="M2 5l2.5 2.5L8 3" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                )}
+                {isDone && <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>}
                 {isCurrent && <div className="w-2 h-2 rounded-full bg-white" />}
               </button>
               <span className={`text-[10px] tracking-wide uppercase text-center leading-tight
                 ${isCurrent ? "text-foreground font-medium" : isFuture ? "text-muted-foreground" : "text-foreground/70"}
-              `}>
-                {stage.label}
-              </span>
-              <span className="text-[9px] text-muted-foreground text-center mt-0.5 hidden lg:block">
-                {stage.desc}
-              </span>
+              `}>{stage.label}</span>
+              <span className="text-[9px] text-muted-foreground text-center mt-0.5 hidden lg:block">{stage.desc}</span>
             </div>
           );
         })}
       </div>
+      {(status === "SENT" || isTerminal) && (
+        <div className="flex gap-2 mt-2 pl-1">
+          <button
+            onClick={() => onChange("BOOKED")}
+            className={`flex-1 py-2 text-[10px] tracking-[0.12em] uppercase border transition-colors
+              ${status === "BOOKED" ? "border-emerald-700 bg-emerald-700 text-white" : "border-emerald-700 text-emerald-700 hover:bg-emerald-700 hover:text-white"}`}
+          >Booked</button>
+          <button
+            onClick={() => onChange("ARCHIVED")}
+            className={`flex-1 py-2 text-[10px] tracking-[0.12em] uppercase border transition-colors
+              ${status === "ARCHIVED" ? "border-border bg-muted text-muted-foreground" : "border-border text-muted-foreground hover:bg-muted"}`}
+          >Archived</button>
+        </div>
+      )}
     </div>
   );
 }
@@ -251,6 +261,7 @@ function BuildQuoteContent() {
         if (data.success) {
           setMessage("Quote updated!");
           setHasProposal(true);
+          if (status === "NEW") handleStatusChange("IN_PROGRESS");
         } else {
           setMessage(`Error: ${data.error}`);
         }
@@ -266,6 +277,7 @@ function BuildQuoteContent() {
           setIsExisting(true);
           setHasProposal(true);
           setMessage(`Quote created! ID: ${data.clientId}`);
+          if (status === "NEW") handleStatusChange("IN_PROGRESS");
         } else {
           setMessage(`Error: ${data.error}`);
         }
