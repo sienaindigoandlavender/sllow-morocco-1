@@ -162,21 +162,6 @@ export default function QuoteDetailPage() {
           setHeroImage(q.Hero_Image || "");
         }
         setLoading(false);
-        // Check localStorage first (instant), then verify against DB
-        const proposalId = `PROP-${clientId}`;
-        if (localStorage.getItem(`proposal-${proposalId}`)) {
-          setHasProposal(true);
-        } else {
-          // Check Supabase via admin proposals list
-          fetch(`/api/admin/proposals`)
-            .then((r) => r.json())
-            .then((pd) => {
-              if (pd.proposals?.some((p: any) => p.proposal_id === proposalId)) {
-                setHasProposal(true);
-              }
-            })
-            .catch(() => {});
-        }
       })
       .catch((err) => {
         console.error("Failed to load quote:", err);
@@ -220,7 +205,12 @@ export default function QuoteDetailPage() {
         body: JSON.stringify(quoteData)
       });
       const data = await res.json();
-      setMessage(data.success ? "Quote updated!" : `Error: ${data.error}`);
+      if (data.success) {
+        setMessage("Quote updated!");
+        setHasProposal(true);
+      } else {
+        setMessage(`Error: ${data.error}`);
+      }
     } catch (err) {
       setMessage("Failed to save");
     }
@@ -680,6 +670,15 @@ export default function QuoteDetailPage() {
                     <button
                       onClick={() => window.open(`/proposal/PROP-${clientId}?edit=true`, '_blank')}
                       className="w-full py-4 border border-[#2d5016] text-[#2d5016] text-xs tracking-[0.15em] uppercase hover:bg-[#2d5016] hover:text-white transition-colors"
+                    >
+                      Edit Proposal
+                    </button>
+                  )}
+                  {!hasProposal && (
+                    <button
+                      disabled
+                      title="Save the quote first to unlock"
+                      className="w-full py-4 border border-border text-muted-foreground text-xs tracking-[0.15em] uppercase opacity-40 cursor-not-allowed"
                     >
                       Edit Proposal
                     </button>
