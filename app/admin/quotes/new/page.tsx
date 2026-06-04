@@ -66,6 +66,7 @@ function BuildQuoteContent() {
   const [searching, setSearching] = useState(false);
   const [clientId, setClientId] = useState("");
   const [isExisting, setIsExisting] = useState(false);
+  const [hasProposal, setHasProposal] = useState(false);
   
   // Client feedback from revision request
   const [clientFeedback, setClientFeedback] = useState("");
@@ -190,7 +191,12 @@ function BuildQuoteContent() {
           body: JSON.stringify(quoteData)
         });
         const data = await res.json();
-        setMessage(data.success ? "Quote updated!" : `Error: ${data.error}`);
+        if (data.success) {
+          setMessage("Quote updated!");
+          setHasProposal(true);
+        } else {
+          setMessage(`Error: ${data.error}`);
+        }
       } else {
         const res = await fetch("/api/admin/quotes", {
           method: "POST",
@@ -201,6 +207,7 @@ function BuildQuoteContent() {
         if (data.success) {
           setClientId(data.clientId);
           setIsExisting(true);
+          setHasProposal(true);
           setMessage(`Quote created! ID: ${data.clientId}`);
         } else {
           setMessage(`Error: ${data.error}`);
@@ -347,6 +354,7 @@ function BuildQuoteContent() {
       
       window.open(`/proposal/${proposalId}?edit=true`, '_blank');
       setMessage("Proposal generated!");
+      setHasProposal(true);
     } catch (err) {
       console.error("Generate error:", err);
       setMessage(`Failed to generate proposal: ${err}`);
@@ -690,6 +698,22 @@ function BuildQuoteContent() {
                 >
                   {generating ? "Generating..." : "Generate New Proposal"}
                 </button>
+                {hasProposal ? (
+                  <button
+                    onClick={() => window.open(`/proposal/PROP-${clientId}?edit=true`, '_blank')}
+                    className="w-full py-4 border border-[#2d5016] text-[#2d5016] text-xs tracking-[0.15em] uppercase hover:bg-[#2d5016] hover:text-white transition-colors"
+                  >
+                    Edit Proposal
+                  </button>
+                ) : (
+                  <button
+                    disabled
+                    title="Save the quote first to unlock"
+                    className="w-full py-4 border border-border text-muted-foreground text-xs tracking-[0.15em] uppercase opacity-40 cursor-not-allowed"
+                  >
+                    Edit Proposal
+                  </button>
+                )}
                 <button
                   onClick={handleDelete}
                   className="w-full py-4 text-red-600 text-xs tracking-[0.15em] uppercase hover:bg-red-50 transition-colors"
