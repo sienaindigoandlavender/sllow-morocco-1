@@ -452,7 +452,7 @@ function BuildQuoteContent() {
       const proposalData = {
         id: proposalId,
         journeyTitle: `${firstName}'s Morocco Journey` || "Your Morocco Journey",
-        arcDescription: `A ${proposalDays.length}-day journey through Morocco, crafted for ${firstName} ${lastName}.`,
+        arcDescription: `An ${proposalDays.length - 1}-night journey through Morocco, crafted for ${firstName} ${lastName}.`,
         clientName: `${firstName} ${lastName}`.trim(),
         heroImage: heroBlock.heroImageUrl || proposalDays[0]?.imageUrl || "",
         price: price || "2,450",
