@@ -24,7 +24,6 @@ export async function GET(
       return NextResponse.json({ success: false, error: "Quote not found" }, { status: 404 });
     }
 
-    // Map to admin UI format
     const quote = {
       Client_ID: data.client_id,
       First_Name: data.first_name,
@@ -77,7 +76,6 @@ export async function PUT(
     const clientId = params.id;
     const body = await request.json();
 
-    // Parse phone into country code + number
     let whatsappCode = body.WhatsApp_Country_Code || "";
     let whatsappNumber = body.WhatsApp_Number || "";
     
@@ -98,7 +96,6 @@ export async function PUT(
       last_updated: new Date().toISOString(),
     };
 
-    // Map form fields to DB columns
     if (body.firstName !== undefined) updates.first_name = body.firstName;
     if (body.lastName !== undefined) updates.last_name = body.lastName;
     if (body.email !== undefined) updates.email = body.email;
@@ -118,11 +115,9 @@ export async function PUT(
     if (body.notes !== undefined) updates.notes = body.notes;
     if (body.notes_route_sequence !== undefined) updates.notes_route_sequence = body.notes_route_sequence.replace(/[\u2013\u2014\u2012]/g, '-');
     if (body.hero_image !== undefined) updates.hero_image = body.hero_image;
-    if (body.firstTimeMorocco !== undefined) updates.first_time_morocco = body.firstTimeMorocco;
-    if (body.dreamExperience !== undefined) updates.dream_experience = body.dreamExperience;
-    if (body.hearAboutUs !== undefined) updates.hear_about_us = body.hearAboutUs;
-    
-    // Direct DB column names (from quote detail/edit pages)
+    if (body.status !== undefined) updates.status = body.status;
+
+    // Also accept capitalised versions
     if (body.Status !== undefined) updates.status = body.Status;
     if (body.First_Name !== undefined) updates.first_name = body.First_Name;
     if (body.Last_Name !== undefined) updates.last_name = body.Last_Name;
@@ -139,9 +134,6 @@ export async function PUT(
     if (body.Budget !== undefined) updates.budget = body.Budget;
     if (body.Requests !== undefined) updates.requests = body.Requests;
     if (body.Notes !== undefined) updates.notes = body.Notes;
-    if (body.First_Time_Morocco !== undefined) updates.first_time_morocco = body.First_Time_Morocco;
-    if (body.Dream_Experience !== undefined) updates.dream_experience = body.Dream_Experience;
-    if (body.Hear_About_Us !== undefined) updates.hear_about_us = body.Hear_About_Us;
     if (body.Proposal_URL !== undefined) updates.proposal_url = body.Proposal_URL;
     if (body.Itinerary_Doc_Link !== undefined) updates.itinerary_doc_link = body.Itinerary_Doc_Link;
 
@@ -170,14 +162,27 @@ export async function DELETE(
 ) {
   try {
     const clientId = params.id;
-    const { error } = await getSupabase()
+
+    // Use count to detect silent RLS blocks
+    const { error, count } = await getSupabase()
       .from("quotes")
-      .delete()
+      .delete({ count: "exact" })
       .eq("client_id", clientId);
 
     if (error) {
       console.error("Error deleting quote:", error);
       return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+    }
+
+    if (count === 0) {
+      // RLS blocked the delete or record didn't exist
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Delete blocked — SUPABASE_SERVICE_ROLE_KEY is likely missing from Vercel environment variables. Add it and redeploy.",
+        },
+        { status: 403 }
+      );
     }
 
     return NextResponse.json({ success: true });
