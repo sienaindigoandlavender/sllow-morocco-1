@@ -52,7 +52,6 @@ function StatusTimeline({ status, onChange }: { status: string; onChange: (s: st
           );
         })}
       </div>
-      {/* Always show terminal options — visible at any stage */
       {
         <div className="flex gap-2 mt-2 pl-1">
           <button
