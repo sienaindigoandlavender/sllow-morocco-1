@@ -100,20 +100,47 @@ export default function EditQuotePage() {
   const [contentLibrary, setContentLibrary] = useState<ContentBlock[]>([]);
   const [loadingContent, setLoadingContent] = useState(true);
 
-  // Fetch content library on mount
+  // Fetch content library and existing quote data on mount
   useEffect(() => {
+    // 1. Load the routes library
     fetch("/api/content-library")
       .then((r) => r.json())
       .then((data) => {
-        if (data.success) {
-          setContentLibrary(data.contentBlocks || []);
-        }
+        if (data.success) setContentLibrary(data.contentBlocks || []);
         setLoadingContent(false);
       })
       .catch((err) => {
         console.error("Failed to load content library:", err);
         setLoadingContent(false);
       });
+
+    // 2. Extract clientId from URL and load existing client data from Supabase
+    const pathSegments = window.location.pathname.split('/');
+    const clientId = pathSegments[pathSegments.indexOf('quotes') + 1];
+    
+    if (clientId) {
+      fetch(`/api/admin/quotes/${clientId}`)
+        .then((r) => r.json())
+        .then((data) => {
+          if (data.success && data.quote) {
+            const q = data.quote;
+            setQuote({
+              clientName: `${q.First_Name || ""} ${q.Last_Name || ""}`.trim(),
+              clientEmail: q.Email || "",
+              clientPhone: q.Phone || "",
+              clientCountry: q.Country || "",
+              travelers: parseInt(q.Number_Travelers) || 2,
+              startDate: q.Start_Date || "",
+              endDate: q.End_Date || "",
+              hospitalityLevel: q.Hospitality_Level || "BOUTIQUE",
+              journeyInterest: q.Journey_Interest || "",
+              totalPrice: q.Price ? `€${q.Price}` : "",
+              notes: q.Notes || ""
+            });
+          }
+        })
+        .catch((err) => console.error("Failed to restore initial quote data profile:", err));
+    }
   }, []);
 
   // Quote metadata
