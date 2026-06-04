@@ -200,6 +200,7 @@ export interface Quote {
   language: string | null;
   hospitality_level: string | null;
   dream_experience: string | null;
+  first_time_morocco: string | null;
   requests: string | null;
   hear_about_us: string | null;
   number_travelers: string | null;
