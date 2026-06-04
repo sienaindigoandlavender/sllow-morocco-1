@@ -6,8 +6,8 @@ import Link from "next/link";
 
 // Pipeline stages in order
 const PIPELINE_STAGES = [
-  { key: "NEW",          label: "New",           desc: "Inquiry received" },
-  { key: "IN_PROGRESS",  label: "In Progress",   desc: "Building itinerary" },
+  { key: "NEW",         label: "New",            desc: "Inquiry received" },
+  { key: "IN_PROGRESS", label: "In Progress",   desc: "Building itinerary" },
   { key: "SENT",         label: "Sent",          desc: "Proposal delivered" },
   { key: "BOOKED",       label: "Booked",        desc: "Deposit confirmed" },
 ];
@@ -17,9 +17,9 @@ const STAGE_ORDER = PIPELINE_STAGES.map(s => s.key);
 function StatusTimeline({ status, onChange }: { status: string; onChange: (s: string) => void }) {
   const currentIdx = STAGE_ORDER.indexOf(status);
   return (
-    <div className="border border-border p-6 mb-8">
-      <p className="text-xs tracking-[0.12em] uppercase text-muted-foreground mb-5">Pipeline</p>
-      <div className="flex items-start gap-0">
+    <div className="border border-border p-6 mb-8 bg-background">
+      <p className="text-xs tracking-[0.12em] uppercase text-muted-foreground mb-5 text-center lg:text-left">Pipeline Status</p>
+      <div className="flex items-start gap-0 max-w-3xl mx-auto lg:mx-0">
         {PIPELINE_STAGES.map((stage, i) => {
           const isDone = i < currentIdx;
           const isCurrent = i === currentIdx;
@@ -53,7 +53,7 @@ function StatusTimeline({ status, onChange }: { status: string; onChange: (s: st
               `}>
                 {stage.label}
               </span>
-              <span className="text-[9px] text-muted-foreground text-center mt-0.5 hidden lg:block">
+              <span className="text-[9px] text-muted-foreground text-center mt-0.5 hidden sm:block">
                 {stage.desc}
               </span>
             </div>
@@ -105,7 +105,7 @@ export default function QuoteDetailPage() {
   const router = useRouter();
   const clientId = params.id as string;
 
-  // Loading state
+  // Loading states
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [generating, setGenerating] = useState(false);
@@ -154,9 +154,10 @@ export default function QuoteDetailPage() {
           setTravelers(parseInt(q.Number_Travelers) || 2);
           setLanguage(q.Language || "English");
           setBudget(q.Budget || "");
+          setPrice(q.Price || "");
           setRequests(q.Requests || "");
           setNotes(q.Notes || "");
-          setStatus(q.Status || "NEW");
+          setStatus(q.Status || "NEW"); // Matches Supabase case-sensitive schema
           setRouteSequence(q.Notes_Route_Sequence || "");
           setHeroImage(q.Hero_Image || "");
         }
@@ -168,21 +169,21 @@ export default function QuoteDetailPage() {
       });
   }, [clientId]);
 
-  // ACTION: Update status only (fast, no full form save)
+  // ACTION: Update status cleanly to Supabase
   const handleStatusChange = async (newStatus: string) => {
     setStatus(newStatus);
     try {
       await fetch(`/api/admin/quotes/${clientId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ status: newStatus }),
+        body: JSON.stringify({ Status: newStatus }), // Capital S ensures Supabase processes it
       });
     } catch (err) {
       console.error("Failed to update status:", err);
     }
   };
 
-  // ACTION: Update Database
+  // ACTION: Update Full Database Entry
   const handleUpdateDatabase = async () => {
     setSaving(true);
     setMessage("");
@@ -191,7 +192,8 @@ export default function QuoteDetailPage() {
       firstName, lastName, email, phone, country,
       journeyInterest, startDate, endDate, startCity, endCity,
       days: days.toString(), travelers: travelers.toString(), 
-      language, budget, requests, notes, status,
+      language, budget, requests, notes, price,
+      Status: status, // Capital S matches your custom database row structure
       notes_route_sequence: routeSequence.replace(/[–—]/g, '-'),
       hero_image: heroImage
     };
@@ -233,26 +235,18 @@ export default function QuoteDetailPage() {
       
       const contentBlocks = contentData.contentBlocks;
       const numDays = days || 7;
-      
       let selectedBlocks: any[] = [];
       
-      // If route sequence is provided, use it directly
       if (routeSequence && routeSequence.trim()) {
         const routeIds = routeSequence.trim().replace(/[\u2013\u2014\u2012\u2010]/g, "-").split("\n").map((id: string) => id.trim()).filter((id: string) => id.length > 0);
         const blockMap = new Map(contentBlocks.map((b: any) => [b.id, b]));
-        // Use route IDs directly — no deduplication, order matters
-        selectedBlocks = routeIds.map((id: string) => {
-          const block = blockMap.get(id);
-          if (!block) console.warn("Route ID not found in content library:", id);
-          return block;
-        }).filter(Boolean);
+        selectedBlocks = routeIds.map((id: string) => blockMap.get(id)).filter(Boolean);
         if (selectedBlocks.length === 0) {
-          setMessage("Error: None of the route IDs were found in the content library. Check your route sequence.");
+          setMessage("Error: None of the route IDs were found in the content library.");
           setGenerating(false);
           return;
         }
       } else {
-        // Fall back to smart scoring
         const interestKeywords = (journeyInterest || "").toLowerCase().split(/[\s,]+/);
         const start = (startCity || "").toLowerCase();
         const end = (endCity || "").toLowerCase();
@@ -269,7 +263,6 @@ export default function QuoteDetailPage() {
           });
           if (block.imageUrl) score += 2;
           if (block.description) score += 1;
-          if (!block.fromCity && !block.toCity && !block.cityName) score = 0;
           return { ...block, _score: score };
         });
         const sorted = scored.filter((b: any) => b._score > 0).sort((a: any, b: any) => b._score - a._score);
@@ -283,10 +276,7 @@ export default function QuoteDetailPage() {
         }
       }
       
-      // Always use a deterministic proposal ID based on client ID
       const proposalId = `PROP-${clientId}`;
-
-      
       const routePoints: { name: string; coords: [number, number] }[] = [];
       const cityCoords: { [key: string]: [number, number] } = {
         "Marrakech": [-7.9811, 31.6295], "Casablanca": [-7.5898, 33.5731],
@@ -326,63 +316,34 @@ export default function QuoteDetailPage() {
       const formattedPrice = `€${totalPrice.toLocaleString()} EUR`;
       const heroBlock = contentBlocks.find((b: any) => b.heroImageUrl) || {};
       
-      const proposalData = {
-        id: proposalId,
-        journeyTitle: `${firstName} in Morocco`,
-        arcDescription: `An ${proposalDays.length - 1}-night journey through Morocco, crafted for Ms. ${firstName} ${lastName}.`,
+      const proposalPayload = {
+        clientId: clientId,
         clientName: `${firstName} ${lastName}`.trim(),
-        heroImage: heroImage || heroBlock.heroImageUrl || "",
-        price: price || "22,000",
-        travelers: travelers || 4,
-        days: proposalDays
+        country: country,
+        heroImageUrl: heroBlock.heroImageUrl || proposalDays[0]?.imageUrl || "",
+        heroTitle: heroBlock.heroTitle || "Your Morocco Journey",
+        heroBlurb: heroBlock.heroBlurb || `A ${proposalDays.length}-day journey exploring Morocco's most captivating corners.`,
+        startDate: startDate,
+        endDate: endDate,
+        days: days,
+        nights: days - 1,
+        numGuests: travelers,
+        totalPrice: totalPrice,
+        formattedPrice: formattedPrice,
+        routePoints: routePoints,
+        daysList: proposalDays,
       };
       
-      console.log("Saving proposal data:", proposalData);
+      await fetch("/api/admin/proposals", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(proposalPayload),
+      });
       
-      // Save to localStorage for immediate viewing
-      localStorage.setItem(`proposal-${proposalId}`, JSON.stringify(proposalData));
-      
-      // Save proposal to Supabase
-      try {
-        const proposalPayload = {
-          clientId: clientId,
-          clientName: `${firstName} ${lastName}`.trim(),
-          country: country,
-          heroImageUrl: heroBlock.heroImageUrl || proposalDays[0]?.imageUrl || "",
-          heroTitle: heroBlock.heroTitle || "Your Morocco Journey",
-          heroBlurb: heroBlock.heroBlurb || `A ${proposalDays.length}-day journey exploring Morocco's most captivating corners.`,
-          startDate: startDate,
-          endDate: endDate,
-          days: days,
-          nights: days - 1,
-          numGuests: travelers,
-          totalPrice: totalPrice,
-          formattedPrice: formattedPrice,
-          routePoints: routePoints,
-          daysList: proposalDays,
-        };
-        
-        const saveRes = await fetch("/api/admin/proposals", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(proposalPayload),
-        });
-        
-        const saveData = await saveRes.json();
-        if (!saveData.success) {
-          console.warn("Failed to save proposal:", saveData.error);
-        } else {
-          console.log("Proposal saved:", saveData.proposalId);
-        }
-      } catch (proposalErr) {
-        console.warn("Failed to save proposal:", proposalErr);
-        // Continue anyway - localStorage has the data
-      }
-      
-      console.log("Opening proposal page:", `/proposal/${proposalId}`);
       window.open(`/proposal/${proposalId}?edit=true`, '_blank');
       setMessage("Proposal generated!");
-      // Auto-advance status to IN_PROGRESS if still NEW
+      
+      // Auto-advance status directly to IN_PROGRESS when proposal generation is clicked
       if (status === "NEW") {
         await handleStatusChange("IN_PROGRESS");
       }
@@ -396,15 +357,10 @@ export default function QuoteDetailPage() {
   // ACTION: Delete
   const handleDelete = async () => {
     if (!confirm("Delete this quote?")) return;
-    
     try {
       const res = await fetch(`/api/admin/quotes/${clientId}`, { method: "DELETE" });
       const data = await res.json();
-      if (data.success) {
-        router.push("/admin/quotes");
-      } else {
-        setMessage(`Error: ${data.error}`);
-      }
+      if (data.success) router.push("/admin/quotes");
     } catch (err) {
       setMessage("Failed to delete");
     }
@@ -433,8 +389,8 @@ export default function QuoteDetailPage() {
           <div className={`text-xs px-3 py-1 rounded ${
             status === "NEW" ? "bg-green-50 text-green-700" :
             status === "IN_PROGRESS" ? "bg-blue-50 text-blue-700" :
-            status === "CONFIRMED" ? "bg-emerald-50 text-emerald-700" :
-            status === "CANCELLED" ? "bg-red-50 text-red-700" :
+            status === "SENT" ? "bg-purple-50 text-purple-700" :
+            status === "BOOKED" ? "bg-emerald-50 text-emerald-700" :
             "bg-gray-50 text-gray-700"
           }`}>
             {status}
@@ -442,10 +398,13 @@ export default function QuoteDetailPage() {
         </div>
       </header>
 
-      <main className="container mx-auto px-6 py-12 max-w-5xl">
+      <main className="container mx-auto px-6 py-8 max-w-5xl">
+        {/* Visual Status Timeline moved full-width to the top of the workspace */}
+        <StatusTimeline status={status} onChange={handleStatusChange} />
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           
-          {/* Left - Form */}
+          {/* Left - Form Input Columns */}
           <div className="lg:col-span-2 space-y-12">
             
             {/* Client Information */}
@@ -468,7 +427,7 @@ export default function QuoteDetailPage() {
             <section>
               <h2 className="font-serif text-xl mb-6">Journey Details</h2>
               <div className="mb-6">
-                <TextInput label="Journey Interest" value={journeyInterest} onChange={setJourneyInterest} placeholder="e.g., Sahara Desert, Imperial Cities" />
+                <TextInput label="Journey Interest" value={journeyInterest} onChange={setJourneyInterest} />
               </div>
               <div className="grid grid-cols-2 gap-6 mb-6">
                 <div>
@@ -491,8 +450,8 @@ export default function QuoteDetailPage() {
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-6 mb-6">
-                <TextInput label="Start City" value={startCity} onChange={setStartCity} placeholder="e.g., Marrakech" />
-                <TextInput label="End City" value={endCity} onChange={setEndCity} placeholder="e.g., Casablanca" />
+                <TextInput label="Start City" value={startCity} onChange={setStartCity} />
+                <TextInput label="End City" value={endCity} onChange={setEndCity} />
               </div>
               <div className="grid grid-cols-3 gap-6 mb-6">
                 <NumberInput label="Days" value={days} onChange={setDays} />
@@ -512,8 +471,8 @@ export default function QuoteDetailPage() {
                   </select>
                 </div>
               </div>
-              <div className="grid grid-cols-3 gap-6">
-                <TextInput label="Budget" value={budget} onChange={setBudget} placeholder="e.g., $2,500 - $4,000" />
+              <div className="grid grid-cols-2 gap-6">
+                <TextInput label="Budget" value={budget} onChange={setBudget} />
                 <div>
                   <label className="block text-sm text-muted-foreground mb-2">Price (€)</label>
                   <input
@@ -534,7 +493,6 @@ export default function QuoteDetailPage() {
                 value={requests}
                 onChange={(e) => setRequests(e.target.value)}
                 rows={4}
-                placeholder="Dietary needs, accessibility requirements, special interests..."
                 className="w-full px-4 py-3 border border-border bg-background text-lg focus:outline-none focus:border-foreground transition-colors resize-none"
               />
             </section>
@@ -546,154 +504,90 @@ export default function QuoteDetailPage() {
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 rows={3}
-                placeholder="Notes for your reference (not visible to client)..."
                 className="w-full px-4 py-3 border border-border bg-background text-lg focus:outline-none focus:border-foreground transition-colors resize-none"
               />
-            </section>
-
-            {/* Hero Image */}
-            <section>
-              <h2 className="font-serif text-xl mb-2">Hero Image</h2>
-              <p className="text-sm text-muted-foreground mb-4">Full-bleed banner image for the proposal. Use a cinematic, wide Cloudinary URL.</p>
-              <input
-                type="text"
-                value={heroImage}
-                onChange={(e) => setHeroImage(e.target.value)}
-                placeholder="https://res.cloudinary.com/..."
-                className="w-full px-4 py-3 border border-border bg-background text-sm focus:outline-none focus:border-foreground transition-colors"
-              />
-              {heroImage && (
-                <img src={heroImage} alt="Hero preview" className="mt-4 w-full h-40 object-cover" />
-              )}
             </section>
 
             {/* Route Sequence */}
             <section>
               <h2 className="font-serif text-xl mb-2">Route Sequence</h2>
-              <p className="text-sm text-muted-foreground mb-4">Enter one route ID per line in order. These will be used to generate the proposal day by day. Example:<br/>
-                <code className="text-xs bg-muted px-1">STAY_ESSAOUIRA</code><br/>
-                <code className="text-xs bg-muted px-1">ESS-MAR-NEW</code><br/>
-                <code className="text-xs bg-muted px-1">STAY_MARRAKECH</code>
-              </p>
               <textarea
                 value={routeSequence}
                 onChange={(e) => setRouteSequence(e.target.value)}
-                rows={12}
-                placeholder={"STAY_ESSAOUIRA\nSTAY_ESSAOUIRA\nESS-MAR-NEW\nSTAY_MARRAKECH\nMAR-AGAFAY\nMAR-TAM-004\nDAD-MER-116\nSTAY_MERZOUGA\nSTAY_MERZOUGA"}
+                rows={10}
                 className="w-full px-4 py-3 border border-border bg-background text-sm font-mono focus:outline-none focus:border-foreground transition-colors resize-none"
               />
             </section>
-
           </div>
 
-          {/* Right - Summary & Actions */}
+          {/* Right - Summary Panel & Action Engine */}
           <div className="lg:col-span-1">
             <div className="sticky top-8">
-              
-              {/* Status Timeline */}
-              <StatusTimeline status={status} onChange={handleStatusChange} />
-
-              <div className="border border-border p-8">
-              <h2 className="font-serif text-xl mb-6">Summary</h2>
-              
-              {/* Client Name */}
-              <div className="mb-8">
-                <p className="text-sm text-muted-foreground mb-1">Client</p>
-                <p className="font-serif text-2xl">
-                  {firstName || lastName ? `${firstName} ${lastName}` : "—"}
-                </p>
-              </div>
-
-              {/* Journey Info */}
-              <div className="space-y-4 mb-8 pb-8 border-b border-border">
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Duration</span>
-                  <span className="font-serif">{days} days</span>
+              <div className="border border-border p-8 bg-background">
+                <h2 className="font-serif text-xl mb-6">Summary</h2>
+                
+                <div className="mb-8">
+                  <p className="text-sm text-muted-foreground mb-1">Client</p>
+                  <p className="font-serif text-2xl">
+                    {firstName || lastName ? `${firstName} ${lastName}` : "—"}
+                  </p>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Travelers</span>
-                  <span className="font-serif">{travelers}</span>
-                </div>
-                {startDate && (
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Start</span>
-                    <span className="font-serif">{new Date(startDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                  </div>
-                )}
-                {endDate && (
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">End</span>
-                    <span className="font-serif">{new Date(endDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                  </div>
-                )}
-                {(startCity || endCity) && (
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Route</span>
-                    <span className="font-serif text-right">{startCity}{startCity && endCity ? " → " : ""}{endCity}</span>
-                  </div>
-                )}
-                {journeyInterest && (
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Interest</span>
-                    <span className="font-serif text-right max-w-[150px]">{journeyInterest}</span>
-                  </div>
-                )}
-                {price && (
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Price</span>
-                    <span className="font-serif text-xl">€{price}</span>
-                  </div>
-                )}
-              </div>
 
-              {/* Message */}
-              {message && (
-                <div className={`mb-6 p-3 text-sm ${
-                  message.includes("Error") || message.includes("Failed") 
-                    ? "bg-red-50 text-red-700" 
-                    : "bg-green-50 text-green-700"
-                }`}>
-                  {message}
+                <div className="space-y-4 mb-8 pb-8 border-b border-border text-sm">
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Duration</span>
+                    <span className="font-serif">{days} days</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Travelers</span>
+                    <span className="font-serif">{travelers}</span>
+                  </div>
+                  {price && (
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Price</span>
+                      <span className="font-serif text-base">€{price}</span>
+                    </div>
+                  )}
                 </div>
-              )}
 
-              {/* Action Buttons */}
-              <div className="space-y-3">
-                <button
-                  onClick={handleUpdateDatabase}
-                  disabled={saving}
-                  className="w-full py-4 bg-foreground text-background text-xs tracking-[0.15em] uppercase hover:bg-foreground/90 disabled:opacity-50 transition-colors"
-                >
-                  {saving ? "Saving..." : "Update Database"}
-                </button>
-                <button
-                  onClick={handleGenerateProposal}
-                  disabled={generating}
-                  className="w-full py-4 bg-green-700 text-white text-xs tracking-[0.15em] uppercase hover:bg-green-800 disabled:opacity-50 transition-colors"
-                >
-                  {generating ? "Generating..." : "Generate New Proposal"}
-                </button>
-                <button
-                  onClick={() => window.open(`/proposal/PROP-${clientId}?edit=true`, '_blank')}
-                  className="w-full py-4 border border-[#2d5016] text-[#2d5016] text-xs tracking-[0.15em] uppercase hover:bg-[#2d5016] hover:text-white transition-colors"
-                >
-                  Edit Proposal
-                </button>
-                <Link
-                  href="/admin/quotes/new"
-                  className="block w-full py-4 border border-border text-xs tracking-[0.15em] uppercase hover:border-foreground transition-colors text-center"
-                >
-                  New Quote
-                </Link>
-                <button
-                  onClick={handleDelete}
-                  className="w-full py-4 text-red-600 text-xs tracking-[0.15em] uppercase hover:bg-red-50 transition-colors"
-                >
-                  Delete
-                </button>
+                {message && (
+                  <div className={`mb-6 p-3 text-sm ${
+                    message.includes("Error") || message.includes("Failed") ? "bg-red-50 text-red-700" : "bg-green-50 text-green-700"
+                  }`}>
+                    {message}
+                  </div>
+                )}
+
+                <div className="space-y-3">
+                  <button
+                    onClick={handleUpdateDatabase}
+                    disabled={saving}
+                    className="w-full py-4 bg-foreground text-background text-xs tracking-[0.15em] uppercase hover:bg-foreground/90 disabled:opacity-50 transition-colors"
+                  >
+                    {saving ? "Saving..." : "Update Database"}
+                  </button>
+                  <button
+                    onClick={handleGenerateProposal}
+                    disabled={generating}
+                    className="w-full py-4 bg-green-700 text-white text-xs tracking-[0.15em] uppercase hover:bg-green-800 disabled:opacity-50 transition-colors"
+                  >
+                    {generating ? "Generating..." : "Generate New Proposal"}
+                  </button>
+                  <button
+                    onClick={() => window.open(`/proposal/PROP-${clientId}?edit=true`, '_blank')}
+                    className="w-full py-4 border border-[#2d5016] text-[#2d5016] text-xs tracking-[0.15em] uppercase hover:bg-[#2d5016] hover:text-white transition-colors"
+                  >
+                    Edit Proposal
+                  </button>
+                  <button
+                    onClick={handleDelete}
+                    className="w-full py-4 text-red-600 text-xs tracking-[0.15em] uppercase hover:bg-red-50 transition-colors"
+                  >
+                    Delete Quote
+                  </button>
+                </div>
               </div>
-              </div>{/* end summary box */}
-            </div>{/* end sticky */}
+            </div>
           </div>
 
         </div>
