@@ -175,6 +175,7 @@ const nextConfig = {
       { source: '/stories/the-rules-of-bargaining', destination: '/stories', permanent: true },
       { source: '/stories/best-time-to-visit-morocco', destination: '/plan-your-trip', permanent: true },
       { source: '/stories/the-kings-lions', destination: '/stories', permanent: true },
+      { source: '/stories/the-empire-that-crossed', destination: '/stories', permanent: true },
 
       // ============================================
       // PLACES 404s → /places or closest match
