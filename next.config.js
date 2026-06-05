@@ -176,6 +176,10 @@ const nextConfig = {
       { source: '/stories/best-time-to-visit-morocco', destination: '/plan-your-trip', permanent: true },
       { source: '/stories/the-kings-lions', destination: '/stories', permanent: true },
       { source: '/stories/the-empire-that-crossed', destination: '/stories', permanent: true },
+      { source: '/stories/wildlife-atlas-morocco', destination: '/stories', permanent: true },
+      { source: '/stories/dynasty-timeline', destination: '/stories', permanent: true },
+      { source: '/stories/world-cup-blueprint', destination: '/stories', permanent: true },
+      { source: '/stories/moroccan-dirham-currency', destination: '/stories', permanent: true },
 
       // ============================================
       // PLACES 404s → /places or closest match
@@ -565,7 +569,7 @@ const nextConfig = {
       { source: '/stories/pottery-traditions-morocco', destination: '/stories/moroccan-pottery-guide', permanent: true },
       { source: '/stories/tanneries-of-fes', destination: '/stories/fes-tanneries-guide', permanent: true },
       { source: '/stories/tourism-flow-morocco', destination: '/stories/morocco-tourism-statistics', permanent: true },
-      { source: '/stories/dirhams-journey', destination: '/stories/moroccan-dirham-currency', permanent: true },
+      { source: '/stories/dirhams-journey', destination: '/stories', permanent: true },
 
       { source: '/stories/harvest-calendar', destination: '/stories/morocco-harvest-calendar', permanent: true },
       { source: '/stories/marriage-economy', destination: '/stories/moroccan-wedding-economy', permanent: true },
@@ -586,7 +590,7 @@ const nextConfig = {
       // DELETED REACT DATA MODULES — March 13, 2026
       // ============================================
       { source: '/stories/hammam-culture', destination: '/stories/the-hammam', permanent: true },
-      { source: '/stories/dynasty-timeline', destination: '/stories/twelve-dynasties', permanent: true },
+      { source: '/stories/dynasty-timeline', destination: '/stories', permanent: true },
 
       // Cleaned-up story directory redirects — March 13, 2026
       { source: '/stories/al-andalus', destination: '/stories/al-andalus-corridor', permanent: true },
@@ -887,7 +891,7 @@ const nextConfig = {
       { source: '/stories/shadow-moucharabieh', destination: '/stories', permanent: true },
       { source: '/stories/tea-ceremony', destination: '/stories', permanent: true },
       { source: '/stories/water-equation', destination: '/stories', permanent: true },
-      { source: '/stories/wildlife-atlas', destination: '/stories/wildlife-atlas-morocco', permanent: true },
+      { source: '/stories/wildlife-atlas', destination: '/stories', permanent: true },
 
       // Missing redirects — April 8, 2026
       // /tetouan redirect removed May 7 2026: /tetouan is now a live destination
