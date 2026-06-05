@@ -161,6 +161,22 @@ const nextConfig = {
       { source: '/stories/wind-and-sun', destination: '/stories', permanent: true },
 
       // ============================================
+      // DELETED STORIES → /stories or /plan-your-trip
+      // Removed June 5, 2026 — academic content cleanup
+      // ============================================
+      { source: '/stories/darija', destination: '/stories', permanent: true },
+      { source: '/stories/twelve-dynasties', destination: '/stories', permanent: true },
+      { source: '/stories/morocco-itinerary', destination: '/plan-your-trip', permanent: true },
+      { source: '/stories/driving-in-morocco', destination: '/stories', permanent: true },
+      { source: '/stories/morocco-visa', destination: '/stories', permanent: true },
+      { source: '/stories/what-to-wear', destination: '/stories', permanent: true },
+      { source: '/stories/is-morocco-safe', destination: '/stories', permanent: true },
+      { source: '/stories/what-things-cost', destination: '/stories', permanent: true },
+      { source: '/stories/the-rules-of-bargaining', destination: '/stories', permanent: true },
+      { source: '/stories/best-time-to-visit-morocco', destination: '/plan-your-trip', permanent: true },
+      { source: '/stories/the-kings-lions', destination: '/stories', permanent: true },
+
+      // ============================================
       // PLACES 404s → /places or closest match
       // ============================================
       { source: '/places/agadir-corniche', destination: '/places', permanent: true },
