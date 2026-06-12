@@ -50,7 +50,7 @@ export default function AmazighGuidePage() {
         <div className="flex flex-wrap gap-4 pt-4 border-t border-foreground/[0.08]">
           <Link href="/stories/amazigh-identity-map" className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Read: Amazigh identity map →</Link>
           <Link href="/stories/carpet-atlas" className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Read: Moroccan carpets →</Link>
-          <Link href="/darija" className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Darija dictionary →</Link>
+          <Link href="https://darija.io" className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Darija dictionary →</Link>
         </div>
       </div>
     </div>
