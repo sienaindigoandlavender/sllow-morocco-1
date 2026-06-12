@@ -531,7 +531,7 @@ export default function StartHereContent() {
             Explore the map
           </Link>
           {" · "}
-          <Link href="/darija" className="hover:text-foreground/60 transition-colors">
+          <Link href="https://darija.io" className="hover:text-foreground/60 transition-colors">
             Learn Darija
           </Link>
         </p>
