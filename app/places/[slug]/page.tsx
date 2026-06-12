@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { permanentRedirect } from "next/navigation";
 import { Metadata } from "next";
 import { getPlaceBySlug, getPlaceImages, getJourneys, getStories, getDestinations, getPlaces, convertDriveUrl } from "@/lib/supabase";
 import PlaceDetailContent from "./PlaceDetailContent";
@@ -262,7 +262,11 @@ export default async function PlaceDetailPage({
   const data = await getPlaceData(slug);
 
   if (!data) {
-    notFound();
+    // Place was deleted from Supabase. 301 to the index instead of
+    // serving a 404 — this stops every future place deletion from
+    // generating a new GSC "Not found (404)" entry and removes the
+    // need to add manual redirect rules in next.config.js.
+    permanentRedirect("/places");
   }
 
   const { relatedJourneys, relatedStories } = await getRelatedContent(data.place);
