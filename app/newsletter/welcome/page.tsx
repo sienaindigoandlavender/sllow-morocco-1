@@ -33,7 +33,7 @@ export default function NewsletterWelcomePage() {
             Places
           </Link>
           <Link
-            href="/darija"
+            href="https://darija.io"
             className="text-xs tracking-[0.15em] uppercase border border-foreground/15 px-5 py-2.5 text-foreground/60 hover:text-foreground hover:border-foreground/40 transition-colors"
           >
             Darija
