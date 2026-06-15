@@ -182,6 +182,7 @@ const nextConfig = {
       { source: "/places/hotel-continental", destination: "/places/kasbah-tangier", permanent: true },
       { source: "/places/ibn-danan-synagogue", destination: "/fes", permanent: true },
       { source: "/places/ifrane", destination: "/ifrane", permanent: true },
+      { source: "/places/ifrane-town", destination: "/ifrane", permanent: true },
       { source: "/places/ifrane-morocco", destination: "/ifrane", permanent: true },
       { source: "/places/jardins-menara", destination: "/places/menara-gardens", permanent: true },
       { source: "/places/jemaa-chefchaouen", destination: "/places/kasbah-chefchaouen", permanent: true },
