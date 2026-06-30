@@ -330,29 +330,8 @@ export default function SaharaLandingContentIT() {
                 <span className="text-sm text-foreground/40">a persona</span>
               </div>
               <p className="text-sm text-foreground/40">
-                Minimo 2 partecipanti · Massimo 6
+                Minimo 2 partecipanti
               </p>
-            </div>
-
-            <div className="mb-8">
-              <p className="text-xs tracking-[0.1em] uppercase text-foreground/40 mb-4">
-                Numero di partecipanti
-              </p>
-              <div className="flex gap-2">
-                {[2, 3, 4, 5, 6].map((n) => (
-                  <button
-                    key={n}
-                    onClick={() => setParticipants(n)}
-                    className={`w-10 h-10 text-sm border transition-all ${
-                      participants === n
-                        ? "border-foreground bg-foreground text-background"
-                        : "border-foreground/15 text-foreground/50 hover:border-foreground/40"
-                    }`}
-                  >
-                    {n}
-                  </button>
-                ))}
-              </div>
             </div>
 
             <div className="border border-foreground/[0.08] p-6 mb-8">
