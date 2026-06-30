@@ -42,7 +42,7 @@ export default function Header() {
     <>
       {/* ── Fixed header bar ─────────────────────────────────────────── */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`print:hidden fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           menuOpen
             ? "bg-transparent"
             : scrolled

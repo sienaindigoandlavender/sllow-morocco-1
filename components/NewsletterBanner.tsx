@@ -30,7 +30,7 @@ export default function NewsletterBanner() {
   };
 
   return (
-    <section className="bg-[#1C1917] text-white py-14 md:py-20">
+    <section className="print:hidden bg-[#1C1917] text-white py-14 md:py-20">
       <div className="max-w-md mx-auto px-8 md:px-10 text-center">
         <h2 className="text-xl md:text-2xl font-light tracking-[-0.01em] mb-3">
           The Letter

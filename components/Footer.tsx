@@ -130,7 +130,7 @@ export default function Footer() {
   };
 
   return (
-    <footer>
+    <footer className="print:hidden">
 
       {/* ═══════════════════════════════════════════════════════════════
           LEVEL 2: Navigation — clean, minimal
