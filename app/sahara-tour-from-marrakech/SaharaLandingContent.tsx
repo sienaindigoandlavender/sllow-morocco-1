@@ -182,11 +182,13 @@ export default function SaharaLandingContent() {
         @media print {
           .print\\:hidden { display: none !important; }
           body { background: white !important; color: black !important; font-size: 12px; }
-          section { page-break-inside: avoid; padding-top: 24px !important; padding-bottom: 24px !important; }
-          .space-y-20 > div { page-break-inside: avoid; margin-bottom: 32px !important; }
+          section { padding-top: 16px !important; padding-bottom: 16px !important; }
+          .space-y-20 > div { page-break-inside: avoid; margin-bottom: 24px !important; }
+          .grid.md\\:grid-cols-2 > div { page-break-inside: avoid; }
+          .border-t.border-foreground\\/\\[0\\.08\\] { page-break-inside: avoid; }
           p, li { orphans: 3; widows: 3; }
           a[href]:after { content: none !important; }
-          h1, h2 { page-break-after: avoid; }
+          h1, h2, .text-xs.tracking-\\[0\\.2em\\] { page-break-after: avoid; }
         }
       `}</style>
 
