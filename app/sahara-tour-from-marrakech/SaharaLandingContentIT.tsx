@@ -80,15 +80,13 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
         <span className="text-sm font-medium text-foreground leading-snug">
           {question}
         </span>
-        <span className="text-foreground/30 flex-shrink-0 mt-0.5 text-lg leading-none">
+        <span className="text-foreground/30 flex-shrink-0 mt-0.5 text-lg leading-none print:hidden">
           {open ? "−" : "+"}
         </span>
       </button>
-      {open && (
-        <p className="text-sm text-foreground/55 leading-relaxed pb-6 pr-8">
-          {answer}
-        </p>
-      )}
+      <p className={`text-sm text-foreground/55 leading-relaxed pb-6 pr-8 print:!block ${open ? "" : "hidden"}`}>
+        {answer}
+      </p>
     </div>
   );
 }
@@ -180,9 +178,17 @@ export default function SaharaLandingContentIT() {
 
   return (
     <div className="bg-background min-h-screen">
+      <style jsx global>{`
+        @media print {
+          .print\\:hidden { display: none !important; }
+          body { background: white !important; color: black !important; }
+          section { page-break-inside: avoid; }
+          a[href]:after { content: none !important; }
+        }
+      `}</style>
 
       {/* ── Hero — full viewport, matching journeys ────────────────────── */}
-      <section className="relative h-[100svh] min-h-[600px] bg-[#c4a882]">
+      <section className="relative h-[100svh] min-h-[600px] bg-[#c4a882] print:hidden">
         <img
           src="https://res.cloudinary.com/do2ojyohc/image/upload/v1774039524/Camel_caravan_crossing_Saharan_dunes_wngjzj.png"
           alt="Carovana di cammelli che attraversa le dune del Sahara"
@@ -210,18 +216,31 @@ export default function SaharaLandingContentIT() {
       </section>
 
       {/* ── Meta bar ──────────────────────────────────────────────────── */}
-      <div className="border-b border-foreground/10">
+      <div className="border-b border-foreground/10 print:hidden">
         <div className="max-w-3xl mx-auto px-8 md:px-12 py-5 flex items-center justify-between">
           <div className="flex items-center gap-4 text-[11px] tracking-[0.12em] uppercase text-foreground/35">
             <Link href="/journeys" className="hover:text-foreground/60 transition-colors">Viaggi</Link>
             <span>3 Giorni</span>
             <span>Da Marrakech</span>
           </div>
-          <ShareTools
-            title="Tour del Deserto del Sahara da Marrakech"
-            description="Viaggio privato di 3 giorni nel deserto da Marrakech attraverso Ouarzazate, la Valle del Draa, fino alle dune di Erg Chebbi a Merzouga."
-            imageUrl="https://res.cloudinary.com/do2ojyohc/image/upload/v1774039524/Camel_caravan_crossing_Saharan_dunes_wngjzj.png"
-          />
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => window.print()}
+              className="flex items-center gap-2 text-[11px] tracking-[0.12em] uppercase text-foreground/35 hover:text-foreground/60 transition-colors"
+            >
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.2" className="w-3.5 h-3.5">
+                <rect x="2" y="5" width="12" height="8" rx="1"/>
+                <polyline points="4,5 4,1 12,1 12,5"/>
+                <line x1="4" y1="10" x2="12" y2="10"/>
+              </svg>
+              Scarica PDF
+            </button>
+            <ShareTools
+              title="Tour del Deserto del Sahara da Marrakech"
+              description="Viaggio privato di 3 giorni nel deserto da Marrakech attraverso Ouarzazate, la Valle del Draa, fino alle dune di Erg Chebbi a Merzouga."
+              imageUrl="https://res.cloudinary.com/do2ojyohc/image/upload/v1774039524/Camel_caravan_crossing_Saharan_dunes_wngjzj.png"
+            />
+          </div>
         </div>
       </div>
 
@@ -351,7 +370,7 @@ export default function SaharaLandingContentIT() {
 
             <button
               onClick={() => setIsBookingOpen(true)}
-              className="w-full py-4 bg-foreground text-background text-sm tracking-[0.15em] uppercase hover:bg-foreground/85 transition-colors mb-4"
+              className="w-full py-4 bg-foreground text-background text-sm tracking-[0.15em] uppercase hover:bg-foreground/85 transition-colors mb-4 print:hidden"
             >
               Prenota questo viaggio
             </button>
@@ -436,7 +455,7 @@ export default function SaharaLandingContentIT() {
       </section>
 
       {/* ── Start Here CTA ────────────────────────────────────────────── */}
-      <section className="border-t border-foreground/10">
+      <section className="border-t border-foreground/10 print:hidden">
         <div className="max-w-3xl mx-auto px-8 md:px-12 lg:px-16 py-16">
           <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-4">
             Non siete sicuri che sia il viaggio giusto?
@@ -457,7 +476,7 @@ export default function SaharaLandingContentIT() {
       </section>
 
       {/* ── Other journeys ────────────────────────────────────────────── */}
-      <section className="border-t border-foreground/10">
+      <section className="border-t border-foreground/10 print:hidden">
         <div className="max-w-3xl mx-auto px-8 md:px-12 lg:px-16 py-12">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <p className="text-sm text-foreground/40">
