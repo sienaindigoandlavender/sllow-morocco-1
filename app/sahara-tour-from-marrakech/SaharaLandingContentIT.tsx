@@ -479,7 +479,7 @@ export default function SaharaLandingContentIT() {
         onClose={() => setIsBookingOpen(false)}
         experienceTitle={`Tour del Deserto del Sahara di 3 Giorni (${participants} persone)`}
         pricingEUR={pricingEUR}
-        totalEUR={grandTotal}
+        totalEUR={totalEUR}
       />
 
     </div>

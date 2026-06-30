@@ -500,7 +500,7 @@ export default function SaharaLandingContent() {
         onClose={() => setIsBookingOpen(false)}
         experienceTitle={`3-Day Sahara Desert Tour (${participants} persons)`}
         pricingEUR={pricingEUR}
-        totalEUR={grandTotal}
+        totalEUR={totalEUR}
       />
 
     </div>
