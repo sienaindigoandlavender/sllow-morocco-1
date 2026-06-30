@@ -181,9 +181,12 @@ export default function SaharaLandingContent() {
       <style jsx global>{`
         @media print {
           .print\\:hidden { display: none !important; }
-          body { background: white !important; color: black !important; }
-          section { page-break-inside: avoid; }
+          body { background: white !important; color: black !important; font-size: 12px; }
+          section { page-break-inside: avoid; padding-top: 24px !important; padding-bottom: 24px !important; }
+          .space-y-20 > div { page-break-inside: avoid; margin-bottom: 32px !important; }
+          p, li { orphans: 3; widows: 3; }
           a[href]:after { content: none !important; }
+          h1, h2 { page-break-after: avoid; }
         }
       `}</style>
 
@@ -249,7 +252,7 @@ export default function SaharaLandingContent() {
         <div className="container mx-auto px-6 lg:px-16 max-w-3xl">
 
           {/* Route map */}
-          <div className="mb-16">
+          <div className="mb-16 print:hidden">
             <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-4">
               Your Route
             </p>
