@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import SaharaLandingContent from "./SaharaLandingContent";
+import SaharaLandingContentIT from "./SaharaLandingContentIT";
 
 export const metadata: Metadata = {
-  title: "3-Day Sahara Desert Tour from Marrakech",
-  description: "Private 3-day desert journey from Marrakech through Ouarzazate, the Draa Valley, and into the Erg Chebbi dunes at Merzouga. €450 per person, minimum 2. Private driver, desert camp included.",
-  alternates: { canonical: "https://www.slowmorocco.com/sahara-tour-from-marrakech" },
+  title: "Tour del Deserto del Sahara di 3 Giorni da Marrakech",
+  description: "Viaggio privato di 3 giorni nel deserto da Marrakech attraverso Ouarzazate, la Valle del Draa, fino alle dune di Erg Chebbi a Merzouga. €450 a persona, minimo 2. Autista privato, campo nel deserto incluso.",
+  alternates: { canonical: "https://www.slowmorocco.com/tour-sahara-da-marrakech" },
   openGraph: {
-    title: "3-Day Sahara Desert Tour from Marrakech",
-    description: "Private 3-day desert journey from Marrakech to the Erg Chebbi dunes. Through Ouarzazate, the Draa Valley oases, and into the Sahara. €450 per person.",
-    url: "https://www.slowmorocco.com/sahara-tour-from-marrakech",
+    title: "Tour del Deserto del Sahara di 3 Giorni da Marrakech",
+    description: "Viaggio privato di 3 giorni nel deserto da Marrakech fino alle dune di Erg Chebbi. Attraverso Ouarzazate, le oasi della Valle del Draa e fino al Sahara. €450 a persona.",
+    url: "https://www.slowmorocco.com/tour-sahara-da-marrakech",
     siteName: "Slow Morocco",
   },
 };
@@ -17,9 +17,9 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "TouristTrip",
-  "name": "3-Day Sahara Desert Tour from Marrakech",
-  "description": "Private 3-day desert journey from Marrakech through Ouarzazate, the Draa Valley, and into the Erg Chebbi dunes at Merzouga. Private driver, 2 nights accommodation included.",
-  "url": "https://www.slowmorocco.com/sahara-tour-from-marrakech",
+  "name": "Tour del Deserto del Sahara di 3 Giorni da Marrakech",
+  "description": "Viaggio privato di 3 giorni nel deserto da Marrakech attraverso Ouarzazate, la Valle del Draa, fino alle dune di Erg Chebbi a Merzouga. Autista privato, 2 notti di alloggio incluse.",
+  "url": "https://www.slowmorocco.com/tour-sahara-da-marrakech",
   "provider": {
     "@type": "TravelAgency",
     "name": "Slow Morocco",
@@ -29,7 +29,7 @@ const jsonLd = {
     "@type": "Offer",
     "price": "450",
     "priceCurrency": "EUR",
-    "description": "Per person, minimum 2 participants. Private driver and 2 nights accommodation included.",
+    "description": "A persona, minimo 2 partecipanti. Autista privato e 2 notti di alloggio incluse.",
     "availability": "https://schema.org/InStock",
   },
   "itinerary": {
@@ -38,17 +38,17 @@ const jsonLd = {
       {
         "@type": "ListItem",
         "position": 1,
-        "name": "Day 1: Marrakech to Ouarzazate via Tizi n'Tichka and Aït Benhaddou",
+        "name": "Giorno 1: Marrakech a Ouarzazate via Tizi n'Tichka e Aït Benhaddou",
       },
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "Day 2: Ouarzazate through the Draa Valley to Merzouga",
+        "name": "Giorno 2: Ouarzazate attraverso la Valle del Draa fino a Merzouga",
       },
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "Day 3: Sunrise at Erg Chebbi dunes, return to Marrakech",
+        "name": "Giorno 3: Alba sulle dune di Erg Chebbi, ritorno a Marrakech",
       },
     ],
   },
@@ -63,13 +63,13 @@ const jsonLd = {
     {
       "@type": "Review",
       "author": { "@type": "Person", "name": "Angela A." },
-      "reviewBody": "A brilliant introduction to Morocco. Well organised and thought out. I couldn't wish for a better introduction.",
+      "reviewBody": "Un'introduzione brillante al Marocco. Ben organizzato e curato. Non avrei potuto desiderare un'introduzione migliore.",
       "reviewRating": { "@type": "Rating", "ratingValue": "5" },
     },
     {
       "@type": "Review",
       "author": { "@type": "Person", "name": "Rhonda" },
-      "reviewBody": "The desert was memorable. So many things were over and above what you would expect. The details were so thoughtful.",
+      "reviewBody": "Il deserto è stato indimenticabile. Tantissimi dettagli curati oltre ogni aspettativa.",
       "reviewRating": { "@type": "Rating", "ratingValue": "5" },
     },
   ],
@@ -78,49 +78,49 @@ const jsonLd = {
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "How far is Merzouga from Marrakech?",
+        "name": "Quanto dista Merzouga da Marrakech?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Merzouga is approximately 550 kilometres from Marrakech — about 9 hours by road. It is not a day trip. Anyone offering the Sahara as a day trip from Marrakech is selling you the Agafay plateau, which is a rocky desert outside the city.",
+          "text": "Merzouga si trova a circa 550 chilometri da Marrakech — circa 9 ore di strada. Non è un'escursione di un giorno. Chi propone il Sahara come gita giornaliera da Marrakech sta in realtà vendendo l'altopiano di Agafay, un deserto roccioso fuori città.",
         },
       },
       {
         "@type": "Question",
-        "name": "What is the best time of year for a Sahara desert tour from Marrakech?",
+        "name": "Qual è il periodo migliore per un tour nel deserto del Sahara da Marrakech?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "October to April. The desert in summer reaches 45°C — not enjoyable. Spring and autumn offer the best conditions. October coincides with the date harvest in the Draa Valley.",
+          "text": "Da ottobre ad aprile. Il deserto in estate raggiunge i 45°C — poco piacevole. Primavera e autunno offrono le condizioni migliori. Ottobre coincide con la raccolta dei datteri nella Valle del Draa.",
         },
       },
       {
         "@type": "Question",
-        "name": "Is this a private tour or a group tour?",
+        "name": "È un tour privato o di gruppo?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Private. Your own vehicle, your own driver, your own schedule. No shared minibuses, no fixed stops at tourist shops.",
+          "text": "Privato. Il vostro veicolo, il vostro autista, i vostri tempi. Nessun minibus condiviso, nessuna fermata fissa nei negozi turistici.",
         },
       },
       {
         "@type": "Question",
-        "name": "What is included in the 3-day Sahara tour price?",
+        "name": "Cosa è incluso nel prezzo del tour di 3 giorni nel Sahara?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Private driver for three days, two nights accommodation (Ouarzazate and a desert camp at Merzouga), and all transfers. Meals are not included.",
+          "text": "Autista privato per tre giorni, due notti di alloggio (Ouarzazate e un campo nel deserto a Merzouga) e tutti i trasferimenti. I pasti non sono inclusi.",
         },
       },
     ],
   },
 };
 
-export default function SaharaLandingPage() {
+export default function SaharaLandingPageIT() {
   return (
     <>
       <Script
-        id="sahara-jsonld"
+        id="sahara-jsonld-it"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <SaharaLandingContent />
+      <SaharaLandingContentIT />
     </>
   );
 }
