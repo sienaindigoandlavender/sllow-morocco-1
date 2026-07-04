@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import LegalPageContent from "@/components/LegalPageContent";
+import LegalPageServer from "@/components/LegalPageServer";
 
 export const metadata: Metadata = {
   title: "Intellectual Property",
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function IntellectualPropertyPage() {
   return (
-    <LegalPageContent
+    <LegalPageServer
       pageId="intellectual-property"
       fallbackTitle="Intellectual Property"
     />
