@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import LegalPageContent from "@/components/LegalPageContent";
+import LegalPageServer from "@/components/LegalPageServer";
 
 export const metadata: Metadata = {
   title: "Disclaimer",
@@ -11,5 +11,5 @@ export const metadata: Metadata = {
 };
 
 export default function DisclaimerPage() {
-  return <LegalPageContent pageId="disclaimer" fallbackTitle="Disclaimer" />;
+  return <LegalPageServer pageId="disclaimer" fallbackTitle="Disclaimer" />;
 }
