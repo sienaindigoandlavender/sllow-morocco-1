@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import LegalPageContent from "@/components/LegalPageContent";
+import LegalPageServer from "@/components/LegalPageServer";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -11,5 +11,5 @@ export const metadata: Metadata = {
 };
 
 export default function PrivacyPage() {
-  return <LegalPageContent pageId="privacy" fallbackTitle="Privacy Policy" />;
+  return <LegalPageServer pageId="privacy" fallbackTitle="Privacy Policy" />;
 }
