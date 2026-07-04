@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import LegalPageContent from "@/components/LegalPageContent";
+import LegalPageServer from "@/components/LegalPageServer";
 
 export const metadata: Metadata = {
   title: "Cancellations & Refunds",
@@ -11,5 +11,5 @@ export const metadata: Metadata = {
 };
 
 export default function CancellationsPage() {
-  return <LegalPageContent pageId="cancellations-and-refunds" fallbackTitle="Cancellations & Refunds" />;
+  return <LegalPageServer pageId="cancellations-and-refunds" fallbackTitle="Cancellations & Refunds" />;
 }
