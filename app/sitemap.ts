@@ -40,7 +40,6 @@ const STATIC_PAGES: MetadataRoute.Sitemap = [
   { url: `${SITE_URL}/travel-insurance`, changeFrequency: 'monthly', priority: 0.4 },
   { url: `${SITE_URL}/sahara-tour-from-marrakech`, changeFrequency: 'monthly', priority: 0.7 },
   { url: `${SITE_URL}/tour-sahara-da-marrakech`, changeFrequency: 'monthly', priority: 0.6 },
-  { url: `${SITE_URL}/riad-di-siena`, changeFrequency: 'monthly', priority: 0.6 },
   { url: `${SITE_URL}/jewish-heritage-morocco`, changeFrequency: 'monthly', priority: 0.5 },
   { url: `${SITE_URL}/morocco-world-cup-2030`, changeFrequency: 'monthly', priority: 0.5 },
   { url: `${SITE_URL}/privacy`, changeFrequency: 'yearly', priority: 0.2 },
