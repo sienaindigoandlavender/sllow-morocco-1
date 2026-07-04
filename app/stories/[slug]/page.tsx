@@ -1,4 +1,4 @@
-import { notFound, permanentRedirect } from "next/navigation";
+import { permanentRedirect } from "next/navigation";
 import { Metadata } from "next";
 import { getStoryBySlug, getStories, getJourneys, getStoryImages, getPlaces } from "@/lib/supabase";
 import { findRelatedJourneys } from "@/lib/content-matcher";
@@ -237,7 +237,12 @@ export default async function StoryPage({
   const storyResult = await getStoryData(slug);
 
   if (!storyResult) {
-    notFound();
+    // Story was deleted/unpublished in Supabase. 301 to the index
+    // instead of serving a 404 — same pattern as /places/[slug].
+    // This retires the GSC 404s for /stories/maghreb-compared,
+    // /stories/the-horses-of-morocco, /stories/the-atlantic-spine,
+    // /stories/the, etc. without manual next.config entries.
+    permanentRedirect("/stories");
   }
 
   const { story, mapData, externalLinks } = storyResult;
