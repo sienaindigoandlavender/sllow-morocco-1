@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import LegalPageContent from "@/components/LegalPageContent";
+import LegalPageServer from "@/components/LegalPageServer";
 
 export const metadata: Metadata = {
   title: "Booking Conditions",
@@ -11,5 +11,5 @@ export const metadata: Metadata = {
 };
 
 export default function BookingConditionsPage() {
-  return <LegalPageContent pageId="booking-conditions" fallbackTitle="Booking Conditions" />;
+  return <LegalPageServer pageId="booking-conditions" fallbackTitle="Booking Conditions" />;
 }
