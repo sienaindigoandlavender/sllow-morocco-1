@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import LegalPageContent from "@/components/LegalPageContent";
+import LegalPageServer from "@/components/LegalPageServer";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
@@ -11,5 +11,5 @@ export const metadata: Metadata = {
 };
 
 export default function TermsPage() {
-  return <LegalPageContent pageId="terms" fallbackTitle="Terms of Service" />;
+  return <LegalPageServer pageId="terms" fallbackTitle="Terms of Service" />;
 }
