@@ -40,6 +40,17 @@ const nextConfig = {
   // ============================================================
   async redirects() {
     return [
+      // ---- July 4, 2026 GSC cleanup ----
+      // /riad-di-siena has no page.tsx (only /riad-di-siena/colin exists)
+      // and was 404ing while sitting in the sitemap at priority 0.6.
+      // Removed from sitemap; send the equity to the riad's own domain.
+      { source: "/riad-di-siena", destination: "https://www.riaddisiena.com", permanent: true },
+      // Legacy darija slug missed by the batch below (in GSC 404 list).
+      { source: "/7NI-in", destination: "https://darija.io", permanent: true },
+      { source: "/7NI-in/", destination: "https://darija.io", permanent: true },
+      // Old riad story URL from GSC 404 list.
+      { source: "/morocco/inside-the-riad", destination: "https://www.riaddisiena.com", permanent: true },
+
       // ---- Darija → darija.io (exact legacy slugs) ----
       { source: "/3SH-rin", destination: "https://darija.io", permanent: true },
       { source: "/3SH-rin/", destination: "https://darija.io", permanent: true },
