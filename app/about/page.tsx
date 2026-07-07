@@ -97,10 +97,20 @@ export default async function AboutPage() {
           </p>
 
           <p>
-            We also design private journeys for people who want the knowledge
-            made physical. Every guide we work with, every riad we recommend,
-            every road we suggest — it's all been walked by us first. We don't
-            recommend what we haven't experienced.
+            Entries are researched, dated, and revised. We work from academic
+            books, museum documentation, UNESCO records, and what we see with
+            our own eyes. Where scholarship disagrees, we say so.
+          </p>
+
+          <p>
+            We carry no advertising. Nothing here has been paid for, and
+            nothing will be.
+          </p>
+
+          <p>
+            We write from a riad in the Marrakech medina — newsroom, test
+            kitchen, and occasionally evidence. Corrections are acted on
+            quickly. It is the only dignified way to be wrong.
           </p>
 
         </div>
