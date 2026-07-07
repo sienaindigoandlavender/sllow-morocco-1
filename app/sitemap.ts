@@ -16,6 +16,7 @@ const SITE_URL = 'https://www.slowmorocco.com';
 const STATIC_PAGES: MetadataRoute.Sitemap = [
   { url: SITE_URL, changeFrequency: 'daily', priority: 1.0 },
   { url: `${SITE_URL}/about`, changeFrequency: 'monthly', priority: 0.7 },
+  { url: `${SITE_URL}/masthead`, changeFrequency: 'monthly', priority: 0.6 },
   { url: `${SITE_URL}/journeys`, changeFrequency: 'weekly', priority: 0.9 },
   { url: `${SITE_URL}/day-trips`, changeFrequency: 'weekly', priority: 0.8 },
   { url: `${SITE_URL}/places`, changeFrequency: 'weekly', priority: 0.8 },
