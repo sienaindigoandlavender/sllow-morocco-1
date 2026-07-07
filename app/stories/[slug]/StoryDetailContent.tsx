@@ -279,6 +279,32 @@ export default function StoryDetailContent({
           </>
         )}
 
+        {/* Ksour Archive cross-link — shown when the story touches earthen architecture */}
+        {/kasbah|ksar|ksour|agadir[s]? |tighremt/i.test(`${story.title} ${story.body ?? ""}`) && (
+          <>
+            <hr className="border-foreground/10 my-12" />
+            <div>
+              <h3 className="text-[10px] tracking-[0.25em] uppercase text-foreground/55 mb-4">
+                In the Archive
+              </h3>
+              <p className="text-sm text-foreground/55 leading-relaxed">
+                The fortified architecture in this story — kasbahs, ksour, and
+                the earthen building tradition of the Saharan Maghreb — is
+                documented in depth at the{" "}
+                <a
+                  href="https://www.ksour.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline decoration-foreground/20 hover:decoration-foreground/60 transition-colors"
+                >
+                  Ksour Archive
+                </a>
+                .
+              </p>
+            </div>
+          </>
+        )}
+
         {/* Sources */}
         {sources.length > 0 && (
           <>
