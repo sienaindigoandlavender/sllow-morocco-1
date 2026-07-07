@@ -26,6 +26,7 @@ const STATIC_PAGES: MetadataRoute.Sitemap = [
   { url: `${SITE_URL}/guides`, changeFrequency: 'monthly', priority: 0.6 },
   { url: `${SITE_URL}/glossary`, changeFrequency: 'monthly', priority: 0.6 },
   { url: `${SITE_URL}/morocco`, changeFrequency: 'monthly', priority: 0.6 },
+  { url: `${SITE_URL}/morocco/the-odyssey-filming-locations`, changeFrequency: 'weekly', priority: 0.8 },
   { url: `${SITE_URL}/life`, changeFrequency: 'monthly', priority: 0.6 },
   { url: `${SITE_URL}/start-here`, changeFrequency: 'monthly', priority: 0.6 },
   { url: `${SITE_URL}/plan-your-trip`, changeFrequency: 'monthly', priority: 0.6 },
