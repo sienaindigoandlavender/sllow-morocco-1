@@ -48,7 +48,9 @@ export default function OdysseyFilmingLocationsPage() {
           </p>
           <p className="text-sm text-foreground/65 leading-relaxed mb-4">
             The first scenes of the entire production were filmed at Aït
-            Benhaddou, the fortified ksar near Ouarzazate, in the last week of
+            Benhaddou, the fortified{" "}
+            <a href="https://www.ksour.org" target="_blank" rel="noopener noreferrer" className="underline decoration-foreground/20 hover:decoration-foreground/60 transition-colors">ksar</a>{" "}
+            near Ouarzazate, in the last week of
             February 2025 — a midnight raid on Troy, the war's ending staged
             before the wandering begins. The cinematographer Hoyte van Hoytema
             rigged banks of portable LEDs tuned to firelight so the IMAX
