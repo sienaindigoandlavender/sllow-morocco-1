@@ -181,7 +181,6 @@ export default function Footer() {
               <h4 className="text-[10px] tracking-[0.2em] uppercase text-white/25 mb-5">About</h4>
               <ul className="space-y-1">
                 <li><Link href="/about" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Who We Are</Link></li>
-                <li><Link href="/masthead" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Masthead</Link></li>
                 <li><Link href="/manifesto" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Manifesto</Link></li>
                 <li><Link href="/plan-your-trip" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Plan Your Trip</Link></li>
                 <li><Link href="/booking-conditions" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Booking Conditions</Link></li>
