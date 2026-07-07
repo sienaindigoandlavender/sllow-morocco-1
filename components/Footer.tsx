@@ -172,6 +172,7 @@ export default function Footer() {
                 <li><Link href="/glossary" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Glossary</Link></li>
                 <li><a href="https://darija.io" target="_blank" rel="noopener noreferrer" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Darija Dictionary</a></li>
                 <li><a href="https://derb.so" target="_blank" rel="noopener noreferrer" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Derb — City Guide</a></li>
+                <li><a href="https://www.ksour.org" target="_blank" rel="noopener noreferrer" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Ksour Archive</a></li>
                 <li><a href="https://www.riaddisiena.com" target="_blank" rel="noopener noreferrer" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Riad di Siena</a></li>
               </ul>
             </div>
