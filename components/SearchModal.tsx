@@ -51,6 +51,7 @@ export default function SearchModal({ isOpen, onClose, initialQuery = "" }: Sear
     { title: "Manifesto", slug: "/manifesto", subtitle: "How we travel" },
     { title: "Morocco Overview", slug: "/morocco", subtitle: "The country at a glance" },
     { title: "The Odyssey Filming Locations", slug: "/morocco/the-odyssey-filming-locations", subtitle: "Where Nolan filmed The Odyssey in Morocco — Aït Benhaddou, Essaouira, Dakhla, Odysseus" },
+    { title: "Ouarzazate, Africa\u2019s Hollywood", slug: "/morocco/ouarzazate-africas-hollywood", subtitle: "Every film shot in Ouarzazate — Gladiator, Game of Thrones, Atlas Studios, Cinema City" },
     { title: "The French Protectorate", slug: "/morocco/french-protectorate", subtitle: "Was Morocco a French colony? 1912–1956" },
     { title: "7-Day Morocco Itinerary", slug: "/morocco/7-day-itinerary", subtitle: "One week, properly planned" },
     { title: "Bird Atlas of Morocco", slug: "/dossiers/bird-atlas", subtitle: "Interactive birding dossier" },
