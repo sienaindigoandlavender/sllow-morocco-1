@@ -76,11 +76,17 @@ export default function OdysseyFilmingLocationsPage() {
             The Moroccan leg ran wider than the ksar. Production moved through
             Marrakech and Tahannaout — a market town in Al Haouz province,
             twenty minutes south of the city, better known for its olive
-            presses than its film credits — and on to Essaouira, whose ramparts
-            have been standing in for the ancient Mediterranean since Orson
-            Welles filmed Othello there in 1949. Local outfits like Zak
-            Productions, whose résumé runs from Bertolucci to Marvel, serviced
-            the shoot.
+            presses than its film credits — and out to the Agafay, the rocky
+            desert plateau that gave Odysseus's mythical world its harsher
+            edges. Then Essaouira, whose ramparts have been standing in for
+            the ancient Mediterranean since Orson Welles filmed Othello there
+            in 1949 — and whose beaches were given the film's most thankless
+            role: Poseidon's wrath. The production notes confirm the storm
+            seas are Essaouira's own Atlantic, wind and swell included, which
+            any kitesurfer on that coast could have predicted. The sea god
+            didn't need special effects; he needed the trade winds. Local
+            outfits like Zak Productions, whose résumé runs from Bertolucci
+            to Marvel, serviced the shoot.
           </p>
           <p className="text-sm text-foreground/65 leading-relaxed">
             None of this is new. Morocco has been Hollywood's ancient world for
