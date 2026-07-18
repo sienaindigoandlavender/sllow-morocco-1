@@ -45,6 +45,8 @@ const nextConfig = {
       // and was 404ing while sitting in the sitemap at priority 0.6.
       // Removed from sitemap; send the equity to the riad's own domain.
       { source: "/riad-di-siena", destination: "https://www.riaddisiena.com", permanent: true },
+      // Legacy legal URL still being crawled (July 18 GSC)
+      { source: "/cancellation-policy", destination: "/cancellations-and-refunds", permanent: true },
       // Legacy darija slug missed by the batch below (in GSC 404 list).
       { source: "/7NI-in", destination: "https://darija.io", permanent: true },
       { source: "/7NI-in/", destination: "https://darija.io", permanent: true },
