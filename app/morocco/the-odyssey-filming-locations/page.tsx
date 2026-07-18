@@ -191,9 +191,18 @@ export default function OdysseyFilmingLocationsPage() {
           <p className="text-sm text-foreground/45 leading-relaxed">
             The Odyssey, written and directed by Christopher Nolan and shot
             entirely on IMAX 70mm, premiered in London on July 6, 2026 and
-            opens in cinemas on July 17. Filming locations per Universal
-            Pictures, the Hellenic Film Commission, Screen Daily, and reporting
-            by The Guardian, Variety, and Hespress.
+            opened in cinemas on July 17. Showtimes and tickets at the{" "}
+            <a
+              href="https://www.odysseymovie.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline decoration-foreground/20 hover:decoration-foreground/60 transition-colors"
+            >
+              official movie site
+            </a>
+            . Filming locations per Universal Pictures, the Hellenic Film
+            Commission, Screen Daily, and reporting by The Guardian, Variety,
+            and Hespress.
           </p>
         </div>
       </div>
