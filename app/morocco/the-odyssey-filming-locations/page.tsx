@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import OdysseyLocationsMap from "@/components/OdysseyLocationsMap";
 
 export const metadata: Metadata = {
   title: "Where The Odyssey Was Filmed in Morocco: Aït Benhaddou, Essaouira, Dakhla",
@@ -142,6 +143,13 @@ export default function OdysseyFilmingLocationsPage() {
             countries to chase Homer's geography; the geography was pointing
             here all along.
           </p>
+        </div>
+
+        <div>
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">
+            The map
+          </p>
+          <OdysseyLocationsMap />
         </div>
 
         <div>
