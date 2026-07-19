@@ -63,7 +63,11 @@ export default function OdysseyFilmingLocationsPage() {
             the arena town in Gladiator — Ridley Scott came back for Gladiator
             II — and UNESCO listed it in 1987, which means Troy was portrayed
             by a World Heritage Site. The residents are used to empires rising
-            and falling on their doorstep. Most of them have moved across the
+            and falling on their doorstep — the town next door has been{" "}
+            <Link href="/morocco/ouarzazate-africas-hollywood" className="underline decoration-foreground/20 hover:decoration-foreground/60 transition-colors">
+              Africa&apos;s Hollywood
+            </Link>{" "}
+            for sixty years. Most of them have moved across the
             river, and a handful of families still live inside the ksar,
             selling tea to the crews between apocalypses.
           </p>

@@ -16,17 +16,17 @@ export const metadata: Metadata = {
   },
 };
 
-const FILMS = [
+const FILMS: { title: string; year: string; note: string; href?: string }[] = [
   { title: "Lawrence of Arabia", year: "1962", note: "David Lean arrives; the industry follows for sixty years." },
   { title: "Kundun", year: "1997", note: "Scorsese builds Tibet in the desert." },
   { title: "The Mummy", year: "1999", note: "Ancient Egypt, Moroccan edition." },
-  { title: "Gladiator", year: "2000", note: "The provincial arena — Aït Benhaddou plays the warm-up to Rome." },
+  { title: "Gladiator", year: "2000", note: "The provincial arena — Aït Benhaddou plays the warm-up to Rome.", href: "/morocco/gladiator-filming-locations" },
   { title: "Kingdom of Heaven", year: "2005", note: "Ridley Scott returns; Jerusalem rises outside town." },
   { title: "Babel", year: "2006", note: "Iñárritu shoots the Moroccan thread where it belongs." },
   { title: "Body of Lies", year: "2008", note: "Standing in for half the Middle East." },
-  { title: "Game of Thrones", year: "2013", note: "Aït Benhaddou becomes Yunkai; Essaouira, Astapor." },
+  { title: "Game of Thrones", year: "2013", note: "Aït Benhaddou becomes Yunkai; Essaouira, Astapor.", href: "/morocco/game-of-thrones-filming-locations" },
   { title: "Gladiator II", year: "2024", note: "Scott's third visit. Some directors keep a favorite café; he keeps a country." },
-  { title: "The Odyssey", year: "2026", note: "Nolan burns Troy at Aït Benhaddou — the first scenes of the whole production." },
+  { title: "The Odyssey", year: "2026", note: "Nolan burns Troy at Aït Benhaddou — the first scenes of the whole production.", href: "/morocco/the-odyssey-filming-locations" },
 ];
 
 export default function OuarzazateHollywoodPage() {
@@ -86,7 +86,13 @@ export default function OuarzazateHollywoodPage() {
               <div key={f.title} className="flex gap-4 items-baseline">
                 <span className="text-xs text-foreground/35 font-mono w-10 shrink-0">{f.year}</span>
                 <div>
-                  <span className="text-sm text-foreground font-medium">{f.title}</span>
+                  {"href" in f && f.href ? (
+                    <Link href={f.href} className="text-sm text-foreground font-medium underline decoration-foreground/20 hover:decoration-foreground/60 transition-colors">
+                      {f.title}
+                    </Link>
+                  ) : (
+                    <span className="text-sm text-foreground font-medium">{f.title}</span>
+                  )}
                   <span className="text-sm text-foreground/50"> — {f.note}</span>
                 </div>
               </div>
