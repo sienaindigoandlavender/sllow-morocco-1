@@ -5,14 +5,14 @@ import OdysseyLocationsMap from "@/components/OdysseyLocationsMap";
 export const metadata: Metadata = {
   title: "Where The Odyssey Was Filmed in Morocco: Aït Benhaddou, Essaouira, Dakhla",
   description:
-    "Christopher Nolan opened his Odyssey shoot at Aït Benhaddou — the ksar played Troy — then moved through Marrakech, Tahannaout, and Essaouira before landing on the White Dune near Dakhla. Every Moroccan location, and the controversy the last one carries.",
+    "Christopher Nolan opened his Odyssey shoot at Aït Benhaddou — the ksar played Troy — then moved through Marrakech, Tahannaout, and Essaouira before landing on the White Dune at Dakhla, on Morocco’s Atlantic coast. Every Moroccan location on Nolan’s map.",
   alternates: {
     canonical: "https://www.slowmorocco.com/morocco/the-odyssey-filming-locations",
   },
   openGraph: {
     title: "Where The Odyssey Was Filmed in Morocco",
     description:
-      "Aït Benhaddou played Troy. The White Dune played Calypso's island. The full map of Nolan's Moroccan shoot — including the part everyone argues about.",
+      "Aït Benhaddou played Troy. The White Dune played Calypso's island. The full map of Nolan's Moroccan shoot, from the High Atlas to the Atlantic coast.",
     url: "https://www.slowmorocco.com/morocco/the-odyssey-filming-locations",
   },
 };
@@ -37,8 +37,7 @@ export default function OdysseyFilmingLocationsPage() {
           In late February 2025, before a single frame was shot in Greece,
           Christopher Nolan stood in front of a nine-hundred-year-old mud-brick
           village in the Ounila Valley and burned Troy. Morocco opens the film,
-          and Morocco closes the shoot's most contested chapter. Here is the
-          map.
+          and Morocco closes it on the Atlantic coast. Here is the map.
         </p>
       </div>
 
@@ -118,17 +117,19 @@ export default function OdysseyFilmingLocationsPage() {
             know why.
           </p>
           <p className="text-sm text-foreground/65 leading-relaxed">
-            This is the part of the map that comes with an argument attached.
-            Dakhla sits in Western Sahara, a territory the UN classifies as
-            non-self-governing, administered by Morocco since 1975 and claimed
-            by the Sahrawi independence movement. The Western Sahara
-            International Film Festival and the Polisario Front condemned the
-            shoot; an open letter gathered signatures from Javier Bardem and
-            Pedro Almodóvar among others, and called for the Dakhla scenes to
-            be cut. Morocco's Cinematographic Center called it the first major
-            Hollywood production in the territory and an extraordinary
-            opportunity. Nolan and Universal have said nothing for a year. The
-            film opens with, by several accounts, a shot of that beach.
+            Dakhla is a Moroccan city on the Atlantic — a spit of sand between
+            the ocean and a turquoise lagoon, Spanish until 1975, Moroccan and
+            building fast ever since. The rest of the world has been catching
+            up to that. The United States recognised Moroccan sovereignty over
+            the Sahara in 2020; France and Spain followed; and in October 2025
+            the UN Security Council backed autonomy under Moroccan sovereignty
+            as the way forward — a day now marked across Morocco as Unity Day.
+            More than thirty countries have opened consulates down here.
+            Nolan's crew arrived to find the first major Hollywood production
+            the coast had ever seen, on a shoreline already turning into one of
+            the Atlantic's most talked-about destinations. The film, by several
+            accounts, opens on that beach. The first image of Odysseus's world
+            is a Moroccan dune.
           </p>
         </div>
 
@@ -176,7 +177,7 @@ export default function OdysseyFilmingLocationsPage() {
               },
               {
                 place: "The White Dune",
-                desc: "Thirty kilometres from Dakhla, reachable by 4x4 at low tide. A two-hour flight from Casablanca — and, as above, a destination that carries a political question in its luggage. Travellers should know where they are standing.",
+                desc: "Thirty kilometres from Dakhla, reachable by 4x4 at low tide — a two-hour flight from Casablanca lands you on the kitesurfing capital of the Atlantic coast.",
               },
             ].map((item) => (
               <div key={item.place}>
