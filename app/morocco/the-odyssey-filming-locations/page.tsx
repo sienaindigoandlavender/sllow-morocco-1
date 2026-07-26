@@ -34,10 +34,11 @@ export default function OdysseyFilmingLocationsPage() {
           Where The Odyssey Was Filmed in Morocco
         </h1>
         <p className="text-base text-foreground/55 leading-relaxed max-w-xl">
-          In late February 2025, before a single frame was shot in Greece,
-          Christopher Nolan stood in front of a nine-hundred-year-old mud-brick
-          village in the Ounila Valley and burned Troy. Morocco opens the film,
-          and Morocco closes it on the Atlantic coast. Here is the map.
+          Before a single frame was shot in Greece, Christopher Nolan burned
+          Troy in Morocco. It was February 2025. The city was a
+          nine-hundred-year-old mud-brick ksar in the Ounila Valley. Morocco
+          opens the film. Three thousand kilometres south, on an Atlantic dune,
+          Morocco closes it. Here is the map.
         </p>
       </div>
 
@@ -47,28 +48,36 @@ export default function OdysseyFilmingLocationsPage() {
             Aït Benhaddou played Troy
           </p>
           <p className="text-sm text-foreground/65 leading-relaxed mb-4">
-            The first scenes of the entire production were filmed at Aït
-            Benhaddou, the fortified{" "}
+            The first frame of the whole production was shot here — the
+            fortified{" "}
             <a href="https://www.ksour.org" target="_blank" rel="noopener noreferrer" className="underline decoration-foreground/20 hover:decoration-foreground/60 transition-colors">ksar</a>{" "}
-            near Ouarzazate, in the last week of
-            February 2025 — a midnight raid on Troy, the war's ending staged
-            before the wandering begins. The cinematographer Hoyte van Hoytema
-            rigged banks of portable LEDs tuned to firelight so the IMAX
-            cameras could turn in any direction and still find a city burning.
+            near Ouarzazate — in the last week of February 2025. A midnight
+            raid. The end of the war, staged before the wandering begins. Hoyte
+            van Hoytema rigged banks of portable LEDs tuned to firelight, so the
+            IMAX cameras could turn any direction and still find a city burning.
+          </p>
+          <p className="text-sm text-foreground/65 leading-relaxed mb-4">
+            Then the gates opened. On the other side, in the dark, stood Benny
+            Safdie&apos;s Agamemnon — masked, enormous, motionless in black
+            armour, seven hundred and fifty soldiers massed behind him. Damon
+            didn&apos;t know they were there. He opened the door, he said, and
+            then a roar went up and five hundred men came running. Agamemnon
+            does nothing in that shot. He stands still and takes the entire
+            scene. Aura, farmed.
           </p>
           <p className="text-sm text-foreground/65 leading-relaxed">
-            Aït Benhaddou has been playing other people's cities since David
-            Lean drove through in 1962. It was Yunkai in Game of Thrones and
-            the arena town in Gladiator — Ridley Scott came back for Gladiator
-            II — and UNESCO listed it in 1987, which means Troy was portrayed
-            by a World Heritage Site. The residents are used to empires rising
-            and falling on their doorstep — the town next door has been{" "}
+            The ksar has been other people&apos;s cities since David Lean drove
+            through in 1962. Yunkai in Game of Thrones. The arena town in
+            Gladiator, twice — Ridley Scott came back for the sequel. UNESCO
+            listed it in 1987, so Troy was played by a World Heritage Site. The
+            people here have watched empires rise and fall on their doorstep for
+            decades; the town next door has been{" "}
             <Link href="/morocco/ouarzazate-africas-hollywood" className="underline decoration-foreground/20 hover:decoration-foreground/60 transition-colors">
               Africa&apos;s Hollywood
             </Link>{" "}
-            for sixty years. Most of them have moved across the
-            river, and a handful of families still live inside the ksar,
-            selling tea to the crews between apocalypses.
+            for sixty years. Most families moved across the river long ago. A
+            handful still live inside the walls, selling tea to the crews
+            between apocalypses.
           </p>
         </div>
 
@@ -77,44 +86,52 @@ export default function OdysseyFilmingLocationsPage() {
             Marrakech, Tahannaout, Essaouira
           </p>
           <p className="text-sm text-foreground/65 leading-relaxed mb-4">
-            The Moroccan leg ran wider than the ksar. Production moved through
-            Marrakech and Tahannaout — a market town in Al Haouz province,
-            twenty minutes south of the city, better known for its olive
-            presses than its film credits — and out to the Agafay, the rocky
-            desert plateau that gave Odysseus's mythical world its harsher
-            edges. Then Essaouira, whose ramparts have been standing in for
-            the ancient Mediterranean since Orson Welles filmed Othello there
-            in 1949 — and whose beaches were given the film's most thankless
-            role: Poseidon's wrath. The production notes confirm the storm
-            seas are Essaouira's own Atlantic, wind and swell included, which
-            any kitesurfer on that coast could have predicted. The sea god
-            didn't need special effects; he needed the trade winds. Local
-            outfits like Zak Productions, whose résumé runs from Bertolucci
-            to Marvel, serviced the shoot.
+            The Moroccan leg ran wider than the ksar. Marrakech. Tahannaout, a
+            market town twenty minutes south, better known for its olive presses
+            than its film credits. The Agafay, the stone desert that gave
+            Odysseus&apos;s world its harder edges. And Essaouira, where Orson
+            Welles shot Othello in 1949 and the wind has been working the coast
+            ever since.
+          </p>
+          <p className="text-sm text-foreground/65 leading-relaxed mb-4">
+            Essaouira got the strangest job. Nolan had carried one image for
+            twenty years, since he was nearly hired to direct Troy in the early
+            2000s: not a wooden horse on wheels, but an offering to Poseidon —
+            thirty-five feet of it, reared up on its hind legs, half-buried in
+            the sand like something the sea had spat back. He built it here. The
+            Atlantic tore pieces off it between takes. The Trojans hauled it up
+            the dunes on log rollers, by rope. The same beach launches Odysseus
+            home.
+          </p>
+          <p className="text-sm text-foreground/65 leading-relaxed mb-4">
+            The beach had a second role, thankless this time: Poseidon&apos;s
+            wrath. The storm seas are Essaouira&apos;s own Atlantic, wind and
+            swell included — which any kitesurfer on that coast could have told
+            the production for free. The sea god didn&apos;t need effects. He
+            needed the trade winds. Local crews like Zak Productions, whose
+            résumé runs from Bertolucci to Marvel, made it happen.
           </p>
           <p className="text-sm text-foreground/65 leading-relaxed">
-            None of this is new. Morocco has been Hollywood's ancient world for
-            decades — Mission: Impossible, Indiana Jones, both Gladiators — for
-            the same reasons it has always traded well: the light, the
-            geography, and the fact that a full crew costs a fraction of what
-            it does in Europe. What is new is where the production went next.
+            None of this is new. Morocco has been Hollywood&apos;s ancient world
+            for decades — Mission: Impossible, Indiana Jones, both Gladiators —
+            for the reasons it has always traded on: the light, the geography,
+            and a full crew at a fraction of the European price. What is new is
+            where the shoot went next.
           </p>
         </div>
 
         <div>
           <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">
-            The White Dune: Calypso's island
+            The White Dune: Calypso&apos;s island
           </p>
           <p className="text-sm text-foreground/65 leading-relaxed mb-4">
-            In the third week of July 2025, Matt Damon and Zendaya filmed for
-            several days at the White Dune — Dune Blanche — a crescent of pale
-            sand thirty kilometres from Dakhla that drops straight into a
-            turquoise lagoon. In the film it is Ogygia, the island where
-            Calypso keeps Odysseus for seven years. Damon described the
-            location, the kitesurfing capital of the Atlantic coast, as
-            paradise with the wind turned on: sand in the eyes, constantly, no
-            way to block it. Odysseus wept on his beach for seven years; now we
-            know why.
+            In the third week of July 2025, Matt Damon and Charlize Theron came
+            to the White Dune — Dune Blanche — thirty kilometres from Dakhla,
+            where the sand drops straight into a turquoise lagoon. In the film
+            it is Ogygia, the island where Calypso keeps Odysseus for seven
+            years. Damon called it paradise with the wind turned on: sand in
+            your eyes, always, no way to block it. Odysseus wept on that beach
+            for seven years. Now we know why.
           </p>
           <p className="text-sm text-foreground/65 leading-relaxed">
             The place earns the role. The White Dune is a crescent of pale sand
@@ -124,13 +141,13 @@ export default function OdysseyFilmingLocationsPage() {
             crescents since long before anyone thought to write Homer down.
             This is Dakhla — a Moroccan city at the far reach of the Atlantic
             coast, Spanish until 1975 and, in the half-century since, grown into
-            the kitesurfing capital of the ocean and one of the most written-
-            about shorelines in Africa. The world has come round to what the
-            maps here always showed. Nolan's crew found the first Hollywood
-            production this coast had ever seen, and by several accounts the
-            film opens on that beach: the first image of Odysseus's world, the
-            last thing shot before the wandering begins, is a Moroccan dune at
-            dawn.
+            the kitesurfing capital of the ocean and one of the most
+            written-about shorelines in Africa. The world has come round to what
+            the maps here always showed. Nolan&apos;s crew found the first
+            Hollywood production this coast had ever seen, and by several
+            accounts the film opens on that beach: the first image of
+            Odysseus&apos;s world, the last thing shot before the wandering
+            begins, is a Moroccan dune at dawn.
           </p>
         </div>
 
@@ -139,15 +156,14 @@ export default function OdysseyFilmingLocationsPage() {
             The lotus-eaters were always in North Africa
           </p>
           <p className="text-sm text-foreground/65 leading-relaxed">
-            There is a older connection between this coastline and Homer than
-            anything a location scout found. Ancient geographers — Herodotus
-            among them — placed the land of the lotus-eaters on the North
-            African coast, most often at the island of Djerba, a long sail east
-            of here. Odysseus's men ate the fruit and forgot the way home,
-            which remains the most accurate description of what Morocco does
-            to certain travellers ever written. Nolan shot his epic across six
-            countries to chase Homer's geography; the geography was pointing
-            here all along.
+            There is an older link between this coast and Homer than any
+            location scout found. The ancient geographers — Herodotus among them
+            — put the land of the lotus-eaters on the North African shore,
+            usually at Djerba, a long sail east of here. Odysseus&apos;s men ate
+            the fruit and forgot the way home. It is still the most accurate
+            description ever written of what Morocco does to certain travellers.
+            Nolan chased Homer&apos;s geography across six countries. The
+            geography was pointing here all along.
           </p>
         </div>
 
@@ -156,60 +172,6 @@ export default function OdysseyFilmingLocationsPage() {
             The map
           </p>
           <OdysseyLocationsMap />
-        </div>
-
-        <div>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">
-            Seeing the locations
-          </p>
-          <div className="space-y-3">
-            {[
-              {
-                place: "Aït Benhaddou",
-                desc: "Four hours from Marrakech over the Tizi n'Tichka pass. Go at dawn, before the day-trip buses, and cross the river on the stepping stones. The film's Troy is the view from the east bank.",
-              },
-              {
-                place: "Essaouira",
-                desc: "Three hours west of Marrakech. The Skala ramparts and the harbour are the cinematic real estate — arrive on a weekday and the gulls outnumber the visitors.",
-              },
-              {
-                place: "Tahannaout",
-                desc: "Twenty minutes south of Marrakech on the Ourika road. Tuesday is souk day, which is the only correct day to go.",
-              },
-              {
-                place: "The White Dune",
-                desc: "Thirty kilometres from Dakhla, reachable by 4x4 at low tide — a two-hour flight from Casablanca lands you on the kitesurfing capital of the Atlantic coast.",
-              },
-            ].map((item) => (
-              <div key={item.place}>
-                <p className="text-sm text-foreground font-medium mb-1">
-                  {item.place}
-                </p>
-                <p className="text-sm text-foreground/55 leading-relaxed">
-                  {item.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="pt-8 border-t border-foreground/[0.08]">
-          <p className="text-sm text-foreground/45 leading-relaxed">
-            The Odyssey, written and directed by Christopher Nolan and shot
-            entirely on IMAX 70mm, premiered in London on July 6, 2026 and
-            opened in cinemas on July 17. Showtimes and tickets at the{" "}
-            <a
-              href="https://www.odysseymovie.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline decoration-foreground/20 hover:decoration-foreground/60 transition-colors"
-            >
-              official movie site
-            </a>
-            . Filming locations per Universal Pictures, the Hellenic Film
-            Commission, Screen Daily, and reporting by The Guardian, Variety,
-            and Hespress.
-          </p>
         </div>
       </div>
     </div>

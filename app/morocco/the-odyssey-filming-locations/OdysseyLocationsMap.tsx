@@ -47,7 +47,7 @@ const LOCATIONS: Location[] = [
     name: "The White Dune, Dakhla",
     role: "Calypso's island (Ogygia)",
     coords: [-15.775, 23.905],
-    note: "Matt Damon and Zendaya filmed here in July 2025 — the White Dune played Calypso's island.",
+    note: "Matt Damon and Charlize Theron filmed here in July 2025 — the White Dune played Calypso's island.",
   },
 ];
 
