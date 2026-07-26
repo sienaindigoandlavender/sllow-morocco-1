@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
+import { applyMoroccoWorldview } from "@/lib/mapbox-worldview";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let mapboxgl: any = null;
 
@@ -57,6 +58,7 @@ export default function FilmLocationsMap({ locations, caption, className = "" }:
         });
 
         map.current.addControl(new mapboxgl.NavigationControl(), "top-right");
+map.current.on("load", () => applyMoroccoWorldview(map.current));
         map.current.scrollZoom.disable();
         map.current.touchZoomRotate.enable();
 
