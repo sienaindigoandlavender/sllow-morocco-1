@@ -49,7 +49,7 @@ const sites: Site[] = [
   { name: "Future Museum of Jewish Culture", city: "Fes", cat: "museum", lat: 34.0590, lng: -4.9785, desc: "Completed 2023 in the oldest mellah in Morocco. When it opens, Morocco will have two Jewish museums. No other Arab country has one.", detail: "Opening date pending." },
 
   // MEKNES
-  { name: "Mellah of Meknes", city: "Meknes", cat: "mellah", lat: 33.8935, lng: -5.5547, desc: "In the shadow of Bab Mansour — the grandest gate in Morocco. Streets still named after rabbis. Hebraic epitaphs predate Islam.", detail: "11 synagogues remain, none in daily use." },
+  { name: "Mellah of Meknes", city: "Meknes", cat: "mellah", lat: 33.8935, lng: -5.5547, desc: "In the shadow of Bab Mansour — the grandest gate in Morocco. Streets still named after rabbis. Some of the Hebraic epitaphs are over a thousand years old.", detail: "11 synagogues remain, none in daily use." },
   { name: "Tomb of Rabbi David Benmidan", city: "Meknes", cat: "zaouia", lat: 33.8920, lng: -5.5540, desc: "A place of pilgrimage in the mellah. Draws Jewish visitors from around the world." },
   { name: "Meknes Jewish Cemeteries", city: "Meknes", cat: "cemetery", lat: 33.8910, lng: -5.5530, desc: "Two cemeteries. Tombs of saints: Haim Messas, David Boussidan, Raphael Berdugo." },
 
