@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 
+import { applyMoroccoWorldview } from '@/lib/mapbox-worldview';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let mapboxgl: any = null;
 
@@ -211,6 +212,7 @@ export default function ItineraryMap({ itinerary, className = '' }: ItineraryMap
         });
 
         map.current.on('load', () => {
+          applyMoroccoWorldview(map.current);
           setIsLoading(false);
 
           // Add route line
