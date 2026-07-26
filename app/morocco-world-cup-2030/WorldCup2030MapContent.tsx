@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { applyMoroccoWorldview } from "@/lib/mapbox-worldview";
 import Link from "next/link";
 import Script from "next/script";
 
@@ -331,6 +332,7 @@ export default function WorldCup2030MapContent() {
     mapRef.current = map;
 
     map.on("load", () => {
+      applyMoroccoWorldview(map);
       // HSR line: Tangier → Kénitra → Rabat → Casablanca → Marrakech
       map.addSource("hsr-line", {
         type: "geojson",
