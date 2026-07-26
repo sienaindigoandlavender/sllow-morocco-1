@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { applyMoroccoWorldview } from "@/lib/mapbox-worldview";
 import { useRouter } from "next/navigation";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -143,6 +144,7 @@ export default function HomeCityMap() {
       ]);
 
       map.current.on("load", () => {
+        applyMoroccoWorldview(map.current);
         setLoaded(true);
 
         CITIES.forEach((city) => {
