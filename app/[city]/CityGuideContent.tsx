@@ -164,7 +164,7 @@ const CITY_DATA: Record<string, {
     zoom: 12.5,
     bestMonths: "Oct–May",
     climate: "Hot desert",
-    intro: "A narrow peninsula in the Western Sahara where the wind arrives from the north and the kite surfers follow. The lagoon is turquoise, the dunes are a twenty-minute drive, and the oysters are pulled from the water still cold. The end of the mapped world, more or less.",
+    intro: "A narrow peninsula on Morocco's far southern coast where the wind arrives from the north and the kite surfers follow. The lagoon is turquoise, the dunes are a twenty-minute drive, and the oysters are pulled from the water still cold. The end of the mapped world, more or less.",
   },
   chefchaouen: {
     center: [-5.2636, 35.1688],
