@@ -117,19 +117,20 @@ export default function OdysseyFilmingLocationsPage() {
             know why.
           </p>
           <p className="text-sm text-foreground/65 leading-relaxed">
-            Dakhla is a Moroccan city on the Atlantic — a spit of sand between
-            the ocean and a turquoise lagoon, Spanish until 1975, Moroccan and
-            building fast ever since. The rest of the world has been catching
-            up to that. The United States recognised Moroccan sovereignty over
-            the Sahara in 2020; France and Spain followed; and in October 2025
-            the UN Security Council backed autonomy under Moroccan sovereignty
-            as the way forward — a day now marked across Morocco as Unity Day.
-            More than thirty countries have opened consulates down here.
-            Nolan's crew arrived to find the first major Hollywood production
-            the coast had ever seen, on a shoreline already turning into one of
-            the Atlantic's most talked-about destinations. The film, by several
-            accounts, opens on that beach. The first image of Odysseus's world
-            is a Moroccan dune.
+            The place earns the role. The White Dune is a crescent of pale sand
+            where the Atlantic pours into a lagoon so shallow it turns the
+            colour of sea glass; flamingos stand in it at first light, and the
+            wind that tormented Damon has been combing these dunes into slow
+            crescents since long before anyone thought to write Homer down.
+            This is Dakhla — a Moroccan city at the far reach of the Atlantic
+            coast, Spanish until 1975 and, in the half-century since, grown into
+            the kitesurfing capital of the ocean and one of the most written-
+            about shorelines in Africa. The world has come round to what the
+            maps here always showed. Nolan's crew found the first Hollywood
+            production this coast had ever seen, and by several accounts the
+            film opens on that beach: the first image of Odysseus's world, the
+            last thing shot before the wandering begins, is a Moroccan dune at
+            dawn.
           </p>
         </div>
 
