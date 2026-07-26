@@ -288,7 +288,7 @@ export const glossaryData: GlossaryCategory[] = [
         term: "Atlantic Coast",
         pronunciation: "at-LAN-tik",
         category: "cities-regions",
-        definition: "Morocco's 2,000-kilometer western coastline, from Tangier to the Western Sahara. Known for fishing ports, surf towns, and coastal cities including Casablanca, Rabat, and Essaouira.",
+        definition: "Morocco's 2,000-kilometer western coastline, from Tangier to Dakhla in the deep south. Known for fishing ports, surf towns, and coastal cities including Casablanca, Rabat, and Essaouira.",
         context: "The coast benefits from the cool Canary Current, making it pleasant even in summer. Essaouira and Taghazout are popular surf destinations; Dakhla in the south is a world-class kitesurfing spot.",
         related: ["Essaouira", "Taghazout", "Dakhla", "surfing"],
         seeAlso: ["essaouira-medina"],
