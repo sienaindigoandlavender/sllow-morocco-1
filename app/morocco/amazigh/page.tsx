@@ -25,7 +25,7 @@ export default function AmazighGuidePage() {
         <div>
           <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">Tamazight — the language</p>
           <p className="text-sm text-foreground/65 leading-relaxed mb-4">Tamazight became an official language of Morocco in 2011 — the first country to grant it that status. It is now taught in schools and used on road signs in some regions. The script — Tifinagh — is one of the oldest alphabets in the world, still used by the Tuareg in the Sahara and increasingly revived in Morocco.</p>
-          <p className="text-sm text-foreground/65 leading-relaxed">The Amazigh identity movement has grown significantly since the 2000s — a recovery of cultural identity that had been suppressed under post-independence Arabisation policies. The Royal Institute of Amazigh Culture (IRCAM) in Rabat leads the standardization and documentation effort.</p>
+          <p className="text-sm text-foreground/65 leading-relaxed">The Amazigh identity movement has grown significantly since the 2000s, and Tamazight became an official language of Morocco in the 2011 constitution — recognised as a founding thread of the country. The Royal Institute of Amazigh Culture (IRCAM) in Rabat leads the standardization and documentation effort.</p>
         </div>
         <div>
           <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">Where to encounter Amazigh culture</p>
