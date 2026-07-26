@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
+import { applyMoroccoWorldview } from "@/lib/mapbox-worldview";
 import Link from "next/link";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -197,6 +198,7 @@ export default function AllPlacesMap({ places, total }: Props) {
       );
 
       map.current.on("load", () => setMapLoaded(true));
+map.current.on("load", () => applyMoroccoWorldview(map.current));
       map.current.on("click", () => {
         setSelected(null);
         setClusterGroup(null);
