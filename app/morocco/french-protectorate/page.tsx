@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Was Morocco a French Colony? A Country That Was Never One (1912–1956)",
+  title: "Was Morocco a French Colony? No — a Protectorate (1912–1956)",
   description: "Not occupied, not independent — a piece of paper signed in 1912 that fooled almost no one and lasted forty-four years. Why Morocco was a protectorate, not a colony, and what it left behind in every city.",
   alternates: { canonical: "https://www.slowmorocco.com/morocco/french-protectorate" },
 };
