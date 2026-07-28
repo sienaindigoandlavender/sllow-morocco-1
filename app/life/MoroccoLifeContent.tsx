@@ -563,7 +563,7 @@ export default function MoroccoLifeContent() {
                 },
                 {
                   heading: "The context",
-                  body: "Morocco bid for the World Cup five times. The 2030 tournament is not just a sporting event — it is a statement. $52 billion committed across transport, stadiums, hospitality, and digital infrastructure. The country chose not to hide the ambition.",
+                  body: "Morocco bid for the World Cup five times. For Morocco, the 2030 tournament is more than sport; it's a statement. $52 billion committed across transport, stadiums, hospitality, and digital infrastructure. The country chose not to hide the ambition.",
                 },
               ].map((item) => (
                 <div key={item.heading} className="bg-white p-8">
