@@ -162,10 +162,7 @@ export default function MoroccoContent({ cities, stories, cityImages = {} }: Pro
             receiving travellers long enough to have developed a particular patience with the surprised.
           </p>
           <p className="text-sm text-foreground/50 leading-relaxed">
-            Morocco is not a 
-            destination you understand on the first visit. It reveals itself laterally — 
-            through a conversation, a detour, a door left open. This is a country best 
-            approached slowly.
+            Morocco doesn't give itself up on the first visit. It arrives sideways: a conversation, a detour, a door left open. Better approached slowly.
           </p>
 
         </div>
