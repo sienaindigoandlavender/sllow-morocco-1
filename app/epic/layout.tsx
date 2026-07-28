@@ -2,10 +2,10 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "EPIC Journeys | Sacred & Rare",
-  description: "Our most extraordinary Morocco experiences — sacred ceremonies, rare access, and transformative journeys that exist nowhere else. These are not tours. They're initiations.",
+  description: "Sacred ceremonies, rare access, and journeys assembled nowhere else. Closer to initiation than tour.",
   openGraph: {
     title: "EPIC Journeys | Slow Morocco",
-    description: "Our most extraordinary Morocco experiences — sacred ceremonies, rare access, and transformative journeys.",
+    description: "Sacred ceremonies, rare access, and journeys most travellers never learn exist.",
     url: "https://www.slowmorocco.com/epic",
   },
   alternates: {
