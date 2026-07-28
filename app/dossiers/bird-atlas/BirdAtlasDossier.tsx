@@ -665,8 +665,7 @@ export default function BirdAtlasDossier() {
                 so densely they cast moving shadows on the ground.
               </p>
               <p className="text-[14px] leading-[1.85] text-neutral-600">
-                Morocco is not just a destination on the route. It is the crossing, the wintering ground, 
-                and the refuge of species that exist almost nowhere else. More bird species have been 
+                Morocco isn't just a stop on the route. It's the crossing, the wintering ground, and the refuge of species that exist almost nowhere else. More bird species have been 
                 recorded here than in France or Spain — not because Morocco is exceptional, but because 
                 of where it sits: at the hinge of two continents, where Mediterranean, Atlantic, Saharan, 
                 and sub-Saharan biomes collide in a geography not much larger than California.
@@ -788,8 +787,7 @@ export default function BirdAtlasDossier() {
                 <em>Nine species,<br />twelve months</em>
               </h2>
               <p className="text-[13px] leading-[1.85] text-neutral-600 mb-6">
-                Morocco is not a seasonal destination for birds — it is a year-round one. Something extraordinary 
-                is always happening. The question is which extraordinary thing you are there to see.
+                For birds, Morocco isn't a seasonal destination but a year-round one. There is always something arriving or leaving; the only question is which of them you have come to see.
               </p>
               <p className="text-[13px] leading-[1.85] text-neutral-600">
                 September is the crossing — raptors and storks above the strait. January is flamingos 
