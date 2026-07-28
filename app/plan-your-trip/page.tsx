@@ -87,6 +87,7 @@ export default async function PlanYourTripPage({
         </div>
       </section>
 
+      {/* Context caption — rendered only when a valid journey/place is prefilled.
           Sits between the banner and the form so it follows the title/subtitle
           regardless of whether the banner is fallback or CMS-driven. */}
       {contextCaption && (
