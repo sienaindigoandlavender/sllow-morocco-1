@@ -101,7 +101,7 @@ const ITINERARY = [
     toCity: "Ouarzazate",
     travelTime: "3.5",
     activity: "mountain",
-    description: "The road south crosses the High Atlas via the Tizi n'Tichka pass — 2,260 metres, the highest paved road in Morocco. The landscape shifts from cedar forest to bare rock to the first palmeries of the south. Ouarzazate is not the desert. It is the threshold. The city exists because the French needed a garrison in the south; the kasbahs existed because everyone before them needed a fortress. You spend the first night here.",
+    description: "The road south crosses the High Atlas via the Tizi n'Tichka pass — 2,260 metres, the highest paved road in Morocco. The landscape shifts from cedar forest to bare rock to the first palmeries of the south. Ouarzazate isn't the desert but the gateway to it. The city exists because the French needed a garrison in the south; the kasbahs existed because everyone before them needed a fortress. You spend the first night here.",
     stops: ["Tizi n'Tichka pass (2,260m)", "Aït Benhaddou kasbah", "Ouarzazate overnight"],
   },
   {
@@ -121,7 +121,7 @@ const ITINERARY = [
     toCity: "Marrakech",
     travelTime: "9",
     activity: "camel",
-    description: "Erg Chebbi isn't the Sahara of the tourist posters. It's one of Morocco's two great erg fields, a sea of dunes rising to 150 metres at its peak. The dunes are real. The silence is real. You leave before sunrise to catch the light on the sand, then begin the return. The road north goes back through Ouarzazate and over the Atlas. You arrive in Marrakech by evening.",
+    description: "Erg Chebbi isn't the Sahara of the tourist posters. It's one of Morocco's two great erg fields, a sea of dunes rising to 150 metres at its peak. The dunes are real, and so is the silence. You leave before sunrise to catch the light on the sand, then begin the return. The road north goes back through Ouarzazate and over the Atlas. You arrive in Marrakech by evening.",
     stops: ["Sunrise at Erg Chebbi", "Optional camel ride at dawn", "Return via Ouarzazate and Atlas"],
   },
 ];
