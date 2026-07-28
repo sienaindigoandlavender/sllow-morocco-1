@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Our Guides",
-  description: "Meet the guides who make Slow Morocco journeys unforgettable. Local experts who share Morocco's stories, not just its sights.",
+  description: "Meet the guides behind Slow Morocco journeys. Local experts who tell you the stories, not only the sights.",
   openGraph: {
     title: "Our Guides | Slow Morocco",
     description: "Local experts who share Morocco's stories, not just its sights.",
