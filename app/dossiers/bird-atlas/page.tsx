@@ -189,7 +189,7 @@ const jsonLd = {
           "name": "What is Merja Zerga and why is it important for birds?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Merja Zerga is a coastal lagoon on Morocco's Atlantic coast, approximately 80km north of Rabat. It is a Ramsar-designated wetland hosting 50,000+ wintering waterbirds, including Greater Flamingo, Spoonbill, Avocet, Marsh Harrier, and Marbled Duck. It holds the last confirmed sightings of the Slender-billed Curlew — a species now possibly extinct. Merja Zerga is one of the most important waterbird sites in North Africa.",
+            "text": "Merja Zerga is a coastal lagoon on Morocco's Atlantic coast, approximately 80km north of Rabat. It is a Ramsar-designated wetland hosting 50,000+ wintering waterbirds, including Greater Flamingo, Spoonbill, Avocet, Marsh Harrier, and Marbled Duck. It holds the last confirmed sightings of the Slender-billed Curlew — a species now possibly extinct.",
           },
         },
         {
