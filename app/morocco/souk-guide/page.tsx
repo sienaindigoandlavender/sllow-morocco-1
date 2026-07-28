@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "How to Navigate a Moroccan Souk | Marrakech and Fes",
-  description: "The souk is not a maze — it has a logic. Trades are grouped spatially: spice sellers in one quarter, leather workers in another. How to move through it, what to buy, and how to bargain without anxiety.",
+  description: "The souk looks like a maze but runs on a logic. Trades cluster by quarter: spice sellers in one, leather workers in another. How to move through it, what to buy, and how to bargain without anxiety.",
   alternates: { canonical: "https://www.slowmorocco.com/morocco/souk-guide" },
 };
 
