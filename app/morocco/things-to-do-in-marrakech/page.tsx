@@ -128,7 +128,7 @@ export default function ThingsToDoMarrakechPage() {
             Things to Do in Marrakech
           </h1>
           <p className="text-base text-foreground/55 leading-relaxed max-w-xl">
-            Marrakech is not a list of attractions. It is a medina — a living city organized around trade, faith, and craft. What follows is not what to photograph but what to understand.
+            Marrakech isn't a list of attractions; it's a medina, a living city organized around trade, faith, and craft. What follows is less what to photograph than what to understand.
           </p>
         </div>
 
