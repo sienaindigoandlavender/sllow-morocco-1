@@ -369,7 +369,7 @@ export default function GentleContent({
             <div className="grid md:grid-cols-4 gap-8">
               {[
                 { n: "1", title: "We talk", body: "Email us at hello@slowmorocco.com. Tell us about you, who you're travelling with, and what matters most." },
-                { n: "2", title: "We design", body: "A journey shaped around your pace, your needs, your interests. Not a template — a bespoke plan." },
+                { n: "2", title: "We design", body: "A journey shaped around your pace, your needs, your interests. A plan built around you, not a template." },
                 { n: "3", title: "You decide", body: "No deposit until you're ready. Take your time. Ask every question. Change your mind if you need to." },
                 { n: "4", title: "We're there", body: "From airport to airport, you're never alone. We handle everything, every day." },
               ].map(({ n, title, body }) => (
