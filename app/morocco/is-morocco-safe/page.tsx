@@ -70,14 +70,14 @@ export default function IsMoroccoSafePage() {
             Is Morocco Safe?
           </h1>
           <p className="text-base text-foreground/55 leading-relaxed max-w-xl">
-            Morocco receives over 14 million visitors per year. The question is not whether it is safe — it is what to actually watch for.
+            Morocco receives over 14 million visitors per year. The question isn't whether it's safe but what to actually watch for.
           </p>
         </div>
 
         {/* The honest answer */}
         <div className="px-6 md:px-14 py-16 max-w-3xl">
           <p className="font-serif text-2xl text-foreground leading-relaxed mb-8">
-            Morocco is safe. The main issues are not dangerous — they are irritating.
+            Morocco is safe. The main issues aren't dangerous, just irritating.
           </p>
           <p className="text-base text-foreground/60 leading-relaxed mb-6">
             Petty theft in crowded medinas. Unofficial guides who attach themselves to tourists and demand payment. Persistent salesmanship. Tourist pricing that bears no relation to local pricing. These are real and they affect the experience — particularly in Marrakech and Fes, less so in Essaouira, Chefchaouen, or the south.
