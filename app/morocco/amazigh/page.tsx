@@ -45,7 +45,7 @@ export default function AmazighGuidePage() {
         </div>
         <div>
           <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">In the crafts</p>
-          <p className="text-sm text-foreground/65 leading-relaxed">The geometric patterns in Amazigh textiles — carpets, blankets, pottery — are not decorative. They are a writing system. The diamond, the eye, the zigzag carry meanings that vary by region, by weaver, by occasion. A Beni Ouarain carpet from the Middle Atlas and a Glaoua carpet from the High Atlas carry completely different visual languages. This is what distinguishes Amazigh craft from Arab urban craft — one is geometric and rural, the other is arabesque and urban.</p>
+          <p className="text-sm text-foreground/65 leading-relaxed">The geometric patterns in Amazigh textiles (carpets, blankets, pottery) aren't decorative; they're a writing system. The diamond, the eye, the zigzag carry meanings that vary by region, by weaver, by occasion. A Beni Ouarain carpet from the Middle Atlas and a Glaoua carpet from the High Atlas carry completely different visual languages. This is what separates Amazigh craft from Arab urban craft: one geometric and rural, the other arabesque and urban.</p>
         </div>
         <div className="flex flex-wrap gap-4 pt-4 border-t border-foreground/[0.08]">
           <Link href="/stories/amazigh-identity-map" className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Read: Amazigh identity map →</Link>
