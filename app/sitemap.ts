@@ -17,7 +17,6 @@ const STATIC_PAGES: MetadataRoute.Sitemap = [
   { url: SITE_URL, changeFrequency: 'daily', priority: 1.0 },
   { url: `${SITE_URL}/about`, changeFrequency: 'monthly', priority: 0.7 },
   { url: `${SITE_URL}/masthead`, changeFrequency: 'monthly', priority: 0.6 },
-  { url: `${SITE_URL}/journeys`, changeFrequency: 'weekly', priority: 0.9 },
   { url: `${SITE_URL}/day-trips`, changeFrequency: 'weekly', priority: 0.8 },
   { url: `${SITE_URL}/places`, changeFrequency: 'weekly', priority: 0.8 },
   { url: `${SITE_URL}/places/map`, changeFrequency: 'weekly', priority: 0.6 },
@@ -115,7 +114,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     ...STATIC_PAGES,
-    ...journeyPages,
+    // journeyPages intentionally excluded — routes are noindex + off-sitemap
     ...dayTripPages,
     ...placePages,
     ...storyPages,
