@@ -14,19 +14,19 @@ export default function FoodAndTippingPage() {
         <Link href="/morocco" className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 hover:text-foreground/60 transition-colors mb-8 block">← Morocco</Link>
         <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">Practical</p>
         <h1 className="font-serif text-4xl md:text-5xl text-foreground leading-[1.1] mb-6 max-w-2xl">Food and Tipping in Morocco</h1>
-        <p className="text-base text-foreground/55 leading-relaxed max-w-xl">Moroccan cuisine is one of the most complex on the continent — regional, seasonal, and built on a spice logic that takes years to read. What to order and how to pay for it.</p>
+        <p className="text-base text-foreground/55 leading-relaxed max-w-xl">Moroccan cooking is regional, seasonal, and built on a spice logic that takes years to read. What to order and how to pay for it.</p>
       </div>
       <div className="px-6 md:px-14 py-16 max-w-3xl space-y-12">
         <div>
           <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-6">What to eat</p>
           <div className="space-y-px">
             {[
-              { dish: "Tagine", note: "Not a single dish — a cooking vessel. The cone lid creates condensation that bastes the contents. Chicken with preserved lemon and olives is the benchmark. Lamb with prunes and almonds is the Fassi version. Order from somewhere that actually cooks it — not a restaurant that microwaves pre-made tagines for tourists." },
-              { dish: "Couscous", note: "Eaten on Fridays as a family meal after the midday prayer. Seven-vegetable couscous (the national version) is served on a communal plate. The grain should be light, separate, steamed three times — not the boiled mush of European supermarkets." },
+              { dish: "Tagine", note: "A tagine is the cooking vessel, not the dish. The cone lid traps condensation that bastes whatever cooks underneath. Chicken with preserved lemon and olives is the benchmark. Lamb with prunes and almonds is the Fassi version. Order it somewhere that actually cooks it, not the places reheating pre-made tagines for tourists." },
+              { dish: "Couscous", note: "Eaten on Fridays as a family meal after the midday prayer. Seven-vegetable couscous (the national version) is served on a communal plate. The grain should be light and separate, steamed three times, nothing like the boiled mush sold in European supermarkets." },
               { dish: "Harira", note: "The soup that breaks the Ramadan fast — tomato, lentils, chickpeas, flour, lemon, fresh coriander. Available year-round but best during Ramadan when it is made fresh daily for iftar. A bowl with a hard-boiled egg and chebakia (honey-sesame pastry) is the traditional combination." },
               { dish: "Pastilla", note: "Warqa (paper-thin pastry) layered with pigeon (or chicken), almonds, eggs, and spices — then dusted with cinnamon and icing sugar. The sweet-savoury combination is distinctly Moroccan and Andalusian in origin. Order it in Fes, where the tradition is strongest." },
               { dish: "Mechoui", note: "Whole lamb slow-roasted in an underground oven until the meat falls from the bone. Ordered by weight from mechoui stalls — typically in the medinas. In Marrakech, the mechoui stalls near the Bab Khemis and in Djemaa el-Fna are the reference." },
-              { dish: "Msemen and baghrir", note: "The breakfast layer — msemen are folded flatbreads cooked on a griddle, eaten with amlou (almond-argan paste) or honey. Baghrir are semolina pancakes full of holes, soaked in butter and honey. Both are made by hand and taste completely different from anything else." },
+              { dish: "Msemen and baghrir", note: "The breakfast layer — msemen are folded flatbreads cooked on a griddle, eaten with amlou (almond-argan paste) or honey. Baghrir are semolina pancakes full of holes, soaked in butter and honey. Both are made by hand on the griddle, ordered fresh at breakfast." },
             ].map((item) => (
               <div key={item.dish} className="border border-foreground/[0.08] p-6">
                 <h2 className="font-serif text-lg text-foreground mb-2">{item.dish}</h2>
@@ -39,7 +39,7 @@ export default function FoodAndTippingPage() {
           <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">Where to eat</p>
           <div className="space-y-4">
             {[
-              { place: "Riad restaurants", desc: "Many riads have restaurants serving fixed menus at dinner. The cooking is often the best you will eat — home-style Moroccan food cooked by the riad family or a household cook, not a restaurant kitchen. Book ahead." },
+              { place: "Riad restaurants", desc: "Many riads have restaurants serving fixed menus at dinner. The cooking is often the best you'll eat in the country: home-style food from the riad family or a household cook, not a restaurant kitchen. Book ahead." },
               { place: "Street food in the medina", desc: "The stalls with the most Moroccan customers are the benchmark. Harira from a stall in the medina costs 5–10 MAD. Mechoui by weight. Brochettes (skewers) outside the main squares. The Jemaa el-Fna food stalls are theatrical but not always the best food." },
               { place: "Local restaurants (no menu in French)", desc: "A restaurant with a handwritten menu only in Darija and Arabic, full of Moroccan men at lunch, is almost always better and cheaper than anything near a tourist site. Follow the civil servants and office workers." },
             ].map((item) => (
