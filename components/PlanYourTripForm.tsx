@@ -316,7 +316,7 @@ export default function PlanYourTripForm({
 
   // Deposit phase: form is validated, awaiting the €200 payment. The inquiry
   // sends only after PayPal captures (via sendInquiry).
-  if (phase === "deposit" && status !== "success") {
+  if (phase === "deposit") {
     return (
       <div className="max-w-lg mx-auto py-8">
         <p className={`text-xs tracking-[0.18em] uppercase mb-3 ${darkMode ? 'text-white/50' : 'text-foreground/50'}`}>
