@@ -121,7 +121,7 @@ const ITINERARY = [
     toCity: "Marrakech",
     travelTime: "9",
     activity: "camel",
-    description: "Erg Chebbi is not the Sahara in the tourist-poster sense — it is one of Morocco's two major erg fields, a sea of dunes that rises to 150 metres at its peak. The dunes are real. The silence is real. You leave before sunrise to catch the light on the sand, then begin the return. The road north goes back through Ouarzazate and over the Atlas. You arrive in Marrakech by evening.",
+    description: "Erg Chebbi isn't the Sahara of the tourist posters. It's one of Morocco's two great erg fields, a sea of dunes rising to 150 metres at its peak. The dunes are real. The silence is real. You leave before sunrise to catch the light on the sand, then begin the return. The road north goes back through Ouarzazate and over the Atlas. You arrive in Marrakech by evening.",
     stops: ["Sunrise at Erg Chebbi", "Optional camel ride at dawn", "Return via Ouarzazate and Atlas"],
   },
 ];
@@ -417,7 +417,7 @@ export default function SaharaLandingContent() {
             Most desert tours treat the route as logistics — the kasbah is a photo stop, the valley is scenery, the dunes are the product.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Aït Benhaddou is not a movie set. It is a functioning ksar — a fortified village — whose construction logic is the same as every defensive settlement built in the south for a thousand years. The earthen walls are thick because they insulate. The towers are high because you need to see who is coming across the hammada. The layout faces inward because safety is communal.
+            Aït Benhaddou isn't a movie set but a functioning ksar, a fortified village built on the same logic as every defensive settlement raised in the south for a thousand years. The earthen walls are thick because they insulate. The towers are high because you need to see who is coming across the hammada. The layout faces inward because safety is communal.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
             The Draa Valley palmeries exist because of khettaras — underground irrigation channels built by hand centuries ago that carry water from the Atlas to the desert edge. The villages you pass through are not ruins. They are inhabited. The date harvest happens in October.
