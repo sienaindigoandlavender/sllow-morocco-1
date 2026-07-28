@@ -49,7 +49,7 @@ export default function DesertCampGuidePage() {
             {[
               { point: "Accommodation", desc: "Camps range from basic Berber tents to luxury glamping with private bathrooms and electricity. The basic camps are more atmospheric. Decide what matters: comfort or immersion. Most camps are somewhere in between — a proper bed, running water, and no phone signal." },
               { point: "The camel ride", desc: "The classic approach is a 45-minute camel ride at sunset to the camp. It is slower and more meditative than a 4x4. Camels are also harder on the lower back than expected. The 4x4 gets you there faster and leaves more time in the dunes." },
-              { point: "Night in the desert", desc: "The silence is the thing people don't anticipate. Not quiet — silent. The stars are extraordinary on a clear night away from the village lights. The cold is real: even in autumn, temperatures drop to 5–10°C after midnight. Bring a layer you didn't think you'd need." },
+              { point: "Night in the desert", desc: "The silence is what people don't expect: not quiet but silent. On a clear night away from the village lights, the stars come out in numbers most visitors have never seen. The cold is real: even in autumn, temperatures drop to 5–10°C after midnight. Bring a layer you didn't think you'd need." },
               { point: "Sunrise", desc: "Wake before dawn. Climb the nearest dune. The light moves across the sand in a way that has no equivalent — a shadow line travelling at walking pace. This is why people come." },
             ].map((item) => (
               <div key={item.point} className="border border-foreground/[0.08] p-5">
