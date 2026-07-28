@@ -157,7 +157,7 @@ export default function StartHereContent() {
               Five questions. A framework specific to you.
             </h2>
             <p className="text-sm text-foreground/50 leading-relaxed">
-              Not an itinerary — the mental map you need before any good decision can be made. Which cities cluster together. What the distances actually are. The one thing that changes how you experience everything else.
+              The mental map you need before any good decision, not an itinerary. Which cities cluster together, what the distances actually are, and the one thing that changes how you experience everything else.
             </p>
           </div>
 
