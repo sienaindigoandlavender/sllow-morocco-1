@@ -11,7 +11,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Hammam in Morocco: What to Expect and How to Go",
-  description: "The Moroccan hammam is a social institution a thousand years old: hot and cold rooms, a kessa scrub, black soap. The spa version tourists know is a pale copy. What to expect, and how to find the real thing.",
+  description: "The Moroccan hammam is a social institution a thousand years old: hot and cold rooms, a kessa scrub, black soap. The version most tourists meet is the hotel one, quiet and expensive. What to expect, and how to find the other.",
   alternates: { canonical: "https://www.slowmorocco.com/morocco/hammam" },
 };
 
