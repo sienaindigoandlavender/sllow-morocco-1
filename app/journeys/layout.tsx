@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     canonical: "https://www.slowmorocco.com/journeys",
   },
   robots: {
-    index: true,
+    index: false,
     follow: true,
   },
 };
