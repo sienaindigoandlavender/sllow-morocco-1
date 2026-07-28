@@ -74,7 +74,19 @@ export default async function PlanYourTripPage({
         }}
       />
 
-      {/* Context caption — rendered only when a valid journey/place is prefilled.
+      {/* Deposit — stated, not sold. Credit-led; assumes the booking. */}
+      <section className="pt-10 md:pt-14">
+        <div className="container mx-auto px-6 lg:px-16 max-w-2xl">
+          <p className="text-xs tracking-[0.18em] uppercase text-foreground/50 mb-3">
+            The Deposit
+          </p>
+          <p className="text-base md:text-lg leading-relaxed text-foreground/80">
+            Planning begins with a &euro;200 deposit, credited in full to your
+            journey. It holds your dates and opens the work.
+          </p>
+        </div>
+      </section>
+
           Sits between the banner and the form so it follows the title/subtitle
           regardless of whether the banner is fallback or CMS-driven. */}
       {contextCaption && (
