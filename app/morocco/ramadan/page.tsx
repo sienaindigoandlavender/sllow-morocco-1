@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Visiting Morocco During Ramadan: What to Expect",
-  description: "Ramadan changes Morocco entirely. Restaurants close by day, cities come alive at night, and the communal breaking of the fast is one of the most atmospheric experiences the country offers. What to know.",
+  description: "Ramadan changes Morocco entirely. Restaurants close by day, cities come alive at night, and at sunset whole streets sit down to eat at once. What to know.",
   alternates: { canonical: "https://www.slowmorocco.com/morocco/ramadan" },
 };
 
@@ -18,7 +18,7 @@ export default function RamadanGuidePage() {
       </div>
       <div className="px-6 md:px-14 py-16 max-w-3xl space-y-12">
         <div>
-          <p className="font-serif text-xl text-foreground leading-relaxed mb-6">The medinas come alive at night in a way that has no equivalent at any other time of year. The streets after sunset fill with families, the food stalls are at full capacity, the music plays later. The collective exhale of a city that has been fasting since dawn is a palpable thing.</p>
+          <p className="font-serif text-xl text-foreground leading-relaxed mb-6">The medinas come alive at night in a way that has no equivalent at any other time of year. The streets after sunset fill with families, the food stalls are at full capacity, the music plays later.</p>
         </div>
         <div>
           <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">What changes</p>
@@ -26,7 +26,7 @@ export default function RamadanGuidePage() {
             {[
               { change: "Restaurants", detail: "Most non-tourist restaurants close during daylight hours. Hotels and riads catering to tourists continue to serve breakfast and lunch. The further you are from the tourist medina, the harder it is to find food before sunset." },
               { change: "The rhythm", detail: "The day is slow, particularly in the afternoon when energy is low. Shops may open later and close earlier. Government offices operate reduced hours. Do not plan activities that require peak Moroccan engagement in the mid-afternoon." },
-              { change: "Iftar (breaking the fast)", detail: "Sunset is the moment of transformation. The streets empty completely for 20 minutes as families gather. Then they fill again. The harira stalls open. The mint tea returns. Jemaa el-Fna at iftar is extraordinary." },
+              { change: "Iftar (breaking the fast)", detail: "Sunset is the moment of transformation. The streets empty completely for 20 minutes as families gather. Then they fill again. The harira stalls open, the mint tea returns, and by dark Jemaa el-Fna is packed." },
               { change: "Cafés", detail: "No tea, no coffee, no smoking in public during daylight hours — from most vendors. Tourist cafés remain open but may be quieter. The café culture that defines Moroccan male social life pauses and resumes at sunset." },
               { change: "Alcohol", detail: "Alcohol is available in licensed tourist restaurants and hotels throughout Ramadan. It is not available at establishments that have suspended service for the month. Do not expect it in neighbourhood restaurants." },
             ].map((item) => (
@@ -40,7 +40,7 @@ export default function RamadanGuidePage() {
         <div>
           <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">What to do</p>
           <p className="text-sm text-foreground/65 leading-relaxed mb-4">Organise your day around the Ramadan rhythm rather than fighting it. Mornings are calm and relatively easy — monuments, hammam, souks. Afternoons are slow — riads, reading, rest. Plan activities for after iftar — the city is at full volume from 8pm to well past midnight.</p>
-          <p className="text-sm text-foreground/65 leading-relaxed mb-4">If you are invited to break the fast with a Moroccan family — through your riad, through a local contact — accept. The iftar table is one of the most generous expressions of Moroccan hospitality.</p>
+          <p className="text-sm text-foreground/65 leading-relaxed mb-4">If you are invited to break the fast with a Moroccan family — through your riad, through a local contact — accept. It is where you will see Moroccan hospitality at full stretch.</p>
           <p className="text-sm text-foreground/65 leading-relaxed">The last ten nights of Ramadan intensify. Laylat al-Qadr (the Night of Power, one of the last odd nights) is the holiest night of the year — the mosques and zawiyyas are full, the streets alive until dawn.</p>
         </div>
         <div>
