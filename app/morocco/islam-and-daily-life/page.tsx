@@ -14,18 +14,18 @@ export default function IslamDailyLifePage() {
         <Link href="/morocco" className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 hover:text-foreground/60 transition-colors mb-8 block">← Morocco</Link>
         <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">Cultural context</p>
         <h1 className="font-serif text-4xl md:text-5xl text-foreground leading-[1.1] mb-6 max-w-2xl">Islam and Daily Life in Morocco</h1>
-        <p className="text-base text-foreground/55 leading-relaxed max-w-xl">Morocco is 99% Muslim. Islam structures the calendar, the architecture, the law, and the rhythm of the day. Understanding it is not optional context — it is the frame for everything you will see.</p>
+        <p className="text-base text-foreground/55 leading-relaxed max-w-xl">Morocco is 99% Muslim. Islam structures the calendar, the architecture, the law, and the rhythm of the day. Understanding it isn't optional background; it's the frame for everything you'll see.</p>
       </div>
       <div className="px-6 md:px-14 py-16 max-w-3xl space-y-12">
         <div>
           <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">The call to prayer</p>
           <p className="text-sm text-foreground/65 leading-relaxed mb-4">The adhan sounds five times a day from every mosque in the country — Fajr before sunrise, Dhuhr at noon, Asr in the afternoon, Maghrib at sunset, Isha after dark. In a city like Fes or Marrakech, where mosques are every few streets, the overlapping calls from different minarets create a layered sound that has no equivalent.</p>
-          <p className="text-sm text-foreground/65 leading-relaxed">The call is not asking you to do anything. It is a declaration — "God is great, prayer is better than sleep" — addressed to the city as a whole. Friday noon prayer (Jumu'ah) is the most significant of the week; the streets empty and fill again around it.</p>
+          <p className="text-sm text-foreground/65 leading-relaxed">The call isn't asking you to do anything. It's a declaration addressed to the whole city: "God is great, prayer is better than sleep." Friday noon prayer (Jumu'ah) is the most significant of the week; the streets empty and fill again around it.</p>
         </div>
         <div>
           <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">Mosques and non-Muslims</p>
-          <p className="text-sm text-foreground/65 leading-relaxed mb-4">Most mosques in Morocco are not open to non-Muslims. This is not hostility — it is the same convention that makes certain spaces sacred. The Hassan II Mosque in Casablanca is the major exception: it admits non-Muslim visitors on guided tours at specific times.</p>
-          <p className="text-sm text-foreground/65 leading-relaxed">Madrasas (religious schools) adjacent to mosques are frequently accessible and architecturally extraordinary — the Ben Youssef in Marrakech, the Bou Inania in Fes. These are the buildings that show you the interior logic of Islamic architecture: the zellige, the carved stucco, the courtyard geometry.</p>
+          <p className="text-sm text-foreground/65 leading-relaxed mb-4">Most mosques in Morocco are not open to non-Muslims. It isn't hostility, just the same instinct that makes any space sacred. The Hassan II Mosque in Casablanca is the major exception: it admits non-Muslim visitors on guided tours at specific times.</p>
+          <p className="text-sm text-foreground/65 leading-relaxed">Madrasas (religious schools) adjacent to mosques are often open, and worth it for the architecture: the Ben Youssef in Marrakech, the Bou Inania in Fes. These are the buildings that show you the interior logic of Islamic architecture: the zellige, the carved stucco, the courtyard geometry.</p>
         </div>
         <div>
           <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">The Five Pillars in daily life</p>
@@ -47,7 +47,7 @@ export default function IslamDailyLifePage() {
         <div>
           <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">Practical respect</p>
           <p className="text-sm text-foreground/65 leading-relaxed mb-4">Remove shoes when entering a mosque or private home if you see shoes at the door. Dress modestly when visiting religious sites — shoulders and knees covered. Ask before photographing people at prayer. Do not eat, drink, or smoke in public during Ramadan daylight hours — even as a non-Muslim, it is a matter of courtesy.</p>
-          <p className="text-sm text-foreground/65 leading-relaxed">These are not burdens. They are the same instincts you would bring to a cathedral or a synagogue — an acknowledgement that you are in a space that means something to someone else.</p>
+          <p className="text-sm text-foreground/65 leading-relaxed">None of this is a burden. It's the instinct you'd bring to a cathedral or a synagogue: you are in a space that means something to someone else.</p>
         </div>
         <div className="flex flex-wrap gap-4 pt-4 border-t border-foreground/[0.08]">
           <Link href="/morocco/ramadan" className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Ramadan in Morocco →</Link>
