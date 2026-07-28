@@ -105,7 +105,7 @@ export default function OdysseyFilmingLocationsPage() {
             fishing boats. None of this is new: Morocco has been Hollywood&apos;s
             ancient world for decades, for the reasons it always draws the
             cameras — the light, the geography, the sense that the past never
-            fully left. The films come and go. The country keeps its looks.
+            fully left.
           </p>
         </div>
 
