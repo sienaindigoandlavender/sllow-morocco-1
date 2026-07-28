@@ -46,7 +46,7 @@ const jsonLd = {
       "name": "When is Ramadan in Morocco?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Ramadan shifts by approximately 11 days each year. In 2026 it falls around late February to late March. During Ramadan many restaurants close during the day, the rhythm of cities changes, and some tourist sites have reduced hours. It is also one of the most atmospheric times to visit."
+        "text": "Ramadan shifts by approximately 11 days each year. In 2026 it falls around late February to late March. During Ramadan many restaurants close during the day, the rhythm of cities changes, and some tourist sites have reduced hours. The evenings, when the fast breaks and the streets fill, are the reason some travellers time their trip to it."
       }
     }
   ]
@@ -56,7 +56,7 @@ const MONTHS = [
   {
     month: "January",
     temp: "8–18°C",
-    summary: "Cold nights across the country. The Atlas sees snow — Oukaimeden is skiable. Agadir and the south are warm and quiet. Marrakech is pleasant by day. Low season means empty medinas.",
+    summary: "Cold nights across the country. The Atlas sees snow; Oukaimeden is skiable. Agadir and the south are warm and quiet. Marrakech is pleasant by day. Low season means empty medinas.",
     good: ["Agadir", "Dakhla", "Marrakech (daytime)", "Atlas skiing"],
     avoid: ["High Atlas passes (may close)", "Desert at night (very cold)"],
   },
@@ -70,21 +70,21 @@ const MONTHS = [
   {
     month: "March",
     temp: "12–22°C",
-    summary: "The best month to start. Wildflowers across the plains south of Marrakech. The Atlas is still snowcapped but passes are open. Crowds have not arrived. Storks return to Marrakech — you'll see them on the minarets.",
+    summary: "The best month to start. Wildflowers across the plains south of Marrakech. The Atlas is still snowcapped but passes are open. Crowds have not arrived. Storks return to Marrakech; you'll see them on the minarets.",
     good: ["Everywhere", "Marrakech", "Fes", "Desert routes"],
     avoid: ["Nothing significant"],
   },
   {
     month: "April",
     temp: "15–26°C",
-    summary: "Rose harvest in the Dades Valley — the valley around Kelaat M'Gouna turns pink in late April and early May. One of the most specific seasonal experiences in Morocco. Book accommodation early for this.",
+    summary: "Rose harvest in the Dades Valley: the fields around Kelaat M'Gouna turn pink in late April and early May. Book accommodation early.",
     good: ["Dades Valley (rose harvest)", "Marrakech", "Essaouira", "Fes"],
     avoid: ["Nothing significant"],
   },
   {
     month: "May",
     temp: "18–30°C",
-    summary: "Getting warm in the cities. Cherry festival in Sefrou (near Fes) in June — worth planning around. Chefchaouen is comfortable. The desert is beginning to heat up but still manageable in the mornings.",
+    summary: "Getting warm in the cities. Cherry festival in Sefrou, near Fes, in June. Chefchaouen is comfortable. The desert is beginning to heat up but still manageable in the mornings.",
     good: ["Chefchaouen", "Essaouira", "Fes", "Northern Morocco"],
     avoid: ["Merzouga/Sahara (heat building)"],
   },
@@ -98,7 +98,7 @@ const MONTHS = [
   {
     month: "July",
     temp: "25–42°C",
-    summary: "Peak summer. Fes and Marrakech are brutal midday — 40°C in the medinas, streets emptied between noon and 4pm. The Atlantic coast is Morocco's beach season. Agadir and Dakhla are full. The Sahara is dangerous.",
+    summary: "Peak summer. Fes and Marrakech are brutal at midday, 40°C in the medinas, streets emptied between noon and 4pm. The Atlantic coast is Morocco's beach season. Agadir and Dakhla are full. The Sahara is dangerous.",
     good: ["Agadir", "Essaouira", "Dakhla", "Chefchaouen (north is cooler)"],
     avoid: ["Fes", "Marrakech (midday)", "Any desert route", "Atlas trekking"],
   },
@@ -119,7 +119,7 @@ const MONTHS = [
   {
     month: "October",
     temp: "16–28°C",
-    summary: "Saffron harvest in Taliouine — 150,000 flowers to produce one kilogram, all picked by hand before sunrise. One of the most specific agricultural events in Morocco. The desert is ideal again — warm days, cool nights.",
+    summary: "Saffron harvest in Taliouine: 150,000 flowers picked by hand before sunrise to make a single kilogram. The desert is ideal again, warm days and cool nights.",
     good: ["Taliouine (saffron harvest)", "Merzouga/Sahara", "Everywhere"],
     avoid: ["Nothing"],
   },
@@ -157,7 +157,7 @@ export default function BestTimeToVisitPage() {
             Best Time to Visit Morocco
           </h1>
           <p className="text-base text-foreground/55 leading-relaxed max-w-xl">
-            Morocco is not one climate. It is five. The answer depends entirely on where you're going — and what you want to find when you get there.
+            Morocco has five climates. Where you go, and when, decides everything.
           </p>
         </div>
 
@@ -227,7 +227,7 @@ export default function BestTimeToVisitPage() {
               Ramadan shifts by approximately 11 days each year. In 2026 it falls around late February to late March. During Ramadan, many restaurants close during the day, alcohol is not served at non-tourist establishments, and the rhythm of the city changes entirely.
             </p>
             <p className="text-sm text-foreground/65 leading-relaxed mb-6">
-              It is not a difficult time to visit. It is a different time to visit. The medinas come alive after sunset — the food stalls, the music, the communal breaking of the fast. If you plan around the evening rather than fighting the quiet afternoons, Ramadan is one of the most atmospheric times in Morocco.
+              Ramadan isn't a hard time to visit, just a different one. The medinas come alive after sunset: the food stalls, the music, the communal breaking of the fast. If you plan around the evening rather than fighting the quiet afternoons, Ramadan is one of the most atmospheric times in Morocco.
             </p>
             <Link href="/stories/ramadan-moon" className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground border-b border-foreground/15 hover:border-foreground/40 pb-0.5 transition-colors">
               Read: Ramadan in Morocco →
