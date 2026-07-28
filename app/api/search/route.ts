@@ -20,13 +20,9 @@ export async function GET() {
       .order('sort_order', { ascending: true })
       .limit(500);
 
-    // Fetch journeys — lightweight
-    const { data: journeys } = await getSupabase()
-      .from('journeys')
-      .select('slug, title, destinations, description, category, region, duration_days')
-      .eq('published', true)
-      .order('sort_order', { ascending: true })
-      .limit(500);
+    // Journeys intentionally excluded from on-site search — the free route
+    // itineraries are reachable by direct link only, not surfaced in search.
+    const journeys: any[] = [];
 
     // Fetch places — lightweight
     const { data: places } = await getSupabase()
