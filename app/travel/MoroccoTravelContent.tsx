@@ -77,7 +77,7 @@ const transportModes = [
   {
     mode: "Rental Car",
     best: "The south and mountains",
-    detail: "Essential for the Draa Valley, Sahara loop, Anti-Atlas, Route of a Thousand Kasbahs. Useless in medinas — parking is near-impossible and the old city is pedestrian-only.",
+    detail: "Essential for the Draa Valley, Sahara loop, Anti-Atlas, Route of a Thousand Kasbahs. Useless in medinas, where parking is near-impossible and the old city is pedestrian-only.",
   },
   {
     mode: "Private Driver",
@@ -268,7 +268,7 @@ export default function MoroccoTravelContent() {
           <SectionHeader
             number="02"
             title="Getting There"
-            subtitle="Morocco has five international airports that matter. Fly into the one that matches where your journey starts — not which city has the cheapest fare."
+            subtitle="Morocco has five international airports that matter. Fly into the one that matches where your journey starts, not the city with the cheapest fare."
           />
 
           <div className="border border-[#e5e5e5] mb-8">
@@ -325,8 +325,8 @@ export default function MoroccoTravelContent() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#e5e5e5] border border-[#e5e5e5] mb-8">
             {[
-              { heading: "The dirham (MAD)", body: "Partially convertible — cannot be exchanged outside Morocco. 1 EUR ≈ 11.1 DH · 1 USD ≈ 10.2 DH · 1 GBP ≈ 13.2 DH (January 2026). Calculate carefully; do not dramatically over-obtain." },
-              { heading: "Exchanging money", body: "Best rates at bank exchange bureaux in city centres. Avoid airport counters — rates are consistently poor. Euros are the easiest foreign currency to exchange. Street money changers in tourist areas always offer worse rates. Avoid." },
+              { heading: "The dirham (MAD)", body: "Partially convertible: it cannot be exchanged outside Morocco. 1 EUR ≈ 11.1 DH · 1 USD ≈ 10.2 DH · 1 GBP ≈ 13.2 DH (January 2026). Calculate carefully; do not dramatically over-obtain." },
+              { heading: "Exchanging money", body: "Best rates at bank exchange bureaux in city centres. Avoid airport counters; their rates are consistently poor. Euros are the easiest foreign currency to exchange. Street money changers in tourist areas always offer worse rates. Avoid." },
               { heading: "ATMs", body: "Widely available in cities. In rural areas — Sahara, Anti-Atlas, small Atlas villages — may be absent or unreliable. Carry sufficient cash before heading south. Notify your bank before travelling to avoid cards being blocked." },
               { heading: "Cards", body: "Accepted at international hotels, modern restaurants, and supermarkets (Marjane, Carrefour). Some add a 2–3% surcharge. In the medina — souks, street food, taxis, hammams, small cafés — cash only." },
             ].map((item) => (
@@ -478,7 +478,7 @@ export default function MoroccoTravelContent() {
             {[
               { heading: "Best months", body: "March–May and September–November. Comfortable temperatures across the country, good light, manageable crowds. Spring brings wildflowers in the Atlas and the rose harvest in the Dadès Valley in May." },
               { heading: "Avoid inland in summer", body: "July and August in Marrakech, Fes, and the Sahara region regularly reach 42°C. The Atlantic coast is pleasant year-round. The Atlas has a ski season December–March." },
-              { heading: "Ramadan", body: "Dates shift annually (lunar calendar). Not a reason to avoid Morocco — the evenings are spectacular and the atmosphere is unlike any other time of year. Some restaurants are closed by day. A different rhythm to city life." },
+              { heading: "Ramadan", body: "Dates shift annually (lunar calendar). No reason to avoid Morocco. Some restaurants close by day, and the city shifts its whole rhythm to the evening, which fills the moment the fast breaks." },
               { heading: "Key festivals", body: "Rose Festival, Kelaat M'Gouna: May. Gnaoua Festival, Essaouira: June. Fes Festival of World Sacred Music: June. Cherry Festival, Sefrou: June. Imilchil Moussem: September." },
             ].map((item) => (
               <div key={item.heading} className="bg-white px-6 py-6">
