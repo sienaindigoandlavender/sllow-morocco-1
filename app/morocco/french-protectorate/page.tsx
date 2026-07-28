@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Was Morocco a French Colony? No — a Protectorate (1912–1956)",
-  description: "Not occupied, not independent — a piece of paper signed in 1912 that fooled almost no one and lasted forty-four years. Why Morocco was a protectorate, not a colony, and what it left behind in every city.",
+  description: "Neither occupation nor independence: a piece of paper signed in 1912 that fooled almost no one and lasted forty-four years. Why Morocco was a protectorate, not a colony, and what it left behind in every city.",
   alternates: { canonical: "https://www.slowmorocco.com/morocco/french-protectorate" },
 };
 
@@ -26,9 +26,9 @@ export default function FrenchProtectoratePage() {
           <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">What it left — what you can see today</p>
           <div className="space-y-3">
             {[
-              { legacy: "The Ville Nouvelle", desc: "Every major Moroccan city has a Ville Nouvelle — the French-built new town adjacent to the medina. Wide boulevards, Art Deco architecture, cafés, French-style administrative buildings. Casablanca's Ville Nouvelle is the largest. Rabat's is the most elegant. The visual contrast with the medina tells the entire story of the protectorate in one glance." },
+              { legacy: "The Ville Nouvelle", desc: "Every major Moroccan city has a Ville Nouvelle — the French-built new town adjacent to the medina. Wide boulevards, Art Deco architecture, cafés, French-style administrative buildings. Casablanca's Ville Nouvelle is the largest, Rabat's the most elegant. Step from the medina into either and you can date the change to the year." },
               { legacy: "The road and rail network", desc: "The entire modern road and rail infrastructure dates from the protectorate — including the route nationale that makes driving Morocco's interior possible. The Tizi n'Tichka road was built by the French. The ONCF rail network was built by the French." },
-              { legacy: "The French language", desc: "French remains the language of business, higher education, the legal system, and the elite. Signs are in Arabic and French. Government documents are in Arabic and French. This is not a colonial hangover — it is a functional choice that was made and maintained after independence." },
+              { legacy: "The French language", desc: "French remains the language of business, higher education, the legal system, and the elite. Signs are in Arabic and French. Government documents are in Arabic and French. This isn't a colonial hangover but a functional choice, made and kept after independence." },
               { legacy: "The legal system", desc: "Morocco's civil and commercial law derives from French law. The court system, the legal profession, and the administrative state are structured on the French model. Islamic personal status law (marriage, divorce, inheritance) operates in parallel." },
               { legacy: "The exile of Mohammed V", desc: "In 1953, France exiled Sultan Mohammed V to Madagascar — an attempt to break the growing independence movement. It backfired. The sultan became a symbol of resistance and returned in 1955. Independence followed in 1956. The exile is remembered as the turning point." },
             ].map((item) => (
@@ -41,7 +41,7 @@ export default function FrenchProtectoratePage() {
         </div>
         <div>
           <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">A protectorate, not a colony</p>
-          <p className="text-sm text-foreground/65 leading-relaxed">The distinction shaped everything that followed. Morocco kept its monarchy, its traditional institutions, and a French-educated elite that largely chose to remain; when independence came in 1956, it was negotiated with a sultan the country still recognised as its own, not won from the rubble. The word "protectorate" was a legal fiction — but the fiction had real consequences.</p>
+          <p className="text-sm text-foreground/65 leading-relaxed">The distinction shaped everything that followed. Morocco kept its monarchy, its traditional institutions, and a French-educated elite that largely chose to remain; when independence came in 1956, it was negotiated with a sultan the country still recognised as its own, not won from the rubble. The word "protectorate" was a legal fiction, but the fiction had real consequences.</p>
         </div>
         <div className="flex flex-wrap gap-4 pt-4 border-t border-foreground/[0.08]">
           <Link href="/stories/french-protectorate" className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Read: The French Protectorate in Morocco →</Link>
