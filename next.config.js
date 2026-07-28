@@ -390,7 +390,14 @@ const nextConfig = {
       { source: "/stories/is-morocco-safe", destination: "/stories", permanent: true },
       { source: "/stories/islamic-spain", destination: "/stories/islamic-spain-legacy", permanent: true },
       { source: "/stories/jewish-atlas", destination: "/stories", permanent: true },
-      { source: "/stories/jewish-heritage", destination: "/stories/jewish-heritage-morocco", permanent: true },
+      // Jewish-heritage consolidation: standalone /jewish-heritage-morocco is
+      // the canonical page (holds the full prose + interactive site map). The
+      // story and /morocco hub versions were thin fragments — fold them in.
+      // NOTE: unpublish the "jewish-heritage-morocco" story in Supabase so it
+      // stops regenerating in the sitemap.
+      { source: "/stories/jewish-heritage", destination: "/jewish-heritage-morocco", permanent: true },
+      { source: "/stories/jewish-heritage-morocco", destination: "/jewish-heritage-morocco", permanent: true },
+      { source: "/morocco/jewish-heritage", destination: "/jewish-heritage-morocco", permanent: true },
       { source: "/stories/languages-of-morocco", destination: "/stories/the-five-tongues", permanent: true },
       { source: "/stories/marrakech-medina-guide", destination: "/stories", permanent: true },
       { source: "/stories/marriage-economy", destination: "/stories/moroccan-wedding-economy", permanent: true },
