@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 // Shared Plan Your Trip Form Component
 // Used across all Slow World properties
@@ -18,6 +18,101 @@ interface PlanYourTripFormProps {
   onSuccess?: () => void;
   darkMode?: boolean;
   initialJourney?: string; // slug to pre-select in the journey dropdown
+}
+
+// €200 planning deposit. Same PayPal account/pattern as the day-trip and
+// overnight booking flows. Client-side capture; the captured order id is
+// passed back so the inquiry only sends once payment has cleared.
+const DEPOSIT_AMOUNT = "200.00";
+
+function PayPalDeposit({
+  onSuccess,
+  onError,
+}: {
+  onSuccess: (transactionId: string) => void;
+  onError: (err: any) => void;
+}) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [loading, setLoading] = useState(true);
+  const buttonsInstance = useRef<any>(null);
+  const isMounted = useRef(true);
+
+  useEffect(() => {
+    isMounted.current = true;
+
+    const renderButton = async () => {
+      if (!(window as any).paypal) {
+        const existingScript = document.querySelector('script[src*="paypal.com/sdk"]');
+        if (!existingScript) {
+          const script = document.createElement("script");
+          script.src = `https://www.paypal.com/sdk/js?client-id=AWVf28iPmlVmaEyibiwkOtdXAl5UPqL9i8ee9yStaG6qb7hCwNRB2G95SYwbcikLnBox6CGyO-boyAvu&currency=EUR`;
+          script.async = true;
+          document.body.appendChild(script);
+          await new Promise((resolve) => {
+            script.onload = resolve;
+          });
+        } else {
+          await new Promise((resolve) => setTimeout(resolve, 200));
+        }
+      }
+
+      if (!containerRef.current || !(window as any).paypal || !isMounted.current) return;
+
+      try {
+        containerRef.current.innerHTML = "";
+        const paypalInstance = (window as any).paypal;
+        buttonsInstance.current = paypalInstance.Buttons({
+          style: { layout: "vertical", color: "black", shape: "rect", label: "pay", height: 50 },
+          createOrder: (_: any, actions: any) => {
+            return actions.order.create({
+              purchase_units: [
+                {
+                  description: "Slow Morocco — Planning Deposit",
+                  amount: { value: DEPOSIT_AMOUNT, currency_code: "EUR" },
+                },
+              ],
+            });
+          },
+          onApprove: async (_: any, actions: any) => {
+            const order = await actions.order.capture();
+            if (isMounted.current) onSuccess(order.id);
+          },
+          onError: (err: any) => {
+            if (isMounted.current) onError(err);
+          },
+        });
+
+        if (containerRef.current && isMounted.current) {
+          await buttonsInstance.current.render(containerRef.current);
+          setLoading(false);
+        }
+      } catch (err) {
+        console.error("PayPal render error:", err);
+        setLoading(false);
+      }
+    };
+
+    renderButton();
+
+    return () => {
+      isMounted.current = false;
+      if (buttonsInstance.current?.close) {
+        try { buttonsInstance.current.close(); } catch (e) {}
+      }
+      buttonsInstance.current = null;
+    };
+  }, [onSuccess, onError]);
+
+  return (
+    <div>
+      {loading && (
+        <div className="flex justify-center py-6">
+          <div className="w-5 h-5 border border-foreground/20 border-t-foreground rounded-full animate-spin" />
+        </div>
+      )}
+      <div ref={containerRef} />
+    </div>
+  );
 }
 
 export default function PlanYourTripForm({
@@ -49,9 +144,19 @@ export default function PlanYourTripForm({
   });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [phase, setPhase] = useState<"form" | "deposit">("form");
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  // Step 1: the form's required fields pass native validation on submit, then
+  // we advance to the deposit. The inquiry is NOT sent yet.
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setErrorMessage("");
+    setPhase("deposit");
+  };
+
+  // Step 2: only after PayPal captures the €200 do we send the inquiry —
+  // this is the gate that stops empty inquiries.
+  const sendInquiry = async (paypalOrderId: string) => {
     setStatus("loading");
     setErrorMessage("");
 
@@ -63,6 +168,8 @@ export default function PlanYourTripForm({
           ...formData,
           budget: formData.budgetValue, // Send as budget for backend
           site_id: siteId, // Secret identifier for backend
+          paypal_order_id: paypalOrderId,
+          deposit_paid: true,
         }),
       });
 
@@ -203,6 +310,52 @@ export default function PlanYourTripForm({
         >
           Back to Home
         </a>
+      </div>
+    );
+  }
+
+  // Deposit phase: form is validated, awaiting the €200 payment. The inquiry
+  // sends only after PayPal captures (via sendInquiry).
+  if (phase === "deposit" && status !== "success") {
+    return (
+      <div className="max-w-lg mx-auto py-8">
+        <p className={`text-xs tracking-[0.18em] uppercase mb-3 ${darkMode ? 'text-white/50' : 'text-foreground/50'}`}>
+          The Deposit
+        </p>
+        <h2 className={`font-serif text-2xl md:text-3xl mb-4 ${darkMode ? 'text-white' : ''}`}>
+          €200, credited in full to your journey
+        </h2>
+        <p className={`text-base leading-relaxed mb-8 ${darkMode ? 'text-white/60' : 'text-muted-foreground'}`}>
+          It holds your dates and opens the work. Once complete, we begin shaping
+          your proposal and are in touch within 24 hours.
+        </p>
+
+        {status === "loading" ? (
+          <div className="flex items-center justify-center gap-3 py-6">
+            <div className="w-5 h-5 border border-foreground/20 border-t-foreground rounded-full animate-spin" />
+            <span className={`text-sm ${darkMode ? 'text-white/60' : 'text-muted-foreground'}`}>Confirming your request…</span>
+          </div>
+        ) : (
+          <PayPalDeposit
+            onSuccess={sendInquiry}
+            onError={() => {
+              setStatus("error");
+              setErrorMessage("Payment could not be completed. Please try again.");
+            }}
+          />
+        )}
+
+        {status === "error" && (
+          <p className="text-sm text-red-500 mt-4">{errorMessage}</p>
+        )}
+
+        <button
+          type="button"
+          onClick={() => { setPhase("form"); setStatus("idle"); setErrorMessage(""); }}
+          className={`mt-8 text-xs tracking-[0.15em] uppercase transition-colors ${darkMode ? 'text-white/50 hover:text-white' : 'text-foreground/50 hover:text-foreground'}`}
+        >
+          ← Back to details
+        </button>
       </div>
     );
   }
@@ -547,7 +700,7 @@ export default function PlanYourTripForm({
               : 'bg-[#c4a882] text-white hover:bg-[#b09670]'
           }`}
         >
-          {status === "loading" ? "Sending..." : "Send inquiry"}
+          {status === "loading" ? "One moment…" : "Continue to deposit"}
         </button>
       </div>
     </form>
