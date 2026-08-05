@@ -2,6 +2,7 @@
 
 import { cloudinaryUrl } from "@/lib/cloudinary";
 import Link from "next/link";
+import { TRIP_FUNNEL_PUBLIC } from "@/lib/flags";
 import StoryBody from "@/components/StoryBody";
 import ShareTools from "@/components/ShareTools";
 import SeasonalBadge from "@/components/SeasonalBadge";
@@ -224,7 +225,7 @@ export default function StoryDetailContent({
         )}
 
         {/* Journey bridge */}
-        {story.journeyBridge && (
+        {TRIP_FUNNEL_PUBLIC && story.journeyBridge && (
           <div className="my-12 py-8 border-t border-b border-foreground/10">
             <p className="text-foreground/60 italic font-serif text-lg leading-relaxed">
               {story.journeyBridge}
@@ -518,7 +519,7 @@ export default function StoryDetailContent({
       {/* ══════════════════════════════════════════════════════════════
           RELATED JOURNEYS — dark editorial panel
           ══════════════════════════════════════════════════════════════ */}
-      {relatedJourneys.length > 0 && (
+      {TRIP_FUNNEL_PUBLIC && relatedJourneys.length > 0 && (
         <section className="py-20 md:py-28 border-t border-foreground/[0.08]">
           <div className="px-8 md:px-16 lg:px-20">
             <div className="text-center mb-14 md:mb-16">
