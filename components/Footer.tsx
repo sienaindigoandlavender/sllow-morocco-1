@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { TRIP_FUNNEL_PUBLIC } from "@/lib/flags";
 
 // Currency options
 const currencies = [
@@ -183,7 +184,7 @@ export default function Footer() {
               <ul className="space-y-1">
                 <li><Link href="/about" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Who We Are</Link></li>
                 <li><Link href="/manifesto" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Manifesto</Link></li>
-                <li><Link href="/plan-your-trip" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Plan Your Trip</Link></li>
+                {TRIP_FUNNEL_PUBLIC && <li><Link href="/plan-your-trip" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Plan Your Trip</Link></li>}
                 <li><Link href="/booking-conditions" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Booking Conditions</Link></li>
                 <li><Link href="/payments" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Payments</Link></li>
                 <li><Link href="/cancellations-and-refunds" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Cancellations & Refunds</Link></li>
