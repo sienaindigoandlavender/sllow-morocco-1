@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { TRIP_FUNNEL_PUBLIC } from "@/lib/flags";
 import { cloudinaryUrl } from "@/lib/cloudinary";
 import { Play, ChevronDown } from "lucide-react";
 
@@ -211,6 +212,7 @@ export default function EpicContent({ journeys }: EpicContentProps) {
       </section>
 
       {/* The Invitation */}
+      {TRIP_FUNNEL_PUBLIC && (
       <section className="py-24 md:py-32 border-t border-white/5 bg-[#0d0d0d]">
         <div className="container mx-auto px-6 lg:px-16 max-w-3xl text-center">
           <p className="text-xs tracking-[0.3em] uppercase text-[#8B2635] mb-8">
@@ -236,6 +238,7 @@ export default function EpicContent({ journeys }: EpicContentProps) {
           </Link>
         </div>
       </section>
+      )}
 
       {/* Sound Bites / Quotes */}
       <section className="py-24 md:py-32 border-t border-white/5">
