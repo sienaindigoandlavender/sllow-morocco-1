@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 
 const CityMap = dynamic(() => import("@/components/CityMap"), { ssr: false });
 import { cloudinaryUrl } from "@/lib/cloudinary";
+import { TRIP_FUNNEL_PUBLIC } from "@/lib/flags";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -484,7 +485,7 @@ export default function CityGuideContent({
       )}
 
       {/* ── Journeys ──────────────────────────────────────────────────────── */}
-      {journeys.length > 0 && (
+      {TRIP_FUNNEL_PUBLIC && journeys.length > 0 && (
         <section className="px-8 md:px-16 lg:px-20 pb-20 md:pb-28 border-t border-border pt-16">
           <div className="mb-12">
             <SectionLabel>Journeys to {destination.title}</SectionLabel>
@@ -697,6 +698,7 @@ export default function CityGuideContent({
       </div>
 
       {/* ── Footer bridge ─────────────────────────────────────────────────── */}
+      {TRIP_FUNNEL_PUBLIC && (
       <section className="px-8 md:px-16 lg:px-20 py-20 border-t border-border">
         <div className="max-w-xl">
           <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/30 mb-4">
@@ -716,6 +718,7 @@ export default function CityGuideContent({
           </Link>
         </div>
       </section>
+      )}
 
     </main>
   );
