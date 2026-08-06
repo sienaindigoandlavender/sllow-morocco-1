@@ -86,6 +86,7 @@ interface StoryDetailContentProps {
   externalLinks?: Array<{ label: string; url: string; type?: string }> | null;
   prevStory?: NavItem | null;
   nextStory?: NavItem | null;
+  inCollections?: { slug: string; title: string; dek: string }[];
 }
 
 export default function StoryDetailContent({
@@ -100,6 +101,7 @@ export default function StoryDetailContent({
   externalLinks,
   prevStory,
   nextStory,
+  inCollections = [],
 }: StoryDetailContentProps) {
   const sources = story.sources
     ? story.sources.split(";;").map((s) => s.trim()).filter(Boolean)
@@ -207,7 +209,7 @@ export default function StoryDetailContent({
       <article className="max-w-3xl mx-auto px-8 md:px-12 py-14 md:py-20">
 
         {/* Body text */}
-        {story.body && <StoryBody content={story.body} inlineImages={images} currentSlug={slug} />}
+        {story.body && <StoryBody content={story.body} inlineImages={images} currentSlug={slug} pullQuote={story.pull_quote} pullQuotePosition={story.pull_quote_position} />}
 
         {/* Seasonal */}
         {story.category && (
@@ -362,6 +364,27 @@ export default function StoryDetailContent({
             </div>
           )}
         </footer>
+
+        {/* Part of these collections */}
+        {inCollections.length > 0 && (
+          <div className="mt-12 pt-8 border-t border-foreground/[0.08]">
+            <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 mb-4">
+              Part of {inCollections.length === 1 ? "the collection" : "these collections"}
+            </p>
+            <div className="space-y-3">
+              {inCollections.map((c) => (
+                <Link key={c.slug} href={`/collections/${c.slug}`} className="group block">
+                  <span className="font-serif text-lg text-foreground group-hover:text-foreground/60 transition-colors">
+                    {c.title}
+                  </span>
+                  <span className="text-[13.5px] text-foreground/45 leading-[1.5] block mt-0.5">
+                    {c.dek}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Ecosystem: Practical questions on Derb */}
         <div className="mt-12 pt-8 border-t border-foreground/[0.08]">
