@@ -2,6 +2,7 @@
 
 import { cloudinaryUrl } from "@/lib/cloudinary";
 import Link from "next/link";
+import { TRIP_FUNNEL_PUBLIC } from "@/lib/flags";
 
 interface Destination {
   slug: string;
@@ -474,6 +475,7 @@ export default function MoroccoContent({ cities, stories, cityImages = {} }: Pro
       <Divider />
 
       {/* ── CTA ───────────────────────────────────────────────────────────── */}
+      {TRIP_FUNNEL_PUBLIC && (
       <section className="px-8 md:px-16 lg:px-20 py-20 md:py-28">
         <div className="max-w-xl">
           <p className="text-[10px] tracking-[0.3em] uppercase font-mono text-foreground/30 mb-4">
@@ -495,6 +497,7 @@ export default function MoroccoContent({ cities, stories, cityImages = {} }: Pro
           </Link>
         </div>
       </section>
+      )}
 
     </main>
   );
