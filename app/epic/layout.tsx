@@ -11,6 +11,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.slowmorocco.com/epic",
   },
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 export default function EpicLayout({
