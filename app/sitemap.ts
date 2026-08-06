@@ -8,6 +8,7 @@ import {
   getDestinations,
   getGuides,
 } from '@/lib/supabase';
+import { COLLECTIONS } from '@/lib/collections';
 
 export const revalidate = 3600;
 
@@ -21,6 +22,7 @@ const STATIC_PAGES: MetadataRoute.Sitemap = [
   { url: `${SITE_URL}/places`, changeFrequency: 'weekly', priority: 0.8 },
   { url: `${SITE_URL}/places/map`, changeFrequency: 'weekly', priority: 0.6 },
   { url: `${SITE_URL}/stories`, changeFrequency: 'weekly', priority: 0.8 },
+  { url: `${SITE_URL}/collections`, changeFrequency: 'weekly', priority: 0.8 },
   { url: `${SITE_URL}/guides`, changeFrequency: 'monthly', priority: 0.6 },
   { url: `${SITE_URL}/glossary`, changeFrequency: 'monthly', priority: 0.6 },
   { url: `${SITE_URL}/morocco`, changeFrequency: 'monthly', priority: 0.6 },
@@ -106,8 +108,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.5,
   }));
 
+  const collectionPages: MetadataRoute.Sitemap = COLLECTIONS.map((c) => ({
+    url: `${SITE_URL}/collections/${c.slug}`,
+    changeFrequency: 'weekly',
+    priority: 0.7,
+  }));
+
   return [
     ...STATIC_PAGES,
+    ...collectionPages,
     // journeyPages intentionally excluded — routes are noindex + off-sitemap
     ...dayTripPages,
     ...placePages,
