@@ -19,6 +19,26 @@ interface StoryBodyProps {
   content: string;
   inlineImages?: InlineImage[];
   currentSlug?: string;
+  pullQuote?: string | null;
+  pullQuotePosition?: number | null;
+}
+
+// The staged "one thing worth knowing" — a single startling line given air.
+// No quotation marks: this is a stated fact in the publication's own voice,
+// not a quote. It is the Atlas Obscura "huh," and the whole point is the space
+// around it.
+function PullQuoteBlock({ text }: { text: string }) {
+  return (
+    <div className="my-14 md:my-20 -mx-4 md:-mx-8 lg:-mx-16">
+      <div className="px-4 md:px-8 lg:px-16">
+        <div className="border-t border-foreground/15 pt-8 md:pt-10">
+          <p className="font-serif text-2xl md:text-3xl lg:text-[2.1rem] leading-[1.3] text-foreground max-w-3xl">
+            {text}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 // Apply all linkers: cross-references → derb → glossary
@@ -158,7 +178,7 @@ function InlineImageBlock({ img }: { img: InlineImage }) {
   );
 }
 
-export default function StoryBody({ content, inlineImages = [], currentSlug }: StoryBodyProps) {
+export default function StoryBody({ content, inlineImages = [], currentSlug, pullQuote, pullQuotePosition }: StoryBodyProps) {
   if (!content) return null;
 
   // Build a map of position → images
@@ -171,14 +191,24 @@ export default function StoryBody({ content, inlineImages = [], currentSlug }: S
 
   // HTML content — inject images at paragraph boundaries
   if (isHTML(content)) {
-    if (inlineImages.length === 0) {
+    const pqText = pullQuote && pullQuote.trim() ? pullQuote.trim() : null;
+
+    if (inlineImages.length === 0 && !pqText) {
       return (
         <div className="prose prose-lg max-w-none story-html-body"
           dangerouslySetInnerHTML={{ __html: prepareHTML(content, currentSlug) }} />
       );
     }
-    // Split HTML at </p> boundaries to inject images
+    // Split HTML at </p> boundaries to inject images and/or the pull-quote
     const parts = content.split(/(<\/p>)/i);
+    // Count total paragraphs to place the pull-quote (~40% by default)
+    const totalParas = parts.filter((p) => /<\/p>/i.test(p)).length;
+    const pqAfter = pqText
+      ? Math.min(
+          Math.max(pullQuotePosition || Math.round(totalParas * 0.4), 2),
+          Math.max(totalParas - 1, 2)
+        )
+      : -1;
     let paraCount = 0;
     const nodes: React.ReactNode[] = [];
     let buffer = '';
@@ -191,7 +221,10 @@ export default function StoryBody({ content, inlineImages = [], currentSlug }: S
         );
         buffer = '';
         const imgs = imagesByPosition.get(paraCount);
-        if (imgs) imgs.forEach((img, j) => <InlineImageBlock key={`img-${paraCount}-${j}`} img={img} />);
+        if (imgs) imgs.forEach((img, j) => nodes.push(<InlineImageBlock key={`img-${paraCount}-${j}`} img={img} />));
+        if (pqText && pqAfter === paraCount) {
+          nodes.push(<PullQuoteBlock key={`pq-${paraCount}`} text={pqText} />);
+        }
       } else {
         buffer += part;
       }
@@ -204,6 +237,16 @@ export default function StoryBody({ content, inlineImages = [], currentSlug }: S
   // Note: API converts <br> to \n, so we split on single \n if no \n\n exists
   const hasDoubleBreaks = /\n\n/.test(content);
   const paragraphs = content.split(hasDoubleBreaks ? /\n\n+/ : /\n/).filter(p => p.trim());
+
+  // Pull-quote insertion: after the chosen paragraph, or ~40% in by default.
+  // Clamped so it never lands on the first paragraph or after the last.
+  const pullQuoteAfter =
+    pullQuote && pullQuote.trim()
+      ? Math.min(
+          Math.max(pullQuotePosition || Math.round(paragraphs.length * 0.4), 2),
+          Math.max(paragraphs.length - 1, 2)
+        )
+      : -1;
 
   return (
     <div className="prose prose-lg max-w-none">
@@ -259,6 +302,9 @@ export default function StoryBody({ content, inlineImages = [], currentSlug }: S
             {imgsAfter.map((img, j) => (
               <InlineImageBlock key={`inline-${index}-${j}`} img={img} />
             ))}
+            {pullQuoteAfter === paraNumber && pullQuote && (
+              <PullQuoteBlock text={pullQuote.trim()} />
+            )}
           </React.Fragment>
         );
       })}
