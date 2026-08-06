@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   description:
     "Morocco in four landscapes: imperial cities and ancient medinas, Atlas peaks and hidden valleys, Atlantic coast, and the Sahara desert.",
   alternates: { canonical: "https://www.slowmorocco.com/regions" },
+  robots: { index: false, follow: true },
 };
 
 const REGION_INTROS: Record<string, { body: string; claim: string }> = {
