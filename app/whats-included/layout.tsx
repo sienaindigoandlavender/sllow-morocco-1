@@ -11,6 +11,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.slowmorocco.com/whats-included",
   },
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 export default function WhatsIncludedLayout({
