@@ -2,6 +2,7 @@ import { permanentRedirect } from "next/navigation";
 import { Metadata } from "next";
 import { getPlaceBySlug, getPlaceImages, getJourneys, getStories, getDestinations, getPlaces, convertDriveUrl } from "@/lib/supabase";
 import PlaceDetailContent from "./PlaceDetailContent";
+import { getCollectionsForPlace } from "@/lib/collections";
 import { createClient } from "@supabase/supabase-js";
 
 export const revalidate = 3600;
@@ -271,6 +272,7 @@ export default async function PlaceDetailPage({
 
   const { relatedJourneys, relatedStories } = await getRelatedContent(data.place);
   const nearbyPlaces = await getNearbyPlaces(data.place.nearbySlugs);
+  const inCollections = getCollectionsForPlace(slug);
 
   // Find prev/next places
   const allPlaces = await getPlaces({ published: true });
@@ -285,6 +287,7 @@ export default async function PlaceDetailPage({
       relatedJourneys={relatedJourneys}
       relatedStories={relatedStories}
       nearbyPlaces={nearbyPlaces}
+      inCollections={inCollections}
       prevPlace={prevPlace}
       nextPlace={nextPlace}
     />

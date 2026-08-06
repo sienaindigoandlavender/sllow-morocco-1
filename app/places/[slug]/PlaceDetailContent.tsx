@@ -69,6 +69,7 @@ interface PlaceDetailContentProps {
   nearbyPlaces?: NearbyPlace[];
   prevPlace?: NavItem | null;
   nextPlace?: NavItem | null;
+  inCollections?: { slug: string; title: string; dek: string }[];
 }
 
 function formatBody(text: string): string {
@@ -124,6 +125,7 @@ export default function PlaceDetailContent({
   nearbyPlaces = [],
   prevPlace,
   nextPlace,
+  inCollections = [],
 }: PlaceDetailContentProps) {
   const isAttraction = !!place.attractionSections;
   const sections = place.attractionSections || {};
@@ -466,6 +468,31 @@ export default function PlaceDetailContent({
           <NewsletterCapture />
         </div>
       </div>
+
+      {/* Part of these collections */}
+      {inCollections.length > 0 && (
+        <section className="py-16 md:py-20 border-t border-foreground/[0.08]">
+          <div className="container mx-auto px-6 lg:px-16">
+            <div className="max-w-3xl mx-auto">
+              <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 mb-6">
+                Part of {inCollections.length === 1 ? "the collection" : "these collections"}
+              </p>
+              <div className="space-y-4">
+                {inCollections.map((c) => (
+                  <Link key={c.slug} href={`/collections/${c.slug}`} className="group block">
+                    <span className="font-serif text-xl md:text-2xl text-foreground group-hover:text-foreground/60 transition-colors">
+                      {c.title}
+                    </span>
+                    <span className="text-[14px] text-foreground/45 leading-[1.5] block mt-1">
+                      {c.dek}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Related Stories */}
       {relatedStories.length > 0 && (
