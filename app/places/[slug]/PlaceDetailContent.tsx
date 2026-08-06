@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { cloudinaryUrl } from "@/lib/cloudinary";
 import Link from "next/link";
+import { TRIP_FUNNEL_PUBLIC } from "@/lib/flags";
 import { ChevronLeft, ChevronDown, MapPin, Clock, Ticket, Navigation, Timer, Compass } from "lucide-react";
 import { linkGlossaryTermsHTML } from "@/lib/glossary-linker";
 import PlaceSchema from "@/components/seo/PlaceSchema";
@@ -358,7 +359,7 @@ export default function PlaceDetailContent({
           )}
 
           {/* Journey Bridge */}
-          {place.journeyBridge && (
+          {TRIP_FUNNEL_PUBLIC && place.journeyBridge && (
             <section className="py-12 border-t border-foreground/10">
               <div className="container mx-auto px-6 lg:px-16 max-w-3xl">
                 <p className="text-foreground/60 italic font-serif text-lg leading-relaxed">{place.journeyBridge}</p>
@@ -400,7 +401,7 @@ export default function PlaceDetailContent({
                   </div>
                 )}
 
-                {place.journeyBridge && (
+                {TRIP_FUNNEL_PUBLIC && place.journeyBridge && (
                   <div className="my-12 py-8 border-t border-b border-foreground/10">
                     <p className="text-foreground/60 italic font-serif text-lg leading-relaxed">{place.journeyBridge}</p>
                     <Link href={`/plan-your-trip?place=${place.slug}`} className="inline-block mt-4 text-xs tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground/70 transition-colors">
@@ -445,11 +446,13 @@ export default function PlaceDetailContent({
                       <p className="text-sm text-foreground/70">{place.notes}</p>
                     </div>
                   )}
+                  {TRIP_FUNNEL_PUBLIC && (
                   <div className="mt-8">
                     <Link href={`/plan-your-trip?place=${place.slug}`} className="block w-full bg-foreground text-background text-center py-3 text-xs tracking-[0.15em] uppercase hover:bg-foreground/90 transition-colors">
                       Plan a private journey
                     </Link>
                   </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -503,7 +506,7 @@ export default function PlaceDetailContent({
       )}
 
       {/* Related Journeys */}
-      {relatedJourneys.length > 0 && (
+      {TRIP_FUNNEL_PUBLIC && relatedJourneys.length > 0 && (
         <section className="py-24 md:py-32 bg-background border-t border-border">
           <div className="container mx-auto px-6 lg:px-16">
             <div className="text-center mb-16">
