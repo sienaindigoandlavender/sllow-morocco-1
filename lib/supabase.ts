@@ -629,6 +629,8 @@ export interface Story {
   era_start: number | null;
   era_end: number | null;
   related_journey_slug: string | null;
+  pull_quote: string | null;
+  pull_quote_position: number | null;
   map_data: {
     style?: string;
     center?: [number, number];
