@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import { TRIP_FUNNEL_PUBLIC } from "@/lib/flags";
 import { getDestinations, convertDriveUrl } from "@/lib/supabase";
 import { cloudinaryUrl } from "@/lib/cloudinary";
 
@@ -200,6 +201,7 @@ export default async function DestinationsPage() {
       )}
 
       {/* ── CTA ──────────────────────────────────────────────────────── */}
+      {TRIP_FUNNEL_PUBLIC && (
       <section className="px-6 md:px-[8%] lg:px-[12%] pb-24 md:pb-32">
         <div className="border-t border-foreground/10 pt-16 md:pt-20 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div>
@@ -219,6 +221,7 @@ export default async function DestinationsPage() {
           </Link>
         </div>
       </section>
+      )}
 
     </main>
   );
