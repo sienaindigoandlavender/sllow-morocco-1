@@ -18,6 +18,15 @@ User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /api/
+# Tour-operating surface — publication-only. These routes are noindex and
+# reachable by direct link only. /journeys and /go/gentle were never indexed,
+# so blocking crawl here is safe. The newly-noindexed pages (/plan-your-trip,
+# /epic, /whats-included, /destinations, /regions, /your-morocco,
+# /sahara-tour-from-marrakech) are deliberately NOT disallowed yet: Google must
+# be able to crawl them to see the noindex tag and drop them from the index.
+# Once they've fallen out of results, add them here to block crawl entirely.
+Disallow: /journeys
+Disallow: /go/gentle
 # OG share-card images: noindex assets, not pages. Blocking them stops
 # Googlebot from spending crawl budget on ~10k dynamic image renders
 # (which intermittently 5xx under rapid crawling and clutter Search Console).
