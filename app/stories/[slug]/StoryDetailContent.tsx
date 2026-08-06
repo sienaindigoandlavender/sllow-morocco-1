@@ -9,36 +9,9 @@ import SeasonalBadge from "@/components/SeasonalBadge";
 import dynamic from "next/dynamic";
 import NewsletterCapture from "@/components/NewsletterCapture";
 import ArticleSchema from "@/components/seo/ArticleSchema";
+import type { StoryView as Story } from "@/lib/story-view";
 
 const StoryMapRenderer = dynamic(() => import("@/components/StoryMapRenderer"), { ssr: false });
-
-interface Story {
-  slug: string;
-  title: string;
-  subtitle?: string;
-  category?: string;
-  sourceType?: string;
-  heroImage?: string;
-  heroImageAlt?: string;
-  heroCaption?: string;
-  excerpt?: string;
-  body?: string;
-  readTime?: string;
-  year?: string;
-  textBy?: string;
-  imagesBy?: string;
-  sources?: string;
-  the_facts?: string;
-  tags?: string;
-  region?: string;
-  country?: string;
-  era?: string;
-  theme?: string;
-  embedUrl?: string;
-  journeyBridge?: string;
-  pullQuote?: string;
-  pullQuotePosition?: number;
-}
 
 interface StoryImage {
   id: number;

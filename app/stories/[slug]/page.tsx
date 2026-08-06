@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import { getStoryBySlug, getStories, getJourneys, getStoryImages, getPlaces } from "@/lib/supabase";
 import { findRelatedJourneys } from "@/lib/content-matcher";
 import { getCollectionsForStory } from "@/lib/collections";
+import { mapStory, type StoryView as Story } from "@/lib/story-view";
 import StoryDetailContent from "./StoryDetailContent";
 
 export const revalidate = 3600;
@@ -47,65 +48,11 @@ export async function generateMetadata({
   };
 }
 
-interface Story {
-  slug: string;
-  title: string;
-  subtitle?: string;
-  category?: string;
-  sourceType?: string;
-  heroImage?: string;
-  heroImageAlt?: string;
-  heroCaption?: string;
-  excerpt?: string;
-  body?: string;
-  readTime?: string;
-  year?: string;
-  textBy?: string;
-  imagesBy?: string;
-  sources?: string;
-  the_facts?: string;
-  tags?: string;
-  region?: string;
-  country?: string;
-  era?: string;
-  theme?: string;
-  embedUrl?: string;
-  journeyBridge?: string;
-  pullQuote?: string;
-  pullQuotePosition?: number;
-}
-
 async function getStoryData(slug: string) {
   const storyData = await getStoryBySlug(slug);
   if (!storyData) return null;
 
-  const story: Story = {
-    slug: storyData.slug,
-    title: storyData.title,
-    subtitle: storyData.subtitle ?? undefined,
-    category: storyData.category ?? undefined,
-    sourceType: storyData.source_type ?? undefined,
-    heroImage: storyData.hero_image ?? undefined,
-    heroImageAlt: storyData.hero_image_alt ?? undefined,
-    heroCaption: storyData.hero_caption ?? undefined,
-    excerpt: storyData.excerpt ?? undefined,
-    body: storyData.body ? storyData.body.replace(/<br\s*\/?>/gi, '\n') : undefined,
-    readTime: storyData.read_time ? String(storyData.read_time) : undefined,
-    year: storyData.year ? String(storyData.year) : undefined,
-    textBy: storyData.text_by ?? undefined,
-    imagesBy: storyData.images_by ?? undefined,
-    sources: storyData.sources ?? undefined,
-    tags: storyData.tags ?? undefined,
-    the_facts: storyData.the_facts ?? undefined,
-    region: storyData.region ?? undefined,
-    country: storyData.country ?? undefined,
-    era: storyData.era ?? undefined,
-    theme: storyData.theme ?? undefined,
-    embedUrl: storyData.embed_url ?? undefined,
-    journeyBridge: storyData.journey_bridge ?? undefined,
-    pullQuote: storyData.pull_quote ?? undefined,
-    pullQuotePosition: storyData.pull_quote_position ?? undefined,
-  };
+  const story = mapStory(storyData);
 
   // Pass through raw fields for the map renderer
   const mapData = storyData.map_data || null;
