@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { TRIP_FUNNEL_PUBLIC } from "@/lib/flags";
 
 // ── Itinerary generator state ─────────────────────────────────────────────────
 
@@ -496,16 +497,20 @@ export default function StartHereContent() {
               </div>
 
               <div className="mt-12 pt-8 border-t border-foreground/[0.08]">
+                {TRIP_FUNNEL_PUBLIC && (
                 <p className="text-sm text-foreground/40 mb-6">
                   Like this route? Our curated journeys are fully produced — with narratives, accommodation, and everything arranged.
                 </p>
+                )}
                 <div className="flex flex-col md:flex-row gap-6 items-start">
+                  {TRIP_FUNNEL_PUBLIC && (
                   <Link
                     href="/journeys"
                     className="inline-block px-6 py-2.5 border border-foreground text-sm tracking-[0.1em] uppercase text-foreground hover:bg-foreground hover:text-background transition-colors"
                   >
                     See curated journeys →
                   </Link>
+                  )}
                   <button
                     onClick={resetItinerary}
                     className="text-sm text-foreground/30 hover:text-foreground/60 transition-colors self-center"
