@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { cloudinaryUrl } from "@/lib/cloudinary";
 import Link from "next/link";
+import { TRIP_FUNNEL_PUBLIC } from "@/lib/flags";
 import { Mail } from "lucide-react";
 
 interface Journey {
@@ -522,6 +523,8 @@ export default function GentleContent({
               >
                 S L O W &nbsp; M O R O C C O
               </Link>
+              {TRIP_FUNNEL_PUBLIC && (
+              <>
               <span className="text-white/15">|</span>
               <Link
                 href="/journeys"
@@ -535,6 +538,8 @@ export default function GentleContent({
               >
                 Plan your trip
               </Link>
+              </>
+              )}
             </div>
 
             <div className="flex items-center gap-6">
