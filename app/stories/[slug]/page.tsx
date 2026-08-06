@@ -2,6 +2,7 @@ import { permanentRedirect } from "next/navigation";
 import { Metadata } from "next";
 import { getStoryBySlug, getStories, getJourneys, getStoryImages, getPlaces } from "@/lib/supabase";
 import { findRelatedJourneys } from "@/lib/content-matcher";
+import { getCollectionsForStory } from "@/lib/collections";
 import StoryDetailContent from "./StoryDetailContent";
 
 export const revalidate = 3600;
@@ -70,6 +71,8 @@ interface Story {
   theme?: string;
   embedUrl?: string;
   journeyBridge?: string;
+  pullQuote?: string;
+  pullQuotePosition?: number;
 }
 
 async function getStoryData(slug: string) {
@@ -100,6 +103,8 @@ async function getStoryData(slug: string) {
     theme: storyData.theme ?? undefined,
     embedUrl: storyData.embed_url ?? undefined,
     journeyBridge: storyData.journey_bridge ?? undefined,
+    pullQuote: storyData.pull_quote ?? undefined,
+    pullQuotePosition: storyData.pull_quote_position ?? undefined,
   };
 
   // Pass through raw fields for the map renderer
@@ -249,6 +254,7 @@ export default async function StoryPage({
   const relatedStories = await getRelatedStories(story, slug);
   const relatedJourneys = await getRelatedJourneysSSR(story);
   const relatedPlaces = await getRelatedPlacesSSR(slug);
+  const inCollections = getCollectionsForStory(slug);
   const mentionedPlaces = await getMentionedPlacesSSR(rawStory?.mentioned_place_slugs);
   const storyImages = await getStoryImages(slug);
 
@@ -294,6 +300,7 @@ export default async function StoryPage({
         relatedStories={relatedStories}
         relatedJourneys={relatedJourneys}
         relatedPlaces={relatedPlaces}
+        inCollections={inCollections}
         mentionedPlaces={mentionedPlaces}
         slug={slug}
         mapData={mapData}
