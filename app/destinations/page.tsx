@@ -13,6 +13,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.slowmorocco.com/destinations",
   },
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 function imgSrc(url: string | null, width: number = 800): string {
