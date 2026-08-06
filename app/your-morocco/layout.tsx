@@ -6,6 +6,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.slowmorocco.com/your-morocco",
   },
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 export default function YourMoroccoLayout({
