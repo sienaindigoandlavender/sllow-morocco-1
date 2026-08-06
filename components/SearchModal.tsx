@@ -39,7 +39,8 @@ export default function SearchModal({ isOpen, onClose, initialQuery = "" }: Sear
     { title: "Health & Safety in Morocco", slug: "/health-safety", subtitle: "Vaccinations, water, safety" },
     { title: "FAQ", slug: "/faq", subtitle: "Frequently asked questions" },
     { title: "Glossary", slug: "/glossary", subtitle: "Moroccan terms explained" },
-    { title: "Plan Your Trip", slug: "/plan-your-trip", subtitle: "Start your Morocco journey" },
+    // Publication-only: trip funnel darkened. Restore by uncommenting.
+    // { title: "Plan Your Trip", slug: "/plan-your-trip", subtitle: "Start your Morocco journey" },
     { title: "What's Included", slug: "/whats-included", subtitle: "Everything in a Slow Morocco journey" },
     { title: "About Slow Morocco", slug: "/about", subtitle: "Who we are" },
     { title: "Epic Journeys", slug: "/epic", subtitle: "Transmission-level private journeys" },
