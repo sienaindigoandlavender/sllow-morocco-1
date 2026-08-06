@@ -11,6 +11,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.slowmorocco.com/plan-your-trip",
   },
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 export default function PlanYourTripLayout({
