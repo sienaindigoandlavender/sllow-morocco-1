@@ -41,14 +41,15 @@ export default function SearchModal({ isOpen, onClose, initialQuery = "" }: Sear
     { title: "Glossary", slug: "/glossary", subtitle: "Moroccan terms explained" },
     // Publication-only: trip funnel darkened. Restore by uncommenting.
     // { title: "Plan Your Trip", slug: "/plan-your-trip", subtitle: "Start your Morocco journey" },
-    { title: "What's Included", slug: "/whats-included", subtitle: "Everything in a Slow Morocco journey" },
+    // Publication-only: tour surface removed from search. Restore by uncommenting.
+    // { title: "What's Included", slug: "/whats-included", subtitle: "Everything in a Slow Morocco journey" },
     { title: "About Slow Morocco", slug: "/about", subtitle: "Who we are" },
-    { title: "Epic Journeys", slug: "/epic", subtitle: "Transmission-level private journeys" },
-    { title: "Gentle Journeys", slug: "/go/gentle", subtitle: "Accessible Morocco for all abilities" },
+    // { title: "Epic Journeys", slug: "/epic", subtitle: "Transmission-level private journeys" },
+    // { title: "Gentle Journeys", slug: "/go/gentle", subtitle: "Accessible Morocco for all abilities" },
     { title: "Darija — Moroccan Arabic", slug: "https://darija.io", subtitle: "Dictionary and phrases" },
     { title: "Darija Dictionary", slug: "https://darija.io", subtitle: "10,000+ Moroccan Arabic words" },
     { title: "Darija Phrases", slug: "https://darija.io/how-to-say", subtitle: "1,500+ everyday phrases" },
-    { title: "Destinations", slug: "/destinations", subtitle: "Where to go in Morocco" },
+    // { title: "Destinations", slug: "/destinations", subtitle: "Where to go in Morocco" },
     { title: "Manifesto", slug: "/manifesto", subtitle: "How we travel" },
     { title: "Morocco Overview", slug: "/morocco", subtitle: "The country at a glance" },
     { title: "The Odyssey Filming Locations", slug: "/morocco/the-odyssey-filming-locations", subtitle: "Where Nolan filmed The Odyssey in Morocco — Aït Benhaddou, Essaouira, Dakhla, Odysseus" },
@@ -69,7 +70,9 @@ export default function SearchModal({ isOpen, onClose, initialQuery = "" }: Sear
     fetch("/api/search")
       .then((r) => r.json())
       .then((data) => {
-        setJourneys(data.journeys || []);
+        // Publication-only: journeys excluded from on-site search.
+        // Restore by uncommenting the line below.
+        // setJourneys(data.journeys || []);
         setStories(data.stories || []);
         setPlaces(data.places || []);
       })
@@ -275,7 +278,7 @@ export default function SearchModal({ isOpen, onClose, initialQuery = "" }: Sear
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search journeys, stories, places..."
+              placeholder="Search stories, places..."
               className="flex-1 bg-transparent text-foreground text-base md:text-lg placeholder:text-foreground/30 focus:outline-none"
             />
             <button

@@ -33,7 +33,9 @@ export default function HeroSearch() {
       fetch("/api/stories").then((r) => r.json()),
       fetch("/api/places").then((r) => r.json()),
     ]).then(([journeysData, storiesData, placesData]) => {
-      setJourneys(journeysData.journeys || []);
+      // Publication-only: journeys excluded from hero search.
+      // Restore by uncommenting the line below.
+      // setJourneys(journeysData.journeys || []);
       setStories(storiesData.stories || []);
       setPlaces(placesData.places || []);
     });
@@ -184,7 +186,7 @@ export default function HeroSearch() {
             setIsOpen(true);
           }}
           onBlur={() => setIsFocused(false)}
-          placeholder="Search journeys, stories, places..."
+          placeholder="Search stories, places..."
           className="flex-1 bg-transparent text-white text-sm placeholder:text-white/40 focus:outline-none"
         />
         {query && (
