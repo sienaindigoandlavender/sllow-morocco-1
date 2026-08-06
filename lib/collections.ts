@@ -309,3 +309,23 @@ export function getCollection(slug: string): Collection | undefined {
 export function getAllCollectionSlugs(): string[] {
   return COLLECTIONS.map((c) => c.slug);
 }
+
+// Reverse lookup — which collections rope in a given story or place.
+// Returns just what a cross-link needs: the collection's slug, title, and dek.
+export interface CollectionRef {
+  slug: string;
+  title: string;
+  dek: string;
+}
+
+export function getCollectionsForStory(storySlug: string): CollectionRef[] {
+  return COLLECTIONS.filter((c) => c.storySlugs.includes(storySlug)).map(
+    ({ slug, title, dek }) => ({ slug, title, dek })
+  );
+}
+
+export function getCollectionsForPlace(placeSlug: string): CollectionRef[] {
+  return COLLECTIONS.filter((c) => c.placeSlugs.includes(placeSlug)).map(
+    ({ slug, title, dek }) => ({ slug, title, dek })
+  );
+}
