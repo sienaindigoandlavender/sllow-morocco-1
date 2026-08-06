@@ -2,6 +2,7 @@
 
 import { cloudinaryUrl } from "@/lib/cloudinary";
 import Link from "next/link";
+import { TRIP_FUNNEL_PUBLIC } from "@/lib/flags";
 
 interface Region {
   slug: string;
@@ -253,7 +254,7 @@ export default function RegionContent({
       )}
 
       {/* ── Journeys ──────────────────────────────────────────────────────── */}
-      {journeys.length > 0 && (
+      {TRIP_FUNNEL_PUBLIC && journeys.length > 0 && (
         <section className="px-8 md:px-16 lg:px-20 pb-20 border-t border-border pt-16">
           <SectionLabel>Journeys in {region.title}</SectionLabel>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14">
@@ -307,6 +308,7 @@ export default function RegionContent({
       )}
 
       {/* ── CTA ───────────────────────────────────────────────────────────── */}
+      {TRIP_FUNNEL_PUBLIC && (
       <section className="px-8 md:px-16 lg:px-20 py-20 border-t border-border">
         <div className="max-w-xl">
           <p className="text-[10px] tracking-[0.3em] uppercase font-mono text-foreground/30 mb-4">
@@ -326,6 +328,7 @@ export default function RegionContent({
           </Link>
         </div>
       </section>
+      )}
 
     </main>
   );
