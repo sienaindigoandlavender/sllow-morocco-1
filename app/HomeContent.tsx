@@ -2,6 +2,7 @@
 
 import { cloudinaryUrl } from "@/lib/cloudinary";
 import Link from "next/link";
+import { TRIP_FUNNEL_PUBLIC } from "@/lib/flags";
 import dynamic from "next/dynamic";
 
 // Lazy load map — it's heavy
@@ -243,6 +244,8 @@ export default function HomeContent({
             </p>
           </Link>
 
+          {TRIP_FUNNEL_PUBLIC && (
+            <>
           <Link href="/journeys" className="group block">
             <span className="text-[clamp(2.75rem,5vw,4rem)] font-light text-[#0a0a0a]/20 tracking-[-0.02em] leading-none block mb-5 md:mb-6">
               02
@@ -266,6 +269,8 @@ export default function HomeContent({
               Visas, seasons, money — and the things locals assume you already know.
             </p>
           </Link>
+            </>
+          )}
         </div>
       </section>
 
@@ -273,7 +278,7 @@ export default function HomeContent({
           3. FEATURED PRIVATE JOURNEYS — Three journeys, clean route lines
           Appears early so visitors see the service layer immediately.
           ══════════════════════════════════════════════════ */}
-      {featuredJourneys.length > 0 && (
+      {TRIP_FUNNEL_PUBLIC && featuredJourneys.length > 0 && (
         <section className="px-6 md:px-10 lg:px-14 pt-8 md:pt-12 pb-16 md:pb-24">
           <SectionHeader title="Private Journeys" href="/journeys" linkText="Explore journeys" />
           <p className="text-[#0a0a0a]/55 text-[14px] md:text-[15px] leading-relaxed max-w-2xl mb-12 md:mb-14">
@@ -452,6 +457,7 @@ export default function HomeContent({
       {/* ══════════════════════════════════════════════════
           9. PRIVATE JOURNEYS CTA STRIP — Final invitation
           ══════════════════════════════════════════════════ */}
+      {TRIP_FUNNEL_PUBLIC && (
       <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.08]">
         <div className="max-w-2xl">
           <h2 className="text-[clamp(1.3rem,2.6vw,1.9rem)] font-light tracking-[-0.01em] text-[#0a0a0a] leading-[1.2] mb-4">
@@ -476,6 +482,7 @@ export default function HomeContent({
           </div>
         </div>
       </section>
+      )}
 
     </main>
   );
