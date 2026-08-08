@@ -8,6 +8,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.slowmorocco.com/cancellations-and-refunds",
   },
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 export default function CancellationsPage() {
