@@ -8,6 +8,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.slowmorocco.com/travel-insurance",
   },
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 export default function TravelInsurancePage() {
