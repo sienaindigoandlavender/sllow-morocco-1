@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     canonical: "https://www.slowmorocco.com/go/gentle",
   },
   robots: {
-    index: true,
+    index: false,
     follow: true,
   },
 };
