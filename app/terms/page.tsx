@@ -4,7 +4,7 @@ import LegalPageServer from "@/components/LegalPageServer";
 export const metadata: Metadata = {
   title: "Terms of Service",
   description:
-    "Terms and conditions for booking private journeys with Slow Morocco — cancellations, liability, usage rights, and our obligations to you.",
+    "The terms of use for Slow Morocco — content licensing, intellectual property, liability, and your rights as a reader.",
   alternates: {
     canonical: "https://www.slowmorocco.com/terms",
   },
