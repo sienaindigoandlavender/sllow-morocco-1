@@ -43,7 +43,6 @@ export async function generateMetadata({
       url: `${BASE_URL}/stories/${slug}`,
       siteName: "Slow Morocco",
       type: "article",
-      ...(story.hero_image ? { images: [{ url: story.hero_image, width: 1200, height: 630 }] } : {}),
     },
   };
 }
