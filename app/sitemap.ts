@@ -1,12 +1,10 @@
 import { MetadataRoute } from 'next';
 import {
   getJourneys,
-  getDayTrips,
   getPlaces,
   getStories,
   getRegions,
   getDestinations,
-  getGuides,
 } from '@/lib/supabase';
 import { COLLECTIONS } from '@/lib/collections';
 
@@ -50,15 +48,13 @@ const STATIC_PAGES: MetadataRoute.Sitemap = [
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [journeys, dayTrips, places, stories, regions, destinations, guides] =
+  const [journeys, places, stories, regions, destinations] =
     await Promise.allSettled([
       getJourneys({ published: true }),
-      getDayTrips({ published: true }),
       getPlaces({ published: true }),
       getStories({ published: true }),
       getRegions(),
       getDestinations({ published: true }),
-      getGuides({ published: true }),
     ]);
 
   const safe = <T,>(result: PromiseSettledResult<T[]>): T[] =>
@@ -71,12 +67,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'weekly',
       priority: 0.7,
     }));
-
-  const dayTripPages: MetadataRoute.Sitemap = safe(dayTrips).map((d: any) => ({
-    url: `${SITE_URL}/day-trips/${d.slug}`,
-    changeFrequency: 'weekly',
-    priority: 0.6,
-  }));
 
   const placePages: MetadataRoute.Sitemap = safe(places).map((p: any) => ({
     url: `${SITE_URL}/places/${p.slug}`,
@@ -102,12 +92,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.5,
   }));
 
-  const guidePages: MetadataRoute.Sitemap = safe(guides).map((g: any) => ({
-    url: `${SITE_URL}/guides/${g.slug}`,
-    changeFrequency: 'monthly',
-    priority: 0.5,
-  }));
-
   const collectionPages: MetadataRoute.Sitemap = COLLECTIONS.map((c) => ({
     url: `${SITE_URL}/collections/${c.slug}`,
     changeFrequency: 'weekly',
@@ -118,11 +102,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...STATIC_PAGES,
     ...collectionPages,
     // journeyPages intentionally excluded — routes are noindex + off-sitemap
-    ...dayTripPages,
+    // dayTripPages excluded — /day-trips/* are noindex
+    // guidePages excluded — no /guides/[slug] route exists (all 404s)
     ...placePages,
     ...storyPages,
     ...regionPages,
     ...destinationPages,
-    ...guidePages,
   ];
 }
