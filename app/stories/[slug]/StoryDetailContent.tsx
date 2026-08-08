@@ -9,6 +9,7 @@ import SeasonalBadge from "@/components/SeasonalBadge";
 import dynamic from "next/dynamic";
 import NewsletterCapture from "@/components/NewsletterCapture";
 import ArticleSchema from "@/components/seo/ArticleSchema";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import type { StoryView as Story } from "@/lib/story-view";
 
 const StoryMapRenderer = dynamic(() => import("@/components/StoryMapRenderer"), { ssr: false });
@@ -102,6 +103,11 @@ export default function StoryDetailContent({
           author: "Slow Morocco",
         }}
       />
+      <BreadcrumbSchema items={[
+        { name: "Home", url: "https://www.slowmorocco.com" },
+        { name: "Stories", url: "https://www.slowmorocco.com/stories" },
+        { name: story.title, url: `https://www.slowmorocco.com/stories/${story.slug}` },
+      ]} />
 
       {/* ══════════════════════════════════════════════════════════════
           HERO — Full-bleed image with title overlaid (Kinfolk style)
