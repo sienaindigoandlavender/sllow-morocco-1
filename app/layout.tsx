@@ -9,11 +9,11 @@ import WebSiteSchema from "@/components/seo/WebSiteSchema";
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.slowmorocco.com"),
   title: {
-    default: "Slow Morocco | Private Journeys Through Morocco",
+    default: "Slow Morocco — Morocco's Culture, History and Food, Decoded",
     template: "%s | Slow Morocco",
   },
-  description: "Thoughtful private journeys across Morocco — designed for travellers who prefer depth over speed. From the Atlas Mountains to the Sahara, crafted around what matters to you.",
-  keywords: ["morocco private tours", "luxury morocco travel", "morocco journeys", "marrakech tours", "sahara desert tours", "atlas mountains", "morocco itinerary", "private guide morocco", "morocco travel agency"],
+  description: "A publication about Morocco's culture, history, food, craft and language — the layers most visitors pass straight through. Written by people who live here.",
+  keywords: ["moroccan culture", "moroccan history", "moroccan food", "moroccan architecture", "moroccan craft", "amazigh culture", "morocco travel guide", "marrakech guide"],
   authors: [{ name: "Slow Morocco" }],
   creator: "Slow Morocco",
   publisher: "Slow Morocco",
@@ -27,21 +27,21 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://www.slowmorocco.com",
     siteName: "Slow Morocco",
-    title: "Slow Morocco | Private Journeys Through Morocco",
-    description: "Thoughtful private journeys across Morocco — designed for travellers who prefer depth over speed.",
+    title: "Slow Morocco — Morocco's Culture, History and Food, Decoded",
+    description: "A publication about Morocco — its culture, history, food and craft. The layers most visitors pass straight through.",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Slow Morocco - Private journeys through Morocco",
+        alt: "Slow Morocco — a publication about Moroccan culture, history and food",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Slow Morocco | Private Journeys Through Morocco",
-    description: "Thoughtful private journeys across Morocco — designed for travellers who prefer depth over speed.",
+    title: "Slow Morocco — Morocco's Culture, History and Food, Decoded",
+    description: "A publication about Morocco — its culture, history, food and craft. The layers most visitors pass straight through.",
     images: ["/og-image.jpg"],
   },
   robots: {
