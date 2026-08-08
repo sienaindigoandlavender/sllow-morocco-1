@@ -11,6 +11,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.slowmorocco.com/guides",
   },
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 export default function GuidesLayout({
