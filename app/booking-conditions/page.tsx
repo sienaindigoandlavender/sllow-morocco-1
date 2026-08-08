@@ -8,6 +8,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.slowmorocco.com/booking-conditions",
   },
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 export default function BookingConditionsPage() {
