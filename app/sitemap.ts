@@ -16,12 +16,10 @@ const STATIC_PAGES: MetadataRoute.Sitemap = [
   { url: SITE_URL, changeFrequency: 'daily', priority: 1.0 },
   { url: `${SITE_URL}/about`, changeFrequency: 'monthly', priority: 0.7 },
   { url: `${SITE_URL}/masthead`, changeFrequency: 'monthly', priority: 0.6 },
-  { url: `${SITE_URL}/day-trips`, changeFrequency: 'weekly', priority: 0.8 },
   { url: `${SITE_URL}/places`, changeFrequency: 'weekly', priority: 0.8 },
   { url: `${SITE_URL}/places/map`, changeFrequency: 'weekly', priority: 0.6 },
   { url: `${SITE_URL}/stories`, changeFrequency: 'weekly', priority: 0.8 },
   { url: `${SITE_URL}/collections`, changeFrequency: 'weekly', priority: 0.8 },
-  { url: `${SITE_URL}/guides`, changeFrequency: 'monthly', priority: 0.6 },
   { url: `${SITE_URL}/glossary`, changeFrequency: 'monthly', priority: 0.6 },
   { url: `${SITE_URL}/morocco`, changeFrequency: 'monthly', priority: 0.6 },
   { url: `${SITE_URL}/morocco/the-odyssey-filming-locations`, changeFrequency: 'weekly', priority: 0.8 },
@@ -36,15 +34,12 @@ const STATIC_PAGES: MetadataRoute.Sitemap = [
   { url: `${SITE_URL}/contact`, changeFrequency: 'yearly', priority: 0.4 },
   { url: `${SITE_URL}/health-safety`, changeFrequency: 'monthly', priority: 0.4 },
   { url: `${SITE_URL}/visa-info`, changeFrequency: 'monthly', priority: 0.4 },
-  { url: `${SITE_URL}/travel-insurance`, changeFrequency: 'monthly', priority: 0.4 },
   { url: `${SITE_URL}/jewish-heritage-morocco`, changeFrequency: 'monthly', priority: 0.5 },
   { url: `${SITE_URL}/morocco-world-cup-2030`, changeFrequency: 'monthly', priority: 0.5 },
   { url: `${SITE_URL}/privacy`, changeFrequency: 'yearly', priority: 0.2 },
   { url: `${SITE_URL}/terms`, changeFrequency: 'yearly', priority: 0.2 },
   { url: `${SITE_URL}/disclaimer`, changeFrequency: 'yearly', priority: 0.2 },
   { url: `${SITE_URL}/intellectual-property`, changeFrequency: 'yearly', priority: 0.2 },
-  { url: `${SITE_URL}/booking-conditions`, changeFrequency: 'yearly', priority: 0.2 },
-  { url: `${SITE_URL}/cancellations-and-refunds`, changeFrequency: 'yearly', priority: 0.2 },
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
