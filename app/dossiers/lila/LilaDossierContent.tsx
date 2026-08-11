@@ -12,8 +12,9 @@ import Link from "next/link";
 // No map. No booking modal — the CTA is "reply to confirm your date."
 // ─────────────────────────────────────────────────────────────────────────────
 
-// Optional hero image (Cloudinary). Leave empty to use the typographic hero.
-const HERO_IMAGE = "";
+// Hero image — the same Gnawa Lila photo from /stories/the-lila (Cloudinary).
+const HERO_IMAGE =
+  "https://res.cloudinary.com/do2ojyohc/image/upload/w_1920,q_auto,f_auto/v1774011846/Gnawa_lila_ceremony_at_night_wddifx.png";
 
 // ── The night — sequence (in place of the Sahara day-by-day) ─────────────────
 const SEQUENCE = [
@@ -185,7 +186,7 @@ export default function LilaDossierContent() {
         {HERO_IMAGE && (
           <img
             src={HERO_IMAGE}
-            alt="A private Gnawa Lila"
+            alt="Gnawa lila ceremony at night — candles and incense, the maâlem playing guembri."
             className="absolute inset-0 w-full h-full object-cover"
           />
         )}
