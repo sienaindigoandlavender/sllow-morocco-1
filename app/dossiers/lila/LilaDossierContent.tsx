@@ -81,7 +81,14 @@ const NOT_INCLUDED = [
   "Any guaranteed outcome — the night offers witness, not certainty",
 ];
 
-// ── FAQ ───────────────────────────────────────────────────────────────────────
+// ── Origin note (drawn from Slow Morocco's own published essay) ──────────────
+const ORIGIN = [
+  "The Gnawa are descendants of enslaved people brought north across the Sahara from West Africa — from what is now Mali, Senegal, Ghana, and beyond. They carried their spirits with them. What they built in Morocco, over centuries, was a way of holding those spirits: a brotherhood, a music, and a rite.",
+  "The Lila is that rite. Documented since at least the sixteenth century and inscribed by UNESCO as intangible cultural heritage, it is not a concert and never was. It is therapeutic ritual — refined over generations to do one specific job: to heal what cannot be healed any other way. The seven colors of cloth stand for the seven families of spirits, the Mlouk, each with its own songs, its own rhythms, its own demands.",
+  "It has survived because it works on its own terms — a community that acknowledges the invisible, and a tradition that takes seriously what modern medicine sets aside. That is the room you are being received into.",
+];
+
+
 const FAQS = [
   {
     q: "What actually happens during the night?",
@@ -292,6 +299,27 @@ export default function LilaDossierContent() {
         </div>
       </section>
 
+      {/* ── Where it comes from ────────────────────────────────────────── */}
+      <section className="border-t border-foreground/10">
+        <div className="max-w-3xl mx-auto px-8 md:px-12 lg:px-16 py-16">
+          <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-6">
+            Where it comes from
+          </p>
+          {ORIGIN.map((para, i) => (
+            <p
+              key={i}
+              className={
+                i === 0
+                  ? "font-serif text-xl text-foreground leading-relaxed mb-6"
+                  : "text-muted-foreground leading-relaxed mb-4"
+              }
+            >
+              {para}
+            </p>
+          ))}
+        </div>
+      </section>
+
       {/* ── Included / Not included ────────────────────────────────────── */}
       <section className="border-t border-foreground/10">
         <div className="max-w-3xl mx-auto px-8 md:px-12 lg:px-16 py-16">
@@ -422,22 +450,6 @@ export default function LilaDossierContent() {
             {FAQS.map((faq, i) => (
               <FAQItem key={i} question={faq.q} answer={faq.a} />
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Signature ──────────────────────────────────────────────────── */}
-      <section className="border-t border-foreground/10">
-        <div className="max-w-3xl mx-auto px-8 md:px-12 lg:px-16 py-14">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-            <p className="font-serif italic text-2xl text-foreground">
-              Warmly,
-              <br />
-              Mohammed
-            </p>
-            <p className="text-[11px] tracking-[0.2em] uppercase text-foreground/40">
-              Slow Morocco · hello@slowmorocco.com
-            </p>
           </div>
         </div>
       </section>
