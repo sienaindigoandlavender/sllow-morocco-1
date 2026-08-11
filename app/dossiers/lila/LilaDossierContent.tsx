@@ -111,6 +111,10 @@ const FAQS = [
     a: "There is a private room with a full bathroom. You can wash, rest, or take a quiet pause at any point in the night. Mouad and your interpreter are with you throughout.",
   },
   {
+    q: "Are there any health considerations?",
+    a: "A Lila is a long night with physical exertion, and incense burns throughout in an enclosed room. Tell us of any allergies or any heart or respiratory condition before you confirm, so we can keep you safe — and if you have such a condition, check with your own doctor first. We also recommend travel insurance covering cancellation and medical care.",
+  },
+  {
     q: "Is the deposit refundable?",
     a: "No. Once you confirm a date, the Maâlem, his troupe, and the Moqaddema commit to it and turn away other work, so the night cannot be refunded or cancelled. If you have specific expectations, tell us before you confirm — we'll meet them or tell you honestly in advance if we can't.",
   },
@@ -413,6 +417,21 @@ export default function LilaDossierContent() {
             the night that was never spoken. Anything you put on the table, we will
             meet or tell you in advance that we cannot. What is left unspoken, we
             cannot be held to afterward.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            As with any travel commitment, we strongly recommend you hold travel
+            insurance covering cancellation and medical care. The night itself
+            cannot be refunded — insurance is how you protect yourself against the
+            unexpected.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            A word on health, for your safety. A Lila is a long night: it involves
+            physical exertion, and incense burns throughout in an enclosed room.
+            Before you confirm, please tell us of any allergies and any heart,
+            respiratory, or other condition we should know about, so we can look
+            after you properly — and if you have any such condition, consult your
+            own doctor before taking part. By confirming, you tell us you are fit to
+            take part and take responsibility for your own health through the night.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             The one thing no one can put on the table is the outcome. The night
