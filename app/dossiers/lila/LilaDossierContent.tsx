@@ -111,6 +111,10 @@ const FAQS = [
     a: "There is a private room with a full bathroom. You can wash, rest, or take a quiet pause at any point in the night. Mouad and your interpreter are with you throughout.",
   },
   {
+    q: "Is the deposit refundable?",
+    a: "No. Once you confirm a date, the Maâlem, his troupe, and the Moqaddema commit to it and turn away other work, so the night cannot be refunded or cancelled. If you have specific expectations, tell us before you confirm — we'll meet them or tell you honestly in advance if we can't.",
+  },
+  {
     q: "Is the outcome guaranteed?",
     a: "No, and we won't pretend otherwise. We arrange your presence at a genuine Lila, conducted with integrity. With anything that touches the unseen, the outcome is not ours to give — it rests between you and your higher self.",
   },
@@ -383,7 +387,42 @@ export default function LilaDossierContent() {
         </div>
       </section>
 
-      {/* ── Pricing & confirmation ─────────────────────────────────────── */}
+      {/* ── The commitment (refund protection) ─────────────────────────── */}
+      <section className="border-t border-foreground/10">
+        <div className="max-w-3xl mx-auto px-8 md:px-12 lg:px-16 py-16">
+          <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-6">
+            The commitment
+          </p>
+          <p className="font-serif text-xl text-foreground leading-relaxed mb-6">
+            When you confirm a date, real people commit to it — the Maâlem, his
+            troupe, the Moqaddema. They set the night aside and turn away other
+            work. For that reason, once a date is locked it cannot be refunded. The
+            tradition does not treat a Lila as something booked and cancelled, and
+            the troupe will not accept it as such.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            What you secure is clear and complete: a genuine Lila, arranged with
+            integrity and conducted the way the Gnawa themselves conduct it — the
+            night in full, exactly as it is described here. That is what your
+            commitment buys, and we deliver it.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            If you arrive with specific expectations you need met, tell us before
+            you confirm — plainly, and in as much detail as you wish. We would far
+            rather say honestly whether something can be done than meet a hope on
+            the night that was never spoken. Anything you put on the table, we will
+            meet or tell you in advance that we cannot. What is left unspoken, we
+            cannot be held to afterward.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            The one thing no one can put on the table is the outcome. The night
+            offers witness, not certainty; what it does in you rests between you and
+            your higher self.
+          </p>
+        </div>
+      </section>
+
+      {/* ── Pricing &amp; confirmation ─────────────────────────────────────── */}
       <section className="border-t border-foreground/10">
         <div className="max-w-3xl mx-auto px-8 md:px-12 lg:px-16 py-16">
           <div className="max-w-xl">
