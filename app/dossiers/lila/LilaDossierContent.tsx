@@ -391,6 +391,49 @@ export default function LilaDossierContent() {
         </div>
       </section>
 
+      {/* ── A few things to know ────────────────────────────────────────── */}
+      <section className="border-t border-foreground/10">
+        <div className="max-w-3xl mx-auto px-8 md:px-12 lg:px-16 py-16">
+          <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-8">
+            A few things to know
+          </p>
+          <div className="space-y-6">
+            <div>
+              <h3 className="font-serif text-xl text-foreground mb-2">
+                The ceremony is not filmed
+              </h3>
+              <p className="text-muted-foreground leading-relaxed">
+                This is the tradition's own rule, not ours to waive — a Lila that
+                becomes footage stops being a Lila. You are welcome to hold the
+                night in memory; not on a screen.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-serif text-xl text-foreground mb-2">
+                Your guests
+              </h3>
+              <p className="text-muted-foreground leading-relaxed">
+                The night is arranged privately for you and your guests. Please
+                confirm your numbers when you book so the room, the meal, and the
+                transport are set for everyone; larger groups can be accommodated by
+                prior arrangement.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-serif text-xl text-foreground mb-2">
+                The spirit of the night
+              </h3>
+              <p className="text-muted-foreground leading-relaxed">
+                A Lila is a sacred night, held with a master, his brotherhood, and
+                an elder. We ask that it be met with respect — a clear head, no
+                intoxication, and the space and its protocols honored. This is how
+                we keep faith with the people who open it to you.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── The commitment (refund protection) ─────────────────────────── */}
       <section className="border-t border-foreground/10">
         <div className="max-w-3xl mx-auto px-8 md:px-12 lg:px-16 py-16">
@@ -403,6 +446,12 @@ export default function LilaDossierContent() {
             work. For that reason, once a date is locked it cannot be refunded. The
             tradition does not treat a Lila as something booked and cancelled, and
             the troupe will not accept it as such.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Our commitment runs both ways. If, for reasons beyond our control, the
+            arranged master cannot preside on your night, we will bring an
+            equivalent master of the tradition or set an alternative date with you.
+            We will not hold your payment without giving you the night.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
             What you secure is clear and complete: a genuine Lila, arranged with
@@ -470,7 +519,9 @@ export default function LilaDossierContent() {
                 <span>€2,500</span>
               </div>
               <p className="text-xs text-foreground/35 mt-4">
-                Paid by bank wire transfer. Payment of the deposit confirms you have
+                Paid by bank wire transfer, reaching us net of any bank or transfer
+                charges (these are the sender's responsibility). Payment of the
+                deposit confirms you have
                 read and accept the terms set out in this dossier, together with our{" "}
                 <Link
                   href="https://www.slowmorocco.com/booking-conditions"
