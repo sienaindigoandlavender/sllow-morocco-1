@@ -451,7 +451,22 @@ export default function LilaDossierContent() {
                 <span>€2,500</span>
               </div>
               <p className="text-xs text-foreground/35 mt-4">
-                Paid by international wire transfer.
+                Paid by bank wire transfer. Payment of the deposit confirms you have
+                read and accept the terms set out in this dossier, together with our{" "}
+                <Link
+                  href="https://www.slowmorocco.com/booking-conditions"
+                  className="underline underline-offset-2 hover:text-foreground/60"
+                >
+                  Booking Conditions
+                </Link>{" "}
+                and{" "}
+                <Link
+                  href="https://www.slowmorocco.com/cancellations-and-refunds"
+                  className="underline underline-offset-2 hover:text-foreground/60"
+                >
+                  Cancellations &amp; Refunds
+                </Link>{" "}
+                policy.
               </p>
             </div>
 
@@ -464,7 +479,8 @@ export default function LilaDossierContent() {
                 Reply with your date —{" "}
                 <span className="text-foreground font-medium">September 11–14</span>{" "}
                 or{" "}
-                <span className="text-foreground font-medium">September 25–28</span>.
+                <span className="text-foreground font-medium">September 25–28</span>{" "}
+                — and anything you need us to know or arrange in advance.
               </li>
               <li>
                 <span className="text-foreground/30 mr-2">02</span>
