@@ -537,6 +537,8 @@ export interface Place {
   best_time_to_visit: string | null;
   getting_there: string | null;
   nearby_slugs: string[] | null;
+  seo_title: string | null;
+  seo_description: string | null;
 }
 
 export interface PlaceImage {
@@ -667,6 +669,8 @@ export interface Story {
   }> | null;
   index_status: 'index' | 'noindex' | 'redirect' | null;
   redirect_to: string | null;
+  seo_title: string | null;
+  seo_description: string | null;
   mentioned_place_slugs: string[] | null;
   created_at: string;
   updated_at: string;
