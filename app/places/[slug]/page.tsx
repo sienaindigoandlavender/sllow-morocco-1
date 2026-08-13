@@ -32,10 +32,10 @@ export async function generateMetadata({
 
   const dest = displayDestination(place.destination);
   // Title is bare; root layout's title.template ("%s | Slow Morocco") appends the brand.
-  const title = dest ? `${place.title}, ${dest}` : place.title;
+  const title = place.seo_title || (dest ? `${place.title}, ${dest}` : place.title);
   // OG title is richer than the SERP title — readable on social shares.
   const ogTitle = dest ? `${place.title}, ${dest} — Slow Morocco` : `${place.title} — Slow Morocco`;
-  const description = place.excerpt || place.notes || `${place.title}${dest ? `, ${dest}` : ""} — travel guide by Slow Morocco.`;
+  const description = place.seo_description || place.excerpt || place.notes || `${place.title}${dest ? `, ${dest}` : ""} — travel guide by Slow Morocco.`;
 
   return {
     title,
