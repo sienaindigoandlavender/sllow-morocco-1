@@ -3,8 +3,8 @@ import FAQSchema from "@/components/seo/FAQSchema";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata: Metadata = {
-  title: "Morocco Journeys & Tours | Private Itineraries",
-  description: "Explore 100+ curated Morocco journeys: Sahara desert tours, Atlas Mountain trekking, Imperial Cities, Fes & Marrakech cultural tours, coastal escapes. Private, customizable itineraries with local guides. 2-21 day trips from €500.",
+  title: "Journeys",
+  description: "The traditions we write about, entered in person. A small number of nights and passages Slow Morocco arranges directly, for readers who want to stand inside what they have read.",
   keywords: [
     "Morocco tours",
     "Morocco itinerary",
@@ -29,8 +29,8 @@ export const metadata: Metadata = {
     "Morocco 2 weeks",
   ].join(", "),
   openGraph: {
-    title: "Morocco Journeys & Tours | 100+ Private Itineraries",
-    description: "Sahara desert, Atlas Mountains, Imperial Cities, coastal escapes. Private tours with local guides, 2-21 days.",
+    title: "Journeys | Slow Morocco",
+    description: "The traditions we write about, entered in person. Arranged directly by Slow Morocco.",
     url: "https://www.slowmorocco.com/journeys",
     siteName: "Slow Morocco",
     type: "website",
@@ -46,14 +46,14 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Morocco Journeys & Tours | Slow Morocco",
-    description: "100+ private Morocco itineraries. Desert, mountains, culture, coast.",
+    title: "Journeys | Slow Morocco",
+    description: "The traditions we write about, entered in person.",
   },
   alternates: {
     canonical: "https://www.slowmorocco.com/journeys",
   },
   robots: {
-    index: false,
+    index: true,
     follow: true,
   },
 };
@@ -111,13 +111,13 @@ const breadcrumbs = [
 const itemListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  name: "Morocco Journeys & Tours",
-  description: "Curated private Morocco itineraries featuring desert, mountains, culture, and coast",
+  name: "Slow Morocco Journeys",
+  description: "The traditions Slow Morocco writes about, arranged in person as a small number of nights and passages.",
   url: "https://www.slowmorocco.com/journeys",
   numberOfItems: 100,
   itemListOrder: "https://schema.org/ItemListUnordered",
   provider: {
-    "@type": "TravelAgency",
+    "@type": "Organization",
     name: "Slow Morocco",
     url: "https://www.slowmorocco.com",
     address: {
@@ -132,8 +132,8 @@ const itemListSchema = {
 const collectionPageSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  name: "Morocco Journeys & Tours",
-  description: "Browse 100+ private Morocco itineraries: Sahara desert tours, Atlas trekking, Imperial Cities, coastal escapes. Customizable trips from 2-21 days.",
+  name: "Slow Morocco Journeys",
+  description: "The traditions Slow Morocco writes about, entered in person. Arranged directly by the publication.",
   url: "https://www.slowmorocco.com/journeys",
   isPartOf: {
     "@type": "WebSite",

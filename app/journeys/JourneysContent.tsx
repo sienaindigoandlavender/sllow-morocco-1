@@ -82,7 +82,7 @@ export default function JourneysContent({
           Journeys
         </h1>
         <p className="text-sm text-foreground/45 max-w-xl mb-10">
-          Every journey is private and fully customizable. Choose a starting point — we shape it around you.
+          The traditions we write about, entered in person. A small number of nights and passages we arrange ourselves, for readers who want to stand inside what they have read.
         </p>
         <div className="h-[1px] bg-foreground/12" />
       </section>
