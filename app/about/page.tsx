@@ -4,11 +4,11 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Slow Morocco is a publication about Morocco built on real knowledge — the history, craft, food, and language you absorb by living somewhere, not by visiting.",
+    "The stories behind the door everyone photographs and nobody explains. Morocco, decoded by the people who live here, and the layers most visitors walk straight past.",
   openGraph: {
     title: "About Slow Morocco",
     description:
-      "A publication for people who want to understand Morocco, not just visit it.",
+      "The layers most visitors walk straight past. Morocco, decoded by the people who live here.",
     url: "https://www.slowmorocco.com/about",
   },
   alternates: {
@@ -35,41 +35,42 @@ export default function AboutPage() {
         <div className="max-w-2xl space-y-7 text-[15px] text-foreground/80 leading-[1.8]">
 
           <p className="text-foreground text-lg leading-[1.7]">
-            We live in Morocco. We write about what we know.
+            Slow Morocco is a cultural authority on Morocco: its history, craft, food and faith, decoded for people who want to understand the country, not just photograph it.
           </p>
 
           <p>
-            The things that take time to notice. Why the medina is shaped the
-            way it is. What the call to prayer actually says. Why the bread
-            arrives before anything else. Where the Jewish quarter was, and
-            why it moved. The story behind the door everyone photographs but
-            nobody explains.
+            Behind the door everyone stops to photograph, there is a story, and it is almost always stranger than the photograph.
           </p>
 
           <p>
-            Most Morocco content tells you where to go and what to wear.
-            We go further back. How the dye got into the leather. Who built
-            the tower and why it stopped. What the carpet is actually saying.
-            The kind of knowledge you absorb by living somewhere — not by
-            visiting.
+            Slow Morocco is about the country underneath the one visitors are
+            shown. Why the great mosque faces slightly the wrong way. What the
+            pattern in the carpet is telling anyone who can read it. Where the
+            Jewish quarter went, and why the bread reaches the table before
+            anything else.
           </p>
 
           <p>
-            Entries are researched, dated, and revised. We work from academic
-            books, museum documentation, UNESCO records, and what we see with
-            our own eyes. Where scholarship disagrees, we say so.
+            Most of what is written about the country stops at where to go and
+            what to wear. This goes further down: how the dye got into the
+            leather, who began the tower and why they abandoned it, what the
+            twenty-four women in the vizier's palace were really fighting over.
+            Read enough and you can walk a medina you have crossed a dozen times
+            and find yourself in a city you have never seen.
           </p>
 
           <p>
-            We carry no advertising. Nothing here has been paid for, and
-            nothing will be.
+            None of it is invented. Every claim is sourced and dated, drawn from
+            the archives, the museums, and fifteen years on the ground. Where the
+            record runs out, the account says so. The gaps are part of the truth,
+            not something to be papered over with a confident guess.
           </p>
 
           <p>
-            We write from a riad in the Marrakech medina — newsroom, test
-            kitchen, and occasionally evidence. Corrections are acted on
-            quickly. It is the only dignified way to be wrong.
+            Nothing here is sponsored, and nothing ever will be. There is no
+            advertiser to please and no package to sell. Only the record.
           </p>
+
 
         </div>
       </section>
@@ -80,17 +81,17 @@ export default function AboutPage() {
           {[
             {
               title: "Stories",
-              body: "The history, craft, food, music, and people — written the way you'd hear it from someone who lives here.",
+              body: "The history, craft, food and people, written the way someone who has lived here for years would tell you over a long dinner.",
               href: "/stories",
             },
             {
               title: "Places",
-              body: "Cities, villages, and landmarks with the context a guidebook can't carry. What they are and why they matter.",
+              body: "Cities, villages and landmarks, with the meaning a guidebook leaves out. What happened here, and why it still matters.",
               href: "/places",
             },
             {
               title: "Glossary",
-              body: "The words behind the country — food, faith, craft, and custom, defined plainly and kept current.",
+              body: "The words behind the country: food, faith, craft and custom, explained so the next thing you read makes far more sense.",
               href: "/glossary",
             },
           ].map((item) => (
@@ -110,7 +111,7 @@ export default function AboutPage() {
       <section className="px-8 md:px-10 lg:px-14 py-14 border-t border-foreground/[0.08]">
         <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-4">
           <p className="text-[14px] text-foreground/40">
-            Questions, commissions, or just want to say hello.
+            Questions, commissions, or a story you think we've missed.
           </p>
           <Link
             href="/contact"
