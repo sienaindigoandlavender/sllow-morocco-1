@@ -72,6 +72,7 @@ export interface Journey {
   published: boolean;
   show_on_journeys_page: boolean;
   featured_on_homepage: boolean;
+  featured_story_slugs: string[] | null;
   created_at: string;
   updated_at: string;
 }
