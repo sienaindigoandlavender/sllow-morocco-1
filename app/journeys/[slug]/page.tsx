@@ -231,12 +231,33 @@ async function getRelatedStoriesSSR(journey: Journey) {
       excerpt: s.excerpt || "",
     }));
 
-    return findRelatedStories(
+    // Curated stories pinned to the top, in editorial order.
+    const featuredSlugs = journey.featured_story_slugs || [];
+    const pinned = featuredSlugs
+      .map((slug) =>
+        storiesForMatcher.find((s) => s.slug === slug)
+      )
+      .filter(
+        (s): s is (typeof storiesForMatcher)[number] => Boolean(s)
+      )
+      .map((s) => ({
+        slug: s.slug,
+        title: s.title,
+        category: s.category,
+        heroImage: s.heroImage,
+        excerpt: s.excerpt,
+        score: 999,
+      }));
+
+    // Algorithm fills the remaining slots, excluding anything already pinned.
+    const algorithmic = findRelatedStories(
       journey.destinations,
       journey.focus,
-      storiesForMatcher,
-      4
+      storiesForMatcher.filter((s) => !featuredSlugs.includes(s.slug)),
+      6
     );
+
+    return [...pinned, ...algorithmic].slice(0, 6);
   } catch {
     return [];
   }
