@@ -96,7 +96,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     ...STATIC_PAGES,
     ...collectionPages,
-    // journeyPages intentionally excluded — routes are noindex + off-sitemap
+    ...journeyPages,
     // dayTripPages excluded — /day-trips/* are noindex
     // guidePages excluded — no /guides/[slug] route exists (all 404s)
     ...placePages,
