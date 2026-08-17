@@ -58,6 +58,7 @@ interface Journey {
   journeyType?: string;
   epicPrice?: number;
   price?: number;
+  featuredStorySlugs?: string[];
 }
 
 interface ItineraryDay {
@@ -98,6 +99,7 @@ async function getJourneyData(slug: string) {
     journeyId: journeyData.id || "",
     journeyType: journeyData.journey_type || "regular",
     epicPrice: journeyData.epic_price_eur || undefined,
+    featuredStorySlugs: journeyData.featured_story_slugs || undefined,
   };
 
   // Build itinerary from Route_Sequence
@@ -230,7 +232,7 @@ async function getRelatedStoriesSSR(journey: Journey) {
     }));
 
     // Curated stories pinned to the top, in editorial order.
-    const featuredSlugs = journey.featured_story_slugs || [];
+    const featuredSlugs = journey.featuredStorySlugs || [];
     const pinned = featuredSlugs
       .map((slug) =>
         storiesForMatcher.find((s) => s.slug === slug)
