@@ -21,11 +21,9 @@ export async function generateMetadata({
   const duration = journey.duration_days ? `${journey.duration_days}-day` : "";
   const description = journey.short_description || journey.arc_description || `${duration} cultural journey through Morocco. ${journey.destinations || ""}`.trim();
 
-  // Route itineraries are given away free but kept out of Google's index and
-  // on-site search — the tour-operator layer is deliberately not the main meal.
-  // noindex, follow: pages stay live at their URL and still pass link equity
-  // to the cultural pages they reference.
-  const shouldNoIndex = true;
+  // Journeys are the publication's authority made physical — indexable, and
+  // linked to the essays that back them. Only unpublished journeys stay out.
+  const shouldNoIndex = !journey.published;
 
   return {
     title,
