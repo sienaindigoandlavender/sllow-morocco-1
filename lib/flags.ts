@@ -15,4 +15,4 @@
 // When true: the entry points return exactly as before. Nothing was
 // deleted — flip this back to re-open the room.
 
-export const TRIP_FUNNEL_PUBLIC = false;
+export const TRIP_FUNNEL_PUBLIC = true;
