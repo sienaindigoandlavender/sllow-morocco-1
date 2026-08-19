@@ -37,6 +37,7 @@ export const COLLECTIONS: Collection[] = [
     ],
     storySlugs: [
       "islamic-spain-legacy",
+      "the-two-libraries",
       "the-berber-caliphate",
       "when-the-strait-was-a-river",
       "al-andalus-corridor",
