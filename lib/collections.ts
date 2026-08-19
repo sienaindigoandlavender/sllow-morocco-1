@@ -28,6 +28,33 @@ export interface Collection {
 
 export const COLLECTIONS: Collection[] = [
   {
+    slug: "al-andalus",
+    title: "Al-Andalus",
+    dek: "Eight centuries of a civilization that lived on both shores of the strait — and the half of it that continued in Morocco.",
+    intro: [
+      "For nearly eight hundred years, the Iberian Peninsula and Morocco belonged to a single cultural world. Córdoba and Fes were sister cities of learning. The same dynasties built in Seville and Marrakech, to the same proportions, within the same generation. Music, architecture, gardens, script, and craft moved freely across fourteen kilometres of water.",
+      "When that world ended on the northern shore, much of it did not disappear. It crossed south. The horseshoe arch, the honeycomb vaulting, the Andalusi nuba, the whitewashed medinas of the north — all of it was carried to Morocco by people who remembered how it was made. This collection follows that civilization: what it was, what crossed the strait, and where it still lives.",
+    ],
+    storySlugs: [
+      "islamic-spain-legacy",
+      "the-berber-caliphate",
+      "when-the-strait-was-a-river",
+      "al-andalus-corridor",
+      "reconquista-exodus",
+      "the-fall-of-al-andalus",
+      "the-two-rivers",
+      "the-blue-gate",
+      "the-palace-that-became-a-museum",
+      "moroccan-music-traditions",
+    ],
+    placeSlugs: [
+      "quartier-andalou-chefchaouen",
+      "kasbah-chefchaouen",
+      "kasbah-tangier",
+    ],
+    featured: true,
+  },
+  {
     slug: "essaouira",
     title: "Essaouira",
     dek: "The windswept Atlantic port that everyone loves and few understand.",
