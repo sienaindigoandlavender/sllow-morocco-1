@@ -1,547 +1,197 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { TRIP_FUNNEL_PUBLIC } from "@/lib/flags";
 
-// ── Itinerary generator state ─────────────────────────────────────────────────
-
-interface ItineraryDay {
-  dayNumber: number;
-  cityName: string;
-  fromCity: string;
-  toCity: string;
-  description: string;
-  imageUrl: string;
-  travelTime: string;
-  difficulty: string;
-  activities: string;
-  meals: string;
-  routeType: string;
-  dayTitle?: string;
-  highlights?: string;
-}
-
-interface Itinerary {
-  summary: string;
-  days: ItineraryDay[];
-}
-
-type Step = 0 | 1 | 2 | 3 | 4;
+const DURATIONS = ["Under a week", "About a week", "10–14 days", "2 weeks or more"];
+const PACES = ["Slow, few bases", "Some movement", "Cover a lot"];
+const SEASONS = ["Spring", "Summer", "Autumn", "Winter", "Not sure yet"];
+const PARTY = ["Just me", "Two of us", "3–4", "5+"];
 
 export default function StartHereContent() {
-  const [section, setSection] = useState<"orientation" | "itinerary">("orientation");
-  const [tallyLoaded, setTallyLoaded] = useState(false);
+  const [f, setF] = useState({
+    firstName: "", lastName: "", email: "", partySize: "",
+    duration: "", season: "", cities: "", pace: "",
+    interests: "", budget: "", notes: "",
+  });
+  const [ack, setAck] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [done, setDone] = useState(false);
+  const [error, setError] = useState("");
 
-  // Itinerary generator state
-  const [step, setStep] = useState<Step>(0);
-  const [duration, setDuration] = useState<string | null>(null);
-  const [cities, setCities] = useState<string[]>([]);
-  const [interests, setInterests] = useState<string[]>([]);
-  const [pace, setPace] = useState<string | null>(null);
-  const [season, setSeason] = useState<string | null>(null);
-  const [itinerary, setItinerary] = useState<Itinerary | null>(null);
-  const [generating, setGenerating] = useState(false);
-  const [genError, setGenError] = useState(false);
+  const set = (k: string, v: string) => setF((p) => ({ ...p, [k]: v }));
 
-  // Load Tally embed script
-  useEffect(() => {
-    if (tallyLoaded) return;
-    const script = document.createElement("script");
-    script.src = "https://tally.so/widgets/embed.js";
-    script.async = true;
-    script.onload = () => setTallyLoaded(true);
-    document.head.appendChild(script);
-  }, [tallyLoaded]);
-
-  // ── Itinerary helpers ───────────────────────────────────────────────────────
-
-  function toggleMulti(val: string, arr: string[], setter: (v: string[]) => void) {
-    setter(arr.includes(val) ? arr.filter((x) => x !== val) : [...arr, val]);
-  }
-
-  async function generateItinerary() {
-    setGenerating(true);
-    setGenError(false);
-    setItinerary(null);
+  const submit = async () => {
+    setError("");
+    if (!f.email) return setError("Please add your email.");
+    if (!ack) return setError("Please acknowledge the planning deposit to continue.");
+    setSending(true);
     try {
-      const res = await fetch("/api/itinerary", {
+      const res = await fetch("/api/journey-inquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ duration, cities, interests, pace, season }),
+        body: JSON.stringify({ ...f, depositAcknowledged: ack }),
       });
       if (!res.ok) throw new Error();
-      const data = await res.json();
-      setItinerary(data);
+      setDone(true);
     } catch {
-      setGenError(true);
+      setError("Something went wrong. Please try again, or email hello@slowmorocco.com.");
     } finally {
-      setGenerating(false);
+      setSending(false);
     }
+  };
+
+  const label = "block text-xs tracking-[0.12em] uppercase text-foreground/50 mb-3";
+  const input =
+    "w-full px-0 py-2 border-0 border-b border-foreground/20 bg-transparent text-lg focus:outline-none focus:border-foreground transition-colors placeholder:text-foreground/25";
+  const chip = (active: boolean) =>
+    `px-4 py-2 text-sm border transition-colors ${
+      active
+        ? "border-foreground text-foreground"
+        : "border-foreground/20 text-foreground/50 hover:text-foreground hover:border-foreground/40"
+    }`;
+
+  if (done) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center px-6">
+        <div className="max-w-lg text-center">
+          <h1 className="font-serif text-3xl mb-4">Thank you.</h1>
+          <p className="text-foreground/70 leading-relaxed mb-8">
+            We have your details. We&apos;ll read them properly and write back to you
+            personally, usually within a couple of days, with the next step.
+          </p>
+          <Link href="/journeys" className="text-sm border-b border-foreground/30 hover:border-foreground pb-0.5">
+            Meanwhile, browse the journeys →
+          </Link>
+        </div>
+      </div>
+    );
   }
-
-  function resetItinerary() {
-    setStep(0);
-    setDuration(null);
-    setCities([]);
-    setInterests([]);
-    setPace(null);
-    setSeason(null);
-    setItinerary(null);
-    setGenError(false);
-  }
-
-  // ── Shared button styles ────────────────────────────────────────────────────
-
-  const optBase =
-    "w-full text-left px-4 py-3 border text-sm leading-snug transition-all duration-150 cursor-pointer rounded-none";
-  const optIdle = "border-foreground/15 text-foreground/70 hover:border-foreground/40 hover:text-foreground bg-background";
-  const optSel = "border-foreground text-foreground bg-foreground/[0.04]";
 
   return (
-    <div className="bg-background min-h-screen">
+    <div className="min-h-screen bg-background">
+      <header className="border-b border-foreground/10 py-6 px-6">
+        <div className="max-w-3xl mx-auto flex items-center justify-between">
+          <Link href="/" className="text-sm text-foreground/60 hover:text-foreground">
+            ← Slow Morocco
+          </Link>
+          <span className="text-sm text-foreground/40">Plan a journey</span>
+        </div>
+      </header>
 
-      {/* ── Header ─────────────────────────────────────────────────────────── */}
-      <div className="px-6 md:px-10 lg:px-14 pt-20 pb-12 border-b border-foreground/[0.08]">
-        <Link
-          href="/"
-          className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 hover:text-foreground/60 transition-colors mb-10 block"
-        >
-          ← Slow Morocco
-        </Link>
-        <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">
-          Morocco, understood
+      <div className="max-w-3xl mx-auto px-6 py-16">
+        <h1 className="font-serif text-4xl mb-4">Have a journey shaped around you.</h1>
+        <p className="text-foreground/70 leading-relaxed mb-6 max-w-xl">
+          Tell us who you are and the shape of the trip you want. If one of our existing
+          journeys already fits, we&apos;ll send it with the price and you can take it as it is.
+          If you&apos;d like it built around you, that&apos;s where we begin properly.
         </p>
-        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground leading-[1.1] mb-6 max-w-2xl">
-          Start here.
-        </h1>
-        <p className="text-base text-foreground/50 leading-relaxed max-w-xl">
-          Two tools. The first gives you the mental map — the framework you need before any good decision can be made. The second builds your itinerary once you have that framework.
-        </p>
-      </div>
 
-      {/* ── Section toggle ─────────────────────────────────────────────────── */}
-      <div className="px-6 md:px-10 lg:px-14 py-8 border-b border-foreground/[0.08]">
-        <div className="flex gap-8">
+        {/* Deposit statement — clearly before the form */}
+        <div className="border border-foreground/15 bg-foreground/[0.03] p-6 mb-12">
+          <p className="text-sm text-foreground/80 leading-relaxed">
+            <span className="font-medium">A note on how this works.</span> A tailored journey
+            begins with a <span className="font-medium">€300 planning deposit</span>. It is held
+            against the cost of your journey and applied in full once you book. It secures the
+            time we spend building the trip around you, and is not refundable if you decide not
+            to travel. Taking one of our journeys as written costs nothing until you book.
+          </p>
+        </div>
+
+        <div className="space-y-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            <div>
+              <label className={label}>First name</label>
+              <input className={input} value={f.firstName} onChange={(e) => set("firstName", e.target.value)} />
+            </div>
+            <div>
+              <label className={label}>Last name</label>
+              <input className={input} value={f.lastName} onChange={(e) => set("lastName", e.target.value)} />
+            </div>
+          </div>
+
+          <div>
+            <label className={label}>Email</label>
+            <input type="email" className={input} value={f.email} onChange={(e) => set("email", e.target.value)} placeholder="you@example.com" />
+          </div>
+
+          <div>
+            <label className={label}>Who&apos;s travelling</label>
+            <div className="flex flex-wrap gap-2">
+              {PARTY.map((p) => (
+                <button key={p} type="button" className={chip(f.partySize === p)} onClick={() => set("partySize", p)}>{p}</button>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <label className={label}>How long</label>
+            <div className="flex flex-wrap gap-2">
+              {DURATIONS.map((d) => (
+                <button key={d} type="button" className={chip(f.duration === d)} onClick={() => set("duration", d)}>{d}</button>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <label className={label}>When</label>
+            <div className="flex flex-wrap gap-2">
+              {SEASONS.map((s) => (
+                <button key={s} type="button" className={chip(f.season === s)} onClick={() => set("season", s)}>{s}</button>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <label className={label}>How you want to move</label>
+            <div className="flex flex-wrap gap-2">
+              {PACES.map((p) => (
+                <button key={p} type="button" className={chip(f.pace === p)} onClick={() => set("pace", p)}>{p}</button>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <label className={label}>Places you already have in mind</label>
+            <input className={input} value={f.cities} onChange={(e) => set("cities", e.target.value)} placeholder="Fes, the desert, the coast…" />
+          </div>
+
+          <div>
+            <label className={label}>What pulls you toward Morocco</label>
+            <input className={input} value={f.interests} onChange={(e) => set("interests", e.target.value)} placeholder="Food, craft, history, landscape…" />
+          </div>
+
+          <div>
+            <label className={label}>Rough budget for the trip</label>
+            <input className={input} value={f.budget} onChange={(e) => set("budget", e.target.value)} placeholder="e.g. €2,500–€4,000 per person" />
+          </div>
+
+          <div>
+            <label className={label}>Anything else</label>
+            <textarea className={`${input} resize-none`} rows={3} value={f.notes} onChange={(e) => set("notes", e.target.value)} />
+          </div>
+
+          {/* Deposit acknowledgement */}
+          <label className="flex items-start gap-3 cursor-pointer">
+            <input type="checkbox" checked={ack} onChange={(e) => setAck(e.target.checked)} className="mt-1" />
+            <span className="text-sm text-foreground/70 leading-relaxed">
+              I understand that a tailored journey begins with a €300 planning deposit, applied
+              to the cost of the trip and non-refundable if I choose not to travel.
+            </span>
+          </label>
+
+          {error && <p className="text-sm text-red-700">{error}</p>}
+
           <button
-            onClick={() => setSection("orientation")}
-            className={`text-sm tracking-[0.05em] pb-2 border-b transition-all ${
-              section === "orientation"
-                ? "border-foreground text-foreground"
-                : "border-transparent text-foreground/35 hover:text-foreground/60"
-            }`}
+            type="button"
+            onClick={submit}
+            disabled={sending}
+            className="px-8 py-3 border border-foreground text-sm tracking-[0.15em] uppercase text-foreground hover:bg-foreground hover:text-background transition-colors disabled:opacity-40"
           >
-            1. Get oriented
-          </button>
-          <button
-            onClick={() => setSection("itinerary")}
-            id="itinerary"
-            className={`text-sm tracking-[0.05em] pb-2 border-b transition-all ${
-              section === "itinerary"
-                ? "border-foreground text-foreground"
-                : "border-transparent text-foreground/35 hover:text-foreground/60"
-            }`}
-          >
-            2. Build your itinerary
+            {sending ? "Sending…" : "Send"}
           </button>
         </div>
       </div>
-
-      {/* ── Orientation section ─────────────────────────────────────────────── */}
-      {section === "orientation" && (
-        <div className="px-6 md:px-10 lg:px-14 py-16">
-          <div className="max-w-2xl mb-12">
-            <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/30 mb-4">
-              Step 1 of 2
-            </p>
-            <h2 className="font-serif text-2xl md:text-3xl text-foreground mb-4 leading-snug">
-              Five questions. A framework specific to you.
-            </h2>
-            <p className="text-sm text-foreground/50 leading-relaxed">
-              The mental map you need before any good decision, not an itinerary. Which cities cluster together, what the distances actually are, and the one thing that changes how you experience everything else.
-            </p>
-          </div>
-
-          {/* Tally embed */}
-          <div className="max-w-2xl">
-            <iframe
-              data-tally-src="https://tally.so/embed/aQG8W9?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
-              loading="lazy"
-              width="100%"
-              height="500"
-              frameBorder="0"
-              marginHeight={0}
-              marginWidth={0}
-              title="Morocco orientation"
-              style={{ minHeight: "500px" }}
-            />
-          </div>
-
-          <div className="max-w-2xl mt-12 pt-12 border-t border-foreground/[0.08]">
-            <p className="text-sm text-foreground/40 leading-relaxed">
-              After submitting you'll land on your personalised orientation page. We'll also send it to your email so you have it for later.
-            </p>
-          </div>
-        </div>
-      )}
-
-      {/* ── Itinerary generator section ─────────────────────────────────────── */}
-      {section === "itinerary" && (
-        <div className="px-6 md:px-10 lg:px-14 py-16">
-
-          {!itinerary && !generating && (
-            <>
-              <div className="max-w-xl mb-12">
-                <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/30 mb-4">
-                  Step 2 of 2
-                </p>
-                <h2 className="font-serif text-2xl md:text-3xl text-foreground mb-4 leading-snug">
-                  Build your itinerary.
-                </h2>
-                <p className="text-sm text-foreground/50 leading-relaxed">
-                  Places, context, and the thread connecting them — sequenced for the trip you actually want.
-                </p>
-              </div>
-
-              {/* Progress */}
-              <div className="max-w-xl mb-10">
-                <div className="flex gap-1.5 mb-2">
-                  {[0, 1, 2, 3, 4].map((i) => (
-                    <div
-                      key={i}
-                      className="h-0.5 flex-1 transition-all duration-300"
-                      style={{
-                        background: i <= step ? "var(--foreground)" : "rgba(0,0,0,0.1)",
-                        opacity: i <= step ? 1 : 0.3,
-                      }}
-                    />
-                  ))}
-                </div>
-                <p className="text-[11px] text-foreground/30">
-                  {step + 1} of 5
-                </p>
-              </div>
-
-              {/* Step 0 — Duration */}
-              {step === 0 && (
-                <div className="max-w-xl">
-                  <p className="font-serif text-xl text-foreground mb-6">
-                    How long is your trip?
-                  </p>
-                  <div className="flex flex-col gap-2 mb-8">
-                    {["3 days", "5 days", "7 days", "10 days", "2 weeks"].map((d) => (
-                      <button
-                        key={d}
-                        onClick={() => setDuration(d)}
-                        className={`${optBase} ${duration === d ? optSel : optIdle}`}
-                      >
-                        {d}
-                      </button>
-                    ))}
-                  </div>
-                  <button
-                    disabled={!duration}
-                    onClick={() => setStep(1)}
-                    className="px-8 py-3 border border-foreground text-sm tracking-[0.1em] uppercase text-foreground hover:bg-foreground hover:text-background transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-                  >
-                    Continue →
-                  </button>
-                </div>
-              )}
-
-              {/* Step 1 — Cities */}
-              {step === 1 && (
-                <div className="max-w-xl">
-                  <p className="font-serif text-xl text-foreground mb-6">
-                    Which cities do you want to visit?
-                  </p>
-                  <div className="grid grid-cols-2 gap-2 mb-8">
-                    {["Marrakech", "Fes", "Essaouira", "Tangier", "Chefchaouen", "Rabat", "Merzouga", "Draa Valley", "Casablanca", "Dakhla"].map((c) => (
-                      <button
-                        key={c}
-                        onClick={() => toggleMulti(c, cities, setCities)}
-                        className={`${optBase} ${cities.includes(c) ? optSel : optIdle}`}
-                      >
-                        {c}
-                      </button>
-                    ))}
-                  </div>
-                  <div className="flex gap-4">
-                    <button
-                      disabled={cities.length === 0}
-                      onClick={() => setStep(2)}
-                      className="px-8 py-3 border border-foreground text-sm tracking-[0.1em] uppercase text-foreground hover:bg-foreground hover:text-background transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-                    >
-                      Continue →
-                    </button>
-                    <button
-                      onClick={() => setStep(0)}
-                      className="text-sm text-foreground/30 hover:text-foreground/60 transition-colors"
-                    >
-                      ← Back
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {/* Step 2 — Interests */}
-              {step === 2 && (
-                <div className="max-w-xl">
-                  <p className="font-serif text-xl text-foreground mb-6">
-                    What draws you most?
-                  </p>
-                  <div className="flex flex-col gap-2 mb-8">
-                    {[
-                      "History & architecture",
-                      "Sacred & spiritual",
-                      "Craft & making",
-                      "Food & markets",
-                      "Nature & landscape",
-                      "Literature & art",
-                      "Jewish heritage",
-                      "Surf & coast",
-                      "Trekking",
-                    ].map((i) => (
-                      <button
-                        key={i}
-                        onClick={() => toggleMulti(i, interests, setInterests)}
-                        className={`${optBase} ${interests.includes(i) ? optSel : optIdle}`}
-                      >
-                        {i}
-                      </button>
-                    ))}
-                  </div>
-                  <div className="flex gap-4">
-                    <button
-                      disabled={interests.length === 0}
-                      onClick={() => setStep(3)}
-                      className="px-8 py-3 border border-foreground text-sm tracking-[0.1em] uppercase text-foreground hover:bg-foreground hover:text-background transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-                    >
-                      Continue →
-                    </button>
-                    <button
-                      onClick={() => setStep(1)}
-                      className="text-sm text-foreground/30 hover:text-foreground/60 transition-colors"
-                    >
-                      ← Back
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {/* Step 3 — Pace */}
-              {step === 3 && (
-                <div className="max-w-xl">
-                  <p className="font-serif text-xl text-foreground mb-6">
-                    How do you want to travel?
-                  </p>
-                  <div className="flex flex-col gap-2 mb-8">
-                    {[
-                      { val: "slow", label: "Slow", sub: "Few places, deep attention" },
-                      { val: "balanced", label: "Balanced", sub: "Mix of depth and breadth" },
-                      { val: "ambitious", label: "Ambitious", sub: "Cover as much as possible" },
-                    ].map(({ val, label, sub }) => (
-                      <button
-                        key={val}
-                        onClick={() => setPace(val)}
-                        className={`${optBase} ${pace === val ? optSel : optIdle}`}
-                      >
-                        <span className="font-medium">{label}</span>
-                        <span className="block text-xs text-foreground/40 mt-0.5">{sub}</span>
-                      </button>
-                    ))}
-                  </div>
-                  <div className="flex gap-4">
-                    <button
-                      disabled={!pace}
-                      onClick={() => setStep(4)}
-                      className="px-8 py-3 border border-foreground text-sm tracking-[0.1em] uppercase text-foreground hover:bg-foreground hover:text-background transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-                    >
-                      Continue →
-                    </button>
-                    <button
-                      onClick={() => setStep(2)}
-                      className="text-sm text-foreground/30 hover:text-foreground/60 transition-colors"
-                    >
-                      ← Back
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {/* Step 4 — Season */}
-              {step === 4 && (
-                <div className="max-w-xl">
-                  <p className="font-serif text-xl text-foreground mb-6">
-                    When are you going?
-                  </p>
-                  <div className="flex flex-col gap-2 mb-8">
-                    {[
-                      "Spring (March–May)",
-                      "Summer (June–August)",
-                      "Autumn (September–November)",
-                      "Winter (December–February)",
-                      "Not sure yet",
-                    ].map((s) => (
-                      <button
-                        key={s}
-                        onClick={() => setSeason(s)}
-                        className={`${optBase} ${season === s ? optSel : optIdle}`}
-                      >
-                        {s}
-                      </button>
-                    ))}
-                  </div>
-                  <div className="flex gap-4">
-                    <button
-                      disabled={!season}
-                      onClick={generateItinerary}
-                      className="px-8 py-3 bg-foreground text-background text-sm tracking-[0.1em] uppercase hover:opacity-80 transition-opacity disabled:opacity-30 disabled:cursor-not-allowed"
-                    >
-                      Build my itinerary →
-                    </button>
-                    <button
-                      onClick={() => setStep(3)}
-                      className="text-sm text-foreground/30 hover:text-foreground/60 transition-colors"
-                    >
-                      ← Back
-                    </button>
-                  </div>
-                </div>
-              )}
-            </>
-          )}
-
-          {/* Generating */}
-          {generating && (
-            <div className="max-w-xl py-16">
-              <p className="font-serif text-xl text-foreground/40">
-                Building your itinerary…
-              </p>
-            </div>
-          )}
-
-          {/* Error */}
-          {genError && (
-            <div className="max-w-xl py-8">
-              <p className="text-sm text-foreground/50 mb-6">
-                Something went wrong. Try again.
-              </p>
-              <button
-                onClick={resetItinerary}
-                className="text-sm text-foreground/40 hover:text-foreground transition-colors"
-              >
-                ← Start over
-              </button>
-            </div>
-          )}
-
-          {/* Result */}
-          {itinerary && !generating && (
-            <div className="max-w-2xl">
-              <p className="font-serif text-xl text-foreground/60 leading-relaxed mb-12">
-                {itinerary.summary}
-              </p>
-
-              <div className="space-y-px">
-                {itinerary.days.map((day) => (
-                  <div
-                    key={day.dayNumber}
-                    className="border border-foreground/[0.08] p-6"
-                  >
-                    <div className="flex items-baseline gap-6 mb-4">
-                      <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/30 w-10 flex-shrink-0">
-                        Day {day.dayNumber}
-                      </p>
-                      <div>
-                        <h3 className="font-serif text-lg text-foreground">
-                          {day.routeType === "Stay"
-                            ? day.cityName
-                            : day.fromCity === day.toCity
-                            ? day.cityName
-                            : `${day.fromCity} → ${day.toCity}`}
-                        </h3>
-                        {day.dayTitle && (
-                          <p className="text-xs text-foreground/40 mt-0.5 tracking-wide">
-                            {day.dayTitle}
-                          </p>
-                        )}
-                      </div>
-                      {day.travelTime && day.routeType !== "Stay" && (
-                        <span className="ml-auto text-[11px] text-foreground/30 flex-shrink-0">
-                          {day.travelTime}h travel
-                        </span>
-                      )}
-                    </div>
-
-                    {day.description && (
-                      <p className="text-sm text-foreground/55 leading-relaxed mb-4 pl-16">
-                        {day.description}
-                      </p>
-                    )}
-
-                    {(day.activities || day.highlights) && (
-                      <div className="pl-16 flex flex-wrap gap-2">
-                        {day.activities && day.activities.split(",").slice(0, 4).map((a: string, i: number) => (
-                          <span
-                            key={i}
-                            className="text-[10px] tracking-[0.08em] uppercase px-2 py-1 bg-foreground/[0.04] text-foreground/40"
-                          >
-                            {a.trim()}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-12 pt-8 border-t border-foreground/[0.08]">
-                {TRIP_FUNNEL_PUBLIC && (
-                <p className="text-sm text-foreground/40 mb-6">
-                  Like this route? Our curated journeys are fully produced — with narratives, accommodation, and everything arranged.
-                </p>
-                )}
-                <div className="flex flex-col md:flex-row gap-6 items-start">
-                  {TRIP_FUNNEL_PUBLIC && (
-                  <Link
-                    href="/journeys"
-                    className="inline-block px-6 py-2.5 border border-foreground text-sm tracking-[0.1em] uppercase text-foreground hover:bg-foreground hover:text-background transition-colors"
-                  >
-                    See curated journeys →
-                  </Link>
-                  )}
-                  <button
-                    onClick={resetItinerary}
-                    className="text-sm text-foreground/30 hover:text-foreground/60 transition-colors self-center"
-                  >
-                    ← Plan a different trip
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* ── Footer note ─────────────────────────────────────────────────────── */}
-      <div className="px-6 md:px-10 lg:px-14 py-12 border-t border-foreground/[0.08] mt-8">
-        <p className="text-sm text-foreground/30">
-          Morocco, understood. —{" "}
-          <Link href="/stories" className="hover:text-foreground/60 transition-colors">
-            Read the stories
-          </Link>
-          {" · "}
-          <Link href="/places/map" className="hover:text-foreground/60 transition-colors">
-            Explore the map
-          </Link>
-          {" · "}
-          <Link href="https://darija.io" className="hover:text-foreground/60 transition-colors">
-            Learn Darija
-          </Link>
-        </p>
-      </div>
-
     </div>
   );
 }
