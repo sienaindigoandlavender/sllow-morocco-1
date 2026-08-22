@@ -1035,35 +1035,4 @@ export async function getAccommodations() {
   return [] as Accommodation[];
 }
 
-export interface JourneyInquiry {
-  id: string;
-  first_name: string | null;
-  last_name: string | null;
-  email: string;
-  party_size: string | null;
-  duration: string | null;
-  season: string | null;
-  cities: string | null;
-  pace: string | null;
-  interests: string | null;
-  budget: string | null;
-  notes: string | null;
-  deposit_acknowledged: boolean;
-  status: string;
-  created_at: string;
-}
 
-export async function createJourneyInquiry(
-  inquiry: Omit<JourneyInquiry, "id" | "created_at" | "status">
-) {
-  const { data, error } = await supabase
-    .from("journey_inquiries")
-    .insert(inquiry)
-    .select()
-    .single();
-  if (error) {
-    console.error("Error creating inquiry:", error);
-    return null;
-  }
-  return data as JourneyInquiry;
-}
