@@ -432,3 +432,20 @@ button:focus {
 .derb-link:hover {
   text-decoration-color: hsl(var(--foreground) / 0.5);
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   READABILITY OVERRIDE — force faded body text to near-black site-wide.
+   Faint structural greys (/40 and below) left alone for borders/dividers.
+   ═══════════════════════════════════════════════════════════════ */
+[class*="text-foreground/45"],
+[class*="text-foreground/5"],
+[class*="text-foreground/6"],
+[class*="text-foreground/7"],
+[class*="text-foreground/8"] {
+  color: hsl(var(--foreground)) !important;
+}
+.text-neutral-400, .text-neutral-500, .text-neutral-600, .text-neutral-700,
+.text-gray-400, .text-gray-500, .text-gray-600, .text-gray-700,
+.text-stone-500, .text-stone-600 {
+  color: hsl(var(--foreground)) !important;
+}
