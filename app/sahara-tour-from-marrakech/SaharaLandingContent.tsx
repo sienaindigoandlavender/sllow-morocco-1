@@ -493,7 +493,7 @@ export default function SaharaLandingContent() {
             Five questions. A framework specific to your trip — which cities, what order, what you'll actually understand when you arrive.
           </p>
           <Link
-            href="https://tally.so/r/aQG8W9"
+            href="/start-here"
             className="inline-block px-8 py-3 border border-foreground text-sm tracking-[0.15em] uppercase text-foreground hover:bg-foreground hover:text-background transition-colors"
           >
             Get my orientation

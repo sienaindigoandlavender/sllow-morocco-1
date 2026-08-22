@@ -472,7 +472,7 @@ export default function SaharaLandingContentIT() {
             Cinque domande. Un quadro su misura per il vostro viaggio — quali città, in che ordine, cosa capirete davvero una volta arrivati.
           </p>
           <Link
-            href="https://tally.so/r/aQG8W9"
+            href="/start-here"
             className="inline-block px-8 py-3 border border-foreground text-sm tracking-[0.15em] uppercase text-foreground hover:bg-foreground hover:text-background transition-colors"
           >
             Ricevi il mio orientamento
