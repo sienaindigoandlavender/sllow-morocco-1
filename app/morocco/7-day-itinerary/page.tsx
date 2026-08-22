@@ -194,10 +194,10 @@ export default function SevenDayItineraryPage() {
             <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">Build your own</p>
             <h2 className="font-serif text-2xl text-foreground mb-4">Not sure which route fits?</h2>
             <p className="text-sm text-foreground/50 leading-relaxed mb-8">
-              Answer five questions and get an orientation specific to your trip — which cities, what order, what you'll understand when you arrive.
+              Tell us the shape of the trip you want, and we'll build a journey around you. Tailored journeys begin with a €300 planning deposit, applied to the cost of the trip.
             </p>
             <Link href="/start-here" className="inline-block px-8 py-3 border border-foreground text-sm tracking-[0.15em] uppercase text-foreground hover:bg-foreground hover:text-background transition-colors">
-              Get my orientation →
+              Plan a journey →
             </Link>
           </div>
         </div>
