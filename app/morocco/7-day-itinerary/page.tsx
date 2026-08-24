@@ -196,7 +196,7 @@ export default function SevenDayItineraryPage() {
             <p className="text-sm text-foreground/50 leading-relaxed mb-8">
               Tell us the shape of the trip you want, and we'll build a journey around you. Tailored journeys begin with a €300 planning deposit, applied to the cost of the trip.
             </p>
-            <Link href="/start-here" className="inline-block px-8 py-3 border border-foreground text-sm tracking-[0.15em] uppercase text-foreground hover:bg-foreground hover:text-background transition-colors">
+            <Link href="/plan-your-trip" className="inline-block px-8 py-3 border border-foreground text-sm tracking-[0.15em] uppercase text-foreground hover:bg-foreground hover:text-background transition-colors">
               Plan a journey →
             </Link>
           </div>
