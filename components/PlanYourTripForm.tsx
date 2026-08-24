@@ -20,10 +20,10 @@ interface PlanYourTripFormProps {
   initialJourney?: string; // slug to pre-select in the journey dropdown
 }
 
-// €200 planning deposit. Same PayPal account/pattern as the day-trip and
+// €300 planning deposit. Same PayPal account/pattern as the day-trip and
 // overnight booking flows. Client-side capture; the captured order id is
 // passed back so the inquiry only sends once payment has cleared.
-const DEPOSIT_AMOUNT = "200.00";
+const DEPOSIT_AMOUNT = "300.00";
 
 function PayPalDeposit({
   onSuccess,
