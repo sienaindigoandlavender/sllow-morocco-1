@@ -101,7 +101,7 @@ function YourMoroccoContent() {
             Answer five questions and we'll build a Morocco orientation specific to your trip.
           </p>
           <a
-            href="/start-here"
+            href="/plan-your-trip"
             className="inline-block px-8 py-3 border border-foreground text-sm tracking-[0.15em] uppercase text-foreground hover:bg-foreground hover:text-background transition-colors duration-300"
           >
             Begin
@@ -120,7 +120,7 @@ function YourMoroccoContent() {
             Something went wrong generating your orientation.
           </p>
           <a
-            href="/start-here"
+            href="/plan-your-trip"
             className="text-[11px] tracking-[0.2em] uppercase text-foreground/40 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5"
           >
             Try again →
@@ -236,7 +236,7 @@ function YourMoroccoContent() {
             Now that you have the framework, let us sequence your days — places, context, and the thread connecting them.
           </p>
           <Link
-            href="/start-here#itinerary"
+            href="/plan-your-trip"
             className="inline-block px-8 py-3 border border-foreground text-sm tracking-[0.15em] uppercase text-foreground hover:bg-foreground hover:text-background transition-colors duration-300"
           >
             Build my itinerary →
@@ -252,7 +252,7 @@ function YourMoroccoContent() {
             Morocco, understood.
           </p>
           <a
-            href="/start-here"
+            href="/plan-your-trip"
             className="text-[11px] tracking-[0.2em] uppercase text-foreground/30 hover:text-foreground/60 transition-colors"
           >
             Answer differently →
