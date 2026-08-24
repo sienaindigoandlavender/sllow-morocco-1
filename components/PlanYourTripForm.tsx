@@ -154,7 +154,7 @@ export default function PlanYourTripForm({
     setPhase("deposit");
   };
 
-  // Step 2: only after PayPal captures the €200 do we send the inquiry —
+  // Step 2: only after PayPal captures the €300 do we send the inquiry —
   // this is the gate that stops empty inquiries.
   const sendInquiry = async (paypalOrderId: string) => {
     setStatus("loading");
@@ -314,7 +314,7 @@ export default function PlanYourTripForm({
     );
   }
 
-  // Deposit phase: form is validated, awaiting the €200 payment. The inquiry
+  // Deposit phase: form is validated, awaiting the €300 payment. The inquiry
   // sends only after PayPal captures (via sendInquiry).
   if (phase === "deposit") {
     return (
@@ -323,7 +323,7 @@ export default function PlanYourTripForm({
           The Deposit
         </p>
         <h2 className={`font-serif text-2xl md:text-3xl mb-4 ${darkMode ? 'text-white' : ''}`}>
-          €200, credited in full to your journey
+          €300, credited in full to your journey
         </h2>
         <p className={`text-base leading-relaxed mb-8 ${darkMode ? 'text-white/60' : 'text-muted-foreground'}`}>
           It holds your dates and opens the work. Once complete, we begin shaping
