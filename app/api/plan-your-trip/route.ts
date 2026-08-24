@@ -244,7 +244,7 @@ export async function POST(request: Request) {
               <hr style="border: none; border-top: 1px solid #e0dbd0; margin: 24px 0;">
               <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
                 <tr><td style="padding: 6px 0; color: #888; width: 160px;">Client ID</td><td style="padding: 6px 0;"><strong>${clientId}</strong></td></tr>
-                <tr><td style="padding: 6px 0; color: #2d5016;">Deposit</td><td style="padding: 6px 0; color: #2d5016;"><strong>${deposit_paid ? `€200 PAID — PayPal ${paypal_order_id || "(id missing)"}` : "NOT PAID"}</strong></td></tr>
+                <tr><td style="padding: 6px 0; color: #2d5016;">Deposit</td><td style="padding: 6px 0; color: #2d5016;"><strong>${deposit_paid ? `€300 PAID — PayPal ${paypal_order_id || "(id missing)"}` : "NOT PAID"}</strong></td></tr>
                 <tr><td style="padding: 6px 0; color: #888;">Name</td><td style="padding: 6px 0;">${firstName} ${lastName}</td></tr>
                 <tr><td style="padding: 6px 0; color: #888;">Email</td><td style="padding: 6px 0;"><a href="mailto:${email}" style="color: #1a1a18;">${email}</a></td></tr>
                 <tr><td style="padding: 6px 0; color: #888;">Phone</td><td style="padding: 6px 0;">${countryCode || ""} ${phone || ""}</td></tr>
