@@ -460,7 +460,7 @@ export default function MoroccoContent({ cities, stories, cityImages = {} }: Pro
               { href: "/morocco/jewish-heritage", title: "Jewish heritage", desc: "265,000 Jewish Moroccans at its peak. The Mellah quarters, the synagogues, the museum." },
               { href: "/morocco/amazigh", title: "The Amazigh people", desc: "60-70% of Morocco. The indigenous language, the carpets, the mountains." },
               { href: "/morocco/french-protectorate", title: "The French Protectorate", desc: "1912–1956. Why it explains the Ville Nouvelle, the language, and modern Morocco." },
-              { href: "/start-here", title: "Get your orientation", desc: "Five questions. A framework specific to your trip." },
+              { href: "/plan-your-trip", title: "Plan your journey", desc: "Tell us the shape of your trip. Tailored planning from €300." },
             ].map((guide) => (
               <Link key={guide.href} href={guide.href} className="group bg-background p-6 hover:bg-foreground/[0.02] transition-colors">
                 <h3 className="font-serif text-base text-foreground mb-1 group-hover:text-foreground/70 transition-colors">{guide.title}</h3>
