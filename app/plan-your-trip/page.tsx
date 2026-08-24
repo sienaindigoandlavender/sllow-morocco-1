@@ -81,7 +81,7 @@ export default async function PlanYourTripPage({
             The Deposit
           </p>
           <p className="text-base md:text-lg leading-relaxed text-foreground/80">
-            Planning begins with a &euro;200 deposit, credited in full to your
+            Planning begins with a &euro;300 deposit, credited in full to your
             journey. It holds your dates and opens the work.
           </p>
         </div>
