@@ -25,8 +25,7 @@ Disallow: /api/
 # /sahara-tour-from-marrakech) are deliberately NOT disallowed yet: Google must
 # be able to crawl them to see the noindex tag and drop them from the index.
 # Once they've fallen out of results, add them here to block crawl entirely.
-Disallow: /journeys
-Disallow: /go/gentle
+# /go/gentle now indexable — accessible-travel landing page
 # OG share-card images: noindex assets, not pages. Blocking them stops
 # Googlebot from spending crawl budget on ~10k dynamic image renders
 # (which intermittently 5xx under rapid crawling and clutter Search Console).
