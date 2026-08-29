@@ -183,8 +183,9 @@ const WEEK_HOLDS = [
   "The gardens, the museums, and a private car through the day",
   "The evening in the Agafay: a private desert camp, the sunset, a private camel, dinner under the open sky",
   "The ritual hammam on the day of the ceremony",
-  "Your restaurant tables, chosen and reserved for you across the medina, with Zahra herself seeing to each house before you arrive, so you are expected and looked after wherever you go",
-  "The whole week coordinated end to end, so nothing is left to you but the experience",
+  "Zahra on hand throughout your stay. She looks after our own riad and its guests, and across your week she is reachable on WhatsApp the same way — to make a reservation, arrange a car, answer a question, or help with whatever you need, so you always have someone who knows the city beside you",
+  "Your restaurant tables, chosen and reserved for you across the medina, with Zahra seeing to each house before you arrive, so you are expected and looked after wherever you go. We keep the week deliberately open at the table rather than all-inclusive, because Marrakech is too rich a city to eat from one kitchen — the meals you settle directly at each house, and we send you to the ones worth your evenings. Only the Agafay dinner and the ceremonial meal on the night of the Lila are ours",
+  "The whole week coordinated for you, so it runs without effort on your part",
 ];
 
 
@@ -602,9 +603,10 @@ export default function LilaDossierContent() {
             The days around the night
           </p>
           <p className="font-serif text-foreground/60 text-lg md:text-xl leading-relaxed mb-4 max-w-xl">
-            Everything is arranged and held for you. You move through the week
-            without booking, negotiating, or wondering, met at each turn and carried
-            gently toward the ceremony at its center.
+            Everything is arranged and held for you. From the moment you land to the
+            moment you leave, someone is with you — booking the tables, arranging the
+            cars, answering what you need answered. The managing is ours, so your
+            attention stays where it belongs: on why you came.
           </p>
           <p className="text-sm text-foreground/50 leading-relaxed mb-12 max-w-xl">
             Three days lead you toward the Lila, each quieter than the last; the day
@@ -687,10 +689,19 @@ export default function LilaDossierContent() {
                 </p>
               </div>
               <div className="pt-4 border-t border-foreground/[0.08]">
-                <div className="flex items-baseline gap-3">
+                <div className="flex items-baseline gap-3 mb-2">
                   <span className="font-serif text-5xl text-foreground">€7,500</span>
                   <span className="text-sm text-foreground/40">together</span>
                 </div>
+                <p className="text-xs text-foreground/35 leading-relaxed">
+                  All prices include taxes. We keep the table open rather than
+                  all-inclusive, because Marrakech is too rich a city to eat from one
+                  kitchen: we choose and reserve the places worth your evenings, and
+                  you settle the meals directly at each house. Only the Agafay dinner
+                  and the ceremonial meal on the night are included. Gratuities are
+                  left to you — a kindness to the guide, driver, and those who look
+                  after you, in the measure you feel is right.
+                </p>
               </div>
             </div>
 
@@ -739,15 +750,15 @@ export default function LilaDossierContent() {
             <ol className="space-y-3 text-sm text-foreground/70 leading-relaxed mb-2">
               <li>
                 <span className="text-foreground/30 mr-2">01</span>
-                Reply to confirm, with anything you need us to know or arrange in advance.
+                Email to confirm, with anything you need us to know or arrange in advance.
               </li>
               <li>
                 <span className="text-foreground/30 mr-2">02</span>
-                We send you a short confirmation to sign, and the payment details, in person.
+                We send you a short confirmation to sign, and the payment details.
               </li>
               <li>
                 <span className="text-foreground/30 mr-2">03</span>
-                Once your deposit reaches us, we hold the night, begin arranging your week, and send your pre-arrival guide.
+                Once your deposit reaches us, we hold the night, begin arranging your week, and send your pre-arrival guide — including the accommodation we propose.
               </li>
             </ol>
           </div>
