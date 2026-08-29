@@ -124,6 +124,70 @@ const FAQS = [
   },
 ];
 
+const WEEK = [
+  {
+    label: "Tue 23 Sep",
+    title: "Arrival",
+    description:
+      "You are met at the airport and brought quietly through the city to your riad in the medina, a calm restored house chosen for you. Nothing is scheduled. The week begins slowly, on purpose.",
+    tags: ["Private transfer"],
+  },
+  {
+    label: "Wed 24 Sep",
+    title: "The medina, read properly",
+    description:
+      "A private day through the old city with a licensed guide, not the souvenir route but the medina as a living thing: the great palaces and the small hidden doors, the souks and the craftsmen, the logic beneath the maze. You leave able to read the city rather than be lost in it.",
+    tags: ["Licensed guide", "Private, full day"],
+  },
+  {
+    label: "Thu 25 Sep",
+    title: "Gardens and the light",
+    description:
+      "A gentler day. The cobalt garden and its museum, the Berber collection within: the jewellery, the textiles, the craft that carry the meaning the ceremony draws on. A private car through the day, the quieter gardens, the modern city as contrast. The pace is unhurried. You are beginning to slow.",
+    tags: ["Gardens & museums", "Private car"],
+  },
+  {
+    label: "Fri 26 Sep",
+    title: "Into the stillness",
+    description:
+      "A slow morning, nothing to rush for. Then a lunch by the water, and on into the Agafay, a stone desert of pale rock and wide sky, the Atlas on the horizon and the noise of the world gone. A private camel into the dunes as the sun goes down, just the two of you and your handler. A quiet dinner under the open sky, no alcohol, and the stars the way they only come where there is no city. You return empty, still, ready.",
+    tags: ["A secluded desert camp", "Private camel at sunset", "Dinner under the sky"],
+  },
+  {
+    label: "Sat 27 Sep",
+    title: "Cleansing, and the Lila",
+    description:
+      "The day begins with the hammam, not a spa hour but the old ritual cleansing, warm water and black soap, the body prepared. Then rest, a light table, the day narrowing toward the evening. At night, the Lila, everything set out above, the still point the whole week has moved toward.",
+    tags: ["Ritual hammam", "The Lila at night"],
+  },
+  {
+    label: "Sun 28 Sep",
+    title: "Rest",
+    description:
+      "Nothing is scheduled. The night is long, and the day after is for sleeping it off, sitting quietly, letting whatever moved settle. The city will still be there, gentler now.",
+    tags: ["Open, recovery"],
+  },
+  {
+    label: "Mon 29 Sep",
+    title: "Departure",
+    description:
+      "When it is time, you are taken back to the airport, rested, not depleted. The week was built so the ceremony would be the peak and the leaving would be calm.",
+    tags: ["Private transfer"],
+  },
+];
+
+const WEEK_HOLDS = [
+  "Private airport transfers, arrival and departure",
+  "Six nights in a restored riad in the medina, chosen for you",
+  "A full private day through the medina with a licensed official guide",
+  "The gardens, the museums, and a private car through the day",
+  "The evening in the Agafay: a private desert camp, the sunset, a private camel, dinner under the open sky",
+  "The ritual hammam on the day of the ceremony",
+  "Your restaurant tables, chosen and reserved for you across the medina, with Zahra herself seeing to each house before you arrive, so you are expected and looked after wherever you go",
+  "The whole week coordinated end to end, so nothing is left to you but the experience",
+];
+
+
 // ── FAQ Item (matches Sahara: prints expanded via print:!block) ──────────────
 function FAQItem({ question, answer }: { question: string; answer: string }) {
   const [open, setOpen] = useState(false);
@@ -156,6 +220,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default function LilaDossierContent() {
+  const [tab, setTab] = useState<"lila" | "week">("lila");
   return (
     <div className="bg-background min-h-screen">
       <style jsx global>{`
@@ -273,6 +338,37 @@ export default function LilaDossierContent() {
         </div>
       </div>
 
+
+      {/* ── Tabs ───────────────────────────────────────────────────────── */}
+      <div className="border-t border-foreground/10 print:hidden">
+        <div className="max-w-3xl mx-auto px-8 md:px-12 lg:px-16">
+          <div className="flex gap-8">
+            <button
+              onClick={() => setTab("lila")}
+              className={`py-5 text-xs tracking-[0.2em] uppercase transition-colors border-b-2 -mb-px ${
+                tab === "lila"
+                  ? "border-foreground text-foreground"
+                  : "border-transparent text-foreground/40 hover:text-foreground/70"
+              }`}
+            >
+              The Lila
+            </button>
+            <button
+              onClick={() => setTab("week")}
+              className={`py-5 text-xs tracking-[0.2em] uppercase transition-colors border-b-2 -mb-px ${
+                tab === "week"
+                  ? "border-foreground text-foreground"
+                  : "border-transparent text-foreground/40 hover:text-foreground/70"
+              }`}
+            >
+              The Week
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* ── LILA TAB ───────────────────────────────────────────────────── */}
+      <div className={tab === "lila" ? "block" : "hidden"}>
       {/* ── The night — sequence ───────────────────────────────────────── */}
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-6 lg:px-16 max-w-3xl">
@@ -445,7 +541,11 @@ export default function LilaDossierContent() {
             troupe, the Moqaddema. They set the night aside and turn away other
             work. For that reason, once a date is locked it cannot be refunded. The
             tradition does not treat a Lila as something booked and cancelled, and
-            the troupe will not accept it as such.
+            the troupe will not accept it as such. The curated week works the same
+            way: once confirmed, your accommodation, the desert camp, and your
+            guiding are booked and prepaid on your behalf, and turned away by no
+            one lightly. Both deposits, for the night and for the week, are
+            non-refundable.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
             Our commitment runs both ways. If, for reasons beyond our control, the
@@ -490,39 +590,131 @@ export default function LilaDossierContent() {
         </div>
       </section>
 
-      {/* ── Pricing &amp; confirmation ─────────────────────────────────────── */}
+      </div>
+      {/* end LILA TAB */}
+
+      {/* ── WEEK TAB ───────────────────────────────────────────────────── */}
+      <div className={tab === "week" ? "block" : "hidden"}>
+            {/* ── The week around the night ───────────────────────── */}
+      <section className="border-t border-foreground/10">
+        <div className="max-w-3xl mx-auto px-8 md:px-12 lg:px-16 py-16">
+          <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-6">
+            The days around the night
+          </p>
+          <p className="font-serif text-foreground/60 text-lg md:text-xl leading-relaxed mb-4 max-w-xl">
+            Everything is arranged and held for you. You move through the week
+            without booking, negotiating, or wondering, met at each turn and carried
+            gently toward the ceremony at its center.
+          </p>
+          <p className="text-sm text-foreground/50 leading-relaxed mb-12 max-w-xl">
+            Three days lead you toward the Lila, each quieter than the last; the day
+            you arrive and the day after are left open, so you begin rested and end
+            rested. A note held throughout: the days before a Lila call for a clean
+            body and a clear mind, no alcohol, light eating, rest where you can. It
+            is part of arriving ready.
+          </p>
+          <div className="space-y-16">
+            {WEEK.map((day) => (
+              <div key={day.title}>
+                <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-3">
+                  {day.label}
+                </p>
+                <h2 className="font-serif text-2xl md:text-3xl mb-4">{day.title}</h2>
+                <p className="text-muted-foreground leading-relaxed text-lg mb-6">
+                  {day.description}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {day.tags.map((tag, i) => (
+                    <span
+                      key={i}
+                      className="text-[10px] tracking-[0.08em] uppercase px-3 py-1 bg-foreground/[0.04] text-foreground/40"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Everything your week holds ──────────────────── */}
+      <section className="border-t border-foreground/10">
+        <div className="max-w-3xl mx-auto px-8 md:px-12 lg:px-16 py-16">
+          <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-6">
+            Everything your week holds
+          </p>
+          <ul className="space-y-3 max-w-xl">
+            {WEEK_HOLDS.map((item, i) => (
+              <li key={i} className="flex gap-3 text-sm text-foreground/70 leading-relaxed">
+                <span className="text-foreground/25 mt-0.5 flex-shrink-0">—</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+      </div>
+      {/* end WEEK TAB */}
+
+{/* ── Pricing &amp; confirmation ─────────────────────────────────────── */}
       <section className="border-t border-foreground/10">
         <div className="max-w-3xl mx-auto px-8 md:px-12 lg:px-16 py-16">
           <div className="max-w-xl">
             <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-8">
-              The curation
+              The full picture
             </p>
 
-            <div className="mb-8">
-              <div className="flex items-baseline gap-3 mb-2">
-                <span className="font-serif text-5xl text-foreground">€5,000</span>
-                <span className="text-sm text-foreground/40">all-inclusive</span>
+            <div className="mb-8 space-y-6">
+              <div>
+                <div className="flex items-baseline gap-3 mb-2">
+                  <span className="font-serif text-4xl text-foreground">€5,000</span>
+                  <span className="text-sm text-foreground/40">the Lila</span>
+                </div>
+                <p className="text-sm text-foreground/40">
+                  The Maâlem and troupe, the Moqaddema, the venue, the meal and
+                  offerings, your host, interpreter, and private transport both ways.
+                </p>
               </div>
-              <p className="text-sm text-foreground/40">
-                The Maâlem and troupe, the Moqaddema, the venue, the meal and
-                offerings, your host, interpreter, and private transport both ways.
-              </p>
+              <div>
+                <div className="flex items-baseline gap-3 mb-2">
+                  <span className="font-serif text-4xl text-foreground">€2,500</span>
+                  <span className="text-sm text-foreground/40">the curated week</span>
+                </div>
+                <p className="text-sm text-foreground/40">
+                  Everything above: accommodation, private guiding and transfers, the
+                  gardens, the Agafay evening, the ritual hammam, your tables arranged
+                  and Zahra's care throughout.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-foreground/[0.08]">
+                <div className="flex items-baseline gap-3">
+                  <span className="font-serif text-5xl text-foreground">€7,500</span>
+                  <span className="text-sm text-foreground/40">together</span>
+                </div>
+              </div>
             </div>
 
             <div className="border border-foreground/[0.08] p-6 mb-8">
               <div className="flex justify-between text-sm text-foreground/60 mb-3 pb-3 border-b border-foreground/[0.06]">
-                <span>Deposit — to confirm your date</span>
+                <span>The Lila — deposit to confirm your date</span>
+                <span>€2,500</span>
+              </div>
+              <div className="flex justify-between text-sm text-foreground/60 mb-3 pb-3 border-b border-foreground/[0.06]">
+                <span>The Lila — balance</span>
                 <span>€2,500</span>
               </div>
               <div className="flex justify-between text-sm text-foreground/60 mb-3">
-                <span>Balance — fourteen days before the night</span>
+                <span>The curated week — arranged on the same confirmation</span>
                 <span>€2,500</span>
               </div>
               <p className="text-xs text-foreground/35 mt-4">
-                Paid by bank wire transfer, reaching us net of any bank or transfer
-                charges (these are the sender's responsibility). Payment of the
-                deposit confirms you have
-                read and accept the terms set out in this dossier, together with our{" "}
+                Both deposits — for the Lila and for the curated week — are
+                non-refundable, because each one commits real people and real money
+                on your behalf the moment it is sent. Sending your deposit confirms
+                you have read and accept the terms set out in this dossier and in
+                your confirmation, together with our{" "}
                 <Link
                   href="https://www.slowmorocco.com/booking-conditions"
                   className="underline underline-offset-2 hover:text-foreground/60"
@@ -554,11 +746,11 @@ export default function LilaDossierContent() {
               </li>
               <li>
                 <span className="text-foreground/30 mr-2">02</span>
-                We send the deposit invoice for €2,500.
+                We send you a short confirmation to sign, and the payment details, in person.
               </li>
               <li>
                 <span className="text-foreground/30 mr-2">03</span>
-                Once it clears, we hold the night and send your pre-arrival guide.
+                Once your deposit reaches us, we hold the night, begin arranging your week, and send your pre-arrival guide.
               </li>
             </ol>
           </div>
