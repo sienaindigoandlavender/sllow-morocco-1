@@ -742,7 +742,7 @@ export default function LilaDossierContent() {
               </div>
               <div>
                 <div className="flex items-baseline gap-3 mb-2">
-                  <span className="font-serif text-4xl text-foreground">€2,500</span>
+                  <span className="font-serif text-4xl text-foreground">€2,650</span>
                   <span className="text-sm text-foreground/40">the curated week</span>
                 </div>
                 <p className="text-sm text-foreground/40">
@@ -753,7 +753,7 @@ export default function LilaDossierContent() {
               </div>
               <div className="pt-4 border-t border-foreground/[0.08]">
                 <div className="flex items-baseline gap-3 mb-2">
-                  <span className="font-serif text-5xl text-foreground">€7,500</span>
+                  <span className="font-serif text-5xl text-foreground">€7,650</span>
                   <span className="text-sm text-foreground/40">together</span>
                 </div>
                 <p className="text-xs text-foreground/35 leading-relaxed">
@@ -778,14 +778,14 @@ export default function LilaDossierContent() {
                 <span>Balance</span>
                 <span>€2,500</span>
               </div>
-              <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 mb-3 mt-5">The curated week — €2,500</p>
+              <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 mb-3 mt-5">The curated week — €2,650</p>
               <div className="flex justify-between text-sm text-foreground/60 mb-3">
                 <span>Deposit to confirm — 50%</span>
-                <span>€1,250</span>
+                <span>€1,325</span>
               </div>
               <div className="flex justify-between text-sm text-foreground/60 mb-3">
                 <span>Balance</span>
-                <span>€1,250</span>
+                <span>€1,325</span>
               </div>
               <p className="text-xs text-foreground/35 mt-4">
                 Both deposits — for the Lila and for the curated week — are
