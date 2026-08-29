@@ -129,7 +129,7 @@ const WEEK = [
     label: "Tue 23 Sep",
     title: "Arrival",
     description:
-      "You are met at the airport and brought quietly through the city to your riad in the medina, a calm restored house chosen for you. Nothing is scheduled. The week begins slowly, on purpose.",
+      "You are met at the airport and brought quietly through the city to your riad in the medina — a restored traditional courtyard house, calm and characterful, chosen for you (not a modern hotel; a real riad, the way the medina is meant to be lived). Nothing is scheduled. The week begins slowly, on purpose.",
     tags: ["Private transfer"],
   },
   {
@@ -178,7 +178,7 @@ const WEEK = [
 
 const WEEK_HOLDS = [
   "Private airport transfers, arrival and departure",
-  "Six nights in a restored riad in the medina, chosen for you",
+  "Six nights in a restored traditional riad in the medina — a courtyard house chosen for its calm and character, not a modern hotel",
   "A full private day through the medina with a licensed official guide",
   "The gardens, the museums, and a private car through the day",
   "The evening in the Agafay: a private desert camp, the sunset, a private camel, dinner under the open sky",
@@ -190,7 +190,7 @@ const WEEK_HOLDS = [
 
 const WEEK_INCLUDED = [
   "Private airport transfers, on arrival and departure",
-  "Six nights' accommodation in a medina riad, arranged for you and billed at cost",
+  "Six nights in a traditional medina riad — a restored courtyard house, arranged for you and billed at cost",
   "A private, guided medina day with a licensed official guide",
   "A private car for the gardens-and-museums day, with entries",
   "The Agafay evening: private transfers, the sunset, the private camel with handler, and dinner at the camp",
