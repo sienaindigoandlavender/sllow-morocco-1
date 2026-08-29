@@ -75,7 +75,7 @@ const INCLUDED = [
 ];
 
 const NOT_INCLUDED = [
-  "Your accommodation in Marrakech",
+  "Accommodation, daily meals, and the days around the ceremony — these belong to the curated week (see the other tab), not to the ceremony fee",
   "International flights and travel to Marrakech",
   "Personal expenses",
   "Any guaranteed outcome — the night offers witness, not certainty",
@@ -183,10 +183,29 @@ const WEEK_HOLDS = [
   "The gardens, the museums, and a private car through the day",
   "The evening in the Agafay: a private desert camp, the sunset, a private camel, dinner under the open sky",
   "The ritual hammam on the day of the ceremony",
-  "Zahra on hand throughout your stay. She looks after our own riad and its guests, and across your week she is reachable on WhatsApp the same way — to make a reservation, arrange a car, answer a question, or help with whatever you need, so you always have someone who knows the city beside you",
-  "Your restaurant tables, chosen and reserved for you across the medina, with Zahra seeing to each house before you arrive, so you are expected and looked after wherever you go. We keep the week deliberately open at the table rather than all-inclusive, because Marrakech is too rich a city to eat from one kitchen — the meals you settle directly at each house, and we send you to the ones worth your evenings. Only the Agafay dinner and the ceremonial meal on the night of the Lila are ours",
-  "The whole week coordinated for you, so it runs without effort on your part",
+  "Zahra on hand throughout your stay. She looks after our own riad and its guests, and across your week she is reachable on WhatsApp the same way — to make a reservation, arrange a car, answer a question, or point you the right way, so you always have someone who knows the city beside you",
+  "Your restaurant tables, chosen and reserved for you across the medina, with Zahra seeing to each house before you arrive, so you are expected and looked after at the houses we send you to. We keep the week deliberately open at the table rather than all-inclusive, because Marrakech is too rich a city to eat from one kitchen — the meals you settle directly at each house, and we send you to the ones worth your evenings. Only the Agafay dinner and the ceremonial meal on the night of the Lila are ours",
+  "The whole week coordinated for you, so it runs smoothly from arrival to departure",
 ];
+
+const WEEK_INCLUDED = [
+  "Private airport transfers, on arrival and departure",
+  "Six nights' accommodation in a medina riad, arranged for you and billed at cost",
+  "A private, guided medina day with a licensed official guide",
+  "A private car for the gardens-and-museums day, with entries",
+  "The Agafay evening: private transfers, the sunset, the private camel with handler, and dinner at the camp",
+  "The ritual hammam on the day of the Lila",
+  "Your restaurant tables chosen and reserved, with Zahra coordinating on WhatsApp through the week",
+];
+
+const WEEK_NOT_INCLUDED = [
+  "Your daily meals in the city — we reserve the tables; you settle the bill at each house (the Agafay dinner and the ceremonial meal are included)",
+  "Drinks",
+  "International flights and travel to Marrakech",
+  "Travel insurance",
+  "Gratuities",
+  "Personal expenses",
+]
 
 
 // ── FAQ Item (matches Sahara: prints expanded via print:!block) ──────────────
@@ -603,7 +622,7 @@ export default function LilaDossierContent() {
             The days around the night
           </p>
           <p className="font-serif text-foreground/60 text-lg md:text-xl leading-relaxed mb-4 max-w-xl">
-            Everything is arranged and held for you. From the moment you land to the
+            Your week is arranged and held for you. From the moment you land to the
             moment you leave, someone is with you — booking the tables, arranging the
             cars, answering what you need answered. The managing is ours, so your
             attention stays where it belongs: on why you came.
@@ -639,11 +658,11 @@ export default function LilaDossierContent() {
         </div>
       </section>
 
-      {/* ── Everything your week holds ──────────────────── */}
+      {/* ── What your week holds ──────────────────── */}
       <section className="border-t border-foreground/10">
         <div className="max-w-3xl mx-auto px-8 md:px-12 lg:px-16 py-16">
           <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-6">
-            Everything your week holds
+            What your week holds
           </p>
           <ul className="space-y-3 max-w-xl">
             {WEEK_HOLDS.map((item, i) => (
@@ -656,6 +675,40 @@ export default function LilaDossierContent() {
         </div>
       </section>
       </div>
+      {/* ── The week — included / not included ──────────────────────────── */}
+      <section className="border-t border-foreground/10">
+        <div className="max-w-3xl mx-auto px-8 md:px-12 lg:px-16 py-16">
+          <div className="grid md:grid-cols-2 gap-12">
+            <div>
+              <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-6">
+                Included
+              </p>
+              <ul className="space-y-3">
+                {WEEK_INCLUDED.map((item, i) => (
+                  <li key={i} className="flex gap-3 text-sm text-foreground/70 leading-relaxed">
+                    <span className="text-foreground/25 mt-0.5 flex-shrink-0">—</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-6">
+                Not included
+              </p>
+              <ul className="space-y-3">
+                {WEEK_NOT_INCLUDED.map((item, i) => (
+                  <li key={i} className="flex gap-3 text-sm text-foreground/50 leading-relaxed">
+                    <span className="text-foreground/20 mt-0.5 flex-shrink-0">—</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* end WEEK TAB */}
 
 {/* ── Pricing &amp; confirmation ─────────────────────────────────────── */}
