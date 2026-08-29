@@ -150,7 +150,7 @@ const WEEK = [
     label: "Fri 26 Sep",
     title: "Into the stillness",
     description:
-      "A slow morning, nothing to rush for. Then a lunch by the water, and on into the Agafay, a stone desert of pale rock and wide sky, the Atlas on the horizon and the noise of the world gone. A private camel into the dunes as the sun goes down, just the two of you and your handler. A quiet dinner under the open sky, and the stars the way they only come where there is no city. You return empty, still, ready.",
+      "A slow morning, nothing to rush for. Then south, with a stop for lunch by the water if you wish — a lake at the foot of the mountains — and on into the Agafay, a stone desert of pale rock and wide sky, the Atlas on the horizon and the noise of the world gone. A private camel into the dunes as the sun goes down, just the two of you and your handler. A quiet dinner under the open sky, and the stars the way they only come where there is no city. You return empty, still, ready.",
     tags: ["A secluded desert camp", "Private camel at sunset", "Dinner under the sky"],
   },
   {
@@ -759,17 +759,23 @@ export default function LilaDossierContent() {
             </div>
 
             <div className="border border-foreground/[0.08] p-6 mb-8">
-              <div className="flex justify-between text-sm text-foreground/60 mb-3 pb-3 border-b border-foreground/[0.06]">
-                <span>The Lila — deposit to confirm your date</span>
+              <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 mb-3">The Lila — €5,000</p>
+              <div className="flex justify-between text-sm text-foreground/60 mb-3">
+                <span>Deposit to confirm — 50%</span>
                 <span>€2,500</span>
               </div>
-              <div className="flex justify-between text-sm text-foreground/60 mb-3 pb-3 border-b border-foreground/[0.06]">
-                <span>The Lila — balance</span>
+              <div className="flex justify-between text-sm text-foreground/60 mb-3 pb-4 border-b border-foreground/[0.06]">
+                <span>Balance</span>
                 <span>€2,500</span>
+              </div>
+              <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 mb-3 mt-5">The curated week — €2,500</p>
+              <div className="flex justify-between text-sm text-foreground/60 mb-3">
+                <span>Deposit to confirm — 50%</span>
+                <span>€1,250</span>
               </div>
               <div className="flex justify-between text-sm text-foreground/60 mb-3">
-                <span>The curated week — arranged on the same confirmation</span>
-                <span>€2,500</span>
+                <span>Balance</span>
+                <span>€1,250</span>
               </div>
               <p className="text-xs text-foreground/35 mt-4">
                 Both deposits — for the Lila and for the curated week — are
