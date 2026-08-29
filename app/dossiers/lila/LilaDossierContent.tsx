@@ -248,6 +248,10 @@ export default function LilaDossierContent() {
           .print\\:hidden {
             display: none !important;
           }
+          /* In PDF/print, show BOTH tabs' content regardless of which is selected */
+          .tab-panel {
+            display: block !important;
+          }
           body {
             background: white !important;
             color: black !important;
@@ -388,7 +392,10 @@ export default function LilaDossierContent() {
       </div>
 
       {/* ── LILA TAB ───────────────────────────────────────────────────── */}
-      <div className={tab === "lila" ? "block" : "hidden"}>
+      <div className={`tab-panel ${tab === "lila" ? "block" : "hidden"}`}>
+      <div className="hidden print:block max-w-3xl mx-auto px-8 md:px-12 lg:px-16 pt-8">
+        <p className="text-xs tracking-[0.25em] uppercase text-foreground/50">Part One — The Lila</p>
+      </div>
       {/* ── The night — sequence ───────────────────────────────────────── */}
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-6 lg:px-16 max-w-3xl">
@@ -614,7 +621,10 @@ export default function LilaDossierContent() {
       {/* end LILA TAB */}
 
       {/* ── WEEK TAB ───────────────────────────────────────────────────── */}
-      <div className={tab === "week" ? "block" : "hidden"}>
+      <div className={`tab-panel ${tab === "week" ? "block" : "hidden"}`}>
+      <div className="hidden print:block max-w-3xl mx-auto px-8 md:px-12 lg:px-16 pt-8">
+        <p className="text-xs tracking-[0.25em] uppercase text-foreground/50">Part Two — The Curated Week</p>
+      </div>
             {/* ── The week around the night ───────────────────────── */}
       <section className="border-t border-foreground/10">
         <div className="max-w-3xl mx-auto px-8 md:px-12 lg:px-16 py-16">
