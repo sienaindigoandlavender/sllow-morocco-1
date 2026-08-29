@@ -150,7 +150,7 @@ const WEEK = [
     label: "Fri 26 Sep",
     title: "Into the stillness",
     description:
-      "A slow morning, nothing to rush for. Then a lunch by the water, and on into the Agafay, a stone desert of pale rock and wide sky, the Atlas on the horizon and the noise of the world gone. A private camel into the dunes as the sun goes down, just the two of you and your handler. A quiet dinner under the open sky, no alcohol, and the stars the way they only come where there is no city. You return empty, still, ready.",
+      "A slow morning, nothing to rush for. Then a lunch by the water, and on into the Agafay, a stone desert of pale rock and wide sky, the Atlas on the horizon and the noise of the world gone. A private camel into the dunes as the sun goes down, just the two of you and your handler. A quiet dinner under the open sky, and the stars the way they only come where there is no city. You return empty, still, ready.",
     tags: ["A secluded desert camp", "Private camel at sunset", "Dinner under the sky"],
   },
   {
@@ -609,9 +609,7 @@ export default function LilaDossierContent() {
           <p className="text-sm text-foreground/50 leading-relaxed mb-12 max-w-xl">
             Three days lead you toward the Lila, each quieter than the last; the day
             you arrive and the day after are left open, so you begin rested and end
-            rested. A note held throughout: the days before a Lila call for a clean
-            body and a clear mind, no alcohol, light eating, rest where you can. It
-            is part of arriving ready.
+            rested, so the ceremony finds you ready.
           </p>
           <div className="space-y-16">
             {WEEK.map((day) => (
@@ -712,9 +710,12 @@ export default function LilaDossierContent() {
               <p className="text-xs text-foreground/35 mt-4">
                 Both deposits — for the Lila and for the curated week — are
                 non-refundable, because each one commits real people and real money
-                on your behalf the moment it is sent. Sending your deposit confirms
-                you have read and accept the terms set out in this dossier and in
-                your confirmation, together with our{" "}
+                on your behalf the moment it is sent. This is a private commissioned
+                ceremony, not a standard journey: it is governed by the terms of this
+                dossier and your signed confirmation, which apply in full, and where
+                they differ from our general policies the terms here prevail. Sending
+                your deposit confirms you have read and accept these terms, together
+                with our{" "}
                 <Link
                   href="https://www.slowmorocco.com/booking-conditions"
                   className="underline underline-offset-2 hover:text-foreground/60"
@@ -738,11 +739,7 @@ export default function LilaDossierContent() {
             <ol className="space-y-3 text-sm text-foreground/70 leading-relaxed mb-2">
               <li>
                 <span className="text-foreground/30 mr-2">01</span>
-                Reply with your date —{" "}
-                <span className="text-foreground font-medium">September 11–14</span>{" "}
-                or{" "}
-                <span className="text-foreground font-medium">September 25–28</span>{" "}
-                — and anything you need us to know or arrange in advance.
+                Reply to confirm, with anything you need us to know or arrange in advance.
               </li>
               <li>
                 <span className="text-foreground/30 mr-2">02</span>
