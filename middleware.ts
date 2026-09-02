@@ -25,6 +25,21 @@ export function middleware(request: NextRequest) {
   }
 
   // ===================================================
+  // 1b. SECURITY FIX: gate the entire /api/admin/* subtree with the same
+  //     session cookie. These API routes previously had NO auth and were
+  //     publicly readable/writable.
+  // ===================================================
+  if (pathname.startsWith('/api/admin')) {
+    const sessionToken = request.cookies.get('sm_admin_session')?.value;
+    if (sessionToken !== 'authenticated_true') {
+      return new NextResponse(
+        JSON.stringify({ success: false, error: 'unauthorized' }),
+        { status: 401, headers: { 'content-type': 'application/json' } }
+      );
+    }
+  }
+
+  // ===================================================
   // 2. EXISTING INFRASTRUCTURE: Redirect non-www to www
   // ===================================================
   if (hostname === "slowmorocco.com") {
@@ -65,5 +80,8 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon|og-image|apple-touch|llms|robots|sitemap).*)"],
+  matcher: [
+    "/api/admin/:path*",
+    "/((?!api|_next/static|_next/image|favicon|og-image|apple-touch|llms|robots|sitemap).*)",
+  ],
 };
