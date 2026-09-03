@@ -2,6 +2,7 @@
 
 import { cloudinaryUrl } from "@/lib/cloudinary";
 import Link from "next/link";
+import EpicCarousel from "@/components/EpicCarousel";
 import { TRIP_FUNNEL_PUBLIC } from "@/lib/flags";
 import dynamic from "next/dynamic";
 
@@ -226,6 +227,11 @@ export default function HomeContent({
           </div>
         </section>
       )}
+
+      {/* ══════════════════════════════════════════════════
+          1b. EPIC — the extraordinary layer (dark, cinematic band)
+          ══════════════════════════════════════════════════ */}
+      <EpicCarousel />
 
       {/* ══════════════════════════════════════════════════
           2. ORIENTATION — Three pathways (editorial table of contents)
