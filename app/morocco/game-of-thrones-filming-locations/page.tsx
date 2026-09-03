@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import OdysseyJourneyCTA from "@/components/OdysseyJourneyCTA";
+import RelatedJourneyCTA, { ODYSSEY_JOURNEY, FILM_ROUTE_JOURNEY } from "@/components/OdysseyJourneyCTA";
 import FilmLocationsMap from "@/components/FilmLocationsMap";
+import ArticleSchema from "@/components/seo/ArticleSchema";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata: Metadata = {
   title: "Where Game of Thrones Was Filmed in Morocco: Astapor & Yunkai",
@@ -42,6 +44,11 @@ const LOCATIONS = [
 export default function GoTMoroccoPage() {
   return (
     <div className="bg-background min-h-screen">
+      <ArticleSchema story={{ title: "Where Game of Thrones Was Filmed in Morocco: Astapor & Yunkai", slug: "morocco/game-of-thrones-filming-locations", category: "Film" }} />
+      <BreadcrumbSchema items={[
+        { name: "Morocco", url: "https://www.slowmorocco.com/morocco" },
+        { name: "Where Game of Thrones Was Filmed in Morocco", url: "https://www.slowmorocco.com/morocco/game-of-thrones-filming-locations" },
+      ]} />
       <div className="px-6 md:px-14 pt-20 pb-12 border-b border-foreground/[0.08]">
         <Link
           href="/morocco/ouarzazate-africas-hollywood"
@@ -161,7 +168,7 @@ export default function GoTMoroccoPage() {
           </p>
         </div>
 
-        <OdysseyJourneyCTA />
+        <RelatedJourneyCTA journeys={[FILM_ROUTE_JOURNEY, ODYSSEY_JOURNEY]} />
       </div>
     </div>
   );
