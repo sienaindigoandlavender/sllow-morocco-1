@@ -84,19 +84,39 @@ async function getRelatedStories(currentStory: Story, currentSlug: string) {
       region: s.region || undefined,
     } satisfies Story));
 
-    const related = stories.filter((s) => {
-      if (s.slug === currentSlug) return false;
-      if (s.category && currentStory.category && s.category === currentStory.category) return true;
-      if (s.tags && currentStory.tags) {
-        const sTags = s.tags.toLowerCase().split(",").map((t) => t.trim());
-        const storyTags = currentStory.tags.toLowerCase().split(",").map((t) => t.trim());
-        if (sTags.some((t) => storyTags.includes(t))) return true;
-      }
-      if (s.region && currentStory.region && s.region === currentStory.region) return true;
-      return false;
-    });
+    // Score each candidate by how strongly it relates: shared category,
+    // number of shared tags, and shared region each add weight. Ranking by
+    // relevance (rather than first-match) tightens the topical cluster —
+    // Google reads a well-linked cluster of closely-related pages as topical
+    // authority, which lifts the whole group.
+    const storyTags = (currentStory.tags || "")
+      .toLowerCase()
+      .split(",")
+      .map((t) => t.trim())
+      .filter(Boolean);
 
-    return related.slice(0, 3);
+    const scored = stories
+      .filter((s) => s.slug !== currentSlug)
+      .map((s) => {
+        let score = 0;
+        if (s.category && currentStory.category && s.category === currentStory.category) {
+          score += 3; // same category is the strongest single signal
+        }
+        if (s.tags && storyTags.length) {
+          const sTags = s.tags.toLowerCase().split(",").map((t) => t.trim());
+          const shared = sTags.filter((t) => storyTags.includes(t)).length;
+          score += shared * 2; // each shared tag adds weight
+        }
+        if (s.region && currentStory.region && s.region === currentStory.region) {
+          score += 1; // same region is a weaker signal
+        }
+        return { story: s, score };
+      })
+      .filter((x) => x.score > 0)
+      .sort((a, b) => b.score - a.score);
+
+    // Surface up to six, most-related first, for a richer internal-link cluster.
+    return scored.slice(0, 6).map((x) => x.story);
   } catch {
     return [];
   }
