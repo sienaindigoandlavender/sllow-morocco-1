@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import OdysseyJourneyCTA from "@/components/OdysseyJourneyCTA";
 import FilmLocationsMap from "@/components/FilmLocationsMap";
 
 export const metadata: Metadata = {
@@ -159,6 +160,8 @@ export default function GoTMoroccoPage() {
             .
           </p>
         </div>
+
+        <OdysseyJourneyCTA />
       </div>
     </div>
   );
