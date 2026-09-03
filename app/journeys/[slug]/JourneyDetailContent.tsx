@@ -6,7 +6,6 @@ import { cloudinaryUrl } from "@/lib/cloudinary";
 import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import { linkGlossaryTermsText } from "@/lib/glossary-linker";
 import { linkCrossReferences } from "@/lib/story-linker";
-import React from "react";
 
 // Layer the linkers: cross-references (to stories and places) first, then
 // glossary terms on the remaining plain-text pieces. This turns passing
