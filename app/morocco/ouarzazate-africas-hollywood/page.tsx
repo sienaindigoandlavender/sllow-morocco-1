@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import OdysseyJourneyCTA from "@/components/OdysseyJourneyCTA";
+import RelatedJourneyCTA, { ODYSSEY_JOURNEY, FILM_ROUTE_JOURNEY } from "@/components/OdysseyJourneyCTA";
+import ArticleSchema from "@/components/seo/ArticleSchema";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata: Metadata = {
   title: "Ouarzazate, Africa's Hollywood: Every Film Shot There & the New Cinema City",
@@ -33,6 +35,11 @@ const FILMS: { title: string; year: string; note: string; href?: string }[] = [
 export default function OuarzazateHollywoodPage() {
   return (
     <div className="bg-background min-h-screen">
+      <ArticleSchema story={{ title: "Ouarzazate, Africa's Hollywood: Every Film Shot There & the New Cinema City", slug: "morocco/ouarzazate-africas-hollywood", category: "Film" }} />
+      <BreadcrumbSchema items={[
+        { name: "Morocco", url: "https://www.slowmorocco.com/morocco" },
+        { name: "Ouarzazate, Africa's Hollywood", url: "https://www.slowmorocco.com/morocco/ouarzazate-africas-hollywood" },
+      ]} />
       <div className="px-6 md:px-14 pt-20 pb-12 border-b border-foreground/[0.08]">
         <Link
           href="/morocco"
@@ -187,7 +194,7 @@ export default function OuarzazateHollywoodPage() {
           </p>
         </div>
 
-        <OdysseyJourneyCTA />
+        <RelatedJourneyCTA journeys={[FILM_ROUTE_JOURNEY, ODYSSEY_JOURNEY]} />
       </div>
     </div>
   );
