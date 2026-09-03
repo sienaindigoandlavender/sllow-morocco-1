@@ -79,6 +79,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="alternate" type="text/plain" title="AI-readable content index" href="/llms.txt" />
+      </head>
+      <body>
+        {/* Google Analytics (GA4) — in <body> so next/script afterInteractive
+            fires reliably. */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-CSBQECNF60"
           strategy="afterInteractive"
@@ -91,9 +96,6 @@ export default function RootLayout({
             gtag('config', 'G-CSBQECNF60');
           `}
         </Script>
-        <link rel="alternate" type="text/plain" title="AI-readable content index" href="/llms.txt" />
-      </head>
-      <body>
         <StructuredData />
         <OrganizationSchema />
         <WebSiteSchema />
