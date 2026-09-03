@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     canonical: "https://www.slowmorocco.com/epic",
   },
   robots: {
-    index: false,
+    index: true,
     follow: true,
   },
 };
