@@ -4,7 +4,7 @@ import { getJourneyBySlug, getRoutesByIds, getJourneys, getStories, getPlaces, g
 import { findRelatedStories, parseDestinations } from "@/lib/content-matcher";
 import JourneyDetailContent from "./JourneyDetailContent";
 
-export const revalidate = 3600;
+export const revalidate = 10;
 
 const BASE_URL = "https://www.slowmorocco.com";
 
