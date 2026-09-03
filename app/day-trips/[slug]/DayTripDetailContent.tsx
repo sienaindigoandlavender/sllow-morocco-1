@@ -8,7 +8,6 @@ import DayTripBookingModal from "@/components/DayTripBookingModal";
 import AgafayRouteMap from "@/components/AgafayRouteMap";
 import { linkGlossaryTermsText } from "@/lib/glossary-linker";
 import { linkCrossReferences } from "@/lib/story-linker";
-import React from "react";
 
 function applyGlossaryToStrings(node: React.ReactNode): React.ReactNode {
   if (typeof node === "string") return linkGlossaryTermsText(node);
