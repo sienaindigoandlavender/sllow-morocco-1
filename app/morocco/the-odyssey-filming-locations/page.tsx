@@ -164,6 +164,25 @@ export default function OdysseyFilmingLocationsPage() {
           </p>
           <OdysseyLocationsMap />
         </div>
+
+        <div className="mt-20 pt-12 border-t border-foreground/10">
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">
+            Walk the whole of it
+          </p>
+          <p className="text-sm text-foreground/65 leading-relaxed mb-6">
+            We&apos;ve built the full crossing — Troy to Ogygia, Marrakech to
+            Dakhla, all four Moroccan landscapes and every stretch of country
+            between them, taken in twenty-one days at the pace the map actually
+            demands. Not four film stops on a long weekend. The whole road, to
+            the white dune at the far edge of the country.
+          </p>
+          <Link
+            href="/journeys/the-odyssey"
+            className="inline-block text-sm tracking-[0.05em] border border-foreground/25 px-8 py-3.5 hover:bg-foreground hover:text-background transition-colors"
+          >
+            The Odyssey — a 21-day journey →
+          </Link>
+        </div>
       </div>
     </div>
   );
