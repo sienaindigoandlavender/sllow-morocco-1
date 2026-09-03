@@ -5,6 +5,31 @@ import Link from "next/link";
 import { cloudinaryUrl } from "@/lib/cloudinary";
 import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import { linkGlossaryTermsText } from "@/lib/glossary-linker";
+import { linkCrossReferences } from "@/lib/story-linker";
+import React from "react";
+
+// Layer the linkers: cross-references (to stories and places) first, then
+// glossary terms on the remaining plain-text pieces. This turns passing
+// mentions of other pages in the journey prose into real internal links.
+function applyGlossaryToStrings(node: React.ReactNode): React.ReactNode {
+  if (typeof node === "string") return linkGlossaryTermsText(node);
+  if (!React.isValidElement(node)) return node;
+  const children = React.Children.toArray((node as React.ReactElement).props.children);
+  if (children.length === 0) return node;
+  return React.cloneElement(
+    node as React.ReactElement,
+    {},
+    ...children.map((c, i) =>
+      typeof c === "string"
+        ? React.createElement(React.Fragment, { key: i }, linkGlossaryTermsText(c))
+        : c
+    )
+  );
+}
+function linkJourneyProse(text: string, currentSlug?: string): React.ReactNode {
+  if (!text) return text;
+  return applyGlossaryToStrings(linkCrossReferences(text, currentSlug));
+}
 import ShareTools from "@/components/ShareTools";
 import JourneyLetter from "@/components/JourneyLetter";
 import TouristTripSchema from "@/components/seo/TouristTripSchema";
@@ -234,14 +259,14 @@ export default function JourneyDetailContent({
 
             <div className="mb-20">
               <p className="text-xl md:text-2xl text-foreground/70 leading-relaxed font-display italic">
-                {linkGlossaryTermsText(journey.description)}
+                {linkJourneyProse(journey.description, journey.slug)}
               </p>
             </div>
 
             {journey.arcDescription && (
               <div className="mb-20">
                 <p className="text-foreground/50 leading-relaxed text-lg whitespace-pre-line">
-                  {linkGlossaryTermsText(journey.arcDescription)}
+                  {linkJourneyProse(journey.arcDescription, journey.slug)}
                 </p>
               </div>
             )}
@@ -475,7 +500,7 @@ export default function JourneyDetailContent({
                   </h2>
 
                   <p className="text-foreground/75 leading-relaxed text-lg">
-                    {linkGlossaryTermsText(day.description)}
+                    {linkJourneyProse(day.description, journey.slug)}
                   </p>
                 </div>
               ))}
