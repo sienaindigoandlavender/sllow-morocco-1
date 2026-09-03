@@ -7,6 +7,28 @@ import { ArrowLeft, Clock, MapPin, Mountain } from "lucide-react";
 import DayTripBookingModal from "@/components/DayTripBookingModal";
 import AgafayRouteMap from "@/components/AgafayRouteMap";
 import { linkGlossaryTermsText } from "@/lib/glossary-linker";
+import { linkCrossReferences } from "@/lib/story-linker";
+import React from "react";
+
+function applyGlossaryToStrings(node: React.ReactNode): React.ReactNode {
+  if (typeof node === "string") return linkGlossaryTermsText(node);
+  if (!React.isValidElement(node)) return node;
+  const children = React.Children.toArray((node as React.ReactElement).props.children);
+  if (children.length === 0) return node;
+  return React.cloneElement(
+    node as React.ReactElement,
+    {},
+    ...children.map((c, i) =>
+      typeof c === "string"
+        ? React.createElement(React.Fragment, { key: i }, linkGlossaryTermsText(c))
+        : c
+    )
+  );
+}
+function linkTripProse(text: string, currentSlug?: string): React.ReactNode {
+  if (!text) return text;
+  return applyGlossaryToStrings(linkCrossReferences(text, currentSlug));
+}
 
 interface DayTrip {
   slug: string;
@@ -111,13 +133,13 @@ export default function DayTripDetailContent({
           </div>
 
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-12 font-display italic">
-            {linkGlossaryTermsText(dayTrip.shortDescription)}
+            {linkTripProse(dayTrip.shortDescription, slug)}
           </p>
 
           <div className="prose prose-lg max-w-none mb-12">
             {narrativeParagraphs.map((paragraph, index) => (
               <p key={index} className="text-muted-foreground leading-relaxed mb-6">
-                {linkGlossaryTermsText(paragraph)}
+                {linkTripProse(paragraph, slug)}
               </p>
             ))}
           </div>
