@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import OdysseyJourneyCTA from "@/components/OdysseyJourneyCTA";
 
 export const metadata: Metadata = {
   title: "Ouarzazate, Africa's Hollywood: Every Film Shot There & the New Cinema City",
@@ -185,6 +186,8 @@ export default function OuarzazateHollywoodPage() {
             Communication, and reporting by Variety and Hespress, June 2026.
           </p>
         </div>
+
+        <OdysseyJourneyCTA />
       </div>
     </div>
   );
