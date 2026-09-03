@@ -6,6 +6,7 @@ import Link from "next/link";
 import { TRIP_FUNNEL_PUBLIC } from "@/lib/flags";
 import { ChevronLeft, ChevronDown, MapPin, Clock, Ticket, Navigation, Timer, Compass } from "lucide-react";
 import { linkGlossaryTermsHTML } from "@/lib/glossary-linker";
+import { linkCrossReferencesHTML } from "@/lib/story-linker";
 import PlaceSchema from "@/components/seo/PlaceSchema";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import dynamic from "next/dynamic";
@@ -72,14 +73,19 @@ interface PlaceDetailContentProps {
   inCollections?: { slug: string; title: string; dek: string }[];
 }
 
-function formatBody(text: string): string {
+function formatBody(text: string, currentSlug?: string): string {
   // Convert <br> variants to newlines first
   const cleaned = text.replace(/<br\s*\/?>/gi, '\n');
   // Split on double or single newlines
   const hasDoubleBreaks = /\n\n/.test(cleaned);
   const paragraphs = cleaned.split(hasDoubleBreaks ? /\n\n+/ : /\n/).filter(p => p.trim());
   const wrapped = paragraphs.map(p => `<p class="mb-8 leading-[1.85]">${p.trim()}</p>`).join('');
-  return linkGlossaryTermsHTML(wrapped);
+  // Layer the linkers: cross-references (to stories and other places) first,
+  // then glossary terms. Cross-references turn passing mentions of other
+  // pages into real internal links, which spreads authority and helps Google
+  // read the site as a connected topical cluster rather than isolated pages.
+  const crossLinked = linkCrossReferencesHTML(wrapped, currentSlug);
+  return linkGlossaryTermsHTML(crossLinked);
 }
 
 function FAQAccordion({ items }: { items: Array<{ q: string; a: string }> }) {
@@ -275,7 +281,7 @@ export default function PlaceDetailContent({
                   <h2 className="font-serif text-2xl md:text-3xl mb-8">{section.title}</h2>
                   <div
                     className="prose prose-lg max-w-none [&>p]:text-[15px] [&>p]:leading-[1.8] [&>p]:text-[#262626]"
-                    dangerouslySetInnerHTML={{ __html: formatBody(section.body) }}
+                    dangerouslySetInnerHTML={{ __html: formatBody(section.body, place.slug) }}
                   />
                 </div>
               </div>
@@ -382,7 +388,7 @@ export default function PlaceDetailContent({
                   <p className="text-xl md:text-2xl text-foreground/70 leading-relaxed mb-12 font-display italic">{place.excerpt}</p>
                 )}
                 {place.body && (
-                  <div className="prose prose-lg max-w-none" dangerouslySetInnerHTML={{ __html: formatBody(place.body) }} />
+                  <div className="prose prose-lg max-w-none" dangerouslySetInnerHTML={{ __html: formatBody(place.body, place.slug) }} />
                 )}
 
                 {/* Satellite Map */}
