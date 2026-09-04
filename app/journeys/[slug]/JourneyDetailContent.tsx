@@ -3,7 +3,74 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { cloudinaryUrl } from "@/lib/cloudinary";
-import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, ChevronLeft, ChevronRight, Bird } from "lucide-react";
+import {
+  IconRiad, IconKasbah, IconHotel, IconTent, IconDesert, IconMountains,
+  IconCoast, IconMedina, IconOasis, IconPalm, IconCamel, Icon4x4, IconWalk,
+  IconHiking, IconSurfing, IconCooking, IconSpa, IconShopping, IconArgan,
+  IconStar, IconClock,
+} from "@/components/icons";
+
+// ── Day-icon helpers ──────────────────────────────────────────────────────
+const ACCOMMODATION_ICON: Record<string, React.FC<any>> = {
+  Riad: IconRiad, Kasbah: IconKasbah, Hotel: IconHotel,
+  "Berber Tent": IconTent, Guesthouse: IconHotel,
+};
+const TERRAIN_ICON: Record<string, React.FC<any>> = {
+  Desert: IconDesert, Coastal: IconCoast, Mountain: IconMountains,
+  Cities: IconMedina, Scenic: IconMountains, Stay: IconPalm, Transfer: Icon4x4,
+};
+const ACTIVITY_ICON: Record<string, React.FC<any>> = {
+  Camel: IconCamel, Hiking: IconHiking, Walking: IconWalk, Desert: IconDesert,
+  Mountains: IconMountains, Coast: IconCoast, Surfing: IconSurfing,
+  Medina: IconMedina, Cooking: IconCooking, Spa: IconSpa, Shopping: IconShopping,
+  Oasis: IconOasis, Palm: IconPalm, Stargazing: IconStar, Argan: IconArgan,
+  Kasbah: IconKasbah, "4x4": Icon4x4, Wildlife: Bird, Heritage: IconKasbah,
+};
+
+function DayMeta({ day }: { day: ItineraryDay }) {
+  const AccIcon = day.accommodation ? ACCOMMODATION_ICON[day.accommodation] : undefined;
+  const TerrainIcon = day.routeType ? TERRAIN_ICON[day.routeType] : undefined;
+  const acts = (day.activities || "").split("|").map((a) => a.trim()).filter(Boolean).slice(0, 3);
+  const time = day.travelTime && day.travelTime !== "0" ? day.travelTime : null;
+
+  const hasAny = AccIcon || TerrainIcon || acts.length > 0 || time || day.difficulty;
+  if (!hasAny) return null;
+
+  return (
+    <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mt-4 mb-5 text-foreground/55">
+      {AccIcon && (
+        <span className="flex items-center gap-1.5" title={day.accommodation}>
+          <AccIcon size={17} /> <span className="text-xs">{day.accommodation}</span>
+        </span>
+      )}
+      {TerrainIcon && (
+        <span className="flex items-center gap-1.5" title={day.routeType}>
+          <TerrainIcon size={17} /> <span className="text-xs">{day.routeType}</span>
+        </span>
+      )}
+      {time && (
+        <span className="flex items-center gap-1.5" title="Driving time">
+          <IconClock size={17} /> <span className="text-xs">{time}h</span>
+        </span>
+      )}
+      {day.difficulty && (
+        <span className="flex items-center gap-1.5" title="Difficulty">
+          <span className="text-xs">{day.difficulty}</span>
+        </span>
+      )}
+      {acts.map((a) => {
+        const Icon = ACTIVITY_ICON[a];
+        return Icon ? (
+          <span key={a} className="flex items-center gap-1.5" title={a}>
+            <Icon size={17} /> <span className="text-xs">{a}</span>
+          </span>
+        ) : null;
+      })}
+    </div>
+  );
+}
+
 import { linkGlossaryTermsText } from "@/lib/glossary-linker";
 import { linkCrossReferences } from "@/lib/story-linker";
 
@@ -57,6 +124,11 @@ interface ItineraryDay {
   cityName: string;
   description: string;
   imageUrl: string;
+  travelTime?: string;
+  difficulty?: string;
+  activities?: string;
+  routeType?: string;
+  accommodation?: string;
 }
 
 // Day image that hides itself if the URL is broken
@@ -494,9 +566,11 @@ export default function JourneyDetailContent({
                     Day {day.dayNumber}
                   </p>
 
-                  <h2 className="font-serif text-2xl md:text-3xl mb-4">
+                  <h2 className="font-serif text-2xl md:text-3xl mb-2">
                     {day.cityName}
                   </h2>
+
+                  <DayMeta day={day} />
 
                   <p className="text-foreground/75 leading-relaxed text-lg">
                     {linkJourneyProse(day.description, journey.slug)}
