@@ -102,6 +102,7 @@ export interface Route {
   activities: string | null;
   meals: string | null;
   accommodation_type: string | null;
+  accommodation: string | null;
   practical_information: string | null;
   created_at: string;
   updated_at: string;
@@ -263,6 +264,7 @@ export interface Accommodation {
   subregion: string | null;
   hospitality_level: string | null;
   accommodation_type: string | null;
+  accommodation: string | null;
   accommodation_name: string | null;
   website_url: string | null;
   google_maps_link: string | null;
