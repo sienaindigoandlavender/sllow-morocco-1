@@ -18,7 +18,7 @@ const ACCOMMODATION_ICON: Record<string, React.FC<any>> = {
 };
 const TERRAIN_ICON: Record<string, React.FC<any>> = {
   Desert: IconDesert, Coastal: IconCoast, Mountain: IconMountains,
-  Cities: IconMedina, Scenic: IconMountains, Stay: IconPalm, Transfer: Icon4x4,
+  Cities: IconMedina, Scenic: IconMountains,
 };
 const ACTIVITY_ICON: Record<string, React.FC<any>> = {
   Camel: IconCamel, Hiking: IconHiking, Walking: IconWalk, Desert: IconDesert,
