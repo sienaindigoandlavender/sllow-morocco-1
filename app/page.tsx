@@ -22,6 +22,7 @@ export default async function HomePage() {
   let places: any[] = [];
   let mapPlaces: any[] = [];
   let testimonials: any[] = [];
+  let heroItem: any = null;
   let destinations: any[] = [];
   let settings: Record<string, string> = {};
 
@@ -90,6 +91,44 @@ export default async function HomePage() {
     stories = seededShuffle(allStories, timeBucket).slice(0, 17);
     journeys = seededShuffle(journeys, timeBucket + 7).slice(0, 8);
 
+    // ── Combined hero pool: rotate across journeys, places AND editorials ──
+    // "Morocco, decoded" is the constant masthead; the featured item beneath it
+    // rotates every 3 hours across all three content types, each linking to its
+    // own page. Only items with a hero image qualify.
+    type HeroItem = {
+      kind: "journey" | "place" | "story";
+      slug: string;
+      title: string;
+      subtitle: string;
+      heroImage: string;
+      href: string;
+      label: string;
+    };
+    const heroPool: HeroItem[] = [
+      ...allJourneys
+        .filter((j) => j.heroImage && j.journeyType !== "daytrip" && j.journeyType !== "overnight")
+        .map((j) => ({
+          kind: "journey" as const, slug: j.slug, title: j.title,
+          subtitle: j.description || j.destinations || "",
+          heroImage: j.heroImage, href: `/journeys/${j.slug}`, label: "Journey",
+        })),
+      ...allStories
+        .filter((s) => s.heroImage)
+        .map((s) => ({
+          kind: "story" as const, slug: s.slug, title: s.title,
+          subtitle: s.subtitle || "", heroImage: s.heroImage,
+          href: `/stories/${s.slug}`, label: s.category || "Editorial",
+        })),
+      ...placesData
+        .filter((p) => p.hero_image)
+        .map((p) => ({
+          kind: "place" as const, slug: p.slug, title: p.title,
+          subtitle: p.destination || "", heroImage: p.hero_image,
+          href: `/places/${p.slug}`, label: p.category || "Place",
+        })),
+    ];
+    heroItem = seededShuffle(heroPool, timeBucket)[0] || null;
+
     // Format settings
     settingsData.forEach((row) => {
       if (row.key) settings[row.key] = row.value || "";
@@ -143,6 +182,7 @@ export default async function HomePage() {
     <HomeContent
       journeys={journeys}
       epicJourneys={epicJourneys}
+      heroItem={heroItem}
       stories={stories}
       places={places}
       mapPlaces={mapPlaces}

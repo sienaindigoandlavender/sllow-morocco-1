@@ -64,6 +64,10 @@ interface Testimonial {
 
 interface HomeContentProps {
   journeys: Journey[];
+  heroItem?: {
+    kind: string; slug: string; title: string; subtitle: string;
+    heroImage: string; href: string; label: string;
+  } | null;
   epicJourneys: Journey[];
   stories: Story[];
   places: Place[];
@@ -186,6 +190,7 @@ export default function HomeContent({
   journeys,
   stories,
   places,
+  heroItem,
 }: HomeContentProps) {
   const lead = stories[0];
   const editStories = stories.slice(1, 5);          // 4 items
@@ -197,30 +202,38 @@ export default function HomeContent({
     <main className="min-h-screen bg-white">
 
       {/* ══════════════════════════════════════════════════
-          1. HERO — Lead story. Stage, not a link.
+          1. HERO — "Morocco, decoded" masthead over a rotating feature
+             (journey / place / editorial), changing every 3 hours.
           ══════════════════════════════════════════════════ */}
-      {lead && (
+      {(heroItem || lead) && (
         <section className="relative h-screen min-h-[720px] overflow-hidden bg-[#0a0a0a]">
-          {lead.heroImage && (
-            <img
-              src={cloudinaryUrl(lead.heroImage, 2400)}
-              alt={lead.title}
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-          )}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+          <img
+            src={cloudinaryUrl((heroItem?.heroImage || lead?.heroImage) as string, 2400)}
+            alt={heroItem?.title || lead?.title || ""}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-black/30" />
 
-          <div className="relative z-10 h-full flex flex-col justify-end px-6 md:px-10 lg:px-14 pb-10 md:pb-14 lg:pb-16">
+          {/* Masthead — the constant declaration */}
+          <div className="relative z-10 h-full flex flex-col justify-between px-6 md:px-10 lg:px-14 py-10 md:py-14 lg:py-16">
+            <h1 className="text-white text-[clamp(2rem,6vw,4.5rem)] font-light tracking-[-0.02em] leading-none">
+              Morocco, decoded
+            </h1>
+
+            {/* Rotating feature — links to its own page by type */}
             <Link
-              href={`/stories/${lead.slug}`}
+              href={heroItem?.href || `/stories/${lead?.slug}`}
               className="group block max-w-xl lg:max-w-lg"
             >
-              <h1 className="text-white text-[clamp(1.6rem,4.5vw,3rem)] font-light tracking-[-0.01em] leading-[1.1] mb-2 group-hover:text-white/80 transition-colors">
-                {lead.title}
-              </h1>
-              {lead.subtitle && (
+              <span className="text-white/60 text-[11px] tracking-[0.25em] uppercase mb-3 block">
+                {heroItem?.label || "Editorial"}
+              </span>
+              <h2 className="text-white text-[clamp(1.4rem,3.5vw,2.4rem)] font-light tracking-[-0.01em] leading-[1.12] mb-2 group-hover:text-white/80 transition-colors">
+                {heroItem?.title || lead?.title}
+              </h2>
+              {(heroItem?.subtitle || lead?.subtitle) && (
                 <p className="text-white/55 text-sm md:text-[15px] leading-relaxed">
-                  {lead.subtitle}
+                  {heroItem?.subtitle || lead?.subtitle}
                 </p>
               )}
             </Link>
