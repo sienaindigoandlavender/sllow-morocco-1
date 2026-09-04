@@ -73,6 +73,7 @@ interface ItineraryDay {
   activities: string;
   meals: string;
   routeType: string;
+  accommodation: string;
 }
 
 async function getJourneyData(slug: string) {
@@ -135,7 +136,7 @@ async function getJourneyData(slug: string) {
         return {
           dayNumber: index + 1, cityName: "", fromCity: "", toCity: "",
           description: "", imageUrl: "", travelTime: "", difficulty: "",
-          activities: "", meals: "", routeType: "",
+          activities: "", meals: "", routeType: "", accommodation: "",
         };
       }
       const imageUrl = isValidImageUrl(route.image_url)
@@ -155,6 +156,7 @@ async function getJourneyData(slug: string) {
         activities: route.activities || "",
         meals: route.meals || "",
         routeType: route.route_type || "",
+        accommodation: route.accommodation || "",
       };
     }
   );
