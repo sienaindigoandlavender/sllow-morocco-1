@@ -216,9 +216,26 @@ export default function HomeContent({
 
           {/* Masthead — the constant declaration */}
           <div className="relative z-10 h-full flex flex-col justify-between px-6 md:px-10 lg:px-14 py-10 md:py-14 lg:py-16">
-            <h1 className="text-white text-[clamp(2rem,6vw,4.5rem)] font-light tracking-[-0.02em] leading-none">
-              Morocco, decoded
-            </h1>
+            <div className="flex items-center gap-4 md:gap-6">
+              <h1 className="text-white text-[clamp(2rem,6vw,4.5rem)] font-light tracking-[-0.02em] leading-none">
+                Morocco, decoded
+              </h1>
+              <Link
+                href="/journeys"
+                aria-label="Explore the journeys"
+                className="group shrink-0 mt-2 md:mt-3 text-white/50 hover:text-white transition-colors"
+              >
+                <svg
+                  width="34" height="34" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" strokeWidth="1.25"
+                  strokeLinecap="round" strokeLinejoin="round"
+                  className="transition-transform duration-500 group-hover:rotate-45"
+                >
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M15.5 8.5l-2 5-5 2 2-5 5-2z" />
+                </svg>
+              </Link>
+            </div>
 
             {/* Rotating feature — links to its own page by type */}
             <Link
