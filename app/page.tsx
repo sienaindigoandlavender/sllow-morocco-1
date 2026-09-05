@@ -110,20 +110,20 @@ export default async function HomePage() {
         .map((j) => ({
           kind: "journey" as const, slug: j.slug, title: j.title,
           subtitle: j.description || j.destinations || "",
-          heroImage: j.heroImage, href: `/journeys/${j.slug}`, label: "Journey",
+          heroImage: j.heroImage as string, href: `/journeys/${j.slug}`, label: "Journey",
         })),
       ...allStories
         .filter((s) => s.heroImage)
         .map((s) => ({
           kind: "story" as const, slug: s.slug, title: s.title,
-          subtitle: s.subtitle || "", heroImage: s.heroImage,
+          subtitle: s.subtitle || "", heroImage: s.heroImage as string,
           href: `/stories/${s.slug}`, label: s.category || "Editorial",
         })),
       ...placesData
         .filter((p) => p.hero_image)
         .map((p) => ({
           kind: "place" as const, slug: p.slug, title: p.title,
-          subtitle: p.destination || "", heroImage: p.hero_image,
+          subtitle: p.destination || "", heroImage: p.hero_image as string,
           href: `/places/${p.slug}`, label: p.category || "Place",
         })),
     ];
@@ -141,7 +141,7 @@ export default async function HomePage() {
       .map((p) => ({
         slug: p.slug,
         title: p.title,
-        heroImage: p.hero_image,
+        heroImage: p.hero_image as string,
         destination: p.destination || "",
         category: p.category || "",
       }));
