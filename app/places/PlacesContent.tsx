@@ -6,6 +6,7 @@ import { cloudinaryUrl } from "@/lib/cloudinary";
 import Link from "next/link";
 import AllPlacesMap from "./map/AllPlacesMap";
 import { PLACE_CATEGORIES } from "@/lib/place-categories";
+import { dek } from "@/lib/dek";
 
 interface MapPin {
   slug: string;
@@ -321,10 +322,16 @@ export default function PlacesContent({
                   </div>
                   <p className="text-[10px] text-foreground/40 mb-1.5">
                     {dest?.title || place.destination}
+                    {place.category ? `, ${place.category}` : ""}
                   </p>
                   <h3 className="text-[12px] tracking-[0.04em] uppercase leading-[1.35] text-foreground group-hover:text-foreground/60 transition-colors duration-500">
                     {place.title}
                   </h3>
+                  {dek(place.excerpt) && (
+                    <p className="text-[11px] leading-[1.45] text-foreground/45 mt-1.5">
+                      {dek(place.excerpt)}
+                    </p>
+                  )}
                 </Link>
               );
             })}
