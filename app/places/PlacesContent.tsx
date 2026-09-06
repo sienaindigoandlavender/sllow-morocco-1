@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { cloudinaryUrl } from "@/lib/cloudinary";
 import Link from "next/link";
 import AllPlacesMap from "./map/AllPlacesMap";
+import { PLACE_CATEGORIES } from "@/lib/place-categories";
 
 interface MapPin {
   slug: string;
@@ -60,10 +61,23 @@ interface PlacesContentProps {
   mapPlaces?: MapPin[];
   clusters?: Cluster[];
   featured?: Place[];
+  categoryCounts?: Record<string, number>;
+  lastUpdated?: string | null;
   dataLoaded?: boolean;
 }
 
 const ITEMS_PER_PAGE = 24;
+
+function formatUpdated(iso: string | null | undefined): string | null {
+  if (!iso) return null;
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return null;
+  return d.toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+}
 
 export default function PlacesContent({
   initialRegions,
@@ -72,6 +86,8 @@ export default function PlacesContent({
   mapPlaces = [],
   clusters = [],
   featured = [],
+  categoryCounts = {},
+  lastUpdated = null,
   dataLoaded = true,
 }: PlacesContentProps) {
   const searchParams = useSearchParams();
@@ -148,14 +164,19 @@ export default function PlacesContent({
       {/* ── Page header ──────────────────────────────────────────────── */}
       <section className="pt-24 md:pt-28 pb-6 px-8 md:px-10 lg:px-14">
         <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground mb-4">
-          Places
+          {places.length > 0 ? `${places.length} places in Morocco` : "Places"}
         </h1>
         <p className="text-sm text-foreground/55 max-w-2xl mb-3 leading-relaxed">
           Morocco mapped by what's worth slowing down for — medinas, kasbahs, oases, shrines, souks, and ruins, with local context for every entry.
         </p>
-        <p className="text-sm text-foreground/45 max-w-2xl mb-7 leading-relaxed">
+        <p className="text-sm text-foreground/45 max-w-2xl mb-4 leading-relaxed">
           Filter by region below, or scan the full index at the foot of the page. Every place connects to its stories and the journeys that pass through it.
         </p>
+        {formatUpdated(lastUpdated) && (
+          <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/30 mb-7">
+            Updated {formatUpdated(lastUpdated)}
+          </p>
+        )}
         <div className="h-[1px] bg-foreground/12" />
       </section>
 
@@ -327,6 +348,38 @@ export default function PlacesContent({
           <AllPlacesMap places={mapPlaces} total={mapPlaces.length} embedded />
         </section>
       )}
+
+      {/* ── Browse by category ────────────────────────────────────────
+          Fifteen routes, each an indexable landing page. Counts come
+          straight off the table.
+          ──────────────────────────────────────────────────────────── */}
+      <section className="px-8 md:px-10 lg:px-14 py-12 border-t border-foreground/[0.08]">
+        <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/35 mb-6">
+          Browse by category
+        </p>
+        <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-10 lg:gap-x-14">
+          {PLACE_CATEGORIES.filter((c) => (categoryCounts[c.label] || 0) > 0)
+            .sort(
+              (a, b) =>
+                (categoryCounts[b.label] || 0) - (categoryCounts[a.label] || 0),
+            )
+            .map((c) => (
+              <li key={c.slug}>
+                <Link
+                  href={`/places/category/${c.slug}`}
+                  className="group flex items-baseline justify-between gap-3 border-b border-foreground/[0.08] hover:border-foreground/40 py-2.5 transition-colors"
+                >
+                  <span className="text-sm text-foreground/75 group-hover:text-foreground transition-colors">
+                    {c.label}
+                  </span>
+                  <span className="text-[10px] tabular-nums text-foreground/25 group-hover:text-foreground/50 transition-colors">
+                    {categoryCounts[c.label]}
+                  </span>
+                </Link>
+              </li>
+            ))}
+        </ul>
+      </section>
 
       {/* ── Full text-link index, grouped by destination ──────────────
           Every published place is a static link in the initial HTML so

@@ -3,6 +3,13 @@ import { Metadata } from "next";
 import { getPlaceBySlug, getPlaceImages, getJourneys, getStories, getDestinations, getPlaces, convertDriveUrl } from "@/lib/supabase";
 import PlaceDetailContent from "./PlaceDetailContent";
 import { getCollectionsForPlace } from "@/lib/collections";
+import {
+  nearest,
+  within,
+  hasCoords,
+  WALKING_RADIUS_KM,
+  MIN_NEIGHBOURS,
+} from "@/lib/geo";
 import { createClient } from "@supabase/supabase-js";
 
 export const revalidate = 3600;
@@ -271,7 +278,6 @@ export default async function PlaceDetailPage({
   }
 
   const { relatedJourneys, relatedStories } = await getRelatedContent(data.place);
-  const nearbyPlaces = await getNearbyPlaces(data.place.nearbySlugs);
   const inCollections = getCollectionsForPlace(slug);
 
   // Find prev/next places
@@ -280,6 +286,35 @@ export default async function PlaceDetailPage({
   const prevPlace = currentIndex > 0 ? { slug: allPlaces[currentIndex - 1].slug, title: allPlaces[currentIndex - 1].title } : null;
   const nextPlace = currentIndex < allPlaces.length - 1 ? { slug: allPlaces[currentIndex + 1].slug, title: allPlaces[currentIndex + 1].title } : null;
 
+  // Nearby: the hand-curated list wins. Where it's thin or empty, top it up
+  // with the geographically nearest places. Coordinates are on 168 of 169
+  // rows, so this covers almost everything the curation missed.
+  const current = allPlaces[currentIndex];
+  const manual = (data.place.nearbySlugs || []).filter(Boolean);
+  let nearbySlugs = manual;
+  if (manual.length < 6 && current && hasCoords(current as any)) {
+    const computed = nearest(current as any, allPlaces as any, 12)
+      .map((p: any) => p.slug)
+      .filter((s: string) => !manual.includes(s));
+    nearbySlugs = [...manual, ...computed].slice(0, 6);
+  }
+  const nearbyPlaces = await getNearbyPlaces(nearbySlugs);
+
+  // Preserve the resolved order — the .in() query returns rows arbitrarily.
+  const order = new Map(nearbySlugs.map((s, i) => [s, i]));
+  nearbyPlaces.sort(
+    (a, b) => (order.get(a.slug) ?? 99) - (order.get(b.slug) ?? 99),
+  );
+
+  // Does this place have a walking-distance page? Same threshold the
+  // route itself uses, so we never link to a 404.
+  const walkingNeighbours =
+    current && hasCoords(current as any)
+      ? within(current as any, allPlaces as any, WALKING_RADIUS_KM).length
+      : 0;
+  const nearPageCount =
+    walkingNeighbours >= MIN_NEIGHBOURS ? walkingNeighbours : 0;
+
   return (
     <PlaceDetailContent
       place={data.place}
@@ -287,6 +322,7 @@ export default async function PlaceDetailPage({
       relatedJourneys={relatedJourneys}
       relatedStories={relatedStories}
       nearbyPlaces={nearbyPlaces}
+      nearPageCount={nearPageCount}
       inCollections={inCollections}
       prevPlace={prevPlace}
       nextPlace={nextPlace}

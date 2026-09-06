@@ -68,6 +68,8 @@ interface PlaceDetailContentProps {
   relatedJourneys: any[];
   relatedStories: any[];
   nearbyPlaces?: NearbyPlace[];
+  /** How many places sit within walking distance. 0 = no /places/near page. */
+  nearPageCount?: number;
   prevPlace?: NavItem | null;
   nextPlace?: NavItem | null;
   inCollections?: { slug: string; title: string; dek: string }[];
@@ -129,6 +131,7 @@ export default function PlaceDetailContent({
   relatedJourneys,
   relatedStories,
   nearbyPlaces = [],
+  nearPageCount = 0,
   prevPlace,
   nextPlace,
   inCollections = [],
@@ -344,9 +347,19 @@ export default function PlaceDetailContent({
           {nearbyPlaces.length > 0 && (
             <section className="py-16 md:py-20 bg-sand">
               <div className="container mx-auto px-6 lg:px-16">
-                <div className="mb-10">
-                  <p className="text-xs tracking-[0.2em] uppercase text-foreground/70 mb-3">Walking Distance</p>
-                  <h2 className="font-serif text-2xl md:text-3xl">Nearby</h2>
+                <div className="mb-10 flex items-end justify-between gap-6">
+                  <div>
+                    <p className="text-xs tracking-[0.2em] uppercase text-foreground/70 mb-3">Walking Distance</p>
+                    <h2 className="font-serif text-2xl md:text-3xl">Nearby</h2>
+                  </div>
+                  {nearPageCount > 0 && (
+                    <Link
+                      href={`/places/near/${place.slug}`}
+                      className="text-[10px] tracking-[0.15em] uppercase text-foreground/50 hover:text-foreground transition-colors whitespace-nowrap"
+                    >
+                      All {nearPageCount} nearby →
+                    </Link>
+                  )}
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                   {nearbyPlaces.map((np) => (
