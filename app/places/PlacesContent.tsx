@@ -4,6 +4,20 @@ import { useEffect, useState, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import { cloudinaryUrl } from "@/lib/cloudinary";
 import Link from "next/link";
+import AllPlacesMap from "./map/AllPlacesMap";
+
+interface MapPin {
+  slug: string;
+  title: string;
+  category: string;
+  destination: string;
+  excerpt: string;
+  hero_image: string;
+  latitude: number;
+  longitude: number;
+  related_story_slugs: string[];
+  journey_bridge: string;
+}
 
 interface Region {
   slug: string;
@@ -43,6 +57,7 @@ interface PlacesContentProps {
   initialRegions: Region[];
   initialDestinations: Destination[];
   initialPlaces: Place[];
+  mapPlaces?: MapPin[];
   clusters?: Cluster[];
   featured?: Place[];
   dataLoaded?: boolean;
@@ -54,6 +69,7 @@ export default function PlacesContent({
   initialRegions,
   initialDestinations,
   initialPlaces,
+  mapPlaces = [],
   clusters = [],
   featured = [],
   dataLoaded = true,
@@ -291,7 +307,26 @@ export default function PlacesContent({
       )}
 
       {/* ── Map preview banner ────────────────────────────────────── */}
-      <MapPreviewBanner />
+      {/* ── The atlas, live ───────────────────────────────────────────
+          Every place with coordinates, on one map. Falls back to
+          nothing if no place has been geocoded yet.
+          ──────────────────────────────────────────────────────────── */}
+      {mapPlaces.length > 0 && (
+        <section className="px-8 md:px-10 lg:px-14 py-12 border-t border-foreground/[0.08]">
+          <div className="flex items-baseline justify-between mb-5">
+            <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/35">
+              The atlas
+            </p>
+            <Link
+              href="/places/map"
+              className="text-[10px] tracking-[0.15em] uppercase text-foreground/35 hover:text-foreground transition-colors"
+            >
+              Open full screen →
+            </Link>
+          </div>
+          <AllPlacesMap places={mapPlaces} total={mapPlaces.length} embedded />
+        </section>
+      )}
 
       {/* ── Full text-link index, grouped by destination ──────────────
           Every published place is a static link in the initial HTML so
@@ -346,97 +381,5 @@ export default function PlacesContent({
       </section>
 
     </div>
-  );
-}
-
-// ─── City dot positions (% of banner, tuned to Morocco SVG outline) ────────
-const PREVIEW_DOTS = [
-  { left: "42%", top: "52%", delay: "0s",    label: "Marrakech" },
-  { left: "58%", top: "22%", delay: "0.4s",  label: "Fes" },
-  { left: "41%", top: "30%", delay: "0.8s",  label: "Casablanca" },
-  { left: "27%", top: "50%", delay: "1.2s",  label: "Essaouira" },
-  { left: "50%", top: "6%",  delay: "1.6s",  label: "Tangier" },
-  { left: "50%", top: "56%", delay: "2.0s",  label: "Ouarzazate" },
-  { left: "68%", top: "52%", delay: "2.4s",  label: "Merzouga" },
-  { left: "54%", top: "12%", delay: "2.8s",  label: "Chefchaouen" },
-  { left: "46%", top: "22%", delay: "3.2s",  label: "Rabat" },
-  { left: "27%", top: "62%", delay: "3.6s",  label: "Agadir" },
-];
-
-function MapPreviewBanner() {
-  return (
-    <section className="px-8 md:px-10 lg:px-14 py-10">
-      <style>{`
-        @keyframes previewGlow {
-          0%, 100% { box-shadow: 0 0 4px 2px #c9a96e; }
-          50%      { box-shadow: 0 0 12px 6px #c9a96e; }
-        }
-      `}</style>
-      <Link href="/places/map" className="group block relative overflow-hidden rounded" style={{ height: "340px", background: "#141414" }}>
-        {/* Morocco SVG outline as background texture */}
-        <svg
-          viewBox="0 0 800 500"
-          className="absolute"
-          style={{ top: "-5%", left: "10%", width: "80%", height: "110%", opacity: 0.08 }}
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M320 30 L380 25 L420 35 L440 28 L480 40 L520 32 L540 45 L560 50
-               L570 80 L560 110 L550 130 L555 160 L540 190 L530 220
-               L520 250 L510 270 L500 290 L480 310 L460 330 L440 350
-               L420 370 L400 385 L380 395 L360 400 L340 410 L320 420
-               L300 430 L280 435 L260 440 L240 445 L220 448 L200 450
-               L180 445 L160 430 L150 410 L155 390 L160 370 L170 350
-               L180 330 L195 310 L210 290 L225 270 L240 250 L250 230
-               L260 210 L265 190 L270 170 L275 150 L280 130 L285 110
-               L290 90 L300 60 L310 45 Z"
-            stroke="rgba(255,255,255,0.5)"
-            strokeWidth="1.5"
-            fill="rgba(255,255,255,0.03)"
-          />
-        </svg>
-        {/* Subtle grid lines */}
-        <div className="absolute inset-0" style={{
-          backgroundImage: "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }} />
-        {/* Glowing dots */}
-        {PREVIEW_DOTS.map((dot, i) => (
-          <span
-            key={i}
-            className="absolute z-10"
-            style={{
-              left: dot.left,
-              top: dot.top,
-              width: "8px",
-              height: "8px",
-              borderRadius: "50%",
-              background: "#c9a96e",
-              border: "1.5px solid rgba(255,255,255,0.3)",
-              animation: "previewGlow 3s ease-in-out infinite",
-              animationDelay: dot.delay,
-              transform: "translate(-50%, -50%)",
-            }}
-          />
-        ))}
-        {/* Gradient overlay at bottom for text readability */}
-        <div className="absolute inset-0 z-10" style={{
-          background: "linear-gradient(to top, rgba(14,14,14,0.9) 0%, rgba(14,14,14,0.2) 50%, transparent 100%)",
-        }} />
-        {/* CTA text */}
-        <div className="absolute bottom-0 left-0 right-0 z-20 px-8 pb-8">
-          <p className="text-[10px] tracking-[0.2em] uppercase text-white/30 mb-2">
-            Interactive Map
-          </p>
-          <h3 className="font-serif text-white/80 group-hover:text-white text-2xl md:text-3xl transition-colors">
-            Explore all places on one map
-          </h3>
-          <p className="text-white/35 text-sm mt-2 max-w-md">
-            Every medina, kasbah, oasis, and souk — mapped and searchable.
-          </p>
-        </div>
-      </Link>
-    </section>
   );
 }

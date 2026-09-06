@@ -43,6 +43,20 @@ interface PlaceItem {
   featured?: boolean;
 }
 
+// Shape AllPlacesMap expects for each pin.
+interface MapPin {
+  slug: string;
+  title: string;
+  category: string;
+  destination: string;
+  excerpt: string;
+  hero_image: string;
+  latitude: number;
+  longitude: number;
+  related_story_slugs: string[];
+  journey_bridge: string;
+}
+
 // Build the destination clusters: every destination that has at least one
 // published place, with its place count and the URL to the relevant hub.
 // /[city] is a dynamic route — any published destination has a live page.
@@ -110,15 +124,32 @@ async function fetchPlacesData() {
       };
     });
 
-    return { regions, destinations, places, dataLoaded: places.length > 0 };
+    // Pins for the embedded atlas map. Same shape AllPlacesMap expects on
+    // /places/map — only places that actually have coordinates.
+    const mapPlaces: MapPin[] = placesData
+      .filter((p) => p.latitude != null && p.longitude != null)
+      .map((p) => ({
+        slug: p.slug,
+        title: p.title,
+        category: p.category || "",
+        destination: p.destination || "",
+        excerpt: p.excerpt || "",
+        hero_image: p.hero_image || "",
+        latitude: p.latitude as number,
+        longitude: p.longitude as number,
+        related_story_slugs: p.related_story_slugs || [],
+        journey_bridge: p.journey_bridge || "",
+      }));
+
+    return { regions, destinations, places, mapPlaces, dataLoaded: places.length > 0 };
   } catch (error) {
     console.error("Error fetching places data:", error);
-    return { regions: [], destinations: [], places: [], dataLoaded: false };
+    return { regions: [], destinations: [], places: [], mapPlaces: [], dataLoaded: false };
   }
 }
 
 export default async function PlacesPage() {
-  const { regions, destinations, places, dataLoaded } = await fetchPlacesData();
+  const { regions, destinations, places, mapPlaces, dataLoaded } = await fetchPlacesData();
 
   const clusters = buildClusters(destinations, places);
   const featured = places
@@ -131,6 +162,7 @@ export default async function PlacesPage() {
         initialRegions={regions}
         initialDestinations={destinations}
         initialPlaces={places}
+        mapPlaces={mapPlaces}
         clusters={clusters}
         featured={featured}
         dataLoaded={dataLoaded}
