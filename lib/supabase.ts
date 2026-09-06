@@ -688,7 +688,7 @@ export async function getStories(options?: {
 }) {
   // Only fetch fields needed for listings, related stories, and search
   // Excludes body, the_facts, sources, mj_prompt to reduce Supabase egress
-  const LISTING_FIELDS = "slug,title,subtitle,category,source_type,hero_image,hero_caption,excerpt,read_time,year,text_by,images_by,tags,published,featured,sort_order,region,country,theme,era,era_start,era_end,embed_url,journey_bridge";
+  const LISTING_FIELDS = "slug,title,subtitle,category,source_type,hero_image,hero_caption,excerpt,read_time,year,text_by,images_by,tags,published,featured,sort_order,region,country,theme,era,era_start,era_end,embed_url,journey_bridge,updated_at";
   let query = supabase.from("stories").select(LISTING_FIELDS);
   if (options?.published !== undefined) query = query.eq("published", options.published);
   if (options?.featured !== undefined) query = query.eq("featured", options.featured);
