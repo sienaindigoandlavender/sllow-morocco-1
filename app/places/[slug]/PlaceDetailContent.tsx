@@ -728,6 +728,16 @@ export default function PlaceDetailContent({
                 )}
               </div>
             </div>
+            <div className="border-t border-foreground/10 py-6 text-center">
+              <Link
+                href="/places/random"
+                prefetch={false}
+                rel="nofollow"
+                className="text-[10px] tracking-[0.2em] uppercase text-foreground/35 hover:text-foreground transition-colors"
+              >
+                Take me somewhere else →
+              </Link>
+            </div>
           </div>
         </div>
       )}

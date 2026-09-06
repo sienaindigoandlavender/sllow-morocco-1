@@ -246,6 +246,14 @@ export default function PlacesContent({
                 ? `${filteredPlaces.length} ${filteredPlaces.length === 1 ? "match" : "matches"}`
                 : ""}
             </p>
+            <Link
+              href="/places/random"
+              prefetch={false}
+              rel="nofollow"
+              className="inline-block mt-4 text-[10px] tracking-[0.2em] uppercase text-foreground/35 hover:text-foreground transition-colors"
+            >
+              Take me somewhere →
+            </Link>
           </div>
         </div>
         <div className="h-[1px] bg-foreground/12" />
