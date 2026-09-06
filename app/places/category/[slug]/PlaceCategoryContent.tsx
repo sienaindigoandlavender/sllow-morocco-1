@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { cloudinaryUrl } from "@/lib/cloudinary";
 import { PLACE_CATEGORIES } from "@/lib/place-categories";
+import { dek } from "@/lib/dek";
 
 interface Item {
   slug: string;
@@ -99,6 +100,11 @@ export default function PlaceCategoryContent({
                 <h2 className="text-[12px] tracking-[0.04em] uppercase leading-[1.35] text-foreground group-hover:text-foreground/60 transition-colors duration-500">
                   {p.title}
                 </h2>
+                {dek(p.excerpt) && (
+                  <p className="text-[11px] leading-[1.45] text-foreground/45 mt-1.5">
+                    {dek(p.excerpt)}
+                  </p>
+                )}
               </Link>
             ))}
           </div>
