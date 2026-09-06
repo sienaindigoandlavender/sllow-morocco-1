@@ -130,44 +130,18 @@ export default function PlacesContent({
     <div className="bg-background text-foreground min-h-screen">
 
       {/* ── Page header ──────────────────────────────────────────────── */}
-      <section className="pt-28 md:pt-36 pb-8 px-8 md:px-10 lg:px-14">
+      <section className="pt-24 md:pt-28 pb-6 px-8 md:px-10 lg:px-14">
         <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground mb-4">
           Places
         </h1>
         <p className="text-sm text-foreground/55 max-w-2xl mb-3 leading-relaxed">
           Morocco mapped by what's worth slowing down for — medinas, kasbahs, oases, shrines, souks, and ruins, with local context for every entry.
         </p>
-        <p className="text-sm text-foreground/45 max-w-2xl mb-10 leading-relaxed">
-          Browse by destination, follow a city guide, or scan the full catalogue below. Every place connects to its stories and the journeys that pass through it.
+        <p className="text-sm text-foreground/45 max-w-2xl mb-7 leading-relaxed">
+          Filter by region below, or scan the full index at the foot of the page. Every place connects to its stories and the journeys that pass through it.
         </p>
         <div className="h-[1px] bg-foreground/12" />
       </section>
-
-      {/* ── Destination clusters — text-link nav, fully crawlable ─────── */}
-      {clusters.length > 0 && (
-        <section className="px-8 md:px-10 lg:px-14 py-10 border-b border-foreground/[0.08]">
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/35 mb-6">
-            Browse by destination
-          </p>
-          <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-10 lg:gap-x-14">
-            {clusters.map((c) => (
-              <li key={c.slug}>
-                <Link
-                  href={c.href}
-                  className="group flex items-baseline justify-between gap-3 border-b border-foreground/[0.08] hover:border-foreground/40 py-2.5 transition-colors"
-                >
-                  <span className="text-sm text-foreground/75 group-hover:text-foreground transition-colors">
-                    {c.title}
-                  </span>
-                  <span className="text-[10px] tabular-nums text-foreground/25 group-hover:text-foreground/50 transition-colors">
-                    {c.count}
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
 
       {/* ── Filter bar — regions ──────────────────────────────────────── */}
       <section className="px-8 md:px-10 lg:px-14 pb-4 sticky top-16 md:top-20 bg-background z-40">
