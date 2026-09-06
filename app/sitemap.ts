@@ -7,6 +7,8 @@ import {
   getDestinations,
 } from '@/lib/supabase';
 import { COLLECTIONS } from '@/lib/collections';
+import { PLACE_CATEGORIES, MIN_FOR_INDEX } from '@/lib/place-categories';
+import { within, hasCoords, WALKING_RADIUS_KM, MIN_NEIGHBOURS } from '@/lib/geo';
 
 export const revalidate = 3600;
 
@@ -93,6 +95,33 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
+  // Category landing pages. Thin categories are noindex, so they stay out.
+  const placeList = safe(places) as any[];
+  const catCounts: Record<string, number> = {};
+  for (const p of placeList) {
+    if (p.category) catCounts[p.category] = (catCounts[p.category] || 0) + 1;
+  }
+  const placeCategoryPages: MetadataRoute.Sitemap = PLACE_CATEGORIES
+    .filter((c) => (catCounts[c.label] || 0) >= MIN_FOR_INDEX)
+    .map((c) => ({
+      url: `${SITE_URL}/places/category/${c.slug}`,
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    }));
+
+  // Walking-distance pages. Only generated where the place has enough
+  // neighbours to be worth a page — same threshold as the route.
+  const mappable = placeList.filter(hasCoords as any);
+  const nearPages: MetadataRoute.Sitemap = mappable
+    .filter(
+      (p: any) => within(p, mappable as any, WALKING_RADIUS_KM).length >= MIN_NEIGHBOURS,
+    )
+    .map((p: any) => ({
+      url: `${SITE_URL}/places/near/${p.slug}`,
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    }));
+
   return [
     ...STATIC_PAGES,
     ...collectionPages,
@@ -100,6 +129,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // dayTripPages excluded — /day-trips/* are noindex
     // guidePages excluded — no /guides/[slug] route exists (all 404s)
     ...placePages,
+    ...placeCategoryPages,
+    ...nearPages,
     ...storyPages,
     ...regionPages,
     ...destinationPages,
