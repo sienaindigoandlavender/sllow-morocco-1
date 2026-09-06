@@ -3,16 +3,27 @@ import { Suspense } from "react";
 import { getRegions, getDestinations, getPlaces, getAllPlaceFirstImages, convertDriveUrl } from "@/lib/supabase";
 import PlacesContent from "./PlacesContent";
 
-export const metadata: Metadata = {
-  title: "Places",
-  description: "Discover Morocco's regions, cities, and hidden gems — from Marrakech medina to Sahara dunes. Curated places with maps, stories, and local recommendations.",
-  alternates: { canonical: "https://www.slowmorocco.com/places" },
-  openGraph: {
-    title: "Places | Slow Morocco",
-    description: "Discover Morocco's regions, cities, and hidden gems — from Marrakech medina to Sahara dunes.",
-    url: "https://www.slowmorocco.com/places",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const places = await getPlaces({ published: true });
+  const n = places.length;
+
+  const title = n > 0 ? `${n} Places in Morocco` : "Places";
+  const description =
+    n > 0
+      ? `${n} places across Morocco — medinas, kasbahs, oases, shrines, souks, and ruins, with local context, opening hours, and what's within walking distance of each.`
+      : "Discover Morocco's regions, cities, and hidden gems — from Marrakech medina to Sahara dunes.";
+
+  return {
+    title,
+    description,
+    alternates: { canonical: "https://www.slowmorocco.com/places" },
+    openGraph: {
+      title: `${title} | Slow Morocco`,
+      description,
+      url: "https://www.slowmorocco.com/places",
+    },
+  };
+}
 
 // Revalidate every hour
 export const revalidate = 3600;
@@ -141,15 +152,47 @@ async function fetchPlacesData() {
         journey_bridge: p.journey_bridge || "",
       }));
 
-    return { regions, destinations, places, mapPlaces, dataLoaded: places.length > 0 };
+    // Category counts for the browse strip, and the most recent edit
+    // anywhere in the table — the page's honest "updated" date.
+    const categoryCounts: Record<string, number> = {};
+    for (const p of placesData) {
+      if (!p.category) continue;
+      categoryCounts[p.category] = (categoryCounts[p.category] || 0) + 1;
+    }
+
+    const lastUpdated =
+      placesData
+        .map((p) => p.updated_at)
+        .filter(Boolean)
+        .sort()
+        .pop() || null;
+
+    return {
+      regions,
+      destinations,
+      places,
+      mapPlaces,
+      categoryCounts,
+      lastUpdated,
+      dataLoaded: places.length > 0,
+    };
   } catch (error) {
     console.error("Error fetching places data:", error);
-    return { regions: [], destinations: [], places: [], mapPlaces: [], dataLoaded: false };
+    return {
+      regions: [],
+      destinations: [],
+      places: [],
+      mapPlaces: [],
+      categoryCounts: {},
+      lastUpdated: null,
+      dataLoaded: false,
+    };
   }
 }
 
 export default async function PlacesPage() {
-  const { regions, destinations, places, mapPlaces, dataLoaded } = await fetchPlacesData();
+  const { regions, destinations, places, mapPlaces, dataLoaded, categoryCounts, lastUpdated } =
+    await fetchPlacesData();
 
   const clusters = buildClusters(destinations, places);
   const featured = places
@@ -165,6 +208,8 @@ export default async function PlacesPage() {
         mapPlaces={mapPlaces}
         clusters={clusters}
         featured={featured}
+        categoryCounts={categoryCounts}
+        lastUpdated={lastUpdated}
         dataLoaded={dataLoaded}
       />
     </Suspense>
