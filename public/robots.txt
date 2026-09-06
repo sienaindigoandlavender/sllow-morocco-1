@@ -23,6 +23,7 @@ Disallow: /api/
 # Googlebot follow it just burns crawl budget re-reaching pages that
 # are already in the sitemap.
 Disallow: /places/random
+Disallow: /stories/random
 # Tour-operating surface — publication-only. These routes are noindex and
 # reachable by direct link only. /journeys and /go/gentle were never indexed,
 # so blocking crawl here is safe. The newly-noindexed pages (/plan-your-trip,
