@@ -101,6 +101,7 @@ export default function PlacesContent({
   const [selectedDestination, setSelectedDestination] = useState<string>("all");
   const [sortBy, setSortBy] = useState<"default" | "alpha">("default");
   const [currentPage, setCurrentPage] = useState(1);
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     if (regionParam) {
@@ -114,6 +115,17 @@ export default function PlacesContent({
       ? destinations
       : destinations.filter((d) => d.region.includes(selectedRegion));
 
+  // Match on name, city, category, and the opening of the excerpt — someone
+  // typing "tannery" or "waterfall" doesn't know the entry's title.
+  const matches = (p: Place, q: string) => {
+    const dest = destinations.find((d) => d.slug === p.destination);
+    return [p.title, p.destination, dest?.title, p.category, p.excerpt]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase()
+      .includes(q);
+  };
+
   const filteredPlaces = useMemo(() => {
     let result: Place[];
     if (selectedDestination !== "all") {
@@ -124,11 +136,25 @@ export default function PlacesContent({
     } else {
       result = [...places];
     }
+    const q = query.trim().toLowerCase();
+    if (q) result = result.filter((p) => matches(p, q));
     if (sortBy === "alpha") {
       result = [...result].sort((a, b) => a.title.localeCompare(b.title));
     }
     return result;
-  }, [places, selectedRegion, selectedDestination, filteredDestinations, sortBy]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [places, selectedRegion, selectedDestination, filteredDestinations, sortBy, query]);
+
+  // If a search finds nothing inside the current filter but would find
+  // something across the whole catalogue, say so rather than showing an
+  // empty grid and letting them guess why.
+  const hiddenByFilter = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q || filteredPlaces.length > 0) return 0;
+    if (selectedRegion === "all" && selectedDestination === "all") return 0;
+    return places.filter((p) => matches(p, q)).length;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query, filteredPlaces.length, places, selectedRegion, selectedDestination]);
 
   const totalPages = Math.ceil(filteredPlaces.length / ITEMS_PER_PAGE);
   const paginatedPlaces = filteredPlaces.slice(
@@ -136,7 +162,7 @@ export default function PlacesContent({
     currentPage * ITEMS_PER_PAGE
   );
 
-  useEffect(() => { setCurrentPage(1); }, [selectedRegion, selectedDestination, sortBy]);
+  useEffect(() => { setCurrentPage(1); }, [selectedRegion, selectedDestination, sortBy, query]);
 
   const handleRegionChange = (region: string) => {
     setSelectedRegion(region);
@@ -166,17 +192,61 @@ export default function PlacesContent({
         <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground mb-4">
           {places.length > 0 ? `${places.length} places in Morocco` : "Places"}
         </h1>
-        <p className="text-sm text-foreground/55 max-w-2xl mb-3 leading-relaxed">
-          Morocco mapped by what's worth slowing down for — medinas, kasbahs, oases, shrines, souks, and ruins, with local context for every entry.
-        </p>
-        <p className="text-sm text-foreground/45 max-w-2xl mb-4 leading-relaxed">
-          Filter by region below, or scan the full index at the foot of the page. Every place connects to its stories and the journeys that pass through it.
-        </p>
-        {formatUpdated(lastUpdated) && (
-          <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/30 mb-7">
-            Updated {formatUpdated(lastUpdated)}
-          </p>
-        )}
+
+        <div className="grid lg:grid-cols-[minmax(0,42rem)_minmax(0,20rem)] gap-y-8 gap-x-16 items-start">
+          <div>
+            <p className="text-sm text-foreground/55 mb-3 leading-relaxed">
+              Morocco mapped by what's worth slowing down for — medinas, kasbahs, oases, shrines, souks, and ruins, with local context for every entry.
+            </p>
+            <p className="text-sm text-foreground/45 mb-4 leading-relaxed">
+              Filter by region below, or scan the full index at the foot of the page. Every place connects to its stories and the journeys that pass through it.
+            </p>
+            {formatUpdated(lastUpdated) && (
+              <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/30">
+                Updated {formatUpdated(lastUpdated)}
+              </p>
+            )}
+          </div>
+
+          {/* Search — filters the grid live, no submit */}
+          <div className="lg:pt-1">
+            <label
+              htmlFor="places-search"
+              className="block text-[10px] tracking-[0.25em] uppercase text-foreground/35 mb-3"
+            >
+              Search the atlas
+            </label>
+            <div className="relative">
+              <input
+                id="places-search"
+                type="search"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Tannery, waterfall, Fes…"
+                autoComplete="off"
+                className="w-full bg-transparent border-b border-foreground/20 focus:border-foreground/60 pb-2 pr-7 text-sm text-foreground placeholder:text-foreground/25 outline-none transition-colors"
+              />
+              {query && (
+                <button
+                  type="button"
+                  onClick={() => setQuery("")}
+                  aria-label="Clear search"
+                  className="absolute right-0 bottom-2 text-foreground/30 hover:text-foreground text-base leading-none transition-colors"
+                >
+                  ×
+                </button>
+              )}
+            </div>
+            <p
+              className="text-[11px] text-foreground/35 mt-2 h-4"
+              aria-live="polite"
+            >
+              {query.trim()
+                ? `${filteredPlaces.length} ${filteredPlaces.length === 1 ? "match" : "matches"}`
+                : ""}
+            </p>
+          </div>
+        </div>
         <div className="h-[1px] bg-foreground/12" />
       </section>
 
@@ -261,13 +331,41 @@ export default function PlacesContent({
           </div>
         ) : (
           <div className="py-20 text-center">
-            <p className="text-foreground/40 mb-4">No places found for this selection.</p>
-            <button
-              onClick={() => { setSelectedRegion("all"); setSelectedDestination("all"); }}
-              className="text-[11px] text-foreground/40 hover:text-foreground/70 underline transition-colors"
-            >
-              Clear filter
-            </button>
+            {query.trim() ? (
+              <>
+                <p className="text-foreground/40 mb-4">
+                  Nothing matching “{query.trim()}”
+                  {selectedRegion !== "all" || selectedDestination !== "all"
+                    ? " in this filter."
+                    : " in the atlas."}
+                </p>
+                {hiddenByFilter > 0 ? (
+                  <button
+                    onClick={() => { setSelectedRegion("all"); setSelectedDestination("all"); }}
+                    className="text-[11px] text-foreground/40 hover:text-foreground/70 underline transition-colors"
+                  >
+                    {hiddenByFilter} {hiddenByFilter === 1 ? "match" : "matches"} elsewhere — search all places
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => setQuery("")}
+                    className="text-[11px] text-foreground/40 hover:text-foreground/70 underline transition-colors"
+                  >
+                    Clear search
+                  </button>
+                )}
+              </>
+            ) : (
+              <>
+                <p className="text-foreground/40 mb-4">No places found for this selection.</p>
+                <button
+                  onClick={() => { setSelectedRegion("all"); setSelectedDestination("all"); }}
+                  className="text-[11px] text-foreground/40 hover:text-foreground/70 underline transition-colors"
+                >
+                  Clear filter
+                </button>
+              </>
+            )}
           </div>
         )}
 
