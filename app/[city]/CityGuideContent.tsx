@@ -180,7 +180,7 @@ const CITY_DATA: Record<string, {
 
 function WeatherLine({ bestMonths, climate }: { bestMonths: string; climate: string }) {
   return (
-    <div className="flex items-center gap-3 text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/40">
+    <div className="flex items-center gap-3 text-[10px] tracking-[0.2em] uppercase text-foreground/40">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <circle cx="12" cy="12" r="4" />
         <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
@@ -196,7 +196,7 @@ function WeatherLine({ bestMonths, climate }: { bestMonths: string; climate: str
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-[10px] tracking-[0.3em] uppercase font-mono text-foreground/30 mb-8">
+    <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/35 mb-6">
       {children}
     </p>
   );
@@ -286,7 +286,7 @@ export default function CityGuideContent({
     <main className="bg-background text-foreground">
 
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
-      <section className="relative h-[100svh] min-h-[600px]">
+      <section className="relative h-[72svh] min-h-[520px]">
         {heroImage ? (
           <img
             src={cloudinaryUrl(heroImage, 1920)}
@@ -298,7 +298,7 @@ export default function CityGuideContent({
         )}
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60" />
 
-        <div className="absolute bottom-0 left-0 right-0 px-8 md:px-16 lg:px-20 pb-14">
+        <div className="absolute bottom-0 left-0 right-0 px-8 md:px-10 lg:px-14 pb-14">
           <h1 className="font-serif text-3xl md:text-5xl lg:text-6xl text-white leading-[1.1]">
             {destination.title}
           </h1>
@@ -306,7 +306,7 @@ export default function CityGuideContent({
       </section>
 
       {/* ── Intro / Body ──────────────────────────────────────────────────── */}
-      <section className="px-8 md:px-16 lg:px-20 py-16 md:py-20">
+      <section className="px-8 md:px-10 lg:px-14 pt-14 pb-12">
         {destination.body ? (
           // Database body — multi-paragraph
           <div className="max-w-3xl space-y-6">
@@ -333,7 +333,7 @@ export default function CityGuideContent({
 
       {/* ── Gallery ───────────────────────────────────────────────────────── */}
       {galleryImages.length > 0 && (
-        <section className="px-8 md:px-16 lg:px-20 pb-16">
+        <section className="px-8 md:px-10 lg:px-14 pb-14 border-t border-foreground/[0.08] pt-14">
           <div className={`grid gap-4 ${
             galleryImages.length === 1
               ? "grid-cols-1"
@@ -353,7 +353,7 @@ export default function CityGuideContent({
                   )}
                 </div>
                 {img.caption && (
-                  <figcaption className="text-[10px] text-foreground/35 mt-2.5 font-mono tracking-wide">
+                  <figcaption className="text-[11px] text-foreground/45 mt-2.5 leading-[1.45]">
                     {img.caption}
                   </figcaption>
                 )}
@@ -364,11 +364,11 @@ export default function CityGuideContent({
       )}
 
       {/* ── Map + Places ──────────────────────────────────────────────────── */}
-      <section className="px-8 md:px-16 lg:px-20 pb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 border border-border">
+      <section className="px-8 md:px-10 lg:px-14 pb-14 border-t border-foreground/[0.08] pt-14">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-10 lg:gap-14">
 
           {/* Map */}
-          <div className="h-[300px] md:h-[480px] lg:h-[600px] border-b lg:border-b-0 lg:border-r border-border">
+          <div className="h-[320px] md:h-[460px] lg:h-[560px]">
             {showMap && (
               <CityMap
                 citySlug={citySlug}
@@ -381,7 +381,7 @@ export default function CityGuideContent({
           </div>
 
           {/* Places list */}
-          <div className="p-6 md:p-10 overflow-y-auto max-h-[400px] md:max-h-[600px]">
+          <div>
             <SectionLabel>Places</SectionLabel>
             {places.length > 0 ? (
               <div className="space-y-0">
@@ -389,14 +389,14 @@ export default function CityGuideContent({
                   <Link
                     key={place.slug}
                     href={`/places/${place.slug}`}
-                    className="group flex items-start gap-5 py-5 border-b border-border last:border-0 hover:bg-foreground/2 -mx-2 px-2 transition-colors"
+                    className="group flex items-start gap-5 py-5 border-b border-foreground/[0.08] last:border-0 hover:border-foreground/40 transition-colors"
                   >
-                    <span className="text-[10px] font-mono text-foreground/20 mt-1 w-5 flex-shrink-0">
+                    <span className="text-[11px] tabular-nums text-foreground/25 mt-1 w-6 flex-shrink-0">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <div className="flex-1 min-w-0">
                       {place.category && (
-                        <p className="text-[9px] tracking-[0.25em] uppercase text-foreground/30 mb-1">
+                        <p className="text-[10px] tracking-[0.15em] uppercase text-foreground/35 mb-1">
                           {place.category}
                         </p>
                       )}
@@ -404,7 +404,7 @@ export default function CityGuideContent({
                         {place.title}
                       </h3>
                       {place.excerpt && (
-                        <p className="text-xs text-foreground/40 mt-1 leading-relaxed line-clamp-2">
+                        <p className="text-[12px] text-foreground/50 mt-1 leading-relaxed line-clamp-2">
                           {place.excerpt}
                         </p>
                       )}
@@ -435,8 +435,8 @@ export default function CityGuideContent({
 
       {/* ── Stories ───────────────────────────────────────────────────────── */}
       {stories.length > 0 && (
-        <section className="px-8 md:px-16 lg:px-20 pb-20 md:pb-28">
-          <div className="border-b border-border pb-5 mb-12">
+        <section className="px-8 md:px-10 lg:px-14 pb-14 border-t border-foreground/[0.08] pt-14">
+          <div className="border-b border-foreground/[0.08] pb-5 mb-10">
             <SectionLabel>Stories from {destination.title}</SectionLabel>
           </div>
 
@@ -486,7 +486,7 @@ export default function CityGuideContent({
 
       {/* ── Journeys ──────────────────────────────────────────────────────── */}
       {TRIP_FUNNEL_PUBLIC && journeys.length > 0 && (
-        <section className="px-8 md:px-16 lg:px-20 pb-20 md:pb-28 border-t border-border pt-16">
+        <section className="px-8 md:px-10 lg:px-14 pb-14 border-t border-foreground/[0.08] pt-14">
           <div className="mb-12">
             <SectionLabel>Journeys to {destination.title}</SectionLabel>
           </div>
@@ -506,12 +506,12 @@ export default function CityGuideContent({
                   </div>
                   <div className="flex items-center gap-3 mb-2">
                     {journey.duration_days ? (
-                      <span className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/30">
+                      <span className="text-[10px] tracking-[0.2em] uppercase text-foreground/35">
                         {journey.duration_days}d
                       </span>
                     ) : null}
                     {journey.category && (
-                      <span className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/30">
+                      <span className="text-[10px] tracking-[0.2em] uppercase text-foreground/35">
                         {journey.category}
                       </span>
                     )}
@@ -544,9 +544,9 @@ export default function CityGuideContent({
 
       {/* ── You might also consider ──────────────────────────────────────── */}
       {connectingJourneys.length > 0 && (
-        <section className="px-8 md:px-16 lg:px-20 pb-20 md:pb-28 border-t border-border pt-16">
+        <section className="px-8 md:px-10 lg:px-14 pb-14 border-t border-foreground/[0.08] pt-14">
           <div className="mb-12">
-            <p className="text-[10px] tracking-[0.3em] uppercase font-mono text-foreground/30 mb-2">
+            <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/35 mb-2">
               You might also consider
             </p>
             <p className="font-serif text-2xl md:text-3xl text-foreground/70">
@@ -579,13 +579,13 @@ export default function CityGuideContent({
                     {/* Route line */}
                     {otherDests.length > 0 && (
                       <div className="flex items-center gap-1.5 mb-3 flex-wrap">
-                        <span className="text-[9px] tracking-[0.2em] uppercase font-mono text-foreground/25">
+                        <span className="text-[9px] tracking-[0.2em] uppercase text-foreground/30">
                           {destination.title}
                         </span>
                         {otherDests.map((dest: string) => (
                           <span key={dest} className="flex items-center gap-1.5">
                             <span className="text-foreground/15 text-[9px]">→</span>
-                            <span className="text-[9px] tracking-[0.2em] uppercase font-mono text-foreground/25 capitalize">
+                            <span className="text-[9px] tracking-[0.2em] uppercase text-foreground/30 capitalize">
                               {dest.replace(/-/g, " ")}
                             </span>
                           </span>
@@ -595,12 +595,12 @@ export default function CityGuideContent({
 
                     <div className="flex items-center gap-3 mb-2">
                       {journey.duration_days ? (
-                        <span className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/30">
+                        <span className="text-[10px] tracking-[0.2em] uppercase text-foreground/35">
                           {journey.duration_days}d
                         </span>
                       ) : null}
                       {journey.category && (
-                        <span className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/30">
+                        <span className="text-[10px] tracking-[0.2em] uppercase text-foreground/35">
                           {journey.category}
                         </span>
                       )}
@@ -626,7 +626,7 @@ export default function CityGuideContent({
       {WORLD_CUP_DATA[citySlug] && (() => {
         const wc = WORLD_CUP_DATA[citySlug];
         return (
-          <section className="px-8 md:px-16 lg:px-20 pb-20 md:pb-28 border-t border-border pt-16">
+          <section className="px-8 md:px-10 lg:px-14 pb-14 border-t border-foreground/[0.08] pt-14">
             <div className="max-w-3xl">
               <SectionLabel>FIFA World Cup 2030</SectionLabel>
               <h2 className="font-serif text-2xl md:text-3xl mb-3">
@@ -636,7 +636,7 @@ export default function CityGuideContent({
                 Morocco will co-host the 2030 FIFA World Cup alongside Spain and Portugal — the first World Cup to span three continents. Six Moroccan cities will host matches, with {destination.title} among them.
               </p>
 
-              <div className="border border-border divide-y divide-border">
+              <div className="border border-foreground/[0.12] divide-y divide-foreground/[0.08]">
                 <div className="flex items-start gap-6 p-5 md:p-6">
                   <div className="flex-shrink-0">
                     <svg className="w-5 h-5 text-foreground/30 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
@@ -693,13 +693,13 @@ export default function CityGuideContent({
       })()}
 
       {/* ── Newsletter capture ──────────────────────────────────────────── */}
-      <div className="border-t border-border">
+      <div className="border-t border-foreground/[0.08]">
         <NewsletterCapture />
       </div>
 
       {/* ── Footer bridge ─────────────────────────────────────────────────── */}
       {TRIP_FUNNEL_PUBLIC && (
-      <section className="px-8 md:px-16 lg:px-20 py-20 border-t border-border">
+      <section className="px-8 md:px-10 lg:px-14 py-14 border-t border-foreground/[0.08]">
         <div className="max-w-xl">
           <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/30 mb-4">
             Plan your visit
