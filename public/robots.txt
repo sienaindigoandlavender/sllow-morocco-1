@@ -18,6 +18,11 @@ User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /api/
+# /places/random is a redirect, not a page — it bounces to a different
+# place on every request. It can't carry a noindex tag, and letting
+# Googlebot follow it just burns crawl budget re-reaching pages that
+# are already in the sitemap.
+Disallow: /places/random
 # Tour-operating surface — publication-only. These routes are noindex and
 # reachable by direct link only. /journeys and /go/gentle were never indexed,
 # so blocking crawl here is safe. The newly-noindexed pages (/plan-your-trip,
