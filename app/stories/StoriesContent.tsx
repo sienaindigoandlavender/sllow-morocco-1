@@ -39,15 +39,9 @@ export default function StoriesContent({
   lastUpdated = null,
   dataLoaded = true,
 }: StoriesContentProps) {
-  const [activeFilter, setActiveFilter] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
   const [sortBy, setSortBy] = useState<"default" | "alpha">("default");
   const [query, setQuery] = useState("");
-
-  const categories = useMemo(() => {
-    const cats = new Set(initialStories.map((s) => s.mood).filter((m): m is string => !!m));
-    return ["all", ...Array.from(cats).sort()];
-  }, [initialStories]);
 
   const categoryCounts = useMemo(() => {
     const counts: Record<string, number> = { all: initialStories.length };
@@ -68,11 +62,6 @@ export default function StoriesContent({
 
   const filteredStories = useMemo(() => {
     let result = initialStories;
-    if (activeFilter !== "all") {
-      result = result.filter(
-        (s) => s.mood?.toLowerCase() === activeFilter.toLowerCase()
-      );
-    }
     const q = query.trim().toLowerCase();
     if (q) result = result.filter((s) => matches(s, q));
     if (sortBy === "alpha") {
@@ -80,16 +69,7 @@ export default function StoriesContent({
     }
     return result;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [initialStories, activeFilter, sortBy, query]);
-
-  // Nothing here, but something elsewhere? Say so instead of showing a
-  // blank grid and letting the reader guess why.
-  const hiddenByFilter = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    if (!q || filteredStories.length > 0 || activeFilter === "all") return 0;
-    return initialStories.filter((s) => matches(s, q)).length;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query, filteredStories.length, initialStories, activeFilter]);
+  }, [initialStories, sortBy, query]);
 
   const totalPages = Math.ceil(filteredStories.length / STORIES_PER_PAGE);
   const paginatedStories = filteredStories.slice(
@@ -173,37 +153,22 @@ export default function StoriesContent({
         <div className="h-[1px] bg-foreground/12" />
       </section>
 
-      {/* ── Filter bar — categories + count + sort ───────────────────── */}
-      <section className="px-8 md:px-10 lg:px-14 pb-10 sticky top-16 md:top-20 bg-background z-40">
-        <div className="flex items-center justify-between py-3">
-          <div className="flex items-center gap-5 overflow-x-auto" style={{ scrollbarWidth: "none" }}>
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => { setActiveFilter(cat); setCurrentPage(1); }}
-                className={`text-[11px] tracking-[0.12em] uppercase whitespace-nowrap transition-colors flex items-baseline gap-1.5 ${
-                  activeFilter === cat
-                    ? "text-foreground"
-                    : "text-foreground/35 hover:text-foreground/60"
-                }`}
-              >
-                {cat === "all" ? "All" : cat}
-                <span className={`text-[9px] ${activeFilter === cat ? "text-foreground/40" : "text-foreground/20"}`}>
-                  {categoryCounts[cat] || 0}
-                </span>
-              </button>
-            ))}
-          </div>
-          <div className="flex items-center gap-5 flex-shrink-0 ml-6">
-            <button
-              onClick={() => { setSortBy(sortBy === "default" ? "alpha" : "default"); setCurrentPage(1); }}
-              className={`text-[11px] tracking-[0.12em] uppercase transition-colors ${
-                sortBy === "alpha" ? "text-foreground" : "text-foreground/35 hover:text-foreground/60"
-              }`}
-            >
-              A–Z
-            </button>
-          </div>
+      {/* ── Sort ──────────────────────────────────────────────────────
+          Category filtering lives at /stories/category/[slug] — real
+          pages with their own intros, rather than a client-side filter
+          that changes nothing in the URL. The seventeen-item row that
+          used to sit here truncated after "Movies" on any normal screen.
+          ──────────────────────────────────────────────────────────── */}
+      <section className="px-8 md:px-10 lg:px-14 pb-6 sticky top-16 md:top-20 bg-background z-40">
+        <div className="flex items-center justify-end py-3">
+          <button
+            onClick={() => { setSortBy(sortBy === "default" ? "alpha" : "default"); setCurrentPage(1); }}
+            className={`text-[11px] tracking-[0.12em] uppercase transition-colors ${
+              sortBy === "alpha" ? "text-foreground" : "text-foreground/35 hover:text-foreground/60"
+            }`}
+          >
+            A–Z
+          </button>
         </div>
       </section>
 
@@ -213,24 +178,17 @@ export default function StoriesContent({
           <div className="py-20 text-center">
             <p className="text-foreground/40 mb-4">
               {query.trim()
-                ? `Nothing matching “${query.trim()}”${activeFilter !== "all" ? " in this category." : " in the edit."}`
-                : "No stories in this category yet."}
+                ? `Nothing matching “${query.trim()}” in the edit.`
+                : "No stories yet."}
             </p>
-            {hiddenByFilter > 0 ? (
-              <button
-                onClick={() => setActiveFilter("all")}
-                className="text-[11px] text-foreground/40 hover:text-foreground/70 underline transition-colors"
-              >
-                {hiddenByFilter} {hiddenByFilter === 1 ? "match" : "matches"} elsewhere — search everything
-              </button>
-            ) : query.trim() ? (
+            {query.trim() && (
               <button
                 onClick={() => setQuery("")}
                 className="text-[11px] text-foreground/40 hover:text-foreground/70 underline transition-colors"
               >
                 Clear search
               </button>
-            ) : null}
+            )}
           </div>
         ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-4 md:gap-x-5 gap-y-10">
