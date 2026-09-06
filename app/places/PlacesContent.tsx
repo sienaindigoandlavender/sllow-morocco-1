@@ -146,18 +146,22 @@ export default function PlacesContent({
       {/* ── Destination clusters — text-link nav, fully crawlable ─────── */}
       {clusters.length > 0 && (
         <section className="px-8 md:px-10 lg:px-14 py-10 border-b border-foreground/[0.08]">
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/35 mb-5">
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/35 mb-6">
             Browse by destination
           </p>
-          <ul className="flex flex-wrap gap-x-6 gap-y-3">
+          <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-10 lg:gap-x-14">
             {clusters.map((c) => (
               <li key={c.slug}>
                 <Link
                   href={c.href}
-                  className="text-sm text-foreground/70 hover:text-foreground border-b border-foreground/15 hover:border-foreground/40 pb-0.5 transition-colors"
+                  className="group flex items-baseline justify-between gap-3 border-b border-foreground/[0.08] hover:border-foreground/40 py-2.5 transition-colors"
                 >
-                  {c.title}
-                  <span className="text-foreground/35 ml-1">({c.count})</span>
+                  <span className="text-sm text-foreground/75 group-hover:text-foreground transition-colors">
+                    {c.title}
+                  </span>
+                  <span className="text-[10px] tabular-nums text-foreground/25 group-hover:text-foreground/50 transition-colors">
+                    {c.count}
+                  </span>
                 </Link>
               </li>
             ))}
@@ -270,9 +274,12 @@ export default function PlacesContent({
               <button
                 key={page}
                 onClick={() => goToPage(page)}
-                className={`min-w-[32px] py-2 text-[11px] transition-colors ${
-                  currentPage === page ? "text-foreground" : "text-foreground/30 hover:text-foreground/60"
+                className={`min-w-[32px] py-2 text-[11px] tabular-nums transition-colors ${
+                  currentPage === page
+                    ? "text-[#8F3A24] font-medium"
+                    : "text-foreground/30 hover:text-foreground/60"
                 }`}
+                aria-current={currentPage === page ? "page" : undefined}
               >
                 {page}
               </button>
@@ -294,12 +301,12 @@ export default function PlacesContent({
           <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/35 mb-5">
             Featured places
           </p>
-          <ul className="flex flex-wrap gap-x-6 gap-y-3">
+          <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-10 lg:gap-x-14">
             {featured.map((p) => (
               <li key={p.slug}>
                 <Link
                   href={`/places/${p.slug}`}
-                  className="text-sm text-foreground/70 hover:text-foreground border-b border-foreground/15 hover:border-foreground/40 pb-0.5 transition-colors"
+                  className="block text-sm text-foreground/75 hover:text-foreground border-b border-foreground/[0.08] hover:border-foreground/40 py-2.5 transition-colors"
                 >
                   {p.title}
                 </Link>
@@ -325,22 +332,26 @@ export default function PlacesContent({
           <p className="text-[12.5px] text-foreground/45 max-w-2xl leading-relaxed mb-10">
             Every place in the atlas, listed in full. The grid above paginates — this index doesn't. Use it to scan the whole catalogue or jump straight to a destination.
           </p>
-          <div className="space-y-10">
+          <div className="space-y-12">
             {clusters.map((c) => (
               <div key={c.slug}>
                 <Link
                   href={c.href}
-                  className="inline-block text-sm tracking-[0.04em] text-foreground hover:text-foreground/70 border-b border-foreground/30 hover:border-foreground/60 pb-0.5 mb-4 transition-colors"
+                  className="group flex items-baseline justify-between gap-4 border-b border-foreground/25 hover:border-foreground/60 pb-2 mb-5 transition-colors"
                 >
-                  {c.title}
-                  <span className="text-foreground/40 ml-2 text-[12px]">({c.count})</span>
+                  <span className="text-sm tracking-[0.04em] text-foreground group-hover:text-foreground/70 transition-colors">
+                    {c.title}
+                  </span>
+                  <span className="text-[10px] tabular-nums text-foreground/30 group-hover:text-foreground/50 transition-colors">
+                    {c.count}
+                  </span>
                 </Link>
-                <ul className="flex flex-wrap gap-x-5 gap-y-2">
+                <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-10 lg:gap-x-14 gap-y-0.5">
                   {c.places.map((p) => (
                     <li key={p.slug}>
                       <Link
                         href={`/places/${p.slug}`}
-                        className="text-[13px] text-foreground/60 hover:text-foreground transition-colors"
+                        className="block text-[13px] text-foreground/55 hover:text-foreground py-1 transition-colors"
                       >
                         {p.title}
                       </Link>
