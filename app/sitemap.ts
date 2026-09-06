@@ -8,6 +8,7 @@ import {
 } from '@/lib/supabase';
 import { COLLECTIONS } from '@/lib/collections';
 import { PLACE_CATEGORIES, MIN_FOR_INDEX } from '@/lib/place-categories';
+import { STORY_CATEGORIES, MIN_FOR_INDEX as STORY_MIN_FOR_INDEX } from '@/lib/story-categories';
 import { within, hasCoords, WALKING_RADIUS_KM, MIN_NEIGHBOURS } from '@/lib/geo';
 
 export const revalidate = 3600;
@@ -77,6 +78,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
+  // Story category landing pages. These routes already existed but were
+  // never submitted, and nothing on /stories linked to them.
+  const storyCatCounts: Record<string, number> = {};
+  for (const s of safe(stories) as any[]) {
+    if (s.category) storyCatCounts[s.category] = (storyCatCounts[s.category] || 0) + 1;
+  }
+  const storyCategoryPages: MetadataRoute.Sitemap = STORY_CATEGORIES
+    .filter((c) => (storyCatCounts[c.label] || 0) >= STORY_MIN_FOR_INDEX)
+    .map((c) => ({
+      url: `${SITE_URL}/stories/category/${c.slug}`,
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    }));
+
   const regionPages: MetadataRoute.Sitemap = safe(regions).map((r: any) => ({
     url: `${SITE_URL}/regions/${r.slug}`,
     changeFrequency: 'monthly',
@@ -132,6 +147,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...placeCategoryPages,
     ...nearPages,
     ...storyPages,
+    ...storyCategoryPages,
     ...regionPages,
     ...destinationPages,
   ];
