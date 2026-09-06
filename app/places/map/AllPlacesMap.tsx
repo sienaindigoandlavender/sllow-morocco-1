@@ -23,6 +23,12 @@ interface PlacePin {
 interface Props {
   places: PlacePin[];
   total: number;
+  /**
+   * Embedded mode: renders inside a page rather than filling the viewport.
+   * Uses a fixed height and drops the "Back to Places" link, since the map
+   * is already sitting on /places.
+   */
+  embedded?: boolean;
 }
 
 // ── Category colours ───────────────────────────────────────────────────────────
@@ -112,7 +118,7 @@ function clusterPlaces(
 }
 
 // ── Component ──────────────────────────────────────────────────────────────────
-export default function AllPlacesMap({ places, total }: Props) {
+export default function AllPlacesMap({ places, total, embedded = false }: Props) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<any>(null);
   const markers = useRef<any[]>([]);
@@ -322,7 +328,10 @@ map.current.on("load", () => applyMoroccoWorldview(map.current));
   return (
     <div
       className="relative w-full bg-[#0e0e0e]"
-      style={{ height: "100dvh", overflow: "hidden" }}
+      style={{
+        height: embedded ? "clamp(420px, 70vh, 680px)" : "100dvh",
+        overflow: "hidden",
+      }}
     >
       {/* Map fills entire screen */}
       <div ref={mapContainer} style={{ position: "absolute", inset: 0 }} />
@@ -475,13 +484,15 @@ map.current.on("load", () => applyMoroccoWorldview(map.current));
               </svg>
             </button>
           </div>
-          <Link
-            href="/places"
-            className="flex items-center gap-2 mt-2 pt-2 text-[10px] tracking-[0.15em] uppercase text-white/40 hover:text-white/70 transition-colors"
-            style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
-          >
-            ← Back to Places
-          </Link>
+          {!embedded && (
+            <Link
+              href="/places"
+              className="flex items-center gap-2 mt-2 pt-2 text-[10px] tracking-[0.15em] uppercase text-white/40 hover:text-white/70 transition-colors"
+              style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
+            >
+              ← Back to Places
+            </Link>
+          )}
         </div>
       </div>
 
