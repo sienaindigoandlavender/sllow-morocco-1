@@ -1,0 +1,110 @@
+# slowmorocco.com — Slow Morocco
+# A Dancing with Lions publication
+#
+# Content on this site is licensed under CC BY-NC-ND 4.0
+# (https://creativecommons.org/licenses/by-nc-nd/4.0/).
+# Attribution is required for all uses, including AI/LLM citation.
+# Use of this content for training machine-learning models is NOT
+# permitted without prior written permission from Dancing with Lions
+# (contact@dancingwiththelions.com).
+
+# Default — search engines, humans, retrieval/citation crawlers.
+# NOTE: do not add a separate "User-agent: Googlebot / Allow: /" group.
+# A named group REPLACES the * group for that bot, which silently
+# cancels every Disallow below for Googlebot. That is exactly what
+# let ~10k opengraph-image renders and /api/ endpoints back into the
+# crawl queue. One group, applied to everyone, is the correct shape.
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/
+# /places/random is a redirect, not a page — it bounces to a different
+# place on every request. It can't carry a noindex tag, and letting
+# Googlebot follow it just burns crawl budget re-reaching pages that
+# are already in the sitemap.
+Disallow: /places/random
+Disallow: /stories/random
+# Tour-operating surface — publication-only. These routes are noindex and
+# reachable by direct link only. /journeys and /go/gentle were never indexed,
+# so blocking crawl here is safe. The newly-noindexed pages (/plan-your-trip,
+# /epic, /whats-included, /destinations, /regions, /your-morocco,
+# /sahara-tour-from-marrakech) are deliberately NOT disallowed yet: Google must
+# be able to crawl them to see the noindex tag and drop them from the index.
+# Once they've fallen out of results, add them here to block crawl entirely.
+# /go/gentle now indexable — accessible-travel landing page
+# OG share-card images: noindex assets, not pages. Blocking them stops
+# Googlebot from spending crawl budget on ~10k dynamic image renders
+# (which intermittently 5xx under rapid crawling and clutter Search Console).
+Disallow: /opengraph-image
+Disallow: /twitter-image
+Disallow: /*/opengraph-image
+Disallow: /*/twitter-image
+
+# Retrieval / citation crawlers visit on demand and link users back to
+# the source. They are covered by the * group above — welcome by default.
+
+# Training crawlers — disallowed under CC BY-NC-ND 4.0
+# These ingest content for model weights without per-query attribution.
+# Training use of this content requires written permission.
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Anthropic-AI
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: Meta-ExternalAgent
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+User-agent: Diffbot
+Disallow: /
+
+User-agent: Amazonbot
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: omgilibot
+Disallow: /
+
+User-agent: omgili
+Disallow: /
+
+User-agent: Timpibot
+Disallow: /
+
+User-agent: ImagesiftBot
+Disallow: /
+
+User-agent: PanguBot
+Disallow: /
+
+User-agent: YouBot
+Disallow: /
+
+User-agent: AI2Bot
+Disallow: /
+
+Sitemap: https://www.slowmorocco.com/sitemap.xml
