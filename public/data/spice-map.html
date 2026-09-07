@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Rendered inside the story page via an iframe. Indexing it separately
+     would compete with the story for the same subject. -->
+<meta name="robots" content="noindex, follow">
+<title>The Spice Map — Dancing with Lions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0a0a;--ink-60:rgba(10,10,10,.60);--ink-40:rgba(10,10,10,.40);
+    --rule:rgba(10,10,10,.10);--hair:rgba(10,10,10,.06);
+    --saffron:#C8781E;--cumin:#8A6A3A;--fake:#8F3A24;--fair:#3E6B4E;
+    --mapdot:#8A6A3A;--maproute:#C8781E;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;font-size:15px;line-height:1.55}
+  .wrap{max-width:940px;margin:0 auto;padding:52px 28px 88px}
+  h1{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:clamp(32px,5.6vw,54px);line-height:1.05;letter-spacing:-.01em;margin:0 0 16px}
+  .standfirst{font-family:"EB Garamond",Georgia,serif;font-size:19px;line-height:1.5;color:var(--ink-60);max-width:38em;margin:0}
+  .dateline{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin-top:20px;padding-top:14px;border-top:1px solid var(--hair);font-size:12px;color:var(--ink-40)}
+  .dateline .stamp{color:var(--ink-60)}
+  h2{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:25px;line-height:1.2;margin:0 0 6px}
+  .note{font-size:13px;color:var(--ink-40);max-width:44em;margin:0 0 24px}
+  section{border-top:1px solid var(--rule);padding-top:32px;margin-top:48px}
+
+  /* map */
+  .map{width:100%;height:auto;margin-top:24px;display:block}
+  .map .grid{stroke:rgba(10,10,10,.08);stroke-width:1}
+  .map .ax{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.30)}
+  .map .dot{fill:var(--mapdot,#3E7A4E)}
+  .map .dot.minor{fill:rgba(10,10,10,.30)}
+  .map .pl{font-family:"DM Sans",sans-serif;font-size:12px;fill:#0a0a0a}
+  .map .pd{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.40)}
+  .map .route{fill:none;stroke:var(--maproute,#A9863C);stroke-width:1.6;stroke-dasharray:5 4}
+  .map .span{stroke:var(--maproute,#A9863C);stroke-width:2}
+  .map .spanlab{font-family:"DM Sans",sans-serif;font-size:10.5px;fill:var(--maproute,#A9863C)}
+
+  .arith{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:22px}
+  .arith>div{background:#fff;padding:22px 16px}
+  .arith .big{font-family:"EB Garamond",Georgia,serif;font-size:30px;line-height:1;margin-bottom:6px;color:var(--saffron)}
+  .arith .lab{font-size:12px;color:var(--ink-40);line-height:1.4}
+
+  .price{width:100%;border-collapse:collapse;margin-top:22px;font-size:14px}
+  .price th{text-align:left;font-weight:500;font-size:12px;color:var(--ink-40);padding:0 0 9px;border-bottom:1px solid var(--rule)}
+  .price th:not(:first-child),.price td:not(:first-child){text-align:right;font-variant-numeric:tabular-nums}
+  .price td{padding:12px 0;border-bottom:1px solid var(--hair)}
+  .price .fair{color:var(--fair)}
+  .price .tourist{color:var(--fake)}
+
+  .test{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:22px}
+  .test>div{background:#fff;padding:24px 20px}
+  .test .h{font-size:12px;color:var(--ink-40);margin-bottom:10px}
+  .test ul{margin:0;padding-left:18px}
+  .test li{font-size:13.5px;color:var(--ink-60);line-height:1.55;margin-bottom:7px}
+  .test .h.bad{color:var(--fake)}
+
+  table{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px}
+  th{text-align:left;font-weight:500;font-size:12px;color:var(--ink-40);padding:0 0 9px;border-bottom:1px solid var(--rule)}
+  td{padding:11px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+  .foot{border-top:1px solid var(--rule);margin-top:58px;padding-top:20px;font-size:12px;color:var(--ink-40);line-height:1.7}
+  .foot strong{color:var(--ink-60);font-weight:500}
+  @media(max-width:620px){.test{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>A hundred and fifty thousand flowers</h1>
+  <p class="standfirst">
+    That is what one kilogram of saffron costs in labour. Each crocus gives
+    three threads, they are pulled by hand at dawn in late October, and the
+    arithmetic is the reason the spice is faked more often than any other thing
+    sold in a Moroccan souk.
+  </p>
+  <div class="dateline">
+    <span class="stamp"><time datetime="2026-09-07">Compiled 7 September 2026</time></span>
+    <span>Prices are 2026 dirham figures from the Marrakech medina and move with the harvest.</span>
+  </div>
+
+  <section>
+    <h2>The arithmetic of saffron</h2>
+    <div class="arith">
+      <div><div class="big">3</div><div class="lab">Stigma threads per flower</div></div>
+      <div><div class="big">150,000</div><div class="lab">Flowers to make one kilogram</div></div>
+      <div><div class="big">Oct–Nov</div><div class="lab">The harvest window</div></div>
+      <div><div class="big">Dawn</div><div class="lab">When the flowers are picked, before the sun opens them</div></div>
+    </div>
+    <p class="note" style="margin-top:18px">
+      Taliouine, in the Anti-Atlas, is where almost all of it is grown. The
+      separating of thread from flower is done by women, sitting, by hand, for
+      the six weeks the harvest lasts.
+    </p>
+  </section>
+
+  <section>
+    <h2>What things actually cost</h2>
+    <p class="note">
+      Two prices for the same product: what a quality shop charges, and what a
+      tourist-facing stall opens at. Both are real; the difference is who is
+      standing in front of the counter.
+    </p>
+    <table class="price">
+      <thead><tr><th>Product</th><th>Fair price</th><th>Tourist quote</th></tr></thead>
+      <tbody>
+        <tr><td>Saffron, per gram</td><td class="fair">30–50 MAD</td><td class="tourist">under 10 MAD means it is not saffron</td></tr>
+        <tr><td>Ras el hanout, per 100 g</td><td class="fair">20–30 MAD</td><td class="tourist">80–150 MAD</td></tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-top:18px">
+      Saffron is the one thing not to bargain on. If the price is low enough to
+      feel like a win, the product is safflower, dyed corn silk, or low-grade
+      threads cut with stem.
+    </p>
+  </section>
+
+  <section>
+    <h2>Telling real from not</h2>
+    <div class="test">
+      <div>
+        <div class="h">Real saffron</div>
+        <ul>
+          <li>Deep crimson, with a paler tip where the thread meets the style</li>
+          <li>Slightly sticky rather than brittle</li>
+          <li>A warm, faintly honeyed smell, complex rather than sharp</li>
+          <li>Sold in very small quantities at a serious price</li>
+          <li>Colours water slowly, over minutes, not instantly</li>
+        </ul>
+      </div>
+      <div>
+        <div class="h bad">Not saffron</div>
+        <ul>
+          <li>Uniform bright red from root to tip</li>
+          <li>Smells of nothing, or of dye</li>
+          <li>Offered by the handful</li>
+          <li>Turns water red immediately</li>
+          <li>Safflower, called carthamus, is the usual substitute</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Where each thing comes from</h2>
+    <p class="note">
+      Most of what fills a souk is imported and always was. These are the ones
+      that are not.
+    </p>
+<svg viewBox="0 0 800 420" class="map" xmlns="http://www.w3.org/2000/svg">
+  <line x1="94.9" y1="48" x2="94.9" y2="372" class="grid"/>
+  <text x="94.9" y="388" class="ax" text-anchor="middle">10°W</text>
+  <line x1="282.7" y1="48" x2="282.7" y2="372" class="grid"/>
+  <text x="282.7" y="388" class="ax" text-anchor="middle">8°W</text>
+  <line x1="470.4" y1="48" x2="470.4" y2="372" class="grid"/>
+  <text x="470.4" y="388" class="ax" text-anchor="middle">6°W</text>
+  <line x1="658.1" y1="48" x2="658.1" y2="372" class="grid"/>
+  <text x="658.1" y="388" class="ax" text-anchor="middle">4°W</text>
+  <line x1="48" y1="325.7" x2="752" y2="325.7" class="grid"/>
+  <text x="40" y="329.7" class="ax" text-anchor="end">30°N</text>
+  <line x1="48" y1="233.1" x2="752" y2="233.1" class="grid"/>
+  <text x="40" y="237.1" class="ax" text-anchor="end">32°N</text>
+  <line x1="48" y1="140.6" x2="752" y2="140.6" class="grid"/>
+  <text x="40" y="144.6" class="ax" text-anchor="end">34°N</text>
+  <circle cx="517.3" cy="145.2" r="4.5" class="dot"/>
+  <text x="526.3" y="143.2" class="pl" text-anchor="start">Meknes</text>
+  <text x="526.3" y="155.2" class="pd" text-anchor="start">mint</text>
+  <circle cx="564.3" cy="140.6" r="4.5" class="dot"/>
+  <text x="573.3" y="138.6" class="pl" text-anchor="start">Fes</text>
+  <text x="573.3" y="150.6" class="pd" text-anchor="start">the Mellah spice shops</text>
+  <circle cx="282.7" cy="251.7" r="4.5" class="dot"/>
+  <text x="291.7" y="249.7" class="pl" text-anchor="start">Marrakech</text>
+  <text x="291.7" y="261.7" class="pd" text-anchor="start">Rahba Kedima</text>
+  <circle cx="461.0" cy="270.2" r="4.5" class="dot"/>
+  <text x="470.0" y="268.2" class="pl" text-anchor="start">Kelaa M'Gouna</text>
+  <text x="470.0" y="280.2" class="pd" text-anchor="start">damask rose</text>
+  <circle cx="545.5" cy="274.8" r="4.5" class="dot"/>
+  <text x="554.5" y="272.8" class="pl" text-anchor="start">Alnif</text>
+  <text x="554.5" y="284.8" class="pd" text-anchor="start">cumin</text>
+  <circle cx="292.1" cy="302.6" r="4.5" class="dot"/>
+  <text x="301.1" y="300.6" class="pl" text-anchor="start">Taliouine</text>
+  <text x="301.1" y="312.6" class="pd" text-anchor="start">saffron</text>
+  <circle cx="132.5" cy="307.2" r="3" class="dot minor"/>
+  <text x="141.5" y="305.2" class="pl" text-anchor="start">Agadir</text>
+  <circle cx="639.4" cy="260.9" r="3" class="dot minor"/>
+  <text x="630.4" y="258.9" class="pl" text-anchor="end">Erfoud</text>
+</svg>
+    <table>
+      <thead><tr><th>Product</th><th>Place</th></tr></thead>
+      <tbody>
+        <tr><td>Saffron</td><td>Taliouine, Anti-Atlas</td></tr>
+        <tr><td>Cumin</td><td>Alnif, near the Sahara. Held to be the strongest in the country</td></tr>
+        <tr><td>Mint</td><td>Meknes</td></tr>
+        <tr><td>Damask rose</td><td>Kelaa M'Gouna, Dades Valley. Six weeks in May</td></tr>
+        <tr><td>The old spice trade</td><td>The Fes Mellah, where families have sold it for generations</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Ras el hanout, and the ingredient-count fallacy</h2>
+    <p class="note">
+      The name means head of the shop: the best a merchant has. There is no
+      recipe, every seller mixes his own, and no two are alike. Twelve to thirty
+      spices is the working range.
+    </p>
+    <p class="note">
+      Stalls that advertise fifty or a hundred spices are selling a number.
+      Past roughly thirty ingredients nothing further is detectable, and a blend
+      that smells overwhelmingly of cinnamon or overwhelmingly of cumin is a
+      lazy one whatever the count.
+    </p>
+    <table>
+      <thead><tr><th>Usually in it</th><th>Sometimes in it</th></tr></thead>
+      <tbody>
+        <tr><td>Cumin, coriander, turmeric, paprika, cinnamon, ginger, cardamom, clove, nutmeg, mace, allspice, black pepper</td><td>Dried rosebud, lavender, fenugreek, long pepper, cubeb, galangal, grains of paradise</td></tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-top:18px">
+      Blends shift by city. Marrakech tends hotter, Fes more floral. Buy whole
+      and unground where you can: ground spice loses its volatile oils within
+      weeks, and a jar six months old is mostly colour.
+    </p>
+  </section>
+
+  <div class="foot">
+    <strong>Sources:</strong> Field pricing, Marrakech medina, 2026; Moroccan
+    saffron cooperatives, Taliouine; UN COMTRADE trade data. Prices are given in
+    dirhams and move with each harvest, so treat them as a range rather than a
+    quotation.
+    <br><br>
+    <strong>&copy; Dancing with Lions.</strong> Data compilation and
+    visualisation. Reuse requires attribution and a visible credit reading
+    &ldquo;Source: Dancing with Lions&rdquo;.
+  </div>
+
+</div>
+</body>
+</html>
