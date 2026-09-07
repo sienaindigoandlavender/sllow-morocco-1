@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Rendered inside the story page via an iframe. Indexing it separately
+     would compete with the story for the same subject. -->
+<meta name="robots" content="noindex, follow">
+<title>The Geometry of Zellige — Dancing with Lions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0a0a;--ink-60:rgba(10,10,10,.60);--ink-40:rgba(10,10,10,.40);
+    --rule:rgba(10,10,10,.10);--hair:rgba(10,10,10,.06);
+    --cobalt:#20477E;--copper:#2E6B57;--saffron:#C79A2B;--terra:#8E3B26;
+    --bone:#EDE7DA;--brown:#6B4A34;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;font-size:15px;line-height:1.55}
+  .wrap{max-width:940px;margin:0 auto;padding:52px 28px 88px}
+  h1{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:clamp(32px,5.6vw,54px);line-height:1.05;letter-spacing:-.01em;margin:0 0 16px}
+  .standfirst{font-family:"EB Garamond",Georgia,serif;font-size:19px;line-height:1.5;color:var(--ink-60);max-width:38em;margin:0}
+  .dateline{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin-top:20px;padding-top:14px;border-top:1px solid var(--hair);font-size:12px;color:var(--ink-40)}
+  .dateline .stamp{color:var(--ink-60)}
+  h2{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:25px;line-height:1.2;margin:0 0 6px}
+  .note{font-size:13px;color:var(--ink-40);max-width:44em;margin:0 0 24px}
+  section{border-top:1px solid var(--rule);padding-top:32px;margin-top:48px}
+
+  .rosbox{display:grid;grid-template-columns:minmax(240px,1fr) 1fr;gap:34px;align-items:center;margin-top:22px}
+  .ros{width:100%;height:auto;max-width:400px;display:block;margin:0 auto}
+  .ros polygon{stroke:#fff;stroke-width:2.5}
+  .ros .t-star{fill:var(--cobalt)}
+  .ros .t-kite{fill:var(--bone)}
+  .ros .t-sq{fill:var(--copper)}
+  .rosleg dt{font-family:"EB Garamond",Georgia,serif;font-size:18px;margin-top:14px}
+  .rosleg dd{margin:3px 0 0;font-size:13px;color:var(--ink-60);line-height:1.5}
+  .rosleg dt:first-child{margin-top:0}
+
+  .pal{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:22px}
+  .pal>div{background:#fff;padding:0 0 15px}
+  .pal .chip{height:56px}
+  .pal .n{font-size:14px;margin:12px 14px 3px}
+  .pal .d{font-size:12px;color:var(--ink-40);margin:0 14px;line-height:1.4}
+
+  .stars{width:100%;border-collapse:collapse;margin-top:22px;font-size:14px}
+  .stars th{text-align:left;font-weight:500;font-size:12px;color:var(--ink-40);padding:0 0 9px;border-bottom:1px solid var(--rule)}
+  .stars th:not(:first-child),.stars td:not(:first-child){text-align:right;font-variant-numeric:tabular-nums}
+  .stars td{padding:11px 0;border-bottom:1px solid var(--hair)}
+  .stars .off{color:var(--terra)}
+
+  table{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px}
+  th{text-align:left;font-weight:500;font-size:12px;color:var(--ink-40);padding:0 0 9px;border-bottom:1px solid var(--rule)}
+  td{padding:11px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+  .foot{border-top:1px solid var(--rule);margin-top:58px;padding-top:20px;font-size:12px;color:var(--ink-40);line-height:1.7}
+  .foot strong{color:var(--ink-60);font-weight:500}
+  @media(max-width:700px){.rosbox{grid-template-columns:1fr;gap:22px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>The fifty-point star has forty-eight points</h1>
+  <p class="standfirst">
+    Zellige stars are named for how many points they have, and the names are
+    approximate. A khamsini, a fifty, carries forty-eight. A mi&rsquo;ini, a
+    hundred, carries ninety-six. The geometry requires the count to divide by
+    six, so the round numbers were never available.
+  </p>
+  <div class="dateline">
+    <span class="stamp"><time datetime="2026-09-07">Compiled 7 September 2026</time></span>
+    <span>Historical and technical. Workshop practice varies between Fes and Meknes.</span>
+  </div>
+
+  <section>
+    <h2>Every piece is cut, not printed</h2>
+    <div class="rosbox">
+      <svg viewBox="0 0 470 470" class="ros" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="235.0,117.0 259.4,176.0 318.4,151.6 294.0,210.6 353.0,235.0 294.0,259.4 318.4,318.4 259.4,294.0 235.0,353.0 210.6,294.0 151.6,318.4 176.0,259.4 117.0,235.0 176.0,210.6 151.6,151.6 210.6,176.0" class="t-star"/>
+  <polygon points="259.4,176.0 235.0,117.0 308.2,58.4 318.4,151.6" class="t-kite"/>
+  <polygon points="294.0,210.6 318.4,151.6 411.6,161.8 353.0,235.0" class="t-kite"/>
+  <polygon points="294.0,259.4 353.0,235.0 411.6,308.2 318.4,318.4" class="t-kite"/>
+  <polygon points="259.4,294.0 318.4,318.4 308.2,411.6 235.0,353.0" class="t-kite"/>
+  <polygon points="210.6,294.0 235.0,353.0 161.8,411.6 151.6,318.4" class="t-kite"/>
+  <polygon points="176.0,259.4 151.6,318.4 58.4,308.2 117.0,235.0" class="t-kite"/>
+  <polygon points="176.0,210.6 117.0,235.0 58.4,161.8 151.6,151.6" class="t-kite"/>
+  <polygon points="210.6,176.0 151.6,151.6 161.8,58.4 235.0,117.0" class="t-kite"/>
+  <polygon points="235.0,117.0 161.8,58.4 235.0,43.8 308.2,58.4" class="t-sq"/>
+  <polygon points="318.4,151.6 308.2,58.4 370.2,99.8 411.6,161.8" class="t-sq"/>
+  <polygon points="353.0,235.0 411.6,161.8 426.2,235.0 411.6,308.2" class="t-sq"/>
+  <polygon points="318.4,318.4 411.6,308.2 370.2,370.2 308.2,411.6" class="t-sq"/>
+  <polygon points="235.0,353.0 308.2,411.6 235.0,426.2 161.8,411.6" class="t-sq"/>
+  <polygon points="151.6,318.4 161.8,411.6 99.8,370.2 58.4,308.2" class="t-sq"/>
+  <polygon points="117.0,235.0 58.4,308.2 43.8,235.0 58.4,161.8" class="t-sq"/>
+  <polygon points="151.6,151.6 58.4,161.8 99.8,99.8 161.8,58.4" class="t-sq"/>
+</svg>
+      <dl class="rosleg">
+        <dt>furmah</dt>
+        <dd>The individual cut pieces. Every one is chipped from a larger fired
+        tile by hand, with a pointed hammer called a menkach.</dd>
+        <dt>naqsh</dt>
+        <dd>The pattern, drawn on paper first. The maalem works to it from
+        memory as much as from the sheet.</dd>
+        <dt>face down</dt>
+        <dd>The panel is assembled upside down on a flat surface, glaze against
+        the bench, and plaster is poured over the back. Nobody sees the finished
+        face until it is turned over.</dd>
+      </dl>
+    </div>
+    <p class="note" style="margin-top:20px">
+      The rosette above is seventeen pieces. A wall in the Bou Inania is
+      hundreds of thousands, and the apprenticeship to cut them takes eight to
+      ten years.
+    </p>
+  </section>
+
+  <section>
+    <h2>The star names, and what they actually are</h2>
+    <p class="note">
+      Points must divide by six in this sequence, so the naming rounds up to a
+      convenient number and the tile does not.
+    </p>
+    <table class="stars">
+      <thead><tr><th>Name</th><th>Implies</th><th>Actually has</th></tr></thead>
+      <tbody>
+        <tr><td>&rsquo;itnashari</td><td>12</td><td>12</td></tr>
+        <tr><td>&rsquo;ishrini</td><td>20</td><td>24</td></tr>
+        <tr><td>arba&rsquo; wa &rsquo;ishrini</td><td>24</td><td>24</td></tr>
+        <tr><td>khamsini</td><td>50</td><td class="off">48</td></tr>
+        <tr><td>mi&rsquo;ini</td><td>100</td><td class="off">96</td></tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-top:18px">
+      Separate sequences run on five-fold and eight-fold symmetry. And beyond
+      the stars there is a whole vocabulary that has nothing to do with them:
+      honeycombs, webs, checkerboards, and the pattern the craft calls steps and
+      shoulders.
+    </p>
+  </section>
+
+  <section>
+    <h2>The colours arrived in order</h2>
+    <p class="note">
+      Zellige began in two colours and took seven centuries to reach the palette
+      people now think of as Moroccan. Each one waited on a glaze chemistry.
+    </p>
+    <div class="pal">
+      <div><div class="chip" style="background:#EDE7DA"></div><div class="n">White</div><div class="d">From the beginning, 10th century</div></div>
+      <div><div class="chip" style="background:#6B4A34"></div><div class="n">Brown</div><div class="d">From the beginning</div></div>
+      <div><div class="chip" style="background:#20477E"></div><div class="n">Blue</div><div class="d">Cobalt. 14th century, under the Marinids and Nasrids</div></div>
+      <div><div class="chip" style="background:#2E6B57"></div><div class="n">Green</div><div class="d">Copper. 14th century</div></div>
+      <div><div class="chip" style="background:#C79A2B"></div><div class="n">Yellow</div><div class="d">14th century</div></div>
+      <div><div class="chip" style="background:#8E3B26"></div><div class="n">Red</div><div class="d">17th century. The last to arrive</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Three traditions people confuse</h2>
+    <p class="note">
+      Islamic geometric tilework is not one system. These three use different
+      shapes and different construction logic, and they belong to different
+      places.
+    </p>
+    <table>
+      <thead><tr><th>Tradition</th><th>What it is</th></tr></thead>
+      <tbody>
+        <tr><td>Zellige</td><td>Maghrebi. Cut glazed terracotta, assembled face down into plaster. Fes and Meknes from the 10th or 11th century</td></tr>
+        <tr><td>Girih</td><td>Persian. Built from five standard tile shapes with strapwork drawn over them. The system behind the ten-fold stars of Isfahan</td></tr>
+        <tr><td>Sebka</td><td>Andalusian. A lozenge grid used as a surface treatment on walls and minarets, including the Koutoubia and the Giralda</td></tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-top:18px">
+      The workshops of the Ain Khail quarter in Fes have been cutting zellige
+      since the medieval period, and several of the families working there now
+      trace the craft through their own line. When the Moors were expelled from
+      Spain, cutters came back across with Andalusian refinements, which is why
+      the Alhambra and the Fes madrasas read as cousins.
+    </p>
+  </section>
+
+  <section>
+    <h2>Why geometry and not pictures</h2>
+    <p class="note">
+      Figurative images are avoided in Islamic religious art, which left
+      geometry, calligraphy and plant form as the available languages. The
+      Maghreb had inherited the mathematics to go a long way with the first of
+      them.
+    </p>
+    <p class="note">
+      The tessellations at the Alhambra, the same family of patterns, are what
+      M. C. Escher went to Granada to study in the 1920s and 1930s. He came home
+      and spent the rest of his career on them.
+    </p>
+  </section>
+
+  <div class="foot">
+    <strong>Sources:</strong> Standard reference works on zellige and Islamic
+    geometric ornament; star-naming and point counts after published survey
+    work on zillij; Lu and Steinhardt on girih tiling, <em>Science</em>, 2007.
+    Colour-introduction dates are approximate and vary between workshops and
+    dynasties.
+    <br><br>
+    <strong>&copy; Dancing with Lions.</strong> Data compilation and
+    visualisation. Reuse requires attribution and a visible credit reading
+    &ldquo;Source: Dancing with Lions&rdquo;.
+  </div>
+
+</div>
+</body>
+</html>
