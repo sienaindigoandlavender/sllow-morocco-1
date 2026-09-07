@@ -25,11 +25,12 @@ export function middleware(request: NextRequest) {
   }
 
   // ===================================================
-  // 1b. SECURITY FIX: gate the entire /api/admin/* subtree with the same
-  //     session cookie. These API routes previously had NO auth and were
-  //     publicly readable/writable.
+  // 1b. SECURITY: gate /api/admin/* and /api/stories/add with the session
+  //     cookie. /api/stories/add is a POST that inserts rows straight into
+  //     the stories table and had no auth check of its own — it sits
+  //     outside the /api/admin subtree, so the earlier fix missed it.
   // ===================================================
-  if (pathname.startsWith('/api/admin')) {
+  if (pathname.startsWith('/api/admin') || pathname === '/api/stories/add') {
     const sessionToken = request.cookies.get('sm_admin_session')?.value;
     if (sessionToken !== 'authenticated_true') {
       return new NextResponse(
@@ -125,6 +126,9 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     "/api/admin/:path*",
+    // Public POST that inserts into the stories table. Must be listed
+    // explicitly: the pattern below excludes everything under /api.
+    "/api/stories/add",
     "/((?!api|_next/static|_next/image|favicon|og-image|apple-touch|llms|robots|sitemap).*)",
   ],
 };
