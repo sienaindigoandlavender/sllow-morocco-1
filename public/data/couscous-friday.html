@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Rendered inside the story page via an iframe. Indexing it separately
+     would compete with the story for the same subject. -->
+<meta name="robots" content="noindex, follow">
+<title>Seksu — Dancing with Lions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0a0a;--ink-60:rgba(10,10,10,.60);--ink-40:rgba(10,10,10,.40);
+    --rule:rgba(10,10,10,.10);--hair:rgba(10,10,10,.06);
+    --grain:#D4B87A;--steam:#8FA3AE;--old:#7A6A55;
+    --mapdot:#D4B87A;--maproute:#7A6A55;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;font-size:15px;line-height:1.55}
+  .wrap{max-width:940px;margin:0 auto;padding:52px 28px 88px}
+  h1{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:clamp(32px,5.6vw,54px);line-height:1.05;letter-spacing:-.01em;margin:0 0 16px}
+  .standfirst{font-family:"EB Garamond",Georgia,serif;font-size:19px;line-height:1.5;color:var(--ink-60);max-width:38em;margin:0}
+  .dateline{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin-top:20px;padding-top:14px;border-top:1px solid var(--hair);font-size:12px;color:var(--ink-40)}
+  .dateline .stamp{color:var(--ink-60)}
+  h2{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:25px;line-height:1.2;margin:0 0 6px}
+  .note{font-size:13px;color:var(--ink-40);max-width:44em;margin:0 0 24px}
+  section{border-top:1px solid var(--rule);padding-top:32px;margin-top:48px}
+
+  /* map */
+  .map{width:100%;height:auto;margin-top:24px;display:block}
+  .map .grid{stroke:rgba(10,10,10,.08);stroke-width:1}
+  .map .ax{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.30)}
+  .map .dot{fill:var(--mapdot,#3E7A4E)}
+  .map .dot.minor{fill:rgba(10,10,10,.30)}
+  .map .pl{font-family:"DM Sans",sans-serif;font-size:12px;fill:#0a0a0a}
+  .map .pd{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.40)}
+  .map .route{fill:none;stroke:var(--maproute,#A9863C);stroke-width:1.6;stroke-dasharray:5 4}
+  .map .span{stroke:var(--maproute,#A9863C);stroke-width:2}
+  .map .spanlab{font-family:"DM Sans",sans-serif;font-size:10.5px;fill:var(--maproute,#A9863C)}
+
+  .four{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:22px}
+  .four>div{background:#fff;padding:20px 16px}
+  .four .c{font-family:"EB Garamond",Georgia,serif;font-size:20px;margin-bottom:4px}
+  .four .w{font-size:12.5px;color:var(--ink-40);line-height:1.45}
+
+  .steps{margin-top:24px}
+  .st{display:grid;grid-template-columns:30px 1fr 90px;gap:0 16px;align-items:baseline;padding:13px 0;border-bottom:1px solid var(--hair)}
+  .stn{font-variant-numeric:tabular-nums;color:var(--ink-40);font-size:12px}
+  .stt{font-size:14.5px}
+  .std{font-size:12.5px;color:var(--ink-40);margin-top:3px;line-height:1.45}
+  .sttime{text-align:right;font-size:12.5px;color:var(--ink-40)}
+
+  .tl{margin-top:24px}
+  .ev{display:grid;grid-template-columns:110px 14px 1fr;gap:0 16px;align-items:start;padding:0 0 24px}
+  .yr{font-family:"EB Garamond",Georgia,serif;font-size:18px;text-align:right;padding-top:1px}
+  .rail{position:relative;height:100%}
+  .rail:before{content:"";position:absolute;left:6px;top:8px;bottom:-24px;width:1px;background:var(--rule)}
+  .ev:last-child .rail:before{display:none}
+  .mk{position:absolute;left:2px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--old)}
+  .mk.new{background:var(--grain)}
+  .evt{font-size:14.5px;line-height:1.5}
+  .evd{font-size:12.5px;color:var(--ink-40);margin-top:3px;line-height:1.45}
+
+  table{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px}
+  th{text-align:left;font-weight:500;font-size:12px;color:var(--ink-40);padding:0 0 9px;border-bottom:1px solid var(--rule)}
+  td{padding:11px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+  .foot{border-top:1px solid var(--rule);margin-top:58px;padding-top:20px;font-size:12px;color:var(--ink-40);line-height:1.7}
+  .foot strong{color:var(--ink-60);font-weight:500}
+  @media(max-width:620px){.ev{grid-template-columns:84px 14px 1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Seksu</h1>
+  <p class="standfirst">
+    The word is Amazigh, and steamers for it have been recovered from tombs of
+    the third century BCE. Morocco, Algeria, Tunisia and Mauritania have each
+    claimed the dish, and in 2020 they gave up and filed for it together.
+  </p>
+  <div class="dateline">
+    <span class="stamp"><time datetime="2026-09-07">Compiled 7 September 2026</time></span>
+    <span>Historical, with the inscription record from UNESCO 15.COM, 2020.</span>
+  </div>
+
+  <section>
+    <h2>The signatories</h2>
+    <div class="four">
+      <div><div class="c">Morocco</div><div class="w">Seven-vegetable couscous, and the Friday meal after dhuhr</div></div>
+      <div><div class="c">Algeria</div><div class="w">The file was coordinated here; the CNRPAH holds the documentation</div></div>
+      <div><div class="c">Tunisia</div><div class="w">Fish couscous on the coast, and a grain that varies house to house</div></div>
+      <div><div class="c">Mauritania</div><div class="w">The southern and Saharan end of the same practice</div></div>
+    </div>
+<svg viewBox="0 0 880 380" class="map" xmlns="http://www.w3.org/2000/svg">
+  <line x1="153.9" y1="48" x2="153.9" y2="332" class="grid"/>
+  <text x="153.9" y="348" class="ax" text-anchor="middle">15°W</text>
+  <line x1="259.9" y1="48" x2="259.9" y2="332" class="grid"/>
+  <text x="259.9" y="348" class="ax" text-anchor="middle">10°W</text>
+  <line x1="365.8" y1="48" x2="365.8" y2="332" class="grid"/>
+  <text x="365.8" y="348" class="ax" text-anchor="middle">5°W</text>
+  <line x1="471.8" y1="48" x2="471.8" y2="332" class="grid"/>
+  <text x="471.8" y="348" class="ax" text-anchor="middle">0°E</text>
+  <line x1="577.7" y1="48" x2="577.7" y2="332" class="grid"/>
+  <text x="577.7" y="348" class="ax" text-anchor="middle">5°E</text>
+  <line x1="683.7" y1="48" x2="683.7" y2="332" class="grid"/>
+  <text x="683.7" y="348" class="ax" text-anchor="middle">10°E</text>
+  <line x1="789.6" y1="48" x2="789.6" y2="332" class="grid"/>
+  <text x="789.6" y="348" class="ax" text-anchor="middle">15°E</text>
+  <line x1="48" y1="275.2" x2="832" y2="275.2" class="grid"/>
+  <text x="40" y="279.2" class="ax" text-anchor="end">20°N</text>
+  <line x1="48" y1="218.4" x2="832" y2="218.4" class="grid"/>
+  <text x="40" y="222.4" class="ax" text-anchor="end">25°N</text>
+  <line x1="48" y1="161.6" x2="832" y2="161.6" class="grid"/>
+  <text x="40" y="165.6" class="ax" text-anchor="end">30°N</text>
+  <line x1="48" y1="104.8" x2="832" y2="104.8" class="grid"/>
+  <text x="40" y="108.8" class="ax" text-anchor="end">35°N</text>
+  <circle cx="327.7" cy="116.2" r="4.5" class="dot"/>
+  <text x="336.7" y="114.2" class="pl" text-anchor="start">Rabat</text>
+  <text x="336.7" y="126.2" class="pd" text-anchor="start">Morocco</text>
+  <circle cx="537.5" cy="84.4" r="4.5" class="dot"/>
+  <text x="546.5" y="82.4" class="pl" text-anchor="start">Algiers</text>
+  <text x="546.5" y="94.4" class="pd" text-anchor="start">Algeria</text>
+  <circle cx="687.9" cy="84.4" r="4.5" class="dot"/>
+  <text x="678.9" y="82.4" class="pl" text-anchor="end">Tunis</text>
+  <text x="678.9" y="94.4" class="pd" text-anchor="end">Tunisia</text>
+  <circle cx="132.8" cy="296.8" r="4.5" class="dot"/>
+  <text x="141.8" y="294.8" class="pl" text-anchor="start">Nouakchott</text>
+  <text x="141.8" y="306.8" class="pd" text-anchor="start">Mauritania</text>
+  <circle cx="751.5" cy="128.7" r="3" class="dot minor"/>
+  <text x="742.5" y="126.7" class="pl" text-anchor="end">Tripoli</text>
+  <text x="742.5" y="138.7" class="pd" text-anchor="end">Libya, not a signatory</text>
+</svg>
+    <p class="note" style="margin-top:16px">
+      Libya eats it and did not sign. The inscription covers the knowledge and
+      the practices rather than the dish, which is what allowed four states with
+      real disagreements to put their names on one document.
+    </p>
+  </section>
+
+  <section>
+    <h2>Older than every state that claimed it</h2>
+    <div class="tl">
+      <div class="ev"><div class="yr">3rd c. BCE</div><div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">Steamers in Amazigh tombs</div><div class="evd">Keskas vessels have been recovered from burials of this date. The word seksu is Amazigh, and the dish is older than Arabic in North Africa by roughly nine centuries.</div></div></div>
+      <div class="ev"><div class="yr">7th c.</div><div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">The Arab conquest</div><div class="evd">Couscous is already here. What arrives is a new language for it and eventually a new week to eat it in.</div></div></div>
+      <div class="ev"><div class="yr">Early 20th c.</div><div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">Europe learns the word</div><div class="evd">French colonialism and the Pieds-Noirs of Algeria carry it to French tables, and from there to the rest of Europe.</div></div></div>
+      <div class="ev"><div class="yr">2020</div><div class="rail"><span class="mk new"></span></div>
+        <div><div class="evt">Inscribed jointly</div><div class="evd">UNESCO&rsquo;s fifteenth committee session accepts the four-country file. The Director-General calls it a diplomatic result as much as a cultural one.</div></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Three steamings</h2>
+    <p class="note">
+      The couscoussier is a two-part pot: broth simmering below, grain steaming
+      above in a perforated basket. Nothing boils. The grain is cooked entirely
+      by vapour rising from the stew it will be served with.
+    </p>
+    <div class="steps">
+      <div class="st"><div class="stn">01</div><div><div class="stt">Rolling</div><div class="std">Semolina sprinkled with salted water and worked by hand until the grains form. Skill and patience, and it cannot be rushed.</div></div><div class="sttime">by hand</div></div>
+      <div class="st"><div class="stn">02</div><div><div class="stt">First steaming</div><div class="std">Into the basket over the broth. Comes out unevenly cooked, and is meant to.</div></div><div class="sttime">~20 min</div></div>
+      <div class="st"><div class="stn">03</div><div><div class="stt">Spread and worked</div><div class="std">Turned out, cooled slightly, separated with oil or butter and a little water. The grains stop clumping.</div></div><div class="sttime">between each</div></div>
+      <div class="st"><div class="stn">04</div><div><div class="stt">Second steaming</div><div class="std">Back over the broth. Then out, and worked again.</div></div><div class="sttime">~20 min</div></div>
+      <div class="st"><div class="stn">05</div><div><div class="stt">Third steaming</div><div class="std">The last one. The grain finishes light and separate rather than heavy and stuck.</div></div><div class="sttime">~20 min</div></div>
+      <div class="st"><div class="stn">06</div><div><div class="stt">Served</div><div class="std">Heaped, with the stew and vegetables placed on top and the broth poured around.</div></div><div class="sttime">2–3 hrs total</div></div>
+    </div>
+    <p class="note" style="margin-top:18px">
+      The packet in a British supermarket takes three minutes and boiling water.
+      It is the same grain and a different food.
+    </p>
+  </section>
+
+  <section>
+    <h2>What it is made of, where</h2>
+    <table>
+      <thead><tr><th>Grain</th><th>Where and when</th></tr></thead>
+      <tbody>
+        <tr><td>Durum wheat semolina</td><td>The standard, and what almost all commercial couscous is</td></tr>
+        <tr><td>Barley</td><td>Older, and still used in the mountains and the south</td></tr>
+        <tr><td>Maize</td><td>Regional, and in lean years</td></tr>
+        <tr><td>Millet and sorghum</td><td>The Saharan and Sahelian end of the range, into Mauritania</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Who the inscription actually names</h2>
+    <p class="note">
+      UNESCO listed a chain of people, not a recipe: the farmers who grow the
+      cereal, the millers who turn it into semolina, the artisans who make the
+      couscoussier and the wooden bowls, the traders, and the women who hold the
+      knowledge of the rolling and the steaming and pass it on.
+    </p>
+    <p class="note">
+      Which is why the file could be filed jointly. No one country can claim a
+      chain that runs across all of them.
+    </p>
+  </section>
+
+  <div class="foot">
+    <strong>Sources:</strong> UNESCO Representative List of the Intangible
+    Cultural Heritage of Humanity, inscription 01602, 15.COM, 2020; joint
+    nomination file of Algeria, Mauritania, Morocco and Tunisia; CNRPAH,
+    Algiers, documentation. Archaeological dating of keskas vessels follows
+    published excavation reports.
+    <br><br>
+    <strong>&copy; Dancing with Lions.</strong> Data compilation and
+    visualisation. Reuse requires attribution and a visible credit reading
+    &ldquo;Source: Dancing with Lions&rdquo;.
+  </div>
+
+</div>
+</body>
+</html>
