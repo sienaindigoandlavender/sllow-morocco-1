@@ -271,10 +271,27 @@ export default function StoryDetailContent({
           </>
         )}
 
-        {/* Ksour Archive cross-link — shown when the story touches earthen architecture */}
+        {/* Earthen-architecture cross-links — shown when the story touches
+            kasbahs, ksour or agadirs. Sends readers to the mapped hub first,
+            then out to the Archive. */}
         {/kasbah|ksar|ksour|agadir[s]? |tighremt/i.test(`${story.title} ${story.body ?? ""}`) && (
           <>
             <hr className="border-foreground/10 my-12" />
+            <div className="mb-10">
+              <h3 className="text-[10px] tracking-[0.25em] uppercase text-foreground/55 mb-4">
+                On the map
+              </h3>
+              <p className="text-sm text-foreground/55 leading-relaxed">
+                Every kasbah in the atlas, with its position, is at{" "}
+                <Link
+                  href="/places/category/kasbahs"
+                  className="underline decoration-foreground/20 hover:decoration-foreground/60 transition-colors"
+                >
+                  Kasbahs
+                </Link>
+                , alongside the journeys that pass through them.
+              </p>
+            </div>
             <div>
               <h3 className="text-[10px] tracking-[0.25em] uppercase text-foreground/55 mb-4">
                 In the Archive
