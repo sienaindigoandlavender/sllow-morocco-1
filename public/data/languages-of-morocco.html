@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Rendered inside the story page via an iframe. Indexing it separately
+     would compete with the story for the same subject. -->
+<meta name="robots" content="noindex, follow">
+<title>The Languages of Morocco — Dancing with Lions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0a0a;--ink-60:rgba(10,10,10,.60);--ink-40:rgba(10,10,10,.40);
+    --rule:rgba(10,10,10,.10);--hair:rgba(10,10,10,.06);
+    --spoken:#4A5D7E;--spoken-pale:#C3CBD9;--written:#8F3A24;
+    --mapdot:#4A5D7E;--maproute:#8F3A24;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;font-size:15px;line-height:1.55}
+  .wrap{max-width:940px;margin:0 auto;padding:52px 28px 88px}
+  h1{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:clamp(32px,5.6vw,54px);line-height:1.05;letter-spacing:-.01em;margin:0 0 16px}
+  .standfirst{font-family:"EB Garamond",Georgia,serif;font-size:19px;line-height:1.5;color:var(--ink-60);max-width:38em;margin:0}
+  .dateline{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin-top:20px;padding-top:14px;border-top:1px solid var(--hair);font-size:12px;color:var(--ink-40)}
+  .dateline .stamp{color:var(--ink-60)}
+  h2{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:25px;line-height:1.2;margin:0 0 6px}
+  .note{font-size:13px;color:var(--ink-40);max-width:44em;margin:0 0 24px}
+  section{border-top:1px solid var(--rule);padding-top:32px;margin-top:48px}
+
+  /* map */
+  .map{width:100%;height:auto;margin-top:24px;display:block}
+  .map .grid{stroke:rgba(10,10,10,.08);stroke-width:1}
+  .map .ax{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.30)}
+  .map .dot{fill:var(--mapdot,#3E7A4E)}
+  .map .dot.minor{fill:rgba(10,10,10,.30)}
+  .map .pl{font-family:"DM Sans",sans-serif;font-size:12px;fill:#0a0a0a}
+  .map .pd{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.40)}
+  .map .route{fill:none;stroke:var(--maproute,#A9863C);stroke-width:1.6;stroke-dasharray:5 4}
+  .map .span{stroke:var(--maproute,#A9863C);stroke-width:2}
+  .map .spanlab{font-family:"DM Sans",sans-serif;font-size:10.5px;fill:var(--maproute,#A9863C)}
+
+  .pop{display:grid;gap:9px;margin-top:22px}
+  .prow{display:grid;grid-template-columns:190px 1fr 62px;gap:14px;align-items:center;font-size:14px}
+  .pbar{height:19px;background:var(--hair)}
+  .pbar div{height:100%;background:var(--spoken)}
+  .pbar div.sub{background:var(--spoken-pale)}
+  .pbar div.foreign{background:#9AA7B8}
+  .pnum{text-align:right;font-variant-numeric:tabular-nums;font-size:13px;color:var(--ink-60)}
+  .sublabel{font-size:12px;color:var(--ink-40)}
+
+  .gap{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:22px}
+  .gap>div{background:#fff;padding:26px 20px}
+  .gap .lab{font-size:12px;color:var(--ink-40);margin-bottom:8px}
+  .gap .big{font-family:"EB Garamond",Georgia,serif;font-size:clamp(28px,5vw,44px);line-height:1.05;margin-bottom:8px}
+  .gap .sub{font-size:13px;color:var(--ink-60);line-height:1.45}
+  .gap .big.warn{color:var(--written)}
+
+  .dispute{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:22px}
+  .dispute>div{background:#fff;padding:22px 20px}
+  .dispute .who{font-size:12px;color:var(--ink-40);margin-bottom:7px}
+  .dispute .fig{font-family:"EB Garamond",Georgia,serif;font-size:32px;line-height:1;margin-bottom:7px}
+  .dispute .txt{font-size:13px;color:var(--ink-60);line-height:1.45}
+
+  table{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px}
+  th{text-align:left;font-weight:500;font-size:12px;color:var(--ink-40);padding:0 0 9px;border-bottom:1px solid var(--rule)}
+  td{padding:11px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+  td:last-child,th:last-child{text-align:right;font-variant-numeric:tabular-nums}
+  .foot{border-top:1px solid var(--rule);margin-top:58px;padding-top:20px;font-size:12px;color:var(--ink-40);line-height:1.7}
+  .foot strong{color:var(--ink-60);font-weight:500}
+  @media(max-width:620px){
+    .gap,.dispute{grid-template-columns:1fr}
+    .prow{grid-template-columns:132px 1fr 52px;gap:9px;font-size:13px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>The language nearly everyone speaks is not official</h1>
+  <p class="standfirst">
+    Morocco has two official languages and neither of them is Darija. Ninety-two
+    per cent of the country speaks it every day, almost nobody writes it, and it
+    has no constitutional status at all.
+  </p>
+  <div class="dateline">
+    <span class="stamp"><time datetime="2026-09-07">Compiled 7 September 2026</time></span>
+    <span>Figures from the 2024 census. The Amazigh count is disputed; see below.</span>
+  </div>
+
+  <section>
+    <h2>What people speak</h2>
+    <p class="note">
+      From the 2024 General Census of Population and Housing. Second-language
+      speakers are included, so the figures add to more than a hundred.
+    </p>
+    <div class="pop">
+      <div class="prow"><div>Darija</div><div class="pbar"><div style="width:91.9%"></div></div><div class="pnum">91.9%</div></div>
+      <div class="prow"><div class="sublabel">— urban</div><div class="pbar"><div class="sub" style="width:96.3%"></div></div><div class="pnum">96.3%</div></div>
+      <div class="prow"><div class="sublabel">— rural</div><div class="pbar"><div class="sub" style="width:84.5%"></div></div><div class="pnum">84.5%</div></div>
+      <div class="prow"><div>Amazigh languages</div><div class="pbar"><div style="width:24.8%"></div></div><div class="pnum">24.8%</div></div>
+      <div class="prow"><div class="sublabel">— Tashelhit</div><div class="pbar"><div class="sub" style="width:14.2%"></div></div><div class="pnum">14.2%</div></div>
+      <div class="prow"><div class="sublabel">— Central Atlas</div><div class="pbar"><div class="sub" style="width:7.4%"></div></div><div class="pnum">7.4%</div></div>
+      <div class="prow"><div class="sublabel">— Tarifit</div><div class="pbar"><div class="sub" style="width:3.2%"></div></div><div class="pnum">3.2%</div></div>
+      <div class="prow"><div>French</div><div class="pbar"><div class="foreign" style="width:36%"></div></div><div class="pnum">36%</div></div>
+      <div class="prow"><div>English</div><div class="pbar"><div class="foreign" style="width:14%"></div></div><div class="pnum">14%</div></div>
+      <div class="prow"><div>Spanish</div><div class="pbar"><div class="foreign" style="width:4.5%"></div></div><div class="pnum">4.5%</div></div>
+      <div class="prow"><div>Hassaniya</div><div class="pbar"><div style="width:0.8%"></div></div><div class="pnum">0.8%</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Where each one is</h2>
+    <p class="note">
+      Tarifit in the Rif, Central Atlas Tamazight through the mountains,
+      Tashelhit across the Souss and the Anti-Atlas, Hassaniya in the far south.
+      Spanish survives in the north because the north was Spanish until 1956.
+    </p>
+<svg viewBox="0 0 800 470" class="map" xmlns="http://www.w3.org/2000/svg">
+  <line x1="158.0" y1="48" x2="158.0" y2="422" class="grid"/>
+  <text x="158.0" y="438" class="ax" text-anchor="middle">15°W</text>
+  <line x1="290.0" y1="48" x2="290.0" y2="422" class="grid"/>
+  <text x="290.0" y="438" class="ax" text-anchor="middle">12°W</text>
+  <line x1="422.0" y1="48" x2="422.0" y2="422" class="grid"/>
+  <text x="422.0" y="438" class="ax" text-anchor="middle">9°W</text>
+  <line x1="554.0" y1="48" x2="554.0" y2="422" class="grid"/>
+  <text x="554.0" y="438" class="ax" text-anchor="middle">6°W</text>
+  <line x1="686.0" y1="48" x2="686.0" y2="422" class="grid"/>
+  <text x="686.0" y="438" class="ax" text-anchor="middle">3°W</text>
+  <line x1="48" y1="372.1" x2="752" y2="372.1" class="grid"/>
+  <text x="40" y="376.1" class="ax" text-anchor="end">24°N</text>
+  <line x1="48" y1="297.3" x2="752" y2="297.3" class="grid"/>
+  <text x="40" y="301.3" class="ax" text-anchor="end">27°N</text>
+  <line x1="48" y1="222.5" x2="752" y2="222.5" class="grid"/>
+  <text x="40" y="226.5" class="ax" text-anchor="end">30°N</text>
+  <line x1="48" y1="147.7" x2="752" y2="147.7" class="grid"/>
+  <text x="40" y="151.7" class="ax" text-anchor="end">33°N</text>
+  <line x1="48" y1="72.9" x2="752" y2="72.9" class="grid"/>
+  <text x="40" y="76.9" class="ax" text-anchor="end">36°N</text>
+  <circle cx="580.4" cy="82.9" r="3" class="dot minor"/>
+  <text x="571.4" y="80.9" class="pl" text-anchor="end">Tetouan</text>
+  <text x="571.4" y="92.9" class="pd" text-anchor="end">Spanish, in the north</text>
+  <circle cx="646.4" cy="92.9" r="4.5" class="dot"/>
+  <text x="637.4" y="90.9" class="pl" text-anchor="end">Al Hoceima</text>
+  <text x="637.4" y="102.9" class="pd" text-anchor="end">Tarifit</text>
+  <circle cx="598.0" cy="122.8" r="3" class="dot minor"/>
+  <text x="589.0" y="120.8" class="pl" text-anchor="end">Fes</text>
+  <text x="589.0" y="132.8" class="pd" text-anchor="end">Darija, French</text>
+  <circle cx="483.6" cy="132.8" r="4.5" class="dot"/>
+  <text x="492.6" y="130.8" class="pl" text-anchor="start">Casablanca</text>
+  <text x="492.6" y="142.8" class="pd" text-anchor="start">Darija, French</text>
+  <circle cx="567.2" cy="150.2" r="4.5" class="dot"/>
+  <text x="576.2" y="148.2" class="pl" text-anchor="start">Khenifra</text>
+  <text x="576.2" y="160.2" class="pd" text-anchor="start">Central Atlas Tamazight</text>
+  <circle cx="395.6" cy="212.6" r="4.5" class="dot"/>
+  <text x="404.6" y="210.6" class="pl" text-anchor="start">Agadir</text>
+  <text x="404.6" y="222.6" class="pd" text-anchor="start">Tashelhit</text>
+  <circle cx="426.4" cy="210.1" r="3" class="dot minor"/>
+  <text x="435.4" y="208.1" class="pl" text-anchor="start">Taroudant</text>
+  <circle cx="562.8" cy="215.1" r="3" class="dot minor"/>
+  <text x="571.8" y="213.1" class="pl" text-anchor="start">Zagora</text>
+  <circle cx="118.4" cy="379.6" r="4.5" class="dot"/>
+  <text x="127.4" y="377.6" class="pl" text-anchor="start">Dakhla</text>
+  <text x="127.4" y="389.6" class="pd" text-anchor="start">Hassaniya</text>
+</svg>
+  </section>
+
+  <section>
+    <h2>Speaking it and writing it are different things</h2>
+    <p class="note">
+      Tamazight became an official language in 2011 and Tifinagh was adopted as
+      its script in 2003. The 2024 census asked separately about reading and
+      writing.
+    </p>
+    <div class="gap">
+      <div>
+        <div class="lab">Can read and write Arabic</div>
+        <div class="big">99.2%</div>
+        <div class="sub">Of the literate population. Arabic is what school teaches and what officialdom runs on.</div>
+      </div>
+      <div>
+        <div class="lab">Can read and write Amazigh</div>
+        <div class="big warn">1.5%</div>
+        <div class="sub">An official language of the state, written by one and a half people in a hundred.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>A number nobody agrees on</h2>
+    <p class="note">
+      The census puts Amazigh speakers at a quarter of the country. Amazigh
+      associations put it far higher and dispute how the question was framed.
+      The gap between the two figures is the argument.
+    </p>
+    <div class="dispute">
+      <div>
+        <div class="who">High Commission for Planning, 2024 census</div>
+        <div class="fig">24.8%</div>
+        <div class="txt">Around 9 million people. The official count, presented by the High Commissioner in December 2024.</div>
+      </div>
+      <div>
+        <div class="who">Amazigh associations</div>
+        <div class="fig">up to 85%</div>
+        <div class="txt">Around 29.6 million of a population of 37 million. AMREC accused the HCP of excluding Amazigh researchers from the design of the questionnaire.</div>
+      </div>
+    </div>
+    <p class="note" style="margin-top:18px">
+      One methodological point sits underneath the disagreement: the 2024
+      census does not separate Darija from Standard Arabic in its published
+      statistics, and it conflates mother tongue with language used. Somebody
+      raised in Tarifit who also speaks Darija can appear in both columns, or in
+      only one, depending on how the question was read.
+    </p>
+  </section>
+
+  <section>
+    <h2>What Darija is made of</h2>
+    <p class="note">
+      A speaker of Standard Arabic from the Gulf will not follow a
+      conversation in Marrakech. The vocabulary explains why.
+    </p>
+    <table>
+      <thead><tr><th>Source</th><th>What it contributed</th></tr></thead>
+      <tbody>
+        <tr><td>Arabic</td><td>The grammatical spine and most of the core lexicon</td></tr>
+        <tr><td>Amazigh</td><td>Vocabulary, place names, and a good deal of the phonology</td></tr>
+        <tr><td>French</td><td>Administration, machinery, the modern world. Protectorate, 1912 to 1956</td></tr>
+        <tr><td>Spanish</td><td>The north and the kitchen. Cocina, semana, and the whole Rif coast</td></tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-top:18px">
+      Darija is mostly spoken rather than written, though social media has been
+      changing that for fifteen years. It has no official status, no standard
+      orthography, and roughly thirty-four million speakers.
+    </p>
+  </section>
+
+  <div class="foot">
+    <strong>Sources:</strong> Haut-Commissariat au Plan, Recensement Général de
+    la Population et de l&rsquo;Habitat 2024; Article 5 of the 2011
+    Constitution; Institut Royal de la Culture Amazighe; Association Marocaine
+    pour la Recherche et l&rsquo;Échange Culturel; Organisation Internationale
+    de la Francophonie; Sunergia. The census counts second-language speakers,
+    so percentages sum to more than one hundred.
+    <br><br>
+    <strong>&copy; Dancing with Lions.</strong> Data compilation and
+    visualisation. Reuse requires attribution and a visible credit reading
+    &ldquo;Source: Dancing with Lions&rdquo;.
+  </div>
+
+</div>
+</body>
+</html>
