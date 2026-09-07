@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Rendered inside the story page via an iframe. Indexing it separately
+     would compete with the story for the same subject. -->
+<meta name="robots" content="noindex, follow">
+<title>The Argan Triangle — Dancing with Lions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0a0a;--ink-60:rgba(10,10,10,.60);--ink-40:rgba(10,10,10,.40);
+    --rule:rgba(10,10,10,.10);--hair:rgba(10,10,10,.06);
+    --argan:#B8873A;--leaf:#5E7247;--loss:#8F3A24;--pale:#E4D4B4;
+    --mapdot:#5E7247;--maproute:#B8873A;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;font-size:15px;line-height:1.55}
+  .wrap{max-width:940px;margin:0 auto;padding:52px 28px 88px}
+  h1{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:clamp(32px,5.6vw,54px);line-height:1.05;letter-spacing:-.01em;margin:0 0 16px}
+  .standfirst{font-family:"EB Garamond",Georgia,serif;font-size:19px;line-height:1.5;color:var(--ink-60);max-width:38em;margin:0}
+  .dateline{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin-top:20px;padding-top:14px;border-top:1px solid var(--hair);font-size:12px;color:var(--ink-40)}
+  .dateline .stamp{color:var(--ink-60)}
+  h2{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:25px;line-height:1.2;margin:0 0 6px}
+  .note{font-size:13px;color:var(--ink-40);max-width:44em;margin:0 0 24px}
+  section{border-top:1px solid var(--rule);padding-top:32px;margin-top:48px}
+
+  /* map */
+  .map{width:100%;height:auto;margin-top:24px;display:block}
+  .map .grid{stroke:rgba(10,10,10,.08);stroke-width:1}
+  .map .ax{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.30)}
+  .map .dot{fill:var(--mapdot,#3E7A4E)}
+  .map .dot.minor{fill:rgba(10,10,10,.30)}
+  .map .pl{font-family:"DM Sans",sans-serif;font-size:12px;fill:#0a0a0a}
+  .map .pd{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.40)}
+  .map .route{fill:none;stroke:var(--maproute,#A9863C);stroke-width:1.6;stroke-dasharray:5 4}
+  .map .span{stroke:var(--maproute,#A9863C);stroke-width:2}
+  .map .spanlab{font-family:"DM Sans",sans-serif;font-size:10.5px;fill:var(--maproute,#A9863C)}
+
+  .ladder{display:grid;gap:11px;margin-top:24px}
+  .lrow{display:grid;grid-template-columns:190px 1fr 96px;gap:14px;align-items:center;font-size:14px}
+  .lbar{height:26px;background:var(--hair)}
+  .lbar div{height:100%;background:var(--argan)}
+  .lbar div.top{background:var(--loss)}
+  .lnum{text-align:right;font-variant-numeric:tabular-nums;font-size:13px;color:var(--ink-60)}
+  .lwho{font-size:12.5px;color:var(--ink-40)}
+
+  .arith{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:22px}
+  .arith>div{background:#fff;padding:22px 16px}
+  .arith .big{font-family:"EB Garamond",Georgia,serif;font-size:29px;line-height:1;margin-bottom:6px;color:var(--argan)}
+  .arith .lab{font-size:12px;color:var(--ink-40);line-height:1.4}
+
+  .collapse{display:flex;align-items:flex-end;gap:clamp(20px,8vw,80px);height:210px;margin-top:26px}
+  .ccol{flex:1;display:flex;flex-direction:column;justify-content:flex-end}
+  .cbar{width:100%;background:var(--leaf)}
+  .cbar.after{background:var(--loss)}
+  .cnum{font-size:14px;font-variant-numeric:tabular-nums;margin-bottom:6px}
+  .clab{font-size:12px;color:var(--ink-40);margin-top:8px;line-height:1.35}
+
+  table{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px}
+  th{text-align:left;font-weight:500;font-size:12px;color:var(--ink-40);padding:0 0 9px;border-bottom:1px solid var(--rule)}
+  td{padding:11px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+  td:last-child,th:last-child{text-align:right;font-variant-numeric:tabular-nums}
+  .foot{border-top:1px solid var(--rule);margin-top:58px;padding-top:20px;font-size:12px;color:var(--ink-40);line-height:1.7}
+  .foot strong{color:var(--ink-60);font-weight:500}
+  @media(max-width:620px){.lrow{grid-template-columns:120px 1fr 76px;gap:9px;font-size:13px}.collapse{height:170px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Eighty dirhams for ten days of work</h1>
+  <p class="standfirst">
+    That is what a wholesaler pays a woman for five kilos of argan kernels, and
+    cracking half a kilo takes a full day. The same material, once it has left
+    the country and been put in a small bottle, sells for several hundred times
+    as much.
+  </p>
+  <div class="dateline">
+    <span class="stamp"><time datetime="2026-09-07">Compiled 7 September 2026</time></span>
+    <span>Field reporting 2024–2025. Retail multiples vary widely by brand.</span>
+  </div>
+
+  <section>
+    <h2>The arithmetic of a litre</h2>
+    <p class="note">
+      Figures differ between cooperatives and between the culinary and cosmetic
+      grades, but the shape is consistent: this is one of the most
+      labour-expensive oils on earth.
+    </p>
+    <div class="arith">
+      <div><div class="big">30–40 kg</div><div class="lab">of fruit for one litre of oil</div></div>
+      <div><div class="big">10–15 hrs</div><div class="lab">of hand labour per litre</div></div>
+      <div><div class="big">6 days</div><div class="lab">for one woman to produce a kilo of kernels</div></div>
+      <div><div class="big">2.2 kg</div><div class="lab">of kernels to press one litre</div></div>
+    </div>
+    <p class="note" style="margin-top:18px">
+      The kernel is the bottleneck. Each fruit holds a stone, each stone holds
+      one to three kernels, and the stone is cracked between two rocks by hand
+      because no machine has been made that does it without breaking what is
+      inside.
+    </p>
+  </section>
+
+  <section>
+    <h2>Where the money goes</h2>
+    <p class="note">
+      One woman&rsquo;s five kilos of kernels press to roughly two and a bit
+      litres. Here is what that quantity is worth at three points along the
+      chain.
+    </p>
+    <div class="ladder">
+      <div class="lrow">
+        <div>The woman who cracked it<div class="lwho">ten days of work</div></div>
+        <div class="lbar"><div style="width:1.2%"></div></div>
+        <div class="lnum">€7.50</div>
+      </div>
+      <div class="lrow">
+        <div>Wholesale<div class="lwho">about $30 a litre</div></div>
+        <div class="lbar"><div style="width:10%"></div></div>
+        <div class="lnum">≈ €64</div>
+      </div>
+      <div class="lrow">
+        <div>Retail abroad<div class="lwho">bottled, branded, cosmetic grade</div></div>
+        <div class="lbar"><div class="top" style="width:100%"></div></div>
+        <div class="lnum">up to €640</div>
+      </div>
+    </div>
+    <p class="note" style="margin-top:18px">
+      Most of the value is added after the oil leaves Morocco. The women hold
+      the knowledge that UNESCO listed and the smallest share of what it earns.
+    </p>
+  </section>
+
+  <section>
+    <h2>What the lockdown did</h2>
+    <p class="note">
+      With the cooperatives closed in 2020, the fruit under the trees was
+      collected and stored by others. When the doors opened again there was
+      nothing left on the ground, and the price of a kilo of fruit had gone from
+      two dirhams to twelve.
+    </p>
+    <div class="collapse">
+      <div class="ccol"><div class="cnum">3,000 L</div><div class="cbar" style="height:100%"></div><div class="clab">One cooperative,<br>before 2020</div></div>
+      <div class="ccol"><div class="cnum">50 L</div><div class="cbar after" style="height:1.7%"></div><div class="clab">The same cooperative,<br>after</div></div>
+    </div>
+    <p class="note" style="margin-top:18px">
+      Fifty-four women are members there. They now take turns, four called in on
+      a day when an order comes.
+    </p>
+  </section>
+
+  <section>
+    <h2>The tree grows in one place</h2>
+    <p class="note">
+      Argania spinosa covers roughly 800,000 hectares of semi-arid land between
+      Essaouira and the Souss, and nowhere else at any scale. It lives two
+      hundred years, survives droughts that kill everything around it, and holds
+      the line against the desert moving north.
+    </p>
+<svg viewBox="0 0 740 430" class="map" xmlns="http://www.w3.org/2000/svg">
+  <line x1="119.6" y1="48" x2="119.6" y2="382" class="grid"/>
+  <text x="119.6" y="398" class="ax" text-anchor="middle">11°W</text>
+  <line x1="262.7" y1="48" x2="262.7" y2="382" class="grid"/>
+  <text x="262.7" y="398" class="ax" text-anchor="middle">10°W</text>
+  <line x1="405.8" y1="48" x2="405.8" y2="382" class="grid"/>
+  <text x="405.8" y="398" class="ax" text-anchor="middle">9°W</text>
+  <line x1="548.9" y1="48" x2="548.9" y2="382" class="grid"/>
+  <text x="548.9" y="398" class="ax" text-anchor="middle">8°W</text>
+  <line x1="48" y1="309.4" x2="692" y2="309.4" class="grid"/>
+  <text x="40" y="313.4" class="ax" text-anchor="end">29°N</text>
+  <line x1="48" y1="236.8" x2="692" y2="236.8" class="grid"/>
+  <text x="40" y="240.8" class="ax" text-anchor="end">30°N</text>
+  <line x1="48" y1="164.2" x2="692" y2="164.2" class="grid"/>
+  <text x="40" y="168.2" class="ax" text-anchor="end">31°N</text>
+  <line x1="48" y1="91.6" x2="692" y2="91.6" class="grid"/>
+  <text x="40" y="95.6" class="ax" text-anchor="end">32°N</text>
+  <circle cx="291.3" cy="127.9" r="4.5" class="dot"/>
+  <text x="300.3" y="125.9" class="pl" text-anchor="start">Essaouira</text>
+  <text x="300.3" y="137.9" class="pd" text-anchor="start">northern edge</text>
+  <circle cx="319.9" cy="207.7" r="4.5" class="dot"/>
+  <text x="328.9" y="205.7" class="pl" text-anchor="start">Agadir</text>
+  <text x="328.9" y="217.7" class="pd" text-anchor="start">the Souss</text>
+  <circle cx="420.1" cy="200.5" r="3" class="dot minor"/>
+  <text x="429.1" y="198.5" class="pl" text-anchor="start">Taroudant</text>
+  <circle cx="305.6" cy="164.2" r="3" class="dot minor"/>
+  <text x="314.6" y="162.2" class="pl" text-anchor="start">Tamanar</text>
+  <circle cx="305.6" cy="258.6" r="4.5" class="dot"/>
+  <text x="314.6" y="256.6" class="pl" text-anchor="start">Tiznit</text>
+  <text x="314.6" y="268.6" class="pd" text-anchor="start">southern edge</text>
+  <circle cx="248.4" cy="309.4" r="3" class="dot minor"/>
+  <text x="257.4" y="307.4" class="pl" text-anchor="start">Guelmim</text>
+  <circle cx="548.9" cy="120.6" r="3" class="dot minor"/>
+  <text x="539.9" y="118.6" class="pl" text-anchor="end">Marrakech</text>
+  <text x="539.9" y="130.6" class="pd" text-anchor="end">outside the range</text>
+</svg>
+  </section>
+
+  <section>
+    <h2>The record</h2>
+    <table>
+      <thead><tr><th>Measure</th><th>Figure</th></tr></thead>
+      <tbody>
+        <tr><td>Forest area</td><td>~800,000 ha</td></tr>
+        <tr><td>Moroccans whose livelihood involves the tree</td><td>~3 m</td></tr>
+        <tr><td>Share of the national population</td><td>~10%</td></tr>
+        <tr><td>Women&rsquo;s cooperatives</td><td>150+</td></tr>
+        <tr><td>First women-led cooperative</td><td>1998</td></tr>
+        <tr><td>Founded by</td><td>Dr Zoubida Charrouf</td></tr>
+        <tr><td>First Fairtrade certified argan producer in the world</td><td>Tighanimine, 2011</td></tr>
+        <tr><td>Tree lifespan</td><td>up to 200 years</td></tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-top:18px">
+      UNESCO lists the practices and knowledge around the argan tree as
+      Intangible Cultural Heritage, and the FAO treats the forest as a model for
+      sustainable management. Both listings describe a system the market is
+      currently pulling apart.
+    </p>
+  </section>
+
+  <section>
+    <h2>Two oils, one tree</h2>
+    <table>
+      <thead><tr><th>Grade</th><th>How it differs</th></tr></thead>
+      <tbody>
+        <tr><td>Culinary</td><td>Kernels roasted before pressing. Deep gold, strongly nutty. Poured over couscous, or ground with almond and honey into amlou</td></tr>
+        <tr><td>Cosmetic</td><td>Unroasted, cold pressed. Paler, almost odourless. More kernels needed for the same volume, which is why it costs more</td></tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-top:18px">
+      A stall selling both from the same bottle is selling one of them. The
+      culinary version smells of roasted nuts from a metre away; the cosmetic
+      version smells of very little.
+    </p>
+  </section>
+
+  <div class="foot">
+    <strong>Sources:</strong> Investigate Europe and The Ecologist, 2025, on
+    cooperative economics; Equal Times, 2024, on the post-pandemic collapse;
+    International Development Research Centre; UNESCO Representative List;
+    FAO; published research on argan extraction and grading. Labour figures vary
+    between cooperatives and are given as ranges.
+    <br><br>
+    <strong>&copy; Dancing with Lions.</strong> Data compilation and
+    visualisation. Reuse requires attribution and a visible credit reading
+    &ldquo;Source: Dancing with Lions&rdquo;.
+  </div>
+
+</div>
+</body>
+</html>
