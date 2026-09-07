@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Rendered inside the story page via an iframe. Indexing it separately
+     would compete with the story for the same subject. -->
+<meta name="robots" content="noindex, follow">
+<title>Rome's Western Edge — Dancing with Lions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0a0a;--ink-60:rgba(10,10,10,.60);--ink-40:rgba(10,10,10,.40);
+    --rule:rgba(10,10,10,.10);--hair:rgba(10,10,10,.06);
+    --stone:#7A7368;--stone-pale:#CFC9BE;--tess:#8F5B3A;
+    --mapdot:#7A7368;--maproute:#8F5B3A;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;font-size:15px;line-height:1.55}
+  .wrap{max-width:940px;margin:0 auto;padding:52px 28px 88px}
+  h1{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:clamp(32px,5.6vw,54px);line-height:1.05;letter-spacing:-.01em;margin:0 0 16px}
+  .standfirst{font-family:"EB Garamond",Georgia,serif;font-size:19px;line-height:1.5;color:var(--ink-60);max-width:38em;margin:0}
+  .dateline{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin-top:20px;padding-top:14px;border-top:1px solid var(--hair);font-size:12px;color:var(--ink-40)}
+  .dateline .stamp{color:var(--ink-60)}
+  h2{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:25px;line-height:1.2;margin:0 0 6px}
+  .note{font-size:13px;color:var(--ink-40);max-width:44em;margin:0 0 24px}
+  section{border-top:1px solid var(--rule);padding-top:32px;margin-top:48px}
+
+  /* map */
+  .map{width:100%;height:auto;margin-top:24px;display:block}
+  .map .grid{stroke:rgba(10,10,10,.08);stroke-width:1}
+  .map .ax{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.30)}
+  .map .dot{fill:var(--mapdot,#3E7A4E)}
+  .map .dot.minor{fill:rgba(10,10,10,.30)}
+  .map .pl{font-family:"DM Sans",sans-serif;font-size:12px;fill:#0a0a0a}
+  .map .pd{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.40)}
+  .map .route{fill:none;stroke:var(--maproute,#A9863C);stroke-width:1.6;stroke-dasharray:5 4}
+  .map .span{stroke:var(--maproute,#A9863C);stroke-width:2}
+  .map .spanlab{font-family:"DM Sans",sans-serif;font-size:10.5px;fill:var(--maproute,#A9863C)}
+
+  .versus{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:22px}
+  .versus>div{background:#fff;padding:24px 20px}
+  .versus .where{font-size:12px;color:var(--ink-40);margin-bottom:9px}
+  .versus .what{font-family:"EB Garamond",Georgia,serif;font-size:22px;line-height:1.2;margin-bottom:9px}
+  .versus .d{font-size:13px;color:var(--ink-60);line-height:1.5}
+
+  .tl{margin-top:24px}
+  .ev{display:grid;grid-template-columns:96px 14px 1fr;gap:0 16px;align-items:start;padding:0 0 24px}
+  .yr{font-family:"EB Garamond",Georgia,serif;font-size:18px;line-height:1.2;text-align:right;padding-top:1px}
+  .rail{position:relative;height:100%}
+  .rail:before{content:"";position:absolute;left:6px;top:8px;bottom:-24px;width:1px;background:var(--rule)}
+  .ev:last-child .rail:before{display:none}
+  .mk{position:absolute;left:2px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--stone)}
+  .mk.after{background:var(--tess)}
+  .evt{font-size:14.5px;line-height:1.5}
+  .evd{font-size:12.5px;color:var(--ink-40);margin-top:3px;line-height:1.45}
+
+  table{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px}
+  th{text-align:left;font-weight:500;font-size:12px;color:var(--ink-40);padding:0 0 9px;border-bottom:1px solid var(--rule)}
+  td{padding:11px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+  td:last-child,th:last-child{text-align:right;font-variant-numeric:tabular-nums}
+  .foot{border-top:1px solid var(--rule);margin-top:58px;padding-top:20px;font-size:12px;color:var(--ink-40);line-height:1.7}
+  .foot strong{color:var(--ink-60);font-weight:500}
+  @media(max-width:620px){.versus{grid-template-columns:1fr}.ev{grid-template-columns:70px 14px 1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>At the other end of the empire, no wall</h1>
+  <p class="standfirst">
+    Rome ran a frontier across northern Britain and another across northern
+    Morocco. In Britain it built a wall. Here it built a filter: a scatter of
+    forts, ditches and watchtowers with gaps in it, because the point was to
+    regulate movement rather than stop it.
+  </p>
+  <div class="dateline">
+    <span class="stamp"><time datetime="2026-09-07">Compiled 7 September 2026</time></span>
+    <span>Historical. Excavation at several sites is incomplete.</span>
+  </div>
+
+  <section>
+    <h2>Two frontiers, two answers</h2>
+    <div class="versus">
+      <div>
+        <div class="where">Northern Britain</div>
+        <div class="what">Hadrian&rsquo;s Wall</div>
+        <div class="d">A continuous barrier, 117 kilometres, coast to coast. Stone, ditch, milecastles, turrets. A line drawn to be held.</div>
+      </div>
+      <div>
+        <div class="where">Northern Morocco</div>
+        <div class="what">A network, not a line</div>
+        <div class="d">Forts, a fossatum, a rampart and watchtowers at Sala, but no continuous defensive wall anywhere. Volubilis was ringed by camps at Tocolosida and Ain Chkour and left otherwise open.</div>
+      </div>
+    </div>
+    <p class="note" style="margin-top:18px">
+      Rome traded with the tribes beyond the line and needed them to be able to
+      cross it. A filter passes things through on terms. A wall does not.
+    </p>
+  </section>
+
+  <section>
+    <h2>How far it actually reached</h2>
+    <p class="note">
+      Not far. The province was a coastal strip and one inland city, and the
+      Atlas was never crossed. Volubilis is as deep as the empire ever got in
+      the far west.
+    </p>
+<svg viewBox="0 0 780 470" class="map" xmlns="http://www.w3.org/2000/svg">
+  <line x1="139.2" y1="48" x2="139.2" y2="422" class="grid"/>
+  <text x="139.2" y="438" class="ax" text-anchor="middle">10°W</text>
+  <line x1="321.6" y1="48" x2="321.6" y2="422" class="grid"/>
+  <text x="321.6" y="438" class="ax" text-anchor="middle">8°W</text>
+  <line x1="504.0" y1="48" x2="504.0" y2="422" class="grid"/>
+  <text x="504.0" y="438" class="ax" text-anchor="middle">6°W</text>
+  <line x1="686.4" y1="48" x2="686.4" y2="422" class="grid"/>
+  <text x="686.4" y="438" class="ax" text-anchor="middle">4°W</text>
+  <line x1="48" y1="322.3" x2="732" y2="322.3" class="grid"/>
+  <text x="40" y="326.3" class="ax" text-anchor="end">32°N</text>
+  <line x1="48" y1="222.5" x2="732" y2="222.5" class="grid"/>
+  <text x="40" y="226.5" class="ax" text-anchor="end">34°N</text>
+  <line x1="48" y1="122.8" x2="732" y2="122.8" class="grid"/>
+  <text x="40" y="126.8" class="ax" text-anchor="end">36°N</text>
+  <circle cx="567.8" cy="127.8" r="3" class="dot minor"/>
+  <text x="558.8" y="125.8" class="pl" text-anchor="end">Septem</text>
+  <text x="558.8" y="137.8" class="pd" text-anchor="end">Ceuta</text>
+  <circle cx="522.2" cy="132.8" r="4.5" class="dot"/>
+  <text x="531.2" y="130.8" class="pl" text-anchor="start">Tingis</text>
+  <text x="531.2" y="142.8" class="pd" text-anchor="start">Tangier, the capital</text>
+  <circle cx="494.9" cy="162.7" r="4.5" class="dot"/>
+  <text x="503.9" y="160.7" class="pl" text-anchor="start">Lixus</text>
+  <text x="503.9" y="172.7" class="pd" text-anchor="start">garum for the empire</text>
+  <circle cx="494.9" cy="192.6" r="4.5" class="dot"/>
+  <text x="503.9" y="190.6" class="pl" text-anchor="start">Banasa</text>
+  <text x="503.9" y="202.6" class="pd" text-anchor="start">Actium veterans</text>
+  <circle cx="449.3" cy="207.6" r="3" class="dot minor"/>
+  <text x="458.3" y="205.6" class="pl" text-anchor="start">Thamusida</text>
+  <circle cx="431.0" cy="222.5" r="4.5" class="dot"/>
+  <text x="440.0" y="220.5" class="pl" text-anchor="start">Sala Colonia</text>
+  <text x="440.0" y="232.5" class="pd" text-anchor="start">under Chellah, Rabat</text>
+  <circle cx="545.0" cy="219.0" r="4.5" class="dot"/>
+  <text x="554.0" y="217.0" class="pl" text-anchor="start">Volubilis</text>
+  <text x="554.0" y="229.0" class="pd" text-anchor="start">the southern limit</text>
+  <circle cx="554.2" cy="225.0" r="3" class="dot minor"/>
+  <text x="563.2" y="223.0" class="pl" text-anchor="start">Tocolosida</text>
+  <text x="563.2" y="235.0" class="pd" text-anchor="start">frontier camp</text>
+  <circle cx="157.4" cy="347.2" r="4.5" class="dot"/>
+  <text x="166.4" y="345.2" class="pl" text-anchor="start">Mogador</text>
+  <text x="166.4" y="357.2" class="pd" text-anchor="start">Essaouira, purple dye</text>
+</svg>
+    <p class="note" style="margin-top:16px">
+      Mogador, on the Atlantic well south of the province, was a purple-dye
+      island rather than a governed town. The Phoenicians had been on this coast
+      since the eighth century BCE, six hundred years before Rome arrived.
+    </p>
+  </section>
+
+  <section>
+    <h2>The dates</h2>
+    <div class="tl">
+      <div class="ev">
+        <div class="yr">8th c. BCE</div>
+        <div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">Phoenicians settle the coast</div>
+        <div class="evd">Sailing from Tyre, by way of Carthage. Lixus and Mogador are theirs long before they are anyone else&rsquo;s.</div></div>
+      </div>
+      <div class="ev">
+        <div class="yr">33–25 BCE</div>
+        <div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">Augustus founds three colonies</div>
+        <div class="evd">Banasa among them, settled with veterans of Actium, built on top of an Amazigh village that had been there since the fourth century BCE.</div></div>
+      </div>
+      <div class="ev">
+        <div class="yr">40–42 CE</div>
+        <div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">Mauretania Tingitana becomes a province</div>
+        <div class="evd">Capital at Tingis, which is Tangier. Named for it.</div></div>
+      </div>
+      <div class="ev">
+        <div class="yr">217</div>
+        <div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">The triumphal arch at Volubilis</div>
+        <div class="evd">Raised for Caracalla and his mother Julia Domna. It is still standing.</div></div>
+      </div>
+      <div class="ev">
+        <div class="yr">285</div>
+        <div class="rail"><span class="mk after"></span></div>
+        <div><div class="evt">Diocletian pulls the line back</div>
+        <div class="evd">The province is reduced to the territory north of the Lixus river. Banasa is abandoned. Volubilis is not.</div></div>
+      </div>
+      <div class="ev">
+        <div class="yr">285–788</div>
+        <div class="rail"><span class="mk after"></span></div>
+        <div><div class="evt">Five centuries of afterwards</div>
+        <div class="evd">Amazigh and Latin-speaking Christian communities go on living at Volubilis for half a millennium after Rome leaves.</div></div>
+      </div>
+      <div class="ev">
+        <div class="yr">788</div>
+        <div class="rail"><span class="mk after"></span></div>
+        <div><div class="evt">Idris I arrives</div>
+        <div class="evd">He uses Volubilis as his base before founding Fes. Moulay Idriss, on the hill above, replaces it as the regional centre.</div></div>
+      </div>
+      <div class="ev">
+        <div class="yr">17th c.</div>
+        <div class="rail"><span class="mk after"></span></div>
+        <div><div class="evt">Moulay Ismail takes the stone</div>
+        <div class="evd">Dressed stone from Volubilis goes into the palace complex at Meknes. What survives is what was not worth carrying.</div></div>
+      </div>
+      <div class="ev">
+        <div class="yr">1755</div>
+        <div class="rail"><span class="mk after"></span></div>
+        <div><div class="evt">The Lisbon earthquake</div>
+        <div class="evd">It reaches Morocco and brings down a great deal of what was left standing.</div></div>
+      </div>
+      <div class="ev">
+        <div class="yr">1887</div>
+        <div class="rail"><span class="mk after"></span></div>
+        <div><div class="evt">Excavation begins</div>
+        <div class="evd">French archaeology, and then a UNESCO inscription in 1997.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>What is left, and where it is</h2>
+    <table>
+      <thead><tr><th>Site</th><th>Now</th></tr></thead>
+      <tbody>
+        <tr><td>Volubilis</td><td>UNESCO 1997. Around 30 mosaic floors, in place, under open sky</td></tr>
+        <tr><td>Lixus</td><td>Above Larache. The garum factory that supplied the western empire</td></tr>
+        <tr><td>Sala Colonia</td><td>Under Chellah, inside Rabat, beneath a Merinid necropolis</td></tr>
+        <tr><td>Banasa</td><td>On the Sebou. Mosaics moved to the Rabat Archaeological Museum</td></tr>
+        <tr><td>Thamusida</td><td>Unenclosed, largely unvisited</td></tr>
+        <tr><td>Tamuda</td><td>Outside Tetouan. Mosaics in the Tetouan museum</td></tr>
+        <tr><td>Mogador</td><td>The islands off Essaouira. Purple dye, not a city</td></tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-top:18px">
+      One mosaic at Volubilis shows a desultor: a rider jumping between two
+      moving horses at full gallop. Somebody liked the trick enough to put it on
+      a dining-room floor, in a province whose horses Rome imported.
+    </p>
+  </section>
+
+  <div class="foot">
+    <strong>Sources:</strong> UNESCO World Heritage List, Archaeological Site of
+    Volubilis, inscribed 1997; World History Encyclopedia; standard reference
+    works on Mauretania Tingitana; excavation reports, Banasa 1933–1956. Several
+    sites remain only partially excavated.
+    <br><br>
+    <strong>&copy; Dancing with Lions.</strong> Data compilation and
+    visualisation. Reuse requires attribution and a visible credit reading
+    &ldquo;Source: Dancing with Lions&rdquo;.
+  </div>
+
+</div>
+</body>
+</html>
