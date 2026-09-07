@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Rendered inside the story page via an iframe. Indexing it separately
+     would compete with the story for the same subject. -->
+<meta name="robots" content="noindex, follow">
+<title>The Sardine Coast — Dancing with Lions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0a0a;--ink-60:#333333;--ink-40:#4A4A4A;
+    --rule:rgba(10,10,10,.10);--hair:rgba(10,10,10,.06);
+    --sea:#2C6E8F;--tin:#8A6A3A;--bloom:#5E7A45;
+    --mapdot:#2C6E8F;--maproute:#8A6A3A;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;font-size:15px;line-height:1.55}
+  .wrap{max-width:940px;margin:0 auto;padding:52px 28px 88px}
+  h1{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:clamp(32px,5.6vw,54px);line-height:1.05;letter-spacing:-.01em;margin:0 0 16px}
+  .standfirst{font-family:"EB Garamond",Georgia,serif;font-size:19px;line-height:1.5;color:#262626;max-width:38em;margin:0}
+  .dateline{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin-top:20px;padding-top:14px;border-top:1px solid var(--hair);font-size:12px;color:var(--ink-40)}
+  .dateline .stamp{color:var(--ink-60)}
+  h2{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:25px;line-height:1.2;margin:0 0 6px}
+  .note{font-size:13.5px;color:#333333;max-width:44em;margin:0 0 24px}
+  section{border-top:1px solid var(--rule);padding-top:32px;margin-top:48px}
+
+  /* map */
+  .map{width:100%;height:auto;margin-top:24px;display:block}
+  .map .grid{stroke:rgba(10,10,10,.08);stroke-width:1}
+  .map .ax{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.30)}
+  .map .dot{fill:var(--mapdot,#3E7A4E)}
+  .map .dot.minor{fill:rgba(10,10,10,.30)}
+  .map .pl{font-family:"DM Sans",sans-serif;font-size:12px;fill:#0a0a0a}
+  .map .pd{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.40)}
+  .map .route{fill:none;stroke:var(--maproute,#A9863C);stroke-width:1.6;stroke-dasharray:5 4}
+  .map .span{stroke:var(--maproute,#A9863C);stroke-width:2}
+  .map .spanlab{font-family:"DM Sans",sans-serif;font-size:10.5px;fill:var(--maproute,#A9863C)}
+
+  .up-sec{width:100%;height:auto;margin-top:20px;display:block}
+  .up-sec .wind{fill:none;stroke:#4A4A4A;stroke-width:1.6}
+  .up-sec .flow{fill:none;stroke:#2C6E8F;stroke-width:2}
+  .up-sec .up{fill:none;stroke:#2C6E8F;stroke-width:2.4}
+  .up-sec .lb{font-family:"DM Sans",sans-serif;font-size:12px;fill:#333333}
+  .up-sec .lb2{font-family:"DM Sans",sans-serif;font-size:11px;fill:#4A4A4A}
+  .up-sec .hd{font-family:"DM Sans",sans-serif;font-size:11px;fill:#555555;letter-spacing:.12em;text-transform:uppercase}
+
+  .split{display:flex;height:54px;border:1px solid var(--rule);margin-top:22px;font-size:12.5px}
+  .split div{display:flex;align-items:center;padding:0 12px;overflow:hidden;white-space:nowrap;color:#fff}
+  .s1{width:58%;background:var(--sea)}
+  .s2{width:15%;background:#4E8AA6}
+  .s3{width:9%;background:#7FA8BC}
+  .s4{width:9%;background:#A6C3D1;color:#0a0a0a!important}
+  .s5{width:9%;background:#C9DAE3;color:#0a0a0a!important}
+  .skey{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:7px 20px;margin-top:13px;font-size:13px;color:#333333}
+
+  .big4{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:22px}
+  .big4>div{background:#fff;padding:22px 16px}
+  .big4 .n{font-family:"EB Garamond",Georgia,serif;font-size:28px;line-height:1;margin-bottom:6px;color:var(--sea)}
+  .big4 .l{font-size:12.5px;color:#4A4A4A;line-height:1.4}
+
+  .catch{display:grid;gap:9px;margin-top:22px}
+  .crow{display:grid;grid-template-columns:150px 1fr 104px;gap:14px;align-items:center;font-size:14px}
+  .cbar{height:20px;background:var(--hair)}
+  .cbar div{height:100%;background:var(--sea)}
+  .cnum{text-align:right;font-variant-numeric:tabular-nums;font-size:13px;color:#333333}
+
+  .editorial{border-top:1px solid var(--rule);margin-top:46px;padding-top:20px;font-size:12.5px;color:#4A4A4A;line-height:1.7;max-width:44em}
+  .editorial strong{color:#262626;font-weight:500}
+  table{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px}
+  th{text-align:left;font-weight:500;font-size:12px;color:var(--ink-40);padding:0 0 9px;border-bottom:1px solid var(--rule)}
+  td{padding:11px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+  td:last-child,th:last-child{text-align:right;font-variant-numeric:tabular-nums}
+  .foot{border-top:1px solid var(--rule);margin-top:28px;padding-top:20px;font-size:12px;color:var(--ink-40);line-height:1.7}
+  .foot strong{color:var(--ink-60);font-weight:500}
+  @media(max-width:620px){.crow{grid-template-columns:104px 1fr 84px;gap:8px;font-size:13px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>60% of Britain&rsquo;s tinned sardines</h1>
+  <p class="standfirst">
+    Morocco is the largest exporter of canned sardines on earth and sells to 130
+    countries. The reason sits three kilometres off the coast: a current and a
+    wind that between them pull cold, fertile water up from the deep along 3,500
+    kilometres of Atlantic shore.
+  </p>
+  <div class="dateline">
+    <span class="stamp"><time datetime="2026-09-07">Updated 7 September 2026</time></span>
+    <span>Latest: 2024 landings and the Casablanca port inauguration, September 2025.</span>
+  </div>
+
+  <section>
+    <h2>Why the fish are there</h2>
+<svg viewBox="0 0 900 300" class="up-sec" xmlns="http://www.w3.org/2000/svg">
+  <rect x="60" y="60" width="700" height="190" fill="#D6E3EA"/>
+  <rect x="60" y="180" width="700" height="70" fill="#B7CBD6"/>
+  <path d="M760 60 L760 250 L640 250 Z" fill="#D9CDB6"/>
+  <text x="716" y="236" class="lb" text-anchor="middle">coast</text>
+  <path d="M162 38 L120 38 M130 33 L120 38 L130 43" class="wind"/>
+  <path d="M252 38 L210 38 M220 33 L210 38 L220 43" class="wind"/>
+  <path d="M342 38 L300 38 M310 33 L300 38 L310 43" class="wind"/>
+  <path d="M432 38 L390 38 M400 33 L390 38 L400 43" class="wind"/>
+  <path d="M522 38 L480 38 M490 33 L480 38 L490 43" class="wind"/>
+  <path d="M612 38 L570 38 M580 33 L570 38 L580 43" class="wind"/>
+  <path d="M702 38 L660 38 M670 33 L660 38 L670 43" class="wind"/>
+  <text x="400" y="24" class="lb" text-anchor="middle">wind along the coast, blowing south</text>
+  <path d="M690 92 L200 92 M214 85 L200 92 L214 99" class="flow"/>
+  <text x="450" y="82" class="lb2" text-anchor="middle">surface water pushed away from the land</text>
+  <path d="M640 230 L640 110 M633 122 L640 110 L647 122" class="up"/>
+  <path d="M600 230 L600 110 M593 122 L600 110 L607 122" class="up"/>
+  <path d="M560 230 L560 110 M553 122 L560 110 L567 122" class="up"/>
+  <text x="600" y="252" class="lb2" text-anchor="middle">cold, nutrient-rich water rises to replace it</text>
+  <rect x="200" y="100" width="440" height="40" fill="#8FAE6E" opacity=".55"/>
+  <text x="420" y="126" class="lb" text-anchor="middle">plankton bloom</text>
+  <path d="M240 176 q10 -7 20 0 q-10 7 -20 0 z" fill="#2C4A5E"/>
+  <path d="M286 176 q10 -7 20 0 q-10 7 -20 0 z" fill="#2C4A5E"/>
+  <path d="M332 176 q10 -7 20 0 q-10 7 -20 0 z" fill="#2C4A5E"/>
+  <path d="M378 176 q10 -7 20 0 q-10 7 -20 0 z" fill="#2C4A5E"/>
+  <path d="M424 176 q10 -7 20 0 q-10 7 -20 0 z" fill="#2C4A5E"/>
+  <path d="M470 176 q10 -7 20 0 q-10 7 -20 0 z" fill="#2C4A5E"/>
+  <path d="M516 176 q10 -7 20 0 q-10 7 -20 0 z" fill="#2C4A5E"/>
+  <path d="M562 176 q10 -7 20 0 q-10 7 -20 0 z" fill="#2C4A5E"/>
+  <path d="M608 176 q10 -7 20 0 q-10 7 -20 0 z" fill="#2C4A5E"/>
+  <text x="420" y="204" class="lb" text-anchor="middle">sardines</text>
+  <text x="60" y="286" class="hd">the canary current upwelling</text>
+</svg>
+    <p class="note" style="margin-top:16px">
+      The Canary Current runs south along the coast and the prevailing wind runs
+      with it. Between them they push surface water away from the land, and
+      water has to come from somewhere to replace it, so it rises from below
+      carrying the nutrients that have been sinking for years. Plankton bloom in
+      the sunlight, sardines eat the plankton, and everything else eats the
+      sardines.
+    </p>
+    <p class="note">
+      It is one of four great upwelling systems in the world&rsquo;s oceans, and
+      it is strongest off the southern coast.
+    </p>
+  </section>
+
+  <section>
+    <h2>What comes out of the water</h2>
+    <p class="note">
+      2022 landings. Small pelagic species run at over 80% of volume in most
+      years, and sardines alone are usually more than 60%.
+    </p>
+    <div class="catch">
+      <div class="crow"><div>Sardine</div><div class="cbar"><div style="width:100%"></div></div><div class="cnum">989,735 t</div></div>
+      <div class="crow"><div>Mackerel</div><div class="cbar"><div style="width:27%"></div></div><div class="cnum">266,652 t</div></div>
+      <div class="crow"><div>All other species</div><div class="cbar"><div style="width:30%"></div></div><div class="cnum">~300,000 t</div></div>
+    </div>
+    <p class="note" style="margin-top:18px">
+      Total capture that year came to 1,556,406 tonnes, out of an estimated
+      sustainable potential of about 1.6 million. The margin is thin, which is
+      why closures are imposed on the sardine fishery in some seasons.
+    </p>
+  </section>
+
+  <section>
+    <h2>Where it goes</h2>
+    <div class="split">
+      <div class="s1">European Union 58%</div>
+      <div class="s2">Africa 15%</div>
+      <div class="s3">Europe, non-EU 9%</div>
+      <div class="s4">Americas 9%</div>
+      <div class="s5">Asia 6.5%</div>
+    </div>
+    <div class="skey">
+      <span>Spain and Italy for cephalopods</span>
+      <span>Japan for octopus</span>
+      <span>The UK for tinned sardines</span>
+      <span>130 client countries in total</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>The scale of it</h2>
+    <div class="big4">
+      <div><div class="n">$2.7 bn</div><div class="l">Fisheries exports, 2022</div></div>
+      <div><div class="n">152,137 t</div><div class="l">Canned sardines exported, the world&rsquo;s largest volume</div></div>
+      <div><div class="n">700,000</div><div class="l">Direct and indirect jobs</div></div>
+      <div><div class="n">3,500 km</div><div class="l">Of coast, Tangier to the southern border</div></div>
+    </div>
+    <p class="note" style="margin-top:18px">
+      Fisheries are 58% of Morocco&rsquo;s agro-food exports and about 7% of all
+      exports. Morocco is also the world&rsquo;s leading exporter of
+      semi-preserved anchovies and among the leading exporters of octopus.
+    </p>
+  </section>
+
+  <section>
+    <h2>The ports</h2>
+<svg viewBox="0 0 760 470" class="map" xmlns="http://www.w3.org/2000/svg">
+  <line x1="165.2" y1="48" x2="165.2" y2="422" class="grid"/>
+  <text x="165.2" y="438" class="ax" text-anchor="middle">15°W</text>
+  <line x1="282.4" y1="48" x2="282.4" y2="422" class="grid"/>
+  <text x="282.4" y="438" class="ax" text-anchor="middle">12°W</text>
+  <line x1="399.5" y1="48" x2="399.5" y2="422" class="grid"/>
+  <text x="399.5" y="438" class="ax" text-anchor="middle">9°W</text>
+  <line x1="516.7" y1="48" x2="516.7" y2="422" class="grid"/>
+  <text x="516.7" y="438" class="ax" text-anchor="middle">6°W</text>
+  <line x1="633.9" y1="48" x2="633.9" y2="422" class="grid"/>
+  <text x="633.9" y="438" class="ax" text-anchor="middle">3°W</text>
+  <line x1="48" y1="373.7" x2="712" y2="373.7" class="grid"/>
+  <text x="40" y="377.7" class="ax" text-anchor="end">24°N</text>
+  <line x1="48" y1="301.4" x2="712" y2="301.4" class="grid"/>
+  <text x="40" y="305.4" class="ax" text-anchor="end">27°N</text>
+  <line x1="48" y1="229.0" x2="712" y2="229.0" class="grid"/>
+  <text x="40" y="233.0" class="ax" text-anchor="end">30°N</text>
+  <line x1="48" y1="156.6" x2="712" y2="156.6" class="grid"/>
+  <text x="40" y="160.6" class="ax" text-anchor="end">33°N</text>
+  <line x1="48" y1="84.2" x2="712" y2="84.2" class="grid"/>
+  <text x="40" y="88.2" class="ax" text-anchor="end">36°N</text>
+  <circle cx="637.8" cy="103.5" r="3" class="dot minor"/>
+  <text x="628.8" y="101.5" class="pl" text-anchor="end">Nador</text>
+  <text x="628.8" y="113.5" class="pd" text-anchor="end">Mediterranean</text>
+  <circle cx="598.7" cy="103.5" r="3" class="dot minor"/>
+  <text x="589.7" y="101.5" class="pl" text-anchor="end">Al Hoceima</text>
+  <circle cx="524.5" cy="89.0" r="3" class="dot minor"/>
+  <text x="533.5" y="87.0" class="pl" text-anchor="start">Tangier</text>
+  <circle cx="454.2" cy="142.1" r="4.5" class="dot"/>
+  <text x="463.2" y="140.1" class="pl" text-anchor="start">Casablanca</text>
+  <text x="463.2" y="152.1" class="pd" text-anchor="start">new port, 2025</text>
+  <circle cx="376.1" cy="219.3" r="4.5" class="dot"/>
+  <text x="385.1" y="217.3" class="pl" text-anchor="start">Agadir</text>
+  <text x="385.1" y="229.3" class="pd" text-anchor="start">the largest</text>
+  <circle cx="317.5" cy="267.6" r="3" class="dot minor"/>
+  <text x="326.5" y="265.6" class="pl" text-anchor="start">Tan Tan</text>
+  <circle cx="235.5" cy="296.5" r="4.5" class="dot"/>
+  <text x="244.5" y="294.5" class="pl" text-anchor="start">Laayoune</text>
+  <circle cx="130.0" cy="381.0" r="4.5" class="dot"/>
+  <text x="139.0" y="379.0" class="pl" text-anchor="start">Dakhla</text>
+  <text x="139.0" y="391.0" class="pd" text-anchor="start">octopus</text>
+</svg>
+    <table>
+      <thead><tr><th>Where</th><th>What it lands</th></tr></thead>
+      <tbody>
+        <tr><td>Agadir</td><td>The largest Atlantic port. Sardine and the canning industry behind it</td></tr>
+        <tr><td>Dakhla</td><td>Octopus. Around 4,000 tonnes landed in a single summer, a third of it from the village of Lassarga alone</td></tr>
+        <tr><td>Casablanca</td><td>A new fishing port opened in 2025, part of a 5 billion dirham redevelopment of the maritime complex</td></tr>
+        <tr><td>Laayoune and Tan Tan</td><td>The southern Atlantic, where the upwelling is strongest</td></tr>
+        <tr><td>Nador, Al Hoceima, Mdiq</td><td>The Mediterranean coast, about 3% of stocks</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>The boats</h2>
+    <table>
+      <thead><tr><th>Category</th><th>Detail</th></tr></thead>
+      <tbody>
+        <tr><td>Artisanal</td><td>Small open boats. More than 3,000 fishers work out of the villages around Dakhla, over 1,000 in Lassarga</td></tr>
+        <tr><td>Coastal</td><td>Purse seiners and trawlers. 183 registered at Dakhla, tracked by satellite</td></tr>
+        <tr><td>Deep sea</td><td>24 vessels at Dakhla, freezing at sea</td></tr>
+        <tr><td>The working day</td><td>Out at two in the morning, back by four in the afternoon</td></tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-top:18px">
+      The Halieutis plan, launched in 2009, set out to move the sector from
+      volume to value: cold chain, landing halls, traceability and satellite
+      monitoring, on the basis that European and Japanese buyers pay for
+      certainty about where a fish came from.
+    </p>
+  </section>
+
+  <div class="editorial">
+    <strong>Editorial position.</strong> Dancing with Lions is a publisher, not
+    a political actor. We report what is documented and attribute it. Where
+    sources disagree we say so and give the range. Where a question is
+    contested in law or politics we set out the record and take no side.
+  </div>
+
+  <div class="foot">
+    <strong>Sources:</strong> Office National des Pêches landings data; Moroccan
+    Ministry of Agriculture and Maritime Fisheries; FAO country profile; FAO
+    global production statistics, 2022. The 60% figure for UK tinned sardine
+    sourcing is a trade estimate rather than a customs total.
+    <br><br>
+    <strong>&copy; Dancing with Lions.</strong> Data compilation and
+    visualisation. Reuse requires attribution and a visible credit reading
+    &ldquo;Source: Dancing with Lions&rdquo;.
+  </div>
+
+</div>
+</body>
+</html>
