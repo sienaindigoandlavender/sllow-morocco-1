@@ -692,7 +692,10 @@ const nextConfig = {
       // ---- Pattern rules (keep last — order matters) ----
       { source: "/story/:slug", destination: "/stories/:slug", permanent: true },
       // darija.io serves word pages at /word/:id (not /dictionary/:id)
-      { source: "/darija/dictionary/:id", destination: "https://darija.io/word/:id", permanent: true },
+      // NOTE: /darija/dictionary/:id is now handled in middleware.ts,
+      // which returns 410 Gone. Middleware runs before redirects, so
+      // this rule no longer fires. Kept commented as a record.
+      // { source: "/darija/dictionary/:id", destination: "https://darija.io/word/:id", permanent: true },
       { source: "/darija/:path*", destination: "https://darija.io", permanent: true },
       // ==== SEO 404 cleanup 2026-09-02: deleted pages -> section hubs ====
       { source: "/places/agadir-corniche", destination: "/places", permanent: true },

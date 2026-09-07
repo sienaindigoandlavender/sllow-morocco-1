@@ -40,6 +40,37 @@ export function middleware(request: NextRequest) {
   }
 
   // ===================================================
+  // 1c. CRAWL BUDGET: retire the migrated Darija dictionary
+  //
+  // ~9,000 /darija/dictionary/<word>-<id> URLs moved to darija.io in
+  // June 2026. They have been 301ing ever since, which means Google
+  // keeps rechecking every one of them — indefinitely. In the
+  // September 2026 coverage export they accounted for roughly 9,000
+  // of 11,222 not-indexed URLs, while real story pages were going
+  // five months between crawls.
+  //
+  // A 301 preserves a URL. A 410 retires it, and Google drops a 410
+  // far faster than a 301. Three months of 301 has already passed
+  // whatever authority there was to darija.io.
+  //
+  // The hub paths /darija and /darija/dictionary keep their 301s in
+  // next.config.js, so a human following an old link still lands
+  // somewhere useful. Only the individual word pages are gone.
+  // ===================================================
+  if (/^\/darija\/dictionary\/[^/]+\/?$/.test(pathname)) {
+    return new NextResponse(
+      "Gone. The Darija dictionary now lives at https://darija.io",
+      {
+        status: 410,
+        headers: {
+          "content-type": "text/plain; charset=utf-8",
+          "x-robots-tag": "noindex",
+        },
+      }
+    );
+  }
+
+  // ===================================================
   // 2. EXISTING INFRASTRUCTURE: Redirect non-www to www
   // ===================================================
   if (hostname === "slowmorocco.com") {
