@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Rendered inside the story page via an iframe. Indexing it separately
+     would compete with the story for the same subject. -->
+<meta name="robots" content="noindex, follow">
+<title>The Bread of Morocco — Dancing with Lions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0a0a;
+    --ink-60:rgba(10,10,10,.60);
+    --ink-40:rgba(10,10,10,.40);
+    --rule:rgba(10,10,10,.10);
+    --hair:rgba(10,10,10,.06);
+    --crust:#9A6B3F;      /* khobz crust */
+    --crumb:#E3D2B8;      /* the inside */
+    --oxide:#8F3A24;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:#fff;color:var(--ink);
+    font-family:"DM Sans",system-ui,sans-serif;font-size:15px;line-height:1.55;
+  }
+  .wrap{max-width:940px;margin:0 auto;padding:52px 28px 88px}
+  h1{
+    font-family:"EB Garamond",Georgia,serif;font-weight:400;
+    font-size:clamp(32px,5.6vw,54px);line-height:1.05;letter-spacing:-.01em;margin:0 0 16px;
+  }
+  .standfirst{
+    font-family:"EB Garamond",Georgia,serif;font-size:19px;line-height:1.5;
+    color:var(--ink-60);max-width:38em;margin:0;
+  }
+  h2{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:25px;line-height:1.2;margin:0 0 6px}
+  .note{font-size:13px;color:var(--ink-40);max-width:44em;margin:0 0 24px}
+  section{border-top:1px solid var(--rule);padding-top:32px;margin-top:48px}
+
+  /* the eight breads */
+  .breads{display:grid;grid-template-columns:repeat(auto-fit,minmax(196px,1fr));gap:0 26px}
+  .bread{border-bottom:1px solid var(--hair);padding:14px 0}
+  .bname{font-family:"EB Garamond",Georgia,serif;font-size:19px;margin-bottom:3px}
+  .bhow{font-size:12px;color:var(--ink-40);margin-bottom:6px}
+  .bwhat{font-size:13px;color:var(--ink-60);line-height:1.45}
+
+  /* wheat dependency */
+  .split{display:flex;height:52px;border:1px solid var(--rule);margin-top:22px}
+  .split div{display:flex;align-items:center;padding:0 14px;font-size:13px}
+  .imp{width:60%;background:var(--crust);color:#fff}
+  .dom{width:40%;background:var(--crumb)}
+
+  /* harvest swing */
+  .cols{display:flex;align-items:flex-end;gap:clamp(16px,6vw,60px);height:210px;margin-top:26px}
+  .col{flex:1;display:flex;flex-direction:column;justify-content:flex-end}
+  .colbar{background:var(--crust);width:100%}
+  .colbar.pale{background:var(--crumb)}
+  .colnum{font-size:14px;font-variant-numeric:tabular-nums;margin-bottom:7px}
+  .collab{font-size:12px;color:var(--ink-40);margin-top:9px;line-height:1.35}
+
+  /* the five */
+  .five{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--rule);margin-top:24px;border:1px solid var(--rule)}
+  .five div{background:#fff;padding:18px 16px}
+  .five .t{font-family:"EB Garamond",Georgia,serif;font-size:18px;margin-bottom:4px}
+  .five .d{font-size:12px;color:var(--ink-40);line-height:1.45}
+
+  .foot{border-top:1px solid var(--rule);margin-top:58px;padding-top:20px;font-size:12px;color:var(--ink-40);line-height:1.7}
+  .foot strong{color:var(--ink-60);font-weight:500}
+  @media(max-width:620px){.cols{height:168px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Most kitchens have no oven</h1>
+  <p class="standfirst">
+    A gas ring for tagines, a kettle, and that is the room. The bread goes out
+    to the ferran, comes back at midday, and the baker sorts thirty families'
+    loaves by the marks pressed into them.
+  </p>
+
+  <section>
+    <h2>Eight breads</h2>
+    <p class="note">Each one is defined by where it is cooked, not by what is in it.</p>
+    <div class="breads">
+      <div class="bread">
+        <div class="bname">Khobz</div>
+        <div class="bhow">Ferran, wood-fired</div>
+        <div class="bwhat">The daily loaf. Round, slightly flattened, pricked with a fork before it goes in.</div>
+      </div>
+      <div class="bread">
+        <div class="bname">Batbout</div>
+        <div class="bhow">Pan, no oven</div>
+        <div class="bwhat">Puffs into a dome, collapses as it cools, and the collapse leaves the pocket.</div>
+      </div>
+      <div class="bread">
+        <div class="bname">Msemen</div>
+        <div class="bhow">Griddle</div>
+        <div class="bwhat">Folded square, roughly forty layers of dough with butter trapped between them.</div>
+      </div>
+      <div class="bread">
+        <div class="bname">Meloui</div>
+        <div class="bhow">Griddle</div>
+        <div class="bwhat">Same dough as msemen, wound into a coil instead of folded flat.</div>
+      </div>
+      <div class="bread">
+        <div class="bname">Rghaif</div>
+        <div class="bhow">Griddle</div>
+        <div class="bwhat">Smaller and crisper than msemen, often stuffed with kefta or vegetables.</div>
+      </div>
+      <div class="bread">
+        <div class="bname">Baghrir</div>
+        <div class="bhow">Griddle, one side only</div>
+        <div class="bwhat">Bubbles rise and burst, leaving holes that stay open. Judged by the count.</div>
+      </div>
+      <div class="bread">
+        <div class="bname">Harcha</div>
+        <div class="bhow">Griddle, dry</div>
+        <div class="bwhat">Coarse semolina, no yeast. Crumbles rather than tears.</div>
+      </div>
+      <div class="bread">
+        <div class="bname">Medfouna</div>
+        <div class="bhow">Buried in ash</div>
+        <div class="bwhat">Rissani. Filling sealed between two discs. The name means buried.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Sixty per cent of the wheat is imported</h2>
+    <p class="note">
+      Domestic production tracks rainfall and nothing else. A good year yields
+      around ten million tonnes and a drought year roughly half that, so the
+      shortfall is bought abroad at whatever the world price happens to be.
+    </p>
+    <div class="split">
+      <div class="imp">Imported · 60%</div>
+      <div class="dom">Domestic · 40%</div>
+    </div>
+    <div class="cols">
+      <div class="col">
+        <div class="colnum">10,000,000 t</div>
+        <div class="colbar" style="height:100%"></div>
+        <div class="collab">Good year<br>domestic wheat</div>
+      </div>
+      <div class="col">
+        <div class="colnum">5,000,000 t</div>
+        <div class="colbar pale" style="height:50%"></div>
+        <div class="collab">Drought year<br>domestic wheat</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Flour is a political instrument</h2>
+    <p class="note">
+      The Caisse de Compensation subsidises flour to hold the price of a loaf
+      steady. Bread riots are not a metaphor in this part of the world, and
+      successive governments have treated the subsidy as untouchable.
+    </p>
+  </section>
+
+  <section>
+    <h2>The five things a quarter has</h2>
+    <p class="note">
+      A Moroccan neighbourhood is defined by five shared institutions. The oven
+      is one of them, which is why losing it changes the shape of the quarter
+      rather than just the shopping.
+    </p>
+    <div class="five">
+      <div><div class="t">Mosque</div><div class="d">Prayer, and the call that sets the day</div></div>
+      <div><div class="t">Hammam</div><div class="d">Washing, and the furnace beside it</div></div>
+      <div><div class="t">Ferran</div><div class="d">The communal oven</div></div>
+      <div><div class="t">Fountain</div><div class="d">Water, before it was piped</div></div>
+      <div><div class="t">School</div><div class="d">The msid, teaching the Quran</div></div>
+    </div>
+  </section>
+
+  <div class="foot">
+    <strong>Sources:</strong> Moroccan Ministry of Agriculture, cereal
+    production data; Caisse de Compensation; FAO cereal balance sheets;
+    field observation, Marrakech medina.
+    <br><br>
+    <strong>© Dancing with Lions.</strong> Data compilation and visualisation.
+    Reuse requires attribution and a visible credit reading
+    “Source: Dancing with Lions”.
+  </div>
+
+</div>
+</body>
+</html>
