@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Rendered inside the story page via an iframe. Indexing it separately
+     would compete with the story for the same subject. -->
+<meta name="robots" content="noindex, follow">
+<title>Moroccans Abroad — Dancing with Lions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0a0a;--ink-60:rgba(10,10,10,.60);--ink-40:rgba(10,10,10,.40);
+    --rule:rgba(10,10,10,.10);--hair:rgba(10,10,10,.06);
+    --away:#3E6B7A;--away-pale:#BCD0D6;--home:#B0763F;
+    --mapdot:#3E6B7A;--maproute:#B0763F;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;font-size:15px;line-height:1.55}
+  .wrap{max-width:940px;margin:0 auto;padding:52px 28px 88px}
+  h1{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:clamp(32px,5.6vw,54px);line-height:1.05;letter-spacing:-.01em;margin:0 0 16px}
+  .standfirst{font-family:"EB Garamond",Georgia,serif;font-size:19px;line-height:1.5;color:var(--ink-60);max-width:38em;margin:0}
+  .dateline{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin-top:20px;padding-top:14px;border-top:1px solid var(--hair);font-size:12px;color:var(--ink-40)}
+  .dateline .stamp{color:var(--ink-60)}
+  h2{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:25px;line-height:1.2;margin:0 0 6px}
+  .note{font-size:13px;color:var(--ink-40);max-width:44em;margin:0 0 24px}
+  section{border-top:1px solid var(--rule);padding-top:32px;margin-top:48px}
+
+  /* map */
+  .map{width:100%;height:auto;margin-top:24px;display:block}
+  .map .grid{stroke:rgba(10,10,10,.08);stroke-width:1}
+  .map .ax{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.30)}
+  .map .dot{fill:var(--mapdot,#3E7A4E)}
+  .map .dot.minor{fill:rgba(10,10,10,.30)}
+  .map .pl{font-family:"DM Sans",sans-serif;font-size:12px;fill:#0a0a0a}
+  .map .pd{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.40)}
+  .map .route{fill:none;stroke:var(--maproute,#A9863C);stroke-width:1.6;stroke-dasharray:5 4}
+  .map .span{stroke:var(--maproute,#A9863C);stroke-width:2}
+  .map .spanlab{font-family:"DM Sans",sans-serif;font-size:10.5px;fill:var(--maproute,#A9863C)}
+
+  .pop{display:grid;gap:9px;margin-top:22px}
+  .prow{display:grid;grid-template-columns:120px 1fr 88px;gap:14px;align-items:center;font-size:14px}
+  .pbar{height:19px;background:var(--hair)}
+  .pbar div{height:100%;background:var(--away)}
+  .pnum{text-align:right;font-variant-numeric:tabular-nums;font-size:13px;color:var(--ink-60)}
+
+  .conc{display:flex;height:56px;border:1px solid var(--rule);margin-top:22px;font-size:12.5px}
+  .conc div{display:flex;align-items:center;padding-left:12px;overflow:hidden;white-space:nowrap}
+  .r1{width:72%;background:var(--away);color:#fff}
+  .r2{width:13%;background:#7FA0AC;color:#fff}
+  .r3{width:8%;background:var(--away-pale)}
+  .r4{width:7%;background:transparent}
+  .conckey{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:7px 20px;margin-top:14px;font-size:13px;color:var(--ink-60)}
+
+  .flip{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:22px}
+  .flip>div{background:#fff;padding:26px 20px}
+  .flip .lab{font-size:12px;color:var(--ink-40);margin-bottom:8px}
+  .flip .big{font-family:"EB Garamond",Georgia,serif;font-size:clamp(26px,4.4vw,40px);line-height:1.05;margin-bottom:8px}
+  .flip .sub{font-size:13px;color:var(--ink-60);line-height:1.45}
+
+  table{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px}
+  th{text-align:left;font-weight:500;font-size:12px;color:var(--ink-40);padding:0 0 9px;border-bottom:1px solid var(--rule)}
+  td{padding:11px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+  td:last-child,th:last-child{text-align:right;font-variant-numeric:tabular-nums}
+  .foot{border-top:1px solid var(--rule);margin-top:58px;padding-top:20px;font-size:12px;color:var(--ink-40);line-height:1.7}
+  .foot strong{color:var(--ink-60);font-weight:500}
+  @media(max-width:620px){.flip{grid-template-columns:1fr}.prow{grid-template-columns:92px 1fr 72px;gap:9px;font-size:13px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>One Moroccan in six lives somewhere else</h1>
+  <p class="standfirst">
+    Six point two million people, across more than a hundred countries, sending
+    home more money than the phosphate industry earns. Officially they are
+    Marocains Résidant à l&rsquo;Étranger. Everyone calls them MRE.
+  </p>
+  <div class="dateline">
+    <span class="stamp"><time datetime="2026-09-07">Compiled 7 September 2026</time></span>
+    <span>Latest figures: 2025 remittances and the Q4 2026 diaspora observatory.</span>
+  </div>
+
+  <section>
+    <h2>The road north</h2>
+    <p class="note">
+      The dashed line is the route most of the first generation took: out of the
+      Rif through Nador, across to Spain, north to France, and on to Belgium and
+      the Netherlands. Every summer it runs in reverse through Tangier Med and
+      Nador.
+    </p>
+<svg viewBox="0 0 860 480" class="map" xmlns="http://www.w3.org/2000/svg">
+  <line x1="106.8" y1="48" x2="106.8" y2="432" class="grid"/>
+  <text x="106.8" y="448" class="ax" text-anchor="middle">10°W</text>
+  <line x1="253.7" y1="48" x2="253.7" y2="432" class="grid"/>
+  <text x="253.7" y="448" class="ax" text-anchor="middle">5°W</text>
+  <line x1="400.6" y1="48" x2="400.6" y2="432" class="grid"/>
+  <text x="400.6" y="448" class="ax" text-anchor="middle">0°E</text>
+  <line x1="547.5" y1="48" x2="547.5" y2="432" class="grid"/>
+  <text x="547.5" y="448" class="ax" text-anchor="middle">5°E</text>
+  <line x1="694.5" y1="48" x2="694.5" y2="432" class="grid"/>
+  <text x="694.5" y="448" class="ax" text-anchor="middle">10°E</text>
+  <line x1="48" y1="368.0" x2="812" y2="368.0" class="grid"/>
+  <text x="40" y="372.0" class="ax" text-anchor="end">35°N</text>
+  <line x1="48" y1="288.0" x2="812" y2="288.0" class="grid"/>
+  <text x="40" y="292.0" class="ax" text-anchor="end">40°N</text>
+  <line x1="48" y1="208.0" x2="812" y2="208.0" class="grid"/>
+  <text x="40" y="212.0" class="ax" text-anchor="end">45°N</text>
+  <line x1="48" y1="128.0" x2="812" y2="128.0" class="grid"/>
+  <text x="40" y="132.0" class="ax" text-anchor="end">50°N</text>
+  <polyline points="312.5,364.8 465.3,265.6 471.1,145.6 529.9,115.2 532.8,97.6" class="route"/>
+  <circle cx="544.6" cy="89.6" r="3" class="dot minor"/>
+  <text x="553.6" y="87.6" class="pl" text-anchor="start">Amsterdam</text>
+  <text x="553.6" y="99.6" class="pd" text-anchor="start">77,210</text>
+  <circle cx="532.8" cy="97.6" r="3" class="dot minor"/>
+  <text x="541.8" y="95.6" class="pl" text-anchor="start">Rotterdam</text>
+  <text x="541.8" y="107.6" class="pd" text-anchor="start">44,164</text>
+  <circle cx="529.9" cy="115.2" r="4.5" class="dot"/>
+  <text x="538.9" y="113.2" class="pl" text-anchor="start">Brussels</text>
+  <text x="538.9" y="125.2" class="pd" text-anchor="start">Belgium 530,000</text>
+  <circle cx="656.3" cy="126.4" r="3" class="dot minor"/>
+  <text x="647.3" y="124.4" class="pl" text-anchor="end">Frankfurt</text>
+  <text x="647.3" y="136.4" class="pd" text-anchor="end">Germany 240,000</text>
+  <circle cx="471.1" cy="145.6" r="4.5" class="dot"/>
+  <text x="480.1" y="143.6" class="pl" text-anchor="start">Paris</text>
+  <text x="480.1" y="155.6" class="pd" text-anchor="start">France 1,550,000</text>
+  <circle cx="671.0" cy="200.0" r="4.5" class="dot"/>
+  <text x="662.0" y="198.0" class="pl" text-anchor="end">Milan</text>
+  <text x="662.0" y="210.0" class="pd" text-anchor="end">Italy 487,249</text>
+  <circle cx="465.3" cy="265.6" r="3" class="dot minor"/>
+  <text x="474.3" y="263.6" class="pl" text-anchor="start">Barcelona</text>
+  <circle cx="291.9" cy="281.6" r="4.5" class="dot"/>
+  <text x="300.9" y="279.6" class="pl" text-anchor="start">Madrid</text>
+  <text x="300.9" y="291.6" class="pd" text-anchor="start">Spain 1,165,955</text>
+  <circle cx="230.2" cy="355.2" r="4.5" class="dot"/>
+  <text x="239.2" y="353.2" class="pl" text-anchor="start">Tangier</text>
+  <text x="239.2" y="365.2" class="pd" text-anchor="start">Tangier Med</text>
+  <circle cx="312.5" cy="364.8" r="4.5" class="dot"/>
+  <text x="321.5" y="362.8" class="pl" text-anchor="start">Nador</text>
+  <text x="321.5" y="374.8" class="pd" text-anchor="start">the Rif</text>
+  <circle cx="177.3" cy="390.4" r="3" class="dot minor"/>
+  <text x="186.3" y="388.4" class="pl" text-anchor="start">Casablanca</text>
+</svg>
+  </section>
+
+  <section>
+    <h2>Where they are</h2>
+    <div class="pop">
+      <div class="prow"><div>France</div><div class="pbar"><div style="width:100%"></div></div><div class="pnum">1,550,000</div></div>
+      <div class="prow"><div>Spain</div><div class="pbar"><div style="width:75.2%"></div></div><div class="pnum">1,165,955</div></div>
+      <div class="prow"><div>Belgium</div><div class="pbar"><div style="width:34.2%"></div></div><div class="pnum">530,000</div></div>
+      <div class="prow"><div>Italy</div><div class="pbar"><div style="width:31.4%"></div></div><div class="pnum">487,249</div></div>
+      <div class="prow"><div>Israel</div><div class="pbar"><div style="width:30.5%"></div></div><div class="pnum">472,800</div></div>
+      <div class="prow"><div>Netherlands</div><div class="pbar"><div style="width:27.9%"></div></div><div class="pnum">433,337</div></div>
+      <div class="prow"><div>Germany</div><div class="pbar"><div style="width:15.5%"></div></div><div class="pnum">240,000</div></div>
+      <div class="prow"><div>United States</div><div class="pbar"><div style="width:7.8%"></div></div><div class="pnum">120,402</div></div>
+      <div class="prow"><div>Canada</div><div class="pbar"><div style="width:6.7%"></div></div><div class="pnum">103,945</div></div>
+      <div class="prow"><div>UAE</div><div class="pbar"><div style="width:6.5%"></div></div><div class="pnum">100,000</div></div>
+    </div>
+    <p class="note" style="margin-top:16px">
+      Moroccans are the largest immigrant group in Spain. In the Netherlands they
+      are 2.4% of the population, concentrated in the Randstad: Amsterdam,
+      Rotterdam, The Hague and Utrecht account for most of them.
+    </p>
+  </section>
+
+  <section>
+    <h2>By region</h2>
+    <div class="conc">
+      <div class="r1">Europe 72% · 4.5 m</div>
+      <div class="r2">N. America 13%</div>
+      <div class="r3">Gulf 8%</div>
+      <div class="r4"></div>
+    </div>
+    <div class="conckey">
+      <span>Europe · 4.5 m</span>
+      <span>North America · 810,000</span>
+      <span>Arab and Gulf states · 495,000</span>
+      <span>Sub-Saharan Africa · 250,000</span>
+      <span>Asia and Oceania · 125,000</span>
+      <span>Latin America · 60,000</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>The money going the other way</h2>
+    <p class="note">
+      Remittances are the quietest large number in the Moroccan economy. They
+      pay for the half-finished concrete houses you see all over the
+      countryside, and they arrive whether or not the harvest did.
+    </p>
+    <div class="flip">
+      <div>
+        <div class="lab">Remittances, 2025</div>
+        <div class="big">$12.4 bn</div>
+        <div class="sub">Up from $11.7 bn in 2024, which was more than 8% of GDP. Among the largest inflows in the region.</div>
+      </div>
+      <div>
+        <div class="lab">Tourism receipts, 2025</div>
+        <div class="big">$13.5 bn</div>
+        <div class="sub">Tourism has now edged ahead. For most of the past decade the diaspora sent home more than visitors spent.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>The Rif in Rotterdam</h2>
+    <p class="note">
+      The Dutch Moroccan community is not, in the main, Arabic-speaking. It came
+      overwhelmingly from the Rif, and it kept the language.
+    </p>
+    <table>
+      <thead><tr><th>Language spoken at home, Netherlands</th><th>Share</th></tr></thead>
+      <tbody>
+        <tr><td>Amazigh, principally Tarifit</td><td>86%</td></tr>
+        <tr><td>Moroccan Arabic</td><td>14%</td></tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-top:18px">
+      Which means the largest Amazigh-speaking population outside North Africa
+      sits in a handful of Dutch and Belgian cities, and that a second-generation
+      Riffian in Rotterdam may speak Tarifit and Dutch without ever having
+      needed Arabic.
+    </p>
+  </section>
+
+  <div class="foot">
+    <strong>Sources:</strong> Office des Changes, monthly MRE transfer
+    statistics; Bank Al-Maghrib; Haut-Commissariat au Plan diaspora censuses
+    2014 and 2024; wafir.ma MRE Observatory Q4 2026; Instituto Nacional de
+    Estadística (Spain); CBS StatLine (Netherlands); World Bank Migration and
+    Remittances. Totals vary between 3 and 6.2 million depending on whether
+    descendants are counted; the observatory figure is used here. Informal
+    residency is thought to be understated by 8 to 12%.
+    <br><br>
+    <strong>&copy; Dancing with Lions.</strong> Data compilation and
+    visualisation. Reuse requires attribution and a visible credit reading
+    &ldquo;Source: Dancing with Lions&rdquo;.
+  </div>
+
+</div>
+</body>
+</html>
