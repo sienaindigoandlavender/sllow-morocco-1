@@ -22,7 +22,8 @@ export async function GET(
       category: storyData.category,
       sourceType: storyData.source_type,
       heroImage: storyData.hero_image,
-      mj_prompt: storyData.mj_prompt,
+      // mj_prompt deliberately NOT returned. This endpoint is public,
+      // and the image prompt is production detail, not reader content.
       heroCaption: storyData.hero_caption,
       excerpt: storyData.excerpt,
       body: storyData.body ? storyData.body.replace(/<br\s*\/?>/gi, '\n') : '',
