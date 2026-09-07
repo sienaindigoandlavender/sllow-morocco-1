@@ -1,0 +1,46 @@
+LILA DOSSIER — CLOSED
+=====================
+
+UNZIP at the repo root.
+
+  middleware.ts                          replaced — gates /dossiers/*
+  app/dossiers/lila/page.tsx             replaced
+  app/dossiers/lila/LilaDossierContent.tsx  replaced — client name removed
+
+THEN DELETE BY HAND (a zip cannot remove files):
+
+  app/dossiers/page.tsx
+  app/dossiers/LilaDossierContent.tsx
+  app/dossiers/lila/test.tsx
+
+WHAT WAS OPEN
+-------------
+Two copies of the same client proposal, at two URLs:
+
+  /dossiers        a 458-line earlier draft
+  /dossiers/lila   the final 859-line version
+
+Both named the client, both carried the price and the full terms, and
+both were reachable by anyone holding the link. There was also an empty
+test.tsx sitting in production.
+
+AFTER THIS
+----------
+Every path under /dossiers requires the sm_admin_session cookie. Anyone
+without it is redirected to /admin/login. That covers bird-atlas too.
+
+/dossiers itself will 404 once the two files above are deleted, which is
+correct — it was never meant to be a page.
+
+TO SEND A DOSSIER
+-----------------
+Log in, open the page yourself, print to PDF, send the PDF. The client
+never gets a URL. The dossier is kept as a template: set CLIENT_NAME at
+the top of LilaDossierContent.tsx before printing.
+
+VERIFY AFTER DEPLOY
+-------------------
+  curl -I https://www.slowmorocco.com/dossiers/lila
+  curl -I https://www.slowmorocco.com/dossiers
+
+Both should return 307 to /admin/login, not 200.

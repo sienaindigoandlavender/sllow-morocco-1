@@ -30,6 +30,15 @@ export function middleware(request: NextRequest) {
   //     the stories table and had no auth check of its own — it sits
   //     outside the /api/admin subtree, so the earlier fix missed it.
   // ===================================================
+  // Client dossiers. These carry names, prices and terms, and they were
+  // reachable by anyone holding the URL. Same session cookie as /admin.
+  if (pathname.startsWith('/dossiers')) {
+    const sessionToken = request.cookies.get('sm_admin_session')?.value;
+    if (sessionToken !== 'authenticated_true') {
+      return NextResponse.redirect(new URL('/admin/login', request.url));
+    }
+  }
+
   if (pathname.startsWith('/api/admin') || pathname === '/api/stories/add') {
     const sessionToken = request.cookies.get('sm_admin_session')?.value;
     if (sessionToken !== 'authenticated_true') {
@@ -129,6 +138,7 @@ export const config = {
     // Public POST that inserts into the stories table. Must be listed
     // explicitly: the pattern below excludes everything under /api.
     "/api/stories/add",
+    "/dossiers/:path*",
     "/((?!api|_next/static|_next/image|favicon|og-image|apple-touch|llms|robots|sitemap).*)",
   ],
 };
