@@ -23,6 +23,11 @@ export interface PlaceCategory {
    */
   journeys?: string[];
   /**
+   * Essays that read on this subject, shown as a strip on the
+   * category page. Slugs from the stories table.
+   */
+  stories?: string[];
+  /**
    * True where the category is earthen architecture, which is the
    * subject of the Ksour Archive. Adds the cross-link that story
    * pages already carry.
@@ -35,6 +40,7 @@ export const MIN_FOR_INDEX = 3;
 export const PLACE_CATEGORIES: PlaceCategory[] = [
   {
     slug: "nature",
+    stories: ["the-collision", "the-green-sahara", "the-oasis-engineers"],
     journeys: ["morocco-trekking-8-days", "morocco-birdwatching-7-days"],
     label: "Nature",
     description:
@@ -42,6 +48,7 @@ export const PLACE_CATEGORIES: PlaceCategory[] = [
   },
   {
     slug: "architecture",
+    stories: ["geometry-of-zellige", "shadow-of-the-moucharabieh", "the-tadelakt-masters", "the-riad"],
     journeys: ["morocco-architecture-trail-14-days", "architecture-pilgrimage"],
     ksourArchive: true,
     label: "Architecture",
@@ -50,6 +57,7 @@ export const PLACE_CATEGORIES: PlaceCategory[] = [
   },
   {
     slug: "monuments",
+    stories: ["the-edge-of-the-empire", "the-golden-madrasas", "the-tombs-behind-the-wall"],
     journeys: ["roman-morocco-6-days", "8-Day-Imperial-Cities"],
     label: "Monuments",
     description:
@@ -63,6 +71,7 @@ export const PLACE_CATEGORIES: PlaceCategory[] = [
   },
   {
     slug: "museums",
+    stories: ["the-museums-that-arrived-at-once", "the-only-museum"],
     journeys: ["morocco-painters-eyes-8-days", "contemporary-art-morocco-5-days"],
     label: "Museums",
     description:
@@ -76,6 +85,7 @@ export const PLACE_CATEGORIES: PlaceCategory[] = [
   },
   {
     slug: "markets",
+    stories: ["moroccan-souk-guide", "the-square-that-still-hammers"],
     journeys: ["morocco-arts-crafts-7-days"],
     label: "Markets",
     description:
@@ -83,6 +93,7 @@ export const PLACE_CATEGORIES: PlaceCategory[] = [
   },
   {
     slug: "kasbahs",
+    stories: ["the-kasbahs", "the-ksour", "route-thousand-kasbahs", "the-thermal-battery"],
     journeys: ["architecture-pilgrimage", "6-day-kasbahs-valleys", "oasis-hopping-6-days"],
     ksourArchive: true,
     label: "Kasbahs",
@@ -91,6 +102,7 @@ export const PLACE_CATEGORIES: PlaceCategory[] = [
   },
   {
     slug: "craft",
+    stories: ["the-zellige-cutters", "the-thuya-woodworkers", "the-carpet", "the-tannery"],
     journeys: ["morocco-arts-crafts-7-days", "morocco-textile-trail-10-days"],
     label: "Craft",
     description:
@@ -129,6 +141,7 @@ export const PLACE_CATEGORIES: PlaceCategory[] = [
   },
   {
     slug: "sacred",
+    stories: ["zaouia-map", "the-hiloula", "the-saints-garden"],
     journeys: ["morocco-jewish-heritage-8-days"],
     label: "Sacred",
     description:
