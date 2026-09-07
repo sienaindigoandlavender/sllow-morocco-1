@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { cloudinaryUrl } from "@/lib/cloudinary";
 import { PLACE_CATEGORIES } from "@/lib/place-categories";
+import AllPlacesMap from "../../map/AllPlacesMap";
 import { dek } from "@/lib/dek";
 
 interface Item {
@@ -14,11 +15,34 @@ interface Item {
   excerpt: string;
 }
 
+interface MapPin {
+  slug: string;
+  title: string;
+  category: string;
+  destination: string;
+  excerpt: string;
+  hero_image: string;
+  latitude: number;
+  longitude: number;
+  related_story_slugs: string[];
+  journey_bridge: string;
+}
+
+interface JourneyItem {
+  slug: string;
+  title: string;
+  blurb: string;
+  days: number | null;
+}
+
 interface Props {
   categorySlug: string;
   label: string;
   description: string;
   places: Item[];
+  mapPlaces?: MapPin[];
+  journeys?: JourneyItem[];
+  ksourArchive?: boolean;
   counts: Record<string, number>;
   lastUpdated: string | null;
 }
@@ -39,6 +63,9 @@ export default function PlaceCategoryContent({
   label,
   description,
   places,
+  mapPlaces = [],
+  journeys = [],
+  ksourArchive = false,
   counts,
   lastUpdated,
 }: Props) {
@@ -110,6 +137,89 @@ export default function PlaceCategoryContent({
           </div>
         )}
       </section>
+
+      {/* ── The category, mapped ──────────────────────────────────────
+          Same component as /places/map, carrying only this category's
+          pins. Hidden when nothing in the category has coordinates.
+          ──────────────────────────────────────────────────────────── */}
+      {mapPlaces.length > 0 && (
+        <section className="px-8 md:px-10 lg:px-14 py-12 border-t border-foreground/[0.08]">
+          <div className="flex items-baseline justify-between mb-5">
+            <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/35">
+              {label} on the map
+            </p>
+            <Link
+              href="/places/map"
+              className="text-[10px] tracking-[0.15em] uppercase text-foreground/35 hover:text-foreground transition-colors"
+            >
+              The full atlas →
+            </Link>
+          </div>
+          <AllPlacesMap places={mapPlaces} total={mapPlaces.length} embedded />
+        </section>
+      )}
+
+      {/* ── Journeys covering this category ───────────────────────── */}
+      {journeys.length > 0 && (
+        <section className="px-8 md:px-10 lg:px-14 py-12 border-t border-foreground/[0.08]">
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/35 mb-6">
+            Journeys through {label.toLowerCase()}
+          </p>
+          <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-10 lg:gap-x-14">
+            {journeys.map((j) => (
+              <li key={j.slug}>
+                <Link
+                  href={`/journeys/${j.slug}`}
+                  className="group block border-b border-foreground/[0.08] hover:border-foreground/40 py-4 transition-colors"
+                >
+                  <div className="flex items-baseline justify-between gap-3 mb-1.5">
+                    <span className="text-sm text-foreground group-hover:text-foreground/60 transition-colors">
+                      {j.title}
+                    </span>
+                    {j.days ? (
+                      <span className="text-[10px] tabular-nums text-foreground/25 whitespace-nowrap">
+                        {j.days} days
+                      </span>
+                    ) : null}
+                  </div>
+                  {j.blurb && (
+                    <p className="text-[12px] text-foreground/45 leading-[1.5] line-clamp-2">
+                      {j.blurb}
+                    </p>
+                  )}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {/* ── Ksour Archive cross-link ──────────────────────────────────
+          Story pages already carry this, triggered on keywords. The
+          category pages are the most on-topic pages on the site and
+          were the only ones not linking out to it.
+          ──────────────────────────────────────────────────────────── */}
+      {ksourArchive && (
+        <section className="px-8 md:px-10 lg:px-14 py-12 border-t border-foreground/[0.08]">
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/35 mb-4">
+            In the Archive
+          </p>
+          <p className="text-sm text-foreground/55 leading-relaxed max-w-2xl">
+            The earthen building tradition behind these places — kasbahs,
+            ksour, agadirs and the pisé engineering that holds them up — is
+            documented in depth at the{" "}
+            <a
+              href="https://www.ksour.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline decoration-foreground/20 hover:decoration-foreground/60 transition-colors"
+            >
+              Ksour Archive
+            </a>
+            .
+          </p>
+        </section>
+      )}
 
       {/* ── Other categories ──────────────────────────────────────── */}
       <section className="px-8 md:px-10 lg:px-14 py-12 border-t border-foreground/[0.08]">

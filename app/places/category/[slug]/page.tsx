@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { getPlaces, getDestinations, convertDriveUrl } from "@/lib/supabase";
+import { getPlaces, getDestinations, getJourneys, convertDriveUrl } from "@/lib/supabase";
+import { hasCoords } from "@/lib/geo";
 import {
   PLACE_CATEGORIES,
   CATEGORY_BY_SLUG,
@@ -26,9 +27,10 @@ async function load(slug: string) {
 
   // One query, filtered in memory — the page needs sibling counts anyway,
   // so a category-filtered query would just mean fetching twice.
-  const [allPlaces, destinations] = await Promise.all([
+  const [allPlaces, destinations, allJourneys] = await Promise.all([
     getPlaces({ published: true }),
     getDestinations({ published: true }),
+    cat.journeys?.length ? getJourneys({ published: true }) : Promise.resolve([]),
   ]);
 
   const places = allPlaces.filter(
@@ -40,7 +42,7 @@ async function load(slug: string) {
     if (p.category) counts[p.category] = (counts[p.category] || 0) + 1;
   }
 
-  return { cat, places, destinations, counts };
+  return { cat, places, destinations, counts, allJourneys };
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -76,7 +78,7 @@ export default async function PlaceCategoryPage({ params }: Props) {
   const data = await load(slug);
   if (!data) notFound();
 
-  const { cat, places, destinations, counts } = data;
+  const { cat, places, destinations, counts, allJourneys } = data;
 
   const destLookup = new Map(destinations.map((d) => [d.slug, d.title]));
 
@@ -91,6 +93,32 @@ export default async function PlaceCategoryPage({ params }: Props) {
     excerpt: p.excerpt || "",
   }));
 
+  // Pins for the embedded atlas, this category only.
+  const mapPlaces = places.filter(hasCoords as any).map((p: any) => ({
+    slug: p.slug,
+    title: p.title,
+    category: p.category || "",
+    destination: p.destination || "",
+    excerpt: p.excerpt || "",
+    hero_image: p.hero_image || "",
+    latitude: p.latitude as number,
+    longitude: p.longitude as number,
+    related_story_slugs: p.related_story_slugs || [],
+    journey_bridge: p.journey_bridge || "",
+  }));
+
+  // Journeys that cover this category, in the order listed on the
+  // category rather than the order the table returns them.
+  const journeyList = (cat.journeys || [])
+    .map((slug) => (allJourneys as any[]).find((j) => j.slug === slug))
+    .filter(Boolean)
+    .map((j: any) => ({
+      slug: j.slug,
+      title: j.title,
+      blurb: j.short_description || "",
+      days: j.duration_days ?? null,
+    }));
+
   const lastUpdated = places
     .map((p) => p.updated_at)
     .filter(Boolean)
@@ -103,6 +131,9 @@ export default async function PlaceCategoryPage({ params }: Props) {
       label={cat.label}
       description={cat.description}
       places={items}
+      mapPlaces={mapPlaces}
+      journeys={journeyList}
+      ksourArchive={!!cat.ksourArchive}
       counts={counts}
       lastUpdated={lastUpdated || null}
     />
