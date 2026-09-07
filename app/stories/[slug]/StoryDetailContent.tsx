@@ -121,6 +121,14 @@ export default function StoryDetailContent({
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/15" />
 
+          {/* Photo credit. Commissioned photography is credited; nothing
+              renders when images_by is empty. */}
+          {story.imagesBy && (
+            <p className="absolute bottom-4 right-8 md:right-12 lg:right-16 text-[9px] tracking-[0.15em] uppercase text-white/40">
+              Photo: {story.imagesBy}
+            </p>
+          )}
+
           {/* Title on image — bottom left, massive */}
           <div className="absolute inset-0 flex flex-col justify-end px-8 md:px-12 lg:px-16 pb-14 md:pb-20">
             {story.category && (
