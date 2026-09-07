@@ -35,6 +35,13 @@ interface JourneyItem {
   days: number | null;
 }
 
+interface StoryItem {
+  slug: string;
+  title: string;
+  subtitle: string;
+  readTime: number | null;
+}
+
 interface Props {
   categorySlug: string;
   label: string;
@@ -42,6 +49,7 @@ interface Props {
   places: Item[];
   mapPlaces?: MapPin[];
   journeys?: JourneyItem[];
+  stories?: StoryItem[];
   ksourArchive?: boolean;
   counts: Record<string, number>;
   lastUpdated: string | null;
@@ -65,6 +73,7 @@ export default function PlaceCategoryContent({
   places,
   mapPlaces = [],
   journeys = [],
+  stories = [],
   ksourArchive = false,
   counts,
   lastUpdated,
@@ -156,6 +165,41 @@ export default function PlaceCategoryContent({
             </Link>
           </div>
           <AllPlacesMap places={mapPlaces} total={mapPlaces.length} embedded />
+        </section>
+      )}
+
+      {/* ── Essays on this subject ────────────────────────────────── */}
+      {stories.length > 0 && (
+        <section className="px-8 md:px-10 lg:px-14 py-12 border-t border-foreground/[0.08]">
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/35 mb-6">
+            Read on {label.toLowerCase()}
+          </p>
+          <ul className="grid md:grid-cols-2 gap-x-10 lg:gap-x-14">
+            {stories.map((st) => (
+              <li key={st.slug}>
+                <Link
+                  href={`/stories/${st.slug}`}
+                  className="group block border-b border-foreground/[0.08] hover:border-foreground/40 py-4 transition-colors"
+                >
+                  <div className="flex items-baseline justify-between gap-3 mb-1.5">
+                    <span className="font-serif text-base text-foreground group-hover:text-foreground/60 transition-colors">
+                      {st.title}
+                    </span>
+                    {st.readTime ? (
+                      <span className="text-[10px] tabular-nums text-foreground/25 whitespace-nowrap">
+                        {st.readTime} min
+                      </span>
+                    ) : null}
+                  </div>
+                  {st.subtitle && (
+                    <p className="text-[12px] text-foreground/45 leading-[1.5] line-clamp-2">
+                      {st.subtitle}
+                    </p>
+                  )}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </section>
       )}
 

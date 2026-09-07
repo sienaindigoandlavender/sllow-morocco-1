@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { getPlaces, getDestinations, getJourneys, convertDriveUrl } from "@/lib/supabase";
+import { getPlaces, getDestinations, getJourneys, getStories, convertDriveUrl } from "@/lib/supabase";
 import { hasCoords } from "@/lib/geo";
 import {
   PLACE_CATEGORIES,
@@ -27,10 +27,11 @@ async function load(slug: string) {
 
   // One query, filtered in memory — the page needs sibling counts anyway,
   // so a category-filtered query would just mean fetching twice.
-  const [allPlaces, destinations, allJourneys] = await Promise.all([
+  const [allPlaces, destinations, allJourneys, allStories] = await Promise.all([
     getPlaces({ published: true }),
     getDestinations({ published: true }),
     cat.journeys?.length ? getJourneys({ published: true }) : Promise.resolve([]),
+    cat.stories?.length ? getStories({ published: true }) : Promise.resolve([]),
   ]);
 
   const places = allPlaces.filter(
@@ -42,7 +43,7 @@ async function load(slug: string) {
     if (p.category) counts[p.category] = (counts[p.category] || 0) + 1;
   }
 
-  return { cat, places, destinations, counts, allJourneys };
+  return { cat, places, destinations, counts, allJourneys, allStories };
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -78,7 +79,7 @@ export default async function PlaceCategoryPage({ params }: Props) {
   const data = await load(slug);
   if (!data) notFound();
 
-  const { cat, places, destinations, counts, allJourneys } = data;
+  const { cat, places, destinations, counts, allJourneys, allStories } = data;
 
   const destLookup = new Map(destinations.map((d) => [d.slug, d.title]));
 
@@ -119,6 +120,18 @@ export default async function PlaceCategoryPage({ params }: Props) {
       days: j.duration_days ?? null,
     }));
 
+  // Essays on this subject, in the order listed on the category.
+  // A story that has been unpublished or merged simply drops out.
+  const storyList = (cat.stories || [])
+    .map((slug) => (allStories as any[]).find((st) => st.slug === slug))
+    .filter(Boolean)
+    .map((st: any) => ({
+      slug: st.slug,
+      title: st.title,
+      subtitle: st.subtitle || st.excerpt || "",
+      readTime: st.read_time ?? null,
+    }));
+
   const lastUpdated = places
     .map((p) => p.updated_at)
     .filter(Boolean)
@@ -133,6 +146,7 @@ export default async function PlaceCategoryPage({ params }: Props) {
       places={items}
       mapPlaces={mapPlaces}
       journeys={journeyList}
+      stories={storyList}
       ksourArchive={!!cat.ksourArchive}
       counts={counts}
       lastUpdated={lastUpdated || null}
