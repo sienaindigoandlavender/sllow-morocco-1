@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Rendered inside the story page via an iframe. Indexing it separately
+     would compete with the story for the same subject. -->
+<meta name="robots" content="noindex, follow">
+<title>The White Storks — Dancing with Lions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0a0a;--ink-60:#333333;--ink-40:#4A4A4A;
+    --rule:rgba(10,10,10,.10);--hair:rgba(10,10,10,.06);
+    --wing:#2C3E50;--roof:#B5622E;--thermal:#C9A227;
+    --mapdot:#2C3E50;--maproute:#B5622E;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;font-size:15px;line-height:1.55}
+  .wrap{max-width:940px;margin:0 auto;padding:52px 28px 88px}
+  h1{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:clamp(32px,5.6vw,54px);line-height:1.05;letter-spacing:-.01em;margin:0 0 16px}
+  .standfirst{font-family:"EB Garamond",Georgia,serif;font-size:19px;line-height:1.5;color:#262626;max-width:38em;margin:0}
+  .dateline{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin-top:20px;padding-top:14px;border-top:1px solid var(--hair);font-size:12px;color:var(--ink-40)}
+  .dateline .stamp{color:var(--ink-60)}
+  h2{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:25px;line-height:1.2;margin:0 0 6px}
+  .note{font-size:13.5px;color:#333333;max-width:44em;margin:0 0 24px}
+  section{border-top:1px solid var(--rule);padding-top:32px;margin-top:48px}
+
+  /* map */
+  .map{width:100%;height:auto;margin-top:24px;display:block}
+  .map .grid{stroke:rgba(10,10,10,.08);stroke-width:1}
+  .map .ax{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.30)}
+  .map .dot{fill:var(--mapdot,#3E7A4E)}
+  .map .dot.minor{fill:rgba(10,10,10,.30)}
+  .map .pl{font-family:"DM Sans",sans-serif;font-size:12px;fill:#0a0a0a}
+  .map .pd{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.40)}
+  .map .route{fill:none;stroke:var(--maproute,#A9863C);stroke-width:1.6;stroke-dasharray:5 4}
+  .map .span{stroke:var(--maproute,#A9863C);stroke-width:2}
+  .map .spanlab{font-family:"DM Sans",sans-serif;font-size:10.5px;fill:var(--maproute,#A9863C)}
+
+  .shift{display:flex;align-items:flex-end;gap:clamp(24px,10vw,90px);height:210px;margin-top:26px}
+  .scol{flex:1;display:flex;flex-direction:column;justify-content:flex-end}
+  .sbar{width:100%;background:var(--wing)}
+  .sbar.now{background:var(--roof)}
+  .snum{font-size:15px;font-variant-numeric:tabular-nums;margin-bottom:6px}
+  .slab{font-size:12.5px;color:#4A4A4A;margin-top:8px;line-height:1.35}
+
+  .big4{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:22px}
+  .big4>div{background:#fff;padding:22px 16px}
+  .big4 .n{font-family:"EB Garamond",Georgia,serif;font-size:28px;line-height:1;margin-bottom:6px;color:var(--wing)}
+  .big4 .l{font-size:12.5px;color:#4A4A4A;line-height:1.4}
+
+  .editorial{border-top:1px solid var(--rule);margin-top:46px;padding-top:20px;font-size:12.5px;color:#4A4A4A;line-height:1.7;max-width:44em}
+  .editorial strong{color:#262626;font-weight:500}
+  table{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px}
+  th{text-align:left;font-weight:500;font-size:12px;color:var(--ink-40);padding:0 0 9px;border-bottom:1px solid var(--rule)}
+  td{padding:11px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+  td:last-child,th:last-child{text-align:right;font-variant-numeric:tabular-nums}
+  .foot{border-top:1px solid var(--rule);margin-top:28px;padding-top:20px;font-size:12px;color:var(--ink-40);line-height:1.7}
+  .foot strong{color:var(--ink-60);font-weight:500}
+  @media(max-width:620px){.shift{height:170px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>98% of first-year storks cross to Morocco</h1>
+  <p class="standfirst">
+    A stork cannot flap its way to Africa. It needs rising warm air to soar on,
+    and warm air does not rise over water, so the entire western European
+    population funnels through one 14-kilometre gap at Gibraltar and lands here.
+  </p>
+  <div class="dateline">
+    <span class="stamp"><time datetime="2026-09-07">Updated 7 September 2026</time></span>
+    <span>Tracking data 2013–2026. Residency percentages from a 25-year Iberian census series.</span>
+  </div>
+
+  <section>
+    <h2>2 gates out of Europe</h2>
+    <p class="note">
+      Soaring birds ride thermals, columns of air heated by the ground. The sea
+      makes none, so a direct crossing of the Mediterranean is not available to
+      them. Everything is forced to one of two narrow places: Gibraltar in the
+      west, the Bosporus in the east.
+    </p>
+<svg viewBox="0 0 880 430" class="map" xmlns="http://www.w3.org/2000/svg">
+  <line x1="92.4" y1="48" x2="92.4" y2="382" class="grid"/>
+  <text x="92.4" y="398" class="ax" text-anchor="middle">10°W</text>
+  <line x1="240.3" y1="48" x2="240.3" y2="382" class="grid"/>
+  <text x="240.3" y="398" class="ax" text-anchor="middle">0°E</text>
+  <line x1="388.2" y1="48" x2="388.2" y2="382" class="grid"/>
+  <text x="388.2" y="398" class="ax" text-anchor="middle">10°E</text>
+  <line x1="536.2" y1="48" x2="536.2" y2="382" class="grid"/>
+  <text x="536.2" y="398" class="ax" text-anchor="middle">20°E</text>
+  <line x1="684.1" y1="48" x2="684.1" y2="382" class="grid"/>
+  <text x="684.1" y="398" class="ax" text-anchor="middle">30°E</text>
+  <line x1="48" y1="321.3" x2="832" y2="321.3" class="grid"/>
+  <text x="40" y="325.3" class="ax" text-anchor="end">20°N</text>
+  <line x1="48" y1="245.4" x2="832" y2="245.4" class="grid"/>
+  <text x="40" y="249.4" class="ax" text-anchor="end">30°N</text>
+  <line x1="48" y1="169.5" x2="832" y2="169.5" class="grid"/>
+  <text x="40" y="173.5" class="ax" text-anchor="end">40°N</text>
+  <line x1="48" y1="93.5" x2="832" y2="93.5" class="grid"/>
+  <text x="40" y="97.5" class="ax" text-anchor="end">50°N</text>
+  <polyline points="234.4,86.0 145.6,192.2 160.4,199.8 142.7,212.7 195.9,345.6 358.6,344.0" class="route"/>
+  <circle cx="234.4" cy="86.0" r="3" class="dot minor"/>
+  <text x="243.4" y="84.0" class="pl" text-anchor="start">Knepp</text>
+  <text x="243.4" y="96.0" class="pd" text-anchor="start">Sussex, released birds</text>
+  <circle cx="145.6" cy="192.2" r="3" class="dot minor"/>
+  <text x="154.6" y="190.2" class="pl" text-anchor="start">Doñana</text>
+  <text x="154.6" y="202.2" class="pd" text-anchor="start">where C666 hatched</text>
+  <circle cx="160.4" cy="199.8" r="4.5" class="dot"/>
+  <text x="169.4" y="197.8" class="pl" text-anchor="start">Gibraltar</text>
+  <text x="169.4" y="209.8" class="pd" text-anchor="start">the western gate</text>
+  <circle cx="669.3" cy="161.9" r="4.5" class="dot"/>
+  <text x="660.3" y="159.9" class="pl" text-anchor="end">Bosporus</text>
+  <text x="660.3" y="171.9" class="pd" text-anchor="end">the eastern gate</text>
+  <circle cx="142.7" cy="212.7" r="4.5" class="dot"/>
+  <text x="151.7" y="210.7" class="pl" text-anchor="start">Kenitra</text>
+  <text x="151.7" y="222.7" class="pd" text-anchor="start">breeding, growing fast</text>
+  <circle cx="139.7" cy="215.0" r="3" class="dot minor"/>
+  <text x="148.7" y="213.0" class="pl" text-anchor="start">Rabat</text>
+  <circle cx="195.9" cy="345.6" r="3" class="dot minor"/>
+  <text x="204.9" y="343.6" class="pl" text-anchor="start">Timbuktu</text>
+  <circle cx="358.6" cy="344.0" r="4.5" class="dot"/>
+  <text x="367.6" y="342.0" class="pl" text-anchor="start">Agadez</text>
+  <text x="367.6" y="354.0" class="pd" text-anchor="start">Niger, the far end</text>
+</svg>
+    <p class="note" style="margin-top:16px">
+      The dashed line follows one bird. C666 hatched at Doñana in June 2013,
+      was tagged as a nestling, and crossed six countries before it died:
+      Spain, Morocco, Algeria, Mauritania, Mali and Niger. It wintered in the
+      Sahel and came back to northern Morocco.
+    </p>
+  </section>
+
+  <section>
+    <h2>The wind decides which end</h2>
+    <p class="note">
+      With an easterly blowing, the birds pile up at the western end of the
+      strait and the crossing bottlenecks. When it swings west they drift east
+      and pass over Gibraltar itself. Watching the passage is a matter of
+      reading the forecast rather than the calendar.
+    </p>
+    <div class="big4">
+      <div><div class="n">14 km</div><div class="l">The narrowest point of the strait</div></div>
+      <div><div class="n">Jul–Sep</div><div class="l">When most of the southward crossing happens</div></div>
+      <div><div class="n">Daytime</div><div class="l">Thermals only form once the ground has warmed</div></div>
+      <div><div class="n">6</div><div class="l">Countries crossed by a single tracked bird</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>The population that stopped going</h2>
+    <p class="note">
+      Twenty-five years of Iberian census data show the share of storks that no
+      longer migrate at all, staying in southern Europe through the winter.
+    </p>
+    <div class="shift">
+      <div class="scol"><div class="snum">18%</div><div class="sbar" style="height:22%"></div><div class="slab">Resident in Iberia<br>1995</div></div>
+      <div class="scol"><div class="snum">68–83%</div><div class="sbar now" style="height:100%"></div><div class="slab">Resident in Iberia<br>2020</div></div>
+    </div>
+    <p class="note" style="margin-top:18px">
+      Landfill is the reason. Open refuse gives a year-round food supply and
+      removes the need to leave. The same thing is happening on this side of the
+      water: Moroccan storks are increasingly resident too, and the breeding
+      population around Kenitra has grown sharply.
+    </p>
+    <p class="note">
+      The adults stay, and the young still go. Among first-year Iberian birds,
+      98% cross the strait, which means the flyway is being maintained by
+      juveniles learning a route their parents have stopped flying.
+    </p>
+  </section>
+
+  <section>
+    <h2>Nesting on the roof</h2>
+    <p class="note">
+      The white stork is protected in Morocco and holds a status close to
+      sacred. A nest on a house is taken as a sign of good fortune, which is
+      why they are left alone on minarets, ruins and water towers in the middle
+      of working towns.
+    </p>
+    <table>
+      <thead><tr><th>Case</th><th>What happened</th></tr></thead>
+      <tbody>
+        <tr><td>Rabat airport, 2017</td><td>23 nesting pairs sat on a building in the flight path. A risk assessment identified a bird-strike hazard</td></tr>
+        <tr><td>The response</td><td>A crane lifted the nests onto trucks and moved them 13 kilometres to Maamora</td></tr>
+        <tr><td>The principle</td><td>Relocation rather than removal, on the basis that the birds are protected and welcome</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>What lands here comes from everywhere</h2>
+    <table>
+      <thead><tr><th>Origin</th><th>Evidence</th></tr></thead>
+      <tbody>
+        <tr><td>Spain, Portugal, Germany, France</td><td>Ringed birds recorded together at a single site outside Rabat</td></tr>
+        <tr><td>England</td><td>Birds released at Knepp in Sussex, tracked through France and Spain and confirmed in Morocco</td></tr>
+        <tr><td>Across the western flyway generally</td><td>Around 120 juveniles were satellite-tagged in 2013 to map exactly this</td></tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-top:18px">
+      A rooftop in Kenitra and a rewilding project in Sussex are the same
+      system, and the birds work it out without being told.
+    </p>
+  </section>
+
+  <div class="editorial">
+    <strong>Editorial position.</strong> Dancing with Lions is a publisher, not
+    a political actor. We report what is documented and attribute it. Where
+    sources disagree we say so and give the range. Where a question is
+    contested in law or politics we set out the record and take no side.
+  </div>
+
+  <div class="foot">
+    <strong>Sources:</strong> Max Planck Institute for Ornithology tagging
+    programme, 2013; Iberian census and GPS-tracking study of 213 individuals
+    published on the loss of migratory behaviour; GREPOM/BirdLife Morocco;
+    White Stork Project, Knepp; BirdLife International. Residency figures are
+    given as the 68 to 83% range reported for 2020.
+    <br><br>
+    <strong>&copy; Dancing with Lions.</strong> Data compilation and
+    visualisation. Reuse requires attribution and a visible credit reading
+    &ldquo;Source: Dancing with Lions&rdquo;.
+  </div>
+
+</div>
+</body>
+</html>
