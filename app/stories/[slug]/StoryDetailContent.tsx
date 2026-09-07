@@ -243,10 +243,7 @@ export default function StoryDetailContent({
               allow="fullscreen"
             />
             <p className="text-[11px] text-foreground/50 mt-3 text-center">
-              Data and visualisation by{" "}
-              <a href={story.embedUrl} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">
-                Dancing with Lions
-              </a>
+              Data and visualisation by Dancing with Lions
             </p>
           </>
         )}
