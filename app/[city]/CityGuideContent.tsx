@@ -17,6 +17,8 @@ interface Destination {
   subtitle: string | null;
   region: string | null;
   hero_image: string | null;
+  hero_caption: string | null;
+  images_by: string | null;
   excerpt: string | null;
   body: string | null;
 }
@@ -297,6 +299,14 @@ export default function CityGuideContent({
           <div className="absolute inset-0 bg-foreground/10" />
         )}
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60" />
+
+        {/* Photo credit. Commissioned photography is credited; nothing
+            renders when images_by is empty. */}
+        {destination.images_by && (
+          <p className="absolute bottom-4 right-8 md:right-10 lg:right-14 text-[9px] tracking-[0.15em] uppercase text-white/40">
+            Photo: {destination.images_by}
+          </p>
+        )}
 
         <div className="absolute bottom-0 left-0 right-0 px-8 md:px-10 lg:px-14 pb-14">
           <h1 className="font-serif text-3xl md:text-5xl lg:text-6xl text-white leading-[1.1]">
