@@ -20,6 +20,7 @@ const STATIC_PAGES: MetadataRoute.Sitemap = [
   { url: `${SITE_URL}/about`, changeFrequency: 'monthly', priority: 0.7 },
   { url: `${SITE_URL}/masthead`, changeFrequency: 'monthly', priority: 0.6 },
   { url: `${SITE_URL}/places`, changeFrequency: 'weekly', priority: 0.8 },
+  { url: `${SITE_URL}/destinations`, changeFrequency: 'weekly', priority: 0.8 },
   { url: `${SITE_URL}/places/map`, changeFrequency: 'weekly', priority: 0.6 },
   { url: `${SITE_URL}/stories`, changeFrequency: 'weekly', priority: 0.8 },
   { url: `${SITE_URL}/collections`, changeFrequency: 'weekly', priority: 0.8 },
@@ -98,10 +99,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.5,
   }));
 
+  // City hubs. "Marrakech guide" is a far bigger query than any single
+  // place, so these sit above places and stories rather than below them.
   const destinationPages: MetadataRoute.Sitemap = safe(destinations).map((d: any) => ({
     url: `${SITE_URL}/${d.slug}`,
-    changeFrequency: 'monthly',
-    priority: 0.5,
+    changeFrequency: 'weekly',
+    priority: 0.8,
   }));
 
   const collectionPages: MetadataRoute.Sitemap = COLLECTIONS.map((c) => ({
