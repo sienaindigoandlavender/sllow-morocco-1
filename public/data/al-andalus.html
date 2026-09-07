@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Rendered inside the story page via an iframe. Indexing it separately
+     would compete with the story for the same subject. -->
+<meta name="robots" content="noindex, follow">
+<title>Al-Andalus, Both Ways — Dancing with Lions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0a0a;--ink-60:rgba(10,10,10,.60);--ink-40:rgba(10,10,10,.40);
+    --rule:rgba(10,10,10,.10);--hair:rgba(10,10,10,.06);
+    --north:#3B6E8F;--south:#A8703C;--tile:#2E6B5E;
+    --mapdot:#3B6E8F;--maproute:#A8703C;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;font-size:15px;line-height:1.55}
+  .wrap{max-width:940px;margin:0 auto;padding:52px 28px 88px}
+  h1{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:clamp(32px,5.6vw,54px);line-height:1.05;letter-spacing:-.01em;margin:0 0 16px}
+  .standfirst{font-family:"EB Garamond",Georgia,serif;font-size:19px;line-height:1.5;color:var(--ink-60);max-width:38em;margin:0}
+  .dateline{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin-top:20px;padding-top:14px;border-top:1px solid var(--hair);font-size:12px;color:var(--ink-40)}
+  .dateline .stamp{color:var(--ink-60)}
+  h2{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:25px;line-height:1.2;margin:0 0 6px}
+  .note{font-size:13px;color:var(--ink-40);max-width:44em;margin:0 0 24px}
+  section{border-top:1px solid var(--rule);padding-top:32px;margin-top:48px}
+
+  /* map */
+  .map{width:100%;height:auto;margin-top:24px;display:block}
+  .map .grid{stroke:rgba(10,10,10,.08);stroke-width:1}
+  .map .ax{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.30)}
+  .map .dot{fill:var(--mapdot,#3E7A4E)}
+  .map .dot.minor{fill:rgba(10,10,10,.30)}
+  .map .pl{font-family:"DM Sans",sans-serif;font-size:12px;fill:#0a0a0a}
+  .map .pd{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.40)}
+  .map .route{fill:none;stroke:var(--maproute,#A9863C);stroke-width:1.6;stroke-dasharray:5 4}
+  .map .span{stroke:var(--maproute,#A9863C);stroke-width:2}
+  .map .spanlab{font-family:"DM Sans",sans-serif;font-size:10.5px;fill:var(--maproute,#A9863C)}
+
+  /* timeline */
+  .tl{margin-top:24px}
+  .ev{display:grid;grid-template-columns:104px 14px 1fr;gap:0 16px;align-items:start;padding:0 0 26px}
+  .yr{font-family:"EB Garamond",Georgia,serif;font-size:19px;line-height:1.2;text-align:right;padding-top:1px}
+  .rail{position:relative;height:100%}
+  .rail:before{content:"";position:absolute;left:6px;top:8px;bottom:-26px;width:1px;background:var(--rule)}
+  .ev:last-child .rail:before{display:none}
+  .mk{position:absolute;left:2px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--north)}
+  .mk.s{background:var(--south)}
+  .evt{font-size:14.5px;line-height:1.5}
+  .evd{font-size:12.5px;color:var(--ink-40);margin-top:3px;line-height:1.45}
+
+  .dirkey{display:flex;gap:24px;font-size:12.5px;color:var(--ink-60);margin-top:6px;flex-wrap:wrap}
+  .sw{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:7px;vertical-align:-1px}
+
+  table{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px}
+  th{text-align:left;font-weight:500;font-size:12px;color:var(--ink-40);padding:0 0 9px;border-bottom:1px solid var(--rule)}
+  td{padding:11px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+  td:last-child,th:last-child{text-align:right;font-variant-numeric:tabular-nums}
+  .foot{border-top:1px solid var(--rule);margin-top:58px;padding-top:20px;font-size:12px;color:var(--ink-40);line-height:1.7}
+  .foot strong{color:var(--ink-60);font-weight:500}
+  @media(max-width:620px){.ev{grid-template-columns:72px 14px 1fr}.yr{font-size:16px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>The strait was crossed in both directions</h1>
+  <p class="standfirst">
+    Moroccan armies took Iberia in 711 and Moroccan dynasties ruled both shores
+    for two centuries. Eight hundred years later the traffic reversed, and the
+    people who came back rebuilt Fes, Tetouan and Rabat in the image of the
+    cities they had lost.
+  </p>
+  <div class="dateline">
+    <span class="stamp"><time datetime="2026-09-07">Compiled 7 September 2026</time></span>
+    <span>Historical. Morisco expulsion totals are estimates and vary by source.</span>
+  </div>
+
+  <section>
+    <h2>Eight centuries, two directions</h2>
+    <div class="dirkey">
+      <span><span class="sw" style="background:var(--north)"></span>North, into Iberia</span>
+      <span><span class="sw" style="background:var(--south)"></span>South, into Morocco</span>
+    </div>
+    <div class="tl">
+      <div class="ev">
+        <div class="yr">711</div>
+        <div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">Tariq ibn Ziyad crosses the strait</div>
+        <div class="evd">The rock he landed at is still called after him: Jebel Tariq, which English turned into Gibraltar.</div></div>
+      </div>
+      <div class="ev">
+        <div class="yr">1086–1269</div>
+        <div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">Almoravids, then Almohads</div>
+        <div class="evd">Two Moroccan dynasties governing both shores. One architectural world, which is why the Koutoubia and the Giralda are sisters.</div></div>
+      </div>
+      <div class="ev">
+        <div class="yr">1471</div>
+        <div class="rail"><span class="mk s"></span></div>
+        <div><div class="evt">Chefchaouen founded</div>
+        <div class="evd">Built as a refuge for Moorish and Jewish exiles, twenty-one years before Granada fell.</div></div>
+      </div>
+      <div class="ev">
+        <div class="yr">1492</div>
+        <div class="rail"><span class="mk s"></span></div>
+        <div><div class="evt">Granada falls</div>
+        <div class="evd">The first great exodus. Muslims and Jews cross together and settle in the same northern cities.</div></div>
+      </div>
+      <div class="ev">
+        <div class="yr">1609–1614</div>
+        <div class="rail"><span class="mk s"></span></div>
+        <div><div class="evt">The Moriscos are expelled</div>
+        <div class="evd">Philip III orders out the converted Muslims. An estimated 300,000 people leave Spain; a large share of them arrive in Morocco.</div></div>
+      </div>
+      <div class="ev">
+        <div class="yr">1610</div>
+        <div class="rail"><span class="mk s"></span></div>
+        <div><div class="evt">The Bou Regreg Republic</div>
+        <div class="evd">Exiles from the Extremaduran town of Hornachos settle at Rabat and Salé and found a semi-independent corsair state. They built the Kasbah of the Udayas walls that visitors climb today.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Where they landed</h2>
+    <p class="note">
+      The upper dashed line is the crossing from Granada. The lower one is
+      Hornachos to Rabat. The northern Moroccan cities were not merely settled
+      by these people; several were rebuilt by them.
+    </p>
+<svg viewBox="0 0 760 520" class="map" xmlns="http://www.w3.org/2000/svg">
+  <line x1="142.9" y1="48" x2="142.9" y2="472" class="grid"/>
+  <text x="142.9" y="488" class="ax" text-anchor="middle">8°W</text>
+  <line x1="332.6" y1="48" x2="332.6" y2="472" class="grid"/>
+  <text x="332.6" y="488" class="ax" text-anchor="middle">6°W</text>
+  <line x1="522.3" y1="48" x2="522.3" y2="472" class="grid"/>
+  <text x="522.3" y="488" class="ax" text-anchor="middle">4°W</text>
+  <line x1="48" y1="401.3" x2="712" y2="401.3" class="grid"/>
+  <text x="40" y="405.3" class="ax" text-anchor="end">34°N</text>
+  <line x1="48" y1="283.6" x2="712" y2="283.6" class="grid"/>
+  <text x="40" y="287.6" class="ax" text-anchor="end">36°N</text>
+  <line x1="48" y1="165.8" x2="712" y2="165.8" class="grid"/>
+  <text x="40" y="169.8" class="ax" text-anchor="end">38°N</text>
+  <polyline points="560.2,212.9 394.2,277.7 389.5,307.1 427.4,401.3" class="route"/>
+  <polyline points="323.1,130.4 247.2,398.4" class="route"/>
+  <circle cx="323.1" cy="130.4" r="3" class="dot minor"/>
+  <text x="332.1" y="128.4" class="pl" text-anchor="start">Hornachos</text>
+  <text x="332.1" y="140.4" class="pd" text-anchor="start">expelled 1610</text>
+  <circle cx="446.4" cy="171.7" r="4.5" class="dot"/>
+  <text x="455.4" y="169.7" class="pl" text-anchor="start">Córdoba</text>
+  <text x="455.4" y="181.7" class="pd" text-anchor="start">the caliphate</text>
+  <circle cx="332.6" cy="201.1" r="3" class="dot minor"/>
+  <text x="341.6" y="199.1" class="pl" text-anchor="start">Seville</text>
+  <circle cx="560.2" cy="212.9" r="4.5" class="dot"/>
+  <text x="551.2" y="210.9" class="pl" text-anchor="end">Granada</text>
+  <text x="551.2" y="222.9" class="pd" text-anchor="end">fell 1492</text>
+  <circle cx="394.2" cy="277.7" r="4.5" class="dot"/>
+  <text x="403.2" y="275.7" class="pl" text-anchor="start">Gibraltar</text>
+  <text x="403.2" y="287.7" class="pd" text-anchor="start">Jebel Tariq, 711</text>
+  <circle cx="351.5" cy="295.3" r="3" class="dot minor"/>
+  <text x="360.5" y="293.3" class="pl" text-anchor="start">Tangier</text>
+  <circle cx="389.5" cy="307.1" r="4.5" class="dot"/>
+  <text x="398.5" y="305.1" class="pl" text-anchor="start">Tetouan</text>
+  <text x="398.5" y="317.1" class="pd" text-anchor="start">rebuilt by exiles</text>
+  <circle cx="399.0" cy="330.7" r="4.5" class="dot"/>
+  <text x="408.0" y="328.7" class="pl" text-anchor="start">Chefchaouen</text>
+  <text x="408.0" y="340.7" class="pd" text-anchor="start">founded 1471</text>
+  <circle cx="427.4" cy="401.3" r="4.5" class="dot"/>
+  <text x="436.4" y="399.3" class="pl" text-anchor="start">Fes</text>
+  <text x="436.4" y="411.3" class="pd" text-anchor="start">al-Ala survives here</text>
+  <circle cx="247.2" cy="398.4" r="3" class="dot minor"/>
+  <text x="256.2" y="396.4" class="pl" text-anchor="start">Salé</text>
+  <text x="256.2" y="408.4" class="pd" text-anchor="start">corsair republic</text>
+  <circle cx="266.2" cy="404.3" r="4.5" class="dot"/>
+  <text x="275.2" y="402.3" class="pl" text-anchor="start">Rabat</text>
+  <text x="275.2" y="414.3" class="pd" text-anchor="start">Bou Regreg</text>
+</svg>
+  </section>
+
+  <section>
+    <h2>What crossed with them</h2>
+    <p class="note">
+      The refugees were artisans, musicians, scholars, architects and merchants
+      rather than a general population, which is why the transfer was so
+      concentrated.
+    </p>
+    <table>
+      <thead><tr><th>What</th><th>Where it went</th></tr></thead>
+      <tbody>
+        <tr><td>Al-Ala, the classical repertoire</td><td>Fes, Tetouan, Chefchaouen. Musicologists hold the Moroccan version closest to the original, because it was transmitted orally and stayed isolated.</td></tr>
+        <tr><td>The nuba</td><td>The suite form that organises the music. Each Andalusian city had its own competing version.</td></tr>
+        <tr><td>Muwashshah and zajal</td><td>Poetic forms invented in Iberia under Romance influence. Around 600 secular muwashshahat survive; roughly 50 carry closing lines in Andalusi Romance.</td></tr>
+        <tr><td>Zellige, gebs, carved cedar</td><td>The decorative grammar of every Moroccan interior since.</td></tr>
+        <tr><td>Garden design</td><td>The courtyard with water at the centre, four quarters, orange trees.</td></tr>
+        <tr><td>Surnames and keys</td><td>Dozens of Moroccan families still carry Spanish surnames. Some keep the keys to houses in Andalusia.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>The languages kept the marks</h2>
+    <p class="note">
+      Andalusi Arabic died as a spoken language and left fingerprints on both
+      sides of the water.
+    </p>
+    <table>
+      <thead><tr><th>Language</th><th>What it carries</th></tr></thead>
+      <tbody>
+        <tr><td>Moroccan Arabic</td><td>The dialects of Rabat, Salé, Fes, Tetouan and Tangier are Andalusi-influenced and audibly different from the interior</td></tr>
+        <tr><td>Algerian Arabic</td><td>Nedroma, Tlemcen, Blida, Jijel, Cherchell — the same refugee cities, one country east</td></tr>
+        <tr><td>Tunisian Arabic</td><td>Sfax</td></tr>
+        <tr><td>Spanish</td><td>Thousands of words of Arabic origin. The region is still called Andalusia</td></tr>
+        <tr><td>Portuguese, Catalan, Judeo-Spanish</td><td>The same inheritance, along different routes</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Two communities, one crossing</h2>
+    <p class="note">
+      Muslims and Jews were expelled by the same decrees and arrived in the same
+      cities. The Jewish Megorashim went on to play a central role in performing
+      and preserving Andalusian music in Fes, Rabat and Tetouan, and the
+      repertoire stayed shared long after the communities separated.
+    </p>
+    <p class="note">
+      The 2011 constitution names the Andalusian and Hebraic components of
+      Moroccan identity explicitly, alongside the Arab-Islamic, Amazigh and
+      Saharan-Hassani ones.
+    </p>
+  </section>
+
+  <div class="foot">
+    <strong>Sources:</strong> Dwight Reynolds, University of California Santa
+    Barbara, on Andalusian music; Fundación de Cultura Islámica; Preamble to the
+    2011 Moroccan Constitution; standard reference works on Andalusi Arabic.
+    Expulsion figures for 1609 to 1614 are estimates; the share arriving in
+    Morocco specifically is not recorded.
+    <br><br>
+    <strong>&copy; Dancing with Lions.</strong> Data compilation and
+    visualisation. Reuse requires attribution and a visible credit reading
+    &ldquo;Source: Dancing with Lions&rdquo;.
+  </div>
+
+</div>
+</body>
+</html>
