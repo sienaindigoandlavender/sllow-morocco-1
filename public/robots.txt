@@ -27,7 +27,10 @@ Disallow: /stories/random
 # Tour-operating surface — publication-only. These routes are noindex and
 # reachable by direct link only. /journeys and /go/gentle were never indexed,
 # so blocking crawl here is safe. The newly-noindexed pages (/plan-your-trip,
-# /epic, /whats-included, /destinations, /regions, /your-morocco,
+# /epic, /whats-included, /regions, /your-morocco,
+# (/destinations was un-noindexed in September 2026 — every row now has
+#  a subtitle, excerpt and body, so it is a real index page. Do not add
+#  it to the Disallow list.)
 # /sahara-tour-from-marrakech) are deliberately NOT disallowed yet: Google must
 # be able to crawl them to see the noindex tag and drop them from the index.
 # Once they've fallen out of results, add them here to block crawl entirely.
