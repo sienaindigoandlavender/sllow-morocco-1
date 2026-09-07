@@ -26,6 +26,7 @@ interface Place {
   notes: string;
   heroImage: string;
   heroCaption: string;
+  imagesBy?: string | null;
   excerpt: string;
   body: string;
   sources: string;
@@ -164,6 +165,14 @@ export default function PlaceDetailContent({
           <div className="absolute inset-0 bg-muted" />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+
+        {/* Photo credit. Commissioned photography is credited; nothing
+            renders when images_by is empty. */}
+        {place.imagesBy && (
+          <p className="absolute bottom-4 right-6 lg:right-16 text-[9px] tracking-[0.15em] uppercase text-white/40">
+            Photo: {place.imagesBy}
+          </p>
+        )}
         <div className="absolute top-24 left-6 lg:left-16 right-6 lg:right-16 flex items-center justify-between">
           <Link href="/places" className="inline-flex items-center gap-2 text-white/90 hover:text-white transition-colors">
             <ChevronLeft className="w-4 h-4" />

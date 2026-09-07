@@ -69,6 +69,7 @@ interface FormattedPlace {
   notes: string;
   heroImage: string;
   heroCaption: string;
+  imagesBy: string | null;
   excerpt: string;
   body: string;
   sources: string;
@@ -117,6 +118,7 @@ async function getPlaceData(slug: string) {
     notes: place.notes || "",
     heroImage: place.hero_image ? convertDriveUrl(place.hero_image) : "",
     heroCaption: place.hero_caption || "",
+    imagesBy: (place as any).images_by || null,
     excerpt: place.excerpt || "",
     body: (place.body || "").replace(/<br\s*\/?>/gi, '\n'),
     sources: place.sources || "",
