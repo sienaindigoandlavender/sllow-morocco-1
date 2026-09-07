@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Rendered inside the story page via an iframe. Indexing it separately
+     would compete with the story for the same subject. -->
+<meta name="robots" content="noindex, follow">
+<title>The Date That Left — Dancing with Lions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0a0a;--ink-60:rgba(10,10,10,.60);--ink-40:rgba(10,10,10,.40);
+    --rule:rgba(10,10,10,.10);--hair:rgba(10,10,10,.06);
+    --date:#6B4423;--palm:#5E7247;--loss:#8F3A24;--pale:#D8C7AC;
+    --mapdot:#6B4423;--maproute:#8F3A24;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;font-size:15px;line-height:1.55}
+  .wrap{max-width:940px;margin:0 auto;padding:52px 28px 88px}
+  h1{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:clamp(32px,5.6vw,54px);line-height:1.05;letter-spacing:-.01em;margin:0 0 16px}
+  .standfirst{font-family:"EB Garamond",Georgia,serif;font-size:19px;line-height:1.5;color:var(--ink-60);max-width:38em;margin:0}
+  .dateline{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin-top:20px;padding-top:14px;border-top:1px solid var(--hair);font-size:12px;color:var(--ink-40)}
+  .dateline .stamp{color:var(--ink-60)}
+  h2{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:25px;line-height:1.2;margin:0 0 6px}
+  .note{font-size:13px;color:var(--ink-40);max-width:44em;margin:0 0 24px}
+  section{border-top:1px solid var(--rule);padding-top:32px;margin-top:48px}
+
+  /* map */
+  .map{width:100%;height:auto;margin-top:24px;display:block}
+  .map .grid{stroke:rgba(10,10,10,.08);stroke-width:1}
+  .map .ax{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.30)}
+  .map .dot{fill:var(--mapdot,#3E7A4E)}
+  .map .dot.minor{fill:rgba(10,10,10,.30)}
+  .map .pl{font-family:"DM Sans",sans-serif;font-size:12px;fill:#0a0a0a}
+  .map .pd{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.40)}
+  .map .route{fill:none;stroke:var(--maproute,#A9863C);stroke-width:1.6;stroke-dasharray:5 4}
+  .map .span{stroke:var(--maproute,#A9863C);stroke-width:2}
+  .map .spanlab{font-family:"DM Sans",sans-serif;font-size:10.5px;fill:var(--maproute,#A9863C)}
+
+  .eleven{display:flex;gap:9px;flex-wrap:wrap;margin-top:22px}
+  .off{width:26px;height:52px;background:var(--palm);border-radius:13px 13px 3px 3px}
+
+  .loss{display:grid;gap:11px;margin-top:24px}
+  .lrow{display:grid;grid-template-columns:120px 1fr 96px;gap:14px;align-items:center;font-size:14px}
+  .lbar{height:24px;background:var(--hair)}
+  .lbar div{height:100%;background:var(--loss)}
+  .lnum{text-align:right;font-variant-numeric:tabular-nums;font-size:13px;color:var(--ink-60)}
+
+  .weigh{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:22px}
+  .weigh>div{background:#fff;padding:24px 20px}
+  .weigh .lab{font-size:12px;color:var(--ink-40);margin-bottom:8px}
+  .weigh .big{font-family:"EB Garamond",Georgia,serif;font-size:clamp(26px,4.4vw,38px);line-height:1.05;margin-bottom:8px}
+  .weigh .sub{font-size:13px;color:var(--ink-60);line-height:1.45}
+
+  .tl{margin-top:24px}
+  .ev{display:grid;grid-template-columns:80px 14px 1fr;gap:0 16px;align-items:start;padding:0 0 24px}
+  .yr{font-family:"EB Garamond",Georgia,serif;font-size:18px;text-align:right;padding-top:1px}
+  .rail{position:relative;height:100%}
+  .rail:before{content:"";position:absolute;left:6px;top:8px;bottom:-24px;width:1px;background:var(--rule)}
+  .ev:last-child .rail:before{display:none}
+  .mk{position:absolute;left:2px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--date)}
+  .mk.bad{background:var(--loss)}
+  .evt{font-size:14.5px;line-height:1.5}
+  .evd{font-size:12.5px;color:var(--ink-40);margin-top:3px;line-height:1.45}
+
+  table{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px}
+  th{text-align:left;font-weight:500;font-size:12px;color:var(--ink-40);padding:0 0 9px;border-bottom:1px solid var(--rule)}
+  td{padding:11px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+  td:last-child,th:last-child{text-align:right;font-variant-numeric:tabular-nums}
+  .foot{border-top:1px solid var(--rule);margin-top:58px;padding-top:20px;font-size:12px;color:var(--ink-40);line-height:1.7}
+  .foot strong{color:var(--ink-60);font-weight:500}
+  @media(max-width:620px){.weigh{grid-template-columns:1fr}.ev{grid-template-columns:62px 14px 1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Eleven offshoots left in the 1930s</h1>
+  <p class="standfirst">
+    A fungus was killing the Mejhoul palms of the Draa. An American plant
+    scientist was permitted to take eleven young shoots to California. Every
+    Medjool date sold anywhere in the world descends from those eleven, and
+    Morocco now imports them.
+  </p>
+  <div class="dateline">
+    <span class="stamp"><time datetime="2026-09-07">Compiled 7 September 2026</time></span>
+    <span>Historical. Palm-loss totals are estimates and vary between studies.</span>
+  </div>
+
+  <section>
+    <h2>What left</h2>
+    <div class="eleven"><div class="off"></div><div class="off"></div><div class="off"></div><div class="off"></div><div class="off"></div><div class="off"></div><div class="off"></div><div class="off"></div><div class="off"></div><div class="off"></div><div class="off"></div></div>
+    <p class="note" style="margin-top:20px">
+      Walter Swingle carried them out with the agreement of the French
+      authorities, who had failed to stop the disease by any other means. The
+      name lost its shape on the crossing: Mejhoul became Medjool.
+    </p>
+  </section>
+
+  <section>
+    <h2>Where they went, and where they sell</h2>
+<svg viewBox="0 0 900 330" class="map" xmlns="http://www.w3.org/2000/svg">
+  <line x1="70.3" y1="48" x2="70.3" y2="282" class="grid"/>
+  <text x="70.3" y="298" class="ax" text-anchor="middle">120°W</text>
+  <line x1="159.7" y1="48" x2="159.7" y2="282" class="grid"/>
+  <text x="159.7" y="298" class="ax" text-anchor="middle">100°W</text>
+  <line x1="249.0" y1="48" x2="249.0" y2="282" class="grid"/>
+  <text x="249.0" y="298" class="ax" text-anchor="middle">80°W</text>
+  <line x1="338.3" y1="48" x2="338.3" y2="282" class="grid"/>
+  <text x="338.3" y="298" class="ax" text-anchor="middle">60°W</text>
+  <line x1="427.7" y1="48" x2="427.7" y2="282" class="grid"/>
+  <text x="427.7" y="298" class="ax" text-anchor="middle">40°W</text>
+  <line x1="517.0" y1="48" x2="517.0" y2="282" class="grid"/>
+  <text x="517.0" y="298" class="ax" text-anchor="middle">20°W</text>
+  <line x1="606.3" y1="48" x2="606.3" y2="282" class="grid"/>
+  <text x="606.3" y="298" class="ax" text-anchor="middle">0°E</text>
+  <line x1="695.7" y1="48" x2="695.7" y2="282" class="grid"/>
+  <text x="695.7" y="298" class="ax" text-anchor="middle">20°E</text>
+  <line x1="785.0" y1="48" x2="785.0" y2="282" class="grid"/>
+  <text x="785.0" y="298" class="ax" text-anchor="middle">40°E</text>
+  <line x1="48" y1="262.5" x2="852" y2="262.5" class="grid"/>
+  <text x="40" y="266.5" class="ax" text-anchor="end">20°N</text>
+  <line x1="48" y1="165.0" x2="852" y2="165.0" class="grid"/>
+  <text x="40" y="169.0" class="ax" text-anchor="end">30°N</text>
+  <line x1="48" y1="67.5" x2="852" y2="67.5" class="grid"/>
+  <text x="40" y="71.5" class="ax" text-anchor="end">40°N</text>
+  <polyline points="580.4,162.1 87.3,128.9" class="route"/>
+  <polyline points="87.3,128.9 764.9,145.5" class="route"/>
+  <polyline points="764.9,145.5 814.9,216.7" class="route"/>
+  <circle cx="87.3" cy="128.9" r="4.5" class="dot"/>
+  <text x="96.3" y="126.9" class="pl" text-anchor="start">Coachella</text>
+  <text x="96.3" y="138.9" class="pd" text-anchor="start">California, 1930s</text>
+  <circle cx="580.4" cy="162.1" r="4.5" class="dot"/>
+  <text x="589.4" y="160.1" class="pl" text-anchor="start">Draa Valley</text>
+  <text x="589.4" y="172.1" class="pd" text-anchor="start">the origin</text>
+  <circle cx="587.1" cy="152.3" r="3" class="dot minor"/>
+  <text x="596.1" y="150.3" class="pl" text-anchor="start">Tafilalet</text>
+  <circle cx="764.9" cy="145.5" r="4.5" class="dot"/>
+  <text x="755.9" y="143.5" class="pl" text-anchor="end">Jordan Valley</text>
+  <text x="755.9" y="155.5" class="pd" text-anchor="end">from California</text>
+  <circle cx="814.9" cy="216.7" r="3" class="dot minor"/>
+  <text x="805.9" y="214.7" class="pl" text-anchor="end">Riyadh</text>
+  <text x="805.9" y="226.7" class="pd" text-anchor="end">imports Medjool</text>
+</svg>
+    <p class="note" style="margin-top:16px">
+      From the Coachella Valley the variety was carried to the Jordan Valley,
+      and from both places it is exported to Saudi Arabia, North Africa and
+      Morocco itself.
+    </p>
+  </section>
+
+  <section>
+    <h2>What the fungus took</h2>
+    <p class="note">
+      Bayoud is Fusarium oxysporum f. sp. albedinis, a soil fungus that blocks
+      the palm&rsquo;s vascular system. It was first reported in Morocco in 1870
+      and has been working outward ever since.
+    </p>
+    <div class="loss">
+      <div class="lrow"><div>Morocco</div><div class="lbar"><div style="width:100%"></div></div><div class="lnum">10–12 m palms</div></div>
+      <div class="lrow"><div>Algeria</div><div class="lbar"><div style="width:27%"></div></div><div class="lnum">3 m palms</div></div>
+    </div>
+    <p class="note" style="margin-top:18px">
+      Roughly two thirds of Morocco&rsquo;s best date varieties are gone. The
+      fungus attacks the good cultivars hardest: Mejhoul, Boufeggous and Deglet
+      Nour are all highly susceptible, and the resistant palms tend to make poor
+      dates. The European Union treats it as a quarantine pathogen.
+    </p>
+  </section>
+
+  <section>
+    <h2>Why the Mejhoul is worth saving</h2>
+    <div class="weigh">
+      <div>
+        <div class="lab">A Mejhoul</div>
+        <div class="big">20–30 g</div>
+        <div class="sub">Soft, large, sweet. The reason it is called the king of dates, and the reason California planted eleven shoots and kept going.</div>
+      </div>
+      <div>
+        <div class="lab">Most other varieties</div>
+        <div class="big">6–11 g</div>
+        <div class="sub">A third the weight, and a different proposition on a plate.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>The sequence</h2>
+    <div class="tl">
+      <div class="ev"><div class="yr">1870</div><div class="rail"><span class="mk bad"></span></div>
+        <div><div class="evt">Bayoud is first reported</div><div class="evd">In Morocco. It spreads from here into Algeria and Mauritania.</div></div></div>
+      <div class="ev"><div class="yr">1927</div><div class="rail"><span class="mk bad"></span></div>
+        <div><div class="evt">The Mejhoul groves fail</div><div class="evd">The French colonial administration convenes scientists from several countries. None of them can stop it.</div></div></div>
+      <div class="ev"><div class="yr">1930s</div><div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">Eleven offshoots to California</div><div class="evd">Walter Swingle takes them to the Coachella Valley. They take.</div></div></div>
+      <div class="ev"><div class="yr">1981</div><div class="rail"><span class="mk bad"></span></div>
+        <div><div class="evt">The pathogen is isolated at Rissani</div><div class="evd">From a Mejhoul palm in the Tafilalet. That isolate is still the reference strain.</div></div></div>
+      <div class="ev"><div class="yr">2000s</div><div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">Najda</div><div class="evd">INRA breeds a resistant variety at the Ternata oasis station in the Middle Draa, combining resistance with an edible date.</div></div></div>
+      <div class="ev"><div class="yr">2011–13</div><div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">Replanting begins</div><div class="evd">Mostly Najda, under the Green Morocco Plan.</div></div></div>
+      <div class="ev"><div class="yr">2015–</div><div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">Mejhoul comes home</div><div class="evd">New plantings favour Mejhoul and Boufeggous over the older varieties. The premium cultivars are still only about a fifth of national supply.</div></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Why a palm cannot simply be replanted</h2>
+    <table>
+      <thead><tr><th>Problem</th><th>Detail</th></tr></thead>
+      <tbody>
+        <tr><td>Seed does not breed true</td><td>The date palm is dioecious with 36 chromosomes, so seedlings come out variable. The mixed populations have their own name: khalt</td></tr>
+        <tr><td>Offshoots are the only copy</td><td>A named variety is propagated from shoots at the base of the parent, which is why eleven of them could carry a cultivar across an ocean</td></tr>
+        <tr><td>The fungus lives in the soil</td><td>It persists for years without a host, so replanting the same ground with the same cultivar fails again</td></tr>
+        <tr><td>Resistance and quality pull apart</td><td>Palms that survive Bayoud have historically made indifferent dates. Najda was bred to hold both</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="foot">
+    <strong>Sources:</strong> EPPO and FAO records on Fusarium oxysporum f. sp.
+    albedinis; INRA Maroc varietal research, Ternata station; FruiTrop, <em>The
+    date in Morocco</em>; published genomic work on the Foa 44 reference isolate
+    from Rissani, 1981. Palm-loss figures are given as 10 to 12 million across
+    studies.
+    <br><br>
+    <strong>&copy; Dancing with Lions.</strong> Data compilation and
+    visualisation. Reuse requires attribution and a visible credit reading
+    &ldquo;Source: Dancing with Lions&rdquo;.
+  </div>
+
+</div>
+</body>
+</html>
