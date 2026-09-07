@@ -5,7 +5,12 @@ import Link from "next/link";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // SLOW MOROCCO — PRIVATE LILA DOSSIER
-// Prepared for Dmitrii Bukata & guest(s)
+// Prepared for Dmitrii Bukata & guest(s), August 2026.
+//
+// NOT ROUTED. /dossiers/lila now serves LilaGate.tsx instead.
+// This file is kept as the template: change the name on the meta
+// line below, print to PDF, and send it to a client who has paid
+// the deposit. Do not point a URL at it.
 // Built to match /sahara-tour-from-marrakech: centered max-w-3xl column,
 // foreground/muted-foreground tokens, border-t sections, meta bar with
 // Download PDF, day-by-day sequence, included/not-included, FAQ accordion.
@@ -239,6 +244,8 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 // MAIN
 // ─────────────────────────────────────────────────────────────────────────────
 
+const CLIENT_NAME = "—";
+
 export default function LilaDossierContent() {
   const [tab, setTab] = useState<"lila" | "week">("lila");
   return (
@@ -338,7 +345,7 @@ export default function LilaDossierContent() {
       <div className="border-b border-foreground/10 print:hidden">
         <div className="max-w-3xl mx-auto px-8 md:px-12 py-5 flex items-center justify-between">
           <div className="flex items-center gap-4 text-[11px] tracking-[0.12em] uppercase text-foreground/35">
-            <span>Prepared for Dmitrii Bukata &amp; guest(s)</span>
+            <span>Prepared for {CLIENT_NAME}</span>
             <span className="hidden md:inline">Marrakech</span>
             <span className="hidden md:inline">September 2026</span>
           </div>
