@@ -519,6 +519,7 @@ export interface Place {
   notes: string | null;
   hero_image: string | null;
   hero_caption: string | null;
+  images_by: string | null;
   excerpt: string | null;
   body: string | null;
   sources: string | null;
@@ -775,6 +776,7 @@ export interface Destination {
   region: string | null;
   hero_image: string | null;
   hero_caption: string | null;
+  images_by: string | null;
   excerpt: string | null;
   body: string | null;
   published: boolean;
