@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Rendered inside the story page via an iframe. Indexing it separately
+     would compete with the story for the same subject. -->
+<meta name="robots" content="noindex, follow">
+<title>The Barbary Lion — Dancing with Lions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0a0a;--ink-60:#333333;--ink-40:#4A4A4A;
+    --rule:rgba(10,10,10,.10);--hair:rgba(10,10,10,.06);
+    --mane:#4A3520;--pelt:#B58E52;--cedar:#4A6B3A;
+    --mapdot:#4A3520;--maproute:#B58E52;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;font-size:15px;line-height:1.55}
+  .wrap{max-width:940px;margin:0 auto;padding:52px 28px 88px}
+  h1{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:clamp(32px,5.6vw,54px);line-height:1.05;letter-spacing:-.01em;margin:0 0 16px}
+  .standfirst{font-family:"EB Garamond",Georgia,serif;font-size:19px;line-height:1.5;color:#262626;max-width:38em;margin:0}
+  .dateline{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin-top:20px;padding-top:14px;border-top:1px solid var(--hair);font-size:12px;color:var(--ink-40)}
+  .dateline .stamp{color:var(--ink-60)}
+  h2{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:25px;line-height:1.2;margin:0 0 6px}
+  .note{font-size:13.5px;color:#333333;max-width:44em;margin:0 0 24px}
+  section{border-top:1px solid var(--rule);padding-top:32px;margin-top:48px}
+
+  /* map */
+  .map{width:100%;height:auto;margin-top:24px;display:block}
+  .map .grid{stroke:rgba(10,10,10,.08);stroke-width:1}
+  .map .ax{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.30)}
+  .map .dot{fill:var(--mapdot,#3E7A4E)}
+  .map .dot.minor{fill:rgba(10,10,10,.30)}
+  .map .pl{font-family:"DM Sans",sans-serif;font-size:12px;fill:#0a0a0a}
+  .map .pd{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.40)}
+  .map .route{fill:none;stroke:var(--maproute,#A9863C);stroke-width:1.6;stroke-dasharray:5 4}
+  .map .span{stroke:var(--maproute,#A9863C);stroke-width:2}
+  .map .spanlab{font-family:"DM Sans",sans-serif;font-size:10.5px;fill:var(--maproute,#A9863C)}
+
+  .grow{display:flex;align-items:flex-end;gap:clamp(20px,8vw,70px);height:210px;margin-top:26px}
+  .gcol{flex:1;display:flex;flex-direction:column;justify-content:flex-end}
+  .gbar{width:100%;background:var(--mane)}
+  .gbar.mid{background:var(--pelt)}
+  .gnum{font-size:15px;font-variant-numeric:tabular-nums;margin-bottom:6px}
+  .glab{font-size:12.5px;color:#4A4A4A;margin-top:8px;line-height:1.35}
+
+  .big4{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:22px}
+  .big4>div{background:#fff;padding:22px 16px}
+  .big4 .n{font-family:"EB Garamond",Georgia,serif;font-size:28px;line-height:1;margin-bottom:6px;color:var(--mane)}
+  .big4 .l{font-size:12.5px;color:#4A4A4A;line-height:1.4}
+
+  .tl{margin-top:24px}
+  .ev{display:grid;grid-template-columns:96px 14px 1fr;gap:0 16px;align-items:start;padding:0 0 22px}
+  .yr{font-family:"EB Garamond",Georgia,serif;font-size:17px;text-align:right;padding-top:2px}
+  .rail{position:relative;height:100%}
+  .rail:before{content:"";position:absolute;left:6px;top:8px;bottom:-22px;width:1px;background:var(--rule)}
+  .ev:last-child .rail:before{display:none}
+  .mk{position:absolute;left:2px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--mane)}
+  .evt{font-size:14.5px;line-height:1.5}
+  .evd{font-size:12.5px;color:#4A4A4A;margin-top:3px;line-height:1.45}
+
+  .editorial{border-top:1px solid var(--rule);margin-top:46px;padding-top:20px;font-size:12.5px;color:#4A4A4A;line-height:1.7;max-width:44em}
+  .editorial strong{color:#262626;font-weight:500}
+  table{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px}
+  th{text-align:left;font-weight:500;font-size:12px;color:var(--ink-40);padding:0 0 9px;border-bottom:1px solid var(--rule)}
+  td{padding:11px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+  td:last-child,th:last-child{text-align:right;font-variant-numeric:tabular-nums}
+  .foot{border-top:1px solid var(--rule);margin-top:28px;padding-top:20px;font-size:12px;color:var(--ink-40);line-height:1.7}
+  .foot strong{color:var(--ink-60);font-weight:500}
+  @media(max-width:620px){.grow{height:170px}.ev{grid-template-columns:74px 14px 1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Eight centuries of lions in the palace</h1>
+  <p class="standfirst">
+    Amazigh chiefs took cubs in the Atlas and brought them to the sultan, and
+    the practice ran unbroken from the Almohads in the twelfth century to the
+    Alaouites in the twentieth. When the mountains emptied, the palace still had
+    lions, and the whole surviving North African lineage traces back to that
+    collection.
+  </p>
+  <div class="dateline">
+    <span class="stamp"><time datetime="2026-09-07">Updated 7 September 2026</time></span>
+    <span>Genetic work on the royal lineage is ongoing and its findings are given as they stand.</span>
+  </div>
+
+  <section>
+    <h2>The animal itself</h2>
+    <div class="big4">
+      <div><div class="n">270 kg</div><div class="l">Recorded weight of a male. The largest lion subspecies on record</div></div>
+      <div><div class="n">2</div><div class="l">Adults to a territory. Pairs rather than prides, because the prey would not support more</div></div>
+      <div><div class="n">Cedar</div><div class="l">Its habitat was mountain forest and pass, not savanna</div></div>
+      <div><div class="n">Belly</div><div class="l">How far the mane reached. Dark at the face, over the shoulders, down the chest</div></div>
+    </div>
+    <p class="note" style="margin-top:18px">
+      It hunted wild boar and Barbary deer in the Atlas, in country that looks
+      more like southern Europe than anywhere south of the Sahara. Its range ran
+      the length of North Africa, from Morocco to Egypt.
+    </p>
+  </section>
+
+  <section>
+    <h2>The collection</h2>
+    <p class="note">
+      Lions passed from sultan to successor as part of the inheritance. When the
+      royal family went into exile in 1953 the collection was dispersed, three
+      to Casablanca and the rest to Meknes, and it was rebuilt afterwards.
+    </p>
+    <div class="grow">
+      <div class="gcol"><div class="gnum">21</div><div class="gbar" style="height:24%"></div><div class="glab">Lions moved<br>at the 1953 exile</div></div>
+      <div class="gcol"><div class="gnum">88</div><div class="gbar mid" style="height:100%"></div><div class="glab">39 adults and 49 cubs<br>by 1973</div></div>
+      <div class="gcol"><div class="gnum">~100</div><div class="gbar" style="height:100%"></div><div class="glab">Descendants today, Rabat<br>and Europe combined</div></div>
+    </div>
+    <p class="note" style="margin-top:18px">
+      The 1973 group was handed to Rabat Zoo, which still holds the largest
+      single population. Others went to European institutions, where cubs have
+      since been born at Neuwied, Pilsen, Hannover, Erfurt, Heidelberg, Olomouc
+      and Port Lympne.
+    </p>
+  </section>
+
+  <section>
+    <h2>Where the bloodline sits now</h2>
+<svg viewBox="0 0 820 430" class="map" xmlns="http://www.w3.org/2000/svg">
+  <line x1="70.6" y1="48" x2="70.6" y2="382" class="grid"/>
+  <text x="70.6" y="398" class="ax" text-anchor="middle">10°W</text>
+  <line x1="183.8" y1="48" x2="183.8" y2="382" class="grid"/>
+  <text x="183.8" y="398" class="ax" text-anchor="middle">5°W</text>
+  <line x1="296.9" y1="48" x2="296.9" y2="382" class="grid"/>
+  <text x="296.9" y="398" class="ax" text-anchor="middle">0°E</text>
+  <line x1="410.0" y1="48" x2="410.0" y2="382" class="grid"/>
+  <text x="410.0" y="398" class="ax" text-anchor="middle">5°E</text>
+  <line x1="523.1" y1="48" x2="523.1" y2="382" class="grid"/>
+  <text x="523.1" y="398" class="ax" text-anchor="middle">10°E</text>
+  <line x1="636.2" y1="48" x2="636.2" y2="382" class="grid"/>
+  <text x="636.2" y="398" class="ax" text-anchor="middle">15°E</text>
+  <line x1="749.4" y1="48" x2="749.4" y2="382" class="grid"/>
+  <text x="749.4" y="398" class="ax" text-anchor="middle">20°E</text>
+  <line x1="48" y1="328.6" x2="772" y2="328.6" class="grid"/>
+  <text x="40" y="332.6" class="ax" text-anchor="end">35°N</text>
+  <line x1="48" y1="261.8" x2="772" y2="261.8" class="grid"/>
+  <text x="40" y="265.8" class="ax" text-anchor="end">40°N</text>
+  <line x1="48" y1="195.0" x2="772" y2="195.0" class="grid"/>
+  <text x="40" y="199.0" class="ax" text-anchor="end">45°N</text>
+  <line x1="48" y1="128.2" x2="772" y2="128.2" class="grid"/>
+  <text x="40" y="132.2" class="ax" text-anchor="end">50°N</text>
+  <line x1="48" y1="61.4" x2="772" y2="61.4" class="grid"/>
+  <text x="40" y="65.4" class="ax" text-anchor="end">55°N</text>
+  <polyline points="143.0,341.9 493.7,136.2" class="route"/>
+  <polyline points="143.0,341.9 319.5,113.5" class="route"/>
+  <polyline points="143.0,341.9 600.0,132.2" class="route"/>
+  <circle cx="516.3" cy="96.1" r="3" class="dot minor"/>
+  <text x="525.3" y="94.1" class="pl" text-anchor="start">Hannover</text>
+  <circle cx="319.5" cy="113.5" r="3" class="dot minor"/>
+  <text x="328.5" y="111.5" class="pl" text-anchor="start">Port Lympne</text>
+  <text x="328.5" y="123.5" class="pd" text-anchor="start">England</text>
+  <circle cx="545.8" cy="114.8" r="3" class="dot minor"/>
+  <text x="554.8" y="112.8" class="pl" text-anchor="start">Erfurt</text>
+  <circle cx="466.6" cy="122.8" r="3" class="dot minor"/>
+  <text x="475.6" y="120.8" class="pl" text-anchor="start">Neuwied</text>
+  <circle cx="600.0" cy="132.2" r="3" class="dot minor"/>
+  <text x="591.0" y="130.2" class="pl" text-anchor="end">Pilsen</text>
+  <circle cx="688.3" cy="133.5" r="3" class="dot minor"/>
+  <text x="679.3" y="131.5" class="pl" text-anchor="end">Olomouc</text>
+  <circle cx="493.7" cy="136.2" r="3" class="dot minor"/>
+  <text x="502.7" y="134.2" class="pl" text-anchor="start">Heidelberg</text>
+  <circle cx="143.0" cy="341.9" r="4.5" class="dot"/>
+  <text x="152.0" y="339.9" class="pl" text-anchor="start">Rabat</text>
+  <text x="152.0" y="351.9" class="pd" text-anchor="start">the source collection</text>
+</svg>
+    <p class="note" style="margin-top:16px">
+      A conservation population held in two places at once, with Rabat as the
+      source and the European zoos as the insurance.
+    </p>
+  </section>
+
+  <section>
+    <h2>The record</h2>
+    <div class="tl">
+      <div class="ev"><div class="yr">Roman era</div><div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">Taken for the arena</div><div class="evd">North African lions were shipped to Rome in quantity. The demand is part of why the population thinned so early.</div></div></div>
+      <div class="ev"><div class="yr">1200s</div><div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">In the Tower of London</div><div class="evd">Skulls recovered from the royal menagerie were genetically identified as pure-bred Panthera leo leo. Moroccan lions, in England, eight hundred years ago.</div></div></div>
+      <div class="ev"><div class="yr">12th–20th c.</div><div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">The palace collection</div><div class="evd">Cubs taken in the Atlas and presented to the sultan, from the Almohads through to the Alaouites.</div></div></div>
+      <div class="ev"><div class="yr">19th c.</div><div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">Firearms and bounties</div><div class="evd">Colonial administrations paid for lions shot. The forest was cleared at the same time.</div></div></div>
+      <div class="ev"><div class="yr">1942</div><div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">The last confirmed wild lion</div><div class="evd">Shot on the northern side of the Tizi n&rsquo;Tichka, on the road between Marrakech and Ouarzazate. Algeria&rsquo;s last was recorded in 1943.</div></div></div>
+      <div class="ev"><div class="yr">1960s</div><div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">Possibly later than that</div><div class="evd">Modelling published in 2013 concluded small groups may have persisted in Algeria into the early 1960s and in Morocco into the mid-1960s.</div></div></div>
+      <div class="ev"><div class="yr">1973</div><div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">To Rabat Zoo</div><div class="evd">The royal population, by then 88 animals, is transferred and a managed programme begins.</div></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>What the genetics say so far</h2>
+    <table>
+      <thead><tr><th>Finding</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Oxford work suggests the royal lions are likely pure Barbary on the maternal line</td><td>Published</td></tr>
+        <tr><td>Historical mixing with sub-Saharan lions cannot be ruled out</td><td>Open</td></tr>
+        <tr><td>Official recognition of the Moroccan animals as Barbary</td><td>Not granted</td></tr>
+        <tr><td>Conservation of the lineage on the precautionary principle</td><td>Recommended in the literature</td></tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-top:18px">
+      The argument in the field is that the Moroccan population should be
+      conserved until the science settles, because it is the only candidate
+      remnant of the northern lion there is.
+    </p>
+  </section>
+
+  <div class="editorial">
+    <strong>Editorial position.</strong> Dancing with Lions is a publisher, not
+    a political actor. We report what is documented and attribute it. Where
+    sources disagree we say so and give the range. Where a question is
+    contested in law or politics we set out the record and take no side.
+  </div>
+
+  <div class="foot">
+    <strong>Sources:</strong> Yamaguchi and Haddane on the North African lion
+    and the Atlas lion project; Black et al., 2010 and 2013; Lehocká et al.,
+    PLOS ONE, 2021; Britannica; IUCN Red List. The date of the last wild
+    individual is given as 1942 in Morocco and 1943 in Algeria, with modelled
+    survival into the 1960s; an 1898 to 1922 range also circulates and is not
+    supported by the confirmed shooting records.
+    <br><br>
+    <strong>&copy; Dancing with Lions.</strong> Data compilation and
+    visualisation. Reuse requires attribution and a visible credit reading
+    &ldquo;Source: Dancing with Lions&rdquo;.
+  </div>
+
+</div>
+</body>
+</html>
