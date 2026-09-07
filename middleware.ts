@@ -40,34 +40,46 @@ export function middleware(request: NextRequest) {
   }
 
   // ===================================================
-  // 1c. CRAWL BUDGET: retire the migrated Darija dictionary
+  // 1c. CRAWL BUDGET: the migrated Darija tree
   //
   // ~9,000 /darija/dictionary/<word>-<id> URLs moved to darija.io in
-  // June 2026. They have been 301ing ever since, which means Google
-  // keeps rechecking every one of them — indefinitely. In the
-  // September 2026 coverage export they accounted for roughly 9,000
-  // of 11,222 not-indexed URLs, while real story pages were going
-  // five months between crawls.
+  // June 2026. They kept 301ing, which means Google rechecks every one
+  // indefinitely. In the September 2026 coverage export they were
+  // roughly 9,000 of 11,222 not-indexed URLs, while real story pages
+  // were going five months between crawls.
   //
   // A 301 preserves a URL. A 410 retires it, and Google drops a 410
-  // far faster than a 301. Three months of 301 has already passed
+  // far faster. Three months of redirecting has already passed
   // whatever authority there was to darija.io.
   //
-  // The hub paths /darija and /darija/dictionary keep their 301s in
-  // next.config.js, so a human following an old link still lands
-  // somewhere useful. Only the individual word pages are gone.
+  // IMPORTANT: this has to live in middleware rather than in the
+  // redirects() array, because next.config.js redirects run BEFORE
+  // middleware. The old "/darija/:path*" wildcard was swallowing these
+  // paths and 308ing them to darija.io before the 410 could fire.
+  // Every /darija rule has been commented out of next.config.js.
   // ===================================================
-  if (/^\/darija\/dictionary\/[^/]+\/?$/.test(pathname)) {
-    return new NextResponse(
-      "Gone. The Darija dictionary now lives at https://darija.io",
-      {
-        status: 410,
-        headers: {
-          "content-type": "text/plain; charset=utf-8",
-          "x-robots-tag": "noindex",
-        },
-      }
-    );
+  if (pathname === "/darija" || pathname.startsWith("/darija/")) {
+    // Individual dictionary word pages: retired.
+    if (/^\/darija\/dictionary\/[^/]+\/?$/.test(pathname)) {
+      return new NextResponse(
+        "Gone. The Darija dictionary now lives at https://darija.io",
+        {
+          status: 410,
+          headers: {
+            "content-type": "text/plain; charset=utf-8",
+            "x-robots-tag": "noindex",
+          },
+        }
+      );
+    }
+
+    // Hub paths keep a permanent redirect, so a human following an old
+    // link still lands somewhere useful.
+    const target =
+      pathname === "/darija/phrases"
+        ? "https://darija.io/how-to-say"
+        : "https://darija.io";
+    return NextResponse.redirect(target, 308);
   }
 
   // ===================================================

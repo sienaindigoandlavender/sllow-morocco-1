@@ -62,10 +62,10 @@ const nextConfig = {
       { source: "/BL3/", destination: "https://darija.io", permanent: true },
       { source: "/bu-LI-si", destination: "https://darija.io", permanent: true },
       { source: "/bu-LI-si/", destination: "https://darija.io", permanent: true },
-      { source: "/darija", destination: "https://darija.io", permanent: true },
-      { source: "/darija/access", destination: "https://darija.io", permanent: true },
-      { source: "/darija/dictionary", destination: "https://darija.io", permanent: true },
-      { source: "/darija/phrases", destination: "https://darija.io/how-to-say", permanent: true },
+      // moved to middleware.ts: { source: "/darija", destination: "https://darija.io", permanent: true },
+      // moved to middleware.ts: { source: "/darija/access", destination: "https://darija.io", permanent: true },
+      // moved to middleware.ts: { source: "/darija/dictionary", destination: "https://darija.io", permanent: true },
+      // moved to middleware.ts: { source: "/darija/phrases", destination: "https://darija.io/how-to-say", permanent: true },
       { source: "/DF3", destination: "https://darija.io", permanent: true },
       { source: "/DF3/", destination: "https://darija.io", permanent: true },
       { source: "/DRON", destination: "https://darija.io", permanent: true },
@@ -696,7 +696,13 @@ const nextConfig = {
       // which returns 410 Gone. Middleware runs before redirects, so
       // this rule no longer fires. Kept commented as a record.
       // { source: "/darija/dictionary/:id", destination: "https://darija.io/word/:id", permanent: true },
-      { source: "/darija/:path*", destination: "https://darija.io", permanent: true },
+      // MOVED TO middleware.ts (September 2026).
+      //
+      // next.config.js redirects run BEFORE middleware, so this wildcard
+      // was catching /darija/dictionary/<id> and 308ing it to darija.io
+      // before the 410 in middleware could fire. The whole /darija tree
+      // is now handled there instead.
+      // { source: "/darija/:path*", destination: "https://darija.io", permanent: true },
       // ==== SEO 404 cleanup 2026-09-02: deleted pages -> section hubs ====
       { source: "/places/agadir-corniche", destination: "/places", permanent: true },
       { source: "/places/agadir-marina", destination: "/places", permanent: true },
