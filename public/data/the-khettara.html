@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#0a0a0a;--ink-60:rgba(10,10,10,.60);--ink-40:rgba(10,10,10,.40);
+    --ink:#0a0a0a;--ink-60:#333333;--ink-40:#4A4A4A;
     --rule:rgba(10,10,10,.10);--hair:rgba(10,10,10,.06);
     --water:#2C6E8F;--earth:#A98F63;--dry:#B0763F;
     --mapdot:#2C6E8F;--maproute:#A98F63;
@@ -21,21 +21,21 @@
   body{margin:0;background:#fff;color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;font-size:15px;line-height:1.55}
   .wrap{max-width:940px;margin:0 auto;padding:52px 28px 88px}
   h1{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:clamp(32px,5.6vw,54px);line-height:1.05;letter-spacing:-.01em;margin:0 0 16px}
-  .standfirst{font-family:"EB Garamond",Georgia,serif;font-size:19px;line-height:1.5;color:var(--ink-60);max-width:38em;margin:0}
+  .standfirst{font-family:"EB Garamond",Georgia,serif;font-size:19px;line-height:1.5;color:#262626;max-width:38em;margin:0}
   .dateline{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin-top:20px;padding-top:14px;border-top:1px solid var(--hair);font-size:12px;color:var(--ink-40)}
   .dateline .stamp{color:var(--ink-60)}
   h2{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:25px;line-height:1.2;margin:0 0 6px}
-  .note{font-size:13px;color:var(--ink-40);max-width:44em;margin:0 0 24px}
+  .note{font-size:13.5px;color:#333333;max-width:44em;margin:0 0 24px}
   section{border-top:1px solid var(--rule);padding-top:32px;margin-top:48px}
 
   /* map */
   .map{width:100%;height:auto;margin-top:24px;display:block}
   .map .grid{stroke:rgba(10,10,10,.08);stroke-width:1}
-  .map .ax{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.30)}
+  .map .ax{font-family:"DM Sans",sans-serif;font-size:10px;fill:#5A5A5A}
   .map .dot{fill:var(--mapdot,#3E7A4E)}
-  .map .dot.minor{fill:rgba(10,10,10,.30)}
+  .map .dot.minor{fill:#5A5A5A}
   .map .pl{font-family:"DM Sans",sans-serif;font-size:12px;fill:#0a0a0a}
-  .map .pd{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.40)}
+  .map .pd{font-family:"DM Sans",sans-serif;font-size:10px;fill:#4A4A4A}
   .map .route{fill:none;stroke:var(--maproute,#A9863C);stroke-width:1.6;stroke-dasharray:5 4}
   .map .span{stroke:var(--maproute,#A9863C);stroke-width:2}
   .map .spanlab{font-family:"DM Sans",sans-serif;font-size:10.5px;fill:var(--maproute,#A9863C)}
@@ -45,10 +45,10 @@
   .xs .gal{fill:none;stroke:var(--water);stroke-width:3}
   .xs .shaft{stroke:rgba(10,10,10,.40);stroke-width:2}
   .xs .shaft.mother{stroke:var(--water);stroke-width:3}
-  .xs .mouth{fill:rgba(10,10,10,.55)}
+  .xs .mouth{fill:#3A3A3A}
   .xs .spoil{fill:none;stroke:rgba(10,10,10,.22);stroke-width:1.5}
-  .xs .lb{font-family:"DM Sans",sans-serif;font-size:11.5px;fill:rgba(10,10,10,.55)}
-  .xs .lb2{font-family:"DM Sans",sans-serif;font-size:10.5px;fill:rgba(10,10,10,.35)}
+  .xs .lb{font-family:"DM Sans",sans-serif;font-size:11.5px;fill:#3A3A3A}
+  .xs .lb2{font-family:"DM Sans",sans-serif;font-size:10.5px;fill:#555555}
 
   .names{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:22px}
   .names>div{background:#fff;padding:18px 15px}
@@ -66,6 +66,13 @@
   th{text-align:left;font-weight:500;font-size:12px;color:var(--ink-40);padding:0 0 9px;border-bottom:1px solid var(--rule)}
   td{padding:11px 0;border-bottom:1px solid var(--hair);vertical-align:top}
   td:last-child,th:last-child{text-align:right;font-variant-numeric:tabular-nums}
+
+  .editorial{
+    border-top:1px solid var(--rule);margin-top:46px;padding-top:20px;
+    font-size:12.5px;color:#4A4A4A;line-height:1.7;max-width:44em;
+  }
+  .editorial strong{color:#262626;font-weight:500}
+
   .foot{border-top:1px solid var(--rule);margin-top:58px;padding-top:20px;font-size:12px;color:var(--ink-40);line-height:1.7}
   .foot strong{color:var(--ink-60);font-weight:500}
   @media(max-width:620px){.decl{grid-template-columns:1fr}}
@@ -253,6 +260,14 @@
       where it has not been destroyed.
     </p>
   </section>
+
+
+  <div class="editorial">
+    <strong>Editorial position.</strong> Dancing with Lions is a publisher, not
+    a political actor. We report what is documented and attribute it. Where
+    sources disagree we say so and give the range. Where a question is
+    contested in law or politics we set out the record and take no side.
+  </div>
 
   <div class="foot">
     <strong>Sources:</strong> Dale R. Lightfoot, <em>Moroccan Khettara:

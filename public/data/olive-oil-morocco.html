@@ -13,9 +13,9 @@
 <style>
   :root{
     --ink:#0a0a0a;
-    --ink-60:rgba(10,10,10,.60);
-    --ink-40:rgba(10,10,10,.40);
-    --ink-25:rgba(10,10,10,.25);
+    --ink-60:#333333;
+    --ink-40:#4A4A4A;
+    --ink-25:#666666;
     --rule:rgba(10,10,10,.10);
     --hair:rgba(10,10,10,.06);
     --oil:#7A7B2E;      /* unfiltered Picholine, green-gold */
@@ -43,7 +43,7 @@
     font-family:"EB Garamond",Georgia,serif;font-weight:400;
     font-size:26px;line-height:1.2;margin:0 0 6px;
   }
-  .note{font-size:13px;color:var(--ink-40);max-width:44em;margin:0 0 26px}
+  .note{font-size:13.5px;color:#333333;max-width:44em;margin:0 0 26px}
   section{border-top:1px solid var(--rule);padding-top:34px;margin-top:52px}
 
   /* ── Scale: one bar against another ── */
@@ -91,6 +91,13 @@
     font-size:12px;color:var(--ink-40);
   }
   .dateline .stamp{color:var(--ink-60)}
+
+
+  .editorial{
+    border-top:1px solid var(--rule);margin-top:46px;padding-top:20px;
+    font-size:12.5px;color:#4A4A4A;line-height:1.7;max-width:44em;
+  }
+  .editorial strong{color:#262626;font-weight:500}
 
   .foot{border-top:1px solid var(--rule);margin-top:64px;padding-top:22px;font-size:12px;color:var(--ink-40);line-height:1.7}
   .foot strong{color:var(--ink-60);font-weight:500}
@@ -277,6 +284,14 @@
       </tbody>
     </table>
   </section>
+
+
+  <div class="editorial">
+    <strong>Editorial position.</strong> Dancing with Lions is a publisher, not
+    a political actor. We report what is documented and attribute it. Where
+    sources disagree we say so and give the range. Where a question is
+    contested in law or politics we set out the record and take no side.
+  </div>
 
   <div class="foot">
     <strong>Sources:</strong> Olive Oil Times; FAO, <em>Expanding Morocco's Olive

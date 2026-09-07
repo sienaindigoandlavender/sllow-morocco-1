@@ -13,8 +13,8 @@
 <style>
   :root{
     --ink:#0a0a0a;
-    --ink-60:rgba(10,10,10,.60);
-    --ink-40:rgba(10,10,10,.40);
+    --ink-60:#333333;
+    --ink-40:#4A4A4A;
     --rule:rgba(10,10,10,.10);
     --hair:rgba(10,10,10,.06);
     --flow:#7A4B5C;
@@ -25,9 +25,9 @@
   body{margin:0;background:#fff;color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;font-size:15px;line-height:1.55}
   .wrap{max-width:940px;margin:0 auto;padding:52px 28px 88px}
   h1{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:clamp(32px,5.6vw,54px);line-height:1.05;letter-spacing:-.01em;margin:0 0 16px}
-  .standfirst{font-family:"EB Garamond",Georgia,serif;font-size:19px;line-height:1.5;color:var(--ink-60);max-width:38em;margin:0}
+  .standfirst{font-family:"EB Garamond",Georgia,serif;font-size:19px;line-height:1.5;color:#262626;max-width:38em;margin:0}
   h2{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:25px;line-height:1.2;margin:0 0 6px}
-  .note{font-size:13px;color:var(--ink-40);max-width:44em;margin:0 0 24px}
+  .note{font-size:13.5px;color:#333333;max-width:44em;margin:0 0 24px}
   section{border-top:1px solid var(--rule);padding-top:32px;margin-top:48px}
 
   .years{display:flex;align-items:flex-end;gap:clamp(7px,2.4vw,22px);height:220px;margin-top:26px}
@@ -65,6 +65,13 @@
     font-size:12px;color:var(--ink-40);
   }
   .dateline .stamp{color:var(--ink-60)}
+
+
+  .editorial{
+    border-top:1px solid var(--rule);margin-top:46px;padding-top:20px;
+    font-size:12.5px;color:#4A4A4A;line-height:1.7;max-width:44em;
+  }
+  .editorial strong{color:#262626;font-weight:500}
 
   .foot{border-top:1px solid var(--rule);margin-top:58px;padding-top:20px;font-size:12px;color:var(--ink-40);line-height:1.7}
   .foot strong{color:var(--ink-60);font-weight:500}
@@ -186,6 +193,14 @@
       history built around an event happening on two continents at once.
     </p>
   </section>
+
+
+  <div class="editorial">
+    <strong>Editorial position.</strong> Dancing with Lions is a publisher, not
+    a political actor. We report what is documented and attribute it. Where
+    sources disagree we say so and give the range. Where a question is
+    contested in law or politics we set out the record and take no side.
+  </div>
 
   <div class="foot">
     <strong>Sources:</strong> Ministry of Tourism, Handicrafts and the Social
