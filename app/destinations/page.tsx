@@ -6,18 +6,32 @@ import { cloudinaryUrl } from "@/lib/cloudinary";
 
 export const revalidate = 3600;
 
-export const metadata: Metadata = {
-  title: "Destinations",
-  description:
-    "Every city, valley, mountain, and coast we cover. The definitive guide to Morocco, destination by destination.",
-  alternates: {
-    canonical: "https://www.slowmorocco.com/destinations",
-  },
-  robots: {
-    index: false,
-    follow: true,
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const destinations = await getDestinations({ published: true });
+  const n = destinations.length;
+
+  const title = n > 0 ? `${n} Destinations in Morocco` : "Destinations";
+  const description =
+    n > 0
+      ? `${n} Moroccan destinations, city by city and valley by valley — what each one is for, what is worth stopping for, and how long to stay.`
+      : "Every city, valley, mountain, and coast we cover, destination by destination.";
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: "https://www.slowmorocco.com/destinations",
+    },
+    // Indexable since September 2026. It was noindexed while it was a
+    // thin wall of cards; every row now has a subtitle, excerpt and
+    // body, so it is a real index page.
+    openGraph: {
+      title: `${title} | Slow Morocco`,
+      description,
+      url: "https://www.slowmorocco.com/destinations",
+    },
+  };
+}
 
 function imgSrc(url: string | null, width: number = 800): string {
   if (!url) return "";
@@ -37,7 +51,7 @@ export default async function DestinationsPage() {
     <main className="bg-background text-foreground min-h-screen">
 
       {/* ── Hero ──────────────────────────────────────────────────────── */}
-      <section className="pt-28 md:pt-36 pb-6 md:pb-10 px-6 md:px-[8%] lg:px-[12%]">
+      <section className="pt-28 md:pt-36 pb-6 md:pb-10 px-8 md:px-10 lg:px-14">
         <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/40 mb-4">
           The Definitive Guide
         </p>
@@ -48,7 +62,7 @@ export default async function DestinationsPage() {
 
       {/* ── Hero Mosaic — 3 featured destinations ────────────────────── */}
       {heroCards.length >= 3 && (
-        <section className="px-6 md:px-[8%] lg:px-[12%] pb-16 md:pb-24">
+        <section className="px-8 md:px-10 lg:px-14 pb-16 md:pb-24">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-5">
 
             {/* Large left — spans 7 cols */}
@@ -109,7 +123,7 @@ export default async function DestinationsPage() {
 
       {/* ── Asymmetric Grid — remaining destinations with images ──────── */}
       {gridCards.length > 0 && (
-        <section className="px-6 md:px-[8%] lg:px-[12%] pb-16 md:pb-24">
+        <section className="px-8 md:px-10 lg:px-14 pb-16 md:pb-24">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-x-5 gap-y-10 md:gap-y-14">
             {gridCards.map((d, i) => {
               const pattern = i % 5;
@@ -177,7 +191,7 @@ export default async function DestinationsPage() {
 
       {/* ── Text-only destinations (no hero image) ───────────────────── */}
       {withoutImages.length > 0 && (
-        <section className="px-6 md:px-[8%] lg:px-[12%] pb-24 md:pb-32">
+        <section className="px-8 md:px-10 lg:px-14 pb-24 md:pb-32">
           <div className="border-t border-foreground/10 pt-12">
             <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/40 mb-8">
               More destinations
@@ -206,7 +220,7 @@ export default async function DestinationsPage() {
 
       {/* ── CTA ──────────────────────────────────────────────────────── */}
       {TRIP_FUNNEL_PUBLIC && (
-      <section className="px-6 md:px-[8%] lg:px-[12%] pb-24 md:pb-32">
+      <section className="px-8 md:px-10 lg:px-14 pb-24 md:pb-32">
         <div className="border-t border-foreground/10 pt-16 md:pt-20 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div>
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-foreground leading-[1.05] max-w-[20ch]">
