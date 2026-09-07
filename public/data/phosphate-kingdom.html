@@ -30,6 +30,19 @@
   .note{font-size:13px;color:var(--ink-40);max-width:44em;margin:0 0 24px}
   section{border-top:1px solid var(--rule);padding-top:32px;margin-top:48px}
 
+
+  /* map */
+  .map{width:100%;height:auto;margin-top:24px;display:block}
+  .map .grid{stroke:rgba(10,10,10,.08);stroke-width:1}
+  .map .ax{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.30)}
+  .map .dot{fill:var(--mapdot,#5C6670)}
+  .map .dot.minor{fill:rgba(10,10,10,.30)}
+  .map .pl{font-family:"DM Sans",sans-serif;font-size:12px;fill:#0a0a0a}
+  .map .pd{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.40)}
+  .map .route{fill:none;stroke:var(--maproute,#5C6670);stroke-width:1.6;stroke-dasharray:5 4}
+  .map .span{stroke:var(--maproute,#5C6670);stroke-width:2}
+  .map .spanlab{font-family:"DM Sans",sans-serif;font-size:10.5px;fill:var(--maproute,#5C6670)}
+
   .scale{display:grid;gap:16px;margin-top:22px}
   .srow{display:grid;grid-template-columns:104px 1fr;gap:16px;align-items:center}
   .sname{font-size:14px}
@@ -153,6 +166,47 @@
       Gantour feed the two chemical hubs; the rock leaves through four ports.
       At Bou Craa the rock travels to the coast on a conveyor belt around a
       hundred kilometres long, long enough to be visible from orbit.
+    </p>
+
+<svg viewBox="0 0 760 440" class="map" xmlns="http://www.w3.org/2000/svg">
+  <line x1="214.0" y1="48" x2="214.0" y2="392" class="grid"/>
+  <text x="214.0" y="408" class="ax" text-anchor="middle">12°W</text>
+  <line x1="380.0" y1="48" x2="380.0" y2="392" class="grid"/>
+  <text x="380.0" y="408" class="ax" text-anchor="middle">9°W</text>
+  <line x1="546.0" y1="48" x2="546.0" y2="392" class="grid"/>
+  <text x="546.0" y="408" class="ax" text-anchor="middle">6°W</text>
+  <line x1="48" y1="306.0" x2="712" y2="306.0" class="grid"/>
+  <text x="40" y="310.0" class="ax" text-anchor="end">27°N</text>
+  <line x1="48" y1="220.0" x2="712" y2="220.0" class="grid"/>
+  <text x="40" y="224.0" class="ax" text-anchor="end">30°N</text>
+  <line x1="48" y1="134.0" x2="712" y2="134.0" class="grid"/>
+  <text x="40" y="138.0" class="ax" text-anchor="end">33°N</text>
+  <circle cx="457.5" cy="116.8" r="3" class="dot minor"/>
+  <text x="466.5" y="114.8" class="pl" text-anchor="start">Casablanca</text>
+  <text x="466.5" y="126.8" class="pd" text-anchor="start">port</text>
+  <circle cx="402.1" cy="131.1" r="4.5" class="dot"/>
+  <text x="411.1" y="129.1" class="pl" text-anchor="start">Jorf Lasfar</text>
+  <text x="411.1" y="141.1" class="pd" text-anchor="start">chemical hub, port</text>
+  <circle cx="496.2" cy="136.9" r="4.5" class="dot"/>
+  <text x="505.2" y="134.9" class="pl" text-anchor="start">Khouribga</text>
+  <text x="505.2" y="146.9" class="pd" text-anchor="start">mine</text>
+  <circle cx="407.7" cy="155.5" r="4.5" class="dot"/>
+  <text x="416.7" y="153.5" class="pl" text-anchor="start">Youssoufia</text>
+  <text x="416.7" y="165.5" class="pd" text-anchor="start">Gantour mine</text>
+  <circle cx="368.9" cy="154.1" r="4.5" class="dot"/>
+  <text x="377.9" y="152.1" class="pl" text-anchor="start">Safi</text>
+  <text x="377.9" y="164.1" class="pd" text-anchor="start">chemical hub, port</text>
+  <circle cx="164.2" cy="326.1" r="4.5" class="dot"/>
+  <text x="173.2" y="324.1" class="pl" text-anchor="start">Bou Craa</text>
+  <text x="173.2" y="336.1" class="pd" text-anchor="start">mine, conveyor</text>
+  <circle cx="147.6" cy="301.7" r="3" class="dot minor"/>
+  <text x="156.6" y="299.7" class="pl" text-anchor="start">Laayoune</text>
+  <text x="156.6" y="311.7" class="pd" text-anchor="start">port</text>
+</svg>
+    <p class="note" style="margin-top:14px">
+      Two mines in the north feeding two chemical hubs on the Atlantic, and one
+      mine far to the south with a conveyor belt running roughly a hundred
+      kilometres to the coast, long enough to be visible from orbit.
     </p>
     <table>
       <thead><tr><th>Site</th><th>Role</th></tr></thead>

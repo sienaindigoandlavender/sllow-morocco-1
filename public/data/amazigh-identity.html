@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Rendered inside the story page via an iframe. Indexing it separately
+     would compete with the story for the same subject. -->
+<meta name="robots" content="noindex, follow">
+<title>Tamazgha — Dancing with Lions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500&family=Noto+Sans+Tifinagh&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0a0a;
+    --ink-60:rgba(10,10,10,.60);
+    --ink-40:rgba(10,10,10,.40);
+    --ink-25:rgba(10,10,10,.25);
+    --rule:rgba(10,10,10,.10);
+    --hair:rgba(10,10,10,.06);
+    --sea:#2E5C8A;
+    --mountain:#3E7A4E;
+    --sahara:#D9B441;
+    --yaz:#C0392B;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;font-size:15px;line-height:1.55}
+  .wrap{max-width:940px;margin:0 auto;padding:52px 28px 88px}
+  h1{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:clamp(32px,5.6vw,54px);line-height:1.05;letter-spacing:-.01em;margin:0 0 16px}
+  .standfirst{font-family:"EB Garamond",Georgia,serif;font-size:19px;line-height:1.5;color:var(--ink-60);max-width:38em;margin:0}
+  h2{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:25px;line-height:1.2;margin:0 0 6px}
+  .note{font-size:13px;color:var(--ink-40);max-width:44em;margin:0 0 24px}
+  section{border-top:1px solid var(--rule);padding-top:32px;margin-top:48px}
+
+
+  /* map */
+  .map{width:100%;height:auto;margin-top:24px;display:block}
+  .map .grid{stroke:rgba(10,10,10,.08);stroke-width:1}
+  .map .ax{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.30)}
+  .map .dot{fill:var(--mountain)}
+  .map .pl{font-family:"DM Sans",sans-serif;font-size:12px;fill:var(--ink)}
+  .map .pd{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.40)}
+  .map .span{stroke:var(--sahara);stroke-width:2}
+  .map .spanlab{font-family:"DM Sans",sans-serif;font-size:10.5px;fill:var(--sahara)}
+
+  /* population */
+  .pop{display:grid;gap:9px;margin-top:22px}
+  .prow{display:grid;grid-template-columns:130px 1fr 74px;gap:14px;align-items:center;font-size:14px}
+  .pbar{height:19px;background:var(--hair)}
+  .pbar div{height:100%;background:var(--mountain)}
+  .pbar div.dia{background:var(--sea)}
+  .pnum{text-align:right;font-variant-numeric:tabular-nums;font-size:13px;color:var(--ink-60)}
+  .key{display:flex;gap:22px;margin-top:14px;font-size:12.5px;color:var(--ink-40);flex-wrap:wrap}
+  .sw{display:inline-block;width:11px;height:11px;margin-right:6px;vertical-align:-1px}
+
+  /* the span */
+  .span{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:22px}
+  .span div{background:#fff;padding:16px 14px}
+  .span .pl{font-size:14px;margin-bottom:3px}
+  .span .pd{font-size:12px;color:var(--ink-40);line-height:1.4}
+
+  /* flag */
+  .flag{position:relative;width:100%;max-width:340px;aspect-ratio:3/2;margin-top:22px;border:1px solid var(--rule)}
+  .flag .band{height:33.333%}
+  .flag .b1{background:var(--sea)}
+  .flag .b2{background:var(--mountain)}
+  .flag .b3{background:var(--sahara)}
+  .flag .yaz{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-family:"Noto Sans Tifinagh","DM Sans",sans-serif;font-size:64px;color:var(--yaz);line-height:1;
+  }
+  .flagkey{display:grid;gap:7px;margin-top:14px;font-size:13px;color:var(--ink-60)}
+
+  table{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px}
+  th{text-align:left;font-weight:500;font-size:12px;color:var(--ink-40);padding:0 0 9px;border-bottom:1px solid var(--rule)}
+  td{padding:11px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+  td:last-child,th:last-child{text-align:right;font-variant-numeric:tabular-nums}
+
+  .foot{border-top:1px solid var(--rule);margin-top:58px;padding-top:20px;font-size:12px;color:var(--ink-40);line-height:1.7}
+  .foot strong{color:var(--ink-60);font-weight:500}
+  @media(max-width:620px){.prow{grid-template-columns:96px 1fr 62px;gap:9px;font-size:13px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>From the Canaries to Siwa</h1>
+  <p class="standfirst">
+    Tamazgha is the Amazigh homeland and it does not fit inside any modern
+    border. It runs from islands in the Atlantic to an oasis in western Egypt,
+    across eleven countries, and the largest single population of it lives in
+    Morocco.
+  </p>
+
+  <section>
+    <h2>The span</h2>
+    <p class="note">
+      Ancient Tifinagh inscriptions have been found across the whole of this
+      range. The script is the evidence that these were one linguistic world
+      long before any of the states that now divide it.
+    </p>
+<svg viewBox="0 0 900 420" class="map" xmlns="http://www.w3.org/2000/svg">
+  <line x1="114.0" y1="46" x2="114.0" y2="374" class="grid"/>
+  <text x="114.0" y="390" class="ax" text-anchor="middle">15°W</text>
+  <line x1="199.1" y1="46" x2="199.1" y2="374" class="grid"/>
+  <text x="199.1" y="390" class="ax" text-anchor="middle">10°W</text>
+  <line x1="284.1" y1="46" x2="284.1" y2="374" class="grid"/>
+  <text x="284.1" y="390" class="ax" text-anchor="middle">5°W</text>
+  <line x1="369.2" y1="46" x2="369.2" y2="374" class="grid"/>
+  <text x="369.2" y="390" class="ax" text-anchor="middle">0°E</text>
+  <line x1="454.3" y1="46" x2="454.3" y2="374" class="grid"/>
+  <text x="454.3" y="390" class="ax" text-anchor="middle">5°E</text>
+  <line x1="539.3" y1="46" x2="539.3" y2="374" class="grid"/>
+  <text x="539.3" y="390" class="ax" text-anchor="middle">10°E</text>
+  <line x1="624.4" y1="46" x2="624.4" y2="374" class="grid"/>
+  <text x="624.4" y="390" class="ax" text-anchor="middle">15°E</text>
+  <line x1="709.4" y1="46" x2="709.4" y2="374" class="grid"/>
+  <text x="709.4" y="390" class="ax" text-anchor="middle">20°E</text>
+  <line x1="794.5" y1="46" x2="794.5" y2="374" class="grid"/>
+  <text x="794.5" y="390" class="ax" text-anchor="middle">25°E</text>
+  <line x1="46" y1="360.9" x2="854" y2="360.9" class="grid"/>
+  <text x="38" y="364.9" class="ax" text-anchor="end">15°N</text>
+  <line x1="46" y1="295.3" x2="854" y2="295.3" class="grid"/>
+  <text x="38" y="299.3" class="ax" text-anchor="end">20°N</text>
+  <line x1="46" y1="229.7" x2="854" y2="229.7" class="grid"/>
+  <text x="38" y="233.7" class="ax" text-anchor="end">25°N</text>
+  <line x1="46" y1="164.1" x2="854" y2="164.1" class="grid"/>
+  <text x="38" y="168.1" class="ax" text-anchor="end">30°N</text>
+  <line x1="46" y1="98.5" x2="854" y2="98.5" class="grid"/>
+  <text x="38" y="102.5" class="ax" text-anchor="end">35°N</text>
+  <line x1="86.8" y1="30" x2="803.0" y2="30" class="span"/>
+  <text x="444.9" y="22" class="spanlab" text-anchor="middle">roughly 4,000 km</text>
+  <circle cx="86.8" cy="186.4" r="4.5" class="dot"/>
+  <text x="95.8" y="184.4" class="pl" text-anchor="start">Tenerife</text>
+  <text x="95.8" y="196.4" class="pd" text-anchor="start">Guanche, extinct</text>
+  <circle cx="102.1" cy="334.6" r="4.5" class="dot"/>
+  <text x="111.1" y="332.6" class="pl" text-anchor="start">Mederdra</text>
+  <text x="111.1" y="344.6" class="pd" text-anchor="start">Zenaga</text>
+  <circle cx="270.5" cy="88.0" r="4.5" class="dot"/>
+  <text x="279.5" y="86.0" class="pl" text-anchor="start">Tangier</text>
+  <text x="279.5" y="98.0" class="pd" text-anchor="start">Tarifit</text>
+  <circle cx="233.1" cy="143.1" r="4.5" class="dot"/>
+  <text x="242.1" y="141.1" class="pl" text-anchor="start">Marrakech</text>
+  <text x="242.1" y="153.1" class="pd" text-anchor="start">Tashelhit</text>
+  <circle cx="272.2" cy="126.0" r="4.5" class="dot"/>
+  <text x="281.2" y="124.0" class="pl" text-anchor="start">Khenifra</text>
+  <text x="281.2" y="136.0" class="pd" text-anchor="start">Central Atlas</text>
+  <circle cx="318.2" cy="337.3" r="4.5" class="dot"/>
+  <text x="327.2" y="335.3" class="pl" text-anchor="start">Timbuktu</text>
+  <text x="327.2" y="347.3" class="pd" text-anchor="start">Tamahaq</text>
+  <circle cx="421.9" cy="74.9" r="4.5" class="dot"/>
+  <text x="430.9" y="72.9" class="pl" text-anchor="start">Algiers</text>
+  <text x="430.9" y="84.9" class="pd" text-anchor="start">Kabyle</text>
+  <circle cx="462.8" cy="258.5" r="4.5" class="dot"/>
+  <text x="471.8" y="256.5" class="pl" text-anchor="start">Tamanrasset</text>
+  <text x="471.8" y="268.5" class="pd" text-anchor="start">Tamahaq</text>
+  <circle cx="505.3" cy="334.6" r="4.5" class="dot"/>
+  <text x="514.3" y="332.6" class="pl" text-anchor="start">Agadez</text>
+  <text x="514.3" y="344.6" class="pd" text-anchor="start">Tamahaq</text>
+  <circle cx="554.6" cy="114.2" r="4.5" class="dot"/>
+  <text x="563.6" y="112.2" class="pl" text-anchor="start">Djerba</text>
+  <text x="563.6" y="124.2" class="pd" text-anchor="start">Tamazight</text>
+  <circle cx="575.0" cy="126.0" r="4.5" class="dot"/>
+  <text x="584.0" y="124.0" class="pl" text-anchor="start">Zuwara</text>
+  <text x="584.0" y="136.0" class="pd" text-anchor="start">Nafusi</text>
+  <circle cx="803.0" cy="174.6" r="4.5" class="dot"/>
+  <text x="794.0" y="172.6" class="pl" text-anchor="end">Siwa</text>
+  <text x="794.0" y="184.6" class="pd" text-anchor="end">Siwi</text>
+</svg>
+    <p class="note" style="margin-top:16px">
+      Plotted on real coordinates rather than drawn as a territory. Tifinagh
+      inscriptions have been found at points across this whole range, from the
+      Canaries to Siwa, which is the physical evidence that these were one
+      linguistic world long before the borders that now cross it.
+    </p>
+  </section>
+
+  <section>
+    <h2>Where the Imazighen are</h2>
+    <p class="note">
+      Estimates run from 25 to 36 million, because North African states do not
+      record ethnicity in their censuses. What is not usually shown is how much
+      of it now sits in Europe.
+    </p>
+    <div class="pop">
+      <div class="prow"><div>Morocco</div><div class="pbar"><div style="width:100%"></div></div><div class="pnum">14–20 m</div></div>
+      <div class="prow"><div>Algeria</div><div class="pbar"><div style="width:65%"></div></div><div class="pnum">7–13 m</div></div>
+      <div class="prow"><div>Niger</div><div class="pbar"><div style="width:13%"></div></div><div class="pnum">2.6 m</div></div>
+      <div class="prow"><div>France</div><div class="pbar"><div class="dia" style="width:10%"></div></div><div class="pnum">2 m</div></div>
+      <div class="prow"><div>Mali</div><div class="pbar"><div style="width:4.25%"></div></div><div class="pnum">850 k</div></div>
+      <div class="prow"><div>Libya</div><div class="pbar"><div style="width:3%"></div></div><div class="pnum">600 k</div></div>
+      <div class="prow"><div>Belgium</div><div class="pbar"><div class="dia" style="width:2.5%"></div></div><div class="pnum">500 k</div></div>
+      <div class="prow"><div>Netherlands</div><div class="pbar"><div class="dia" style="width:2.3%"></div></div><div class="pnum">467 k</div></div>
+      <div class="prow"><div>Burkina Faso</div><div class="pbar"><div style="width:2%"></div></div><div class="pnum">406 k</div></div>
+      <div class="prow"><div>Tunisia</div><div class="pbar"><div style="width:.5%"></div></div><div class="pnum">100 k</div></div>
+    </div>
+    <div class="key">
+      <span><span class="sw" style="background:var(--mountain)"></span>Tamazgha</span>
+      <span><span class="sw" style="background:var(--sea)"></span>Diaspora</span>
+    </div>
+    <p class="note" style="margin-top:16px">
+      Roughly 14 million people speak an Amazigh language. In Morocco, 40 to
+      45% of the population claims Amazigh heritage; in Algeria, 25 to 30%.
+    </p>
+  </section>
+
+  <section>
+    <h2>A script older than the Latin alphabet's arrival in Europe</h2>
+    <p class="note">
+      The Numidians developed Tifinagh somewhere between the sixth and fourth
+      centuries BCE, taking some letters from Phoenician and Punic and
+      inventing the rest. The Tuareg kept it in continuous use while everyone
+      else wrote Amazigh in Arabic or Latin characters.
+    </p>
+    <table>
+      <thead><tr><th>Measure</th><th>Figure</th></tr></thead>
+      <tbody>
+        <tr><td>Tifinagh devised</td><td>6th–4th c. BCE</td></tr>
+        <tr><td>Amazigh languages attested from</td><td>c. 2000 BCE</td></tr>
+        <tr><td>Language family</td><td>Afroasiatic</td></tr>
+        <tr><td>Tamazight recognised as official in Morocco</td><td>2011</td></tr>
+        <tr><td>Central Atlas Tamazight speakers</td><td>2.7 m</td></tr>
+        <tr><td>Neo-Tifinagh regulated by</td><td>IRCAM</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>The calendar nobody else uses</h2>
+    <p class="note">
+      Yennayer falls on 14 January. The Amazigh year runs 950 ahead of the
+      Gregorian one, so January 2026 opened the year 2976. It is a public
+      holiday in Algeria, and Moroccan civic associations spent years
+      petitioning for the same before recognition came.
+    </p>
+    <p class="note">
+      It is also celebrated in Paris, Barcelona, Stockholm, Montreal and more
+      than a dozen American cities, which is the clearest measure of how far
+      the diaspora reaches.
+    </p>
+  </section>
+
+  <section>
+    <h2>One flag, three landscapes</h2>
+    <p class="note">
+      Designed in 1970 by the Algerian activist Mohand Arav Bessaoud. The bands
+      are the three terrains of Tamazgha and the letter at the centre is Yaz,
+      the first letter of Amazigh, in red for the cost of holding onto it.
+    </p>
+    <div class="flag">
+      <div class="band b1"></div>
+      <div class="band b2"></div>
+      <div class="band b3"></div>
+      <div class="yaz">ⵣ</div>
+    </div>
+    <div class="flagkey">
+      <span><span class="sw" style="background:var(--sea)"></span>Blue — the Mediterranean</span>
+      <span><span class="sw" style="background:var(--mountain)"></span>Green — the mountains</span>
+      <span><span class="sw" style="background:var(--sahara)"></span>Yellow — the Sahara</span>
+      <span><span class="sw" style="background:var(--yaz)"></span>Red — resistance</span>
+    </div>
+  </section>
+
+  <div class="foot">
+    <strong>Sources:</strong> Encyclopædia Britannica, Amazigh languages;
+    IRCAM (Institut Royal de la Culture Amazighe); Al Jazeera; Afropop
+    Worldwide. Population figures vary widely between sources because North
+    African states do not record ethnicity in their censuses; ranges are given
+    rather than single figures.
+    <br><br>
+    <strong>© Dancing with Lions.</strong> Data compilation and visualisation.
+    Reuse requires attribution and a visible credit reading
+    “Source: Dancing with Lions”.
+  </div>
+
+</div>
+</body>
+</html>

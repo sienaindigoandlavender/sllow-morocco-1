@@ -30,6 +30,19 @@
   .note{font-size:13px;color:var(--ink-40);max-width:44em;margin:0 0 24px}
   section{border-top:1px solid var(--rule);padding-top:32px;margin-top:48px}
 
+
+  /* map */
+  .map{width:100%;height:auto;margin-top:24px;display:block}
+  .map .grid{stroke:rgba(10,10,10,.08);stroke-width:1}
+  .map .ax{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.30)}
+  .map .dot{fill:var(--mapdot,#A9863C)}
+  .map .dot.minor{fill:rgba(10,10,10,.30)}
+  .map .pl{font-family:"DM Sans",sans-serif;font-size:12px;fill:#0a0a0a}
+  .map .pd{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.40)}
+  .map .route{fill:none;stroke:var(--maproute,#A9863C);stroke-width:1.6;stroke-dasharray:5 4}
+  .map .span{stroke:var(--maproute,#A9863C);stroke-width:2}
+  .map .spanlab{font-family:"DM Sans",sans-serif;font-size:10.5px;fill:var(--maproute,#A9863C)}
+
   /* the exchange */
   .swap{display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:center;margin-top:26px;border:1px solid var(--rule)}
   .swap>div{padding:26px 22px}
@@ -175,6 +188,90 @@
     </p>
   </section>
 
+
+
+  <section>
+    <h2>The route on real coordinates</h2>
+    <p class="note">
+      The dashed line is the road south from Morocco. The unlabelled points are
+      the other four northern termini and the rendezvous stations where
+      caravans were assembled before setting out.
+    </p>
+<svg viewBox="0 0 900 420" class="map" xmlns="http://www.w3.org/2000/svg">
+  <line x1="151.1" y1="48" x2="151.1" y2="372" class="grid"/>
+  <text x="151.1" y="388" class="ax" text-anchor="middle">10°W</text>
+  <line x1="254.2" y1="48" x2="254.2" y2="372" class="grid"/>
+  <text x="254.2" y="388" class="ax" text-anchor="middle">5°W</text>
+  <line x1="357.2" y1="48" x2="357.2" y2="372" class="grid"/>
+  <text x="357.2" y="388" class="ax" text-anchor="middle">0°E</text>
+  <line x1="460.3" y1="48" x2="460.3" y2="372" class="grid"/>
+  <text x="460.3" y="388" class="ax" text-anchor="middle">5°E</text>
+  <line x1="563.4" y1="48" x2="563.4" y2="372" class="grid"/>
+  <text x="563.4" y="388" class="ax" text-anchor="middle">10°E</text>
+  <line x1="666.5" y1="48" x2="666.5" y2="372" class="grid"/>
+  <text x="666.5" y="388" class="ax" text-anchor="middle">15°E</text>
+  <line x1="769.5" y1="48" x2="769.5" y2="372" class="grid"/>
+  <text x="769.5" y="388" class="ax" text-anchor="middle">20°E</text>
+  <line x1="48" y1="359.0" x2="852" y2="359.0" class="grid"/>
+  <text x="40" y="363.0" class="ax" text-anchor="end">15°N</text>
+  <line x1="48" y1="294.2" x2="852" y2="294.2" class="grid"/>
+  <text x="40" y="298.2" class="ax" text-anchor="end">20°N</text>
+  <line x1="48" y1="229.4" x2="852" y2="229.4" class="grid"/>
+  <text x="40" y="233.4" class="ax" text-anchor="end">25°N</text>
+  <line x1="48" y1="164.6" x2="852" y2="164.6" class="grid"/>
+  <text x="40" y="168.6" class="ax" text-anchor="end">30°N</text>
+  <line x1="48" y1="99.8" x2="852" y2="99.8" class="grid"/>
+  <text x="40" y="103.8" class="ax" text-anchor="end">35°N</text>
+  <polyline points="268.6,147.8 274.8,258.0 118.1,282.6 212.9,329.2 295.4,335.7" class="route"/>
+  <line x1="268.6" y1="32" x2="295.4" y2="32" class="span"/>
+  <text x="282.0" y="24" class="spanlab" text-anchor="middle">Sijilmasa to Timbuktu · 40 to 50 days</text>
+  <circle cx="254.2" cy="112.8" r="3" class="dot minor"/>
+  <text x="263.2" y="110.8" class="pl" text-anchor="start">Fez</text>
+  <text x="263.2" y="122.8" class="pd" text-anchor="start">northern terminus</text>
+  <circle cx="192.3" cy="143.9" r="3" class="dot minor"/>
+  <text x="201.3" y="141.9" class="pl" text-anchor="start">Marrakesh</text>
+  <text x="201.3" y="153.9" class="pd" text-anchor="start">northern terminus</text>
+  <circle cx="268.6" cy="147.8" r="4.5" class="dot"/>
+  <text x="277.6" y="145.8" class="pl" text-anchor="start">Sijilmasa</text>
+  <text x="277.6" y="157.8" class="pd" text-anchor="start">the gateway</text>
+  <circle cx="466.5" cy="140.0" r="3" class="dot minor"/>
+  <text x="475.5" y="138.0" class="pl" text-anchor="start">Wargla</text>
+  <text x="475.5" y="150.0" class="pd" text-anchor="start">rendezvous</text>
+  <circle cx="421.1" cy="76.5" r="3" class="dot minor"/>
+  <text x="430.1" y="74.5" class="pl" text-anchor="start">Algiers</text>
+  <text x="430.1" y="86.5" class="pd" text-anchor="start">northern terminus</text>
+  <circle cx="565.4" cy="90.8" r="3" class="dot minor"/>
+  <text x="574.4" y="88.8" class="pl" text-anchor="start">Qayrawan</text>
+  <text x="574.4" y="100.8" class="pd" text-anchor="start">northern terminus</text>
+  <circle cx="629.4" cy="127.1" r="3" class="dot minor"/>
+  <text x="638.4" y="125.1" class="pl" text-anchor="start">Tripoli</text>
+  <text x="638.4" y="137.1" class="pd" text-anchor="start">northern terminus</text>
+  <circle cx="553.1" cy="163.3" r="3" class="dot minor"/>
+  <text x="562.1" y="161.3" class="pl" text-anchor="start">Ghadames</text>
+  <text x="562.1" y="173.3" class="pd" text-anchor="start">rendezvous</text>
+  <circle cx="796.3" cy="176.3" r="3" class="dot minor"/>
+  <text x="787.3" y="174.3" class="pl" text-anchor="end">Aujila</text>
+  <text x="787.3" y="186.3" class="pd" text-anchor="end">rendezvous</text>
+  <circle cx="408.8" cy="200.9" r="3" class="dot minor"/>
+  <text x="417.8" y="198.9" class="pl" text-anchor="start">In Salah</text>
+  <text x="417.8" y="210.9" class="pd" text-anchor="start">rendezvous</text>
+  <circle cx="274.8" cy="258.0" r="4.5" class="dot"/>
+  <text x="283.8" y="256.0" class="pl" text-anchor="start">Taghaza</text>
+  <text x="283.8" y="268.0" class="pd" text-anchor="start">the salt mines</text>
+  <circle cx="118.1" cy="282.6" r="4.5" class="dot"/>
+  <text x="127.1" y="280.6" class="pl" text-anchor="start">Ouadane</text>
+  <text x="127.1" y="292.6" class="pd" text-anchor="start">oasis stop</text>
+  <circle cx="212.9" cy="329.2" r="4.5" class="dot"/>
+  <text x="221.9" y="327.2" class="pl" text-anchor="start">Walata</text>
+  <text x="221.9" y="339.2" class="pd" text-anchor="start">desert edge</text>
+  <circle cx="295.4" cy="335.7" r="4.5" class="dot"/>
+  <text x="304.4" y="333.7" class="pl" text-anchor="start">Timbuktu</text>
+  <text x="304.4" y="345.7" class="pd" text-anchor="start">the Niger</text>
+  <circle cx="356.2" cy="342.2" r="3" class="dot minor"/>
+  <text x="365.2" y="340.2" class="pl" text-anchor="start">Gao</text>
+  <text x="365.2" y="352.2" class="pd" text-anchor="start">Songhai</text>
+</svg>
+  </section>
 
   <section>
     <h2>What the gold paid for</h2>
