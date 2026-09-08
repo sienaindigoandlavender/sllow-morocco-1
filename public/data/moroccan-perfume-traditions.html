@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Rendered inside the story page via an iframe. Indexing it separately
+     would compete with the story for the same subject. -->
+<meta name="robots" content="noindex, follow">
+<title>The Scent Atlas — Dancing with Lions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0a0a;--ink-60:#333333;--ink-40:#4A4A4A;
+    --rule:rgba(10,10,10,.10);--hair:rgba(10,10,10,.06);
+    --rose:#A64D6B;--oil:#C8A03A;--water:#5C86A6;
+    --mapdot:#A64D6B;--maproute:#8C6238;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;font-size:15px;line-height:1.55}
+  .wrap{max-width:940px;margin:0 auto;padding:52px 28px 88px}
+  h1{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:clamp(32px,5.6vw,54px);line-height:1.05;letter-spacing:-.01em;margin:0 0 16px}
+  .standfirst{font-family:"EB Garamond",Georgia,serif;font-size:19px;line-height:1.5;color:#262626;max-width:38em;margin:0}
+  .dateline{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin-top:20px;padding-top:14px;border-top:1px solid var(--hair);font-size:12px;color:var(--ink-40)}
+  .dateline .stamp{color:var(--ink-60)}
+  h2{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:25px;line-height:1.2;margin:0 0 6px}
+  .note{font-size:13.5px;color:#333333;max-width:44em;margin:0 0 24px}
+  section{border-top:1px solid var(--rule);padding-top:32px;margin-top:48px}
+
+  /* map */
+  .map{width:100%;height:auto;margin-top:24px;display:block}
+  .map .grid{stroke:rgba(10,10,10,.08);stroke-width:1}
+  .map .ax{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.30)}
+  .map .dot{fill:var(--mapdot,#3E7A4E)}
+  .map .dot.minor{fill:rgba(10,10,10,.30)}
+  .map .pl{font-family:"DM Sans",sans-serif;font-size:12px;fill:#0a0a0a}
+  .map .pd{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.40)}
+  .map .route{fill:none;stroke:var(--maproute,#A9863C);stroke-width:1.6;stroke-dasharray:5 4}
+  .map .span{stroke:var(--maproute,#A9863C);stroke-width:2}
+  .map .spanlab{font-family:"DM Sans",sans-serif;font-size:10.5px;fill:var(--maproute,#A9863C)}
+
+  .stl{width:100%;height:auto;margin-top:20px;display:block}
+  .stl .neck{fill:none;stroke:#8A8578;stroke-width:8;stroke-linecap:round}
+  .stl .coil{fill:none;stroke:#8A8578;stroke-width:3}
+  .stl .ll{font-family:"EB Garamond",Georgia,serif;font-size:16px;fill:#0a0a0a}
+  .stl .ls{font-family:"DM Sans",sans-serif;font-size:11.5px;fill:#4A4A4A}
+  .stl .lb2{font-family:"DM Sans",sans-serif;font-size:11.5px;fill:#4A4A4A}
+  .stl .hd{font-family:"DM Sans",sans-serif;font-size:11px;fill:#555555;letter-spacing:.12em;text-transform:uppercase}
+
+  .big4{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:22px}
+  .big4>div{background:#fff;padding:22px 16px}
+  .big4 .n{font-family:"EB Garamond",Georgia,serif;font-size:25px;line-height:1.1;margin-bottom:6px;color:var(--rose)}
+  .big4 .l{font-size:12.5px;color:#4A4A4A;line-height:1.4}
+
+  .editorial{border-top:1px solid var(--rule);margin-top:46px;padding-top:20px;font-size:12.5px;color:#4A4A4A;line-height:1.7;max-width:44em}
+  .editorial strong{color:#262626;font-weight:500}
+  table{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px}
+  th{text-align:left;font-weight:500;font-size:12px;color:var(--ink-40);padding:0 0 9px;border-bottom:1px solid var(--rule)}
+  td{padding:11px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+  td:last-child,th:last-child{text-align:right}
+  .foot{border-top:1px solid var(--rule);margin-top:28px;padding-top:20px;font-size:12px;color:var(--ink-40);line-height:1.7}
+  .foot strong{color:var(--ink-60);font-weight:500}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>4 tonnes of petals, 1 kilogram of oil</h1>
+  <p class="standfirst">
+    Rose oil is the most concentrated agricultural product Morocco makes. Four
+    thousand kilograms of damask petals, picked before the sun is up over six
+    weeks in one valley, reduce in a copper still to about a kilogram of
+    liquid. Everything else that comes out is rose water.
+  </p>
+  <div class="dateline">
+    <span class="stamp"><time datetime="2026-09-07">Updated 7 September 2026</time></span>
+    <span>Yields vary with season, variety and still. The ratio is the standard order of magnitude.</span>
+  </div>
+
+  <section>
+    <h2>The still</h2>
+<svg viewBox="0 0 900 430" class="stl" xmlns="http://www.w3.org/2000/svg">
+  <rect x="150" y="300" width="180" height="70" fill="#8C5A3A"/>
+  <text x="240" y="342" class="lb2" text-anchor="middle" fill="#fff">fire</text>
+  <path d="M150 300 q90 -110 180 0 z" fill="#B5A88E" stroke="rgba(10,10,10,.35)" stroke-width="2"/>
+  <text x="240" y="272" class="lb2" text-anchor="middle">water and petals</text>
+  <path d="M196 246 q44 -70 88 0 z" fill="#C9BFA8" stroke="rgba(10,10,10,.35)" stroke-width="2"/>
+  <path d="M240 202 q0 -46 70 -46 q80 0 80 70 L390 250" class="neck"/>
+  <text x="330" y="146" class="lb2" text-anchor="middle">the swan neck</text>
+  <rect x="360" y="250" width="120" height="130" fill="#BBD3DE" stroke="rgba(10,10,10,.3)"/>
+  <path d="M372 266 q24 -14 48 0 q24 14 48 0" class="coil"/>
+  <path d="M372 288 q24 -14 48 0 q24 14 48 0" class="coil"/>
+  <path d="M372 310 q24 -14 48 0 q24 14 48 0" class="coil"/>
+  <path d="M372 332 q24 -14 48 0 q24 14 48 0" class="coil"/>
+  <path d="M372 354 q24 -14 48 0 q24 14 48 0" class="coil"/>
+  <text x="420" y="242" class="lb2" text-anchor="middle">condenser, cold water</text>
+  <path d="M520 250 L620 250 L620 340 Q570 372 520 340 Z" fill="#EDE7DA" stroke="rgba(10,10,10,.35)" stroke-width="2"/>
+  <rect x="521" y="300" width="98" height="42" fill="#BBD3DE"/>
+  <rect x="521" y="286" width="98" height="14" fill="#C8A03A"/>
+  <path d="M480 300 L520 300" class="neck"/>
+  <text x="640" y="292" class="ll">essential oil</text>
+  <text x="640" y="308" class="ls">floats. A few millilitres</text>
+  <text x="640" y="332" class="ll">hydrosol</text>
+  <text x="640" y="348" class="ls">the rose water. Litres of it</text>
+  <text x="150" y="416" class="hd">steam goes up, oil comes back, and almost all of it is water</text>
+</svg>
+    <p class="note" style="margin-top:16px">
+      Petals and water together over a fire. The steam carries the volatile
+      compounds up the swan neck, a cold coil condenses it, and what collects in
+      the separator settles into two layers: a thin film of essential oil on
+      top and litres of hydrosol underneath.
+    </p>
+    <p class="note">
+      The hydrosol is not a by-product in Morocco. Rose water is used in
+      cooking, in the hammam, on guests&rsquo; hands before a meal, and at
+      funerals. The oil goes to Grasse. The water stays.
+    </p>
+  </section>
+
+  <section>
+    <h2>The arithmetic</h2>
+    <div class="big4">
+      <div><div class="n">4,000 kg</div><div class="l">Of petals to one kilogram of rose oil</div></div>
+      <div><div class="n">6 weeks</div><div class="l">The entire harvest, in April and May</div></div>
+      <div><div class="n">Before dawn</div><div class="l">When they are picked. The oil leaves with the heat of the day</div></div>
+      <div><div class="n">By hand</div><div class="l">Every flower. There is no mechanical alternative</div></div>
+    </div>
+    <p class="note" style="margin-top:18px">
+      Rosa damascena is grown at Kelaa M&rsquo;Gouna in the Dades, in hedges
+      along the field terraces rather than as a crop in its own right. The
+      hedges are a windbreak and a boundary marker that happen to be worth more
+      than what they enclose.
+    </p>
+  </section>
+
+  <section>
+    <h2>Where each scent comes from</h2>
+<svg viewBox="0 0 820 420" class="map" xmlns="http://www.w3.org/2000/svg">
+  <line x1="183.8" y1="48" x2="183.8" y2="372" class="grid"/>
+  <text x="183.8" y="388" class="ax" text-anchor="middle">10°W</text>
+  <line x1="364.8" y1="48" x2="364.8" y2="372" class="grid"/>
+  <text x="364.8" y="388" class="ax" text-anchor="middle">8°W</text>
+  <line x1="545.8" y1="48" x2="545.8" y2="372" class="grid"/>
+  <text x="545.8" y="388" class="ax" text-anchor="middle">6°W</text>
+  <line x1="726.8" y1="48" x2="726.8" y2="372" class="grid"/>
+  <text x="726.8" y="388" class="ax" text-anchor="middle">4°W</text>
+  <line x1="48" y1="348.9" x2="772" y2="348.9" class="grid"/>
+  <text x="40" y="352.9" class="ax" text-anchor="end">30°N</text>
+  <line x1="48" y1="256.3" x2="772" y2="256.3" class="grid"/>
+  <text x="40" y="260.3" class="ax" text-anchor="end">32°N</text>
+  <line x1="48" y1="163.7" x2="772" y2="163.7" class="grid"/>
+  <text x="40" y="167.7" class="ax" text-anchor="end">34°N</text>
+  <line x1="48" y1="71.1" x2="772" y2="71.1" class="grid"/>
+  <text x="40" y="75.1" class="ax" text-anchor="end">36°N</text>
+  <circle cx="536.7" cy="293.3" r="4.5" class="dot"/>
+  <text x="545.7" y="291.3" class="pl" text-anchor="start">Kelaa M'Gouna</text>
+  <text x="545.7" y="303.3" class="pd" text-anchor="start">damask rose</text>
+  <circle cx="373.8" cy="325.7" r="4.5" class="dot"/>
+  <text x="382.8" y="323.7" class="pl" text-anchor="start">Taliouine</text>
+  <text x="382.8" y="335.7" class="pd" text-anchor="start">saffron</text>
+  <circle cx="464.3" cy="307.2" r="3" class="dot minor"/>
+  <text x="473.3" y="305.2" class="pl" text-anchor="start">Ouarzazate</text>
+  <circle cx="274.2" cy="330.3" r="4.5" class="dot"/>
+  <text x="283.2" y="328.3" class="pl" text-anchor="start">Souss</text>
+  <text x="283.2" y="340.3" class="pd" text-anchor="start">orange blossom, argan</text>
+  <circle cx="364.8" cy="274.8" r="4.5" class="dot"/>
+  <text x="373.8" y="272.8" class="pl" text-anchor="start">Marrakech</text>
+  <text x="373.8" y="284.8" class="pd" text-anchor="start">the perfumers</text>
+  <circle cx="591.0" cy="168.3" r="4.5" class="dot"/>
+  <text x="582.0" y="166.3" class="pl" text-anchor="end">Meknes</text>
+  <text x="582.0" y="178.3" class="pd" text-anchor="end">mint, and the neroli groves</text>
+  <circle cx="636.2" cy="163.7" r="4.5" class="dot"/>
+  <text x="627.2" y="161.7" class="pl" text-anchor="end">Fes</text>
+  <text x="627.2" y="173.7" class="pd" text-anchor="end">attarine, and the oldest trade</text>
+  <circle cx="609.1" cy="108.2" r="3" class="dot minor"/>
+  <text x="600.1" y="106.2" class="pl" text-anchor="end">Chefchaouen</text>
+  <text x="600.1" y="118.2" class="pd" text-anchor="end">cannabis-free uplands: lavender and thyme</text>
+  <circle cx="201.8" cy="279.4" r="3" class="dot minor"/>
+  <text x="210.8" y="277.4" class="pl" text-anchor="start">Essaouira</text>
+  <text x="210.8" y="289.4" class="pd" text-anchor="start">thuya wood</text>
+</svg>
+    <p class="note" style="margin-top:16px">
+      Neroli from the bitter orange groves around Meknes and in the Souss.
+      Damask rose in the Dades. Saffron at Taliouine. Thuya wood at Essaouira.
+      Mint everywhere, and best from Meknes. The perfumers are in Fes and
+      Marrakech, which is to say at the end of the roads rather than at the
+      source.
+    </p>
+  </section>
+
+  <section>
+    <h2>Three ways to get the smell out</h2>
+    <table>
+      <thead><tr><th>Method</th><th>Used for</th></tr></thead>
+      <tbody>
+        <tr><td>Steam distillation</td><td>Rose, neroli, lavender, rosemary, thyme. Anything whose compounds survive being boiled</td></tr>
+        <tr><td>Cold pressing</td><td>Citrus peel. The oil sits in cells just under the skin and is squeezed out</td></tr>
+        <tr><td>Enfleurage and maceration</td><td>Jasmine and orange blossom, which are destroyed by heat. Petals laid in fat or oil until it takes the scent</td></tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-top:18px">
+      Neroli is the interesting case. The bitter orange gives three different
+      materials from three different parts: neroli from the blossom by
+      distillation, petitgrain from the leaves and twigs, and bitter orange oil
+      from the peel by pressing. One tree, three products, three techniques.
+    </p>
+  </section>
+
+  <section>
+    <h2>What is worn, and how</h2>
+    <table>
+      <thead><tr><th>Form</th><th>Practice</th></tr></thead>
+      <tbody>
+        <tr><td>Musk and oil</td><td>Applied neat to the skin at the pulse points, in small quantity, and not sprayed</td></tr>
+        <tr><td>Rose water</td><td>Poured over the hands from a long-necked flask before and after eating</td></tr>
+        <tr><td>Bakhour</td><td>Smoke taken into clothes and hair, described at length elsewhere in this archive</td></tr>
+        <tr><td>Ghassoul and the hammam</td><td>Clay washed with rose or orange blossom water. The scent is on the skin before anything is applied to it</td></tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-top:18px">
+      Which is the difference from a European scent culture. Perfume here is
+      not a single bottle sprayed at the neck in the morning. It is layered
+      through washing, dressing, eating and receiving, in four or five different
+      forms, all through the day.
+    </p>
+  </section>
+
+  <div class="editorial">
+    <strong>Editorial position.</strong> Dancing with Lions is a publisher, not
+    a political actor. We report what is documented and attribute it. Where
+    sources disagree we say so and give the range. Where a question is
+    contested in law or politics we set out the record and take no side.
+  </div>
+
+  <div class="foot">
+    <strong>Sources:</strong> Standard perfumery references on steam
+    distillation yields for Rosa damascena and on neroli, petitgrain and bitter
+    orange extraction; harvest practice recorded in the Dades and the Souss.
+    Yield ratios vary widely with season, variety and equipment and are given as
+    orders of magnitude.
+    <br><br>
+    <strong>&copy; Dancing with Lions.</strong> Data compilation and
+    visualisation. Reuse requires attribution and a visible credit reading
+    &ldquo;Source: Dancing with Lions&rdquo;.
+  </div>
+
+</div>
+</body>
+</html>
