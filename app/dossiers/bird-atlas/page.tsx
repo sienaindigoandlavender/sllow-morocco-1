@@ -85,7 +85,7 @@ const jsonLd = {
         "logo": "https://www.slowmorocco.com/logo.png",
         "parentOrganization": {
           "@type": "Organization",
-          "name": "Dancing with Lions",
+          "name": "Dance with Lions",
           "url": "https://www.dancewithlions.com",
         },
       },
