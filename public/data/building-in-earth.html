@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Rendered inside the story page via an iframe. Indexing it separately
+     would compete with the story for the same subject. -->
+<meta name="robots" content="noindex, follow">
+<title>Building in Earth — Dancing with Lions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0a0a;--ink-60:#333333;--ink-40:#4A4A4A;
+    --rule:rgba(10,10,10,.10);--hair:rgba(10,10,10,.06);
+    --earth:#B07A4A;--adobe:#C9A06A;--water:#3E6B7A;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;font-size:15px;line-height:1.55}
+  .wrap{max-width:940px;margin:0 auto;padding:52px 28px 88px}
+  h1{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:clamp(32px,5.6vw,54px);line-height:1.05;letter-spacing:-.01em;margin:0 0 16px}
+  .standfirst{font-family:"EB Garamond",Georgia,serif;font-size:19px;line-height:1.5;color:#262626;max-width:38em;margin:0}
+  .dateline{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin-top:20px;padding-top:14px;border-top:1px solid var(--hair);font-size:12px;color:var(--ink-40)}
+  .dateline .stamp{color:var(--ink-60)}
+  h2{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:25px;line-height:1.2;margin:0 0 6px}
+  .note{font-size:13.5px;color:#333333;max-width:44em;margin:0 0 24px}
+  section{border-top:1px solid var(--rule);padding-top:32px;margin-top:48px}
+
+  .wall{width:100%;height:auto;margin-top:20px;display:block}
+  .wall .lift{stroke:rgba(255,255,255,.40);stroke-width:1.4}
+  .wall .brick{stroke:rgba(255,255,255,.45);stroke-width:1}
+  .wall .brace{stroke:rgba(10,10,10,.30);stroke-width:1.4}
+  .wall .ground{stroke:rgba(10,10,10,.35);stroke-width:1.5}
+  .wall .water{fill:none;stroke:#3E6B7A;stroke-width:2;stroke-dasharray:4 4}
+  .wall .wl{font-family:"EB Garamond",Georgia,serif;font-size:17px;fill:#0a0a0a}
+  .wall .wl2{font-family:"EB Garamond",Georgia,serif;font-size:15px;fill:#0a0a0a}
+  .wall .ws{font-family:"DM Sans",sans-serif;font-size:11.5px;fill:#4A4A4A}
+  .wall .hd{font-family:"DM Sans",sans-serif;font-size:11px;fill:#555555;letter-spacing:.12em;text-transform:uppercase}
+
+  .terms{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:22px}
+  .terms>div{background:#fff;padding:22px 18px}
+  .terms .w{font-family:"EB Garamond",Georgia,serif;font-size:21px;margin-bottom:5px}
+  .terms .d{font-size:12.5px;color:#4A4A4A;line-height:1.5}
+
+  .big4{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:22px}
+  .big4>div{background:#fff;padding:22px 16px}
+  .big4 .n{font-family:"EB Garamond",Georgia,serif;font-size:28px;line-height:1;margin-bottom:6px;color:var(--earth)}
+  .big4 .l{font-size:12.5px;color:#4A4A4A;line-height:1.4}
+
+  .editorial{border-top:1px solid var(--rule);margin-top:46px;padding-top:20px;font-size:12.5px;color:#4A4A4A;line-height:1.7;max-width:44em}
+  .editorial strong{color:#262626;font-weight:500}
+  table{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px}
+  th{text-align:left;font-weight:500;font-size:12px;color:var(--ink-40);padding:0 0 9px;border-bottom:1px solid var(--rule)}
+  td{padding:11px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+  td:last-child,th:last-child{text-align:right;font-variant-numeric:tabular-nums}
+  .foot{border-top:1px solid var(--rule);margin-top:28px;padding-top:20px;font-size:12px;color:var(--ink-40);line-height:1.7}
+  .foot strong{color:var(--ink-60);font-weight:500}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Pisé below, adobe above</h1>
+  <p class="standfirst">
+    The heavy rammed earth carries the ground floor and lighter sun-dried brick
+    goes on top, so the load on the lower wall stays inside what the material
+    will bear. That single decision is why these towers stand three and four
+    storeys high, and it was arrived at without a calculation.
+  </p>
+  <div class="dateline">
+    <span class="stamp"><time datetime="2026-09-07">Updated 7 September 2026</time></span>
+    <span>Technical description after CRAterre and CERKAS conservation practice.</span>
+  </div>
+
+  <section>
+    <h2>The wall, in section</h2>
+<svg viewBox="0 0 900 470" class="wall" xmlns="http://www.w3.org/2000/svg">
+  <rect x="150" y="230" width="320" height="170" fill="#B07A4A"/>
+  <line x1="150" y1="248" x2="470" y2="248" class="lift"/>
+  <line x1="150" y1="270" x2="470" y2="270" class="lift"/>
+  <line x1="150" y1="292" x2="470" y2="292" class="lift"/>
+  <line x1="150" y1="314" x2="470" y2="314" class="lift"/>
+  <line x1="150" y1="336" x2="470" y2="336" class="lift"/>
+  <line x1="150" y1="358" x2="470" y2="358" class="lift"/>
+  <line x1="150" y1="380" x2="470" y2="380" class="lift"/>
+  <line x1="486" y1="230" x2="486" y2="400" class="brace"/>
+  <text x="500" y="300" class="wl">Pisé, rammed earth</text>
+  <text x="500" y="318" class="ws">load-bearing. Damp clay, straw and water,</text>
+  <text x="500" y="333" class="ws">compacted in timber formwork, one lift at a</text>
+  <text x="500" y="348" class="ws">time, each left to dry before the next</text>
+  <rect x="150" y="120" width="320" height="110" fill="#C9A06A"/>
+  <rect x="150" y="130" width="34" height="12" fill="none" class="brick"/>
+  <rect x="190" y="130" width="34" height="12" fill="none" class="brick"/>
+  <rect x="230" y="130" width="34" height="12" fill="none" class="brick"/>
+  <rect x="270" y="130" width="34" height="12" fill="none" class="brick"/>
+  <rect x="310" y="130" width="34" height="12" fill="none" class="brick"/>
+  <rect x="350" y="130" width="34" height="12" fill="none" class="brick"/>
+  <rect x="390" y="130" width="34" height="12" fill="none" class="brick"/>
+  <rect x="430" y="130" width="34" height="12" fill="none" class="brick"/>
+  <rect x="170" y="146" width="34" height="12" fill="none" class="brick"/>
+  <rect x="210" y="146" width="34" height="12" fill="none" class="brick"/>
+  <rect x="250" y="146" width="34" height="12" fill="none" class="brick"/>
+  <rect x="290" y="146" width="34" height="12" fill="none" class="brick"/>
+  <rect x="330" y="146" width="34" height="12" fill="none" class="brick"/>
+  <rect x="370" y="146" width="34" height="12" fill="none" class="brick"/>
+  <rect x="410" y="146" width="34" height="12" fill="none" class="brick"/>
+  <rect x="450" y="146" width="34" height="12" fill="none" class="brick"/>
+  <rect x="150" y="162" width="34" height="12" fill="none" class="brick"/>
+  <rect x="190" y="162" width="34" height="12" fill="none" class="brick"/>
+  <rect x="230" y="162" width="34" height="12" fill="none" class="brick"/>
+  <rect x="270" y="162" width="34" height="12" fill="none" class="brick"/>
+  <rect x="310" y="162" width="34" height="12" fill="none" class="brick"/>
+  <rect x="350" y="162" width="34" height="12" fill="none" class="brick"/>
+  <rect x="390" y="162" width="34" height="12" fill="none" class="brick"/>
+  <rect x="430" y="162" width="34" height="12" fill="none" class="brick"/>
+  <rect x="170" y="178" width="34" height="12" fill="none" class="brick"/>
+  <rect x="210" y="178" width="34" height="12" fill="none" class="brick"/>
+  <rect x="250" y="178" width="34" height="12" fill="none" class="brick"/>
+  <rect x="290" y="178" width="34" height="12" fill="none" class="brick"/>
+  <rect x="330" y="178" width="34" height="12" fill="none" class="brick"/>
+  <rect x="370" y="178" width="34" height="12" fill="none" class="brick"/>
+  <rect x="410" y="178" width="34" height="12" fill="none" class="brick"/>
+  <rect x="450" y="178" width="34" height="12" fill="none" class="brick"/>
+  <rect x="150" y="194" width="34" height="12" fill="none" class="brick"/>
+  <rect x="190" y="194" width="34" height="12" fill="none" class="brick"/>
+  <rect x="230" y="194" width="34" height="12" fill="none" class="brick"/>
+  <rect x="270" y="194" width="34" height="12" fill="none" class="brick"/>
+  <rect x="310" y="194" width="34" height="12" fill="none" class="brick"/>
+  <rect x="350" y="194" width="34" height="12" fill="none" class="brick"/>
+  <rect x="390" y="194" width="34" height="12" fill="none" class="brick"/>
+  <rect x="430" y="194" width="34" height="12" fill="none" class="brick"/>
+  <rect x="170" y="210" width="34" height="12" fill="none" class="brick"/>
+  <rect x="210" y="210" width="34" height="12" fill="none" class="brick"/>
+  <rect x="250" y="210" width="34" height="12" fill="none" class="brick"/>
+  <rect x="290" y="210" width="34" height="12" fill="none" class="brick"/>
+  <rect x="330" y="210" width="34" height="12" fill="none" class="brick"/>
+  <rect x="370" y="210" width="34" height="12" fill="none" class="brick"/>
+  <rect x="410" y="210" width="34" height="12" fill="none" class="brick"/>
+  <rect x="450" y="210" width="34" height="12" fill="none" class="brick"/>
+  <rect x="150" y="226" width="34" height="12" fill="none" class="brick"/>
+  <rect x="190" y="226" width="34" height="12" fill="none" class="brick"/>
+  <rect x="230" y="226" width="34" height="12" fill="none" class="brick"/>
+  <rect x="270" y="226" width="34" height="12" fill="none" class="brick"/>
+  <rect x="310" y="226" width="34" height="12" fill="none" class="brick"/>
+  <rect x="350" y="226" width="34" height="12" fill="none" class="brick"/>
+  <rect x="390" y="226" width="34" height="12" fill="none" class="brick"/>
+  <rect x="430" y="226" width="34" height="12" fill="none" class="brick"/>
+  <line x1="486" y1="120" x2="486" y2="230" class="brace"/>
+  <text x="500" y="164" class="wl">Adobe, sun-dried brick</text>
+  <text x="500" y="182" class="ws">lighter, laid in courses. Upper storeys only,</text>
+  <text x="500" y="197" class="ws">so the load on the pisé below stays inside</text>
+  <text x="500" y="212" class="ws">what the material will take</text>
+  <rect x="139" y="120" width="11" height="280" fill="#D8BE96"/>
+  <text x="128" y="270" class="wl2" text-anchor="end">mud render</text>
+  <text x="128" y="286" class="ws" text-anchor="end">re-applied after every</text>
+  <text x="128" y="301" class="ws" text-anchor="end">wet season, or the wall goes</text>
+  <rect x="139" y="96" width="331" height="24" fill="#B07A4A"/>
+  <rect x="142" y="80" width="18" height="16" fill="#B07A4A"/>
+  <rect x="176" y="80" width="18" height="16" fill="#B07A4A"/>
+  <rect x="210" y="80" width="18" height="16" fill="#B07A4A"/>
+  <rect x="244" y="80" width="18" height="16" fill="#B07A4A"/>
+  <rect x="278" y="80" width="18" height="16" fill="#B07A4A"/>
+  <rect x="312" y="80" width="18" height="16" fill="#B07A4A"/>
+  <rect x="346" y="80" width="18" height="16" fill="#B07A4A"/>
+  <rect x="380" y="80" width="18" height="16" fill="#B07A4A"/>
+  <rect x="414" y="80" width="18" height="16" fill="#B07A4A"/>
+  <rect x="448" y="80" width="18" height="16" fill="#B07A4A"/>
+  <rect x="110" y="104" width="34" height="10" fill="#8C6238"/>
+  <path d="M110 118 q-6 26 -2 44" class="water"/>
+  <text x="104" y="182" class="wl2" text-anchor="end">spout</text>
+  <text x="104" y="198" class="ws" text-anchor="end">throws the water clear</text>
+  <text x="230" y="72" class="ws">parapet and crenellation</text>
+  <line x1="60" y1="400" x2="840" y2="400" class="ground"/>
+  <text x="60" y="454" class="hd">how a kasbah wall is built</text>
+</svg>
+    <p class="note" style="margin-top:16px">
+      Everything above the ground line exists to keep water off what is below
+      it. The render is sacrificial and gets renewed; the parapet stops rain
+      sitting on the wall head; the spout throws it clear of the face. An
+      earthen building fails from the top down and from the outside in, and
+      almost never from the middle.
+    </p>
+  </section>
+
+  <section>
+    <h2>3 words people mix up</h2>
+    <div class="terms">
+      <div><div class="w">Ksar</div><div class="d">A whole fortified village inside one defensive wall with corner towers. Houses, granaries, a mosque, public squares. Plural ksour.</div></div>
+      <div><div class="w">Kasbah</div><div class="d">In the south, a single fortified family tower-house. A ksar contains several. Elsewhere the word can mean a citadel quarter, which is where the confusion starts.</div></div>
+      <div><div class="w">Riad</div><div class="d">An urban courtyard house with a garden at its centre, in a medina. Unrelated to either of the above, and not a defensive building at all.</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>What goes into the mix</h2>
+    <div class="big4">
+      <div><div class="n">Clay</div><div class="l">Damp earth from within walking distance of the site</div></div>
+      <div><div class="n">Straw</div><div class="l">Binds the mix and controls shrinkage as it dries</div></div>
+      <div><div class="n">Water</div><div class="l">Enough to compact, not enough to slump</div></div>
+      <div><div class="n">Lime</div><div class="l">Sometimes, with gravel, to stabilise the mix</div></div>
+    </div>
+    <p class="note" style="margin-top:18px">
+      Pisé is known as tabia and as al-luh. The mix goes into removable timber
+      formwork and is rammed with a wooden pestle until it is dense, then the
+      box moves up and the next lift goes on once the one below has dried. The
+      horizontal lines visible across an old wall are those lifts.
+    </p>
+    <p class="note">
+      Thick earth walls also do the thermal work. In country that swings between
+      a scorching afternoon and a cold night, mass is the insulation.
+    </p>
+  </section>
+
+  <section>
+    <h2>A building that is never finished</h2>
+    <p class="note">
+      Earthen architecture survives on maintenance rather than on durability.
+      Left alone it returns to the ground over a couple of centuries, and stands
+      indefinitely if the render is renewed each year. Occupation and survival
+      are the same thing.
+    </p>
+    <table>
+      <thead><tr><th>Event</th><th>Detail</th></tr></thead>
+      <tbody>
+        <tr><td>UNESCO inscription</td><td>1987, Ksar of Aït-Ben-Haddou</td></tr>
+        <tr><td>CERKAS founded</td><td>1990, a conservation centre for the earthen heritage of the south</td></tr>
+        <tr><td>Concrete</td><td>Prohibited within the ksar. Repairs use earth, straw and lime</td></tr>
+        <tr><td>Management plan</td><td>Running through 2030</td></tr>
+        <tr><td>September 2023</td><td>The earthquake caused cracking and partial collapse. Repair has been in traditional materials</td></tr>
+        <tr><td>The honest position</td><td>What stands today is a mixture of old fabric, continuous repair and reconstruction, and conservators have had to draw that line case by case</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>The technique did not stay in the past</h2>
+    <p class="note">
+      Rammed earth is back in contemporary architecture as a low-carbon
+      structural material, in the work of Martin Rauch in Austria and Francis
+      Kéré in Burkina Faso and elsewhere. The material is dug on site, needs no
+      firing, and insulates by mass.
+    </p>
+    <p class="note">
+      Which makes the ksour of the Draa and the Ounila valleys a working
+      reference rather than a ruin: several centuries of accumulated knowledge
+      about the load-bearing limits of earth, recorded in the buildings
+      themselves.
+    </p>
+  </section>
+
+  <div class="editorial">
+    <strong>Editorial position.</strong> Dancing with Lions is a publisher, not
+    a political actor. We report what is documented and attribute it. Where
+    sources disagree we say so and give the range. Where a question is
+    contested in law or politics we set out the record and take no side.
+  </div>
+
+  <div class="foot">
+    <strong>Sources:</strong> UNESCO World Heritage Centre, inscription 444,
+    1987; CERKAS, Centre de Conservation et de Réhabilitation du Patrimoine
+    Architectural des Zones Atlasiques et Subatlasiques; CRAterre; published
+    technical literature on pisé construction and conservation.
+    <br><br>
+    <strong>&copy; Dancing with Lions.</strong> Data compilation and
+    visualisation. Reuse requires attribution and a visible credit reading
+    &ldquo;Source: Dancing with Lions&rdquo;.
+  </div>
+
+</div>
+</body>
+</html>
