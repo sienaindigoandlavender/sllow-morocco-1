@@ -243,7 +243,7 @@ export default function StoryDetailContent({
               allow="fullscreen"
             />
             <p className="text-[11px] text-foreground/50 mt-3 text-center">
-              Data and visualisation by Dancing with Lions
+              Data and visualisation by Dance with Lions
             </p>
           </>
         )}

@@ -241,13 +241,13 @@ export default async function StoryPage({
     author: {
       "@type": "Person",
       name: "J. Ng",
-      worksFor: { "@type": "Organization", name: "Dancing with Lions", url: "https://www.dancewithlions.com" },
+      worksFor: { "@type": "Organization", name: "Dance with Lions", url: "https://www.dancewithlions.com" },
     },
     publisher: {
       "@type": "Organization",
       name: "Slow Morocco",
       url: BASE_URL,
-      parentOrganization: { "@type": "Organization", name: "Dancing with Lions", url: "https://www.dancewithlions.com" },
+      parentOrganization: { "@type": "Organization", name: "Dance with Lions", url: "https://www.dancewithlions.com" },
     },
     about: { "@type": "Place", name: "Morocco" },
     ...(story.category || story.tags ? { keywords: [story.category, ...(story.tags ? story.tags.replace(/[{}]/g, '').split(',').map((t: string) => t.trim()) : [])].filter(Boolean).join(', ') } : {}),
