@@ -4,9 +4,10 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Search, X } from "lucide-react";
 import { getAllTerms } from "@/lib/glossary-data";
+import { COLLECTIONS } from "@/lib/collections";
 
 interface SearchResult {
-  type: "journey" | "story" | "place" | "glossary" | "page";
+  type: "journey" | "story" | "place" | "destination" | "collection" | "glossary" | "page";
   title: string;
   slug: string;
   subtitle?: string;
@@ -27,6 +28,7 @@ export default function SearchModal({ isOpen, onClose, initialQuery = "" }: Sear
   const [journeys, setJourneys] = useState<any[]>([]);
   const [stories, setStories] = useState<any[]>([]);
   const [places, setPlaces] = useState<any[]>([]);
+  const [destinations, setDestinations] = useState<any[]>([]);
   const glossaryTerms = getAllTerms();
 
   // Static pages — fixed content not in Supabase
@@ -75,6 +77,7 @@ export default function SearchModal({ isOpen, onClose, initialQuery = "" }: Sear
         // setJourneys(data.journeys || []);
         setStories(data.stories || []);
         setPlaces(data.places || []);
+        setDestinations(data.destinations || []);
       })
       .catch((err) => console.error("Search index load failed:", err));
   }, []);
@@ -185,6 +188,40 @@ export default function SearchModal({ isOpen, onClose, initialQuery = "" }: Sear
       }
     });
 
+    // Search city hubs
+    destinations.forEach((d) => {
+      if (
+        d.title?.toLowerCase().includes(q) ||
+        d.subtitle?.toLowerCase().includes(q) ||
+        d.excerpt?.toLowerCase().includes(q) ||
+        d.region?.toLowerCase().includes(q) ||
+        d.slug?.toLowerCase().includes(q)
+      ) {
+        matched.push({
+          type: "destination",
+          title: d.title,
+          slug: d.slug,
+          subtitle: d.region || "City guide",
+        });
+      }
+    });
+
+    // Search collections. Curated in lib/collections.ts, not the database.
+    COLLECTIONS.forEach((c) => {
+      if (
+        c.title.toLowerCase().includes(q) ||
+        c.dek?.toLowerCase().includes(q) ||
+        c.slug.toLowerCase().includes(q)
+      ) {
+        matched.push({
+          type: "collection",
+          title: c.title,
+          slug: c.slug,
+          subtitle: "Collection",
+        });
+      }
+    });
+
     // Search glossary
     glossaryTerms.forEach((term) => {
       if (
@@ -225,7 +262,7 @@ export default function SearchModal({ isOpen, onClose, initialQuery = "" }: Sear
     });
 
     setResults(sorted.slice(0, 20));
-  }, [query, journeys, stories, places]);
+  }, [query, journeys, stories, places, destinations]);
 
   const getHref = (result: SearchResult) => {
     switch (result.type) {
@@ -235,6 +272,10 @@ export default function SearchModal({ isOpen, onClose, initialQuery = "" }: Sear
         return `/stories/${result.slug}`;
       case "place":
         return `/places/${result.slug}`;
+      case "destination":
+        return `/${result.slug}`;
+      case "collection":
+        return `/collections/${result.slug}`;
       case "glossary":
         return `/glossary#${result.slug}`;
       case "page":
@@ -250,6 +291,10 @@ export default function SearchModal({ isOpen, onClose, initialQuery = "" }: Sear
         return "Story";
       case "place":
         return "Place";
+      case "destination":
+        return "City guide";
+      case "collection":
+        return "Collection";
       case "glossary":
         return "Glossary";
       case "page":
@@ -278,7 +323,7 @@ export default function SearchModal({ isOpen, onClose, initialQuery = "" }: Sear
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search stories, places..."
+              placeholder="Search stories, places, cities..."
               className="flex-1 bg-transparent text-foreground text-base md:text-lg placeholder:text-foreground/30 focus:outline-none"
             />
             <button
