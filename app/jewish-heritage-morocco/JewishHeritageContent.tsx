@@ -329,7 +329,7 @@ export default function JewishHeritageContent() {
 
         {/* Bottom attribution */}
         <footer className="fixed bottom-6 right-6 lg:right-10 z-10 text-[10px] text-white/20 text-right leading-relaxed hidden md:block">
-          &copy; Slow Morocco &middot; Dancing with Lions
+          &copy; Slow Morocco &middot; Dance with Lions
           <br />
           Data: UNESCO, WJC, Diarna Archive
         </footer>

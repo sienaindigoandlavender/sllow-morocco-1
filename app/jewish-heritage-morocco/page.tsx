@@ -6,7 +6,7 @@ const BASE_URL = "https://www.slowmorocco.com";
 export const metadata: Metadata = {
   title: "Jewish Heritage of Morocco — Interactive Map of 60+ Sites",
   description:
-    "Explore 2,000 years of Jewish Morocco: 60+ synagogues, mellahs, cemeteries, pilgrimage shrines, and museums across 18 cities. From the oldest mellah in Fes (1438) to the only Jewish museum in the Arab world in Casablanca. Research by Dancing with Lions.",
+    "Explore 2,000 years of Jewish Morocco: 60+ synagogues, mellahs, cemeteries, pilgrimage shrines, and museums across 18 cities. From the oldest mellah in Fes (1438) to the only Jewish museum in the Arab world in Casablanca. Research by Dance with Lions.",
   keywords: [
     "Jewish heritage Morocco",
     "Morocco synagogues",
@@ -67,7 +67,7 @@ const jsonLd = {
     url: BASE_URL,
     parentOrganization: {
       "@type": "Organization",
-      name: "Dancing with Lions",
+      name: "Dance with Lions",
       url: "https://www.dancewithlions.com",
     },
   },
@@ -77,7 +77,7 @@ const jsonLd = {
     jobTitle: "Founder",
     worksFor: {
       "@type": "Organization",
-      name: "Dancing with Lions",
+      name: "Dance with Lions",
     },
   },
   about: [
