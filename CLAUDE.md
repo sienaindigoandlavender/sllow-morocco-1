@@ -5,7 +5,7 @@
 
 ## Who You're Working For
 
-Jacqueline Ng. Founder of Dancing with Lions, a cultural publishing operation. Slow Morocco is the first title — the definitive cultural guide to Morocco. Not a tour operator. Not a travel blog. A publisher.
+Jacqueline Ng. Founder of Dance with Lions, a cultural publishing operation. Slow Morocco is the first title — the definitive cultural guide to Morocco. Not a tour operator. Not a travel blog. A publisher.
 
 Byline: **J. Ng** (never J. Laurent or other variants)
 
@@ -209,7 +209,7 @@ What makes stories defensible and un-replicable:
 
 ## The Ecosystem (Context Only)
 
-Slow Morocco is one title in the Dancing with Lions catalogue. Other titles share the Nexus Supabase infrastructure but have their own repos and voices:
+Slow Morocco is one title in the Dance with Lions catalogue. Other titles share the Nexus Supabase infrastructure but have their own repos and voices:
 
 - **Derb 37** (derb37.com) — Street-level Marrakech. Intimate, sensory.
 - **House of Weaves** (houseofweaves.com) — Ethnographic textile archive. Scholarly.
@@ -234,4 +234,4 @@ Do not modify anything related to other properties unless explicitly asked.
 
 ---
 
-*Dancing with Lions · Marrakech · March 2026*
+*Dance with Lions · Marrakech · March 2026*
