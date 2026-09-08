@@ -185,7 +185,7 @@ export default function Footer() {
                 <li><Link href="/about" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Who We Are</Link></li>
                 <li><Link href="/manifesto" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Manifesto</Link></li>
                 {TRIP_FUNNEL_PUBLIC && <li><Link href="/plan-your-trip" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Plan Your Trip</Link></li>}
-                <li><Link href="/booking-conditions" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Booking Conditions</Link></li>
+                {TRIP_FUNNEL_PUBLIC && <li><Link href="/booking-conditions" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Booking Conditions</Link></li>}
                 <li><Link href="/payments" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Payments</Link></li>
                 <li><Link href="/cancellations-and-refunds" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">Cancellations & Refunds</Link></li>
                 <li><Link href="/faq" className="text-sm text-white/50 hover:text-white/80 transition-colors inline-block py-1.5">FAQ</Link></li>
@@ -246,7 +246,7 @@ export default function Footer() {
       <section className="py-2.5 bg-[#080808]">
         <div className="container mx-auto px-8 md:px-16 lg:px-20">
           <p className="text-[9px] tracking-[0.15em] uppercase text-white/50 text-center">
-            Powered by <a href="https://www.dancewithlions.com" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors">Dance with Lions</a>
+            Powered by <a href="https://www.dancewithlions.com" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors">Dancing with Lions</a>
           </p>
         </div>
       </section>
