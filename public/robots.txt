@@ -1,12 +1,12 @@
 # slowmorocco.com — Slow Morocco
-# A Dancing with Lions publication
+# A Dance with Lions publication
 #
 # Content on this site is licensed under CC BY-NC-ND 4.0
 # (https://creativecommons.org/licenses/by-nc-nd/4.0/).
 # Attribution is required for all uses, including AI/LLM citation.
 # Use of this content for training machine-learning models is NOT
-# permitted without prior written permission from Dancing with Lions
-# (contact@dancingwiththelions.com).
+# permitted without prior written permission from Dance with Lions
+# (contact@dancewithlions.com).
 
 # Default — search engines, humans, retrieval/citation crawlers.
 # NOTE: do not add a separate "User-agent: Googlebot / Allow: /" group.
