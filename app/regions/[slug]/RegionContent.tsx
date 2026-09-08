@@ -2,7 +2,7 @@
 
 import { cloudinaryUrl } from "@/lib/cloudinary";
 import Link from "next/link";
-import { TRIP_FUNNEL_PUBLIC } from "@/lib/flags";
+import { TRIP_FUNNEL_PUBLIC, JOURNEY_CROSSLINKS } from "@/lib/flags";
 
 interface Region {
   slug: string;
@@ -254,7 +254,7 @@ export default function RegionContent({
       )}
 
       {/* ── Journeys ──────────────────────────────────────────────────────── */}
-      {TRIP_FUNNEL_PUBLIC && journeys.length > 0 && (
+      {JOURNEY_CROSSLINKS && journeys.length > 0 && (
         <section className="px-8 md:px-16 lg:px-20 pb-20 border-t border-border pt-16">
           <SectionLabel>Journeys in {region.title}</SectionLabel>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14">
