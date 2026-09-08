@@ -1,18 +1,29 @@
 // lib/flags.ts
 //
-// Site-wide feature flags.
+// Site-wide feature flags. Two, deliberately separate.
 //
-// TRIP_FUNNEL_PUBLIC controls whether the passive entry points to the
-// plan-your-trip flow appear on the public site — the footer link, the
-// end-of-story "Tell us about your trip" bridge, and the related-journeys
-// panel on story pages.
+// ── TRIP_FUNNEL_PUBLIC ──────────────────────────────────────────
+// The front door. Homepage journey sections, the footer links, the
+// nav entry, the plan-your-trip CTAs on hub pages.
 //
-// When false: none of those appear. The /plan-your-trip page still exists
-// and works, reachable only by a direct link that you hand out yourself,
-// with the €200 deposit gate as the sole front door. Slow Morocco reads
-// as a publication; trips become a back room you open when you choose.
+// When false: Slow Morocco reads as a publication. Nothing on the
+// homepage, in the nav or in the footer points at trips.
+// /plan-your-trip still exists and works, reachable by a direct link
+// you hand out yourself, with the deposit gate as the sole entrance.
 //
-// When true: the entry points return exactly as before. Nothing was
-// deleted — flip this back to re-open the room.
+// ── JOURNEY_CROSSLINKS ──────────────────────────────────────────
+// The onward path from editorial. The related-journeys block at the
+// foot of a story or place page, and the journeyBridge line inside
+// the body.
+//
+// This is a different job from the front door. A reader who has just
+// finished a story about Aït Benhaddou and wants to know how to get
+// there is not the same as a visitor landing on the homepage. The
+// Odyssey page alone carries tens of thousands of impressions; with
+// this off it offers them nowhere to go.
+//
+// Keep this true while the front door is closed. That is the whole
+// point of splitting them.
 
 export const TRIP_FUNNEL_PUBLIC = false;
+export const JOURNEY_CROSSLINKS = true;
