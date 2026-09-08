@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Rendered inside the story page via an iframe. Indexing it separately
+     would compete with the story for the same subject. -->
+<meta name="robots" content="noindex, follow">
+<title>The Fossil Beds — Dancing with Lions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0a0a;--ink-60:#333333;--ink-40:#4A4A4A;
+    --rule:rgba(10,10,10,.10);--hair:rgba(10,10,10,.06);
+    --rock:#7A8B6A;--deep:#5E7A85;--warn:#8F3A24;--good:#3E6B4E;
+    --mapdot:#7A8B6A;--maproute:#8C6238;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;font-size:15px;line-height:1.55}
+  .wrap{max-width:940px;margin:0 auto;padding:52px 28px 88px}
+  h1{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:clamp(32px,5.6vw,54px);line-height:1.05;letter-spacing:-.01em;margin:0 0 16px}
+  .standfirst{font-family:"EB Garamond",Georgia,serif;font-size:19px;line-height:1.5;color:#262626;max-width:38em;margin:0}
+  .dateline{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin-top:20px;padding-top:14px;border-top:1px solid var(--hair);font-size:12px;color:var(--ink-40)}
+  .dateline .stamp{color:var(--ink-60)}
+  h2{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:25px;line-height:1.2;margin:0 0 6px}
+  .note{font-size:13.5px;color:#333333;max-width:44em;margin:0 0 24px}
+  section{border-top:1px solid var(--rule);padding-top:32px;margin-top:48px}
+
+  /* map */
+  .map{width:100%;height:auto;margin-top:24px;display:block}
+  .map .grid{stroke:rgba(10,10,10,.08);stroke-width:1}
+  .map .ax{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.30)}
+  .map .dot{fill:var(--mapdot,#3E7A4E)}
+  .map .dot.minor{fill:rgba(10,10,10,.30)}
+  .map .pl{font-family:"DM Sans",sans-serif;font-size:12px;fill:#0a0a0a}
+  .map .pd{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.40)}
+  .map .route{fill:none;stroke:var(--maproute,#A9863C);stroke-width:1.6;stroke-dasharray:5 4}
+  .map .span{stroke:var(--maproute,#A9863C);stroke-width:2}
+  .map .spanlab{font-family:"DM Sans",sans-serif;font-size:10.5px;fill:var(--maproute,#A9863C)}
+
+  .strat{width:100%;height:auto;margin-top:20px;display:block}
+  .strat .bed{stroke:rgba(255,255,255,.25);stroke-width:1}
+  .strat .ag{font-family:"DM Sans",sans-serif;font-size:12px;fill:#4A4A4A}
+  .strat .ln{font-family:"EB Garamond",Georgia,serif;font-size:20px;fill:#0a0a0a}
+  .strat .lp{font-family:"DM Sans",sans-serif;font-size:12.5px;fill:#333333}
+  .strat .lf{font-family:"DM Sans",sans-serif;font-size:11.5px;fill:#4A4A4A}
+  .strat .ldr{stroke:rgba(10,10,10,.3);stroke-width:1}
+  .strat .hd2{font-family:"DM Sans",sans-serif;font-size:11px;fill:#5A5A5A;letter-spacing:.1em;text-transform:uppercase}
+  .strat .hd{font-family:"DM Sans",sans-serif;font-size:11px;fill:#555555;letter-spacing:.12em;text-transform:uppercase}
+
+  .big4{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:22px}
+  .big4>div{background:#fff;padding:22px 16px}
+  .big4 .n{font-family:"EB Garamond",Georgia,serif;font-size:27px;line-height:1;margin-bottom:6px;color:var(--deep)}
+  .big4 .l{font-size:12.5px;color:#4A4A4A;line-height:1.4}
+
+  .test{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:22px}
+  .test>div{background:#fff;padding:24px 20px}
+  .test .h{font-size:12px;color:var(--good);margin-bottom:10px}
+  .test .h.bad{color:var(--warn)}
+  .test ul{margin:0;padding-left:18px}
+  .test li{font-size:13.5px;color:#333333;line-height:1.55;margin-bottom:7px}
+
+  .editorial{border-top:1px solid var(--rule);margin-top:46px;padding-top:20px;font-size:12.5px;color:#4A4A4A;line-height:1.7;max-width:44em}
+  .editorial strong{color:#262626;font-weight:500}
+  table{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px}
+  th{text-align:left;font-weight:500;font-size:12px;color:var(--ink-40);padding:0 0 9px;border-bottom:1px solid var(--rule)}
+  td{padding:11px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+  td:last-child,th:last-child{text-align:right;font-variant-numeric:tabular-nums}
+  .foot{border-top:1px solid var(--rule);margin-top:28px;padding-top:20px;font-size:12px;color:var(--ink-40);line-height:1.7}
+  .foot strong{color:var(--ink-60);font-weight:500}
+  @media(max-width:620px){.test{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>510 million years, and you can walk on all of it</h1>
+  <p class="standfirst">
+    Morocco is one of very few places where rock from the Cambrian to the
+    Cretaceous is exposed at the surface within a day&rsquo;s drive. Four
+    separate worlds — a Cambrian sea, a Devonian reef, a Jurassic ocean and a
+    Cretaceous river delta — stacked and then tipped up where anyone can reach
+    them.
+  </p>
+  <div class="dateline">
+    <span class="stamp"><time datetime="2026-09-07">Updated 7 September 2026</time></span>
+    <span>Trade figures are the most recent published estimates and are approximate.</span>
+  </div>
+
+  <section>
+    <h2>The column</h2>
+<svg viewBox="0 0 900 560" class="strat" xmlns="http://www.w3.org/2000/svg">
+  <rect x="110" y="70" width="190" height="96" fill="#8C6238"/>
+  <line x1="110" y1="94" x2="300" y2="94" class="bed"/>
+  <line x1="110" y1="118" x2="300" y2="118" class="bed"/>
+  <line x1="110" y1="142" x2="300" y2="142" class="bed"/>
+  <text x="96" y="92" class="ag" text-anchor="end">100–94 Ma</text>
+  <text x="322" y="94" class="ln">Late Cretaceous</text>
+  <text x="322" y="112" class="lp">Kem Kem Group</text>
+  <text x="322" y="132" class="lf">Spinosaurus · Carcharodontosaurus · Deltadromeus · crocodiles, turtles, giant fish</text>
+  <line x1="300" y1="88" x2="316" y2="88" class="ldr"/>
+  <rect x="110" y="172" width="190" height="96" fill="#A98F63"/>
+  <line x1="110" y1="196" x2="300" y2="196" class="bed"/>
+  <line x1="110" y1="220" x2="300" y2="220" class="bed"/>
+  <line x1="110" y1="244" x2="300" y2="244" class="bed"/>
+  <text x="96" y="194" class="ag" text-anchor="end">200–145 Ma</text>
+  <text x="322" y="196" class="ln">Jurassic</text>
+  <text x="322" y="214" class="lp">Middle and High Atlas</text>
+  <text x="322" y="234" class="lf">Ammonite belts, including the Boulemane variety</text>
+  <line x1="300" y1="190" x2="316" y2="190" class="ldr"/>
+  <rect x="110" y="274" width="190" height="112" fill="#7A8B6A"/>
+  <line x1="110" y1="302" x2="300" y2="302" class="bed"/>
+  <line x1="110" y1="330" x2="300" y2="330" class="bed"/>
+  <line x1="110" y1="358" x2="300" y2="358" class="bed"/>
+  <text x="96" y="296" class="ag" text-anchor="end">419–359 Ma</text>
+  <text x="322" y="298" class="ln">Devonian</text>
+  <text x="322" y="316" class="lp">Erfoud limestones</text>
+  <text x="322" y="336" class="lf">Orthoceras · goniatite ammonites · Phacops, Crotalocephalina, Acastoides</text>
+  <line x1="300" y1="292" x2="316" y2="292" class="ldr"/>
+  <rect x="110" y="392" width="190" height="120" fill="#5E7A85"/>
+  <line x1="110" y1="422" x2="300" y2="422" class="bed"/>
+  <line x1="110" y1="452" x2="300" y2="452" class="bed"/>
+  <line x1="110" y1="482" x2="300" y2="482" class="bed"/>
+  <text x="96" y="414" class="ag" text-anchor="end">510–460 Ma</text>
+  <text x="322" y="416" class="ln">Cambrian–Ordovician</text>
+  <text x="322" y="434" class="lp">Anti-Atlas marine beds</text>
+  <text x="322" y="454" class="lf">Paradoxides · Cambropallas. The original trilobite layer</text>
+  <line x1="300" y1="410" x2="316" y2="410" class="ldr"/>
+  <text x="205.0" y="46" class="hd2" text-anchor="middle">younger</text>
+  <text x="205.0" y="540" class="hd2" text-anchor="middle">older</text>
+  <text x="40" y="546" class="hd">four layers, all reachable on foot</text>
+</svg>
+    <p class="note" style="margin-top:16px">
+      The country sat under warm shallow sea for most of the Palaeozoic and
+      became a river delta in the Cretaceous. Each of those environments left a
+      layer, and the folding described in the Atlas geology brought them all
+      back to the surface.
+    </p>
+  </section>
+
+  <section>
+    <h2>Where the beds are</h2>
+<svg viewBox="0 0 780 400" class="map" xmlns="http://www.w3.org/2000/svg">
+  <line x1="116.4" y1="48" x2="116.4" y2="352" class="grid"/>
+  <text x="116.4" y="368" class="ax" text-anchor="middle">7°W</text>
+  <line x1="253.2" y1="48" x2="253.2" y2="352" class="grid"/>
+  <text x="253.2" y="368" class="ax" text-anchor="middle">6°W</text>
+  <line x1="390.0" y1="48" x2="390.0" y2="352" class="grid"/>
+  <text x="390.0" y="368" class="ax" text-anchor="middle">5°W</text>
+  <line x1="526.8" y1="48" x2="526.8" y2="352" class="grid"/>
+  <text x="526.8" y="368" class="ax" text-anchor="middle">4°W</text>
+  <line x1="663.6" y1="48" x2="663.6" y2="352" class="grid"/>
+  <text x="663.6" y="368" class="ax" text-anchor="middle">3°W</text>
+  <line x1="48" y1="324.4" x2="732" y2="324.4" class="grid"/>
+  <text x="40" y="328.4" class="ax" text-anchor="end">30°N</text>
+  <line x1="48" y1="269.1" x2="732" y2="269.1" class="grid"/>
+  <text x="40" y="273.1" class="ax" text-anchor="end">31°N</text>
+  <line x1="48" y1="213.8" x2="732" y2="213.8" class="grid"/>
+  <text x="40" y="217.8" class="ax" text-anchor="end">32°N</text>
+  <line x1="48" y1="158.5" x2="732" y2="158.5" class="grid"/>
+  <text x="40" y="162.5" class="ax" text-anchor="end">33°N</text>
+  <line x1="48" y1="103.3" x2="732" y2="103.3" class="grid"/>
+  <text x="40" y="107.3" class="ax" text-anchor="end">34°N</text>
+  <circle cx="431.0" cy="136.4" r="3" class="dot minor"/>
+  <text x="440.0" y="134.4" class="pl" text-anchor="start">Boulemane</text>
+  <text x="440.0" y="146.4" class="pd" text-anchor="start">Jurassic ammonites</text>
+  <circle cx="499.4" cy="247.0" r="4.5" class="dot"/>
+  <text x="508.4" y="245.0" class="pl" text-anchor="start">Erfoud</text>
+  <text x="508.4" y="257.0" class="pd" text-anchor="start">the trade capital</text>
+  <circle cx="485.8" cy="252.5" r="3" class="dot minor"/>
+  <text x="494.8" y="250.5" class="pl" text-anchor="start">Rissani</text>
+  <circle cx="362.6" cy="263.6" r="4.5" class="dot"/>
+  <text x="371.6" y="261.6" class="pl" text-anchor="start">Alnif</text>
+  <text x="371.6" y="273.6" class="pd" text-anchor="start">trilobites</text>
+  <circle cx="307.9" cy="280.1" r="3" class="dot minor"/>
+  <text x="316.9" y="278.1" class="pl" text-anchor="start">Tazarine</text>
+  <circle cx="376.3" cy="258.0" r="4.5" class="dot"/>
+  <text x="385.3" y="256.0" class="pl" text-anchor="start">Jbel Isoumour</text>
+  <text x="385.3" y="268.0" class="pd" text-anchor="start">trilobite mountain</text>
+  <circle cx="526.8" cy="274.6" r="4.5" class="dot"/>
+  <text x="535.8" y="272.6" class="pl" text-anchor="start">Taouz</text>
+  <text x="535.8" y="284.6" class="pd" text-anchor="start">Kem Kem</text>
+  <circle cx="513.1" cy="274.6" r="3" class="dot minor"/>
+  <text x="522.1" y="272.6" class="pl" text-anchor="start">Hassi Begaa</text>
+  <text x="522.1" y="284.6" class="pd" text-anchor="start">the 1991 find</text>
+</svg>
+    <p class="note" style="margin-top:16px">
+      The trade runs on a triangle: Alnif, Erfoud and Taouz. Alnif calls itself
+      the trilobite capital of the world and sits within reach of Cambrian,
+      Ordovician and Devonian rock at once. Jbel Isoumour is known simply as
+      trilobite mountain.
+    </p>
+  </section>
+
+  <section>
+    <h2>An industry, not a curiosity</h2>
+    <div class="big4">
+      <div><div class="n">$40 m</div><div class="l">Estimated annual value of the fossil trade</div></div>
+      <div><div class="n">50,000+</div><div class="l">People employed digging, preparing and wholesaling</div></div>
+      <div><div class="n">25+ yrs</div><div class="l">Of intensive commercial extraction</div></div>
+      <div><div class="n">100s</div><div class="l">Of new species described to science out of this material</div></div>
+    </div>
+    <p class="note" style="margin-top:18px">
+      That last figure is the part worth holding. The commercial diggers are
+      also the discovery mechanism. Hundreds of taxa entered the scientific
+      record because somebody quarrying for the shops found something nobody had
+      seen. The trade and the science are not separable here.
+    </p>
+    <p class="note">
+      The Kem Kem story starts the same way. In 1991 a shepherd at Hassi Begaa
+      found fish bones. That led to the excavations that produced Spinosaurus
+      aegyptiacus, the first dinosaur known to have been semiaquatic and the
+      largest predator yet found.
+    </p>
+  </section>
+
+  <section>
+    <h2>What is real and what is made</h2>
+    <p class="note">
+      A great deal of what is sold has been improved, and some of it has been
+      manufactured outright. This is an open secret in the trade and it is
+      worth knowing before rather than after.
+    </p>
+    <div class="test">
+      <div>
+        <div class="h">Signs of a real specimen</div>
+        <ul>
+          <li>The fossil and the matrix are the same stone, with no seam between them</li>
+          <li>Asymmetry, breakage, missing spines. Real animals are damaged</li>
+          <li>Preparation marks under a lens: needle work, not casting texture</li>
+          <li>The species matches the bed it is claimed to come from</li>
+          <li>The seller can name the quarry</li>
+        </ul>
+      </div>
+      <div>
+        <div class="h bad">Signs of a made one</div>
+        <ul>
+          <li>Perfect symmetry, every spine intact, on a cheap piece</li>
+          <li>A colour or sheen that stops abruptly at the edge of the animal</li>
+          <li>Identical specimens in quantity on the same table</li>
+          <li>Glue lines, filler, or a body that sits on the rock rather than in it</li>
+          <li>Composites: a real head, a carved rest</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note" style="margin-top:20px">
+      Painting, gluing and sculpting are all done, sometimes on genuine
+      fragments. A composite is the hardest case: part of it is 400 million
+      years old and part of it was made last month.
+    </p>
+  </section>
+
+  <section>
+    <h2>What leaves, and how</h2>
+    <table>
+      <thead><tr><th>Item</th><th>Detail</th></tr></thead>
+      <tbody>
+        <tr><td>Spinosaurus teeth</td><td>$100 to $500 for a three or four inch specimen; more for larger</td></tr>
+        <tr><td>Regulation</td><td>Morocco categorises and controls fossil sales, and illegal export is widespread regardless</td></tr>
+        <tr><td>January 2025</td><td>French customs intercepted nine dinosaur teeth smuggled out of Morocco</td></tr>
+        <tr><td>The wider problem</td><td>Scientifically important material reaching private auction rather than an institution</td></tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-top:18px">
+      Which is the tension the sector has not resolved. The trade feeds fifty
+      thousand people in some of the poorest districts in the country, and it
+      also removes evidence from the record before anyone has described it.
+    </p>
+  </section>
+
+  <div class="editorial">
+    <strong>Editorial position.</strong> Dancing with Lions is a publisher, not
+    a political actor. We report what is documented and attribute it. Where
+    sources disagree we say so and give the range. Where a question is
+    contested in law or politics we set out the record and take no side.
+  </div>
+
+  <div class="foot">
+    <strong>Sources:</strong> Published surveys of the Moroccan fossil trade,
+    including employment and value estimates; stratigraphic descriptions of the
+    Anti-Atlas, Erfoud limestones and the Kem Kem Group; reporting on the 2014
+    Spinosaurus excavation and the 1991 Hassi Begaa find; French customs
+    reporting, January 2025. Trade value and employment figures are estimates,
+    not audited totals.
+    <br><br>
+    <strong>&copy; Dancing with Lions.</strong> Data compilation and
+    visualisation. Reuse requires attribution and a visible credit reading
+    &ldquo;Source: Dancing with Lions&rdquo;.
+  </div>
+
+</div>
+</body>
+</html>
