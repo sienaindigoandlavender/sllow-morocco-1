@@ -449,3 +449,24 @@ button:focus {
 .text-stone-500, .text-stone-600 {
   color: hsl(var(--foreground)) !important;
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   INLINE STORY MAPS
+   Styles the <svg class="map"> blocks embedded in story bodies.
+   Added September 2026 with "Beyond Toubkal". Every future story
+   map uses these same classes — nothing further to add per story.
+   ═══════════════════════════════════════════════════════════════ */
+
+  /* map */
+  .map{width:100%;height:auto;margin-top:24px;display:block}
+  .map .grid{stroke:rgba(10,10,10,.08);stroke-width:1}
+  .map .ax{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.30)}
+  .map .dot{fill:var(--mapdot,#3E7A4E)}
+  .map .dot.minor{fill:rgba(10,10,10,.30)}
+  .map .pl{font-family:"DM Sans",sans-serif;font-size:12px;fill:#0a0a0a}
+  .map .pd{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.40)}
+  .map .route{fill:none;stroke:var(--maproute,#A9863C);stroke-width:1.6;stroke-dasharray:5 4}
+  .map .span{stroke:var(--maproute,#A9863C);stroke-width:2}
+  .map .spanlab{font-family:"DM Sans",sans-serif;font-size:10.5px;fill:var(--maproute,#A9863C)}
+
+.map { width: 100%; height: auto; display: block; margin: 2rem 0; }
