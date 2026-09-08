@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 
 const CityMap = dynamic(() => import("@/components/CityMap"), { ssr: false });
 import { cloudinaryUrl } from "@/lib/cloudinary";
-import { TRIP_FUNNEL_PUBLIC } from "@/lib/flags";
+import { TRIP_FUNNEL_PUBLIC, JOURNEY_CROSSLINKS } from "@/lib/flags";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -495,7 +495,7 @@ export default function CityGuideContent({
       )}
 
       {/* ── Journeys ──────────────────────────────────────────────────────── */}
-      {TRIP_FUNNEL_PUBLIC && journeys.length > 0 && (
+      {JOURNEY_CROSSLINKS && journeys.length > 0 && (
         <section className="px-8 md:px-10 lg:px-14 pb-14 border-t border-foreground/[0.08] pt-14">
           <div className="mb-12">
             <SectionLabel>Journeys to {destination.title}</SectionLabel>
