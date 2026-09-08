@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Rendered inside the story page via an iframe. Indexing it separately
+     would compete with the story for the same subject. -->
+<meta name="robots" content="noindex, follow">
+<title>Choosing an Alphabet — Dancing with Lions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500&family=Noto+Sans+Tifinagh&family=Noto+Naskh+Arabic&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0a0a;--ink-60:#333333;--ink-40:#4A4A4A;
+    --rule:rgba(10,10,10,.10);--hair:rgba(10,10,10,.06);
+    --yaz:#B5342B;--chosen:#2E6B5E;--pending:#B5924A;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;font-size:15px;line-height:1.55}
+  .wrap{max-width:940px;margin:0 auto;padding:52px 28px 88px}
+  h1{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:clamp(32px,5.6vw,54px);line-height:1.05;letter-spacing:-.01em;margin:0 0 16px}
+  .standfirst{font-family:"EB Garamond",Georgia,serif;font-size:19px;line-height:1.5;color:#262626;max-width:38em;margin:0}
+  .dateline{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin-top:20px;padding-top:14px;border-top:1px solid var(--hair);font-size:12px;color:var(--ink-40)}
+  .dateline .stamp{color:var(--ink-60)}
+  h2{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:25px;line-height:1.2;margin:0 0 6px}
+  .note{font-size:13.5px;color:#333333;max-width:44em;margin:0 0 24px}
+  section{border-top:1px solid var(--rule);padding-top:32px;margin-top:48px}
+
+  .scripts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:22px}
+  .scripts>div{background:#fff;padding:26px 20px}
+  .scripts .word{font-size:34px;line-height:1.3;margin-bottom:14px;color:#0a0a0a}
+  .scripts .tif{font-family:"Noto Sans Tifinagh","DM Sans",sans-serif}
+  .scripts .ar{font-family:"Noto Naskh Arabic",serif;direction:rtl}
+  .scripts .nm{font-family:"EB Garamond",Georgia,serif;font-size:19px;margin-bottom:5px}
+  .scripts .who{font-size:12.5px;color:#4A4A4A;line-height:1.5}
+  .scripts .pick{
+    display:inline-block;margin-top:12px;font-size:10.5px;letter-spacing:.12em;
+    text-transform:uppercase;color:#fff;background:var(--chosen);padding:4px 9px;
+  }
+
+  .tl{margin-top:24px}
+  .ev{display:grid;grid-template-columns:78px 14px 1fr;gap:0 16px;align-items:start;padding:0 0 22px}
+  .yr{font-family:"EB Garamond",Georgia,serif;font-size:17px;text-align:right;padding-top:2px}
+  .rail{position:relative;height:100%}
+  .rail:before{content:"";position:absolute;left:6px;top:8px;bottom:-22px;width:1px;background:var(--rule)}
+  .ev:last-child .rail:before{display:none}
+  .mk{position:absolute;left:2px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--chosen)}
+  .mk.open{background:var(--pending)}
+  .evt{font-size:14.5px;line-height:1.5}
+  .evd{font-size:12.5px;color:#4A4A4A;margin-top:3px;line-height:1.45}
+
+  .big4{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:22px}
+  .big4>div{background:#fff;padding:22px 16px}
+  .big4 .n{font-family:"EB Garamond",Georgia,serif;font-size:28px;line-height:1;margin-bottom:6px;color:var(--chosen)}
+  .big4 .l{font-size:12.5px;color:#4A4A4A;line-height:1.4}
+
+  .editorial{border-top:1px solid var(--rule);margin-top:46px;padding-top:20px;font-size:12.5px;color:#4A4A4A;line-height:1.7;max-width:44em}
+  .editorial strong{color:#262626;font-weight:500}
+  table{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px}
+  th{text-align:left;font-weight:500;font-size:12px;color:var(--ink-40);padding:0 0 9px;border-bottom:1px solid var(--rule)}
+  td{padding:11px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+  td:last-child,th:last-child{text-align:right;font-variant-numeric:tabular-nums}
+  .foot{border-top:1px solid var(--rule);margin-top:28px;padding-top:20px;font-size:12px;color:var(--ink-40);line-height:1.7}
+  .foot strong{color:var(--ink-60);font-weight:500}
+  @media(max-width:620px){.ev{grid-template-columns:62px 14px 1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>3 alphabets were on the table</h1>
+  <p class="standfirst">
+    A language with no agreed script cannot be taught, printed or put on a road
+    sign. In 2003 Morocco had to choose one for Tamazight, and there were three
+    candidates with three different constituencies behind them. The one that won
+    is 2,500 years old.
+  </p>
+  <div class="dateline">
+    <span class="stamp"><time datetime="2026-09-07">Updated 7 September 2026</time></span>
+    <span>Implementation dates from IRCAM, the Ministry of Education and the 2024 Indigenous World report.</span>
+  </div>
+
+  <section>
+    <h2>The same word, 3 ways</h2>
+    <div class="scripts">
+      <div>
+        <div class="word tif">ⵜⴰⵎⴰⵣⵉⵖⵜ</div>
+        <div class="nm">Tifinagh</div>
+        <div class="who">The indigenous script, descended from Libyco-Berber and kept alive by the Tuareg. Visually distinct from everything around it, which was the argument for it and against it.</div>
+        <div class="pick">Chosen, 2003</div>
+      </div>
+      <div>
+        <div class="word ar">تامازيغت</div>
+        <div class="nm">Arabic</div>
+        <div class="who">Favoured on the grounds of national unity and of an existing literate readership. Amazigh organisations read it as absorbing the language into an Arabic-Islamic frame.</div>
+      </div>
+      <div>
+        <div class="word">Tamaziɣt</div>
+        <div class="nm">Latin</div>
+        <div class="who">The script most Tamazight speakers were already writing in, and the one favoured by much of the cultural movement. Read by others as secular and Western-facing.</div>
+      </div>
+    </div>
+    <p class="note" style="margin-top:20px">
+      IRCAM recommended Tifinagh and the King approved it. It was a compromise
+      between two politically loaded options, and it had the advantage of being
+      neither. It also happens to be the script Numidian stonecutters were using
+      before Rome arrived.
+    </p>
+  </section>
+
+  <section>
+    <h2>What has been built since</h2>
+    <div class="tl">
+      <div class="ev"><div class="yr">2001</div><div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">IRCAM is founded</div><div class="evd">The Royal Institute of Amazigh Culture, by royal decree, with Mohamed Chafik as its first rector.</div></div></div>
+      <div class="ev"><div class="yr">2003</div><div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">Tifinagh adopted, and teaching begins</div><div class="evd">317 pilot primary schools, three hours a week, with a standardised curriculum built across the dialects.</div></div></div>
+      <div class="ev"><div class="yr">2004</div><div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">International recognition of the script</div><div class="evd">Which is what made it typeable, and therefore usable on a sign, a screen or a keyboard.</div></div></div>
+      <div class="ev"><div class="yr">2008–09</div><div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">A grammar, then a television channel</div><div class="evd">IRCAM publishes the reference grammar; the Amazigh channel goes on air.</div></div></div>
+      <div class="ev"><div class="yr">2011</div><div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">Article 5 of the constitution</div><div class="evd">Tamazight becomes an official language of the state alongside Arabic. Very few countries anywhere have done this for an indigenous language.</div></div></div>
+      <div class="ev"><div class="yr">2018</div><div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">Organic Law 26.16</div><div class="evd">Sets out how official status is to be implemented, and over what timetable.</div></div></div>
+      <div class="ev"><div class="yr">2020</div><div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">Into the courts</div><div class="evd">Tamazight is integrated into the judicial system in June.</div></div></div>
+      <div class="ev"><div class="yr">2021</div><div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">A full primary curriculum</div><div class="evd">Built with IRCAM and issued in January.</div></div></div>
+      <div class="ev"><div class="yr">2023</div><div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">Yennayer becomes a paid national holiday</div><div class="evd">Announced by the Royal Cabinet on 3 May. Amazigh New Year falls in mid-January.</div></div></div>
+      <div class="ev"><div class="yr">2023</div><div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">A Wikipedia of its own</div><div class="evd">Standard Moroccan Amazigh, language code zgh, accepted as an independent Wikipedia project in November.</div></div></div>
+      <div class="ev"><div class="yr">2030</div><div class="rail"><span class="mk open"></span></div>
+        <div><div class="evt">The stated target for full primary rollout</div><div class="evd">Announced in June 2023. Teaching has been running in pilot form since 2003.</div></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Where it stands</h2>
+    <div class="big4">
+      <div><div class="n">600,000</div><div class="l">Primary pupils studying Tamazight in 2018–19</div></div>
+      <div><div class="n">4 of 13</div><div class="l">Public universities teaching it</div></div>
+      <div><div class="n">900+</div><div class="l">Amazigh associations across the country</div></div>
+      <div><div class="n">2.7 m</div><div class="l">Native speakers of Central Atlas Tamazight alone</div></div>
+    </div>
+    <table>
+      <thead><tr><th>Where Tifinagh appears</th><th>Where it does not yet</th></tr></thead>
+      <tbody>
+        <tr><td>Road signs, alongside Arabic and French; school materials; the national television channel; official signage</td><td>National identity cards, passports, and the banknotes issued in November 2023</td></tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-top:18px">
+      Amazigh organisations argue that implementation has run behind the law,
+      and the 2030 date for full primary teaching is the figure they point to.
+      The state&rsquo;s position is that the rollout is sequenced. Both are on
+      the record.
+    </p>
+  </section>
+
+  <div class="editorial">
+    <strong>Editorial position.</strong> Dancing with Lions is a publisher, not
+    a political actor. We report what is documented and attribute it. Where
+    sources disagree we say so and give the range. Where a question is
+    contested in law or politics we set out the record and take no side.
+  </div>
+
+  <div class="foot">
+    <strong>Sources:</strong> Institut Royal de la Culture Amazighe; Article 5
+    of the 2011 Constitution; Organic Law 26.16, 2018; Moroccan Ministry of
+    National Education; IWGIA, <em>The Indigenous World 2024</em>; Wikimedia
+    Foundation on the zgh project. The founding date of IRCAM is given as 2001
+    in the royal decree and as 2004 in some later accounts; the pilot-school
+    figure is given as both 120 and 317 depending on the source.
+    <br><br>
+    <strong>&copy; Dancing with Lions.</strong> Data compilation and
+    visualisation. Reuse requires attribution and a visible credit reading
+    &ldquo;Source: Dancing with Lions&rdquo;.
+  </div>
+
+</div>
+</body>
+</html>
