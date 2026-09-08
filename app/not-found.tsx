@@ -20,11 +20,10 @@ export default function NotFound() {
           Return Home
         </Link>
         <Link
-          href="/journeys"
+          href="/stories"
           className="px-8 py-3 border border-foreground text-foreground text-sm tracking-widest uppercase hover:bg-foreground hover:text-background transition-colors"
         >
-          View Journeys
-        </Link>
+          Read the stories </Link>
       </div>
     </div>
   );
