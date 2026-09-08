@@ -38,7 +38,7 @@ const DATA_MODULES = [
 ];
 
 const dataModuleEntries = DATA_MODULES.map((slug) => ({
-  url: `https://www.slowmorocco.com/data/${slug}.html`,
+  url: `${SITE_URL}/data/${slug}.html`,
   lastModified: new Date('2026-09-08'),
   changeFrequency: 'yearly' as const,
   priority: 0.7,
@@ -182,5 +182,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...storyCategoryPages,
     ...regionPages,
     ...destinationPages,
+    ...dataModuleEntries,
   ];
 }
