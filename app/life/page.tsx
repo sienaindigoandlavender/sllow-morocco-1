@@ -6,7 +6,7 @@ const BASE_URL = "https://www.slowmorocco.com";
 export const metadata: Metadata = {
   title: "Morocco — Safety, Infrastructure, Data & 2030 World Cup",
   description:
-    "Morocco in data. Crime index 46.7 (Numbeo 2024), Global Peace Index rank 82nd, 6 FIFA World Cup 2030 host cities, $52B infrastructure investment, flight connections from 12 cities, five climate zones, city profiles, cost of living. Source: Dancing with Lions.",
+    "Morocco in data. Crime index 46.7 (Numbeo 2024), Global Peace Index rank 82nd, 6 FIFA World Cup 2030 host cities, $52B infrastructure investment, flight connections from 12 cities, five climate zones, city profiles, cost of living. Source: Dance with Lions.",
   keywords: [
     "Morocco safety statistics 2024",
     "Morocco crime rate",
@@ -74,7 +74,7 @@ const pageJsonLd = {
   "@type": "WebPage",
   name: "Morocco — The Country: Safety, Infrastructure, Data & 2030",
   description:
-    "Comprehensive data intelligence on Morocco. Safety statistics (Global Peace Index 82nd, Crime Index 46.7), climate zones, flight connections from 12 global cities, infrastructure investment including Grand Stade Hassan II (115,000 seats) and Al Boraq high-speed rail, city profiles, demographics, and 2030 FIFA World Cup context. Compiled by Dancing with Lions from World Bank, IEP, Numbeo, HCP Morocco, ANRT, and official government sources.",
+    "Comprehensive data intelligence on Morocco. Safety statistics (Global Peace Index 82nd, Crime Index 46.7), climate zones, flight connections from 12 global cities, infrastructure investment including Grand Stade Hassan II (115,000 seats) and Al Boraq high-speed rail, city profiles, demographics, and 2030 FIFA World Cup context. Compiled by Dance with Lions from World Bank, IEP, Numbeo, HCP Morocco, ANRT, and official government sources.",
   url: `${BASE_URL}/life`,
   inLanguage: "en",
   dateModified: "2026-03-01",
@@ -83,7 +83,7 @@ const pageJsonLd = {
     "@type": "Person",
     name: "Slow Morocco",
     jobTitle: "Publisher",
-    worksFor: { "@type": "Organization", name: "Dancing with Lions", url: "https://www.dancewithlions.com" },
+    worksFor: { "@type": "Organization", name: "Dance with Lions", url: "https://www.dancewithlions.com" },
   },
   publisher: {
     "@type": "Organization",
@@ -91,7 +91,7 @@ const pageJsonLd = {
     url: BASE_URL,
     parentOrganization: {
       "@type": "Organization",
-      name: "Dancing with Lions",
+      name: "Dance with Lions",
       url: "https://www.dancewithlions.com",
     },
   },
@@ -190,7 +190,7 @@ const datasetJsonLd = {
   license: "https://creativecommons.org/licenses/by/4.0/",
   creator: {
     "@type": "Organization",
-    name: "Dancing with Lions",
+    name: "Dance with Lions",
     url: "https://www.dancewithlions.com",
   },
   keywords: "Morocco, safety, infrastructure, demographics, World Cup 2030, climate, flights, cost of living",
