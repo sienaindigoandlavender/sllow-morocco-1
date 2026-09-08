@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import * as d3 from "d3";
+import { TRIP_FUNNEL_PUBLIC } from "@/lib/flags";
 
 // ─────────────────────────────────────────────
 // TYPES
@@ -909,6 +910,7 @@ export default function BirdAtlasDossier() {
       </section>
 
       {/* ━━━ JOURNEY CTA ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      {TRIP_FUNNEL_PUBLIC && (
       <section className="px-8 md:px-[8%] lg:px-[12%] py-16 border-b border-neutral-100">
         <Reveal>
           <div className="flex items-center justify-between gap-8 flex-wrap">
@@ -922,6 +924,7 @@ export default function BirdAtlasDossier() {
           </div>
         </Reveal>
       </section>
+      )}
 
       {/* ━━━ SOURCES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="px-8 md:px-[8%] lg:px-[12%] py-16 border-t border-neutral-200" style={{ background: "#f5f5f0" }}>
