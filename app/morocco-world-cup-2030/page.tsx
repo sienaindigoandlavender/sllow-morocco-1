@@ -6,7 +6,7 @@ const BASE_URL = "https://www.slowmorocco.com";
 export const metadata: Metadata = {
   title: "Morocco World Cup 2030 — Interactive Stadium & Infrastructure Map",
   description:
-    "Morocco's six World Cup 2030 host cities mapped: stadiums, high-speed rail, airports, highways, and hotel capacity. From the 115,000-seat Grand Stade Hassan II in Casablanca to the Atlas foothills of Marrakech. $41 billion in infrastructure. Research by Dancing with Lions.",
+    "Morocco's six World Cup 2030 host cities mapped: stadiums, high-speed rail, airports, highways, and hotel capacity. From the 115,000-seat Grand Stade Hassan II in Casablanca to the Atlas foothills of Marrakech. $41 billion in infrastructure. Research by Dance with Lions.",
   keywords: [
     "Morocco World Cup 2030",
     "World Cup 2030 stadiums",
@@ -64,7 +64,7 @@ const jsonLd = {
     url: BASE_URL,
     parentOrganization: {
       "@type": "Organization",
-      name: "Dancing with Lions",
+      name: "Dance with Lions",
       url: "https://www.dancewithlions.com",
     },
   },
@@ -74,7 +74,7 @@ const jsonLd = {
     jobTitle: "Founder",
     worksFor: {
       "@type": "Organization",
-      name: "Dancing with Lions",
+      name: "Dance with Lions",
     },
   },
   about: [

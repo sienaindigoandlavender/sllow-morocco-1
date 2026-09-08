@@ -594,7 +594,7 @@ export default function WorldCup2030MapContent() {
 
         {/* Bottom attribution */}
         <footer className="fixed bottom-6 right-6 lg:right-10 z-10 text-[10px] text-white/20 text-right leading-relaxed hidden md:block">
-          &copy; Slow Morocco &middot; Dancing with Lions
+          &copy; Slow Morocco &middot; Dance with Lions
           <br />
           Data: FIFA, FRMF, ONCF, ADM, HCP
         </footer>
