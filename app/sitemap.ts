@@ -15,6 +15,35 @@ export const revalidate = 3600;
 
 const SITE_URL = 'https://www.slowmorocco.com';
 
+const DATA_MODULES = [
+ 'al-andalus','al-haouz-earthquake','almohad-minarets','alphabet-of-craft','amazigh-identity',
+ 'amazigh-silver','argan-triangle','atlantic-coast-morocco','bread-of-morocco','building-in-earth',
+ 'calendar-of-light','carpet-code','casablanca-deco','choosing-an-alphabet','cinema-morocco',
+ 'colour-index-morocco','couscous-friday','date-palm-oases','french-protectorate','geometry-of-zellige',
+ 'hammam-geometry','ibn-battuta','imperial-cities','jbel-irhoud','jewish-heritage',
+ 'languages-of-morocco','literary-morocco','malhun','medina-atlas','mogador',
+ 'moroccan-diaspora','moroccan-fashion-intelligence','moroccan-music-traditions',
+ 'moroccan-perfume-traditions','moroccan-pottery-guide','moroccan-tea','moroccan-wedding-economy',
+ 'moroccan-wedding-traditions','noor-solar','olive-oil-morocco','phosphate-kingdom',
+ 'pulse-of-the-medina','rome-north-africa','route-thousand-kasbahs','seasonal-produce-wheel',
+ 'seven-saints-marrakech','shadow-of-the-moucharabieh','spice-map','surf-coast-morocco',
+ 'tgv-rail-network','the-atlas-geology','the-blue-city','the-brotherhoods','the-cedar-forest',
+ 'the-cooperatives','the-fossil-beds','the-gnawa-road','the-green-march','the-gunpowder-ballet',
+ 'the-khettara','the-kidnapped-geographer','the-kings-lions','the-medina-as-property',
+ 'the-nomad-pulse','the-nuba','the-oasis','the-pharmacopoeia','the-phosphate-fossils',
+ 'the-royal-gardens','the-sacred-smoke','the-sardine-coast','the-square','the-storks','the-strait',
+ 'the-tagine','the-tannery','the-three-deserts','the-two-libraries','the-weekly-souk',
+ 'three-calendars','tourism-flow','trans-saharan-trade','vertical-migration',
+ 'water-crisis','weather-portraits-morocco','world-cup-2030',
+];
+
+const dataModuleEntries = DATA_MODULES.map((slug) => ({
+  url: `https://www.slowmorocco.com/data/${slug}.html`,
+  lastModified: new Date('2026-09-08'),
+  changeFrequency: 'yearly' as const,
+  priority: 0.7,
+}));
+
 const STATIC_PAGES: MetadataRoute.Sitemap = [
   { url: SITE_URL, changeFrequency: 'daily', priority: 1.0 },
   { url: `${SITE_URL}/about`, changeFrequency: 'monthly', priority: 0.7 },
