@@ -32,13 +32,23 @@ export async function GET() {
       .order('title', { ascending: true })
       .limit(500);
 
+    // City hubs. "Marrakech guide" is a far bigger query than any single
+    // place, so these belong in search as much as in the sitemap.
+    const { data: destinations } = await getSupabase()
+      .from('destinations')
+      .select('slug, title, subtitle, excerpt, region')
+      .eq('published', true)
+      .order('sort_order', { ascending: true })
+      .limit(200);
+
     return NextResponse.json({
       stories: stories || [],
       journeys: journeys || [],
       places: places || [],
+      destinations: destinations || [],
     });
   } catch (error) {
     console.error('Search index error:', error);
-    return NextResponse.json({ stories: [], journeys: [], places: [] }, { status: 500 });
+    return NextResponse.json({ stories: [], journeys: [], places: [], destinations: [] }, { status: 500 });
   }
 }
