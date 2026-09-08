@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Rendered inside the story page via an iframe. Indexing it separately
+     would compete with the story for the same subject. -->
+<meta name="robots" content="noindex, follow">
+<title>The Brotherhoods — Dancing with Lions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0a0a;--ink-60:#333333;--ink-40:#4A4A4A;
+    --rule:rgba(10,10,10,.10);--hair:rgba(10,10,10,.06);
+    --green:#2E6B4F;--ink-blue:#2C3E66;--sand:#B5924A;
+    --mapdot:#2E6B4F;--maproute:#B5924A;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;font-size:15px;line-height:1.55}
+  .wrap{max-width:940px;margin:0 auto;padding:52px 28px 88px}
+  h1{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:clamp(32px,5.6vw,54px);line-height:1.05;letter-spacing:-.01em;margin:0 0 16px}
+  .standfirst{font-family:"EB Garamond",Georgia,serif;font-size:19px;line-height:1.5;color:#262626;max-width:38em;margin:0}
+  .dateline{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin-top:20px;padding-top:14px;border-top:1px solid var(--hair);font-size:12px;color:var(--ink-40)}
+  .dateline .stamp{color:var(--ink-60)}
+  h2{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:25px;line-height:1.2;margin:0 0 6px}
+  .note{font-size:13.5px;color:#333333;max-width:44em;margin:0 0 24px}
+  section{border-top:1px solid var(--rule);padding-top:32px;margin-top:48px}
+
+  /* map */
+  .map{width:100%;height:auto;margin-top:24px;display:block}
+  .map .grid{stroke:rgba(10,10,10,.08);stroke-width:1}
+  .map .ax{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.30)}
+  .map .dot{fill:var(--mapdot,#3E7A4E)}
+  .map .dot.minor{fill:rgba(10,10,10,.30)}
+  .map .pl{font-family:"DM Sans",sans-serif;font-size:12px;fill:#0a0a0a}
+  .map .pd{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.40)}
+  .map .route{fill:none;stroke:var(--maproute,#A9863C);stroke-width:1.6;stroke-dasharray:5 4}
+  .map .span{stroke:var(--maproute,#A9863C);stroke-width:2}
+  .map .spanlab{font-family:"DM Sans",sans-serif;font-size:10.5px;fill:var(--maproute,#A9863C)}
+
+  .hier{margin-top:24px}
+  .hrow{display:grid;grid-template-columns:150px 1fr;gap:18px;padding:15px 0;border-bottom:1px solid var(--hair);align-items:baseline}
+  .hrow .t{font-family:"EB Garamond",Georgia,serif;font-size:20px}
+  .hrow .d{font-size:13.5px;color:#333333;line-height:1.5}
+  .hrow .ind1{padding-left:22px}
+  .hrow .ind2{padding-left:44px}
+
+  .big4{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:22px}
+  .big4>div{background:#fff;padding:22px 16px}
+  .big4 .n{font-family:"EB Garamond",Georgia,serif;font-size:28px;line-height:1;margin-bottom:6px;color:var(--green)}
+  .big4 .l{font-size:12.5px;color:#4A4A4A;line-height:1.4}
+
+  .editorial{border-top:1px solid var(--rule);margin-top:46px;padding-top:20px;font-size:12.5px;color:#4A4A4A;line-height:1.7;max-width:44em}
+  .editorial strong{color:#262626;font-weight:500}
+  table{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px}
+  th{text-align:left;font-weight:500;font-size:12px;color:var(--ink-40);padding:0 0 9px;border-bottom:1px solid var(--rule)}
+  td{padding:11px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+  td:last-child,th:last-child{text-align:right;font-variant-numeric:tabular-nums}
+  .foot{border-top:1px solid var(--rule);margin-top:28px;padding-top:20px;font-size:12px;color:var(--ink-40);line-height:1.7}
+  .foot strong{color:var(--ink-60);font-weight:500}
+  @media(max-width:620px){.hrow{grid-template-columns:1fr;gap:3px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>An order founded in Fes reaches 20 countries</h1>
+  <p class="standfirst">
+    Ahmad al-Tijani founded his tariqa in Fes around 1781. It is now the largest
+    Sufi movement in West Africa, its followers number in the tens of millions
+    at least, and every year they come back to the city where it started,
+    because that is where he is buried.
+  </p>
+  <div class="dateline">
+    <span class="stamp"><time datetime="2026-09-07">Updated 7 September 2026</time></span>
+    <span>Follower totals are the orders&rsquo; own claims and are not independently audited.</span>
+  </div>
+
+  <section>
+    <h2>The reach</h2>
+<svg viewBox="0 0 900 430" class="map" xmlns="http://www.w3.org/2000/svg">
+  <line x1="62.1" y1="48" x2="62.1" y2="382" class="grid"/>
+  <text x="62.1" y="398" class="ax" text-anchor="middle">20°W</text>
+  <line x1="203.2" y1="48" x2="203.2" y2="382" class="grid"/>
+  <text x="203.2" y="398" class="ax" text-anchor="middle">10°W</text>
+  <line x1="344.2" y1="48" x2="344.2" y2="382" class="grid"/>
+  <text x="344.2" y="398" class="ax" text-anchor="middle">0°E</text>
+  <line x1="485.3" y1="48" x2="485.3" y2="382" class="grid"/>
+  <text x="485.3" y="398" class="ax" text-anchor="middle">10°E</text>
+  <line x1="626.3" y1="48" x2="626.3" y2="382" class="grid"/>
+  <text x="626.3" y="398" class="ax" text-anchor="middle">20°E</text>
+  <line x1="767.4" y1="48" x2="767.4" y2="382" class="grid"/>
+  <text x="767.4" y="398" class="ax" text-anchor="middle">30°E</text>
+  <line x1="48" y1="362.9" x2="852" y2="362.9" class="grid"/>
+  <text x="40" y="366.9" class="ax" text-anchor="end">5°N</text>
+  <line x1="48" y1="315.2" x2="852" y2="315.2" class="grid"/>
+  <text x="40" y="319.2" class="ax" text-anchor="end">10°N</text>
+  <line x1="48" y1="267.5" x2="852" y2="267.5" class="grid"/>
+  <text x="40" y="271.5" class="ax" text-anchor="end">15°N</text>
+  <line x1="48" y1="219.8" x2="852" y2="219.8" class="grid"/>
+  <text x="40" y="223.8" class="ax" text-anchor="end">20°N</text>
+  <line x1="48" y1="172.1" x2="852" y2="172.1" class="grid"/>
+  <text x="40" y="176.1" class="ax" text-anchor="end">25°N</text>
+  <line x1="48" y1="124.3" x2="852" y2="124.3" class="grid"/>
+  <text x="40" y="128.3" class="ax" text-anchor="end">30°N</text>
+  <line x1="48" y1="76.6" x2="852" y2="76.6" class="grid"/>
+  <text x="40" y="80.6" class="ax" text-anchor="end">35°N</text>
+  <polyline points="273.7,86.2 118.5,237.9 97.4,270.3" class="route"/>
+  <polyline points="273.7,86.2 231.4,290.4 464.1,296.1" class="route"/>
+  <polyline points="273.7,86.2 802.6,261.8" class="route"/>
+  <circle cx="273.7" cy="86.2" r="4.5" class="dot"/>
+  <text x="282.7" y="84.2" class="pl" text-anchor="start">Fes</text>
+  <text x="282.7" y="96.2" class="pd" text-anchor="start">founded 1781</text>
+  <circle cx="311.8" cy="77.6" r="4.5" class="dot"/>
+  <text x="320.8" y="75.6" class="pl" text-anchor="start">Berkane</text>
+  <text x="320.8" y="87.6" class="pd" text-anchor="start">Boutchichiyya, Madagh</text>
+  <circle cx="263.8" cy="121.5" r="4.5" class="dot"/>
+  <text x="272.8" y="119.5" class="pl" text-anchor="start">Tamegroute</text>
+  <text x="272.8" y="131.5" class="pd" text-anchor="start">Nasiriyya, 4,000 manuscripts</text>
+  <circle cx="118.5" cy="237.9" r="3" class="dot minor"/>
+  <text x="127.5" y="235.9" class="pl" text-anchor="start">Nouakchott</text>
+  <text x="127.5" y="247.9" class="pd" text-anchor="start">Mauritania</text>
+  <circle cx="97.4" cy="270.3" r="4.5" class="dot"/>
+  <text x="106.4" y="268.3" class="pl" text-anchor="start">Dakar</text>
+  <text x="106.4" y="280.3" class="pd" text-anchor="start">Senegal</text>
+  <circle cx="231.4" cy="290.4" r="3" class="dot minor"/>
+  <text x="240.4" y="288.4" class="pl" text-anchor="start">Bamako</text>
+  <text x="240.4" y="300.4" class="pd" text-anchor="start">Mali</text>
+  <circle cx="323.1" cy="292.3" r="3" class="dot minor"/>
+  <text x="332.1" y="290.3" class="pl" text-anchor="start">Ouagadougou</text>
+  <text x="332.1" y="302.3" class="pd" text-anchor="start">Burkina Faso</text>
+  <circle cx="287.8" cy="360.1" r="3" class="dot minor"/>
+  <text x="296.8" y="358.1" class="pl" text-anchor="start">Abidjan</text>
+  <text x="296.8" y="370.1" class="pd" text-anchor="start">Côte d'Ivoire</text>
+  <circle cx="464.1" cy="296.1" r="4.5" class="dot"/>
+  <text x="473.1" y="294.1" class="pl" text-anchor="start">Kano</text>
+  <text x="473.1" y="306.1" class="pd" text-anchor="start">Nigeria</text>
+  <circle cx="373.8" cy="281.8" r="3" class="dot minor"/>
+  <text x="382.8" y="279.8" class="pl" text-anchor="start">Niamey</text>
+  <text x="382.8" y="291.8" class="pd" text-anchor="start">Niger</text>
+  <circle cx="555.8" cy="295.2" r="3" class="dot minor"/>
+  <text x="564.8" y="293.2" class="pl" text-anchor="start">N'Djamena</text>
+  <text x="564.8" y="305.2" class="pd" text-anchor="start">Chad</text>
+  <circle cx="802.6" cy="261.8" r="4.5" class="dot"/>
+  <text x="793.6" y="259.8" class="pl" text-anchor="end">Khartoum</text>
+  <text x="793.6" y="271.8" class="pd" text-anchor="end">Sudan</text>
+</svg>
+    <p class="note" style="margin-top:16px">
+      Senegal, Ghana, Nigeria, Mauritania, Mali, Côte d&rsquo;Ivoire, Burkina
+      Faso, Niger, Chad, Sudan and beyond. Tijani clerics run Quranic schools,
+      community centres and retreats, and in Senegal, Mali and parts of Nigeria
+      they sit in mediation, education and political advisory roles.
+    </p>
+    <p class="note">
+      The routes are not a coincidence. They are the caravan roads, described
+      elsewhere in this archive, running in a later century with a different
+      cargo.
+    </p>
+  </section>
+
+  <section>
+    <h2>The numbers, with the caveat attached</h2>
+    <div class="big4">
+      <div><div class="n">1781</div><div class="l">The Tijaniyya founded at Fes. Some accounts give 1784</div></div>
+      <div><div class="n">20+</div><div class="l">Countries with an established Tijani presence</div></div>
+      <div><div class="n">300 m</div><div class="l">Followers worldwide, as claimed by the order itself</div></div>
+      <div><div class="n">5–10%</div><div class="l">Of Morocco&rsquo;s population belonged to a zaouia in 1939</div></div>
+    </div>
+    <p class="note" style="margin-top:18px">
+      The 300 million figure is the order&rsquo;s own and has been reported
+      rather than verified. No independent census of tariqa membership exists
+      anywhere, and in Morocco many people are culturally Sufi without any
+      formal affiliation, which makes counting close to meaningless. What is not
+      in doubt is that the Tijaniyya is the largest Sufi movement in West
+      Africa.
+    </p>
+  </section>
+
+  <section>
+    <h2>How an order is structured</h2>
+    <div class="hier">
+      <div class="hrow"><div class="t">Shaykh</div><div class="d">The guide, at the top, often from a hereditary line. The authority is spiritual rather than administrative, and it does not transfer by election.</div></div>
+      <div class="hrow"><div class="t ind1">Muqaddam</div><div class="d">Deputies who run local branches. Plural muqaddamin. In practice they are the order: they initiate, teach and hold a place together.</div></div>
+      <div class="hrow"><div class="t ind2">Murid</div><div class="d">The disciple, who pledges allegiance and undertakes regular dhikr. The word means one who desires.</div></div>
+      <div class="hrow"><div class="t">Silsila</div><div class="d">The chain of transmission back through named teachers. The Boutchichiyya trace theirs to Abd al-Qadir al-Jilani of Baghdad, which is what people in Niger cite as the reason for joining it.</div></div>
+      <div class="hrow"><div class="t">Zaouia</div><div class="d">The building and the community in it. The word means corner. Historically a lodge, a school, a hostel, a court of arbitration and a food bank at once.</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Three houses</h2>
+    <table>
+      <thead><tr><th>Order</th><th>Where and what</th></tr></thead>
+      <tbody>
+        <tr><td>Tijaniyya</td><td>Founded at Fes by Ahmad al-Tijani, born 1737 at Ain Madhi, died 1815. His zaouia and mausoleum in Fes draw West African pilgrims, particularly around Mawlid. The teaching stresses intention and conduct over elaborate ritual</td></tr>
+        <tr><td>Boutchichiyya</td><td>A Qadiri order based at Madagh near Berkane. Several hundred thousand followers. Under Sidi Hamza, who died in 2017, it drew doctors, lawyers, engineers and students, and it is present in Europe and North America</td></tr>
+        <tr><td>Nasiriyya</td><td>At Tamegroute in the Draa. Its library holds more than 4,000 manuscripts, including Qurans of the twelfth century</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>From heritage to policy</h2>
+    <p class="note">
+      Sufism in Morocco moved from private practice to a stated element of
+      state religious policy over about two decades, and the dates are on the
+      record.
+    </p>
+    <table>
+      <thead><tr><th>Date</th><th>What happened</th></tr></thead>
+      <tbody>
+        <tr><td>November 2002</td><td>Ahmed Toufiq, historian and a Boutchichi disciple, is appointed Minister of Islamic Affairs, succeeding a minister of eighteen years</td></tr>
+        <tr><td>After 2003</td><td>Following the Casablanca bombings, Sufism is publicly promoted as part of the state&rsquo;s religious framework, alongside the Maliki school and Ash&rsquo;ari theology</td></tr>
+        <tr><td>2011</td><td>The King addresses the third international forum of Tijaniyya followers, held in Fes</td></tr>
+        <tr><td>Ongoing</td><td>The Mohammed VI Institute for the Training of Imams in Rabat trains African and European imams. The Mohammed VI Foundation of African Ulema operates across the continent</td></tr>
+        <tr><td>December 2024</td><td>The 44th Islamic Cultural Days are held in Dakar under royal patronage, with Tijani scholars and the Senegalese president present</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>The moussem</h2>
+    <p class="note">
+      The saint festivals are where the orders meet the general population.
+      Millions attend moussems, Mawlid celebrations and shrine visits every
+      year, most of them people who belong to no tariqa at all. The Darqawiya
+      moussem runs for one day on the last Sunday of September; the Fes Festival
+      of Sufi Culture draws audiences from as far as South America.
+    </p>
+  </section>
+
+  <div class="editorial">
+    <strong>Editorial position.</strong> Dancing with Lions is a publisher, not
+    a political actor. We report what is documented and attribute it. Where
+    sources disagree we say so and give the range. Where a question is
+    contested in law or politics we set out the record and take no side.
+  </div>
+
+  <div class="foot">
+    <strong>Sources:</strong> Encyclopædia Britannica on the Tijaniyya; Jamil M.
+    Abun-Nasr, <em>The Tijaniyya: A Sufi Order in the Modern World</em>, Oxford,
+    1965; Vincent J. Cornell, <em>Realm of the Saint</em>, Texas, 1998; J. S.
+    Trimingham, <em>The Sufi Orders in Islam</em>; contemporary reporting on
+    Moroccan religious diplomacy. Membership figures throughout are claims made
+    by the orders and reported in the press; no independent count exists.
+    <br><br>
+    <strong>&copy; Dancing with Lions.</strong> Data compilation and
+    visualisation. Reuse requires attribution and a visible credit reading
+    &ldquo;Source: Dancing with Lions&rdquo;.
+  </div>
+
+</div>
+</body>
+</html>
