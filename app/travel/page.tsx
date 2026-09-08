@@ -52,7 +52,7 @@ const howToJsonLd = {
     "@type": "Person",
     name: "Slow Morocco",
     jobTitle: "Publisher",
-    worksFor: { "@type": "Organization", name: "Dancing with Lions", url: "https://www.dancewithlions.com" },
+    worksFor: { "@type": "Organization", name: "Dance with Lions", url: "https://www.dancewithlions.com" },
   },
   publisher: {
     "@type": "Organization",
@@ -181,7 +181,7 @@ const articleJsonLd = {
   author: {
     "@type": "Person",
     name: "Slow Morocco",
-    description: "Founder of Dancing with Lions. Cultural research group based in Marrakech.",
+    description: "Founder of Dance with Lions. Cultural research group based in Marrakech.",
   },
   publisher: {
     "@type": "Organization",
@@ -189,7 +189,7 @@ const articleJsonLd = {
     url: BASE_URL,
     parentOrganization: {
       "@type": "Organization",
-      name: "Dancing with Lions",
+      name: "Dance with Lions",
       url: "https://www.dancewithlions.com",
     },
   },

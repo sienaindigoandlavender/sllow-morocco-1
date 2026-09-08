@@ -528,7 +528,7 @@ export default function MoroccoTravelContent() {
             ))}
           </div>
           <p className="text-[10px] font-mono text-[#aaa]">
-            Slow Morocco · slowmorocco.com · Information current as of March 2026 · © Dancing with Lions 2026
+            Slow Morocco · slowmorocco.com · Information current as of March 2026 · © Dance with Lions 2026
           </p>
         </section>
 
