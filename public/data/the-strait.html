@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Rendered inside the story page via an iframe. Indexing it separately
+     would compete with the story for the same subject. -->
+<meta name="robots" content="noindex, follow">
+<title>The Strait — Dancing with Lions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0a0a;--ink-60:#333333;--ink-40:#4A4A4A;
+    --rule:rgba(10,10,10,.10);--hair:rgba(10,10,10,.06);
+    --sea:#2C6E8F;--rock:#8C6238;--tunnel:#8F3A24;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;font-size:15px;line-height:1.55}
+  .wrap{max-width:940px;margin:0 auto;padding:52px 28px 88px}
+  h1{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:clamp(32px,5.6vw,54px);line-height:1.05;letter-spacing:-.01em;margin:0 0 16px}
+  .standfirst{font-family:"EB Garamond",Georgia,serif;font-size:19px;line-height:1.5;color:#262626;max-width:38em;margin:0}
+  .dateline{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin-top:20px;padding-top:14px;border-top:1px solid var(--hair);font-size:12px;color:var(--ink-40)}
+  .dateline .stamp{color:var(--ink-60)}
+  h2{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:25px;line-height:1.2;margin:0 0 6px}
+  .note{font-size:13.5px;color:#333333;max-width:44em;margin:0 0 24px}
+  section{border-top:1px solid var(--rule);padding-top:32px;margin-top:48px}
+
+  .str{width:100%;height:auto;margin-top:20px;display:block}
+  .str .bed{fill:none;stroke:rgba(10,10,10,.35);stroke-width:1.5}
+  .str .tun{fill:none;stroke:#8F3A24;stroke-width:3;stroke-dasharray:8 5}
+  .str .sl{stroke:rgba(10,10,10,.45);stroke-width:1.5}
+  .str .tk{stroke:rgba(10,10,10,.35);stroke-width:1}
+  .str .dim{stroke:rgba(10,10,10,.30);stroke-width:1;stroke-dasharray:4 4}
+  .str .pl{font-family:"EB Garamond",Georgia,serif;font-size:17px;fill:#0a0a0a}
+  .str .ps{font-family:"DM Sans",sans-serif;font-size:11.5px;fill:#4A4A4A}
+  .str .ax{font-family:"DM Sans",sans-serif;font-size:10.5px;fill:#5A5A5A}
+  .str .hd{font-family:"DM Sans",sans-serif;font-size:11px;fill:#555555;letter-spacing:.12em;text-transform:uppercase}
+
+  .times{display:grid;gap:11px;margin-top:22px}
+  .trow{display:grid;grid-template-columns:180px 1fr 84px;gap:14px;align-items:center;font-size:14px}
+  .tbar{height:24px;background:var(--hair)}
+  .tbar div{height:100%;background:var(--sea)}
+  .tbar div.plan{background:var(--tunnel)}
+  .tnum{text-align:right;font-variant-numeric:tabular-nums;font-size:13px;color:#333333}
+
+  .big4{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:22px}
+  .big4>div{background:#fff;padding:22px 16px}
+  .big4 .n{font-family:"EB Garamond",Georgia,serif;font-size:27px;line-height:1;margin-bottom:6px;color:var(--sea)}
+  .big4 .l{font-size:12.5px;color:#4A4A4A;line-height:1.4}
+
+  .tl{margin-top:24px}
+  .ev{display:grid;grid-template-columns:84px 14px 1fr;gap:0 16px;align-items:start;padding:0 0 22px}
+  .yr{font-family:"EB Garamond",Georgia,serif;font-size:17px;text-align:right;padding-top:2px}
+  .rail{position:relative;height:100%}
+  .rail:before{content:"";position:absolute;left:6px;top:8px;bottom:-22px;width:1px;background:var(--rule)}
+  .ev:last-child .rail:before{display:none}
+  .mk{position:absolute;left:2px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--sea)}
+  .mk.now{background:var(--tunnel)}
+  .evt{font-size:14.5px;line-height:1.5}
+  .evd{font-size:12.5px;color:#4A4A4A;margin-top:3px;line-height:1.45}
+
+  .editorial{border-top:1px solid var(--rule);margin-top:46px;padding-top:20px;font-size:12.5px;color:#4A4A4A;line-height:1.7;max-width:44em}
+  .editorial strong{color:#262626;font-weight:500}
+  table{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px}
+  th{text-align:left;font-weight:500;font-size:12px;color:var(--ink-40);padding:0 0 9px;border-bottom:1px solid var(--rule)}
+  td{padding:11px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+  td:last-child,th:last-child{text-align:right;font-variant-numeric:tabular-nums}
+  .foot{border-top:1px solid var(--rule);margin-top:28px;padding-top:20px;font-size:12px;color:var(--ink-40);line-height:1.7}
+  .foot strong{color:var(--ink-60);font-weight:500}
+  @media(max-width:620px){.trow{grid-template-columns:120px 1fr 72px;gap:8px;font-size:13px}.ev{grid-template-columns:68px 14px 1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>The narrowest crossing is also the deepest</h1>
+  <p class="standfirst">
+    Fourteen kilometres of water separate two continents, and directly beneath
+    that gap the seabed drops to nine hundred metres. That single fact is why a
+    tunnel under the Strait of Gibraltar has been studied since 1930 and not yet
+    built, and why the current plan crosses at twenty-eight kilometres instead.
+  </p>
+  <div class="dateline">
+    <span class="stamp"><time datetime="2026-09-07">Updated 7 September 2026</time></span>
+    <span>Cost and depth figures vary between published studies; ranges are given.</span>
+  </div>
+
+  <section>
+    <h2>The problem, in section</h2>
+<svg viewBox="0 0 900 470" class="str" xmlns="http://www.w3.org/2000/svg">
+  <rect x="90" y="110" width="740" height="394.8" fill="#D3E1E9"/>
+  <polygon points="90.0,136.7 93.7,136.8 97.4,137.0 101.1,137.2 104.8,137.5 108.5,137.7 112.2,138.0 115.9,138.3 119.6,138.6 123.3,139.0 127.0,139.4 130.7,139.8 134.4,140.3 138.1,140.8 141.8,141.4 145.5,142.0 149.2,142.7 152.9,143.4 156.6,144.2 160.3,145.1 164.0,146.0 167.7,147.0 171.4,148.1 175.1,149.2 178.8,150.5 182.5,151.8 186.2,153.2 189.9,154.8 193.6,156.4 197.3,158.2 201.0,160.0 204.7,162.0 208.4,164.2 212.1,166.4 215.8,168.8 219.5,171.3 223.2,174.0 226.9,176.9 230.6,179.9 234.3,183.0 238.0,186.4 241.7,189.9 245.4,193.5 249.1,197.4 252.8,201.4 256.5,205.6 260.2,210.0 263.9,214.6 267.6,219.4 271.3,224.3 275.0,229.5 278.7,234.8 282.4,240.3 286.1,246.0 289.8,251.9 293.5,257.9 297.2,264.1 300.9,270.5 304.6,277.1 308.3,283.8 312.0,290.6 315.7,297.6 319.4,304.7 323.1,311.9 326.8,319.2 330.5,326.6 334.2,334.1 337.9,341.6 341.6,349.2 345.3,356.8 349.0,364.5 352.7,372.1 356.4,379.7 360.1,387.3 363.8,394.9 367.5,402.3 371.2,409.7 374.9,416.9 378.6,424.1 382.3,431.1 386.0,437.9 389.7,444.5 393.4,450.9 397.1,457.1 400.8,463.1 404.5,468.8 408.2,474.2 411.9,479.3 415.6,484.1 419.3,488.6 423.0,492.8 426.7,496.6 430.4,500.0 434.1,503.0 437.8,505.7 441.5,508.0 445.2,509.9 448.9,511.3 452.6,512.4 456.3,513.0 460.0,513.2 463.7,513.0 467.4,512.4 471.1,511.3 474.8,509.9 478.5,508.0 482.2,505.7 485.9,503.0 489.6,500.0 493.3,496.6 497.0,492.8 500.7,488.6 504.4,484.1 508.1,479.3 511.8,474.2 515.5,468.8 519.2,463.1 522.9,457.1 526.6,450.9 530.3,444.5 534.0,437.9 537.7,431.1 541.4,424.1 545.1,416.9 548.8,409.7 552.5,402.3 556.2,394.9 559.9,387.3 563.6,379.7 567.3,372.1 571.0,364.5 574.7,356.8 578.4,349.2 582.1,341.6 585.8,334.1 589.5,326.6 593.2,319.2 596.9,311.9 600.6,304.7 604.3,297.6 608.0,290.6 611.7,283.8 615.4,277.1 619.1,270.5 622.8,264.1 626.5,257.9 630.2,251.9 633.9,246.0 637.6,240.3 641.3,234.8 645.0,229.5 648.7,224.3 652.4,219.4 656.1,214.6 659.8,210.0 663.5,205.6 667.2,201.4 670.9,197.4 674.6,193.5 678.3,189.9 682.0,186.4 685.7,183.0 689.4,179.9 693.1,176.9 696.8,174.0 700.5,171.3 704.2,168.8 707.9,166.4 711.6,164.2 715.3,162.0 719.0,160.0 722.7,158.2 726.4,156.4 730.1,154.8 733.8,153.2 737.5,151.8 741.2,150.5 744.9,149.2 748.6,148.1 752.3,147.0 756.0,146.0 759.7,145.1 763.4,144.2 767.1,143.4 770.8,142.7 774.5,142.0 778.2,141.4 781.9,140.8 785.6,140.3 789.3,139.8 793.0,139.4 796.7,139.0 800.4,138.6 804.1,138.3 807.8,138.0 811.5,137.7 815.2,137.5 818.9,137.2 822.6,137.0 826.3,136.8 830.0,136.7 830,450 90,450" fill="#B9A98C"/>
+  <polyline points="90.0,136.7 93.7,136.8 97.4,137.0 101.1,137.2 104.8,137.5 108.5,137.7 112.2,138.0 115.9,138.3 119.6,138.6 123.3,139.0 127.0,139.4 130.7,139.8 134.4,140.3 138.1,140.8 141.8,141.4 145.5,142.0 149.2,142.7 152.9,143.4 156.6,144.2 160.3,145.1 164.0,146.0 167.7,147.0 171.4,148.1 175.1,149.2 178.8,150.5 182.5,151.8 186.2,153.2 189.9,154.8 193.6,156.4 197.3,158.2 201.0,160.0 204.7,162.0 208.4,164.2 212.1,166.4 215.8,168.8 219.5,171.3 223.2,174.0 226.9,176.9 230.6,179.9 234.3,183.0 238.0,186.4 241.7,189.9 245.4,193.5 249.1,197.4 252.8,201.4 256.5,205.6 260.2,210.0 263.9,214.6 267.6,219.4 271.3,224.3 275.0,229.5 278.7,234.8 282.4,240.3 286.1,246.0 289.8,251.9 293.5,257.9 297.2,264.1 300.9,270.5 304.6,277.1 308.3,283.8 312.0,290.6 315.7,297.6 319.4,304.7 323.1,311.9 326.8,319.2 330.5,326.6 334.2,334.1 337.9,341.6 341.6,349.2 345.3,356.8 349.0,364.5 352.7,372.1 356.4,379.7 360.1,387.3 363.8,394.9 367.5,402.3 371.2,409.7 374.9,416.9 378.6,424.1 382.3,431.1 386.0,437.9 389.7,444.5 393.4,450.9 397.1,457.1 400.8,463.1 404.5,468.8 408.2,474.2 411.9,479.3 415.6,484.1 419.3,488.6 423.0,492.8 426.7,496.6 430.4,500.0 434.1,503.0 437.8,505.7 441.5,508.0 445.2,509.9 448.9,511.3 452.6,512.4 456.3,513.0 460.0,513.2 463.7,513.0 467.4,512.4 471.1,511.3 474.8,509.9 478.5,508.0 482.2,505.7 485.9,503.0 489.6,500.0 493.3,496.6 497.0,492.8 500.7,488.6 504.4,484.1 508.1,479.3 511.8,474.2 515.5,468.8 519.2,463.1 522.9,457.1 526.6,450.9 530.3,444.5 534.0,437.9 537.7,431.1 541.4,424.1 545.1,416.9 548.8,409.7 552.5,402.3 556.2,394.9 559.9,387.3 563.6,379.7 567.3,372.1 571.0,364.5 574.7,356.8 578.4,349.2 582.1,341.6 585.8,334.1 589.5,326.6 593.2,319.2 596.9,311.9 600.6,304.7 604.3,297.6 608.0,290.6 611.7,283.8 615.4,277.1 619.1,270.5 622.8,264.1 626.5,257.9 630.2,251.9 633.9,246.0 637.6,240.3 641.3,234.8 645.0,229.5 648.7,224.3 652.4,219.4 656.1,214.6 659.8,210.0 663.5,205.6 667.2,201.4 670.9,197.4 674.6,193.5 678.3,189.9 682.0,186.4 685.7,183.0 689.4,179.9 693.1,176.9 696.8,174.0 700.5,171.3 704.2,168.8 707.9,166.4 711.6,164.2 715.3,162.0 719.0,160.0 722.7,158.2 726.4,156.4 730.1,154.8 733.8,153.2 737.5,151.8 741.2,150.5 744.9,149.2 748.6,148.1 752.3,147.0 756.0,146.0 759.7,145.1 763.4,144.2 767.1,143.4 770.8,142.7 774.5,142.0 778.2,141.4 781.9,140.8 785.6,140.3 789.3,139.8 793.0,139.4 796.7,139.0 800.4,138.6 804.1,138.3 807.8,138.0 811.5,137.7 815.2,137.5 818.9,137.2 822.6,137.0 826.3,136.8 830.0,136.7" class="bed"/>
+  <path d="M50 110 L150 110 L130 58 L50 48 Z" fill="#C9BFA8"/>
+  <path d="M770 110 L870 110 L870 40 L790 62 Z" fill="#C9BFA8"/>
+  <text x="100" y="36" class="pl">Punta Paloma</text>
+  <text x="100" y="52" class="ps">Spain, west of Tarifa</text>
+  <text x="860" y="28" class="pl" text-anchor="end">Malabata</text>
+  <text x="860" y="44" class="ps" text-anchor="end">Morocco, east of Tangier</text>
+  <polyline points="90.0,143.2 93.7,144.0 97.4,144.9 101.1,145.8 104.8,146.7 108.5,147.7 112.2,148.7 115.9,149.8 119.6,150.8 123.3,152.0 127.0,153.1 130.7,154.3 134.4,155.6 138.1,156.9 141.8,158.2 145.5,159.6 149.2,161.0 152.9,162.4 156.6,163.9 160.3,165.5 164.0,167.1 167.7,168.7 171.4,170.4 175.1,172.1 178.8,173.9 182.5,175.7 186.2,177.5 189.9,179.4 193.6,181.4 197.3,183.4 201.0,185.4 204.7,187.5 208.4,189.6 212.1,191.7 215.8,193.9 219.5,196.2 223.2,198.5 226.9,200.8 230.6,203.1 234.3,205.5 238.0,207.9 241.7,210.4 245.4,212.8 249.1,215.3 252.8,217.9 256.5,220.4 260.2,223.0 263.9,225.6 267.6,228.3 271.3,230.9 275.0,233.6 278.7,236.3 282.4,238.9 286.1,241.6 289.8,244.3 293.5,247.0 297.2,249.8 300.9,252.5 304.6,255.2 308.3,257.8 312.0,260.5 315.7,263.2 319.4,265.8 323.1,268.5 326.8,271.1 330.5,273.7 334.2,276.2 337.9,278.8 341.6,281.2 345.3,283.7 349.0,286.1 352.7,288.5 356.4,290.8 360.1,293.1 363.8,295.3 367.5,297.4 371.2,299.5 374.9,301.6 378.6,303.6 382.3,305.5 386.0,307.3 389.7,309.1 393.4,310.8 397.1,312.4 400.8,313.9 404.5,315.4 408.2,316.8 411.9,318.0 415.6,319.2 419.3,320.4 423.0,321.4 426.7,322.3 430.4,323.1 434.1,323.9 437.8,324.5 441.5,325.1 445.2,325.5 448.9,325.9 452.6,326.1 456.3,326.3 460.0,326.3 463.7,326.3 467.4,326.1 471.1,325.9 474.8,325.5 478.5,325.1 482.2,324.5 485.9,323.9 489.6,323.1 493.3,322.3 497.0,321.4 500.7,320.4 504.4,319.2 508.1,318.0 511.8,316.8 515.5,315.4 519.2,313.9 522.9,312.4 526.6,310.8 530.3,309.1 534.0,307.3 537.7,305.5 541.4,303.6 545.1,301.6 548.8,299.5 552.5,297.4 556.2,295.3 559.9,293.1 563.6,290.8 567.3,288.5 571.0,286.1 574.7,283.7 578.4,281.2 582.1,278.8 585.8,276.2 589.5,273.7 593.2,271.1 596.9,268.5 600.6,265.8 604.3,263.2 608.0,260.5 611.7,257.8 615.4,255.2 619.1,252.5 622.8,249.8 626.5,247.0 630.2,244.3 633.9,241.6 637.6,238.9 641.3,236.3 645.0,233.6 648.7,230.9 652.4,228.3 656.1,225.6 659.8,223.0 663.5,220.4 667.2,217.9 670.9,215.3 674.6,212.8 678.3,210.4 682.0,207.9 685.7,205.5 689.4,203.1 693.1,200.8 696.8,198.5 700.5,196.2 704.2,193.9 707.9,191.7 711.6,189.6 715.3,187.5 719.0,185.4 722.7,183.4 726.4,181.4 730.1,179.4 733.8,177.5 737.5,175.7 741.2,173.9 744.9,172.1 748.6,170.4 752.3,168.7 756.0,167.1 759.7,165.5 763.4,163.9 767.1,162.4 770.8,161.0 774.5,159.6 778.2,158.2 781.9,156.9 785.6,155.6 789.3,154.3 793.0,153.1 796.7,152.0 800.4,150.8 804.1,149.8 807.8,148.7 811.5,147.7 815.2,146.7 818.9,145.8 822.6,144.9 826.3,144.0 830.0,143.2" class="tun"/>
+  <circle cx="460.0" cy="326.29999999999995" r="5" fill="#8F3A24"/>
+  <text x="460.0" y="310.29999999999995" class="ps" text-anchor="middle">deepest point of the tunnel · 475 m</text>
+  <text x="460.0" y="517.2" class="ps" text-anchor="middle">the seabed trough reaches about 900 m</text>
+  <line x1="50" y1="110" x2="870" y2="110" class="sl"/>
+  <line x1="60" y1="194" x2="72" y2="194" class="tk"/>
+  <text x="54" y="198" class="ax" text-anchor="end">200 m</text>
+  <line x1="60" y1="278" x2="72" y2="278" class="tk"/>
+  <text x="54" y="282" class="ax" text-anchor="end">400 m</text>
+  <line x1="60" y1="362" x2="72" y2="362" class="tk"/>
+  <text x="54" y="366" class="ax" text-anchor="end">600 m</text>
+  <line x1="60" y1="446" x2="72" y2="446" class="tk"/>
+  <text x="54" y="450" class="ax" text-anchor="end">800 m</text>
+  <line x1="90" y1="90" x2="830" y2="90" class="dim"/>
+  <text x="460.0" y="84" class="ps" text-anchor="middle">28 km of water</text>
+  <text x="50" y="464" class="hd">the narrowest crossing is also the deepest</text>
+</svg>
+    <p class="note" style="margin-top:16px">
+      The shortest route is unusable, because the trough sits exactly where the
+      shores come closest. So the alignment moves west, from Punta Paloma to
+      Malabata, and crosses a broader but shallower stretch: twenty-eight
+      kilometres of water, with the tunnel reaching about four hundred and
+      seventy-five metres below the surface at its lowest.
+    </p>
+    <p class="note">
+      The 1930s surveys ran into the same wall from the other side. They found
+      very hard rock under the strait, which the machinery of the day could not
+      cut. An immersed tube was proposed instead, and the depth ruled it out. A
+      century of engineering has been spent going around one trough.
+    </p>
+  </section>
+
+  <section>
+    <h2>What the crossing would be</h2>
+    <div class="big4">
+      <div><div class="n">28 km</div><div class="l">Under water, on a total link of about 65 km</div></div>
+      <div><div class="n">475 m</div><div class="l">Maximum depth below sea level</div></div>
+      <div><div class="n">12.8 m</div><div class="l">Passengers a year, on SECEGSA&rsquo;s modelling</div></div>
+      <div><div class="n">13 m</div><div class="l">Tonnes of cargo a year</div></div>
+    </div>
+    <p class="note" style="margin-top:18px">
+      Two running tunnels and a third for service and evacuation, on the Channel
+      Tunnel pattern. It would join the Spanish network directly to Al Boraq,
+      which is the reason the project came back: the 2018 line proved Morocco
+      could build and run high-speed rail, and gave the tunnel something to
+      connect to.
+    </p>
+  </section>
+
+  <section>
+    <h2>Madrid to Casablanca</h2>
+    <div class="times">
+      <div class="trow"><div>By road and ferry</div><div class="tbar"><div style="width:100%"></div></div><div class="tnum">~12 h</div></div>
+      <div class="trow"><div>By tunnel, projected</div><div class="tbar"><div class="plan" style="width:46%"></div></div><div class="tnum">5 h 30</div></div>
+      <div class="trow"><div>By air</div><div class="tbar"><div style="width:16%"></div></div><div class="tnum">~2 h</div></div>
+    </div>
+    <p class="note" style="margin-top:18px">
+      The comparison that matters is the first one, not the last. A tunnel does
+      not beat a plane on time and is not meant to. It beats a plane on freight,
+      on frequency, and on the fact that a train from Casablanca could arrive in
+      Madrid without anything being unloaded at a port.
+    </p>
+  </section>
+
+  <section>
+    <h2>Ninety-six years of studies</h2>
+    <div class="tl">
+      <div class="ev"><div class="yr">1930</div><div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">First proposed</div><div class="evd">Spanish surveys map the geology and find rock too hard for the machinery of the period.</div></div></div>
+      <div class="ev"><div class="yr">1979</div><div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">The two kings sign</div><div class="evd">Juan Carlos I and Hassan II agree to develop the link. Feasibility work runs to 1981.</div></div></div>
+      <div class="ev"><div class="yr">2009</div><div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">Shelved</div><div class="evd">The Europe–Africa fixed link proposals go quiet.</div></div></div>
+      <div class="ev"><div class="yr">2018</div><div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">Al Boraq opens</div><div class="evd">Africa&rsquo;s first high-speed line, and the thing that makes the tunnel worth building.</div></div></div>
+      <div class="ev"><div class="yr">2023</div><div class="rail"><span class="mk"></span></div>
+        <div><div class="evt">The joint commission meets again</div><div class="evd">For the first time in fourteen years. Spain commits €2.3 m to design work.</div></div></div>
+      <div class="ev"><div class="yr">2025</div><div class="rail"><span class="mk now"></span></div>
+        <div><div class="evt">Herrenknecht reports</div><div class="evd">The world&rsquo;s leading maker of tunnel boring machines concludes that current technology can do it. SNED and SECEGSA work in parallel on either side.</div></div></div>
+      <div class="ev"><div class="yr">2027</div><div class="rail"><span class="mk now"></span></div>
+        <div><div class="evt">The decision</div><div class="evd">Both governments are reported to be aiming for a decision on tendering a first exploratory tunnel.</div></div></div>
+    </div>
+    <table>
+      <thead><tr><th>Estimate</th><th>Figure</th></tr></thead>
+      <tbody>
+        <tr><td>Cost</td><td>€6 bn to €8.5 bn, depending on the study</td></tr>
+        <tr><td>Optimistic first works</td><td>2030, with the World Cup</td></tr>
+        <tr><td>Sources close to the project</td><td>2035 to 2040 for significant milestones</td></tr>
+        <tr><td>Profitability model</td><td>Commissioned from Ineco by the Spanish transport ministry</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>What has crossed here already</h2>
+    <table>
+      <thead><tr><th>Crossing</th><th>How</th></tr></thead>
+      <tbody>
+        <tr><td>Tariq ibn Ziyad, 711</td><td>By ship. The rock he landed at still carries his name</td></tr>
+        <tr><td>The Almohads, 12th century</td><td>Repeatedly, in both directions, governing both shores</td></tr>
+        <tr><td>The exiles of 1492 and 1609</td><td>South, in numbers, rebuilding Fes, Tetouan and Rabat</td></tr>
+        <tr><td>White storks, every year</td><td>On thermals, because there are none over open water</td></tr>
+        <tr><td>The 2030 World Cup</td><td>By air, for now</td></tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-top:18px">
+      Every one of those is elsewhere in this archive. The tunnel would be the
+      first crossing that does not require the weather to cooperate.
+    </p>
+  </section>
+
+  <div class="editorial">
+    <strong>Editorial position.</strong> Dancing with Lions is a publisher, not
+    a political actor. We report what is documented and attribute it. Where
+    sources disagree we say so and give the range. Where a question is
+    contested in law or politics we set out the record and take no side.
+  </div>
+
+  <div class="foot">
+    <strong>Sources:</strong> SECEGSA and SNED project documentation;
+    Herrenknecht feasibility study commissioned by SECEGSA, reported 2025;
+    Spanish Ministry of Transport; contemporary reporting in New Civil Engineer,
+    the Telegraph and Morocco World News. Depth is given as 475 m in most
+    accounts and 300 m in some; cost estimates range from €6 bn to €8.5 bn; no
+    construction contract has been awarded.
+    <br><br>
+    <strong>&copy; Dancing with Lions.</strong> Data compilation and
+    visualisation. Reuse requires attribution and a visible credit reading
+    &ldquo;Source: Dancing with Lions&rdquo;.
+  </div>
+
+</div>
+</body>
+</html>
