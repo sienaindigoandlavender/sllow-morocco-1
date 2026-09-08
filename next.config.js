@@ -444,7 +444,8 @@ const nextConfig = {
       { source: "/stories/the-desert-that-does-mathematics", destination: "/stories", permanent: true },
       { source: "/stories/the-empire-that-crossed", destination: "/stories", permanent: true },
       { source: "/stories/the-friday-couscous", destination: "/stories/the-bread-ovens", permanent: true },
-      { source: "/stories/the-kings-lions", destination: "/stories", permanent: true },
+      // the-kings-lions removed September 2026 — the slug is live again
+      // as a published story. A redirect here shadows the real page.
       { source: "/stories/the-memory-in-the-stone", destination: "/stories", permanent: true },
       { source: "/stories/the-rules-of-bargaining", destination: "/stories", permanent: true },
       { source: "/stories/the-saadian-dynasty", destination: "/stories/the-sugar-kings-grave", permanent: true },
