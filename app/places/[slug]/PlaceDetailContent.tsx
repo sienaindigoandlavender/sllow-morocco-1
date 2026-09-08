@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { cloudinaryUrl } from "@/lib/cloudinary";
 import Link from "next/link";
-import { TRIP_FUNNEL_PUBLIC } from "@/lib/flags";
+import { TRIP_FUNNEL_PUBLIC, JOURNEY_CROSSLINKS } from "@/lib/flags";
 import { ChevronLeft, ChevronDown, MapPin, Clock, Ticket, Navigation, Timer, Compass } from "lucide-react";
 import { linkGlossaryTermsHTML } from "@/lib/glossary-linker";
 import { linkCrossReferencesHTML } from "@/lib/story-linker";
@@ -389,7 +389,7 @@ export default function PlaceDetailContent({
           )}
 
           {/* Journey Bridge */}
-          {TRIP_FUNNEL_PUBLIC && place.journeyBridge && (
+          {JOURNEY_CROSSLINKS && place.journeyBridge && (
             <section className="py-12 border-t border-foreground/10">
               <div className="container mx-auto px-6 lg:px-16 max-w-3xl">
                 <p className="text-foreground/60 italic font-serif text-lg leading-relaxed">{place.journeyBridge}</p>
@@ -431,7 +431,7 @@ export default function PlaceDetailContent({
                   </div>
                 )}
 
-                {TRIP_FUNNEL_PUBLIC && place.journeyBridge && (
+                {JOURNEY_CROSSLINKS && place.journeyBridge && (
                   <div className="my-12 py-8 border-t border-b border-foreground/10">
                     <p className="text-foreground/60 italic font-serif text-lg leading-relaxed">{place.journeyBridge}</p>
                     <Link href={`/plan-your-trip?place=${place.slug}`} className="inline-block mt-4 text-xs tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground/70 transition-colors">
@@ -561,7 +561,7 @@ export default function PlaceDetailContent({
       )}
 
       {/* Related Journeys */}
-      {TRIP_FUNNEL_PUBLIC && relatedJourneys.length > 0 && (
+      {JOURNEY_CROSSLINKS && relatedJourneys.length > 0 && (
         <section className="py-24 md:py-32 bg-background border-t border-border">
           <div className="container mx-auto px-6 lg:px-16">
             <div className="text-center mb-16">
