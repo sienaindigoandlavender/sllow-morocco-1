@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Rendered inside the story page via an iframe. Indexing it separately
+     would compete with the story for the same subject. -->
+<meta name="robots" content="noindex, follow">
+<title>Jbel Irhoud — Dancing with Lions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0a0a;--ink-60:#333333;--ink-40:#4A4A4A;
+    --rule:rgba(10,10,10,.10);--hair:rgba(10,10,10,.06);
+    --bone:#B5622E;--brain:#5E7A85;--now:#8F3A24;
+    --mapdot:#8F3A24;--maproute:#8A8360;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;font-size:15px;line-height:1.55}
+  .wrap{max-width:940px;margin:0 auto;padding:52px 28px 88px}
+  h1{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:clamp(32px,5.6vw,54px);line-height:1.05;letter-spacing:-.01em;margin:0 0 16px}
+  .standfirst{font-family:"EB Garamond",Georgia,serif;font-size:19px;line-height:1.5;color:#262626;max-width:38em;margin:0}
+  .dateline{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin-top:20px;padding-top:14px;border-top:1px solid var(--hair);font-size:12px;color:var(--ink-40)}
+  .dateline .stamp{color:var(--ink-60)}
+  h2{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:25px;line-height:1.2;margin:0 0 6px}
+  .note{font-size:13.5px;color:#333333;max-width:44em;margin:0 0 24px}
+  section{border-top:1px solid var(--rule);padding-top:32px;margin-top:48px}
+
+  /* map */
+  .map{width:100%;height:auto;margin-top:24px;display:block}
+  .map .grid{stroke:rgba(10,10,10,.08);stroke-width:1}
+  .map .ax{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.30)}
+  .map .dot{fill:var(--mapdot,#3E7A4E)}
+  .map .dot.minor{fill:rgba(10,10,10,.30)}
+  .map .pl{font-family:"DM Sans",sans-serif;font-size:12px;fill:#0a0a0a}
+  .map .pd{font-family:"DM Sans",sans-serif;font-size:10px;fill:rgba(10,10,10,.40)}
+  .map .route{fill:none;stroke:var(--maproute,#A9863C);stroke-width:1.6;stroke-dasharray:5 4}
+  .map .span{stroke:var(--maproute,#A9863C);stroke-width:2}
+  .map .spanlab{font-family:"DM Sans",sans-serif;font-size:10.5px;fill:var(--maproute,#A9863C)}
+
+  .redate,.skull{width:100%;height:auto;margin-top:20px;display:block}
+  .redate .yr{font-family:"EB Garamond",Georgia,serif;font-size:18px;fill:#0a0a0a}
+  .redate .vl{font-family:"DM Sans",sans-serif;font-size:13.5px}
+  .redate .nt{font-family:"DM Sans",sans-serif;font-size:12.5px;fill:#4A4A4A}
+  .skull .pl{font-family:"EB Garamond",Georgia,serif;font-size:19px;fill:#0a0a0a}
+  .skull .ps{font-family:"DM Sans",sans-serif;font-size:12px;fill:#4A4A4A}
+  .skull .ldr{stroke:rgba(10,10,10,.28);stroke-width:1}
+  .redate .hd,.skull .hd{font-family:"DM Sans",sans-serif;font-size:11px;fill:#555555;letter-spacing:.12em;text-transform:uppercase}
+
+  .big4{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:22px}
+  .big4>div{background:#fff;padding:22px 16px}
+  .big4 .n{font-family:"EB Garamond",Georgia,serif;font-size:27px;line-height:1;margin-bottom:6px;color:var(--now)}
+  .big4 .l{font-size:12.5px;color:#4A4A4A;line-height:1.4}
+
+  .editorial{border-top:1px solid var(--rule);margin-top:46px;padding-top:20px;font-size:12.5px;color:#4A4A4A;line-height:1.7;max-width:44em}
+  .editorial strong{color:#262626;font-weight:500}
+  table{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px}
+  th{text-align:left;font-weight:500;font-size:12px;color:var(--ink-40);padding:0 0 9px;border-bottom:1px solid var(--rule)}
+  td{padding:11px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+  td:last-child,th:last-child{text-align:right;font-variant-numeric:tabular-nums}
+  .foot{border-top:1px solid var(--rule);margin-top:28px;padding-top:20px;font-size:12px;color:var(--ink-40);line-height:1.7}
+  .foot strong{color:var(--ink-60);font-weight:500}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>5 people, 300,000 years old, 90 km from Marrakech</h1>
+  <p class="standfirst">
+    Barite miners blew open a limestone cave at Jbel Irhoud in 1960. What came
+    out of it is now the oldest securely dated evidence of our own species
+    anywhere on earth, and it is a hundred thousand years older than anything
+    found in East Africa.
+  </p>
+  <div class="dateline">
+    <span class="stamp"><time datetime="2026-09-07">Updated 7 September 2026</time></span>
+    <span>Age is published as 300,000 to 350,000 years. The classification is not universally accepted; see below.</span>
+  </div>
+
+  <section>
+    <h2>The same bones, dated three times</h2>
+<svg viewBox="0 0 900 300" class="redate" xmlns="http://www.w3.org/2000/svg">
+  <text x="94" y="94" class="yr" text-anchor="end">1961</text>
+  <rect x="110" y="70" width="76.6" height="34" fill="#B5A88E"/>
+  <text x="122" y="93" class="vl" fill="#fff">40,000 years</text>
+  <text x="201" y="93" class="nt">thought to be Neanderthals</text>
+  <text x="94" y="160" class="yr" text-anchor="end">1990</text>
+  <rect x="110" y="136" width="306.3" height="34" fill="#8A8360"/>
+  <text x="122" y="159" class="vl" fill="#fff">160,000 years</text>
+  <text x="430" y="159" class="nt">reclassified as Homo sapiens</text>
+  <text x="94" y="226" class="yr" text-anchor="end">2017</text>
+  <rect x="110" y="202" width="574.3" height="34" fill="#8F3A24"/>
+  <text x="122" y="225" class="vl" fill="#fff">300,000 years</text>
+  <text x="698" y="225" class="nt">the oldest known, by 100,000 years</text>
+  <text x="110" y="284" class="hd">the same bones, dated three times</text>
+</svg>
+    <p class="note" style="margin-top:16px">
+      Nothing about the fossils changed. In 1961 they were read as Neanderthals
+      of about forty thousand years, and filed as a curiosity because they fitted
+      no theory. Improved dating in the 1990s pushed them back. In 2017 a team
+      under Jean-Jacques Hublin of the Max Planck Institute and Abdelouahed
+      Ben-Ncer of INSAP in Rabat published two papers in Nature putting them at
+      three hundred thousand.
+    </p>
+  </section>
+
+  <section>
+    <h2>A modern face on an archaic head</h2>
+<svg viewBox="0 0 760 420" class="skull" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="324" cy="180" rx="126" ry="94" fill="#5E7A85"/>
+  <path d="M412 164 Q480 210 458 276 Q438 324 370 316 L360 240 Z" fill="#B5622E"/>
+  <path d="M368 316 Q426 348 454 312 Q426 368 360 350 Z" fill="#B5622E"/>
+  <rect x="374" y="316" width="9" height="13" fill="#EDE7DA"/>
+  <rect x="387" y="316" width="9" height="13" fill="#EDE7DA"/>
+  <rect x="400" y="316" width="9" height="13" fill="#EDE7DA"/>
+  <rect x="413" y="316" width="9" height="13" fill="#EDE7DA"/>
+  <rect x="426" y="316" width="9" height="13" fill="#EDE7DA"/>
+  <rect x="439" y="316" width="9" height="13" fill="#EDE7DA"/>
+  <text x="80" y="110" class="pl">Braincase</text>
+  <text x="80" y="128" class="ps">long, low, archaic. Brain shape</text>
+  <text x="80" y="143" class="ps">was still evolving inside our</text>
+  <text x="80" y="158" class="ps">own lineage</text>
+  <line x1="200" y1="124" x2="260" y2="150" class="ldr"/>
+  <text x="510" y="190" class="pl">Face and jaw</text>
+  <text x="510" y="208" class="ps">short and flat. Within the range</text>
+  <text x="510" y="223" class="ps">of people alive today</text>
+  <line x1="504" y1="186" x2="456" y2="218" class="ldr"/>
+  <text x="60" y="406" class="hd">a modern face on an archaic head</text>
+</svg>
+    <p class="note" style="margin-top:16px">
+      This is the finding that matters more than the date. The face and jaw are
+      already within the range of people alive now. The braincase is long and
+      low and looks archaic. Which means the face arrived first and the shape of
+      the brain went on changing afterwards, inside our own lineage, for another
+      quarter of a million years.
+    </p>
+  </section>
+
+  <section>
+    <h2>What was in the cave with them</h2>
+    <div class="big4">
+      <div><div class="n">5</div><div class="l">Individuals: three adults, a juvenile, and a child of about eight</div></div>
+      <div><div class="n">Fire</div><div class="l">Lumps of charcoal, which is how the site was dated</div></div>
+      <div><div class="n">Flint</div><div class="l">Middle Stone Age points, hafted as spears</div></div>
+      <div><div class="n">Game</div><div class="l">Gazelle, zebra and wildebeest, butchered</div></div>
+    </div>
+    <p class="note" style="margin-top:18px">
+      The first almost-complete adult mandible from the site came out of this
+      work. The animals tell you the landscape: this was grassland with grazing
+      herds, not the dry country around Jbel Irhoud today.
+    </p>
+  </section>
+
+  <section>
+    <h2>What it did to the map</h2>
+<svg viewBox="0 0 820 470" class="map" xmlns="http://www.w3.org/2000/svg">
+  <line x1="59.0" y1="48" x2="59.0" y2="422" class="grid"/>
+  <text x="59.0" y="438" class="ax" text-anchor="middle">15°W</text>
+  <line x1="223.5" y1="48" x2="223.5" y2="422" class="grid"/>
+  <text x="223.5" y="438" class="ax" text-anchor="middle">0°E</text>
+  <line x1="388.1" y1="48" x2="388.1" y2="422" class="grid"/>
+  <text x="388.1" y="438" class="ax" text-anchor="middle">15°E</text>
+  <line x1="552.6" y1="48" x2="552.6" y2="422" class="grid"/>
+  <text x="552.6" y="438" class="ax" text-anchor="middle">30°E</text>
+  <line x1="717.2" y1="48" x2="717.2" y2="422" class="grid"/>
+  <text x="717.2" y="438" class="ax" text-anchor="middle">45°E</text>
+  <line x1="48" y1="401.2" x2="772" y2="401.2" class="grid"/>
+  <text x="40" y="405.2" class="ax" text-anchor="end">-30°N</text>
+  <line x1="48" y1="323.3" x2="772" y2="323.3" class="grid"/>
+  <text x="40" y="327.3" class="ax" text-anchor="end">-15°N</text>
+  <line x1="48" y1="245.4" x2="772" y2="245.4" class="grid"/>
+  <text x="40" y="249.4" class="ax" text-anchor="end">0°N</text>
+  <line x1="48" y1="167.5" x2="772" y2="167.5" class="grid"/>
+  <text x="40" y="171.5" class="ax" text-anchor="end">15°N</text>
+  <line x1="48" y1="89.6" x2="772" y2="89.6" class="grid"/>
+  <text x="40" y="93.6" class="ax" text-anchor="end">30°N</text>
+  <circle cx="126.2" cy="79.9" r="4.5" class="dot"/>
+  <text x="135.2" y="77.9" class="pl" text-anchor="start">Jbel Irhoud</text>
+  <text x="135.2" y="89.9" class="pd" text-anchor="start">300,000 years</text>
+  <circle cx="135.8" cy="81.2" r="3" class="dot minor"/>
+  <text x="144.8" y="79.2" class="pl" text-anchor="start">Marrakech</text>
+  <text x="144.8" y="91.2" class="pd" text-anchor="start">90 km away</text>
+  <circle cx="617.3" cy="217.3" r="4.5" class="dot"/>
+  <text x="608.3" y="215.3" class="pl" text-anchor="end">Omo Kibish</text>
+  <text x="608.3" y="227.3" class="pd" text-anchor="end">Ethiopia, 195,000</text>
+  <circle cx="509.8" cy="95.8" r="4.5" class="dot"/>
+  <text x="518.8" y="93.8" class="pl" text-anchor="start">Florisbad</text>
+  <text x="518.8" y="105.8" class="pd" text-anchor="start">South Africa, ~260,000</text>
+</svg>
+    <p class="note" style="margin-top:16px">
+      Before 2017 the oldest securely dated Homo sapiens came from Omo Kibish
+      in Ethiopia at around 195,000 years, and the picture was an East African
+      cradle. Jbel Irhoud is five thousand kilometres away and a hundred
+      thousand years older, and it makes better sense of Florisbad in South
+      Africa at around 260,000.
+    </p>
+    <p class="note">
+      Hublin&rsquo;s summary is the line everyone quotes: there is no Garden of
+      Eden in Africa, or if there is, it is Africa. Our species appears to have
+      emerged across the continent rather than at a point, and to have dispersed
+      within Africa long before it left.
+    </p>
+  </section>
+
+  <section>
+    <h2>What is disputed</h2>
+    <p class="note">
+      Not everyone accepts the classification. John Hawks has pointed out that
+      the Jbel Irhoud material was not compared with Homo antecessor, known from
+      800,000-year-old fossils in Spain. On that reading, the face might be
+      inherited from an antecessor-like population rather than evolving toward
+      us, which would make Irhoud a cousin rather than an ancestor.
+    </p>
+    <p class="note">
+      The dating is not in serious question. The label is. Both positions are on
+      the record, and the material sits at a point where the definition of our
+      own species stops being obvious.
+    </p>
+    <table>
+      <thead><tr><th>Assessment</th><th>Source</th></tr></thead>
+      <tbody>
+        <tr><td>The earliest evolutionary stage of Homo sapiens</td><td>Hublin et al., Nature, 2017</td></tr>
+        <tr><td>The oldest association of probable early members of the lineage with Middle Stone Age tools</td><td>Chris Stringer, Natural History Museum</td></tr>
+        <tr><td>Possibly retaining archaic facial morphology rather than anticipating ours</td><td>John Hawks, University of Wisconsin–Madison</td></tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-top:18px">
+      Stringer&rsquo;s other remark is worth recording. The find, he said, shifts
+      Morocco from a supposed backwater in the evolution of our species to a
+      prominent position.
+    </p>
+  </section>
+
+  <div class="editorial">
+    <strong>Editorial position.</strong> Dancing with Lions is a publisher, not
+    a political actor. We report what is documented and attribute it. Where
+    sources disagree we say so and give the range. Where a question is
+    contested in law or politics we set out the record and take no side.
+  </div>
+
+  <div class="foot">
+    <strong>Sources:</strong> Hublin et al., <em>New fossils from Jebel Irhoud,
+    Morocco, and the pan-African origin of Homo sapiens</em>, Nature, 8 June
+    2017; Richter et al., on the dating, same issue; Max Planck Institute for
+    Evolutionary Anthropology; INSAP, Rabat; Natural History Museum, London;
+    Scientific American on the dissenting reading. Age is published as 300,000
+    to 350,000 years.
+    <br><br>
+    <strong>&copy; Dancing with Lions.</strong> Data compilation and
+    visualisation. Reuse requires attribution and a visible credit reading
+    &ldquo;Source: Dancing with Lions&rdquo;.
+  </div>
+
+</div>
+</body>
+</html>
