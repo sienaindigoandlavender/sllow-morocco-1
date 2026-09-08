@@ -35,6 +35,23 @@
   .clm .ch{font-family:"DM Sans",sans-serif;font-size:11px;fill:#555555;letter-spacing:.12em;text-transform:uppercase}
   .clm .hd{font-family:"DM Sans",sans-serif;font-size:11px;fill:#555555;letter-spacing:.12em;text-transform:uppercase}
 
+
+  /* live strip */
+  #live{margin-top:22px;border:1px solid var(--rule);display:none}
+  #live.on{display:block}
+  #live .lhead{display:flex;justify-content:space-between;align-items:baseline;
+    padding:12px 16px;border-bottom:1px solid var(--hair);font-size:11px;
+    letter-spacing:.12em;text-transform:uppercase;color:#555}
+  #live .lstamp{letter-spacing:0;text-transform:none;font-size:11.5px;color:#4A4A4A}
+  #live .grid{display:grid;grid-template-columns:repeat(6,1fr)}
+  #live .cell{padding:18px 12px;border-right:1px solid var(--hair);text-align:center}
+  #live .cell:last-child{border-right:none}
+  #live .cn{font-family:"DM Sans",sans-serif;font-size:11.5px;color:#4A4A4A;margin-bottom:6px}
+  #live .ct{font-family:"EB Garamond",Georgia,serif;font-size:30px;line-height:1;color:#0a0a0a}
+  #live .cc{font-size:11px;color:#4A4A4A;margin-top:6px;min-height:2.4em;line-height:1.2}
+  @media(max-width:620px){#live .grid{grid-template-columns:repeat(3,1fr)}
+    #live .cell:nth-child(3){border-right:none}
+    #live .cell:nth-child(-n+3){border-bottom:1px solid var(--hair)}}
   .big4{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:22px}
   .big4>div{background:#fff;padding:22px 16px}
   .big4 .n{font-family:"EB Garamond",Georgia,serif;font-size:26px;line-height:1.1;margin-bottom:6px;color:var(--hot)}
@@ -60,7 +77,7 @@
   </p>
   <div class="dateline">
     <span class="stamp"><time datetime="2026-09-07">Updated 7 September 2026</time></span>
-    <span>Long-run monthly averages, rounded. Any given year departs from them.</span>
+    <span>Charts are long-run monthly averages. The strip at the top is live.</span>
   </div>
 
   <section>
@@ -291,6 +308,11 @@
   <text x="70" y="40" class="ch">daily low to daily high, by month · rainfall below</text>
   <text x="70" y="628" class="hd">six climates, one country</text>
 </svg>
+
+    <div id="live" aria-live="polite">
+      <div class="lhead"><span>right now</span><span class="lstamp" id="lstamp"></span></div>
+      <div class="grid" id="lgrid"></div>
+    </div>
     <p class="note" style="margin-top:16px">
       Each block is the daily low to daily high for every month, on the same
       scale, with annual rainfall underneath. Read them side by side and the
@@ -363,7 +385,9 @@
     <strong>Sources:</strong> Long-run monthly climate normals for the six
     stations shown; standard descriptions of orographic rainfall across the
     Atlas and of the Canary Current&rsquo;s effect on the Moroccan coast.
-    Figures are rounded averages and individual years vary substantially.
+    Figures are rounded averages and individual years vary substantially. Live
+    conditions at the top of the page are supplied by Open-Meteo, licensed
+    CC BY 4.0, and are not part of this archive&rsquo;s compilation.
     <br><br>
     <strong>&copy; Dancing with Lions.</strong> Data compilation and
     visualisation. Reuse requires attribution and a visible credit reading
@@ -371,5 +395,42 @@
   </div>
 
 </div>
+
+<script>
+(function(){
+  var S=[["Tangier",35.77,-5.80],["Fes",34.03,-5.00],["Marrakech",31.63,-8.01],
+         ["Essaouira",31.51,-9.77],["Ifrane",33.53,-5.11],["Merzouga",31.10,-4.01]];
+  var W={0:"clear",1:"mostly clear",2:"some cloud",3:"overcast",45:"fog",48:"freezing fog",
+    51:"light drizzle",53:"drizzle",55:"heavy drizzle",61:"light rain",63:"rain",65:"heavy rain",
+    71:"light snow",73:"snow",75:"heavy snow",80:"showers",81:"showers",82:"heavy showers",
+    95:"thunderstorm",96:"thunderstorm",99:"thunderstorm"};
+  var url="https://api.open-meteo.com/v1/forecast"
+    +"?latitude="+S.map(function(s){return s[1]}).join(",")
+    +"&longitude="+S.map(function(s){return s[2]}).join(",")
+    +"&current=temperature_2m,weather_code&timezone=Africa%2FCasablanca";
+  var ctl=("AbortController" in window)?new AbortController():null;
+  if(ctl) setTimeout(function(){ctl.abort()},6000);
+  fetch(url,ctl?{signal:ctl.signal}:{}).then(function(r){
+    if(!r.ok) throw 0; return r.json();
+  }).then(function(d){
+    var a=Array.isArray(d)?d:[d];
+    if(a.length!==S.length) throw 0;
+    var g=document.getElementById("lgrid"), html="";
+    a.forEach(function(loc,i){
+      var c=loc&&loc.current; if(!c) throw 0;
+      var t=Math.round(c.temperature_2m);
+      var w=W[c.weather_code]||"";
+      html+='<div class="cell"><div class="cn">'+S[i][0]+'</div>'
+          +'<div class="ct">'+t+'&deg;</div><div class="cc">'+w+'</div></div>';
+    });
+    g.innerHTML=html;
+    var now=new Date();
+    document.getElementById("lstamp").textContent=
+      now.toLocaleString("en-GB",{weekday:"short",day:"numeric",month:"short",
+        hour:"2-digit",minute:"2-digit",timeZone:"Africa/Casablanca"})+" in Morocco";
+    document.getElementById("live").className="on";
+  }).catch(function(){ /* module is complete without it */ });
+})();
+</script>
 </body>
 </html>
