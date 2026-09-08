@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Rendered inside the story page via an iframe. Indexing it separately
+     would compete with the story for the same subject. -->
+<meta name="robots" content="noindex, follow">
+<title>Three Calendars — Dancing with Lions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0a0a;--ink-60:#333333;--ink-40:#4A4A4A;
+    --rule:rgba(10,10,10,.10);--hair:rgba(10,10,10,.06);
+    --civil:#8C8064;--field:#5E7A45;--moon:#3E5F7A;--ram:#8F3A24;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;font-size:15px;line-height:1.55}
+  .wrap{max-width:940px;margin:0 auto;padding:52px 28px 88px}
+  h1{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:clamp(32px,5.6vw,54px);line-height:1.05;letter-spacing:-.01em;margin:0 0 16px}
+  .standfirst{font-family:"EB Garamond",Georgia,serif;font-size:19px;line-height:1.5;color:#262626;max-width:38em;margin:0}
+  .dateline{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin-top:20px;padding-top:14px;border-top:1px solid var(--hair);font-size:12px;color:var(--ink-40)}
+  .dateline .stamp{color:var(--ink-60)}
+  h2{font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:25px;line-height:1.2;margin:0 0 6px}
+  .note{font-size:13.5px;color:#333333;max-width:44em;margin:0 0 24px}
+  section{border-top:1px solid var(--rule);padding-top:32px;margin-top:48px}
+
+  .rings,.spiral-c{width:100%;height:auto;max-width:560px;margin:22px auto 0;display:block}
+  .rings .rl{font-family:"DM Sans",sans-serif;font-size:12px;fill:#0a0a0a}
+  .rings .rl2{font-family:"DM Sans",sans-serif;font-size:11.5px;fill:#fff}
+  .rings .rl3{font-family:"DM Sans",sans-serif;font-size:11px;fill:#fff}
+  .rings .ctr{font-family:"EB Garamond",Georgia,serif;font-size:21px;fill:#0a0a0a}
+  .rings .cap{font-family:"DM Sans",sans-serif;font-size:10.5px;fill:#4A4A4A}
+  .rings .spin{fill:none;stroke:#8F3A24;stroke-width:2}
+  .spiral-c .gridc{fill:none;stroke:rgba(10,10,10,.10);stroke-width:1}
+  .spiral-c .spiral{fill:none;stroke:#B5622E;stroke-width:1.4}
+  .spiral-c .cap{font-family:"DM Sans",sans-serif;font-size:10.5px;fill:#4A4A4A}
+  .spiral-c .ctr2{font-family:"EB Garamond",Georgia,serif;font-size:19px;fill:#0a0a0a}
+
+  .three{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:22px}
+  .three>div{background:#fff;padding:22px 18px}
+  .three .band{height:5px;margin-bottom:15px}
+  .three .n{font-family:"EB Garamond",Georgia,serif;font-size:20px;margin-bottom:4px}
+  .three dl{margin:0;font-size:13px}
+  .three dt{color:#4A4A4A;font-size:11.5px;margin-top:9px}
+  .three dd{margin:1px 0 0;color:#333333}
+
+  .editorial{border-top:1px solid var(--rule);margin-top:46px;padding-top:20px;font-size:12.5px;color:#4A4A4A;line-height:1.7;max-width:44em}
+  .editorial strong{color:#262626;font-weight:500}
+  table{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px}
+  th{text-align:left;font-weight:500;font-size:12px;color:var(--ink-40);padding:0 0 9px;border-bottom:1px solid var(--rule)}
+  td{padding:11px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+  .foot{border-top:1px solid var(--rule);margin-top:28px;padding-top:20px;font-size:12px;color:var(--ink-40);line-height:1.7}
+  .foot strong{color:var(--ink-60);font-weight:500}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>3 calendars, running at once</h1>
+  <p class="standfirst">
+    A Moroccan farmer sows by a Roman calendar, fasts by a lunar one and files
+    his tax return by a third. All three are in daily use, none of them agrees
+    with the others, and the oldest of them has been keeping time here since
+    before the legions left.
+  </p>
+  <div class="dateline">
+    <span class="stamp"><time datetime="2026-09-07">Updated 7 September 2026</time></span>
+    <span>The Hijri ring is drawn at an illustrative position; it advances every year.</span>
+  </div>
+
+  <section>
+    <h2>One year, three readings of it</h2>
+<svg viewBox="0 0 620 620" class="rings" xmlns="http://www.w3.org/2000/svg">
+  <path d="M313.0,20.0 A290,290 0 0 1 452.4,57.3 L427.8,100.9 A240,240 0 0 0 312.5,70.0 Z" fill="#E4DCCB" class=""/>
+  <text x="378.6" y="54.0" class="rl" text-anchor="middle" transform="rotate(15.0 378.6 54.0)">Jan</text>
+  <path d="M457.6,60.4 A290,290 0 0 1 559.6,162.4 L516.6,187.8 A240,240 0 0 0 432.2,103.4 Z" fill="#E4DCCB" class=""/>
+  <text x="497.4" y="122.6" class="rl" text-anchor="middle" transform="rotate(45.0 497.4 122.6)">Feb</text>
+  <path d="M562.7,167.6 A290,290 0 0 1 600.0,307.0 L550.0,307.5 A240,240 0 0 0 519.1,192.2 Z" fill="#E4DCCB" class=""/>
+  <text x="566.0" y="241.4" class="rl" text-anchor="middle" transform="rotate(75.0 566.0 241.4)">Mar</text>
+  <path d="M600.0,313.0 A290,290 0 0 1 562.7,452.4 L519.1,427.8 A240,240 0 0 0 550.0,312.5 Z" fill="#E4DCCB" class=""/>
+  <text x="566.0" y="378.6" class="rl" text-anchor="middle" transform="rotate(105.0 566.0 378.6)">Apr</text>
+  <path d="M559.6,457.6 A290,290 0 0 1 457.6,559.6 L432.2,516.6 A240,240 0 0 0 516.6,432.2 Z" fill="#E4DCCB" class=""/>
+  <text x="497.4" y="497.4" class="rl" text-anchor="middle" transform="rotate(135.0 497.4 497.4)">May</text>
+  <path d="M452.4,562.7 A290,290 0 0 1 313.0,600.0 L312.5,550.0 A240,240 0 0 0 427.8,519.1 Z" fill="#E4DCCB" class=""/>
+  <text x="378.6" y="566.0" class="rl" text-anchor="middle" transform="rotate(165.0 378.6 566.0)">Jun</text>
+  <path d="M307.0,600.0 A290,290 0 0 1 167.6,562.7 L192.2,519.1 A240,240 0 0 0 307.5,550.0 Z" fill="#E4DCCB" class=""/>
+  <text x="241.4" y="566.0" class="rl" text-anchor="middle" transform="rotate(15.0 241.4 566.0)">Jul</text>
+  <path d="M162.4,559.6 A290,290 0 0 1 60.4,457.6 L103.4,432.2 A240,240 0 0 0 187.8,516.6 Z" fill="#E4DCCB" class=""/>
+  <text x="122.6" y="497.4" class="rl" text-anchor="middle" transform="rotate(45.0 122.6 497.4)">Aug</text>
+  <path d="M57.3,452.4 A290,290 0 0 1 20.0,313.0 L70.0,312.5 A240,240 0 0 0 100.9,427.8 Z" fill="#E4DCCB" class=""/>
+  <text x="54.0" y="378.6" class="rl" text-anchor="middle" transform="rotate(75.0 54.0 378.6)">Sep</text>
+  <path d="M20.0,307.0 A290,290 0 0 1 57.3,167.6 L100.9,192.2 A240,240 0 0 0 70.0,307.5 Z" fill="#E4DCCB" class=""/>
+  <text x="54.0" y="241.4" class="rl" text-anchor="middle" transform="rotate(105.0 54.0 241.4)">Oct</text>
+  <path d="M60.4,162.4 A290,290 0 0 1 162.4,60.4 L187.8,103.4 A240,240 0 0 0 103.4,187.8 Z" fill="#E4DCCB" class=""/>
+  <text x="122.6" y="122.6" class="rl" text-anchor="middle" transform="rotate(135.0 122.6 122.6)">Nov</text>
+  <path d="M167.6,57.3 A290,290 0 0 1 307.0,20.0 L307.5,70.0 A240,240 0 0 0 192.2,100.9 Z" fill="#E4DCCB" class=""/>
+  <text x="241.4" y="54.0" class="rl" text-anchor="middle" transform="rotate(165.0 241.4 54.0)">Dec</text>
+  <path d="M364.7,80.4 A236,236 0 0 1 468.5,135.2 L429.6,178.1 A178,178 0 0 0 351.3,136.8 Z" fill="#8FA36B" class=""/>
+  <text x="406.5" y="126.9" class="rl2" text-anchor="middle" transform="rotate(27.8 406.5 126.9)">Yennayer</text>
+  <path d="M472.2,138.5 A236,236 0 0 1 534.7,237.9 L479.5,255.6 A178,178 0 0 0 432.3,180.7 Z" fill="#8FA36B" class=""/>
+  <text x="485.2" y="199.7" class="rl2" text-anchor="middle" transform="rotate(57.8 485.2 199.7)">Furar</text>
+  <path d="M536.2,242.6 A236,236 0 0 1 540.7,359.9 L484.0,347.6 A178,178 0 0 0 480.6,259.1 Z" fill="#8FA36B" class=""/>
+  <text x="516.8" y="302.1" class="rl2" text-anchor="middle" transform="rotate(87.8 516.8 302.1)">Mars</text>
+  <path d="M539.6,364.7 A236,236 0 0 1 484.8,468.5 L441.9,429.6 A178,178 0 0 0 483.2,351.3 Z" fill="#8FA36B" class=""/>
+  <text x="493.1" y="406.5" class="rl2" text-anchor="middle" transform="rotate(117.8 493.1 406.5)">Ibrir</text>
+  <path d="M481.5,472.2 A236,236 0 0 1 382.1,534.7 L364.4,479.5 A178,178 0 0 0 439.3,432.3 Z" fill="#8FA36B" class=""/>
+  <text x="420.3" y="485.2" class="rl2" text-anchor="middle" transform="rotate(147.8 420.3 485.2)">Mayyu</text>
+  <path d="M377.4,536.2 A236,236 0 0 1 260.1,540.7 L272.4,484.0 A178,178 0 0 0 360.9,480.6 Z" fill="#8FA36B" class=""/>
+  <text x="317.9" y="516.8" class="rl2" text-anchor="middle" transform="rotate(177.8 317.9 516.8)">Yunyu</text>
+  <path d="M255.3,539.6 A236,236 0 0 1 151.5,484.8 L190.4,441.9 A178,178 0 0 0 268.7,483.2 Z" fill="#8FA36B" class=""/>
+  <text x="213.5" y="493.1" class="rl2" text-anchor="middle" transform="rotate(27.8 213.5 493.1)">Yulyuz</text>
+  <path d="M147.8,481.5 A236,236 0 0 1 85.3,382.1 L140.5,364.4 A178,178 0 0 0 187.7,439.3 Z" fill="#8FA36B" class=""/>
+  <text x="134.8" y="420.3" class="rl2" text-anchor="middle" transform="rotate(57.8 134.8 420.3)">Ɣuct</text>
+  <path d="M83.8,377.4 A236,236 0 0 1 79.3,260.1 L136.0,272.4 A178,178 0 0 0 139.4,360.9 Z" fill="#8FA36B" class=""/>
+  <text x="103.2" y="317.9" class="rl2" text-anchor="middle" transform="rotate(87.8 103.2 317.9)">Ctamber</text>
+  <path d="M80.4,255.3 A236,236 0 0 1 135.2,151.5 L178.1,190.4 A178,178 0 0 0 136.8,268.7 Z" fill="#8FA36B" class=""/>
+  <text x="126.9" y="213.5" class="rl2" text-anchor="middle" transform="rotate(117.8 126.9 213.5)">Ktuber</text>
+  <path d="M138.5,147.8 A236,236 0 0 1 237.9,85.3 L255.6,140.5 A178,178 0 0 0 180.7,187.7 Z" fill="#8FA36B" class=""/>
+  <text x="199.7" y="134.8" class="rl2" text-anchor="middle" transform="rotate(147.8 199.7 134.8)">Nwamber</text>
+  <path d="M242.6,83.8 A236,236 0 0 1 359.9,79.3 L347.6,136.0 A178,178 0 0 0 259.1,139.4 Z" fill="#8FA36B" class=""/>
+  <text x="302.1" y="103.2" class="rl2" text-anchor="middle" transform="rotate(177.8 302.1 103.2)">Dujamber</text>
+  <path d="M163.4,216.3 A174,174 0 0 1 226.7,157.2 L254.5,208.2 A116,116 0 0 0 212.3,247.5 Z" fill="#3E5F7A" class=""/>
+  <text x="211.1" y="204.0" class="rl3" text-anchor="middle" transform="rotate(-43.0 211.1 204.0)">Muharram</text>
+  <path d="M229.9,155.5 A174,174 0 0 1 314.3,136.1 L312.8,194.0 A116,116 0 0 0 256.6,207.0 Z" fill="#3E5F7A" class=""/>
+  <text x="277.4" y="168.7" class="rl3" text-anchor="middle" transform="rotate(-13.0 277.4 168.7)">Safar</text>
+  <path d="M317.9,136.2 A174,174 0 0 1 400.7,161.5 L370.4,211.0 A116,116 0 0 0 315.3,194.1 Z" fill="#3E5F7A" class=""/>
+  <text x="352.4" y="171.3" class="rl3" text-anchor="middle" transform="rotate(17.0 352.4 171.3)">Rabi I</text>
+  <path d="M403.7,163.4 A174,174 0 0 1 462.8,226.7 L411.8,254.5 A116,116 0 0 0 372.5,212.3 Z" fill="#3E5F7A" class=""/>
+  <text x="416.0" y="211.1" class="rl3" text-anchor="middle" transform="rotate(47.0 416.0 211.1)">Rabi II</text>
+  <path d="M464.5,229.9 A174,174 0 0 1 483.9,314.3 L426.0,312.8 A116,116 0 0 0 413.0,256.6 Z" fill="#3E5F7A" class=""/>
+  <text x="451.3" y="277.4" class="rl3" text-anchor="middle" transform="rotate(77.0 451.3 277.4)">Jumada I</text>
+  <path d="M483.8,317.9 A174,174 0 0 1 458.5,400.7 L409.0,370.4 A116,116 0 0 0 425.9,315.3 Z" fill="#3E5F7A" class=""/>
+  <text x="448.7" y="352.4" class="rl3" text-anchor="middle" transform="rotate(107.0 448.7 352.4)">Jumada II</text>
+  <path d="M456.6,403.7 A174,174 0 0 1 393.3,462.8 L365.5,411.8 A116,116 0 0 0 407.7,372.5 Z" fill="#3E5F7A" class=""/>
+  <text x="408.9" y="416.0" class="rl3" text-anchor="middle" transform="rotate(137.0 408.9 416.0)">Rajab</text>
+  <path d="M390.1,464.5 A174,174 0 0 1 305.7,483.9 L307.2,426.0 A116,116 0 0 0 363.4,413.0 Z" fill="#3E5F7A" class=""/>
+  <text x="342.6" y="451.3" class="rl3" text-anchor="middle" transform="rotate(167.0 342.6 451.3)">Sha'ban</text>
+  <path d="M302.1,483.8 A174,174 0 0 1 219.3,458.5 L249.6,409.0 A116,116 0 0 0 304.7,425.9 Z" fill="#8F3A24" class=""/>
+  <text x="267.6" y="448.7" class="rl3" text-anchor="middle" transform="rotate(17.0 267.6 448.7)">Ramadan</text>
+  <path d="M216.3,456.6 A174,174 0 0 1 157.2,393.3 L208.2,365.5 A116,116 0 0 0 247.5,407.7 Z" fill="#3E5F7A" class=""/>
+  <text x="204.0" y="408.9" class="rl3" text-anchor="middle" transform="rotate(47.0 204.0 408.9)">Shawwal</text>
+  <path d="M155.5,390.1 A174,174 0 0 1 136.1,305.7 L194.0,307.2 A116,116 0 0 0 207.0,363.4 Z" fill="#3E5F7A" class=""/>
+  <text x="168.7" y="342.6" class="rl3" text-anchor="middle" transform="rotate(77.0 168.7 342.6)">Dhu al-Q</text>
+  <path d="M136.2,302.1 A174,174 0 0 1 161.5,219.3 L211.0,249.6 A116,116 0 0 0 194.1,304.7 Z" fill="#3E5F7A" class=""/>
+  <text x="171.3" y="267.6" class="rl3" text-anchor="middle" transform="rotate(107.0 171.3 267.6)">Dhu al-H</text>
+  <path d="M214 252 a 112 112 0 0 0 -12 42" class="spin"/>
+  <path d="M198 286 l 6 12 l 8 -10" class="spin"/>
+  <text x="160" y="240" class="cap" text-anchor="middle">slips 11 days</text>
+  <text x="160" y="254" class="cap" text-anchor="middle">back each year</text>
+  <circle cx="310" cy="310" r="112" fill="#fff"/>
+  <text x="310" y="294" class="ctr" text-anchor="middle">One year,</text>
+  <text x="310" y="320" class="ctr" text-anchor="middle">three calendars</text>
+  <text x="310" y="344" class="cap" text-anchor="middle">outer: civil · middle: agricultural · inner: religious</text>
+</svg>
+    <p class="note" style="margin-top:18px">
+      The outer ring is the Gregorian year, which runs the state. The middle
+      ring is the fellahi year, which runs the fields, offset by thirteen days
+      because it is still keeping Julian time. The inner ring is the Hijri year,
+      which runs the mosque and does not stay put: it is 354 days long, so it
+      slips eleven days backwards against the other two, every year, for ever.
+    </p>
+  </section>
+
+  <section>
+    <h2>The 3 of them</h2>
+    <div class="three">
+      <div>
+        <div class="band" style="background:var(--civil)"></div>
+        <div class="n">Gregorian</div>
+        <dl>
+          <dt>Governs</dt><dd>Administration, business, school</dd>
+          <dt>Basis</dt><dd>Solar, 365 days</dd>
+          <dt>New year</dt><dd>1 January</dd>
+        </dl>
+      </div>
+      <div>
+        <div class="band" style="background:var(--field)"></div>
+        <div class="n">Fellahi</div>
+        <dl>
+          <dt>Governs</dt><dd>Ploughing, sowing, harvest, irrigation turns, market days</dd>
+          <dt>Basis</dt><dd>Solar. A surviving Julian calendar</dd>
+          <dt>New year</dt><dd>Yennayer, 12 to 14 January</dd>
+        </dl>
+      </div>
+      <div>
+        <div class="band" style="background:var(--moon)"></div>
+        <div class="n">Hijri</div>
+        <dl>
+          <dt>Governs</dt><dd>Ramadan, both Eids, Mawlid, Ashura</dd>
+          <dt>Basis</dt><dd>Lunar, about 354 days</dd>
+          <dt>New year</dt><dd>1 Muharram, which moves</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Rome left and the calendar stayed</h2>
+    <p class="note">
+      The fellahi month names are Latin, worn down by fourteen centuries of
+      Amazigh mouths. Yennayer is Ianuarius. Furar is Februarius. Ɣuct is
+      Augustus. Ktuber is October.
+    </p>
+    <table>
+      <thead><tr><th>Latin</th><th>Fellahi</th></tr></thead>
+      <tbody>
+        <tr><td>Ianuarius, Februarius, Martius, Aprilis</td><td>Yennayer, Furar, Mars, Ibrir</td></tr>
+        <tr><td>Maius, Iunius, Iulius, Augustus</td><td>Mayyu, Yunyu, Yulyuz, Ɣuct</td></tr>
+        <tr><td>September, October, November, December</td><td>Ctamber, Ktuber, Nwamber, Dujamber</td></tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-top:18px">
+      Rome withdrew from the interior in 285 and the province was gone
+      centuries before the Arab conquest. The towns took up the Hijri calendar
+      for religion and administration; the countryside kept the solar one,
+      because irrigation turns and sowing dates cannot follow a calendar that
+      moves. The Julian year survived in North African fields after it had been
+      abandoned across most of Europe.
+    </p>
+  </section>
+
+  <section>
+    <h2>Where Ramadan falls, over 33 years</h2>
+    <p class="note">
+      Each dot is one year, placed by where the fast begins. The spiral runs
+      outward from 2026, and it takes about thirty-three years to travel the
+      whole way round and come back to the same season.
+    </p>
+<svg viewBox="0 0 620 620" class="spiral-c" xmlns="http://www.w3.org/2000/svg">
+  <polyline points="359.3,266.1 354.1,252.5 345.3,239.6 333.2,228.0 317.9,218.7 301.6,212.4 281.6,209.5 260.3,211.0 238.7,217.0 217.7,227.8 198.4,243.4 181.8,263.4 169.0,287.4 160.8,311.9 157.6,341.3 160.3,371.8 169.2,402.4 184.6,431.7 206.0,458.4 233.2,481.2 265.3,498.8 297.9,510.0 336.6,515.1 376.8,512.5 416.8,501.9 455.1,483.3 490.1,456.9 520.1,423.4 543.8,383.8 559.9,339.2 567.6,295.6 566.5,245.8 555.6,196.0 535.0,148.0" class="spiral"/>
+  <circle cx="310" cy="310" r="70" class="gridc"/>
+  <circle cx="310" cy="310" r="108" class="gridc"/>
+  <circle cx="310" cy="310" r="146" class="gridc"/>
+  <circle cx="310" cy="310" r="184" class="gridc"/>
+  <circle cx="310" cy="310" r="222" class="gridc"/>
+  <circle cx="310" cy="310" r="260" class="gridc"/>
+  <line x1="310" y1="310" x2="310.0" y2="44.0" class="gridc"/>
+  <text x="310.0" y="26.0" class="cap" text-anchor="middle">Jan</text>
+  <line x1="310" y1="310" x2="540.4" y2="177.0" class="gridc"/>
+  <text x="556.0" y="168.0" class="cap" text-anchor="middle">Mar</text>
+  <line x1="310" y1="310" x2="540.4" y2="443.0" class="gridc"/>
+  <text x="556.0" y="452.0" class="cap" text-anchor="middle">May</text>
+  <line x1="310" y1="310" x2="310.0" y2="576.0" class="gridc"/>
+  <text x="310.0" y="594.0" class="cap" text-anchor="middle">Jul</text>
+  <line x1="310" y1="310" x2="79.6" y2="443.0" class="gridc"/>
+  <text x="64.0" y="452.0" class="cap" text-anchor="middle">Sep</text>
+  <line x1="310" y1="310" x2="79.6" y2="177.0" class="gridc"/>
+  <text x="64.0" y="168.0" class="cap" text-anchor="middle">Nov</text>
+  <circle cx="359.3" cy="266.1" r="4.2" fill="#8F3A24"/>
+  <text x="371.3" y="260.1" class="cap">2026</text>
+  <circle cx="354.1" cy="252.5" r="2.6" fill="#B5622E"/>
+  <circle cx="345.3" cy="239.6" r="2.6" fill="#B5622E"/>
+  <circle cx="333.2" cy="228.0" r="2.6" fill="#B5622E"/>
+  <circle cx="317.9" cy="218.7" r="2.6" fill="#B5622E"/>
+  <circle cx="301.6" cy="212.4" r="2.6" fill="#B5622E"/>
+  <circle cx="281.6" cy="209.5" r="2.6" fill="#B5622E"/>
+  <circle cx="260.3" cy="211.0" r="2.6" fill="#B5622E"/>
+  <circle cx="238.7" cy="217.0" r="2.6" fill="#B5622E"/>
+  <circle cx="217.7" cy="227.8" r="2.6" fill="#B5622E"/>
+  <circle cx="198.4" cy="243.4" r="2.6" fill="#B5622E"/>
+  <circle cx="181.8" cy="263.4" r="2.6" fill="#B5622E"/>
+  <circle cx="169.0" cy="287.4" r="2.6" fill="#B5622E"/>
+  <circle cx="160.8" cy="311.9" r="2.6" fill="#B5622E"/>
+  <circle cx="157.6" cy="341.3" r="2.6" fill="#B5622E"/>
+  <circle cx="160.3" cy="371.8" r="2.6" fill="#B5622E"/>
+  <circle cx="169.2" cy="402.4" r="2.6" fill="#B5622E"/>
+  <circle cx="184.6" cy="431.7" r="2.6" fill="#B5622E"/>
+  <circle cx="206.0" cy="458.4" r="2.6" fill="#B5622E"/>
+  <circle cx="233.2" cy="481.2" r="2.6" fill="#B5622E"/>
+  <circle cx="265.3" cy="498.8" r="2.6" fill="#B5622E"/>
+  <circle cx="297.9" cy="510.0" r="2.6" fill="#B5622E"/>
+  <circle cx="336.6" cy="515.1" r="2.6" fill="#B5622E"/>
+  <circle cx="376.8" cy="512.5" r="2.6" fill="#B5622E"/>
+  <circle cx="416.8" cy="501.9" r="2.6" fill="#B5622E"/>
+  <circle cx="455.1" cy="483.3" r="2.6" fill="#B5622E"/>
+  <circle cx="490.1" cy="456.9" r="2.6" fill="#B5622E"/>
+  <circle cx="520.1" cy="423.4" r="2.6" fill="#B5622E"/>
+  <circle cx="543.8" cy="383.8" r="2.6" fill="#B5622E"/>
+  <circle cx="559.9" cy="339.2" r="2.6" fill="#B5622E"/>
+  <circle cx="567.6" cy="295.6" r="2.6" fill="#B5622E"/>
+  <circle cx="566.5" cy="245.8" r="2.6" fill="#B5622E"/>
+  <circle cx="555.6" cy="196.0" r="2.6" fill="#B5622E"/>
+  <circle cx="535.0" cy="148.0" r="4.2" fill="#8F3A24"/>
+  <text x="547.0" y="152.0" class="cap">2059</text>
+  <text x="310" y="314" class="ctr2" text-anchor="middle">Ramadan</text>
+</svg>
+    <p class="note" style="margin-top:18px">
+      Which means a Moroccan born now will fast through every season of the year
+      by the time they are middle-aged: through the short cold days of January
+      and through fifteen hours of July heat, and back again. Anyone describing
+      what Ramadan is like in Morocco is describing one turn of this spiral.
+    </p>
+  </section>
+
+  <section>
+    <h2>Two calendars in one household</h2>
+    <p class="note">
+      Ahmed Skounti records that among the Ayt Moghad the women kept the lunar
+      calendar and the men the solar one, so the tribe ran both simultaneously
+      and each side of the household knew what day it was by a different
+      reckoning. Which is what every Moroccan does now, with three.
+    </p>
+    <p class="note">
+      There is also an Amazigh lunar calendar, later than the others, that gives
+      Amazigh names to the Hijri months without changing their length. Its first
+      month is not Muharram but Achour, after Ashura.
+    </p>
+  </section>
+
+  <section>
+    <h2>What is old and what is not</h2>
+    <p class="note">
+      A distinction worth keeping straight. The agricultural calendar is
+      genuinely ancient. The way its years are numbered is not.
+    </p>
+    <table>
+      <thead><tr><th>Element</th><th>Age</th></tr></thead>
+      <tbody>
+        <tr><td>The solar agricultural calendar and its Latin month names</td><td>Roman, and in continuous rural use since</td></tr>
+        <tr><td>The era count, Gregorian plus 950</td><td>Devised in 1980 by the Algerian scholar Ammar Negadi, anchored to the accession of Shoshenq I</td></tr>
+        <tr><td>Yennayer as a paid Moroccan national holiday</td><td>2023</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="editorial">
+    <strong>Editorial position.</strong> Dancing with Lions is a publisher, not
+    a political actor. We report what is documented and attribute it. Where
+    sources disagree we say so and give the range. Where a question is
+    contested in law or politics we set out the record and take no side.
+  </div>
+
+  <div class="foot">
+    <strong>Sources:</strong> Standard reference works on the Berber
+    agricultural calendar and its Julian derivation; Ahmed Skounti on the Ayt
+    Moghad; Moroccan Royal Cabinet announcement of 3 May 2023. Ramadan dates in
+    the spiral are calculated from the mean lunar year and are illustrative:
+    the actual start depends on observation of the crescent and can differ by a
+    day.
+    <br><br>
+    <strong>&copy; Dancing with Lions.</strong> Data compilation and
+    visualisation. Reuse requires attribution and a visible credit reading
+    &ldquo;Source: Dancing with Lions&rdquo;.
+  </div>
+
+</div>
+</body>
+</html>
