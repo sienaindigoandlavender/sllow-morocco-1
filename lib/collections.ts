@@ -621,6 +621,29 @@ export const COLLECTIONS: Collection[] = [
     ],
     placeSlugs: [],
   },
+  {
+    slug: "women-who-held-power",
+    title: "Women Who Held Power",
+    dek: "A queen who fought the Arab conquest, a governor who ran the western Mediterranean, a woman who founded the oldest university on earth, and the ones who still decide how a night goes.",
+    intro: [
+      "This is not a list of exceptions. It runs from the seventh century to this week, and the through-line is authority that was real rather than ceremonial — territory governed, armies commanded, institutions founded, ceremonies directed.",
+      "It ends where it begins, with women whose names nobody wrote down.",
+    ],
+    storySlugs: [
+      "the-warrior-queen",
+      "the-nafzawiyya",
+      "the-queen-who-built-fez",
+      "sayyida-al-hurra",
+      "the-shareefa-of-ouezzane",
+      "lalla-solica",
+      "the-music-of-resistance",
+      "the-five-women",
+      "the-moqaddema",
+      "the-carpet-weavers",
+      "the-argan-women",
+    ],
+    placeSlugs: [],
+  },
 ];
 
 export function getCollection(slug: string): Collection | undefined {
