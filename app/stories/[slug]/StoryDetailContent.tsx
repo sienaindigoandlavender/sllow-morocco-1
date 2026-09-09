@@ -204,6 +204,17 @@ export default function StoryDetailContent({
         {/* Body text */}
         {story.body && <StoryBody content={story.body} inlineImages={images} currentSlug={slug} pullQuote={story.pullQuote} pullQuotePosition={story.pullQuotePosition} asidePlace={asidePlace} />}
 
+        {/* The instruction. One line, at the foot, turning the reading
+            into something to do with your eyes or your feet. It has no
+            heading and no label — a heading would make it a feature.
+            Around five stories in three hundred have nothing to look
+            at and are left empty on purpose. */}
+        {(story as any).look && (
+          <p className="mt-12 pt-8 border-t border-foreground/10 font-serif italic text-[1.15em] leading-relaxed text-foreground/70 max-w-prose">
+            {(story as any).look}
+          </p>
+        )}
+
         {/* Seasonal */}
         {story.category && (
           <div className="my-10">
