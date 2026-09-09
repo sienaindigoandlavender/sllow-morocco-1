@@ -25,7 +25,11 @@ import {
 
 type Kind = "light" | "souk" | "hour" | "harvest" | "hijri" | "prayer" | "distance";
 
-const MARRAKECH = { lat: 31.63, lon: -8.01 };
+/* Where the sun is computed from. A story with a place_slug uses
+   its own coordinates; the rest fall back to Marrakech. Maghrib in
+   Tangier is around twenty minutes off Dakhla, so this matters. */
+const MARRAKECH = { lat: 31.63, lon: -8.01, name: "Marrakech" };
+type Origin = { lat: number; lon: number; name: string };
 
 const hhmm = (d: Date | null) =>
   d
@@ -34,20 +38,20 @@ const hhmm = (d: Date | null) =>
       }).format(d)
     : null;
 
-function sentence(kind: Kind, now: Date): string | null {
+function sentence(kind: Kind, now: Date, at: Origin): string | null {
   switch (kind) {
     case "light": {
-      const s = sunTimes(now, MARRAKECH.lat, MARRAKECH.lon);
+      const s = sunTimes(now, at.lat, at.lon);
       const alt = Math.round(s.altitudeNow);
       const q = lightQuality(s.altitudeNow);
       const golden = hhmm(s.goldenStart);
       const set = hhmm(s.sunset);
 
-      if (q === "dark") return `The sun is well down over Marrakech as you read this. It comes back at ${hhmm(s.sunrise)}.`;
-      if (q === "twilight") return `The sun went at ${set} over Marrakech, and what is left is the blue half hour.`;
-      if (q === "golden") return `It is at ${alt}° over Marrakech as you read this, which is the hour this page is about. It goes at ${set}.`;
-      if (q === "overhead") return `It is at ${alt}° over Marrakech as you read this — near enough overhead that nothing has any relief.`;
-      return `It is at ${alt}° over Marrakech as you read this. The good light starts at ${golden}.`;
+      if (q === "dark") return `The sun is well down over ${at.name} as you read this. It comes back at ${hhmm(s.sunrise)}.`;
+      if (q === "twilight") return `The sun went at ${set} over ${at.name}, and what is left is the blue half hour.`;
+      if (q === "golden") return `It is at ${alt}° over ${at.name} as you read this, which is the hour this page is about. It goes at ${set}.`;
+      if (q === "overhead") return `It is at ${alt}° over ${at.name} as you read this — near enough overhead that nothing has any relief.`;
+      return `It is at ${alt}° over ${at.name} as you read this. The good light starts at ${golden}.`;
     }
 
     case "souk": {
@@ -70,19 +74,19 @@ function sentence(kind: Kind, now: Date): string | null {
     }
 
     case "prayer": {
-      const p = prayerTimes(now, MARRAKECH.lat, MARRAKECH.lon);
-      const n = prayerNow(now, MARRAKECH.lat, MARRAKECH.lon);
+      const p = prayerTimes(now, at.lat, at.lon);
+      const n = prayerNow(now, at.lat, at.lon);
       const NAMES: Record<string, string> = {
         fajr: "Fajr", sunrise: "sunrise", dhuhr: "Dhuhr",
         asr: "Asr", maghrib: "Maghrib", isha: "Isha",
       };
       if (!n.next || !n.nextAt) {
-        return `Fajr is at ${hhmm(p.fajr)} in Marrakech, Maghrib at ${hhmm(p.maghrib)}.`;
+        return `Fajr is at ${hhmm(p.fajr)} in ${at.name}, Maghrib at ${hhmm(p.maghrib)}.`;
       }
       const mins = n.minutesToNext ?? 0;
       const when =
         mins < 60 ? `in ${mins} minutes` : `at ${hhmm(n.nextAt)}`;
-      const lead = n.last ? `${NAMES[n.last]} has been called in Marrakech. ` : "";
+      const lead = n.last ? `${NAMES[n.last]} has been called in ${at.name}. ` : "";
       return `${lead}${NAMES[n.next]} is ${when}.`;
     }
 
@@ -124,7 +128,10 @@ export default function Aside({
 
   useEffect(() => {
     if (kind !== "distance") {
-      const tick = () => setLine(sentence(kind, new Date()));
+      const origin: Origin = place
+        ? { lat: Number(place.latitude), lon: Number(place.longitude), name: place.title }
+        : MARRAKECH;
+      const tick = () => setLine(sentence(kind, new Date(), origin));
       tick();
       const t = setInterval(tick, 60000);
       return () => clearInterval(t);
