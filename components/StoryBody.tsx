@@ -4,6 +4,7 @@ import React from 'react';
 import { linkGlossaryTermsText, linkGlossaryTermsHTML } from '@/lib/glossary-linker';
 import { linkDerbTermsText, linkDerbTermsHTML } from '@/lib/derb-linker';
 import { linkCrossReferences, linkCrossReferencesHTML } from '@/lib/story-linker';
+import Aside from "@/components/Aside";
 
 interface InlineImage {
   image_url: string;
@@ -189,11 +190,18 @@ export default function StoryBody({ content, inlineImages = [], currentSlug, pul
     imagesByPosition.get(pos)!.push(img);
   });
 
+  /* An aside is opted into from the body itself, as a paragraph
+     containing {{aside:light}} or {{aside:souk}}. Editorial decides
+     where the line falls; this just swaps the marker paragraph for
+     the component. See components/Aside.tsx. */
+  const ASIDE_RE = /\{\{aside:(light|souk|hour|harvest|hijri)\}\}/i;
+
   // HTML content — inject images at paragraph boundaries
   if (isHTML(content)) {
     const pqText = pullQuote && pullQuote.trim() ? pullQuote.trim() : null;
+    const hasAside = ASIDE_RE.test(content);
 
-    if (inlineImages.length === 0 && !pqText) {
+    if (inlineImages.length === 0 && !pqText && !hasAside) {
       return (
         <div className="prose prose-lg max-w-none story-html-body"
           dangerouslySetInnerHTML={{ __html: prepareHTML(content, currentSlug) }} />
@@ -216,9 +224,17 @@ export default function StoryBody({ content, inlineImages = [], currentSlug, pul
       if (part.match(/<\/p>/i)) {
         paraCount++;
         buffer += part;
-        nodes.push(
-          <div key={`p-${i}`} dangerouslySetInnerHTML={{ __html: prepareHTML(buffer, currentSlug) }} />
-        );
+        const asideMatch = buffer.match(ASIDE_RE);
+        if (asideMatch) {
+          // The marker paragraph is replaced, not annotated.
+          nodes.push(
+            <Aside key={`aside-${i}`} kind={asideMatch[1].toLowerCase() as any} />
+          );
+        } else {
+          nodes.push(
+            <div key={`p-${i}`} dangerouslySetInnerHTML={{ __html: prepareHTML(buffer, currentSlug) }} />
+          );
+        }
         buffer = '';
         const imgs = imagesByPosition.get(paraCount);
         if (imgs) imgs.forEach((img, j) => nodes.push(<InlineImageBlock key={`img-${paraCount}-${j}`} img={img} />));
