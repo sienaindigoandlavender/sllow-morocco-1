@@ -108,6 +108,24 @@ export default async function HomePage() {
       href: string;
       label: string;
     };
+    /* Destination values are slugs. These are the ones a straight
+       title-case gets wrong. */
+    const TOWN: Record<string, string> = {
+      "kelaat-mgouna": "Kelaat M'Gouna",
+      "mhamid": "M'hamid",
+      "el-jadida": "El Jadida",
+      "ait-benhaddou": "Aït Benhaddou",
+      "dades-valley": "The Dadès",
+      "draa-valley": "The Draa",
+      "ourika-valley": "The Ourika",
+      "todra-gorge": "Todra",
+      "atlas-mountains": "The High Atlas",
+      "moulay-idriss": "Moulay Idriss",
+      "sidi-ifni": "Sidi Ifni",
+    };
+    const townName = (d?: string | null) =>
+      !d ? "" : TOWN[d] ?? d.split("-").map((w) => w[0].toUpperCase() + w.slice(1)).join(" ");
+
     const heroPool: HeroItem[] = [
       ...allJourneys
         .filter((j) => j.heroImage && j.journeyType !== "daytrip" && j.journeyType !== "overnight")
@@ -127,11 +145,24 @@ export default async function HomePage() {
         .filter((p) => p.hero_image)
         .map((p) => ({
           kind: "place" as const, slug: p.slug, title: p.title,
-          subtitle: p.destination || "", heroImage: p.hero_image as string,
+          // destination stores a slug, not a display name. Printing it
+          // raw put "atlas-mountains" under the masthead.
+          subtitle: townName(p.destination), heroImage: p.hero_image as string,
           href: `/places/${p.slug}`, label: p.category || "Place",
         })),
     ];
-    heroItem = seededShuffle(heroPool, timeBucket)[0] || null;
+    /* The season line sits directly under the masthead, so the image
+       behind it has to agree. In September a date palm, in April the
+       rose valley.
+
+       Narrow to the month's items first, then shuffle — sorting the
+       whole pool seasonally would freeze the hero on one image for
+       four weeks, and the three-hour rotation is the point. Falls
+       back to everything when nothing seasonal has a hero image. */
+    const season = seasonNow();
+    const seasonalPool = heroPool.filter((h) => season.slugs.includes(h.slug));
+    heroItem =
+      seededShuffle(seasonalPool.length ? seasonalPool : heroPool, timeBucket)[0] || null;
 
     // Format settings
     settingsData.forEach((row) => {
