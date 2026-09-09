@@ -72,10 +72,10 @@ const jsonLd = {
     },
   },
   author: {
-    "@type": "Person",
-    name: "Jacqueline Ng",
-    jobTitle: "Founder",
-    worksFor: {
+    "@type": "Organization",
+    name: "Slow Morocco",
+    url: "https://www.slowmorocco.com",
+    parentOrganization: {
       "@type": "Organization",
       name: "Dance with Lions",
     },
