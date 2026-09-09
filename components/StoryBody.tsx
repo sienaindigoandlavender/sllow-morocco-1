@@ -22,6 +22,9 @@ interface StoryBodyProps {
   currentSlug?: string;
   pullQuote?: string | null;
   pullQuotePosition?: number | null;
+  /* Coordinates of the place this story is about, when it has one.
+     Only used by an {{aside:distance}} marker. */
+  asidePlace?: { latitude: number; longitude: number; title: string } | null;
 }
 
 // The staged "one thing worth knowing" — a single startling line given air.
@@ -179,7 +182,7 @@ function InlineImageBlock({ img }: { img: InlineImage }) {
   );
 }
 
-export default function StoryBody({ content, inlineImages = [], currentSlug, pullQuote, pullQuotePosition }: StoryBodyProps) {
+export default function StoryBody({ content, inlineImages = [], currentSlug, pullQuote, pullQuotePosition, asidePlace }: StoryBodyProps) {
   if (!content) return null;
 
   // Build a map of position → images
@@ -194,7 +197,7 @@ export default function StoryBody({ content, inlineImages = [], currentSlug, pul
      containing {{aside:light}} or {{aside:souk}}. Editorial decides
      where the line falls; this just swaps the marker paragraph for
      the component. See components/Aside.tsx. */
-  const ASIDE_RE = /\{\{aside:(light|souk|hour|harvest|hijri|prayer)\}\}/i;
+  const ASIDE_RE = /\{\{aside:(light|souk|hour|harvest|hijri|prayer|distance)\}\}/i;
 
   // HTML content — inject images at paragraph boundaries
   if (isHTML(content)) {
@@ -228,7 +231,7 @@ export default function StoryBody({ content, inlineImages = [], currentSlug, pul
         if (asideMatch) {
           // The marker paragraph is replaced, not annotated.
           nodes.push(
-            <Aside key={`aside-${i}`} kind={asideMatch[1].toLowerCase() as any} />
+            <Aside key={`aside-${i}`} kind={asideMatch[1].toLowerCase() as any} place={asidePlace} />
           );
         } else {
           nodes.push(

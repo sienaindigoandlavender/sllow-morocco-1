@@ -18,11 +18,12 @@
 
 import { useEffect, useState } from "react";
 import { sunTimes, lightQuality, prayerTimes, prayerNow } from "@/lib/solar";
+import { distanceKm, formatDistance } from "@/lib/geo";
 import {
   moroccanTime, rhythmNow, souksToday, harvestNow, hijri, TZ,
 } from "@/lib/moroccan-calendar";
 
-type Kind = "light" | "souk" | "hour" | "harvest" | "hijri" | "prayer";
+type Kind = "light" | "souk" | "hour" | "harvest" | "hijri" | "prayer" | "distance";
 
 const MARRAKECH = { lat: 31.63, lon: -8.01 };
 
@@ -85,6 +86,9 @@ function sentence(kind: Kind, now: Date): string | null {
       return `${lead}${NAMES[n.next]} is ${when}.`;
     }
 
+    case "distance":
+      return null; // handled in the component, not here
+
     case "hijri": {
       const h = hijri(now);
       if (h.isRamadan) return `It is ${h.day} Ramadan as you read this.`;
@@ -93,15 +97,58 @@ function sentence(kind: Kind, now: Date): string | null {
   }
 }
 
-export default function Aside({ kind }: { kind: Kind }) {
+/* How far the reader is from the thing the story is about.
+   Silent unless they are close. Someone reading in Toronto should
+   never see this; someone standing three streets away should. */
+function distanceLine(
+  here: { lat: number; lon: number },
+  there: { lat: number; lon: number; title: string },
+): string | null {
+  const km = distanceKm(here.lat, here.lon, there.lat, there.lon);
+  if (km > 3) return null;
+  if (km < 0.06) return `You are standing at it.`;
+  if (km < 1) return `It is ${formatDistance(km)} from where you are standing.`;
+  return `You are ${formatDistance(km)} away, which is a walk.`;
+}
+
+export default function Aside({
+  kind,
+  place,
+}: {
+  kind: Kind;
+  /* Only needed for kind="distance". Comes from the story's
+     place_slug, resolved to coordinates on the server. */
+  place?: { latitude: number; longitude: number; title: string } | null;
+}) {
   const [line, setLine] = useState<string | null>(null);
 
   useEffect(() => {
-    const tick = () => setLine(sentence(kind, new Date()));
-    tick();
-    const t = setInterval(tick, 60000);
-    return () => clearInterval(t);
-  }, [kind]);
+    if (kind !== "distance") {
+      const tick = () => setLine(sentence(kind, new Date()));
+      tick();
+      const t = setInterval(tick, 60000);
+      return () => clearInterval(t);
+    }
+
+    // Distance is the one kind that asks for a position. It asks
+    // once, quietly, and says nothing at all if refused.
+    if (!place || typeof navigator === "undefined" || !navigator.geolocation) return;
+    let cancelled = false;
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        if (cancelled) return;
+        setLine(
+          distanceLine(
+            { lat: pos.coords.latitude, lon: pos.coords.longitude },
+            { lat: Number(place.latitude), lon: Number(place.longitude), title: place.title },
+          ),
+        );
+      },
+      () => { /* refused. The story reads exactly as it did before. */ },
+      { enableHighAccuracy: false, timeout: 8000, maximumAge: 600000 },
+    );
+    return () => { cancelled = true; };
+  }, [kind, place]);
 
   if (!line) return null;
 
