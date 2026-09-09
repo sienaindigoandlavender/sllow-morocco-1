@@ -18,10 +18,11 @@
    ═══════════════════════════════════════════════════════════════ */
 
 import { useEffect, useState } from "react";
-import { Navigation, Sun } from "lucide-react";
+import { Navigation, Sun, CloudSun } from "lucide-react";
 import { distanceKm, formatDistance } from "@/lib/geo";
 import { sunTimes, lightQuality } from "@/lib/solar";
 import { TZ } from "@/lib/moroccan-calendar";
+import { conditions, weatherShort } from "@/lib/weather";
 
 interface Props {
   latitude: number | null;
@@ -43,6 +44,7 @@ const hhmm = (d: Date | null) =>
 export default function PlaceNow({ latitude, longitude }: Props) {
   const [distance, setDistance] = useState<string | null>(null);
   const [light, setLight] = useState<string | null>(null);
+  const [sky, setSky] = useState<string | null>(null);
 
   const lat = latitude == null ? null : Number(latitude);
   const lon = longitude == null ? null : Number(longitude);
@@ -70,6 +72,17 @@ export default function PlaceNow({ latitude, longitude }: Props) {
     return () => clearInterval(t);
   }, [lat, lon]);
 
+  /* What it is actually doing there. One request, cached for the
+     session, and silent if the network says no. */
+  useEffect(() => {
+    if (lat == null || lon == null) return;
+    let cancelled = false;
+    conditions(lat, lon).then((c) => {
+      if (!cancelled && c) setSky(weatherShort(c));
+    });
+    return () => { cancelled = true; };
+  }, [lat, lon]);
+
   /* The distance. Asked once, quietly, and silent on refusal. */
   useEffect(() => {
     if (lat == null || lon == null) return;
@@ -93,10 +106,21 @@ export default function PlaceNow({ latitude, longitude }: Props) {
     return () => { cancelled = true; };
   }, [lat, lon]);
 
-  if (!distance && !light) return null;
+  if (!distance && !light && !sky) return null;
 
   return (
     <>
+      {sky && (
+        <div className="flex items-center gap-3">
+          <CloudSun className="w-4 h-4 text-foreground/70" />
+          <div>
+            <p className="text-[11px] tracking-[0.12em] uppercase text-foreground/70">
+              Right now
+            </p>
+            <p className="text-sm">{sky}</p>
+          </div>
+        </div>
+      )}
       {distance && (
         <div className="flex items-center gap-3">
           <Navigation className="w-4 h-4 text-foreground/70" />

@@ -19,11 +19,12 @@
 import { useEffect, useState } from "react";
 import { sunTimes, lightQuality, prayerTimes, prayerNow } from "@/lib/solar";
 import { distanceKm, formatDistance } from "@/lib/geo";
+import { conditions, weatherLine } from "@/lib/weather";
 import {
   moroccanTime, rhythmNow, souksToday, harvestNow, hijri, TZ,
 } from "@/lib/moroccan-calendar";
 
-type Kind = "light" | "souk" | "hour" | "harvest" | "hijri" | "prayer" | "distance";
+type Kind = "light" | "souk" | "hour" | "harvest" | "hijri" | "prayer" | "distance" | "weather";
 
 /* Where the sun is computed from. A story with a place_slug uses
    its own coordinates; the rest fall back to Marrakech. Maghrib in
@@ -91,7 +92,8 @@ function sentence(kind: Kind, now: Date, at: Origin): string | null {
     }
 
     case "distance":
-      return null; // handled in the component, not here
+    case "weather":
+      return null; // both are async, handled in the component
 
     case "hijri": {
       const h = hijri(now);
@@ -127,6 +129,20 @@ export default function Aside({
   const [line, setLine] = useState<string | null>(null);
 
   useEffect(() => {
+    /* Weather is a network call, so it lives here rather than in
+       the synchronous sentence(). It names the place, because a
+       reader in Toronto needs to know whose 35 degrees it is. */
+    if (kind === "weather") {
+      const at = place
+        ? { lat: Number(place.latitude), lon: Number(place.longitude), name: place.title }
+        : MARRAKECH;
+      let cancelled = false;
+      conditions(at.lat, at.lon).then((c) => {
+        if (!cancelled && c) setLine(weatherLine(c, at.name));
+      });
+      return () => { cancelled = true; };
+    }
+
     if (kind !== "distance") {
       const origin: Origin = place
         ? { lat: Number(place.latitude), lon: Number(place.longitude), name: place.title }
