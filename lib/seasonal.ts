@@ -98,7 +98,7 @@ export function bySeason<T extends { slug: string; title?: string; excerpt?: str
   d: Date = new Date(),
 ): T[] {
   const season = seasonNow(d);
-  const rank = new Map(season.slugs.map((s, i) => [s, i]));
+  const rank = new Map<string, number>(season.slugs.map((s, i): [string, number] => [s, i]));
   const kw = season.keywords.map((k) => k.toLowerCase());
 
   const score = (s: T): number => {

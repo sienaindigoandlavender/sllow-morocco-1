@@ -25,7 +25,7 @@ function read(): Set<string> {
 function write(set: Set<string>) {
   if (typeof window === "undefined") return;
   try {
-    window.localStorage.setItem(KEY, JSON.stringify([...set]));
+    window.localStorage.setItem(KEY, JSON.stringify(Array.from(set)));
     window.dispatchEvent(new CustomEvent("sm:visited"));
   } catch {
     /* private browsing, quota, whatever. Failing silently is correct. */
@@ -33,7 +33,7 @@ function write(set: Set<string>) {
 }
 
 export function all(): string[] {
-  return [...read()];
+  return Array.from(read());
 }
 
 export function has(slug: string): boolean {
