@@ -60,15 +60,10 @@ export default function AboutPage() {
           </p>
 
           <p>
-            None of it is invented. Every claim is sourced and dated, drawn from
-            the archives, the museums, and fifteen years on the ground. Where the
-            record runs out, the account says so. The gaps are part of the truth,
-            not something to be papered over with a confident guess.
-          </p>
-
-          <p>
-            Nothing here is sponsored, and nothing ever will be. There is no
-            advertiser to please and no package to sell. Only the record.
+            Read enough of this and you will start noticing things. The tile
+            that is deliberately not quite like its neighbour. The lane that is
+            narrow for a reason. The loaf with somebody's mark pressed into it,
+            on its way to an oven the whole street shares.
           </p>
 
 
@@ -77,7 +72,7 @@ export default function AboutPage() {
 
       {/* ── What lives here ──────────────────────────────────────── */}
       <section className="px-8 md:px-10 lg:px-14 py-20 md:py-28 border-t border-foreground/[0.08]">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-10 max-w-4xl">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-12 gap-y-10 max-w-5xl">
           {[
             {
               title: "Stories",
@@ -88,6 +83,11 @@ export default function AboutPage() {
               title: "Places",
               body: "Cities, villages and landmarks, with the meaning a guidebook leaves out. What happened here, and why it still matters.",
               href: "/places",
+            },
+            {
+              title: "Collections",
+              body: "The archive read in order. Water from the tunnel to the gold it paid for, the trades from apprentice to maallem, three deserts that are not the same desert.",
+              href: "/collections",
             },
             {
               title: "Glossary",
