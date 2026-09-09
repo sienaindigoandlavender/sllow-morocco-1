@@ -1,6 +1,6 @@
 import { permanentRedirect } from "next/navigation";
 import { Metadata } from "next";
-import { getStoryBySlug, getStories, getJourneys, getStoryImages, getPlaces } from "@/lib/supabase";
+import { getStoryBySlug, getStories, getJourneys, getStoryImages, getPlaces, getPlaceBySlug} from "@/lib/supabase";
 import { findRelatedJourneys } from "@/lib/content-matcher";
 import { getCollectionsForStory } from "@/lib/collections";
 import { mapStory, type StoryView as Story } from "@/lib/story-view";
@@ -241,18 +241,36 @@ export default async function StoryPage({
     author: {
       "@type": "Person",
       name: "J. Ng",
-      worksFor: { "@type": "Organization", name: "Dance with Lions", url: "https://www.dancewithlions.com" },
+      worksFor: { "@type": "Organization", name: "Dancing with Lions", url: "https://www.dancewithlions.com" },
     },
     publisher: {
       "@type": "Organization",
       name: "Slow Morocco",
       url: BASE_URL,
-      parentOrganization: { "@type": "Organization", name: "Dance with Lions", url: "https://www.dancewithlions.com" },
+      parentOrganization: { "@type": "Organization", name: "Dancing with Lions", url: "https://www.dancewithlions.com" },
     },
     about: { "@type": "Place", name: "Morocco" },
     ...(story.category || story.tags ? { keywords: [story.category, ...(story.tags ? story.tags.replace(/[{}]/g, '').split(',').map((t: string) => t.trim()) : [])].filter(Boolean).join(', ') } : {}),
     ...(story.heroImage ? { image: story.heroImage } : {}),
   };
+
+  /* If the story names a place, hand its coordinates down so an
+     {{aside:distance}} marker can tell a reader standing nearby how
+     far they are. Twenty-four stories have one; the rest pass null
+     and the marker never appears. */
+  let asidePlace:
+    | { latitude: number; longitude: number; title: string }
+    | null = null;
+  if ((story as any).place_slug && /\{\{aside:distance\}\}/i.test(story.body ?? "")) {
+    const p = await getPlaceBySlug((story as any).place_slug);
+    if (p && p.latitude != null && p.longitude != null) {
+      asidePlace = {
+        latitude: Number(p.latitude),
+        longitude: Number(p.longitude),
+        title: p.title,
+      };
+    }
+  }
 
   return (
     <>
@@ -261,6 +279,7 @@ export default async function StoryPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
       />
       <StoryDetailContent
+        asidePlace={asidePlace}
         story={story}
         images={storyImages}
         relatedStories={relatedStories}

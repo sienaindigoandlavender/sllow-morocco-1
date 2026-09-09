@@ -63,11 +63,15 @@ interface StoryDetailContentProps {
   prevStory?: NavItem | null;
   nextStory?: NavItem | null;
   inCollections?: { slug: string; title: string; dek: string }[];
+  /* Coordinates for an {{aside:distance}} marker, resolved on the
+     server from the story's place_slug. Null for stories without one. */
+  asidePlace?: { latitude: number; longitude: number; title: string } | null;
 }
 
 export default function StoryDetailContent({
   story,
   images,
+  asidePlace = null,
   relatedStories,
   relatedJourneys,
   relatedPlaces = [],
@@ -198,7 +202,7 @@ export default function StoryDetailContent({
       <article className="max-w-3xl mx-auto px-8 md:px-12 py-14 md:py-20">
 
         {/* Body text */}
-        {story.body && <StoryBody content={story.body} inlineImages={images} currentSlug={slug} pullQuote={story.pullQuote} pullQuotePosition={story.pullQuotePosition} />}
+        {story.body && <StoryBody content={story.body} inlineImages={images} currentSlug={slug} pullQuote={story.pullQuote} pullQuotePosition={story.pullQuotePosition} asidePlace={asidePlace} />}
 
         {/* Seasonal */}
         {story.category && (
