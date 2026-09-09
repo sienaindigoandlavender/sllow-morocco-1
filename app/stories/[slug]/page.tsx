@@ -172,7 +172,11 @@ async function getRelatedJourneysSSR(story: Story, slug: string) {
       (j) => j.journey_type !== "daytrip" && j.journey_type !== "overnight"
     );
 
-    const shape = (j: any) => ({
+    /* findRelatedJourneys returns a score on each result, so a pinned
+       journey has to carry one too or the two lists cannot be
+       concatenated. Pinned entries score above anything the matcher
+       can produce, because they were chosen rather than matched. */
+    const shape = (j: any, score = 0) => ({
       slug: j.slug || "",
       title: j.title || "",
       destinations: j.destinations || "",
@@ -180,6 +184,7 @@ async function getRelatedJourneysSSR(story: Story, slug: string) {
       heroImage: j.hero_image_url || "",
       duration: j.duration_days || 0,
       price: j.price_eur || 0,
+      score,
     });
 
     /* Explicit first. A journey can name the stories it belongs under
@@ -200,7 +205,7 @@ async function getRelatedJourneysSSR(story: Story, slug: string) {
       3
     );
 
-    return [...pinned.map(shape), ...matched].slice(0, 3);
+    return [...pinned.map((j: any) => shape(j, 1000)), ...matched].slice(0, 3);
   } catch {
     return [];
   }
