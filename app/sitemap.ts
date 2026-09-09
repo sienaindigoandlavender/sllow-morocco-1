@@ -47,14 +47,12 @@ const dataModuleEntries = DATA_MODULES.map((slug) => ({
 const STATIC_PAGES: MetadataRoute.Sitemap = [
   { url: SITE_URL, changeFrequency: 'daily', priority: 1.0 },
   { url: `${SITE_URL}/about`, changeFrequency: 'monthly', priority: 0.7 },
-  { url: `${SITE_URL}/masthead`, changeFrequency: 'monthly', priority: 0.6 },
   { url: `${SITE_URL}/places`, changeFrequency: 'weekly', priority: 0.8 },
   { url: `${SITE_URL}/destinations`, changeFrequency: 'weekly', priority: 0.8 },
   { url: `${SITE_URL}/places/map`, changeFrequency: 'weekly', priority: 0.6 },
   { url: `${SITE_URL}/stories`, changeFrequency: 'weekly', priority: 0.8 },
   { url: `${SITE_URL}/collections`, changeFrequency: 'weekly', priority: 0.8 },
   { url: `${SITE_URL}/glossary`, changeFrequency: 'monthly', priority: 0.6 },
-  { url: `${SITE_URL}/go/gentle`, changeFrequency: 'monthly', priority: 0.6 },
   { url: `${SITE_URL}/morocco`, changeFrequency: 'monthly', priority: 0.6 },
   { url: `${SITE_URL}/morocco/the-odyssey-filming-locations`, changeFrequency: 'weekly', priority: 0.8 },
   { url: `${SITE_URL}/morocco/ouarzazate-africas-hollywood`, changeFrequency: 'monthly', priority: 0.8 },
@@ -88,12 +86,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const safe = <T,>(result: PromiseSettledResult<T[]>): T[] =>
     result.status === 'fulfilled' ? result.value : [];
 
+  // Journeys are no longer promoted anywhere on the site — the front
+  // door is closed and TRIP_FUNNEL_PUBLIC is false. They stay indexed
+  // because they still answer real queries, but at a low priority so
+  // they stop competing with the archive for crawl budget.
   const journeyPages: MetadataRoute.Sitemap = safe(journeys)
     .filter((j: any) => j.journey_type !== 'daytrip' && j.journey_type !== 'overnight')
     .map((j: any) => ({
       url: `${SITE_URL}/journeys/${j.slug}`,
-      changeFrequency: 'weekly',
-      priority: 0.7,
+      changeFrequency: 'monthly',
+      priority: 0.3,
     }));
 
   const placePages: MetadataRoute.Sitemap = safe(places).map((p: any) => ({
