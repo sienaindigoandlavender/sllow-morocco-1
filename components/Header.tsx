@@ -127,6 +127,7 @@ export default function Header() {
                 { href: "/morocco", label: "Morocco" },
                 { href: "/stories", label: "Stories" },
                 { href: "/places", label: "Places" },
+                { href: "/journeys", label: "Journeys" },
                 { href: "/collections", label: "Collections" },
                 { href: "/stories/category/before-you-go", label: "Before You Go" },
                 { href: "https://darija.io", label: "Darija" },
