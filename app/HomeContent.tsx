@@ -225,8 +225,8 @@ export default function HomeContent({
                 Morocco, decoded
               </h1>
               <Link
-                href="/stories"
-                aria-label="Read the stories"
+                href="/journeys"
+                aria-label="Explore the journeys"
                 className="group shrink-0 mt-2 md:mt-3 text-white/50 hover:text-white transition-colors"
               >
                 <svg

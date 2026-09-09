@@ -86,16 +86,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const safe = <T,>(result: PromiseSettledResult<T[]>): T[] =>
     result.status === 'fulfilled' ? result.value : [];
 
-  // Journeys are no longer promoted anywhere on the site — the front
-  // door is closed and TRIP_FUNNEL_PUBLIC is false. They stay indexed
-  // because they still answer real queries, but at a low priority so
-  // they stop competing with the archive for crawl budget.
   const journeyPages: MetadataRoute.Sitemap = safe(journeys)
     .filter((j: any) => j.journey_type !== 'daytrip' && j.journey_type !== 'overnight')
     .map((j: any) => ({
       url: `${SITE_URL}/journeys/${j.slug}`,
-      changeFrequency: 'monthly',
-      priority: 0.3,
+      changeFrequency: 'weekly',
+      priority: 0.7,
     }));
 
   const placePages: MetadataRoute.Sitemap = safe(places).map((p: any) => ({
