@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import RelatedJourneyCTA, { ODYSSEY_JOURNEY, FILM_ROUTE_JOURNEY } from "@/components/OdysseyJourneyCTA";
+import RelatedJourneyCTA, { ODYSSEY_JOURNEY, FILM_ROUTE_JOURNEY, PILLARS_JOURNEY } from "@/components/OdysseyJourneyCTA";
+import ReadOn from "@/components/ReadOn";
 import OdysseyLocationsMap from "@/components/OdysseyLocationsMap";
 import ArticleSchema from "@/components/seo/ArticleSchema";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
@@ -173,7 +174,12 @@ export default function OdysseyFilmingLocationsPage() {
           <OdysseyLocationsMap />
         </div>
 
-        <RelatedJourneyCTA journeys={[ODYSSEY_JOURNEY, FILM_ROUTE_JOURNEY]} />
+        <RelatedJourneyCTA journeys={[ODYSSEY_JOURNEY, FILM_ROUTE_JOURNEY, PILLARS_JOURNEY]} />
+
+        {/* The other door. Two journey cards were the only exit from
+            the highest-traffic page on the site; a reader who is not
+            booking had nowhere to go but away. */}
+        <ReadOn />
       </div>
     </div>
   );
