@@ -254,20 +254,40 @@ export default async function StoryPage({
     ...(story.heroImage ? { image: story.heroImage } : {}),
   };
 
-  /* If the story names a place, hand its coordinates down so an
-     {{aside:distance}} marker can tell a reader standing nearby how
-     far they are. Twenty-four stories have one; the rest pass null
-     and the marker never appears. */
+  /* If the story names a place, hand its coordinates down. The
+     distance aside uses them to measure; the time asides use them
+     so that Maghrib in Tangier is not quoted as Marrakech's, which
+     is a twenty-minute error at the ends of the country.
+
+     The name shown is the town, not the entry title — "over Fes"
+     rather than "over Chouara: The Oldest Tannery in the World". */
+  const TOWN: Record<string, string> = {
+    "kelaat-mgouna": "Kelaat M'Gouna",
+    "mhamid": "M'hamid",
+    "el-jadida": "El Jadida",
+    "ait-benhaddou": "Aït Benhaddou",
+    "dades-valley": "the Dadès",
+    "draa-valley": "the Draa",
+    "ourika-valley": "the Ourika",
+    "todra-gorge": "Todra",
+    "atlas-mountains": "the Atlas",
+    "moulay-idriss": "Moulay Idriss",
+    "sidi-ifni": "Sidi Ifni",
+  };
+  const townName = (d?: string | null) =>
+    !d ? "Marrakech"
+       : TOWN[d] ?? d.split("-").map((w) => w[0].toUpperCase() + w.slice(1)).join(" ");
+
   let asidePlace:
     | { latitude: number; longitude: number; title: string }
     | null = null;
-  if ((story as any).place_slug && /\{\{aside:distance\}\}/i.test(story.body ?? "")) {
+  if ((story as any).place_slug && (story.body ?? "").includes("{{aside:")) {
     const p = await getPlaceBySlug((story as any).place_slug);
     if (p && p.latitude != null && p.longitude != null) {
       asidePlace = {
         latitude: Number(p.latitude),
         longitude: Number(p.longitude),
-        title: p.title,
+        title: townName(p.destination),
       };
     }
   }
