@@ -12,6 +12,7 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import dynamic from "next/dynamic";
 import SeasonalBadge from "@/components/SeasonalBadge";
 import NewsletterCapture from "@/components/NewsletterCapture";
+import PlaceNow from "@/components/PlaceNow";
 
 const PlaceSatelliteMap = dynamic(() => import("@/components/PlaceSatelliteMap"), { ssr: false });
 
@@ -251,6 +252,10 @@ export default function PlaceDetailContent({
                     </div>
                   </div>
                 )}
+                {/* How far away the reader is, and what the light is
+                    doing. Both computed client-side; both render
+                    nothing when they have nothing to say. */}
+                <PlaceNow latitude={place.latitude} longitude={place.longitude} />
               </div>
             </div>
           </section>
@@ -402,6 +407,20 @@ export default function PlaceDetailContent({
         </>
       ) : (
         /* ====== STANDARD LAYOUT ====== */
+        <>
+        {/* The standard layout has no quick facts bar, so this is
+            its own thin strip. PlaceNow renders nothing when it has
+            nothing to report, and the wrapper collapses with it —
+            an empty bordered band would be worse than no band. */}
+        {place.latitude && place.longitude && (
+          <section className="border-b border-foreground/10">
+            <div className="container mx-auto px-6 lg:px-16">
+              <div className="flex flex-wrap gap-8 md:gap-12 py-6 empty:hidden">
+                <PlaceNow latitude={place.latitude} longitude={place.longitude} />
+              </div>
+            </div>
+          </section>
+        )}
         <section className="py-16">
           <div className="container mx-auto px-6 lg:px-16">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
@@ -488,6 +507,7 @@ export default function PlaceDetailContent({
             </div>
           </div>
         </section>
+        </>
       )}
 
       {/* The Edit — Newsletter capture */}
