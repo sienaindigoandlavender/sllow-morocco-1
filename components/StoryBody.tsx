@@ -194,7 +194,7 @@ export default function StoryBody({ content, inlineImages = [], currentSlug, pul
      containing {{aside:light}} or {{aside:souk}}. Editorial decides
      where the line falls; this just swaps the marker paragraph for
      the component. See components/Aside.tsx. */
-  const ASIDE_RE = /\{\{aside:(light|souk|hour|harvest|hijri)\}\}/i;
+  const ASIDE_RE = /\{\{aside:(light|souk|hour|harvest|hijri|prayer)\}\}/i;
 
   // HTML content — inject images at paragraph boundaries
   if (isHTML(content)) {

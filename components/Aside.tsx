@@ -17,12 +17,12 @@
    ═══════════════════════════════════════════════════════════════ */
 
 import { useEffect, useState } from "react";
-import { sunTimes, lightQuality } from "@/lib/solar";
+import { sunTimes, lightQuality, prayerTimes, prayerNow } from "@/lib/solar";
 import {
   moroccanTime, rhythmNow, souksToday, harvestNow, hijri, TZ,
 } from "@/lib/moroccan-calendar";
 
-type Kind = "light" | "souk" | "hour" | "harvest" | "hijri";
+type Kind = "light" | "souk" | "hour" | "harvest" | "hijri" | "prayer";
 
 const MARRAKECH = { lat: 31.63, lon: -8.01 };
 
@@ -66,6 +66,23 @@ function sentence(kind: Kind, now: Date): string | null {
       if (!h.length) return null;
       const month = new Intl.DateTimeFormat("en-GB", { timeZone: TZ, month: "long" }).format(now);
       return `This ${month}: ${h.join(", ").toLowerCase()}.`;
+    }
+
+    case "prayer": {
+      const p = prayerTimes(now, MARRAKECH.lat, MARRAKECH.lon);
+      const n = prayerNow(now, MARRAKECH.lat, MARRAKECH.lon);
+      const NAMES: Record<string, string> = {
+        fajr: "Fajr", sunrise: "sunrise", dhuhr: "Dhuhr",
+        asr: "Asr", maghrib: "Maghrib", isha: "Isha",
+      };
+      if (!n.next || !n.nextAt) {
+        return `Fajr is at ${hhmm(p.fajr)} in Marrakech, Maghrib at ${hhmm(p.maghrib)}.`;
+      }
+      const mins = n.minutesToNext ?? 0;
+      const when =
+        mins < 60 ? `in ${mins} minutes` : `at ${hhmm(n.nextAt)}`;
+      const lead = n.last ? `${NAMES[n.last]} has been called in Marrakech. ` : "";
+      return `${lead}${NAMES[n.next]} is ${when}.`;
     }
 
     case "hijri": {
