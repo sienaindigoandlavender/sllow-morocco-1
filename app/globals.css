@@ -500,3 +500,30 @@ button:focus {
                 text-underline-offset:3px; transition:text-decoration-color .2s }
 .tml a.ev:hover .ti { text-decoration-color:rgba(10,10,10,.5) }
 .tml a.ev:hover .hit { fill:rgba(10,10,10,.03) }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   THE WINE MAP
+   Styles <svg class="wm"> in moroccan-wine. The three Meknès
+   appellations are picked out; everything else recedes.
+   ═══════════════════════════════════════════════════════════════ */
+.wm { width:100%; height:auto; display:block; margin:2.5rem 0; }
+.wm-bg          { fill:#FCFCFB }
+.wm-sea         { fill:#EEF2F3 }
+.wm-sea-label   { font-family:"DM Sans",sans-serif; font-size:11px; fill:#9BA9AD;
+                  letter-spacing:.3em }
+.wm-range       { fill:#F2EDE6 }
+.wm-range-label { font-family:"DM Sans",sans-serif; font-size:10px; fill:#A8998A;
+                  letter-spacing:.2em }
+.wm-zone        { fill:rgba(140,98,56,.09); stroke:rgba(140,98,56,.3); stroke-width:1 }
+.wm-zone.hero   { fill:rgba(140,98,56,.2);  stroke:rgba(140,98,56,.6); stroke-width:1.4 }
+.wm-zone-label  { font-family:"DM Sans",sans-serif; font-size:11px; fill:#7A6248 }
+.wm-zone-label.hero { font-size:12.5px; fill:#5A4630; font-weight:500 }
+.wm-city        { fill:#0a0a0a }
+.wm-city-label       { font-family:"DM Sans",sans-serif; font-size:11px; fill:#4A4A4A }
+.wm-city-label.major { font-size:13px; fill:#0a0a0a }
+.wm-site        { fill:#8C6238 }
+.wm-site-label  { font-family:"EB Garamond",Georgia,serif; font-size:12.5px; fill:#0a0a0a }
+.wm-site-note   { font-family:"DM Sans",sans-serif; font-size:9.5px; fill:#8A8178 }
+.wm-scale       { stroke:#7A6248; stroke-width:1.5 }
+.wm-note        { font-family:"DM Sans",sans-serif; font-size:10px; fill:#8A8178 }
