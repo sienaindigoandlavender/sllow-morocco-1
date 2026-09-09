@@ -165,12 +165,14 @@ async function getMentionedPlacesSSR(slugs: string[] | null | undefined) {
   }
 }
 
-async function getRelatedJourneysSSR(story: Story) {
+async function getRelatedJourneysSSR(story: Story, slug: string) {
   try {
     const allJourneys = await getJourneys({ published: true });
-    const journeysForMatcher = allJourneys
-      .filter((j) => j.journey_type !== "daytrip" && j.journey_type !== "overnight")
-      .map((j) => ({
+    const eligible = allJourneys.filter(
+      (j) => j.journey_type !== "daytrip" && j.journey_type !== "overnight"
+    );
+
+    const shape = (j: any) => ({
       slug: j.slug || "",
       title: j.title || "",
       destinations: j.destinations || "",
@@ -178,15 +180,27 @@ async function getRelatedJourneysSSR(story: Story) {
       heroImage: j.hero_image_url || "",
       duration: j.duration_days || 0,
       price: j.price_eur || 0,
-    }));
+    });
 
-    return findRelatedJourneys(
+    /* Explicit first. A journey can name the stories it belongs under
+       in featured_story_slugs, which is editorial rather than keyword
+       matching — the mythology journey should appear beneath the
+       mythology piece whether or not their tags happen to overlap.
+       The field existed and nothing read it. */
+    const pinned = eligible.filter((j: any) =>
+      Array.isArray(j.featured_story_slugs) &&
+      j.featured_story_slugs.includes(slug)
+    );
+
+    const matched = findRelatedJourneys(
       story.region || "",
       story.tags || "",
       story.category || "",
-      journeysForMatcher,
+      eligible.filter((j) => !pinned.some((p: any) => p.slug === j.slug)).map(shape),
       3
     );
+
+    return [...pinned.map(shape), ...matched].slice(0, 3);
   } catch {
     return [];
   }
@@ -218,7 +232,7 @@ export default async function StoryPage({
 
   const { story, mapData, externalLinks } = storyResult;
   const relatedStories = await getRelatedStories(story, slug);
-  const relatedJourneys = await getRelatedJourneysSSR(story);
+  const relatedJourneys = await getRelatedJourneysSSR(story, slug);
   const relatedPlaces = await getRelatedPlacesSSR(slug);
   const inCollections = getCollectionsForStory(slug);
   const mentionedPlaces = await getMentionedPlacesSSR(rawStory?.mentioned_place_slugs);
