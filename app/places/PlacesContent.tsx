@@ -7,6 +7,7 @@ import Link from "next/link";
 import AllPlacesMap from "./map/AllPlacesMap";
 import { PLACE_CATEGORIES } from "@/lib/place-categories";
 import { dek } from "@/lib/dek";
+import VisitedTally from "@/components/VisitedTally";
 
 interface MapPin {
   slug: string;
@@ -193,6 +194,11 @@ export default function PlacesContent({
         <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground mb-4">
           {places.length > 0 ? `${places.length} places in Morocco` : "Places"}
         </h1>
+            {/* How many of these the reader has stood in front of.
+                Nothing at all until the first one is marked. */}
+            <div className="mt-4">
+              <VisitedTally slugs={places.map((p: any) => p.slug)} label="visited" />
+            </div>
 
         <div className="grid lg:grid-cols-[minmax(0,42rem)_minmax(0,20rem)] gap-y-8 gap-x-16 items-start">
           <div>
