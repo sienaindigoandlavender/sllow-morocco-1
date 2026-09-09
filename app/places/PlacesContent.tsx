@@ -94,13 +94,17 @@ export default function PlacesContent({
 }: PlacesContentProps) {
   const searchParams = useSearchParams();
   const regionParam = searchParams.get("region");
+  /* City guides link here as /places?destination=marrakech. Nothing
+     read that parameter, so every one of those links landed on an
+     unfiltered list and Google logged them as soft 404s. */
+  const destinationParam = searchParams.get("destination");
 
   const regions = initialRegions;
   const destinations = initialDestinations;
   const places = initialPlaces;
 
   const [selectedRegion, setSelectedRegion] = useState<string>(regionParam || "all");
-  const [selectedDestination, setSelectedDestination] = useState<string>("all");
+  const [selectedDestination, setSelectedDestination] = useState<string>(destinationParam || "all");
   const [sortBy, setSortBy] = useState<"default" | "alpha">("default");
   const [currentPage, setCurrentPage] = useState(1);
   const [query, setQuery] = useState("");
