@@ -24,6 +24,14 @@ export const ODYSSEY_JOURNEY: RelatedJourney = {
   accent: "#1FA3A3",
 };
 
+export const PILLARS_JOURNEY: RelatedJourney = {
+  slug: "the-pillars-journey",
+  kicker: "The mythology · 8 days",
+  title: "The Pillars — Tangier to Fes",
+  blurb: "The geography the Greeks actually named: the strait, the Garden of the Hesperides, Volubilis, and the mountains named after a titan.",
+  accent: "#3E6B7A",
+};
+
 export const FILM_ROUTE_JOURNEY: RelatedJourney = {
   slug: "morocco-film-locations-7-days",
   kicker: "The film route · 7 days",
