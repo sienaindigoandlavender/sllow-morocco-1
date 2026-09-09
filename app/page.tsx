@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getJourneys, getStories, getPlaces, getWebsiteSettings, getTestimonials, getDestinations } from "@/lib/supabase";
 import HomeContent from "./HomeContent";
+import { bySeason, seasonNow } from "@/lib/seasonal";
 
 export const metadata: Metadata = {
   title: { absolute: "Slow Morocco | Morocco, Decoded" },
@@ -88,7 +89,10 @@ export default async function HomePage() {
       return shuffled;
     };
 
-    stories = seededShuffle(allStories, timeBucket).slice(0, 17);
+    /* Shuffle for variety on a three-hour bucket, then let the season
+       decide what leads. In April the rose valley comes first; in
+       November, saffron. Nothing is hidden — this is a reordering. */
+    stories = bySeason(seededShuffle(allStories, timeBucket)).slice(0, 17);
     journeys = seededShuffle(journeys, timeBucket + 7).slice(0, 8);
 
     // ── Combined hero pool: rotate across journeys, places AND editorials ──
@@ -180,6 +184,7 @@ export default async function HomePage() {
 
   return (
     <HomeContent
+      season={seasonNow().line}
       journeys={journeys}
       epicJourneys={epicJourneys}
       heroItem={heroItem}

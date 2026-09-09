@@ -70,6 +70,9 @@ interface HomeContentProps {
   } | null;
   epicJourneys: Journey[];
   stories: Story[];
+  /* One sentence naming what month it is in Morocco. Sits under the
+     masthead. Editorial copy from lib/seasonal.ts, not generated. */
+  season?: string;
   places: Place[];
   mapPlaces: any[];
   testimonials: Testimonial[];
@@ -189,6 +192,7 @@ function SectionHeader({ title, href, linkText = "More" }: { title: string; href
 export default function HomeContent({
   journeys,
   stories,
+  season,
   places,
   heroItem,
 }: HomeContentProps) {
@@ -236,6 +240,14 @@ export default function HomeContent({
                 </svg>
               </Link>
             </div>
+
+            {/* What month it is. One line, no chrome, and it changes
+                twelve times a year. */}
+            {season && (
+              <p className="text-white/70 text-[clamp(0.95rem,1.6vw,1.15rem)] font-light leading-snug max-w-2xl -mt-4 md:-mt-6">
+                {season}
+              </p>
+            )}
 
             {/* Rotating feature — links to its own page by type */}
             <Link
