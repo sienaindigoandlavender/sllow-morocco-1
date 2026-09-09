@@ -470,3 +470,33 @@ button:focus {
   .map .spanlab{font-family:"DM Sans",sans-serif;font-size:10.5px;fill:var(--maproute,#A9863C)}
 
 .map { width: 100%; height: auto; display: block; margin: 2rem 0; }
+
+/* ═══════════════════════════════════════════════════════════════
+   THE TIMELINE
+   Styles the <svg class="tml"> in morocco-timeline. Twenty-one of
+   the twenty-six entries are links; the affordance is an underline
+   appearing on hover, not a colour.
+   ═══════════════════════════════════════════════════════════════ */
+
+.tml { width:100%; height:auto; display:block; margin:2rem 0; }
+.tml .axis  { stroke:rgba(10,10,10,.25); stroke-width:1.5 }
+.tml .split { stroke:rgba(10,10,10,.4); stroke-width:1.5; stroke-dasharray:4 3 }
+.tml .tick  { stroke:rgba(10,10,10,.18); stroke-width:1 }
+.tml .dot   { fill:#8C6238 }
+.tml .dot.linked { fill:#0a0a0a }
+.tml .yr    { font-family:"DM Sans",sans-serif; font-size:12px; fill:#4A4A4A;
+              font-variant-numeric:tabular-nums }
+.tml .ti    { font-family:"EB Garamond",Georgia,serif; font-size:17px; fill:#0a0a0a }
+.tml .bd    { font-family:"DM Sans",sans-serif; font-size:11.5px; fill:#4A4A4A }
+.tml .note  { font-family:"DM Sans",sans-serif; font-size:10.5px; fill:#6A6A6A }
+.tml .hd    { font-family:"DM Sans",sans-serif; font-size:11px; fill:#555;
+              letter-spacing:.12em; text-transform:uppercase }
+.tml .hit   { fill:transparent }
+/* Twenty-one of the twenty-six open a story. The affordance is the
+   underline on hover, not a colour or an icon — the same restraint
+   as everywhere else. */
+.tml a.ev { cursor:pointer }
+.tml a.ev .ti { text-decoration-color:transparent; text-decoration-line:underline;
+                text-underline-offset:3px; transition:text-decoration-color .2s }
+.tml a.ev:hover .ti { text-decoration-color:rgba(10,10,10,.5) }
+.tml a.ev:hover .hit { fill:rgba(10,10,10,.03) }
