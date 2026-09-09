@@ -135,3 +135,99 @@ export function lightQuality(altitudeDeg: number):
   if (altitudeDeg < 60) return "high";
   return "overhead";
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   PRAYER TIMES
+
+   Morocco's Ministry of Habous and Islamic Affairs publishes the
+   official calendar. The parameters below reproduce it closely:
+   Fajr when the sun is 19° below the horizon, Isha at 17°, and Asr
+   on the Maliki reckoning — when an object's shadow equals its own
+   length plus whatever shadow it cast at noon.
+
+   Sources differ between 18° and 19° for Fajr, and individual
+   mosques adjust by a minute or two. This is arithmetic, not an
+   announcement: treat it as close, not authoritative.
+   ═══════════════════════════════════════════════════════════════ */
+
+export const MOROCCO_FAJR_ANGLE = 19;
+export const MOROCCO_ISHA_ANGLE = 17;
+
+export interface PrayerTimes {
+  fajr: Date | null;
+  sunrise: Date | null;
+  dhuhr: Date | null;
+  asr: Date | null;
+  maghrib: Date | null;
+  isha: Date | null;
+}
+
+/** Solar noon — the moment the sun crosses the meridian. Dhuhr. */
+function solarNoon(date: Date, lon: number): Date {
+  const lw = RAD * -lon;
+  const d = toDays(date);
+  const n = julianCycle(d, lw);
+  const ds = approxTransit(0, lw, n);
+  const M = solarMeanAnomaly(ds);
+  const L = eclipticLongitude(M);
+  return fromJulian(solarTransitJ(ds, M, L));
+}
+
+/** Declination of the sun for a given moment. */
+function declination(date: Date): number {
+  const d = toDays(date);
+  const M = solarMeanAnomaly(d);
+  const L = eclipticLongitude(M);
+  return Math.asin(Math.sin(OBLIQUITY) * Math.sin(L));
+}
+
+/**
+ * Asr, Maliki reckoning. The sun's altitude when a vertical object
+ * throws a shadow of its own length plus its noon shadow.
+ */
+function asrAltitude(lat: number, date: Date): number {
+  const dec = declination(date);
+  const phi = RAD * lat;
+  return Math.atan(1 / (1 + Math.tan(Math.abs(phi - dec)))) / RAD;
+}
+
+export function prayerTimes(date: Date, lat: number, lon: number): PrayerTimes {
+  return {
+    fajr: timeAtAltitude(-MOROCCO_FAJR_ANGLE, "rise", date, lat, lon),
+    sunrise: timeAtAltitude(-0.833, "rise", date, lat, lon),
+    dhuhr: solarNoon(date, lon),
+    asr: timeAtAltitude(asrAltitude(lat, date), "set", date, lat, lon),
+    maghrib: timeAtAltitude(-0.833, "set", date, lat, lon),
+    isha: timeAtAltitude(-MOROCCO_ISHA_ANGLE, "set", date, lat, lon),
+  };
+}
+
+export type PrayerName = "fajr" | "sunrise" | "dhuhr" | "asr" | "maghrib" | "isha";
+
+/** Which prayer has most recently been called, and what comes next. */
+export function prayerNow(date: Date, lat: number, lon: number): {
+  last: PrayerName | null;
+  next: PrayerName | null;
+  nextAt: Date | null;
+  minutesToNext: number | null;
+} {
+  const t = prayerTimes(date, lat, lon);
+  const order: PrayerName[] = ["fajr", "sunrise", "dhuhr", "asr", "maghrib", "isha"];
+  const stamps = order
+    .map((n) => ({ name: n, at: t[n] }))
+    .filter((x): x is { name: PrayerName; at: Date } => x.at != null)
+    .sort((a, b) => a.at.valueOf() - b.at.valueOf());
+
+  let last: PrayerName | null = null;
+  let next: { name: PrayerName; at: Date } | null = null;
+  for (const s of stamps) {
+    if (s.at.valueOf() <= date.valueOf()) last = s.name;
+    else if (!next) next = s;
+  }
+  return {
+    last,
+    next: next?.name ?? null,
+    nextAt: next?.at ?? null,
+    minutesToNext: next ? Math.round((next.at.valueOf() - date.valueOf()) / 60000) : null,
+  };
+}
