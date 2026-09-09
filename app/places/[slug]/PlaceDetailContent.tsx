@@ -13,6 +13,7 @@ import dynamic from "next/dynamic";
 import SeasonalBadge from "@/components/SeasonalBadge";
 import NewsletterCapture from "@/components/NewsletterCapture";
 import PlaceNow from "@/components/PlaceNow";
+import Visited from "@/components/Visited";
 
 const PlaceSatelliteMap = dynamic(() => import("@/components/PlaceSatelliteMap"), { ssr: false });
 
@@ -257,6 +258,11 @@ export default function PlaceDetailContent({
                     nothing when they have nothing to say. */}
                 <PlaceNow latitude={place.latitude} longitude={place.longitude} />
               </div>
+              {/* One line, no ceremony. Stored in the browser, never
+                  sent anywhere, and invisible until clicked. */}
+              <div className="pb-6 -mt-2">
+                <Visited slug={place.slug} />
+              </div>
             </div>
           </section>
 
@@ -408,19 +414,22 @@ export default function PlaceDetailContent({
       ) : (
         /* ====== STANDARD LAYOUT ====== */
         <>
-        {/* The standard layout has no quick facts bar, so this is
-            its own thin strip. PlaceNow renders nothing when it has
-            nothing to report, and the wrapper collapses with it —
-            an empty bordered band would be worse than no band. */}
-        {place.latitude && place.longitude && (
-          <section className="border-b border-foreground/10">
-            <div className="container mx-auto px-6 lg:px-16">
-              <div className="flex flex-wrap gap-8 md:gap-12 py-6 empty:hidden">
+        {/* The standard layout has no quick facts bar, so this is its
+            own thin strip. PlaceNow needs coordinates and renders
+            nothing without them; the visited line needs only a slug,
+            so the strip is not gated on the map data. */}
+        <section className="border-b border-foreground/10">
+          <div className="container mx-auto px-6 lg:px-16">
+            {place.latitude && place.longitude && (
+              <div className="flex flex-wrap gap-8 md:gap-12 pt-6 empty:hidden">
                 <PlaceNow latitude={place.latitude} longitude={place.longitude} />
               </div>
+            )}
+            <div className="py-6">
+              <Visited slug={place.slug} />
             </div>
-          </section>
-        )}
+          </div>
+        </section>
         <section className="py-16">
           <div className="container mx-auto px-6 lg:px-16">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
