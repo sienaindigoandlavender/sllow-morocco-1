@@ -9,12 +9,7 @@
 // When false: Slow Morocco reads as a publication. Nothing on the
 // homepage, in the nav or in the footer points at trips.
 // /plan-your-trip still exists and works, reachable by a direct link
-// handed out directly, with the deposit gate as the sole entrance.
-//
-// Currently TRUE. Reader subscriptions are unproven in this category,
-// so the journeys remain the revenue line and are promoted openly.
-// Flipping this to false closes the front door in one move and leaves
-// the crosslinks below untouched.
+// you hand out yourself, with the deposit gate as the sole entrance.
 //
 // ── JOURNEY_CROSSLINKS ──────────────────────────────────────────
 // The onward path from editorial. The related-journeys block at the
@@ -30,5 +25,19 @@
 // Keep this true while the front door is closed. That is the whole
 // point of splitting them.
 
-export const TRIP_FUNNEL_PUBLIC = true;
+export const TRIP_FUNNEL_PUBLIC = false;
 export const JOURNEY_CROSSLINKS = true;
+
+/**
+ * The seasonal homepage.
+ *
+ * Twelve months of editorial lines, each naming four stories, with the
+ * hero image narrowed to those four. In practice that meant the hero
+ * cycled through the same four pictures for four weeks and a returning
+ * reader saw nothing new.
+ *
+ * Off. The hero now rotates across the whole pool on the three-hour
+ * bucket and the season line under the masthead does not render.
+ * lib/seasonal.ts is untouched, so this is one word to reverse.
+ */
+export const SEASONAL_HOMEPAGE = false;
