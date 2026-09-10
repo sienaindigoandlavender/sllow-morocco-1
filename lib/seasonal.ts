@@ -93,33 +93,95 @@ export function seasonNow(d: Date = new Date()): Season {
  *
  * Nothing is hidden. This is a reordering, not a filter.
  */
+/**
+ * Stable within a day, different the next. Four named slugs per month
+ * meant a returning reader saw the same hero for four weeks, so the
+ * ordering is now nudged by the date: the seasonal set still leads,
+ * but which of them leads rotates daily, and the keyword tier is
+ * shuffled rather than left in table order.
+ *
+ * The seed is the day of the year, so the same day gives the same
+ * result on every request — server and client agree, and nothing
+ * flickers on hydration.
+ */
+function dayOfYear(d: Date): number {
+  const start = Date.UTC(d.getUTCFullYear(), 0, 1);
+  const now = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
+  return Math.floor((now - start) / 86400000);
+}
+
+/** Deterministic 0..1 from a string and a seed. No Math.random. */
+function hash01(str: string, seed: number): number {
+  let h = 2166136261 ^ seed;
+  for (let i = 0; i < str.length; i++) {
+    h ^= str.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return ((h >>> 0) % 100000) / 100000;
+}
+
 export function bySeason<T extends { slug: string; title?: string; excerpt?: string | null }>(
   stories: T[],
   d: Date = new Date(),
 ): T[] {
   const season = seasonNow(d);
-  const rank = new Map<string, number>(season.slugs.map((s, i): [string, number] => [s, i]));
+  const seed = dayOfYear(d);
+  const n = season.slugs.length;
+
+  /* Rotate the named set by the day, so a different one leads each
+     morning while all four stay at the top of the page. */
+  const rotated = n > 0
+    ? season.slugs.map((_, i) => season.slugs[(i + seed) % n])
+    : [];
+  const rank = new Map<string, number>(rotated.map((s, i): [string, number] => [s, i]));
   const kw = season.keywords.map((k) => k.toLowerCase());
 
   const score = (s: T): number => {
     const named = rank.get(s.slug);
-    if (named !== undefined) return named;                 // 0..n, best
+    if (named !== undefined) return named;                       // 0..n, best
     const hay = `${s.title ?? ""} ${s.excerpt ?? ""}`.toLowerCase();
-    if (kw.some((k) => hay.includes(k))) return 100;        // keyword match
-    return 1000;                                           // everything else
+    if (kw.some((k) => hay.includes(k))) return 100 + hash01(s.slug, seed);
+    return 1000 + hash01(s.slug, seed);
   };
 
   return [...stories].sort((a, b) => score(a) - score(b));
 }
 
-/** Just the seasonal ones, for a dedicated strip. Never more than four. */
-export function seasonalPicks<T extends { slug: string }>(
+/**
+ * Just the seasonal ones, for a dedicated strip. Never more than four.
+ *
+ * Widened: if the month's named slugs do not yield four live stories,
+ * the shortfall is filled from anything matching the month's keywords,
+ * chosen by the day's seed. A missing or unpublished slug no longer
+ * leaves a gap in the strip.
+ */
+export function seasonalPicks<T extends { slug: string; title?: string; excerpt?: string | null }>(
   stories: T[],
   d: Date = new Date(),
 ): T[] {
   const season = seasonNow(d);
-  const found = season.slugs
+  const seed = dayOfYear(d);
+  const n = season.slugs.length;
+
+  const rotated = n > 0
+    ? season.slugs.map((_, i) => season.slugs[(i + seed) % n])
+    : [];
+
+  const found = rotated
     .map((slug) => stories.find((s) => s.slug === slug))
     .filter((s): s is T => Boolean(s));
-  return found.slice(0, 4);
+
+  if (found.length >= 4) return found.slice(0, 4);
+
+  const have = new Set(found.map((s) => s.slug));
+  const kw = season.keywords.map((k) => k.toLowerCase());
+  const fill = stories
+    .filter((s) => {
+      if (have.has(s.slug)) return false;
+      const hay = `${s.title ?? ""} ${s.excerpt ?? ""}`.toLowerCase();
+      return kw.some((k) => hay.includes(k));
+    })
+    .sort((a, b) => hash01(a.slug, seed) - hash01(b.slug, seed));
+
+  return [...found, ...fill].slice(0, 4);
 }
