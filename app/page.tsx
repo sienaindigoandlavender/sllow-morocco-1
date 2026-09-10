@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getJourneys, getStories, getPlaces, getWebsiteSettings, getTestimonials, getDestinations } from "@/lib/supabase";
 import HomeContent from "./HomeContent";
 import { bySeason, seasonNow } from "@/lib/seasonal";
+import { SEASONAL_HOMEPAGE } from "@/lib/flags";
 
 export const metadata: Metadata = {
   title: { absolute: "Slow Morocco | Morocco, Decoded" },
@@ -89,10 +90,12 @@ export default async function HomePage() {
       return shuffled;
     };
 
-    /* Shuffle for variety on a three-hour bucket, then let the season
-       decide what leads. In April the rose valley comes first; in
-       November, saffron. Nothing is hidden — this is a reordering. */
-    stories = bySeason(seededShuffle(allStories, timeBucket)).slice(0, 17);
+    /* Shuffle for variety on a three-hour bucket. With SEASONAL_HOMEPAGE
+       on, the month then decides what leads — in April the rose valley
+       first, in November saffron. Off, the shuffle stands on its own,
+       which draws on the whole archive instead of four named slugs. */
+    const shuffledStories = seededShuffle(allStories, timeBucket);
+    stories = (SEASONAL_HOMEPAGE ? bySeason(shuffledStories) : shuffledStories).slice(0, 17);
     journeys = seededShuffle(journeys, timeBucket + 7).slice(0, 8);
 
     // ── Combined hero pool: rotate across journeys, places AND editorials ──
@@ -151,16 +154,16 @@ export default async function HomePage() {
           href: `/places/${p.slug}`, label: p.category || "Place",
         })),
     ];
-    /* The season line sits directly under the masthead, so the image
-       behind it has to agree. In September a date palm, in April the
-       rose valley.
+    /* The hero rotates every three hours across the whole pool —
+       journeys, places and stories together.
 
-       Narrow to the month's items first, then shuffle — sorting the
-       whole pool seasonally would freeze the hero on one image for
-       four weeks, and the three-hour rotation is the point. Falls
-       back to everything when nothing seasonal has a hero image. */
-    const season = seasonNow();
-    const seasonalPool = heroPool.filter((h) => season.slugs.includes(h.slug));
+       It used to be narrowed to the four slugs the month names, so the
+       season line and the picture behind it would agree. Four pictures
+       over four weeks is not a rotation, so that narrowing now only
+       happens when SEASONAL_HOMEPAGE is on. */
+    const seasonalPool = SEASONAL_HOMEPAGE
+      ? heroPool.filter((h) => seasonNow().slugs.includes(h.slug))
+      : [];
     heroItem =
       seededShuffle(seasonalPool.length ? seasonalPool : heroPool, timeBucket)[0] || null;
 
@@ -215,7 +218,7 @@ export default async function HomePage() {
 
   return (
     <HomeContent
-      season={seasonNow().line}
+      season={SEASONAL_HOMEPAGE ? seasonNow().line : undefined}
       journeys={journeys}
       epicJourneys={epicJourneys}
       heroItem={heroItem}
