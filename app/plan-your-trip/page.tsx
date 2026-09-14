@@ -5,11 +5,11 @@ import PageBanner from "@/components/PageBanner";
 
 export const metadata: Metadata = {
   title: "Plan a private journey",
-  description: "Tell us how you want to move through Morocco. Private, and shaped to the traveller.",
+  description: "Private journeys, designed and run by us. Tell us where and when — we build the rest.",
   alternates: { canonical: "https://www.slowmorocco.com/plan-your-trip" },
   openGraph: {
     title: "Plan a private journey | Slow Morocco",
-    description: "Tell us how you want to move through Morocco. Private, and shaped to the traveller.",
+    description: "Private journeys, designed and run by us. Tell us where and when — we build the rest.",
     url: "https://www.slowmorocco.com/plan-your-trip",
   },
 };
@@ -69,8 +69,8 @@ export default async function PlanYourTripPage({
         slug="plan-your-trip"
         fallback={{
           title: "Plan a private journey",
-          subtitle: "Tell us how you want to move through Morocco. Private, and shaped to the traveller.",
-          label: "Begin the Conversation",
+          subtitle: "Private journeys, designed and run by us. Tell us where and when — we build the rest.",
+          label: "Request a journey",
         }}
       />
 
