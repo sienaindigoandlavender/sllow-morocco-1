@@ -130,7 +130,7 @@ export default function PlanYourTripForm({
     travelers: "",
     days: "",
     language: "",
-    budgetValue: 5000,
+    budgetValue: 3000,
     dreamExperience: "",
     firstTimeMorocco: "",
     requests: "",
@@ -481,14 +481,14 @@ export default function PlanYourTripForm({
       {/* Budget Slider */}
       <div>
         <label className={`${labelStyle} mb-4`}>
-          Approximate budget per person?
+          Budget per person
         </label>
         <div className="pt-2">
           <input
             type="range"
             min="1000"
-            max="15000"
-            step="500"
+            max="100000"
+            step="1000"
             value={formData.budgetValue}
             onChange={(e) => setFormData({ ...formData, budgetValue: parseInt(e.target.value) })}
             className={`w-full h-1 rounded-lg appearance-none cursor-pointer
