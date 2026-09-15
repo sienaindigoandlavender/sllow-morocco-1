@@ -11,14 +11,14 @@ export default function CookingClassGuidePage() {
   return (
     <div className="bg-background min-h-screen">
       <div className="px-6 md:px-14 pt-20 pb-12 border-b border-foreground/[0.08]">
-        <Link href="/morocco" className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 hover:text-foreground/60 transition-colors mb-8 block">← Morocco</Link>
-        <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">Experiences</p>
+        <Link href="/morocco" className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 hover:text-foreground/70 transition-colors mb-8 block">← Morocco</Link>
+        <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">Experiences</p>
         <h1 className="font-serif text-4xl md:text-5xl text-foreground leading-[1.1] mb-6 max-w-2xl">Moroccan Cooking Class</h1>
-        <p className="text-base text-foreground/55 leading-relaxed max-w-xl">Moroccan cooking is regional, seasonal, and learned slowly. A cooking class gives you the logic — the layering of spices, the role of preserved lemons, why couscous is steamed three times.</p>
+        <p className="text-base text-foreground/70 leading-relaxed max-w-xl">Moroccan cooking is regional, seasonal, and learned slowly. A cooking class gives you the logic — the layering of spices, the role of preserved lemons, why couscous is steamed three times.</p>
       </div>
       <div className="px-6 md:px-14 py-16 max-w-3xl space-y-12">
         <div>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">What a good class covers</p>
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">What a good class covers</p>
           <div className="space-y-3">
             {[
               "A souk walk to buy ingredients — learning what ras el hanout actually contains (it varies by maker), how to choose preserved lemons, what distinguishes cumin from cumin beldi",
@@ -35,7 +35,7 @@ export default function CookingClassGuidePage() {
           </div>
         </div>
         <div>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">Two formats</p>
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">Two formats</p>
           <div className="grid md:grid-cols-2 gap-px bg-foreground/[0.06]">
             {[
               { type: "Riad kitchen class", desc: "Half-day or full-day in a riad kitchen. You cook, eat what you made, take recipes home. Intimate, unhurried, usually 4–8 people maximum. The cook is often the riad owner or a family member. The most consistent quality." },
@@ -49,14 +49,14 @@ export default function CookingClassGuidePage() {
           </div>
         </div>
         <div>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">Booking</p>
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">Booking</p>
           <p className="text-sm text-foreground/65 leading-relaxed mb-4">Ask your riad first — many run their own cooking sessions or know reliable local teachers. This is preferable to booking through aggregators, where quality varies widely. Expect to pay 400–600 MAD per person for a riad kitchen class, 600–900 MAD for a market-plus-cooking session. Group sizes above 10 people reduce the quality significantly.</p>
           <p className="text-sm text-foreground/65 leading-relaxed">In Fes, the cooking class tradition is deeper — Fassi cuisine is considered the most refined in Morocco, and several families in the medina offer sessions in domestic kitchens rather than purpose-built cooking schools. These are the best ones.</p>
         </div>
         <div className="flex flex-wrap gap-4 pt-4 border-t border-foreground/[0.08]">
-          <Link href="/stories/couscous-friday" className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Read: The Friday couscous →</Link>
-          <Link href="/stories/moroccan-tagine-guide" className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Read: The tagine →</Link>
-          <Link href="/stories/moroccan-spice-guide" className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Read: The spice map →</Link>
+          <Link href="/stories/couscous-friday" className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Read: The Friday couscous →</Link>
+          <Link href="/stories/moroccan-tagine-guide" className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Read: The tagine →</Link>
+          <Link href="/stories/moroccan-spice-guide" className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Read: The spice map →</Link>
         </div>
       </div>
     </div>

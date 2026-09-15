@@ -11,19 +11,19 @@ export default function FrenchProtectoratePage() {
   return (
     <div className="bg-background min-h-screen">
       <div className="px-6 md:px-14 pt-20 pb-12 border-b border-foreground/[0.08]">
-        <Link href="/morocco" className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 hover:text-foreground/60 transition-colors mb-8 block">← Morocco</Link>
-        <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">Cultural context</p>
+        <Link href="/morocco" className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 hover:text-foreground/70 transition-colors mb-8 block">← Morocco</Link>
+        <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">Cultural context</p>
         <h1 className="font-serif text-4xl md:text-5xl text-foreground leading-[1.1] mb-6 max-w-2xl">The French Protectorate in Morocco</h1>
-        <p className="text-base text-foreground/55 leading-relaxed max-w-xl">From 1912 to 1956, France controlled Morocco without formally colonizing it. The legal distinction — a protectorate, not a colony — changed how France governed, and the kind of mark it left behind.</p>
+        <p className="text-base text-foreground/70 leading-relaxed max-w-xl">From 1912 to 1956, France controlled Morocco without formally colonizing it. The legal distinction — a protectorate, not a colony — changed how France governed, and the kind of mark it left behind.</p>
       </div>
       <div className="px-6 md:px-14 py-16 max-w-3xl space-y-12">
         <div>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">What a protectorate meant</p>
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">What a protectorate meant</p>
           <p className="text-sm text-foreground/65 leading-relaxed mb-4">Under the Treaty of Fes (1912), Morocco nominally retained its sultan, its institutions, and its sovereignty. France took control of foreign policy, the military, and economic development. The sultan signed laws; France wrote them. This fiction of sovereignty had practical consequences: Morocco was never officially colonized, the traditional structures (makhzen, ulema, rural qaid networks) remained in place, and Moroccans were not made French subjects.</p>
           <p className="text-sm text-foreground/65 leading-relaxed">The first Resident-General, Hubert Lyautey, was a pragmatist who believed in preserving Moroccan institutions while modernizing infrastructure. His policy of "politique des égards" — respect for existing structures — shaped the protectorate's early years, and is why the old medinas were preserved rather than cleared for European rebuilding.</p>
         </div>
         <div>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">What it left — what you can see today</p>
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">What it left — what you can see today</p>
           <div className="space-y-3">
             {[
               { legacy: "The Ville Nouvelle", desc: "Every major Moroccan city has a Ville Nouvelle — the French-built new town adjacent to the medina. Wide boulevards, Art Deco architecture, cafés, French-style administrative buildings. Casablanca's Ville Nouvelle is the largest, Rabat's the most elegant. Step from the medina into either and you can date the change to the year." },
@@ -40,12 +40,12 @@ export default function FrenchProtectoratePage() {
           </div>
         </div>
         <div>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">A protectorate, not a colony</p>
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">A protectorate, not a colony</p>
           <p className="text-sm text-foreground/65 leading-relaxed">The distinction shaped everything that followed. Morocco kept its monarchy, its traditional institutions, and a French-educated elite that largely chose to remain; when independence came in 1956, it was negotiated with a sultan the country still recognised as its own, not won from the rubble. The word "protectorate" was a legal fiction, but the fiction had real consequences.</p>
         </div>
         <div className="flex flex-wrap gap-4 pt-4 border-t border-foreground/[0.08]">
-          <Link href="/stories/french-protectorate" className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Read: The French Protectorate in Morocco →</Link>
-          <Link href="/stories/dynasty-timeline" className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Read: Moroccan dynasties →</Link>
+          <Link href="/stories/french-protectorate" className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Read: The French Protectorate in Morocco →</Link>
+          <Link href="/stories/dynasty-timeline" className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Read: Moroccan dynasties →</Link>
         </div>
       </div>
     </div>

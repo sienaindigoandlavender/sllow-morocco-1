@@ -109,28 +109,28 @@ export default function SevenDayItineraryPage() {
       <div className="bg-background min-h-screen">
 
         <div className="px-6 md:px-14 pt-20 pb-12 border-b border-foreground/[0.08]">
-          <Link href="/morocco" className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 hover:text-foreground/60 transition-colors mb-8 block">
+          <Link href="/morocco" className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 hover:text-foreground/70 transition-colors mb-8 block">
             ← Morocco
           </Link>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">Planning</p>
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">Planning</p>
           <h1 className="font-serif text-4xl md:text-5xl text-foreground leading-[1.1] mb-6 max-w-2xl">
             Morocco 7-Day Itinerary
           </h1>
-          <p className="text-base text-foreground/55 leading-relaxed max-w-xl">
+          <p className="text-base text-foreground/70 leading-relaxed max-w-xl">
             Seven days is enough for a meaningful first trip. The question is what you're choosing between — and what you're willing to leave for next time.
           </p>
         </div>
 
         {/* The geographic reality */}
         <div className="px-6 md:px-14 py-16 max-w-3xl">
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-6">Before you plan anything</p>
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-6">Before you plan anything</p>
           <p className="font-serif text-xl text-foreground leading-relaxed mb-6">
             Morocco is larger than it looks on a map. Marrakech to Fes is eight hours by train. Marrakech to the Sahara dunes at Merzouga is nine hours by road.
           </p>
-          <p className="text-sm text-foreground/60 leading-relaxed mb-4">
+          <p className="text-sm text-foreground/70 leading-relaxed mb-4">
             The most common mistake in a first-week itinerary is trying to combine north and south — Marrakech, the desert, Fes, Chefchaouen, Tangier — in seven days. Each leg is a half-day of travel. You spend the week in cars and trains and see nothing properly.
           </p>
-          <p className="text-sm text-foreground/60 leading-relaxed">
+          <p className="text-sm text-foreground/70 leading-relaxed">
             The better approach is to choose one circuit and do it well. Two routes below — one south-focused, one north-focused. Both work in seven days. Neither includes everything.
           </p>
         </div>
@@ -138,14 +138,14 @@ export default function SevenDayItineraryPage() {
         {/* Route A */}
         <div className="px-6 md:px-14 py-16 border-t border-foreground/[0.08]">
           <div className="max-w-3xl">
-            <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-2">Route A</p>
+            <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-2">Route A</p>
             <h2 className="font-serif text-2xl text-foreground mb-2">Marrakech and the South</h2>
-            <p className="text-sm text-foreground/45 mb-10">For people drawn to landscape, kasbahs, and the desert threshold. No Sahara dunes in 7 days — but the kasbah road and the Dades Gorge.</p>
+            <p className="text-sm text-foreground/60 mb-10">For people drawn to landscape, kasbahs, and the desert threshold. No Sahara dunes in 7 days — but the kasbah road and the Dades Gorge.</p>
             <div className="space-y-px">
               {ROUTE_A.map((item) => (
                 <div key={item.day} className="border border-foreground/[0.08] p-6">
                   <div className="flex items-baseline gap-6 mb-3">
-                    <span className="text-[10px] tracking-[0.15em] uppercase text-foreground/30 w-20 flex-shrink-0">{item.day}</span>
+                    <span className="text-[10px] tracking-[0.15em] uppercase text-foreground/60 w-20 flex-shrink-0">{item.day}</span>
                     <h3 className="font-serif text-lg text-foreground">{item.place}</h3>
                   </div>
                   <p className="text-sm text-foreground/58 leading-relaxed pl-26">{item.desc}</p>
@@ -158,14 +158,14 @@ export default function SevenDayItineraryPage() {
         {/* Route B */}
         <div className="px-6 md:px-14 py-16 border-t border-foreground/[0.08]">
           <div className="max-w-3xl">
-            <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-2">Route B</p>
+            <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-2">Route B</p>
             <h2 className="font-serif text-2xl text-foreground mb-2">The Imperial Cities</h2>
-            <p className="text-sm text-foreground/45 mb-10">For people drawn to history, medinas, and Islamic architecture. Marrakech, Fes, Chefchaouen — three distinct cities, three distinct registers.</p>
+            <p className="text-sm text-foreground/60 mb-10">For people drawn to history, medinas, and Islamic architecture. Marrakech, Fes, Chefchaouen — three distinct cities, three distinct registers.</p>
             <div className="space-y-px">
               {ROUTE_B.map((item) => (
                 <div key={item.day} className="border border-foreground/[0.08] p-6">
                   <div className="flex items-baseline gap-6 mb-3">
-                    <span className="text-[10px] tracking-[0.15em] uppercase text-foreground/30 w-20 flex-shrink-0">{item.day}</span>
+                    <span className="text-[10px] tracking-[0.15em] uppercase text-foreground/60 w-20 flex-shrink-0">{item.day}</span>
                     <h3 className="font-serif text-lg text-foreground">{item.place}</h3>
                   </div>
                   <p className="text-sm text-foreground/58 leading-relaxed">{item.desc}</p>
@@ -178,11 +178,11 @@ export default function SevenDayItineraryPage() {
         {/* If you want the Sahara */}
         <div className="px-6 md:px-14 py-16 border-t border-foreground/[0.08]">
           <div className="max-w-2xl">
-            <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">If you want the Sahara</p>
-            <p className="text-sm text-foreground/60 leading-relaxed mb-4">
+            <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">If you want the Sahara</p>
+            <p className="text-sm text-foreground/70 leading-relaxed mb-4">
               The Erg Chebbi dunes at Merzouga are 550 kilometres from Marrakech. A proper desert trip — Marrakech, Ouarzazate, Draa Valley, Merzouga, return — takes three days minimum and is better as four. Build your week around this as the centerpiece, not as an addition.
             </p>
-            <Link href="/sahara-tour-from-marrakech" className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">
+            <Link href="/sahara-tour-from-marrakech" className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">
               3-day Sahara tour from Marrakech →
             </Link>
           </div>
@@ -191,9 +191,9 @@ export default function SevenDayItineraryPage() {
         {/* Build your own */}
         <div className="px-6 md:px-14 py-16 border-t border-foreground/[0.08] bg-foreground/[0.02]">
           <div className="max-w-xl">
-            <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">Build your own</p>
+            <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">Build your own</p>
             <h2 className="font-serif text-2xl text-foreground mb-4">Not sure which route fits?</h2>
-            <p className="text-sm text-foreground/50 leading-relaxed mb-8">
+            <p className="text-sm text-foreground/70 leading-relaxed mb-8">
               Tell us the shape of the trip you want, and we'll build a journey around you. Tailored journeys begin with a €300 planning deposit, applied to the cost of the trip.
             </p>
             <Link href="/plan-your-trip" className="inline-block px-8 py-3 border border-foreground text-sm tracking-[0.15em] uppercase text-foreground hover:bg-foreground hover:text-background transition-colors">
@@ -203,12 +203,12 @@ export default function SevenDayItineraryPage() {
         </div>
 
         <div className="px-6 md:px-14 py-12 border-t border-foreground/[0.08]">
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-6">Continue planning</p>
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-6">Continue planning</p>
           <div className="flex flex-wrap gap-4">
-            <Link href="/morocco/best-time-to-visit" className="text-sm text-foreground/50 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Best time to visit →</Link>
-            <Link href="/morocco/travel-guide" className="text-sm text-foreground/50 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Morocco travel guide →</Link>
-            <Link href="/morocco/things-to-do-in-marrakech" className="text-sm text-foreground/50 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Things to do in Marrakech →</Link>
-            <Link href="/journeys" className="text-sm text-foreground/50 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Private journeys →</Link>
+            <Link href="/morocco/best-time-to-visit" className="text-sm text-foreground/70 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Best time to visit →</Link>
+            <Link href="/morocco/travel-guide" className="text-sm text-foreground/70 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Morocco travel guide →</Link>
+            <Link href="/morocco/things-to-do-in-marrakech" className="text-sm text-foreground/70 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Things to do in Marrakech →</Link>
+            <Link href="/journeys" className="text-sm text-foreground/70 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Private journeys →</Link>
           </div>
         </div>
 

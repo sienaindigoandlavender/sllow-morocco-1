@@ -11,14 +11,14 @@ export default function FoodAndTippingPage() {
   return (
     <div className="bg-background min-h-screen">
       <div className="px-6 md:px-14 pt-20 pb-12 border-b border-foreground/[0.08]">
-        <Link href="/morocco" className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 hover:text-foreground/60 transition-colors mb-8 block">← Morocco</Link>
-        <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">Practical</p>
+        <Link href="/morocco" className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 hover:text-foreground/70 transition-colors mb-8 block">← Morocco</Link>
+        <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">Practical</p>
         <h1 className="font-serif text-4xl md:text-5xl text-foreground leading-[1.1] mb-6 max-w-2xl">Food and Tipping in Morocco</h1>
-        <p className="text-base text-foreground/55 leading-relaxed max-w-xl">Moroccan cooking is regional, seasonal, and built on a spice logic that takes years to read. What to order and how to pay for it.</p>
+        <p className="text-base text-foreground/70 leading-relaxed max-w-xl">Moroccan cooking is regional, seasonal, and built on a spice logic that takes years to read. What to order and how to pay for it.</p>
       </div>
       <div className="px-6 md:px-14 py-16 max-w-3xl space-y-12">
         <div>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-6">What to eat</p>
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-6">What to eat</p>
           <div className="space-y-px">
             {[
               { dish: "Tagine", note: "A tagine is the cooking vessel, not the dish. The cone lid traps condensation that bastes whatever cooks underneath. Chicken with preserved lemon and olives is the benchmark. Lamb with prunes and almonds is the Fassi version. Order it somewhere that actually cooks it, not the places reheating pre-made tagines for tourists." },
@@ -30,13 +30,13 @@ export default function FoodAndTippingPage() {
             ].map((item) => (
               <div key={item.dish} className="border border-foreground/[0.08] p-6">
                 <h2 className="font-serif text-lg text-foreground mb-2">{item.dish}</h2>
-                <p className="text-sm text-foreground/60 leading-relaxed">{item.note}</p>
+                <p className="text-sm text-foreground/70 leading-relaxed">{item.note}</p>
               </div>
             ))}
           </div>
         </div>
         <div>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">Where to eat</p>
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">Where to eat</p>
           <div className="space-y-4">
             {[
               { place: "Riad restaurants", desc: "Many riads have restaurants serving fixed menus at dinner. The cooking is often the best you'll eat in the country: home-style food from the riad family or a household cook, not a restaurant kitchen. Book ahead." },
@@ -51,7 +51,7 @@ export default function FoodAndTippingPage() {
           </div>
         </div>
         <div>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">Tipping</p>
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">Tipping</p>
           <div className="space-y-2">
             {[
               { context: "Restaurant (tourist)", amount: "10% — not included by default, often expected" },
@@ -65,15 +65,15 @@ export default function FoodAndTippingPage() {
             ].map((item) => (
               <div key={item.context} className="flex justify-between items-baseline py-3 border-b border-foreground/[0.06] text-sm">
                 <span className="text-foreground/65">{item.context}</span>
-                <span className="text-foreground/40 text-[11px] text-right ml-4">{item.amount}</span>
+                <span className="text-foreground/60 text-[11px] text-right ml-4">{item.amount}</span>
               </div>
             ))}
           </div>
         </div>
         <div className="flex flex-wrap gap-4 pt-4 border-t border-foreground/[0.08]">
-          <Link href="/stories/moroccan-tagine-guide" className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Read: The tagine →</Link>
-          <Link href="/stories/couscous-friday" className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Read: The Friday couscous →</Link>
-          <Link href="/morocco/cooking-class" className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Cooking classes →</Link>
+          <Link href="/stories/moroccan-tagine-guide" className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Read: The tagine →</Link>
+          <Link href="/stories/couscous-friday" className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Read: The Friday couscous →</Link>
+          <Link href="/morocco/cooking-class" className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Cooking classes →</Link>
         </div>
       </div>
     </div>

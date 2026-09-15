@@ -149,47 +149,47 @@ export default function BestTimeToVisitPage() {
 
         {/* Header */}
         <div className="px-6 md:px-14 pt-20 pb-12 border-b border-foreground/[0.08]">
-          <Link href="/morocco" className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 hover:text-foreground/60 transition-colors mb-8 block">
+          <Link href="/morocco" className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 hover:text-foreground/70 transition-colors mb-8 block">
             ← Morocco
           </Link>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">Planning</p>
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">Planning</p>
           <h1 className="font-serif text-4xl md:text-5xl text-foreground leading-[1.1] mb-6 max-w-2xl">
             Best Time to Visit Morocco
           </h1>
-          <p className="text-base text-foreground/55 leading-relaxed max-w-xl">
+          <p className="text-base text-foreground/70 leading-relaxed max-w-xl">
             Morocco has five climates. Where you go, and when, decides everything.
           </p>
         </div>
 
         {/* The honest overview */}
         <div className="px-6 md:px-14 py-16 max-w-3xl">
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-6">The short answer</p>
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-6">The short answer</p>
           <div className="space-y-6">
             <div className="flex gap-6 border-b border-foreground/[0.06] pb-6">
               <div className="w-32 flex-shrink-0">
                 <p className="text-sm font-medium text-foreground">March – May</p>
-                <p className="text-[11px] text-foreground/40 mt-1">Best overall</p>
+                <p className="text-[11px] text-foreground/60 mt-1">Best overall</p>
               </div>
               <p className="text-sm text-foreground/65 leading-relaxed">Works everywhere. Wildflowers south of Marrakech in March. Rose harvest in the Dades Valley in late April. Storks on the minarets. The country at its most alive before the heat arrives.</p>
             </div>
             <div className="flex gap-6 border-b border-foreground/[0.06] pb-6">
               <div className="w-32 flex-shrink-0">
                 <p className="text-sm font-medium text-foreground">June – August</p>
-                <p className="text-[11px] text-foreground/40 mt-1">Coast only</p>
+                <p className="text-[11px] text-foreground/60 mt-1">Coast only</p>
               </div>
               <p className="text-sm text-foreground/65 leading-relaxed">Fes and Marrakech reach 40–45°C. The medinas are difficult. The Atlantic coast — Essaouira, Agadir, Dakhla — is kept cool by the trade winds and is excellent. The Gnawa festival is in Essaouira in June. The Sahara in July and August is dangerous.</p>
             </div>
             <div className="flex gap-6 border-b border-foreground/[0.06] pb-6">
               <div className="w-32 flex-shrink-0">
                 <p className="text-sm font-medium text-foreground">Sept – Nov</p>
-                <p className="text-[11px] text-foreground/40 mt-1">Best overall</p>
+                <p className="text-[11px] text-foreground/60 mt-1">Best overall</p>
               </div>
               <p className="text-sm text-foreground/65 leading-relaxed">Saffron harvest in Taliouine in October — the valley's entire crop picked by hand before sunrise over three weeks. Date harvest in the Draa Valley. The Sahara is ideal again. The best month is October.</p>
             </div>
             <div className="flex gap-6">
               <div className="w-32 flex-shrink-0">
                 <p className="text-sm font-medium text-foreground">Dec – Feb</p>
-                <p className="text-[11px] text-foreground/40 mt-1">South and coast</p>
+                <p className="text-[11px] text-foreground/60 mt-1">South and coast</p>
               </div>
               <p className="text-sm text-foreground/65 leading-relaxed">Cold nights in the cities and mountains. Atlas ski season opens at Oukaimeden. Agadir and Dakhla are warm and quiet — a genuine winter escape. Low season means empty medinas and real riad prices.</p>
             </div>
@@ -198,19 +198,19 @@ export default function BestTimeToVisitPage() {
 
         {/* Month by month */}
         <div className="px-6 md:px-14 py-16 border-t border-foreground/[0.08]">
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-12">Month by month</p>
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-12">Month by month</p>
           <div className="max-w-3xl space-y-px">
             {MONTHS.map((m) => (
               <div key={m.month} className="border border-foreground/[0.08] p-6">
                 <div className="flex items-baseline gap-6 mb-3">
                   <h2 className="font-serif text-lg text-foreground w-28 flex-shrink-0">{m.month}</h2>
-                  <span className="text-xs text-foreground/35 tracking-wide">{m.temp}</span>
+                  <span className="text-xs text-foreground/60 tracking-wide">{m.temp}</span>
                 </div>
-                <p className="text-sm text-foreground/60 leading-relaxed mb-4 pl-0 md:pl-34">{m.summary}</p>
+                <p className="text-sm text-foreground/70 leading-relaxed mb-4 pl-0 md:pl-34">{m.summary}</p>
                 <div className="flex flex-wrap gap-4 text-[11px]">
                   <div className="flex gap-2 flex-wrap">
                     {m.good.map((g, i) => (
-                      <span key={i} className="px-2 py-0.5 bg-foreground/[0.04] text-foreground/50">{g}</span>
+                      <span key={i} className="px-2 py-0.5 bg-foreground/[0.04] text-foreground/70">{g}</span>
                     ))}
                   </div>
                 </div>
@@ -222,14 +222,14 @@ export default function BestTimeToVisitPage() {
         {/* Ramadan note */}
         <div className="px-6 md:px-14 py-16 border-t border-foreground/[0.08]">
           <div className="max-w-2xl">
-            <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">On Ramadan</p>
+            <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">On Ramadan</p>
             <p className="text-sm text-foreground/65 leading-relaxed mb-4">
               Ramadan shifts by approximately 11 days each year. In 2026 it falls around late February to late March. During Ramadan, many restaurants close during the day, alcohol is not served at non-tourist establishments, and the rhythm of the city changes entirely.
             </p>
             <p className="text-sm text-foreground/65 leading-relaxed mb-6">
               Ramadan isn't a hard time to visit, just a different one. The medinas come alive after sunset: the food stalls, the music, the communal breaking of the fast. If you plan around the evening rather than fighting the quiet afternoons, Ramadan is one of the most atmospheric times in Morocco.
             </p>
-            <Link href="/stories/ramadan-moon" className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground border-b border-foreground/15 hover:border-foreground/40 pb-0.5 transition-colors">
+            <Link href="/stories/ramadan-moon" className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground border-b border-foreground/15 hover:border-foreground/40 pb-0.5 transition-colors">
               Read: Ramadan in Morocco →
             </Link>
           </div>
@@ -237,12 +237,12 @@ export default function BestTimeToVisitPage() {
 
         {/* Related guides */}
         <div className="px-6 md:px-14 py-12 border-t border-foreground/[0.08]">
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-6">Continue planning</p>
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-6">Continue planning</p>
           <div className="flex flex-wrap gap-4">
-            <Link href="/morocco/travel-guide" className="text-sm text-foreground/50 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Morocco travel guide →</Link>
-            <Link href="/morocco/is-morocco-safe" className="text-sm text-foreground/50 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Is Morocco safe? →</Link>
-            <Link href="/dossiers/bird-atlas" className="text-sm text-foreground/50 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Bird atlas — migration windows →</Link>
-            <Link href="/plan-your-trip" className="text-sm text-foreground/50 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Plan a journey →</Link>
+            <Link href="/morocco/travel-guide" className="text-sm text-foreground/70 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Morocco travel guide →</Link>
+            <Link href="/morocco/is-morocco-safe" className="text-sm text-foreground/70 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Is Morocco safe? →</Link>
+            <Link href="/dossiers/bird-atlas" className="text-sm text-foreground/70 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Bird atlas — migration windows →</Link>
+            <Link href="/plan-your-trip" className="text-sm text-foreground/70 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Plan a journey →</Link>
           </div>
         </div>
 

@@ -62,14 +62,14 @@ export default function IsMoroccoSafePage() {
 
         {/* Header */}
         <div className="px-6 md:px-14 pt-20 pb-12 border-b border-foreground/[0.08]">
-          <Link href="/morocco" className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 hover:text-foreground/60 transition-colors mb-8 block">
+          <Link href="/morocco" className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 hover:text-foreground/70 transition-colors mb-8 block">
             ← Morocco
           </Link>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">Planning</p>
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">Planning</p>
           <h1 className="font-serif text-4xl md:text-5xl text-foreground leading-[1.1] mb-6 max-w-2xl">
             Is Morocco Safe?
           </h1>
-          <p className="text-base text-foreground/55 leading-relaxed max-w-xl">
+          <p className="text-base text-foreground/70 leading-relaxed max-w-xl">
             Morocco receives over 14 million visitors per year. The question isn't whether it's safe but what to actually watch for.
           </p>
         </div>
@@ -79,17 +79,17 @@ export default function IsMoroccoSafePage() {
           <p className="font-serif text-2xl text-foreground leading-relaxed mb-8">
             Morocco is safe. The main issues aren't dangerous, just irritating.
           </p>
-          <p className="text-base text-foreground/60 leading-relaxed mb-6">
+          <p className="text-base text-foreground/70 leading-relaxed mb-6">
             Petty theft in crowded medinas. Unofficial guides who attach themselves to tourists and demand payment. Persistent salesmanship. Tourist pricing that bears no relation to local pricing. These are real and they affect the experience — particularly in Marrakech and Fes, less so in Essaouira, Chefchaouen, or the south.
           </p>
-          <p className="text-base text-foreground/60 leading-relaxed">
+          <p className="text-base text-foreground/70 leading-relaxed">
             Violent crime against tourists is uncommon. Morocco has a significant police presence in tourist areas. The country's economy depends substantially on tourism and the government takes security seriously. Most visitors' worst experience is an hour in a carpet shop they didn't intend to enter.
           </p>
         </div>
 
         {/* Main issues broken down */}
         <div className="px-6 md:px-14 py-16 border-t border-foreground/[0.08]">
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-12">What to actually watch for</p>
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-12">What to actually watch for</p>
           <div className="max-w-3xl space-y-px">
 
             {[
@@ -120,7 +120,7 @@ export default function IsMoroccoSafePage() {
             ].map((item, i) => (
               <div key={i} className="border border-foreground/[0.08] p-6">
                 <h2 className="font-serif text-lg text-foreground mb-3">{item.issue}</h2>
-                <p className="text-sm text-foreground/60 leading-relaxed">{item.detail}</p>
+                <p className="text-sm text-foreground/70 leading-relaxed">{item.detail}</p>
               </div>
             ))}
           </div>
@@ -129,7 +129,7 @@ export default function IsMoroccoSafePage() {
         {/* Solo female travel */}
         <div className="px-6 md:px-14 py-16 border-t border-foreground/[0.08]">
           <div className="max-w-2xl">
-            <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">Solo female travel</p>
+            <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">Solo female travel</p>
             <p className="text-sm text-foreground/65 leading-relaxed mb-4">
               Solo female travel in Morocco is possible and increasingly common. Street harassment — catcalls, persistent attention from men — does occur in larger cities, particularly in Marrakech and Fes. It is improving but it is present.
             </p>
@@ -145,7 +145,7 @@ export default function IsMoroccoSafePage() {
         {/* LGBTQ note */}
         <div className="px-6 md:px-14 py-16 border-t border-foreground/[0.08]">
           <div className="max-w-2xl">
-            <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">LGBTQ+ travel</p>
+            <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">LGBTQ+ travel</p>
             <p className="text-sm text-foreground/65 leading-relaxed">
               Same-sex relations are illegal in Morocco under Article 489 of the penal code. Enforcement is inconsistent and arrests of tourists are rare, but the legal situation is real. Public displays of affection — for any couple — attract attention in conservative areas. Discretion is both practical and appropriate.
             </p>
@@ -154,12 +154,12 @@ export default function IsMoroccoSafePage() {
 
         {/* Related */}
         <div className="px-6 md:px-14 py-12 border-t border-foreground/[0.08]">
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-6">Continue planning</p>
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-6">Continue planning</p>
           <div className="flex flex-wrap gap-4">
-            <Link href="/morocco/travel-guide" className="text-sm text-foreground/50 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Morocco travel guide →</Link>
-            <Link href="/morocco/best-time-to-visit" className="text-sm text-foreground/50 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Best time to visit →</Link>
-            <Link href="/morocco/things-to-do-in-marrakech" className="text-sm text-foreground/50 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Things to do in Marrakech →</Link>
-            <Link href="/plan-your-trip" className="text-sm text-foreground/50 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Get your orientation →</Link>
+            <Link href="/morocco/travel-guide" className="text-sm text-foreground/70 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Morocco travel guide →</Link>
+            <Link href="/morocco/best-time-to-visit" className="text-sm text-foreground/70 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Best time to visit →</Link>
+            <Link href="/morocco/things-to-do-in-marrakech" className="text-sm text-foreground/70 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Things to do in Marrakech →</Link>
+            <Link href="/plan-your-trip" className="text-sm text-foreground/70 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Get your orientation →</Link>
           </div>
         </div>
 

@@ -11,14 +11,14 @@ export default function DesertCampGuidePage() {
   return (
     <div className="bg-background min-h-screen">
       <div className="px-6 md:px-14 pt-20 pb-12 border-b border-foreground/[0.08]">
-        <Link href="/morocco" className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 hover:text-foreground/60 transition-colors mb-8 block">← Morocco</Link>
-        <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">Experiences</p>
+        <Link href="/morocco" className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 hover:text-foreground/70 transition-colors mb-8 block">← Morocco</Link>
+        <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">Experiences</p>
         <h1 className="font-serif text-4xl md:text-5xl text-foreground leading-[1.1] mb-6 max-w-2xl">Desert Camp in Morocco</h1>
-        <p className="text-base text-foreground/55 leading-relaxed max-w-xl">Morocco has two major erg fields where sand dunes are large enough to warrant an overnight camp. They are different experiences and require different journeys to reach.</p>
+        <p className="text-base text-foreground/70 leading-relaxed max-w-xl">Morocco has two major erg fields where sand dunes are large enough to warrant an overnight camp. They are different experiences and require different journeys to reach.</p>
       </div>
       <div className="px-6 md:px-14 py-16 max-w-3xl space-y-12">
         <div>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-6">The two options</p>
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-6">The two options</p>
           <div className="grid md:grid-cols-2 gap-px bg-foreground/[0.06]">
             {[
               {
@@ -36,15 +36,15 @@ export default function DesertCampGuidePage() {
             ].map((item) => (
               <div key={item.name} className="bg-background p-8">
                 <h2 className="font-serif text-xl text-foreground mb-1">{item.name}</h2>
-                <p className="text-[11px] text-foreground/35 tracking-wide mb-4">{item.distance}</p>
-                <p className="text-sm text-foreground/60 leading-relaxed mb-4">{item.desc}</p>
-                <p className="text-[11px] text-foreground/40"><span className="text-foreground/60 font-medium">Best for:</span> {item.best}</p>
+                <p className="text-[11px] text-foreground/60 tracking-wide mb-4">{item.distance}</p>
+                <p className="text-sm text-foreground/70 leading-relaxed mb-4">{item.desc}</p>
+                <p className="text-[11px] text-foreground/60"><span className="text-foreground/70 font-medium">Best for:</span> {item.best}</p>
               </div>
             ))}
           </div>
         </div>
         <div>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">What to expect in camp</p>
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">What to expect in camp</p>
           <div className="space-y-3">
             {[
               { point: "Accommodation", desc: "Camps range from basic Berber tents to luxury glamping with private bathrooms and electricity. The basic camps are more atmospheric. Decide what matters: comfort or immersion. Most camps are somewhere in between — a proper bed, running water, and no phone signal." },
@@ -60,13 +60,13 @@ export default function DesertCampGuidePage() {
           </div>
         </div>
         <div>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">When to go</p>
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">When to go</p>
           <p className="text-sm text-foreground/65 leading-relaxed">October to April. July and August in the Sahara reach 45°C and are dangerous for sustained outdoor activity. March and October are the peak months — mild, clear, good light. December and January have cold nights but perfect days.</p>
         </div>
         <div className="flex flex-wrap gap-4 pt-4 border-t border-foreground/[0.08]">
-          <Link href="/sahara-tour-from-marrakech" className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">3-day Sahara tour →</Link>
-          <Link href="/stories/not-all-desert-is-sand" className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Read: Not all desert is sand →</Link>
-          <Link href="/merzouga" className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Merzouga destination guide →</Link>
+          <Link href="/sahara-tour-from-marrakech" className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">3-day Sahara tour →</Link>
+          <Link href="/stories/not-all-desert-is-sand" className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Read: Not all desert is sand →</Link>
+          <Link href="/merzouga" className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Merzouga destination guide →</Link>
         </div>
       </div>
     </div>

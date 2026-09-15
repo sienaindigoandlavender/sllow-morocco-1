@@ -52,17 +52,17 @@ export default function GladiatorMoroccoPage() {
       <div className="px-6 md:px-14 pt-20 pb-12 border-b border-foreground/[0.08]">
         <Link
           href="/morocco/ouarzazate-africas-hollywood"
-          className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 hover:text-foreground/60 transition-colors mb-8 block"
+          className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 hover:text-foreground/70 transition-colors mb-8 block"
         >
           ← Morocco on screen
         </Link>
-        <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">
+        <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">
           Morocco on screen
         </p>
         <h1 className="font-serif text-4xl md:text-5xl text-foreground leading-[1.1] mb-6 max-w-2xl">
           Where Gladiator Was Filmed in Morocco
         </h1>
-        <p className="text-base text-foreground/55 leading-relaxed max-w-xl">
+        <p className="text-base text-foreground/70 leading-relaxed max-w-xl">
           Before Rome, there was the provincial ring — a dusty arena in
           Zucchabar where a slave learned to win a crowd. Ridley Scott built
           it beside a nine-hundred-year-old ksar in the Ounila Valley, and
@@ -72,7 +72,7 @@ export default function GladiatorMoroccoPage() {
 
       <div className="px-6 md:px-14 py-16 max-w-3xl space-y-12">
         <div>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">
             The arena at Aït Benhaddou
           </p>
           <p className="text-sm text-foreground/65 leading-relaxed mb-4">
@@ -93,7 +93,7 @@ export default function GladiatorMoroccoPage() {
         </div>
 
         <div>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">
             Gladiator II: Scott returns
           </p>
           <p className="text-sm text-foreground/65 leading-relaxed">
@@ -107,7 +107,7 @@ export default function GladiatorMoroccoPage() {
         </div>
 
         <div>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">
             The map
           </p>
           <FilmLocationsMap
@@ -117,7 +117,7 @@ export default function GladiatorMoroccoPage() {
         </div>
 
         <div>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">
             Standing where Maximus stood
           </p>
           <div className="space-y-3">
@@ -133,14 +133,14 @@ export default function GladiatorMoroccoPage() {
             ].map((item) => (
               <div key={item.place}>
                 <p className="text-sm text-foreground font-medium mb-1">{item.place}</p>
-                <p className="text-sm text-foreground/55 leading-relaxed">{item.desc}</p>
+                <p className="text-sm text-foreground/70 leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
         </div>
 
         <div className="pt-8 border-t border-foreground/[0.08]">
-          <p className="text-sm text-foreground/45 leading-relaxed">
+          <p className="text-sm text-foreground/60 leading-relaxed">
             Part of our{" "}
             <Link
               href="/morocco/ouarzazate-africas-hollywood"
