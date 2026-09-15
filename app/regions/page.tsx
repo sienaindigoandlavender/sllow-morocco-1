@@ -40,7 +40,7 @@ export default async function RegionsPage() {
 
       {/* Hero */}
       <section className="px-8 md:px-16 lg:px-20 pt-24 pb-16 border-b border-border">
-        <p className="text-[10px] tracking-[0.35em] uppercase font-mono text-foreground/30 mb-4">
+        <p className="text-[10px] tracking-[0.35em] uppercase font-mono text-foreground/60 mb-4">
           Where to go
         </p>
         <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-foreground max-w-3xl">
@@ -88,12 +88,12 @@ export default async function RegionsPage() {
       {/* Bridge to Morocco page */}
       <section className="px-8 md:px-16 lg:px-20 py-16 border-t border-border">
         <div className="flex items-center justify-between">
-          <p className="text-sm text-foreground/40 max-w-md">
+          <p className="text-sm text-foreground/60 max-w-md">
             Looking for the full country overview — cities, visa, when to go?
           </p>
           <Link
             href="/morocco"
-            className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/40 hover:text-foreground transition-colors"
+            className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/60 hover:text-foreground transition-colors"
           >
             Morocco overview →
           </Link>
