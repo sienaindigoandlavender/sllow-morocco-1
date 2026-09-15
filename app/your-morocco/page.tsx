@@ -75,10 +75,10 @@ function YourMoroccoContent() {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/40 mb-4">
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">
             Slow Morocco
           </p>
-          <p className="font-serif text-foreground/60 text-lg">
+          <p className="font-serif text-foreground/70 text-lg">
             Building your orientation…
           </p>
         </div>
@@ -91,13 +91,13 @@ function YourMoroccoContent() {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center px-6">
         <div className="max-w-md text-center">
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/40 mb-6">
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-6">
             Slow Morocco
           </p>
           <h1 className="font-serif text-3xl text-foreground mb-4">
             Start here first.
           </h1>
-          <p className="text-sm text-foreground/50 leading-relaxed mb-8">
+          <p className="text-sm text-foreground/70 leading-relaxed mb-8">
             Answer five questions and we'll build a Morocco orientation specific to your trip.
           </p>
           <a
@@ -116,12 +116,12 @@ function YourMoroccoContent() {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center px-6">
         <div className="max-w-md text-center">
-          <p className="font-serif text-foreground/60 text-lg mb-6">
+          <p className="font-serif text-foreground/70 text-lg mb-6">
             Something went wrong generating your orientation.
           </p>
           <a
             href="/plan-your-trip"
-            className="text-[11px] tracking-[0.2em] uppercase text-foreground/40 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5"
+            className="text-[11px] tracking-[0.2em] uppercase text-foreground/60 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5"
           >
             Try again →
           </a>
@@ -138,11 +138,11 @@ function YourMoroccoContent() {
       <div className="px-6 md:px-10 lg:px-14 pt-16 pb-12 border-b border-foreground/[0.08]">
         <Link
           href="/"
-          className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 hover:text-foreground/60 transition-colors mb-8 block"
+          className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 hover:text-foreground/70 transition-colors mb-8 block"
         >
           ← Slow Morocco
         </Link>
-        <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">
+        <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">
           Your Morocco orientation
         </p>
         <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl text-foreground leading-[1.2] max-w-2xl">
@@ -155,7 +155,7 @@ function YourMoroccoContent() {
 
         {/* Before you plan anything */}
         <div className="mb-16">
-          <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/30 mb-4">
+          <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/60 mb-4">
             Before you plan anything
           </p>
           <p className="font-serif text-xl md:text-2xl text-foreground leading-relaxed">
@@ -165,7 +165,7 @@ function YourMoroccoContent() {
 
         {/* Geographic logic */}
         <div className="mb-16 pt-12 border-t border-foreground/[0.08]">
-          <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/30 mb-4">
+          <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/60 mb-4">
             The geographic logic
           </p>
           <p className="text-base text-foreground/70 leading-relaxed mb-6">
@@ -175,7 +175,7 @@ function YourMoroccoContent() {
             {orientation.cities.map((city) => (
               <span
                 key={city.name}
-                className="text-[11px] tracking-[0.1em] uppercase px-3 py-1.5 border border-foreground/15 text-foreground/50"
+                className="text-[11px] tracking-[0.1em] uppercase px-3 py-1.5 border border-foreground/15 text-foreground/70"
               >
                 {city.name}
               </span>
@@ -185,14 +185,14 @@ function YourMoroccoContent() {
 
         {/* City by city */}
         <div className="mb-16 pt-12 border-t border-foreground/[0.08]">
-          <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/30 mb-8">
+          <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/60 mb-8">
             City by city
           </p>
           <div className="space-y-8">
             {orientation.cities.map((city) => (
               <div key={city.name} className="flex gap-6">
                 <div className="w-24 flex-shrink-0">
-                  <p className="text-[11px] tracking-[0.1em] uppercase text-foreground/40 pt-0.5">
+                  <p className="text-[11px] tracking-[0.1em] uppercase text-foreground/60 pt-0.5">
                     {city.name}
                   </p>
                 </div>
@@ -206,7 +206,7 @@ function YourMoroccoContent() {
 
         {/* The one thing */}
         <div className="mb-16 pt-12 border-t border-foreground/[0.08]">
-          <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/30 mb-4">
+          <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/60 mb-4">
             The one thing
           </p>
           <p className="font-serif text-xl md:text-2xl text-foreground leading-relaxed">
@@ -216,23 +216,23 @@ function YourMoroccoContent() {
 
         {/* Watch out */}
         <div className="mb-16 pt-12 border-t border-foreground/[0.08]">
-          <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/30 mb-4">
+          <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/60 mb-4">
             Watch out for this
           </p>
-          <p className="text-base text-foreground/60 leading-relaxed">
+          <p className="text-base text-foreground/70 leading-relaxed">
             {orientation.watch_out}
           </p>
         </div>
 
         {/* CTA — itinerary generator */}
         <div className="pt-12 border-t border-foreground/[0.08]">
-          <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/30 mb-4">
+          <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/60 mb-4">
             Next step
           </p>
           <h2 className="font-serif text-2xl text-foreground mb-4">
             Build your itinerary.
           </h2>
-          <p className="text-sm text-foreground/50 leading-relaxed mb-8 max-w-lg">
+          <p className="text-sm text-foreground/70 leading-relaxed mb-8 max-w-lg">
             Now that you have the framework, let us sequence your days — places, context, and the thread connecting them.
           </p>
           <Link
@@ -248,12 +248,12 @@ function YourMoroccoContent() {
       {/* Footer nudge */}
       <div className="px-6 md:px-10 lg:px-14 py-12 border-t border-foreground/[0.08]">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <p className="text-sm text-foreground/40">
+          <p className="text-sm text-foreground/60">
             Morocco, understood.
           </p>
           <a
             href="/plan-your-trip"
-            className="text-[11px] tracking-[0.2em] uppercase text-foreground/30 hover:text-foreground/60 transition-colors"
+            className="text-[11px] tracking-[0.2em] uppercase text-foreground/60 hover:text-foreground/70 transition-colors"
           >
             Answer differently →
           </a>
@@ -270,7 +270,7 @@ export default function YourMoroccoPage() {
   return (
     <Suspense fallback={
       <div className="min-h-screen bg-background flex items-center justify-center">
-        <p className="font-serif text-foreground/40">Loading…</p>
+        <p className="font-serif text-foreground/60">Loading…</p>
       </div>
     }>
       <YourMoroccoContent />
