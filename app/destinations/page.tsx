@@ -52,7 +52,7 @@ export default async function DestinationsPage() {
 
       {/* ── Hero ──────────────────────────────────────────────────────── */}
       <section className="pt-28 md:pt-36 pb-6 md:pb-10 px-8 md:px-10 lg:px-14">
-        <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/40 mb-4">
+        <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/60 mb-4">
           The Definitive Guide
         </p>
         <h1 className="font-serif text-[clamp(2.5rem,8vw,6rem)] leading-[0.92] tracking-[-0.02em] text-foreground max-w-[14ch]">
@@ -193,7 +193,7 @@ export default async function DestinationsPage() {
       {withoutImages.length > 0 && (
         <section className="px-8 md:px-10 lg:px-14 pb-24 md:pb-32">
           <div className="border-t border-foreground/10 pt-12">
-            <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/40 mb-8">
+            <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/60 mb-8">
               More destinations
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-8 gap-y-4">
@@ -203,11 +203,11 @@ export default async function DestinationsPage() {
                   href={`/${d.slug}`}
                   className="group block py-2"
                 >
-                  <h3 className="font-serif text-lg text-foreground group-hover:text-foreground/50 transition-colors leading-tight">
+                  <h3 className="font-serif text-lg text-foreground group-hover:text-foreground/70 transition-colors leading-tight">
                     {d.title}
                   </h3>
                   {d.subtitle && (
-                    <p className="text-[11px] text-foreground/40 mt-0.5 leading-snug">
+                    <p className="text-[11px] text-foreground/60 mt-0.5 leading-snug">
                       {d.subtitle}
                     </p>
                   )}
@@ -226,7 +226,7 @@ export default async function DestinationsPage() {
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-foreground leading-[1.05] max-w-[20ch]">
               Know where you want to go?
             </h2>
-            <p className="text-foreground/50 mt-3 max-w-md">
+            <p className="text-foreground/70 mt-3 max-w-md">
               Every journey we design starts with a conversation about what matters to you.
             </p>
           </div>
