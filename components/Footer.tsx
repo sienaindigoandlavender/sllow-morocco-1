@@ -114,7 +114,7 @@ export default function Footer() {
     show: true,
     backgroundImage: "",
     title: "Stay curious",
-    description: "Stories, routes, and cultural insights from Morocco.",
+    description: "Stories, history, and culture from Morocco — the intelligence layer.",
     brandName: "Slow Morocco",
   };
 
@@ -147,7 +147,7 @@ export default function Footer() {
                 </span>
               </Link>
               <p className="text-sm text-white/30 leading-relaxed max-w-xs">
-                Routes into a slower, stranger Morocco.
+                A slower, stranger Morocco — decoded.
               </p>
             </div>
 
