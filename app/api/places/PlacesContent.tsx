@@ -76,7 +76,7 @@ function Pagination({
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="px-3 py-2 text-xs tracking-[0.1em] uppercase text-foreground/40 hover:text-foreground disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
+        className="px-3 py-2 text-xs tracking-[0.1em] uppercase text-foreground/60 hover:text-foreground disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
       >
         ←
       </button>
@@ -84,7 +84,7 @@ function Pagination({
         page === "..." ? (
           <span
             key={`ellipsis-${i}`}
-            className="px-2 py-2 text-xs text-foreground/30"
+            className="px-2 py-2 text-xs text-foreground/60"
           >
             …
           </span>
@@ -95,7 +95,7 @@ function Pagination({
             className={`min-w-[36px] py-2 text-xs tracking-[0.1em] transition-colors ${
               currentPage === page
                 ? "bg-foreground text-background"
-                : "text-foreground/50 hover:text-foreground"
+                : "text-foreground/70 hover:text-foreground"
             }`}
           >
             {page}
@@ -105,7 +105,7 @@ function Pagination({
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="px-3 py-2 text-xs tracking-[0.1em] uppercase text-foreground/40 hover:text-foreground disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
+        className="px-3 py-2 text-xs tracking-[0.1em] uppercase text-foreground/60 hover:text-foreground disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
       >
         →
       </button>
@@ -214,7 +214,7 @@ export default function PlacesContent({
       {places.length > 0 && (
         <section className="py-12">
           <div className="container mx-auto px-6 lg:px-16">
-            <p className="text-xs tracking-[0.3em] uppercase text-foreground/40 mb-6">
+            <p className="text-xs tracking-[0.3em] uppercase text-foreground/60 mb-6">
               Discover Morocco
             </p>
             <MoroccoMapWrapper
@@ -235,7 +235,7 @@ export default function PlacesContent({
       {/* Region Cards */}
       <section className="py-12 border-y border-foreground/10">
         <div className="container mx-auto px-6 lg:px-16">
-          <h2 className="text-xs tracking-[0.2em] uppercase text-foreground/40 mb-6 text-center">
+          <h2 className="text-xs tracking-[0.2em] uppercase text-foreground/60 mb-6 text-center">
             Explore by Region
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -265,7 +265,7 @@ export default function PlacesContent({
                   <span className="font-serif text-lg md:text-xl">
                     {region.title}
                   </span>
-                  <span className="text-xs text-foreground/60 mt-1 hidden md:block">
+                  <span className="text-xs text-foreground/70 mt-1 hidden md:block">
                     {region.subtitle}
                   </span>
                 </div>
@@ -296,7 +296,7 @@ export default function PlacesContent({
       {filteredDestinations.length > 0 && (
         <section className="py-8 border-b border-foreground/10">
           <div className="container mx-auto px-6 lg:px-16">
-            <h2 className="text-xs tracking-[0.2em] uppercase text-foreground/40 mb-4 text-center">
+            <h2 className="text-xs tracking-[0.2em] uppercase text-foreground/60 mb-4 text-center">
               {selectedRegion === "all"
                 ? "All Destinations"
                 : `Destinations in ${
@@ -310,7 +310,7 @@ export default function PlacesContent({
                 className={`text-xs tracking-[0.15em] uppercase px-4 py-2 border transition-colors ${
                   selectedDestination === "all"
                     ? "bg-white text-[#0a0a0a] border-foreground"
-                    : "bg-transparent text-foreground/60 border-foreground/20 hover:border-foreground/40"
+                    : "bg-transparent text-foreground/70 border-foreground/20 hover:border-foreground/40"
                 }`}
               >
                 All
@@ -326,7 +326,7 @@ export default function PlacesContent({
                   className={`text-xs tracking-[0.15em] uppercase px-4 py-2 border transition-colors ${
                     selectedDestination === dest.slug
                       ? "bg-white text-[#0a0a0a] border-foreground"
-                      : "bg-transparent text-foreground/60 border-foreground/20 hover:border-foreground/40"
+                      : "bg-transparent text-foreground/70 border-foreground/20 hover:border-foreground/40"
                   }`}
                 >
                   {dest.title}
@@ -342,7 +342,7 @@ export default function PlacesContent({
         <div className="container mx-auto px-6 lg:px-16">
           {!dataLoaded ? (
             <div className="text-center py-20">
-              <p className="text-foreground/50">
+              <p className="text-foreground/70">
                 Places are being updated. Check back soon.
               </p>
             </div>
@@ -384,7 +384,7 @@ export default function PlacesContent({
             />
                         )}
                       </div>
-                      <p className="text-[10px] tracking-[0.15em] uppercase text-foreground/40 mb-1">
+                      <p className="text-[10px] tracking-[0.15em] uppercase text-foreground/60 mb-1">
                         {dest?.title || place.destination}
                       </p>
                       <h2 className="font-serif text-base md:text-lg text-foreground group-hover:text-foreground/70 transition-colors">
@@ -414,7 +414,7 @@ export default function PlacesContent({
             </>
           ) : (
             <div className="text-center py-20">
-              <p className="text-foreground/50">
+              <p className="text-foreground/70">
                 No places found for this selection.
               </p>
               <button
@@ -422,7 +422,7 @@ export default function PlacesContent({
                   setSelectedRegion("all");
                   setSelectedDestination("all");
                 }}
-                className="mt-4 text-sm text-foreground/40 hover:text-foreground underline transition-colors"
+                className="mt-4 text-sm text-foreground/60 hover:text-foreground underline transition-colors"
               >
                 Clear filters
               </button>
