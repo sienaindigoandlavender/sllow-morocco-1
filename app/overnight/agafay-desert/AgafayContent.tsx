@@ -48,18 +48,18 @@ export default function AgafayContent() {
     <>
       {/* Pricing */}
       <div className="bg-[#d4cdc4] p-8 md:p-10 mb-12 text-center">
-        <p className="text-xs tracking-[0.2em] uppercase text-foreground/60 mb-4">
+        <p className="text-xs tracking-[0.2em] uppercase text-foreground/70 mb-4">
           Private Experience for Two
         </p>
         {totalEUR ? (
           <>
             <p className="text-4xl md:text-5xl font-serif text-foreground mb-2">€{totalEUR}</p>
-            <p className="text-sm text-foreground/60">All-inclusive · Transfers · Accommodation · Camel ride</p>
+            <p className="text-sm text-foreground/70">All-inclusive · Transfers · Accommodation · Camel ride</p>
           </>
         ) : (
           <>
             <p className="text-4xl md:text-5xl font-serif text-foreground mb-2">~€446</p>
-            <p className="text-sm text-foreground/60">All-inclusive · Transfers · Accommodation · Camel ride</p>
+            <p className="text-sm text-foreground/70">All-inclusive · Transfers · Accommodation · Camel ride</p>
           </>
         )}
       </div>

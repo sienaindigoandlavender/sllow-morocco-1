@@ -132,7 +132,7 @@ export default function AgafayOvernightPage() {
                   "Private transfer back to Marrakech",
                 ].map((item, index) => (
                   <li key={index} className="flex items-start gap-2 text-sm text-foreground">
-                    <span className="text-foreground/50 mt-0.5">→</span>
+                    <span className="text-foreground/70 mt-0.5">→</span>
                     <span>{item}</span>
                   </li>
                 ))}
