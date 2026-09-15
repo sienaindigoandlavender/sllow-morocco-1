@@ -87,7 +87,7 @@ function StatusTimeline({ status, onChange }: { status: string; onChange: (s: st
                 {isArchived && <div className="w-2 h-2 rounded-full bg-white" />}
               </div>
               <span className={`text-[10px] tracking-wide uppercase text-center leading-tight
-                ${isArchived ? "text-foreground/60 font-medium" : "text-muted-foreground"}
+                ${isArchived ? "text-foreground/70 font-medium" : "text-muted-foreground"}
               `}>Archived</span>
               <span className="text-[9px] text-muted-foreground text-center mt-0.5 hidden lg:block">Not proceeding</span>
             </button>
