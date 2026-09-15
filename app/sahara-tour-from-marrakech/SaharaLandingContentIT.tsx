@@ -80,11 +80,11 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
         <span className="text-sm font-medium text-foreground leading-snug">
           {question}
         </span>
-        <span className="text-foreground/30 flex-shrink-0 mt-0.5 text-lg leading-none print:hidden">
+        <span className="text-foreground/60 flex-shrink-0 mt-0.5 text-lg leading-none print:hidden">
           {open ? "−" : "+"}
         </span>
       </button>
-      <p className={`text-sm text-foreground/55 leading-relaxed pb-6 pr-8 print:!block ${open ? "" : "hidden"}`}>
+      <p className={`text-sm text-foreground/70 leading-relaxed pb-6 pr-8 print:!block ${open ? "" : "hidden"}`}>
         {answer}
       </p>
     </div>
@@ -214,7 +214,7 @@ export default function SaharaLandingContentIT() {
       {/* ── Blurb — below hero, matching journeys ─────────────────────── */}
       <section className="border-b border-foreground/10">
         <div className="max-w-3xl mx-auto px-8 md:px-12 lg:px-16 py-10 md:py-14">
-          <p className="font-serif text-foreground/60 text-lg md:text-xl leading-relaxed">
+          <p className="font-serif text-foreground/70 text-lg md:text-xl leading-relaxed">
             Il Sahara non è a quaranta minuti da Marrakech. Sono nove ore. Chi vi dice il contrario vi sta vendendo l'altopiano di Agafay, un deserto roccioso fuori città — va bene per una notte, ma non è il Sahara. Questo è un tour privato — il vostro veicolo, il vostro autista, il vostro ritmo. Tre giorni attraverso l'Atlante, le kasbah, la Valle del Draa, fino alle dune di Erg Chebbi.
           </p>
         </div>
@@ -223,15 +223,15 @@ export default function SaharaLandingContentIT() {
       {/* ── Meta bar ──────────────────────────────────────────────────── */}
       <div className="border-b border-foreground/10 print:hidden">
         <div className="max-w-3xl mx-auto px-8 md:px-12 py-5 flex items-center justify-between">
-          <div className="flex items-center gap-4 text-[11px] tracking-[0.12em] uppercase text-foreground/35">
-            <Link href="/journeys" className="hover:text-foreground/60 transition-colors">Viaggi</Link>
+          <div className="flex items-center gap-4 text-[11px] tracking-[0.12em] uppercase text-foreground/60">
+            <Link href="/journeys" className="hover:text-foreground/70 transition-colors">Viaggi</Link>
             <span>3 Giorni</span>
             <span>Da Marrakech</span>
           </div>
           <div className="flex items-center gap-4">
             <button
               onClick={() => window.print()}
-              className="flex items-center gap-2 text-[11px] tracking-[0.12em] uppercase text-foreground/35 hover:text-foreground/60 transition-colors"
+              className="flex items-center gap-2 text-[11px] tracking-[0.12em] uppercase text-foreground/60 hover:text-foreground/70 transition-colors"
             >
               <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.2" className="w-3.5 h-3.5">
                 <rect x="2" y="5" width="12" height="8" rx="1"/>
@@ -294,7 +294,7 @@ export default function SaharaLandingContentIT() {
                   {day.stops.map((stop, i) => (
                     <span
                       key={i}
-                      className="text-[10px] tracking-[0.08em] uppercase px-3 py-1 bg-foreground/[0.04] text-foreground/40"
+                      className="text-[10px] tracking-[0.08em] uppercase px-3 py-1 bg-foreground/[0.04] text-foreground/60"
                     >
                       {stop}
                     </span>
@@ -329,7 +329,7 @@ export default function SaharaLandingContentIT() {
               </p>
               <ul className="space-y-3">
                 {NOT_INCLUDED.map((item, i) => (
-                  <li key={i} className="flex gap-3 text-sm text-foreground/50 leading-relaxed">
+                  <li key={i} className="flex gap-3 text-sm text-foreground/70 leading-relaxed">
                     <span className="text-foreground/20 mt-0.5 flex-shrink-0">—</span>
                     {item}
                   </li>
@@ -351,19 +351,19 @@ export default function SaharaLandingContentIT() {
             <div className="mb-8">
               <div className="flex items-baseline gap-3 mb-2">
                 <span className="font-serif text-5xl text-foreground">€{PRICE_PER_PERSON}</span>
-                <span className="text-sm text-foreground/40">a persona</span>
+                <span className="text-sm text-foreground/60">a persona</span>
               </div>
-              <p className="text-sm text-foreground/40">
+              <p className="text-sm text-foreground/60">
                 Minimo 2 partecipanti
               </p>
             </div>
 
             <div className="border border-foreground/[0.08] p-6 mb-8">
-              <div className="flex justify-between text-sm text-foreground/50 mb-3">
+              <div className="flex justify-between text-sm text-foreground/70 mb-3">
                 <span>€{PRICE_PER_PERSON} × {participants} persone</span>
                 <span>€{totalEUR}</span>
               </div>
-              <div className="flex justify-between text-sm text-foreground/40 mb-4 pb-4 border-b border-foreground/[0.06]">
+              <div className="flex justify-between text-sm text-foreground/60 mb-4 pb-4 border-b border-foreground/[0.06]">
                 <span>Servizio concierge</span>
                 <span>€{handlingFee}</span>
               </div>
@@ -379,7 +379,7 @@ export default function SaharaLandingContentIT() {
             >
               Prenota questo viaggio
             </button>
-            <p className="text-xs text-foreground/30 text-center leading-relaxed">
+            <p className="text-xs text-foreground/60 text-center leading-relaxed">
               Pagamento completo tramite PayPal. Cancellazione gratuita fino a 30 giorni prima della partenza.
             </p>
           </div>
@@ -407,13 +407,13 @@ export default function SaharaLandingContentIT() {
           <div className="flex gap-6">
             <Link
               href="/stories/not-all-desert-is-sand"
-              className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5"
+              className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5"
             >
               Leggi: Non tutto il deserto è sabbia
             </Link>
             <Link
               href="/stories/the-ksour"
-              className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5"
+              className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5"
             >
               Leggi: I Ksour
             </Link>
@@ -436,7 +436,7 @@ export default function SaharaLandingContentIT() {
                 <div>
                   <p className="text-xs font-medium text-foreground">{t.author}</p>
                   {t.journey && (
-                    <p className="text-[10px] tracking-wide text-foreground/30 mt-0.5">{t.journey}</p>
+                    <p className="text-[10px] tracking-wide text-foreground/60 mt-0.5">{t.journey}</p>
                   )}
                 </div>
               </div>
@@ -468,7 +468,7 @@ export default function SaharaLandingContentIT() {
           <h2 className="font-serif text-2xl text-foreground mb-4">
             Iniziate con il vostro orientamento.
           </h2>
-          <p className="text-sm text-foreground/50 leading-relaxed mb-8">
+          <p className="text-sm text-foreground/70 leading-relaxed mb-8">
             Cinque domande. Un quadro su misura per il vostro viaggio — quali città, in che ordine, cosa capirete davvero una volta arrivati.
           </p>
           <Link
@@ -484,12 +484,12 @@ export default function SaharaLandingContentIT() {
       <section className="border-t border-foreground/10 print:hidden">
         <div className="max-w-3xl mx-auto px-8 md:px-12 lg:px-16 py-12">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <p className="text-sm text-foreground/40">
+            <p className="text-sm text-foreground/60">
               Volete più tempo nel sud? La versione di 4 giorni include la Valle del Dades e la Gola del Todra.
             </p>
             <Link
               href="/journeys/4-Day-Sahara-&-Valleys-Journey"
-              className="text-[11px] tracking-[0.15em] uppercase text-foreground/50 hover:text-foreground transition-colors whitespace-nowrap"
+              className="text-[11px] tracking-[0.15em] uppercase text-foreground/70 hover:text-foreground transition-colors whitespace-nowrap"
             >
               Vedi il viaggio di 4 giorni
             </Link>
