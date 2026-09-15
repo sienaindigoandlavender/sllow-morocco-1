@@ -569,39 +569,31 @@ export default function JourneyDetailContent({
           <div className="space-y-20">
             {itinerary
               .sort((a, b) => a.dayNumber - b.dayNumber)
-              .map((day, idx) => {
-                // Short trips (3 days or fewer) show in full — nothing to gate.
-                // Longer journeys show FREE_DAYS clear, then blur the rest.
-                const blurred = itinerary.length > 3 && idx >= FREE_DAYS;
-                return (
-                  <div
-                    key={day.dayNumber}
-                    className={blurred ? "select-none blur-sm pointer-events-none" : ""}
-                    aria-hidden={blurred}
-                  >
-                    {day.imageUrl && (
-                      <DayImage src={day.imageUrl} alt={`Day ${day.dayNumber} - ${day.cityName}`} />
-                    )}
+              .slice(0, FREE_DAYS)
+              .map((day) => (
+                <div key={day.dayNumber}>
+                  {day.imageUrl && (
+                    <DayImage src={day.imageUrl} alt={`Day ${day.dayNumber} - ${day.cityName}`} />
+                  )}
 
-                    <p className="text-xs tracking-[0.2em] uppercase text-foreground/70 mb-3">
-                      Day {day.dayNumber}
-                    </p>
+                  <p className="text-xs tracking-[0.2em] uppercase text-foreground/70 mb-3">
+                    Day {day.dayNumber}
+                  </p>
 
-                    <h2 className="font-serif text-2xl md:text-3xl mb-2">
-                      {day.cityName}
-                    </h2>
+                  <h2 className="font-serif text-2xl md:text-3xl mb-2">
+                    {day.cityName}
+                  </h2>
 
-                    <DayMeta day={day} />
+                  <DayMeta day={day} />
 
-                    <p className="text-foreground/75 leading-relaxed text-lg">
-                      {linkJourneyProse(day.description, journey.slug)}
-                    </p>
-                  </div>
-                );
-              })}
+                  <p className="text-foreground/75 leading-relaxed text-lg">
+                    {linkJourneyProse(day.description, journey.slug)}
+                  </p>
+                </div>
+              ))}
           </div>
 
-          {itinerary.length > 3 && (
+          {itinerary.length > FREE_DAYS && (
             <div className="relative -mt-40 pt-40 bg-gradient-to-t from-background via-background to-transparent">
               <div className="text-center max-w-xl mx-auto pt-10">
                 <p className="font-serif text-2xl md:text-3xl mb-4">
