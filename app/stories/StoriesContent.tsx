@@ -13,6 +13,7 @@ interface Story {
   mood?: string;
   heroImage?: string;
   excerpt?: string;
+  createdAt?: string;
 }
 
 interface StoriesContentProps {
@@ -40,7 +41,7 @@ export default function StoriesContent({
   dataLoaded = true,
 }: StoriesContentProps) {
   const [currentPage, setCurrentPage] = useState(1);
-  const [sortBy, setSortBy] = useState<"default" | "alpha">("default");
+  const [sortBy, setSortBy] = useState<"newest" | "oldest" | "alpha">("newest");
   const [query, setQuery] = useState("");
 
   const categoryCounts = useMemo(() => {
@@ -66,6 +67,11 @@ export default function StoriesContent({
     if (q) result = result.filter((s) => matches(s, q));
     if (sortBy === "alpha") {
       result = [...result].sort((a, b) => a.title.localeCompare(b.title));
+    } else if (sortBy === "oldest") {
+      result = [...result].sort((a, b) => (a.createdAt || "").localeCompare(b.createdAt || ""));
+    } else {
+      // newest first (default)
+      result = [...result].sort((a, b) => (b.createdAt || "").localeCompare(a.createdAt || ""));
     }
     return result;
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -160,15 +166,22 @@ export default function StoriesContent({
           used to sit here truncated after "Movies" on any normal screen.
           ──────────────────────────────────────────────────────────── */}
       <section className="px-8 md:px-10 lg:px-14 pb-6 sticky top-16 md:top-20 bg-background z-40">
-        <div className="flex items-center justify-end py-3">
-          <button
-            onClick={() => { setSortBy(sortBy === "default" ? "alpha" : "default"); setCurrentPage(1); }}
-            className={`text-[11px] tracking-[0.12em] uppercase transition-colors ${
-              sortBy === "alpha" ? "text-foreground" : "text-foreground/35 hover:text-foreground/60"
-            }`}
-          >
-            A–Z
-          </button>
+        <div className="flex items-center justify-end gap-5 py-3">
+          {([
+            ["newest", "Newest"],
+            ["oldest", "Oldest"],
+            ["alpha", "A–Z"],
+          ] as const).map(([key, label]) => (
+            <button
+              key={key}
+              onClick={() => { setSortBy(key); setCurrentPage(1); }}
+              className={`text-[11px] tracking-[0.12em] uppercase transition-colors ${
+                sortBy === key ? "text-foreground" : "text-foreground/35 hover:text-foreground/60"
+              }`}
+            >
+              {label}
+            </button>
+          ))}
         </div>
       </section>
 

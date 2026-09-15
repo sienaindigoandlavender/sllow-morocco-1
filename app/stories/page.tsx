@@ -30,6 +30,7 @@ export const revalidate = 3600;
 interface StoryItem {
   slug: string;
   title: string;
+  createdAt?: string;
   subtitle?: string;
   mood?: string;
   heroImage?: string;
@@ -46,6 +47,7 @@ async function fetchStories(): Promise<{ stories: StoryItem[]; lastUpdated: stri
       mood: story.category || undefined,
       heroImage: story.hero_image || undefined,
       excerpt: story.excerpt || undefined,
+      createdAt: story.created_at || undefined,
     }));
 
     const lastUpdated =
