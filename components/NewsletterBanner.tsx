@@ -35,8 +35,8 @@ export default function NewsletterBanner() {
         <h2 className="text-xl md:text-2xl font-light tracking-[-0.01em] mb-3">
           The Letter
         </h2>
-        <p className="text-white/35 text-sm leading-relaxed mb-8">
-          Written from the medina. Sent when it matters.
+        <p className="text-white/60 text-sm leading-relaxed mb-8">
+          Morocco, decoded. History, craft, and the country beneath the one visitors are shown.
         </p>
         {subscribed ? (
           <p className="text-white/50 text-sm">The letter will find you.</p>
