@@ -42,7 +42,7 @@ export default function DayTripsContent({
       {dayTrips.length > 0 && (
         <section className="py-16 border-t border-foreground/10">
           <div className="container mx-auto px-6 lg:px-16">
-            <p className="text-xs tracking-[0.3em] uppercase text-foreground/40 mb-6">
+            <p className="text-xs tracking-[0.3em] uppercase text-foreground/60 mb-6">
               Explore Destinations
             </p>
             <MoroccoMapWrapper 
@@ -62,11 +62,11 @@ export default function DayTripsContent({
         <div className="container mx-auto px-6 lg:px-16">
           {!dataLoaded ? (
             <div className="text-center py-20">
-              <p className="text-foreground/40">Day trips are being updated. Check back soon.</p>
+              <p className="text-foreground/60">Day trips are being updated. Check back soon.</p>
             </div>
           ) : dayTrips.length === 0 ? (
             <div className="text-center py-20">
-              <p className="text-foreground/40">No day trips available.</p>
+              <p className="text-foreground/60">No day trips available.</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
@@ -86,12 +86,12 @@ export default function DayTripsContent({
                   <h2 className="font-serif text-xl md:text-2xl mb-3 text-foreground group-hover:text-foreground/70 transition-colors">
                     {trip.title}
                   </h2>
-                  <div className="flex items-center gap-3 text-sm text-foreground/40 mb-4">
+                  <div className="flex items-center gap-3 text-sm text-foreground/60 mb-4">
                     <span>{trip.durationHours} hours</span>
                     <span className="text-foreground/20">·</span>
                     <span>From €{trip.priceEUR}</span>
                   </div>
-                  <p className="text-foreground/50 text-sm leading-relaxed">{trip.shortDescription}</p>
+                  <p className="text-foreground/70 text-sm leading-relaxed">{trip.shortDescription}</p>
                 </Link>
               ))}
             </div>
@@ -104,13 +104,13 @@ export default function DayTripsContent({
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2">
             <div className="py-20 md:py-28 px-6 lg:px-16 bg-background">
-              <p className="text-xs tracking-[0.3em] uppercase text-foreground/40 mb-8">Every Day Tour Includes</p>
+              <p className="text-xs tracking-[0.3em] uppercase text-foreground/60 mb-8">Every Day Tour Includes</p>
               <ul className="space-y-4">
-                <li className="text-foreground/70 text-lg flex items-start gap-3"><span className="text-foreground/30 mt-1">→</span><span>Private car (up to 3 guests)</span></li>
-                <li className="text-foreground/70 text-lg flex items-start gap-3"><span className="text-foreground/30 mt-1">→</span><span>English-speaking driver</span></li>
-                <li className="text-foreground/70 text-lg flex items-start gap-3"><span className="text-foreground/30 mt-1">→</span><span>Hotel pickup & drop-off in Marrakech</span></li>
-                <li className="text-foreground/70 text-lg flex items-start gap-3"><span className="text-foreground/30 mt-1">→</span><span>All road fees and fuel</span></li>
-                <li className="text-foreground/70 text-lg flex items-start gap-3"><span className="text-foreground/30 mt-1">→</span><span>Flexible stops for photos</span></li>
+                <li className="text-foreground/70 text-lg flex items-start gap-3"><span className="text-foreground/60 mt-1">→</span><span>Private car (up to 3 guests)</span></li>
+                <li className="text-foreground/70 text-lg flex items-start gap-3"><span className="text-foreground/60 mt-1">→</span><span>English-speaking driver</span></li>
+                <li className="text-foreground/70 text-lg flex items-start gap-3"><span className="text-foreground/60 mt-1">→</span><span>Hotel pickup & drop-off in Marrakech</span></li>
+                <li className="text-foreground/70 text-lg flex items-start gap-3"><span className="text-foreground/60 mt-1">→</span><span>All road fees and fuel</span></li>
+                <li className="text-foreground/70 text-lg flex items-start gap-3"><span className="text-foreground/60 mt-1">→</span><span>Flexible stops for photos</span></li>
               </ul>
             </div>
             <div className="py-20 md:py-28 px-6 lg:px-16 bg-[#1a1916]">
@@ -128,7 +128,7 @@ export default function DayTripsContent({
       <section className="py-24 md:py-32 bg-background border-t border-foreground/10">
         <div className="container mx-auto px-6 lg:px-16 max-w-3xl text-center">
           <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl mb-8 text-foreground">Not sure which tour?</h2>
-          <p className="text-foreground/50 leading-relaxed mb-12 text-lg">
+          <p className="text-foreground/70 leading-relaxed mb-12 text-lg">
             Tell us what you're drawn to — mountains, villages, coast, craft — and we'll point you in the right direction.
           </p>
           <Link
