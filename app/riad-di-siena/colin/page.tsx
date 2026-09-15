@@ -56,11 +56,11 @@ export default function ColinItineraryPage() {
       {/* Interactive Map */}
       <section className="py-16 md:py-20">
         <div className="container mx-auto px-8 md:px-16 lg:px-20">
-          <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/40 mb-6">
+          <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/60 mb-6">
             Your Route
           </p>
           <DesertDustRouteMap />
-          <p className="text-center text-sm text-foreground/50 mt-4">
+          <p className="text-center text-sm text-foreground/70 mt-4">
             ~160km loop • Perfect for a Royal Enfield Interceptor 650
           </p>
         </div>
@@ -70,17 +70,17 @@ export default function ColinItineraryPage() {
       <section className="py-20 md:py-28 bg-white">
         <div className="container mx-auto px-8 md:px-16 lg:px-20">
           <div className="max-w-4xl">
-            <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/40 mb-8">
+            <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/60 mb-8">
               The Bikes
             </p>
 
             <div className="space-y-12">
               <div>
                 <h3 className="font-serif text-xl md:text-2xl mb-3">The Stylist's Choice</h3>
-                <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 mb-4">
+                <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 mb-4">
                   Royal Enfield Interceptor 650
                 </p>
-                <p className="text-foreground/60 leading-relaxed">
+                <p className="text-foreground/70 leading-relaxed">
                   The most common 'Modern Classic' here. It's a 650cc twin-cylinder that sounds
                   great and looks the part for a ride out to the Agafay Desert.
                 </p>
@@ -88,10 +88,10 @@ export default function ColinItineraryPage() {
 
               <div>
                 <h3 className="font-serif text-xl md:text-2xl mb-3">The Power Match</h3>
-                <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 mb-4">
+                <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 mb-4">
                   BMW F900GS
                 </p>
-                <p className="text-foreground/60 leading-relaxed">
+                <p className="text-foreground/70 leading-relaxed">
                   While it's an adventure-style bike rather than a cafe racer, it will match the
                   900cc power you're used to and is arguably the most comfortable way to handle
                   Moroccan road conditions.
@@ -100,10 +100,10 @@ export default function ColinItineraryPage() {
 
               <div>
                 <h3 className="font-serif text-xl md:text-2xl mb-3">The "Slow-Burn" Classic</h3>
-                <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 mb-4">
+                <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 mb-4">
                   Royal Enfield Classic 350
                 </p>
-                <p className="text-foreground/60 leading-relaxed">
+                <p className="text-foreground/70 leading-relaxed">
                   These are everywhere. Low-power (20hp) but very charming if you just want to
                   'thump' along at a relaxed pace through the palm groves.
                 </p>
@@ -117,7 +117,7 @@ export default function ColinItineraryPage() {
       <section className="py-24 md:py-32">
         <div className="container mx-auto px-8 md:px-16 lg:px-20">
           <div className="max-w-3xl">
-            <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/40 mb-4">
+            <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/60 mb-4">
               Morning
             </p>
             <h2 className="font-serif text-2xl md:text-3xl mb-8">
@@ -126,30 +126,30 @@ export default function ColinItineraryPage() {
 
             <div className="space-y-8">
               <div>
-                <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 mb-2">
+                <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 mb-2">
                   Start — 9:00 AM
                 </p>
-                <p className="text-foreground/60 leading-relaxed">
+                <p className="text-foreground/70 leading-relaxed">
                   Depart Marrakech heading South toward Tahanaout. The road (R203) starts straight
                   but quickly begins to twist as you enter the High Atlas foothills.
                 </p>
               </div>
 
               <div>
-                <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 mb-2">
+                <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 mb-2">
                   The Coffee Stop
                 </p>
-                <p className="text-foreground/60 leading-relaxed">
+                <p className="text-foreground/70 leading-relaxed">
                   Stop in Tahanaout for a quick mint tea. The red clay architecture here looks
                   incredible against the backdrop of a classic bike.
                 </p>
               </div>
 
               <div>
-                <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 mb-2">
+                <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 mb-2">
                   The Ride
                 </p>
-                <p className="text-foreground/60 leading-relaxed">
+                <p className="text-foreground/70 leading-relaxed">
                   Continue toward Asni. This section features "sweepies"—wide, fast curves that
                   are much more fun on a 650cc+ bike than a small scooter.
                 </p>
@@ -163,7 +163,7 @@ export default function ColinItineraryPage() {
       <section className="py-20 md:py-28 bg-white">
         <div className="container mx-auto px-8 md:px-16 lg:px-20">
           <div className="max-w-3xl">
-            <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/40 mb-4">
+            <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/60 mb-4">
               Midday
             </p>
             <h2 className="font-serif text-2xl md:text-3xl mb-8">
@@ -172,20 +172,20 @@ export default function ColinItineraryPage() {
 
             <div className="space-y-8">
               <div>
-                <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 mb-2">
+                <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 mb-2">
                   The Turn
                 </p>
-                <p className="text-foreground/60 leading-relaxed">
+                <p className="text-foreground/70 leading-relaxed">
                   At Asni, take the road toward Moulay Brahim. You'll climb a series of switchbacks
                   that offer a literal bird's-eye view of the valleys below.
                 </p>
               </div>
 
               <div>
-                <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 mb-2">
+                <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 mb-2">
                   Lunch at the Lake
                 </p>
-                <p className="text-foreground/60 leading-relaxed mb-4">
+                <p className="text-foreground/70 leading-relaxed mb-4">
                   Ride down to Lake Lalla Takerkoust.
                 </p>
                 <div className="p-4 border-l-2 border-foreground/20">
@@ -204,7 +204,7 @@ export default function ColinItineraryPage() {
       <section className="py-24 md:py-32">
         <div className="container mx-auto px-8 md:px-16 lg:px-20">
           <div className="max-w-3xl">
-            <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/40 mb-4">
+            <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/60 mb-4">
               Afternoon
             </p>
             <h2 className="font-serif text-2xl md:text-3xl mb-8">
@@ -213,10 +213,10 @@ export default function ColinItineraryPage() {
 
             <div className="space-y-8">
               <div>
-                <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 mb-2">
+                <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 mb-2">
                   The Landscape
                 </p>
-                <p className="text-foreground/60 leading-relaxed mb-4">
+                <p className="text-foreground/70 leading-relaxed mb-4">
                   From the lake, head into the Agafay Desert. This isn't sand dunes (like the Sahara);
                   it's "stony desert" with rolling white hills.
                 </p>
@@ -229,20 +229,20 @@ export default function ColinItineraryPage() {
               </div>
 
               <div>
-                <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 mb-2">
+                <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 mb-2">
                   The Photo-Op
                 </p>
-                <p className="text-foreground/60 leading-relaxed">
+                <p className="text-foreground/70 leading-relaxed">
                   The "piste" (dirt tracks) here are hard-packed and very manageable for a cafe racer.
                   This is the best place for that "hero shot" of you and your bike in the middle of nowhere.
                 </p>
               </div>
 
               <div>
-                <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 mb-2">
+                <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 mb-2">
                   Golden Hour
                 </p>
-                <p className="text-foreground/60 leading-relaxed mb-4">
+                <p className="text-foreground/70 leading-relaxed mb-4">
                   Aim to be riding through Agafay as the sun begins to dip. The light turns the hills
                   a deep orange.
                 </p>
@@ -262,14 +262,14 @@ export default function ColinItineraryPage() {
       <section className="py-20 md:py-28 bg-white">
         <div className="container mx-auto px-8 md:px-16 lg:px-20">
           <div className="max-w-3xl">
-            <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/40 mb-4">
+            <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/60 mb-4">
               Evening
             </p>
             <h2 className="font-serif text-2xl md:text-3xl mb-8">
               The City Return
             </h2>
 
-            <p className="text-foreground/60 leading-relaxed">
+            <p className="text-foreground/70 leading-relaxed">
               A straight, easy 45-minute cruise back into Marrakech via the Avenue Mohammed VI.
               It's a grand, palm-lined entrance back into the city to cap off the day.
             </p>
@@ -281,7 +281,7 @@ export default function ColinItineraryPage() {
       <section className="py-24 md:py-32">
         <div className="container mx-auto px-8 md:px-16 lg:px-20">
           <div className="max-w-4xl">
-            <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/40 mb-8">
+            <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/60 mb-8">
               Route Summary
             </p>
 
@@ -289,13 +289,13 @@ export default function ColinItineraryPage() {
               <table className="w-full text-left">
                 <thead>
                   <tr className="border-b border-foreground/20">
-                    <th className="py-4 pr-6 text-[11px] tracking-[0.15em] uppercase text-foreground/40 font-normal">
+                    <th className="py-4 pr-6 text-[11px] tracking-[0.15em] uppercase text-foreground/60 font-normal">
                       Segment
                     </th>
-                    <th className="py-4 pr-6 text-[11px] tracking-[0.15em] uppercase text-foreground/40 font-normal">
+                    <th className="py-4 pr-6 text-[11px] tracking-[0.15em] uppercase text-foreground/60 font-normal">
                       Highlights
                     </th>
-                    <th className="py-4 text-[11px] tracking-[0.15em] uppercase text-foreground/40 font-normal">
+                    <th className="py-4 text-[11px] tracking-[0.15em] uppercase text-foreground/60 font-normal">
                       Road Condition
                     </th>
                   </tr>
@@ -340,7 +340,7 @@ export default function ColinItineraryPage() {
           <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl mb-6">
             This journey is a starting point.
           </h2>
-          <p className="text-foreground/60 max-w-2xl mx-auto mb-10 text-sm md:text-base leading-relaxed">
+          <p className="text-foreground/70 max-w-2xl mx-auto mb-10 text-sm md:text-base leading-relaxed">
             These itineraries aren't fixed. They're designed to bend. Add a day in the desert.
             Skip the city. Stay longer where something pulls you. This is your journey—we shape it
             around what matters to you.
