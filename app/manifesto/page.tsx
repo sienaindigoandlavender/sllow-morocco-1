@@ -22,7 +22,7 @@ export default function ManifestoPage() {
       <section className="min-h-screen flex items-center justify-center relative">
         <div className="absolute inset-0 bg-[url('/images/texture-grain.png')] opacity-[0.03] pointer-events-none" />
         <div className="container mx-auto px-6 lg:px-16 max-w-4xl relative z-10">
-          <p className="text-xs tracking-[0.4em] uppercase text-foreground/40 mb-8 text-center">
+          <p className="text-xs tracking-[0.4em] uppercase text-foreground/60 mb-8 text-center">
             Slow Morocco
           </p>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-center leading-tight mb-6">
@@ -64,7 +64,7 @@ export default function ManifestoPage() {
             <p className="text-xl md:text-2xl leading-relaxed text-foreground/70">
               Twenty years of networks.
             </p>
-            <div className="space-y-8 text-lg md:text-xl text-foreground/50 leading-relaxed">
+            <div className="space-y-8 text-lg md:text-xl text-foreground/70 leading-relaxed">
               <p>The zellige cutter who learned from his father.</p>
               <p>The Gnawa maalem who doesn't play for tour groups.</p>
               <p>
