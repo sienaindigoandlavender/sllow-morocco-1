@@ -26,11 +26,11 @@ export default function StoryCard({ story }: { story: Story }) {
         )}
       </div>
       {story.category && (
-        <p className="text-[10px] text-foreground/40 mb-1.5">
+        <p className="text-[10px] text-foreground/60 mb-1.5">
           {story.category}
         </p>
       )}
-      <h3 className="text-[12px] tracking-[0.04em] uppercase leading-[1.35] text-foreground group-hover:text-foreground/60 transition-colors duration-500">
+      <h3 className="text-[12px] tracking-[0.04em] uppercase leading-[1.35] text-foreground group-hover:text-foreground/70 transition-colors duration-500">
         {story.title}
       </h3>
     </Link>

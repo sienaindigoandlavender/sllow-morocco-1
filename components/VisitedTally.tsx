@@ -31,7 +31,7 @@ export default function VisitedTally({ slugs, label }: Props) {
   if (n === null || n === 0) return null;
 
   return (
-    <p className="text-[11px] tracking-[0.14em] uppercase text-foreground/50">
+    <p className="text-[11px] tracking-[0.14em] uppercase text-foreground/70">
       {n} of {slugs.length} {label ?? "visited"}
     </p>
   );

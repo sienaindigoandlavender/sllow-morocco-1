@@ -244,7 +244,7 @@ export default function DesertDustRouteMap({ className = '' }: { className?: str
       <div className={`relative ${className}`}>
         <div className="w-full h-[400px] bg-[#f5f5f5] flex items-center justify-center">
           <div className="text-center px-8">
-            <p className="text-sm text-foreground/60 mb-4">Interactive map unavailable</p>
+            <p className="text-sm text-foreground/70 mb-4">Interactive map unavailable</p>
             <div className="flex flex-wrap items-center justify-center gap-3 text-xs text-foreground/70">
               <span>Marrakech</span>
               <span>→</span>
@@ -272,7 +272,7 @@ export default function DesertDustRouteMap({ className = '' }: { className?: str
         </div>
       )}
       <div className="md:hidden absolute bottom-4 left-1/2 -translate-x-1/2 z-10 pointer-events-none">
-        <p className="text-xs text-foreground/50 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full">
+        <p className="text-xs text-foreground/70 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full">
           Tap map to enable scroll
         </p>
       </div>

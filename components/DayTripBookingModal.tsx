@@ -98,7 +98,7 @@ function Calendar({
         <button
           onClick={prevMonth}
           disabled={!canGoPrev}
-          className="w-8 h-8 flex items-center justify-center text-foreground/40 hover:text-foreground disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
+          className="w-8 h-8 flex items-center justify-center text-foreground/60 hover:text-foreground disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
         >
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
             <polyline points="10,2 5,8 10,14" />
@@ -109,7 +109,7 @@ function Calendar({
         </span>
         <button
           onClick={nextMonth}
-          className="w-8 h-8 flex items-center justify-center text-foreground/40 hover:text-foreground transition-colors"
+          className="w-8 h-8 flex items-center justify-center text-foreground/60 hover:text-foreground transition-colors"
         >
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
             <polyline points="6,2 11,8 6,14" />
@@ -120,7 +120,7 @@ function Calendar({
       {/* Day headers */}
       <div className="grid grid-cols-7 mb-2">
         {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((day) => (
-          <div key={day} className="text-center text-[10px] tracking-wider text-foreground/30 uppercase">
+          <div key={day} className="text-center text-[10px] tracking-wider text-foreground/60 uppercase">
             {day}
           </div>
         ))}
@@ -162,15 +162,15 @@ function Calendar({
       <div className="flex items-center gap-6 mt-6 pt-4 border-t border-foreground/10">
         <div className="flex items-center gap-2">
           <div className="w-4 h-4 bg-foreground" />
-          <span className="text-[10px] tracking-wide text-foreground/40 uppercase">Selected</span>
+          <span className="text-[10px] tracking-wide text-foreground/60 uppercase">Selected</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-4 h-4 border border-foreground/20 text-foreground/20 flex items-center justify-center text-[8px]">—</div>
-          <span className="text-[10px] tracking-wide text-foreground/40 uppercase">Unavailable</span>
+          <span className="text-[10px] tracking-wide text-foreground/60 uppercase">Unavailable</span>
         </div>
       </div>
 
-      <p className="text-[10px] text-foreground/40 mt-3">
+      <p className="text-[10px] text-foreground/60 mt-3">
         Minimum 48 hours notice required
       </p>
     </div>
@@ -300,7 +300,7 @@ function QuantitySelector({
           <button
             onClick={() => onChange(Math.max(min, value - 1))}
             disabled={value <= min}
-            className="w-8 h-8 flex items-center justify-center border border-foreground/20 text-foreground/50 hover:border-foreground/40 hover:text-foreground disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+            className="w-8 h-8 flex items-center justify-center border border-foreground/20 text-foreground/70 hover:border-foreground/40 hover:text-foreground disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
           >
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
               <line x1="2" y1="6" x2="10" y2="6" />
@@ -310,7 +310,7 @@ function QuantitySelector({
           <button
             onClick={() => onChange(Math.min(max, value + 1))}
             disabled={value >= max}
-            className="w-8 h-8 flex items-center justify-center border border-foreground/20 text-foreground/50 hover:border-foreground/40 hover:text-foreground disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+            className="w-8 h-8 flex items-center justify-center border border-foreground/20 text-foreground/70 hover:border-foreground/40 hover:text-foreground disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
           >
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
               <line x1="6" y1="2" x2="6" y2="10" />
@@ -319,7 +319,7 @@ function QuantitySelector({
           </button>
         </div>
       </div>
-      {note && <p className="text-[10px] text-foreground/40 mt-2">{note}</p>}
+      {note && <p className="text-[10px] text-foreground/60 mt-2">{note}</p>}
     </div>
   );
 }
@@ -511,7 +511,7 @@ export default function DayTripBookingModal({
         {/* Step 1: Date & Guests */}
         {step === 1 && (
           <div className="p-10">
-            <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/40 mb-2">
+            <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/60 mb-2">
               Step 1 of 4
             </p>
             <h2 className="font-serif text-2xl mb-8">{tripTitle}</h2>
@@ -538,7 +538,7 @@ export default function DayTripBookingModal({
               <div className="mt-8 pt-6 border-t border-foreground/10">
                 <div className="flex justify-between items-center">
                   <div>
-                    <p className="text-sm text-foreground/50">{formatDate(tripDate)}</p>
+                    <p className="text-sm text-foreground/70">{formatDate(tripDate)}</p>
                   </div>
                   <p className="text-2xl font-serif">€{basePriceEUR}</p>
                 </div>
@@ -564,7 +564,7 @@ export default function DayTripBookingModal({
         {/* Step 2: Add-ons */}
         {step === 2 && (
           <div className="p-10">
-            <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/40 mb-2">
+            <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/60 mb-2">
               Step 2 of 4
             </p>
             <h2 className="font-serif text-2xl mb-8">Enhance Your Day</h2>
@@ -601,7 +601,7 @@ export default function DayTripBookingModal({
             {/* Price summary */}
             <div className="mt-8 pt-6 border-t border-foreground/10">
               <div className="flex justify-between items-center">
-                <span className="text-foreground/50 text-sm">Total</span>
+                <span className="text-foreground/70 text-sm">Total</span>
                 <p className="text-2xl font-serif">€{totalEUR}</p>
               </div>
             </div>
@@ -633,14 +633,14 @@ export default function DayTripBookingModal({
         {/* Step 3: Details */}
         {step === 3 && (
           <div className="p-10">
-            <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/40 mb-2">
+            <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/60 mb-2">
               Step 3 of 4
             </p>
             <h2 className="font-serif text-2xl mb-8">Your Details</h2>
 
             <div className="space-y-6">
               <div>
-                <label className="block text-[10px] tracking-[0.2em] uppercase text-foreground/40 mb-2">
+                <label className="block text-[10px] tracking-[0.2em] uppercase text-foreground/60 mb-2">
                   Full Name
                 </label>
                 <input
@@ -651,7 +651,7 @@ export default function DayTripBookingModal({
                 />
               </div>
               <div>
-                <label className="block text-[10px] tracking-[0.2em] uppercase text-foreground/40 mb-2">
+                <label className="block text-[10px] tracking-[0.2em] uppercase text-foreground/60 mb-2">
                   Email
                 </label>
                 <input
@@ -662,7 +662,7 @@ export default function DayTripBookingModal({
                 />
               </div>
               <div>
-                <label className="block text-[10px] tracking-[0.2em] uppercase text-foreground/40 mb-2">
+                <label className="block text-[10px] tracking-[0.2em] uppercase text-foreground/60 mb-2">
                   Phone (optional)
                 </label>
                 <input
@@ -673,7 +673,7 @@ export default function DayTripBookingModal({
                 />
               </div>
               <div>
-                <label className="block text-[10px] tracking-[0.2em] uppercase text-foreground/40 mb-2">
+                <label className="block text-[10px] tracking-[0.2em] uppercase text-foreground/60 mb-2">
                   Pickup Location (hotel/riad name)
                 </label>
                 <input
@@ -684,7 +684,7 @@ export default function DayTripBookingModal({
                 />
               </div>
               <div>
-                <label className="block text-[10px] tracking-[0.2em] uppercase text-foreground/40 mb-2">
+                <label className="block text-[10px] tracking-[0.2em] uppercase text-foreground/60 mb-2">
                   Special Requests (optional)
                 </label>
                 <textarea
@@ -724,7 +724,7 @@ export default function DayTripBookingModal({
         {/* Step 4: Payment */}
         {step === 4 && (
           <div className="p-10">
-            <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/40 mb-2">
+            <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/60 mb-2">
               Step 4 of 4
             </p>
             <h2 className="font-serif text-2xl mb-8">Payment</h2>
@@ -732,11 +732,11 @@ export default function DayTripBookingModal({
             {/* Summary */}
             <div className="bg-foreground/[0.03] p-6 mb-6">
               <p className="font-serif text-lg mb-2">{tripTitle}</p>
-              <p className="text-sm text-foreground/50 mb-4">{formatDate(tripDate)}</p>
+              <p className="text-sm text-foreground/70 mb-4">{formatDate(tripDate)}</p>
               
               <div className="space-y-2 pt-4 border-t border-foreground/10">
                 <div className="flex justify-between text-sm">
-                  <span className="text-foreground/50">Day trip ({guests} guest{guests > 1 ? "s" : ""})</span>
+                  <span className="text-foreground/70">Day trip ({guests} guest{guests > 1 ? "s" : ""})</span>
                   <span>€{basePriceEUR}</span>
                 </div>
                 {selectedAddons.map((addonId) => {
@@ -744,7 +744,7 @@ export default function DayTripBookingModal({
                   if (!addon) return null;
                   return (
                     <div key={addonId} className="flex justify-between text-sm">
-                      <span className="text-foreground/50">{addon.name} × {guests}</span>
+                      <span className="text-foreground/70">{addon.name} × {guests}</span>
                       <span>€{addon.priceEUR * guests}</span>
                     </div>
                   );
@@ -765,7 +765,7 @@ export default function DayTripBookingModal({
             />
 
             {isSubmitting && (
-              <p className="text-center text-sm text-foreground/50 mt-4">
+              <p className="text-center text-sm text-foreground/70 mt-4">
                 Processing...
               </p>
             )}
@@ -781,8 +781,8 @@ export default function DayTripBookingModal({
             </button>
 
             {/* Contact link */}
-            <p className="text-center mt-6 text-[11px] text-foreground/30">
-              <a href="/contact" className="hover:text-foreground/50 transition-colors">Send us a note</a>
+            <p className="text-center mt-6 text-[11px] text-foreground/60">
+              <a href="/contact" className="hover:text-foreground/70 transition-colors">Send us a note</a>
             </p>
           </div>
         )}

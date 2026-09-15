@@ -317,18 +317,18 @@ export default function SearchModal({ isOpen, onClose, initialQuery = "" }: Sear
         <div className="bg-background border border-border shadow-2xl">
           {/* Search Input */}
           <div className="flex items-center gap-4 px-4 md:px-6 py-4 md:py-5 border-b border-border">
-            <Search className="w-5 h-5 text-foreground/40 flex-shrink-0" />
+            <Search className="w-5 h-5 text-foreground/60 flex-shrink-0" />
             <input
               ref={inputRef}
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search stories, places, cities..."
-              className="flex-1 bg-transparent text-foreground text-base md:text-lg placeholder:text-foreground/30 focus:outline-none"
+              className="flex-1 bg-transparent text-foreground text-base md:text-lg placeholder:text-foreground/60 focus:outline-none"
             />
             <button
               onClick={onClose}
-              className="p-1 text-foreground/40 hover:text-foreground transition-colors"
+              className="p-1 text-foreground/60 hover:text-foreground transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
@@ -338,23 +338,23 @@ export default function SearchModal({ isOpen, onClose, initialQuery = "" }: Sear
           <div className="max-h-[60vh] overflow-y-auto">
             {query.length < 2 ? (
               <div className="px-6 py-8 text-center">
-                <p className="text-foreground/40 text-sm">
+                <p className="text-foreground/60 text-sm">
                   Start typing to search...
                 </p>
                 <div className="flex flex-wrap justify-center gap-2 mt-4">
-                  <span className="text-[10px] tracking-[0.1em] uppercase text-foreground/30 px-2 py-1 border border-border">
+                  <span className="text-[10px] tracking-[0.1em] uppercase text-foreground/60 px-2 py-1 border border-border">
                     Journeys
                   </span>
-                  <span className="text-[10px] tracking-[0.1em] uppercase text-foreground/30 px-2 py-1 border border-border">
+                  <span className="text-[10px] tracking-[0.1em] uppercase text-foreground/60 px-2 py-1 border border-border">
                     Stories
                   </span>
-                  <span className="text-[10px] tracking-[0.1em] uppercase text-foreground/30 px-2 py-1 border border-border">
+                  <span className="text-[10px] tracking-[0.1em] uppercase text-foreground/60 px-2 py-1 border border-border">
                     Places
                   </span>
-                  <span className="text-[10px] tracking-[0.1em] uppercase text-foreground/30 px-2 py-1 border border-border">
+                  <span className="text-[10px] tracking-[0.1em] uppercase text-foreground/60 px-2 py-1 border border-border">
                     Glossary
                   </span>
-                  <span className="text-[10px] tracking-[0.1em] uppercase text-foreground/30 px-2 py-1 border border-border">
+                  <span className="text-[10px] tracking-[0.1em] uppercase text-foreground/60 px-2 py-1 border border-border">
                     Guides
                   </span>
                 </div>
@@ -371,10 +371,10 @@ export default function SearchModal({ isOpen, onClose, initialQuery = "" }: Sear
                     <div>
                       <p className="text-foreground">{result.title}</p>
                       {result.subtitle && (
-                        <p className="text-foreground/50 text-sm capitalize">{result.subtitle}</p>
+                        <p className="text-foreground/70 text-sm capitalize">{result.subtitle}</p>
                       )}
                     </div>
-                    <span className="text-[10px] tracking-[0.1em] uppercase text-foreground/30">
+                    <span className="text-[10px] tracking-[0.1em] uppercase text-foreground/60">
                       {getTypeLabel(result.type)}
                     </span>
                   </Link>
@@ -382,10 +382,10 @@ export default function SearchModal({ isOpen, onClose, initialQuery = "" }: Sear
               </div>
             ) : (
               <div className="px-6 py-8 text-center">
-                <p className="text-foreground/50">
+                <p className="text-foreground/70">
                   No results for "{query}"
                 </p>
-                <p className="text-foreground/30 text-sm mt-2">
+                <p className="text-foreground/60 text-sm mt-2">
                   Try searching for a destination, story topic, or term
                 </p>
               </div>
@@ -394,7 +394,7 @@ export default function SearchModal({ isOpen, onClose, initialQuery = "" }: Sear
 
           {/* Footer hint */}
           <div className="px-6 py-3 border-t border-border bg-sand/50">
-            <p className="text-[10px] tracking-[0.1em] uppercase text-foreground/30 text-center">
+            <p className="text-[10px] tracking-[0.1em] uppercase text-foreground/60 text-center">
               Press ESC to close
             </p>
           </div>

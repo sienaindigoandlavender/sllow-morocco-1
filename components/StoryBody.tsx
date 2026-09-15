@@ -126,11 +126,11 @@ function prepareHTML(html: string, currentSlug?: string): string {
     .replace(/<h2>/gi, '<h2 class="font-serif text-2xl text-foreground mt-14 mb-8">')
     .replace(/<h3>/gi, '<h3 class="font-serif text-xl text-foreground mt-10 mb-4">')
     .replace(/<h4>/gi, '<h4 class="font-serif text-lg text-foreground mt-8 mb-3">')
-    .replace(/<h5>/gi, '<h5 class="text-sm font-medium tracking-wider uppercase text-foreground/60 mt-6 mb-2">')
+    .replace(/<h5>/gi, '<h5 class="text-sm font-medium tracking-wider uppercase text-foreground/70 mt-6 mb-2">')
     .replace(/<a\s+href="(\/[^"]*)"[^>]*>/gi,
       '<a href="$1" class="underline decoration-foreground/20 underline-offset-2 text-foreground hover:decoration-foreground/50 transition-colors">')
     .replace(/<a\s+href="(https?:\/\/[^"]+)"[^>]*>/gi,
-      '<a href="$1" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 text-foreground hover:text-foreground/60 transition-colors">')
+      '<a href="$1" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 text-foreground hover:text-foreground/70 transition-colors">')
     .replace(/<ul>/gi, '<ul class="list-none space-y-2 mb-8 pl-0">')
     .replace(/<ol>/gi, '<ol class="list-decimal pl-6 space-y-2 mb-8">')
     .replace(/<li>/gi, '<li class="text-foreground/70 leading-[1.85]">')
@@ -138,7 +138,7 @@ function prepareHTML(html: string, currentSlug?: string): string {
     .replace(/<strong>/gi, '<strong class="font-medium text-foreground">')
     .replace(/<em>/gi, '<em class="italic">')
     .replace(/<figure>/gi, '<figure class="my-12 -mx-4 md:-mx-8">')
-    .replace(/<figcaption>/gi, '<figcaption class="text-xs text-foreground/40 mt-3 text-center italic px-4">')
+    .replace(/<figcaption>/gi, '<figcaption class="text-xs text-foreground/60 mt-3 text-center italic px-4">')
     .replace(/<img\s+src="([^"]+)"([^>]*)>/gi, '<img src="$1"$2 class="w-full object-cover" loading="lazy">');
 
   // Chain all HTML linkers AFTER formatting (so linker-created <a> tags keep their own classes)
@@ -161,13 +161,13 @@ function InlineImageBlock({ img }: { img: InlineImage }) {
         />
       </div>
       {(img.caption || img.attribution) && (
-        <figcaption className="text-[11px] text-foreground/55 mt-3 px-4 md:px-8 flex items-start justify-between gap-4">
+        <figcaption className="text-[11px] text-foreground/70 mt-3 px-4 md:px-8 flex items-start justify-between gap-4">
           <span className="italic">{img.caption}</span>
           {img.attribution && (
             <span className="flex-shrink-0 text-right">
               {img.source_url ? (
                 <a href={img.source_url} target="_blank" rel="noopener noreferrer"
-                  className="hover:text-foreground/60 transition-colors">
+                  className="hover:text-foreground/70 transition-colors">
                   © {img.attribution}
                   {img.license ? ` · ${img.license}` : ''}
                 </a>
@@ -301,7 +301,7 @@ export default function StoryBody({ content, inlineImages = [], currentSlug, pul
             <figure key={`fig-${index}`} className="my-12 -mx-4 md:-mx-8">
               <img src={url} alt={caption || ''} className="w-full object-cover" loading="lazy" />
               {(caption || credit) && (
-                <figcaption className="text-xs text-foreground/40 mt-3 text-center italic px-4">
+                <figcaption className="text-xs text-foreground/60 mt-3 text-center italic px-4">
                   {caption}{caption && credit ? ' — ' : ''}{credit}
                 </figcaption>
               )}

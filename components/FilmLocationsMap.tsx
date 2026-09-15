@@ -109,7 +109,7 @@ map.current.on("load", () => applyMoroccoWorldview(map.current));
         aria-label="Filming locations map"
       />
       {caption && (
-        <p className="text-[10px] tracking-[0.15em] uppercase text-foreground/30 mt-3">{caption}</p>
+        <p className="text-[10px] tracking-[0.15em] uppercase text-foreground/60 mt-3">{caption}</p>
       )}
     </div>
   );

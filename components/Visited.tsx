@@ -28,7 +28,7 @@ export default function Visited({ slug }: { slug: string }) {
           <span className="text-foreground/70">You have been here.</span>{" "}
           <button
             onClick={() => setOn(toggle(slug))}
-            className="text-foreground/40 hover:text-foreground/70 underline underline-offset-2 transition-colors"
+            className="text-foreground/60 hover:text-foreground/70 underline underline-offset-2 transition-colors"
           >
             undo
           </button>
@@ -36,7 +36,7 @@ export default function Visited({ slug }: { slug: string }) {
       ) : (
         <button
           onClick={() => setOn(toggle(slug))}
-          className="text-foreground/50 hover:text-foreground underline underline-offset-2 transition-colors"
+          className="text-foreground/70 hover:text-foreground underline underline-offset-2 transition-colors"
         >
           I have been here
         </button>

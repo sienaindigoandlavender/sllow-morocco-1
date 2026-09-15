@@ -27,7 +27,7 @@ export default function RelatedStories({ stories }: { stories: Story[] }) {
         </div>
         <Link
           href="/stories"
-          className="text-[11px] text-foreground/35 hover:text-foreground/60 transition-colors"
+          className="text-[11px] text-foreground/60 hover:text-foreground/70 transition-colors"
         >
           View All
         </Link>
@@ -45,11 +45,11 @@ export default function RelatedStories({ stories }: { stories: Story[] }) {
               )}
             </div>
             {story.category && (
-              <p className="text-[10px] text-foreground/40 mb-1.5">
+              <p className="text-[10px] text-foreground/60 mb-1.5">
                 {story.category}
               </p>
             )}
-            <h3 className="text-[12px] tracking-[0.04em] uppercase leading-[1.35] text-foreground group-hover:text-foreground/60 transition-colors duration-500">
+            <h3 className="text-[12px] tracking-[0.04em] uppercase leading-[1.35] text-foreground group-hover:text-foreground/70 transition-colors duration-500">
               {story.title}
             </h3>
           </Link>

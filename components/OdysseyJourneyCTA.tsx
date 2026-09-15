@@ -49,7 +49,7 @@ export default function RelatedJourneyCTA({
 }) {
   return (
     <div className="mt-20 pt-12 border-t border-foreground/10">
-      <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-6">
+      <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-6">
         {heading}
       </p>
       <div className="flex flex-col gap-4">
@@ -69,7 +69,7 @@ export default function RelatedJourneyCTA({
               <span className="text-lg tracking-[-0.01em] text-foreground">
                 {j.title}
               </span>
-              <span className="text-sm text-foreground/55 leading-relaxed max-w-xl">
+              <span className="text-sm text-foreground/70 leading-relaxed max-w-xl">
                 {j.blurb}
               </span>
             </div>

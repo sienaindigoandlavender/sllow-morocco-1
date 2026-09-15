@@ -319,7 +319,7 @@ export default function PlanYourTripForm({
   if (phase === "deposit") {
     return (
       <div className="max-w-lg mx-auto py-8">
-        <p className={`text-xs tracking-[0.18em] uppercase mb-3 ${darkMode ? 'text-white/50' : 'text-foreground/50'}`}>
+        <p className={`text-xs tracking-[0.18em] uppercase mb-3 ${darkMode ? 'text-white/50' : 'text-foreground/70'}`}>
           The Deposit
         </p>
         <h2 className={`font-serif text-2xl md:text-3xl mb-4 ${darkMode ? 'text-white' : ''}`}>
@@ -352,7 +352,7 @@ export default function PlanYourTripForm({
         <button
           type="button"
           onClick={() => { setPhase("form"); setStatus("idle"); setErrorMessage(""); }}
-          className={`mt-8 text-xs tracking-[0.15em] uppercase transition-colors ${darkMode ? 'text-white/50 hover:text-white' : 'text-foreground/50 hover:text-foreground'}`}
+          className={`mt-8 text-xs tracking-[0.15em] uppercase transition-colors ${darkMode ? 'text-white/50 hover:text-white' : 'text-foreground/70 hover:text-foreground'}`}
         >
           ← Back to details
         </button>

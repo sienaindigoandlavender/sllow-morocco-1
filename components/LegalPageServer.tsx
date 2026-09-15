@@ -54,7 +54,7 @@ export default async function LegalPageServer({
           <h1 className="font-serif text-4xl md:text-5xl text-foreground mb-8">
             {fallbackTitle}
           </h1>
-          <p className="text-foreground/60">
+          <p className="text-foreground/70">
             This page is currently being updated. Please check back shortly.
           </p>
         </div>

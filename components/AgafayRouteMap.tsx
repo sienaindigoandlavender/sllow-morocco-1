@@ -264,7 +264,7 @@ export default function AgafayRouteMap({ className = '' }: RouteMapProps) {
         </div>
       )}
       <div className="md:hidden absolute bottom-4 left-1/2 -translate-x-1/2 z-10 pointer-events-none">
-        <p className="text-xs text-foreground/50 bg-background/80 backdrop-blur-sm px-3 py-1.5">
+        <p className="text-xs text-foreground/70 bg-background/80 backdrop-blur-sm px-3 py-1.5">
           Tap map to enable scroll
         </p>
       </div>

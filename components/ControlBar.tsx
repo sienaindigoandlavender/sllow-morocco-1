@@ -60,7 +60,7 @@ function Pagination({
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="px-3 py-1.5 text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/30 hover:text-foreground disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
+        className="px-3 py-1.5 text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/60 hover:text-foreground disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
       >
         ← Prev
       </button>
@@ -78,7 +78,7 @@ function Pagination({
             className={`min-w-[30px] py-1.5 text-[10px] tracking-[0.1em] font-mono transition-colors ${
               currentPage === page
                 ? "bg-foreground text-background"
-                : "text-foreground/40 hover:text-foreground"
+                : "text-foreground/60 hover:text-foreground"
             }`}
           >
             {page}
@@ -89,7 +89,7 @@ function Pagination({
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="px-3 py-1.5 text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/30 hover:text-foreground disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
+        className="px-3 py-1.5 text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/60 hover:text-foreground disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
       >
         Next →
       </button>
@@ -117,7 +117,7 @@ export default function ControlBar({
       {(showCount || showSort) && (
         <div className="flex items-center justify-center gap-5 border-b border-border pb-4">
           {showCount && (
-            <p className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/30">
+            <p className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/60">
               {count} {plural}
             </p>
           )}
@@ -127,7 +127,7 @@ export default function ControlBar({
               className={`text-[10px] tracking-[0.2em] uppercase font-mono transition-colors ${
                 sortBy === "alpha"
                   ? "text-foreground"
-                  : "text-foreground/30 hover:text-foreground/60"
+                  : "text-foreground/60 hover:text-foreground/70"
               }`}
               aria-pressed={sortBy === "alpha"}
             >

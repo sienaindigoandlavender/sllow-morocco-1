@@ -95,7 +95,7 @@ function Calendar({
         <button
           onClick={prevMonth}
           disabled={!canGoPrev}
-          className="w-8 h-8 flex items-center justify-center text-foreground/40 hover:text-foreground disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
+          className="w-8 h-8 flex items-center justify-center text-foreground/60 hover:text-foreground disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
         >
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
             <polyline points="10,2 5,8 10,14" />
@@ -106,7 +106,7 @@ function Calendar({
         </span>
         <button
           onClick={nextMonth}
-          className="w-8 h-8 flex items-center justify-center text-foreground/40 hover:text-foreground transition-colors"
+          className="w-8 h-8 flex items-center justify-center text-foreground/60 hover:text-foreground transition-colors"
         >
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
             <polyline points="6,2 11,8 6,14" />
@@ -117,7 +117,7 @@ function Calendar({
       {/* Day headers */}
       <div className="grid grid-cols-7 mb-2">
         {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((day) => (
-          <div key={day} className="text-center text-[10px] tracking-wider text-foreground/30 uppercase">
+          <div key={day} className="text-center text-[10px] tracking-wider text-foreground/60 uppercase">
             {day}
           </div>
         ))}
@@ -153,7 +153,7 @@ function Calendar({
         })}
       </div>
 
-      <p className="text-[10px] text-foreground/40 mt-4">
+      <p className="text-[10px] text-foreground/60 mt-4">
         Reserve well in advance — Agafay camps book quickly.
       </p>
     </div>
@@ -466,7 +466,7 @@ export default function OvernightBookingModal({
             {/* Step 1: Date */}
             {step === 1 && (
               <div className="p-10">
-                <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/40 mb-2">
+                <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/60 mb-2">
                   Step 1 of 3
                 </p>
                 <h2 className="font-serif text-2xl mb-8">Select Your Date</h2>
@@ -504,14 +504,14 @@ export default function OvernightBookingModal({
             {/* Step 2: Details */}
             {step === 2 && (
               <div className="p-10">
-                <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/40 mb-2">
+                <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/60 mb-2">
                   Step 2 of 3
                 </p>
                 <h2 className="font-serif text-2xl mb-8">Your Details</h2>
 
                 <div className="space-y-6">
                   <div>
-                    <label className="block text-[10px] tracking-[0.2em] uppercase text-foreground/40 mb-2">
+                    <label className="block text-[10px] tracking-[0.2em] uppercase text-foreground/60 mb-2">
                       Full Name *
                     </label>
                     <input
@@ -522,7 +522,7 @@ export default function OvernightBookingModal({
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] tracking-[0.2em] uppercase text-foreground/40 mb-2">
+                    <label className="block text-[10px] tracking-[0.2em] uppercase text-foreground/60 mb-2">
                       Email *
                     </label>
                     <input
@@ -533,7 +533,7 @@ export default function OvernightBookingModal({
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] tracking-[0.2em] uppercase text-foreground/40 mb-2">
+                    <label className="block text-[10px] tracking-[0.2em] uppercase text-foreground/60 mb-2">
                       Phone (optional)
                     </label>
                     <input
@@ -544,7 +544,7 @@ export default function OvernightBookingModal({
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] tracking-[0.2em] uppercase text-foreground/40 mb-2">
+                    <label className="block text-[10px] tracking-[0.2em] uppercase text-foreground/60 mb-2">
                       Pickup Location (hotel/riad name) *
                     </label>
                     <input
@@ -555,7 +555,7 @@ export default function OvernightBookingModal({
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] tracking-[0.2em] uppercase text-foreground/40 mb-2">
+                    <label className="block text-[10px] tracking-[0.2em] uppercase text-foreground/60 mb-2">
                       Special Requests (optional)
                     </label>
                     <textarea
@@ -595,7 +595,7 @@ export default function OvernightBookingModal({
             {/* Step 3: Payment */}
             {step === 3 && (
               <div className="p-10">
-                <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/40 mb-2">
+                <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/60 mb-2">
                   Step 3 of 3
                 </p>
                 <h2 className="font-serif text-2xl mb-8">Payment</h2>
@@ -603,15 +603,15 @@ export default function OvernightBookingModal({
                 {/* Summary */}
                 <div className="bg-foreground/[0.03] p-6 mb-6">
                   <p className="font-serif text-lg mb-2">{experienceTitle}</p>
-                  <p className="text-sm text-foreground/50 mb-4">{formatDate(tripDate)}</p>
+                  <p className="text-sm text-foreground/70 mb-4">{formatDate(tripDate)}</p>
                   
                   <div className="space-y-2 pt-4 border-t border-foreground/10">
                     <div className="flex justify-between text-sm">
-                      <span className="text-foreground/50">Private experience for 2</span>
+                      <span className="text-foreground/70">Private experience for 2</span>
                       <span>€{subtotalEUR}</span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span className="text-foreground/50">Handling fee ({HANDLING_FEE_PERCENT}%)</span>
+                      <span className="text-foreground/70">Handling fee ({HANDLING_FEE_PERCENT}%)</span>
                       <span>€{handlingFeeEUR.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between text-base pt-3 border-t border-foreground/10 mt-3">
@@ -630,7 +630,7 @@ export default function OvernightBookingModal({
                 />
 
                 {isSubmitting && (
-                  <p className="text-center text-sm text-foreground/50 mt-4">
+                  <p className="text-center text-sm text-foreground/70 mt-4">
                     Processing...
                   </p>
                 )}
@@ -645,8 +645,8 @@ export default function OvernightBookingModal({
                   Back
                 </button>
 
-                <p className="text-center mt-6 text-[11px] text-foreground/30">
-                  <a href="/contact" className="hover:text-foreground/50 transition-colors">Send us a note</a>
+                <p className="text-center mt-6 text-[11px] text-foreground/60">
+                  <a href="/contact" className="hover:text-foreground/70 transition-colors">Send us a note</a>
                 </p>
               </div>
             )}

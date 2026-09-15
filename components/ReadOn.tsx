@@ -59,13 +59,13 @@ export default function ReadOn({
 }) {
   return (
     <div className="mt-20 pt-12 border-t border-foreground/10">
-      <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-6">
+      <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-6">
         {heading}
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-8">
         {items.map((it) => (
           <Link key={it.href} href={it.href} className="group block">
-            <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-2">
+            <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-2">
               {it.kicker}
             </p>
             <h3 className="font-display text-xl leading-snug mb-1.5 group-hover:underline underline-offset-4">
