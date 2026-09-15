@@ -46,7 +46,7 @@ export default async function CollectionsIndexPage() {
         <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground mb-4">
           Collections
         </h1>
-        <p className="text-[15px] md:text-[16px] text-foreground/55 max-w-2xl leading-[1.7]">
+        <p className="text-[15px] md:text-[16px] text-foreground/70 max-w-2xl leading-[1.7]">
           Ways into the country, each built around a single idea. The stories
           and places, gathered and put in order.
         </p>
@@ -68,13 +68,13 @@ export default async function CollectionsIndexPage() {
                 )}
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
               </div>
-              <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/35 mb-2">
+              <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/60 mb-2">
                 {c.count} {c.count === 1 ? "entry" : "entries"}
               </p>
-              <h2 className="font-serif text-xl md:text-2xl text-foreground group-hover:text-foreground/60 transition-colors mb-1.5">
+              <h2 className="font-serif text-xl md:text-2xl text-foreground group-hover:text-foreground/70 transition-colors mb-1.5">
                 {c.title}
               </h2>
-              <p className="text-[13.5px] text-foreground/50 leading-[1.6]">
+              <p className="text-[13.5px] text-foreground/70 leading-[1.6]">
                 {c.dek}
               </p>
             </Link>
