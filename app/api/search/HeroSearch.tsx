@@ -202,10 +202,10 @@ export default function HeroSearch() {
               <div>
                 <p className="text-foreground text-sm font-medium">{result.title}</p>
                 {result.subtitle && (
-                  <p className="text-foreground/50 text-xs capitalize">{result.subtitle}</p>
+                  <p className="text-foreground/70 text-xs capitalize">{result.subtitle}</p>
                 )}
               </div>
-              <span className="text-[10px] tracking-[0.1em] uppercase text-foreground/30">
+              <span className="text-[10px] tracking-[0.1em] uppercase text-foreground/60">
                 {getTypeLabel(result.type)}
               </span>
             </Link>
@@ -216,7 +216,7 @@ export default function HeroSearch() {
       {/* No results message */}
       {isOpen && query.length >= 2 && results.length === 0 && (
         <div className="absolute top-full left-0 right-0 mt-2 bg-background border border-border shadow-xl p-4 z-50">
-          <p className="text-foreground/50 text-sm text-center">
+          <p className="text-foreground/70 text-sm text-center">
             No results for "{query}"
           </p>
         </div>
