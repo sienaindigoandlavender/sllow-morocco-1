@@ -103,7 +103,7 @@ export default function AboutPage() {
 
       {/* ── The people ───────────────────────────────────────────── */}
       <section className="px-8 md:px-10 lg:px-14 py-20 md:py-28 border-t border-foreground/[0.08]">
-        <p className="text-[12px] tracking-[0.14em] uppercase text-foreground/40 mb-12">
+        <p className="text-[12px] tracking-[0.14em] uppercase text-foreground/60 mb-12">
           The people
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-10 gap-y-12 max-w-5xl">
@@ -136,10 +136,10 @@ export default function AboutPage() {
                 />
               </div>
               <h3 className="font-serif text-xl text-foreground">{person.name}</h3>
-              <p className="text-[11px] tracking-[0.12em] uppercase text-foreground/40 mt-1 mb-2">
+              <p className="text-[11px] tracking-[0.12em] uppercase text-foreground/60 mt-1 mb-2">
                 {person.role}
               </p>
-              <p className="text-[14px] text-foreground/60 leading-[1.7]">
+              <p className="text-[14px] text-foreground/70 leading-[1.7]">
                 {person.bio}
               </p>
             </div>
@@ -174,10 +174,10 @@ export default function AboutPage() {
           ].map((item) => (
             <div key={item.title}>
               <Link href={item.href} className="group block">
-                <h2 className="text-[12px] tracking-[0.04em] uppercase text-foreground group-hover:text-foreground/60 transition-colors mb-3">
+                <h2 className="text-[12px] tracking-[0.04em] uppercase text-foreground group-hover:text-foreground/70 transition-colors mb-3">
                   {item.title}
                 </h2>
-                <p className="text-[14px] text-foreground/50 leading-[1.7]">{item.body}</p>
+                <p className="text-[14px] text-foreground/70 leading-[1.7]">{item.body}</p>
               </Link>
             </div>
           ))}
@@ -187,12 +187,12 @@ export default function AboutPage() {
       {/* ── Contact ──────────────────────────────────────────────── */}
       <section className="px-8 md:px-10 lg:px-14 py-14 border-t border-foreground/[0.08]">
         <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-4">
-          <p className="text-[14px] text-foreground/40">
+          <p className="text-[14px] text-foreground/60">
             Questions, commissions, or a story you think we've missed.
           </p>
           <Link
             href="/contact"
-            className="text-[11px] tracking-[0.12em] uppercase text-foreground/35 hover:text-foreground/60 transition-colors"
+            className="text-[11px] tracking-[0.12em] uppercase text-foreground/60 hover:text-foreground/70 transition-colors"
           >
             Get in touch
           </Link>
