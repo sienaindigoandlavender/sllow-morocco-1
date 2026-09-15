@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import JourneyDepositModal from "@/components/JourneyDepositModal";
 import Link from "next/link";
 import { cloudinaryUrl } from "@/lib/cloudinary";
 import { ArrowLeft, ChevronLeft, ChevronRight, Bird } from "lucide-react";
@@ -285,6 +286,7 @@ export default function JourneyDetailContent({
   prevJourney,
   nextJourney,
 }: JourneyDetailContentProps) {
+  const [depositOpen, setDepositOpen] = useState(false);
 
   const tripSchema = (
     <TouristTripSchema
@@ -610,12 +612,12 @@ export default function JourneyDetailContent({
                   is prepared for you once your journey is confirmed. It is not the
                   kind of thing we leave lying in the open.
                 </p>
-                <a
-                  href="/plan-your-trip"
+                <button
+                  onClick={() => setDepositOpen(true)}
                   className="inline-block px-8 py-3 border border-foreground/25 text-[13px] tracking-[0.12em] uppercase text-foreground hover:bg-foreground hover:text-background transition-colors"
                 >
                   Begin this journey
-                </a>
+                </button>
               </div>
             )}
           </div>
@@ -804,6 +806,13 @@ export default function JourneyDetailContent({
           </div>
         </section>
       )}
+
+      <JourneyDepositModal
+        open={depositOpen}
+        onClose={() => setDepositOpen(false)}
+        journeySlug={journey.slug}
+        journeyTitle={journey.title}
+      />
     </div>
   );
 }
