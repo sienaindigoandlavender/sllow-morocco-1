@@ -38,7 +38,7 @@ function DayMeta({ day }: { day: ItineraryDay }) {
   if (!hasAny) return null;
 
   return (
-    <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mt-4 mb-5 text-foreground/55">
+    <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mt-4 mb-5 text-foreground/70">
       {AccIcon && (
         <span className="flex items-center gap-1.5" title={day.accommodation}>
           <AccIcon size={17} /> <span className="text-xs">{day.accommodation}</span>
@@ -322,7 +322,7 @@ export default function JourneyDetailContent({
           <div className="container mx-auto px-6 lg:px-16 max-w-4xl">
             <Link
               href="/journeys"
-              className="inline-flex items-center gap-2 text-xs tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground transition-colors mb-16"
+              className="inline-flex items-center gap-2 text-xs tracking-[0.15em] uppercase text-foreground/70 hover:text-foreground transition-colors mb-16"
             >
               <ArrowLeft className="w-4 h-4" />
               Back to All Journeys
@@ -336,7 +336,7 @@ export default function JourneyDetailContent({
 
             {journey.arcDescription && (
               <div className="mb-20">
-                <p className="text-foreground/50 leading-relaxed text-lg whitespace-pre-line">
+                <p className="text-foreground/70 leading-relaxed text-lg whitespace-pre-line">
                   {linkJourneyProse(journey.arcDescription, journey.slug)}
                 </p>
               </div>
@@ -346,12 +346,12 @@ export default function JourneyDetailContent({
               <h2 className="text-xs tracking-[0.3em] uppercase text-[#8B2635] mb-8">
                 Sacred Knowledge
               </h2>
-              <p className="text-foreground/50 leading-relaxed">
+              <p className="text-foreground/70 leading-relaxed">
                 This is not a tour. This is transmission — access to knowledge held by 
                 a handful of people alive today. Knowledge that took lifetimes to acquire 
                 and cannot be found in any book, on any website, or through any other operator.
               </p>
-              <p className="text-foreground/50 leading-relaxed mt-4">
+              <p className="text-foreground/70 leading-relaxed mt-4">
                 We earned the trust that makes these journeys possible — 
                 not as visitors, but as people who stayed. We do not share itineraries publicly. 
                 We do not reveal our sources. We protect what is rare because that is how it stays rare.
@@ -363,17 +363,17 @@ export default function JourneyDetailContent({
                 <span className="font-serif text-4xl md:text-5xl text-foreground">
                   Price on request
                 </span>
-                <span className="text-sm text-foreground/60">
+                <span className="text-sm text-foreground/70">
                   Private journey for two guests
                 </span>
               </div>
-              <p className="text-foreground/60 text-sm">
+              <p className="text-foreground/70 text-sm">
                 Additional guests considered on a case-by-case basis.
               </p>
             </div>
 
             <div className="border-t border-foreground/10 pt-16 mb-20">
-              <h2 className="text-xs tracking-[0.3em] uppercase text-foreground/60 mb-8">
+              <h2 className="text-xs tracking-[0.3em] uppercase text-foreground/70 mb-8">
                 How This Works
               </h2>
               <div className="space-y-6 text-foreground/70 leading-relaxed">
@@ -395,7 +395,7 @@ export default function JourneyDetailContent({
                   specifically for your dates, interests, and pace.
                 </p>
               </div>
-              <p className="text-foreground/60 text-sm mt-8 italic">
+              <p className="text-foreground/70 text-sm mt-8 italic">
                 The deposit is applied to your final balance. It is non-refundable because 
                 the itinerary itself is the value — once shared, it cannot be unshared.
               </p>
@@ -416,7 +416,7 @@ export default function JourneyDetailContent({
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-xs tracking-[0.15em] uppercase text-foreground/60 mb-2">
+                    <label className="block text-xs tracking-[0.15em] uppercase text-foreground/70 mb-2">
                       Name
                     </label>
                     <input
@@ -427,7 +427,7 @@ export default function JourneyDetailContent({
                     />
                   </div>
                   <div>
-                    <label className="block text-xs tracking-[0.15em] uppercase text-foreground/60 mb-2">
+                    <label className="block text-xs tracking-[0.15em] uppercase text-foreground/70 mb-2">
                       Email
                     </label>
                     <input
@@ -441,7 +441,7 @@ export default function JourneyDetailContent({
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-xs tracking-[0.15em] uppercase text-foreground/60 mb-2">
+                    <label className="block text-xs tracking-[0.15em] uppercase text-foreground/70 mb-2">
                       Preferred Dates
                     </label>
                     <input
@@ -452,7 +452,7 @@ export default function JourneyDetailContent({
                     />
                   </div>
                   <div>
-                    <label className="block text-xs tracking-[0.15em] uppercase text-foreground/60 mb-2">
+                    <label className="block text-xs tracking-[0.15em] uppercase text-foreground/70 mb-2">
                       Number of Guests
                     </label>
                     <input
@@ -467,7 +467,7 @@ export default function JourneyDetailContent({
                 </div>
 
                 <div>
-                  <label className="block text-xs tracking-[0.15em] uppercase text-foreground/60 mb-2">
+                  <label className="block text-xs tracking-[0.15em] uppercase text-foreground/70 mb-2">
                     Tell us about yourself
                   </label>
                   <textarea
@@ -524,7 +524,7 @@ export default function JourneyDetailContent({
       {(journey.arcDescription || journey.description) && (
         <section className="border-b border-foreground/10">
           <div className="max-w-3xl mx-auto px-8 md:px-12 lg:px-16 py-10 md:py-14">
-            <p className="font-serif text-foreground/60 text-lg md:text-xl leading-relaxed">
+            <p className="font-serif text-foreground/70 text-lg md:text-xl leading-relaxed">
               {journey.arcDescription || journey.description}
             </p>
           </div>
@@ -534,8 +534,8 @@ export default function JourneyDetailContent({
       {/* Meta bar */}
       <div className="border-b border-foreground/10">
         <div className="max-w-3xl mx-auto px-8 md:px-12 py-5 flex items-center justify-between">
-          <div className="flex items-center gap-4 text-[11px] tracking-[0.12em] uppercase text-foreground/35">
-            <Link href="/journeys" className="hover:text-foreground/60 transition-colors">Journeys</Link>
+          <div className="flex items-center gap-4 text-[11px] tracking-[0.12em] uppercase text-foreground/60">
+            <Link href="/journeys" className="hover:text-foreground/70 transition-colors">Journeys</Link>
             <span>{journey.durationDays} Days</span>
             {journey.startCity && <span>From {journey.startCity}</span>}
           </div>
@@ -584,25 +584,25 @@ export default function JourneyDetailContent({
       {/* ── Plan this journey — inquiry block ─────────────────────── */}
       <section className="py-16 md:py-24 border-t border-foreground/[0.08]">
         <div className="container mx-auto px-6 lg:px-16 max-w-3xl">
-          <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/40 mb-4">
+          <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/60 mb-4">
             Private Journeys
           </p>
           <h2 className="font-serif text-2xl md:text-[1.75rem] text-foreground mb-5 leading-tight">
             Plan this journey.
           </h2>
-          <p className="text-foreground/55 text-[14px] md:text-[15px] leading-relaxed max-w-xl mb-8">
+          <p className="text-foreground/70 text-[14px] md:text-[15px] leading-relaxed max-w-xl mb-8">
             This route is private, and shaped around how you want to move through the country. Tell us what you&apos;re hoping to find — we&apos;ll design the trip around it.
           </p>
           <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
             <Link
               href={`/plan-your-trip?journey=${slug}`}
-              className="inline-block text-[11px] tracking-[0.12em] uppercase text-foreground hover:text-foreground/55 transition-colors"
+              className="inline-block text-[11px] tracking-[0.12em] uppercase text-foreground hover:text-foreground/70 transition-colors"
             >
               Plan this journey →
             </Link>
             <Link
               href={`/plan-your-trip?journey=${slug}`}
-              className="inline-block text-[11px] tracking-[0.12em] uppercase text-foreground/55 hover:text-foreground transition-colors"
+              className="inline-block text-[11px] tracking-[0.12em] uppercase text-foreground/70 hover:text-foreground transition-colors"
             >
               Ask about this route →
             </Link>
@@ -622,7 +622,7 @@ export default function JourneyDetailContent({
         <section className="py-20 md:py-28 border-t border-foreground/[0.08]">
           <div className="px-8 md:px-10 lg:px-14">
             <div className="text-center mb-14 md:mb-16">
-              <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/30 mb-3">
+              <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/60 mb-3">
                 On the Ground
               </p>
               <h2 className="font-serif text-2xl md:text-[1.75rem] text-foreground/80">
@@ -643,11 +643,11 @@ export default function JourneyDetailContent({
                     )}
                   </div>
                   {place.category && (
-                    <p className="text-[10px] text-foreground/40 mb-1.5">
+                    <p className="text-[10px] text-foreground/60 mb-1.5">
                       {place.category}
                     </p>
                   )}
-                  <h3 className="text-[12px] tracking-[0.04em] uppercase leading-[1.35] text-foreground group-hover:text-foreground/60 transition-colors duration-500">
+                  <h3 className="text-[12px] tracking-[0.04em] uppercase leading-[1.35] text-foreground group-hover:text-foreground/70 transition-colors duration-500">
                     {place.title}
                   </h3>
                 </Link>
@@ -657,7 +657,7 @@ export default function JourneyDetailContent({
             <div className="text-center mt-12">
               <Link
                 href="/places"
-                className="text-[11px] tracking-[0.15em] uppercase text-foreground/35 hover:text-foreground/60 transition-colors"
+                className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground/70 transition-colors"
               >
                 Explore places
               </Link>
@@ -671,7 +671,7 @@ export default function JourneyDetailContent({
         <section className="bg-[#c8c4b8]/30 py-20 md:py-28">
           <div className="px-8 md:px-10 lg:px-14">
             <div className="text-center mb-14 md:mb-16">
-              <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/55 mb-3">
+              <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/70 mb-3">
                 Explore More
               </p>
               <h2 className="font-serif text-2xl md:text-[1.75rem] text-foreground/80">
@@ -691,10 +691,10 @@ export default function JourneyDetailContent({
                       />
                     )}
                   </div>
-                  <p className="text-[10px] text-foreground/60 mb-1.5">
+                  <p className="text-[10px] text-foreground/70 mb-1.5">
                     {journey.durationDays} Days
                   </p>
-                  <h3 className="text-[12px] tracking-[0.04em] uppercase leading-[1.35] text-foreground group-hover:text-foreground/60 transition-colors duration-500">
+                  <h3 className="text-[12px] tracking-[0.04em] uppercase leading-[1.35] text-foreground group-hover:text-foreground/70 transition-colors duration-500">
                     {journey.title}
                   </h3>
                 </Link>
@@ -704,7 +704,7 @@ export default function JourneyDetailContent({
             <div className="text-center mt-12">
               <Link
                 href="/journeys"
-                className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground transition-colors"
+                className="text-[11px] tracking-[0.15em] uppercase text-foreground/70 hover:text-foreground transition-colors"
               >
                 All journeys
               </Link>
@@ -718,7 +718,7 @@ export default function JourneyDetailContent({
         <section className="py-20 md:py-28 border-t border-foreground/[0.08]">
           <div className="px-8 md:px-10 lg:px-14">
             <div className="text-center mb-14 md:mb-16">
-              <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/30 mb-3">
+              <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/60 mb-3">
                 From the Archive
               </p>
               <h2 className="font-serif text-2xl md:text-[1.75rem] text-foreground/80">
@@ -741,11 +741,11 @@ export default function JourneyDetailContent({
                     )}
                   </div>
                   {story.category && (
-                    <p className="text-[10px] text-foreground/40 mb-1.5">
+                    <p className="text-[10px] text-foreground/60 mb-1.5">
                       {story.category}
                     </p>
                   )}
-                  <h3 className="text-[12px] tracking-[0.04em] uppercase leading-[1.35] text-foreground group-hover:text-foreground/60 transition-colors duration-500">
+                  <h3 className="text-[12px] tracking-[0.04em] uppercase leading-[1.35] text-foreground group-hover:text-foreground/70 transition-colors duration-500">
                     {story.title}
                   </h3>
                 </Link>
@@ -755,7 +755,7 @@ export default function JourneyDetailContent({
             <div className="text-center mt-12">
               <Link
                 href="/stories"
-                className="text-[11px] tracking-[0.15em] uppercase text-foreground/35 hover:text-foreground/60 transition-colors"
+                className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground/70 transition-colors"
               >
                 All stories
               </Link>
