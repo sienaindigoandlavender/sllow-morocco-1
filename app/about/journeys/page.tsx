@@ -44,7 +44,7 @@ export default async function AboutJourneysPage() {
 
       {/* ── Header ───────────────────────────────────────────────── */}
       <section className="pt-28 md:pt-36 pb-10 px-8 md:px-10 lg:px-14">
-        <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/30 mb-4">
+        <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/60 mb-4">
           The Journeys
         </p>
         <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground mb-3">
@@ -91,11 +91,11 @@ export default async function AboutJourneysPage() {
                   <h3 className="text-[12px] tracking-[0.04em] uppercase leading-[1.35] text-foreground mb-1">
                     {member.name}
                   </h3>
-                  <p className="text-[10px] text-foreground/40 mb-3">
+                  <p className="text-[10px] text-foreground/60 mb-3">
                     {member.role}
                   </p>
                   {member.quote && (
-                    <p className="text-[13px] text-foreground/50 italic leading-[1.6]">
+                    <p className="text-[13px] text-foreground/70 italic leading-[1.6]">
                       &ldquo;{member.quote}&rdquo;
                     </p>
                   )}
@@ -109,12 +109,12 @@ export default async function AboutJourneysPage() {
       {/* ── Contact ──────────────────────────────────────────────── */}
       <section className="px-8 md:px-10 lg:px-14 py-14 border-t border-foreground/[0.08]">
         <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-4">
-          <p className="text-[14px] text-foreground/40">
+          <p className="text-[14px] text-foreground/60">
             To begin a private journey, or ask a question.
           </p>
           <Link
             href="/plan-your-trip"
-            className="text-[11px] tracking-[0.12em] uppercase text-foreground/35 hover:text-foreground/60 transition-colors"
+            className="text-[11px] tracking-[0.12em] uppercase text-foreground/60 hover:text-foreground/70 transition-colors"
           >
             Plan a journey
           </Link>
