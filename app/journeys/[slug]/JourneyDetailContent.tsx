@@ -566,30 +566,41 @@ export default function JourneyDetailContent({
 
 
           <div className="space-y-20">
-            {itinerary
-              .sort((a, b) => a.dayNumber - b.dayNumber)
-              .slice(0, FREE_DAYS)
-              .map((day) => (
-                <div key={day.dayNumber}>
-                  {day.imageUrl && (
-                    <DayImage src={day.imageUrl} alt={`Day ${day.dayNumber} - ${day.cityName}`} />
-                  )}
+            {(() => {
+              const sorted = [...itinerary].sort((a, b) => a.dayNumber - b.dayNumber);
+              const shown = sorted.slice(0, FREE_DAYS);
+              const hasMore = sorted.length > FREE_DAYS;
+              return shown.map((day, i) => {
+                const isLast = i === shown.length - 1;
+                const fade = isLast && hasMore;
+                return (
+                  <div key={day.dayNumber} className={fade ? "relative" : ""}>
+                    {day.imageUrl && (
+                      <DayImage src={day.imageUrl} alt={`Day ${day.dayNumber} - ${day.cityName}`} />
+                    )}
 
-                  <p className="text-xs tracking-[0.2em] uppercase text-foreground/70 mb-3">
-                    Day {day.dayNumber}
-                  </p>
+                    <p className="text-xs tracking-[0.2em] uppercase text-foreground/70 mb-3">
+                      Day {day.dayNumber}
+                    </p>
 
-                  <h2 className="font-serif text-2xl md:text-3xl mb-2">
-                    {day.cityName}
-                  </h2>
+                    <h2 className="font-serif text-2xl md:text-3xl mb-2">
+                      {day.cityName}
+                    </h2>
 
-                  <DayMeta day={day} />
+                    <DayMeta day={day} />
 
-                  <p className="text-foreground/75 leading-relaxed text-lg">
-                    {linkJourneyProse(day.description, journey.slug)}
-                  </p>
-                </div>
-              ))}
+                    <div className={fade ? "relative max-h-48 overflow-hidden" : ""}>
+                      <p className="text-foreground/75 leading-relaxed text-lg">
+                        {linkJourneyProse(day.description, journey.slug)}
+                      </p>
+                      {fade && (
+                        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent pointer-events-none" />
+                      )}
+                    </div>
+                  </div>
+                );
+              });
+            })()}
           </div>
 
           {itinerary.length > FREE_DAYS && (
