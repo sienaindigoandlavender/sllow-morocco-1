@@ -30,7 +30,7 @@ export default function PageLock({ pageKey }: { pageKey: string }) {
     <div className="min-h-screen bg-background text-foreground flex items-center justify-center px-6">
       <div className="max-w-md w-full text-center">
         <h1 className="font-serif text-3xl md:text-4xl mb-4">Pagina riservata</h1>
-        <p className="text-foreground/60 mb-8">
+        <p className="text-foreground/70 mb-8">
           Questo itinerario è riservato ai nostri ospiti. Inserisca il codice
           di accesso che le abbiamo inviato.
         </p>
