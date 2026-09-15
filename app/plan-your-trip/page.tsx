@@ -77,7 +77,7 @@ export default async function PlanYourTripPage({
       {/* Deposit — stated, not sold. Credit-led; assumes the booking. */}
       <section className="pt-10 md:pt-14">
         <div className="container mx-auto px-6 lg:px-16 max-w-2xl">
-          <p className="text-xs tracking-[0.18em] uppercase text-foreground/50 mb-3">
+          <p className="text-xs tracking-[0.18em] uppercase text-foreground/70 mb-3">
             The Deposit
           </p>
           <p className="text-base md:text-lg leading-relaxed text-foreground/80">
@@ -93,7 +93,7 @@ export default async function PlanYourTripPage({
       {contextCaption && (
         <section className="pt-10 md:pt-14">
           <div className="container mx-auto px-6 lg:px-16 max-w-2xl">
-            <p className="text-xs tracking-[0.18em] uppercase text-foreground/50">
+            <p className="text-xs tracking-[0.18em] uppercase text-foreground/70">
               {contextCaption}
             </p>
           </div>
