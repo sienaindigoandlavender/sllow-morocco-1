@@ -206,14 +206,14 @@ export default function PlacesContent({
 
         <div className="grid lg:grid-cols-[minmax(0,42rem)_minmax(0,20rem)] gap-y-8 gap-x-16 items-start">
           <div>
-            <p className="text-sm text-foreground/55 mb-3 leading-relaxed">
+            <p className="text-sm text-foreground/70 mb-3 leading-relaxed">
               Morocco mapped by what's worth slowing down for — medinas, kasbahs, oases, shrines, souks, and ruins, with local context for every entry.
             </p>
-            <p className="text-sm text-foreground/45 mb-4 leading-relaxed">
+            <p className="text-sm text-foreground/60 mb-4 leading-relaxed">
               Filter by region below, or scan the full index at the foot of the page. Every place connects to its stories and the journeys that pass through it.
             </p>
             {formatUpdated(lastUpdated) && (
-              <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/30">
+              <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/60">
                 Updated {formatUpdated(lastUpdated)}
               </p>
             )}
@@ -223,7 +223,7 @@ export default function PlacesContent({
           <div className="lg:pt-1">
             <label
               htmlFor="places-search"
-              className="block text-[10px] tracking-[0.25em] uppercase text-foreground/35 mb-3"
+              className="block text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-3"
             >
               Search the atlas
             </label>
@@ -242,14 +242,14 @@ export default function PlacesContent({
                   type="button"
                   onClick={() => setQuery("")}
                   aria-label="Clear search"
-                  className="absolute right-0 bottom-2 text-foreground/30 hover:text-foreground text-base leading-none transition-colors"
+                  className="absolute right-0 bottom-2 text-foreground/60 hover:text-foreground text-base leading-none transition-colors"
                 >
                   ×
                 </button>
               )}
             </div>
             <p
-              className="text-[11px] text-foreground/35 mt-2 h-4"
+              className="text-[11px] text-foreground/60 mt-2 h-4"
               aria-live="polite"
             >
               {query.trim()
@@ -260,7 +260,7 @@ export default function PlacesContent({
               href="/places/random"
               prefetch={false}
               rel="nofollow"
-              className="inline-block mt-4 text-[10px] tracking-[0.2em] uppercase text-foreground/35 hover:text-foreground transition-colors"
+              className="inline-block mt-4 text-[10px] tracking-[0.2em] uppercase text-foreground/60 hover:text-foreground transition-colors"
             >
               Take me somewhere →
             </Link>
@@ -280,7 +280,7 @@ export default function PlacesContent({
                 className={`text-[11px] tracking-[0.12em] uppercase whitespace-nowrap transition-colors ${
                   selectedRegion === f.id
                     ? "text-foreground"
-                    : "text-foreground/35 hover:text-foreground/60"
+                    : "text-foreground/60 hover:text-foreground/70"
                 }`}
               >
                 {f.label}
@@ -291,7 +291,7 @@ export default function PlacesContent({
             <button
               onClick={() => { setSortBy(sortBy === "default" ? "alpha" : "default"); setCurrentPage(1); }}
               className={`text-[11px] tracking-[0.12em] uppercase transition-colors ${
-                sortBy === "alpha" ? "text-foreground" : "text-foreground/35 hover:text-foreground/60"
+                sortBy === "alpha" ? "text-foreground" : "text-foreground/60 hover:text-foreground/70"
               }`}
             >
               A–Z
@@ -311,7 +311,7 @@ export default function PlacesContent({
                 className={`text-[10.5px] tracking-[0.1em] whitespace-nowrap transition-colors ${
                   selectedDestination === f.id
                     ? "text-foreground"
-                    : "text-foreground/30 hover:text-foreground/50"
+                    : "text-foreground/60 hover:text-foreground/70"
                 }`}
               >
                 {f.label}
@@ -338,15 +338,15 @@ export default function PlacesContent({
                       />
                     ) : null}
                   </div>
-                  <p className="text-[10px] text-foreground/40 mb-1.5">
+                  <p className="text-[10px] text-foreground/60 mb-1.5">
                     {dest?.title || place.destination}
                     {place.category ? `, ${place.category}` : ""}
                   </p>
-                  <h3 className="text-[12px] tracking-[0.04em] uppercase leading-[1.35] text-foreground group-hover:text-foreground/60 transition-colors duration-500">
+                  <h3 className="text-[12px] tracking-[0.04em] uppercase leading-[1.35] text-foreground group-hover:text-foreground/70 transition-colors duration-500">
                     {place.title}
                   </h3>
                   {dek(place.excerpt) && (
-                    <p className="text-[11px] leading-[1.45] text-foreground/45 mt-1.5">
+                    <p className="text-[11px] leading-[1.45] text-foreground/60 mt-1.5">
                       {dek(place.excerpt)}
                     </p>
                   )}
@@ -358,7 +358,7 @@ export default function PlacesContent({
           <div className="py-20 text-center">
             {query.trim() ? (
               <>
-                <p className="text-foreground/40 mb-4">
+                <p className="text-foreground/60 mb-4">
                   Nothing matching “{query.trim()}”
                   {selectedRegion !== "all" || selectedDestination !== "all"
                     ? " in this filter."
@@ -367,14 +367,14 @@ export default function PlacesContent({
                 {hiddenByFilter > 0 ? (
                   <button
                     onClick={() => { setSelectedRegion("all"); setSelectedDestination("all"); }}
-                    className="text-[11px] text-foreground/40 hover:text-foreground/70 underline transition-colors"
+                    className="text-[11px] text-foreground/60 hover:text-foreground/70 underline transition-colors"
                   >
                     {hiddenByFilter} {hiddenByFilter === 1 ? "match" : "matches"} elsewhere — search all places
                   </button>
                 ) : (
                   <button
                     onClick={() => setQuery("")}
-                    className="text-[11px] text-foreground/40 hover:text-foreground/70 underline transition-colors"
+                    className="text-[11px] text-foreground/60 hover:text-foreground/70 underline transition-colors"
                   >
                     Clear search
                   </button>
@@ -382,10 +382,10 @@ export default function PlacesContent({
               </>
             ) : (
               <>
-                <p className="text-foreground/40 mb-4">No places found for this selection.</p>
+                <p className="text-foreground/60 mb-4">No places found for this selection.</p>
                 <button
                   onClick={() => { setSelectedRegion("all"); setSelectedDestination("all"); }}
-                  className="text-[11px] text-foreground/40 hover:text-foreground/70 underline transition-colors"
+                  className="text-[11px] text-foreground/60 hover:text-foreground/70 underline transition-colors"
                 >
                   Clear filter
                 </button>
@@ -400,7 +400,7 @@ export default function PlacesContent({
             <button
               onClick={() => goToPage(currentPage - 1)}
               disabled={currentPage === 1}
-              className="px-3 py-2 text-[11px] text-foreground/35 hover:text-foreground disabled:opacity-20 transition-colors"
+              className="px-3 py-2 text-[11px] text-foreground/60 hover:text-foreground disabled:opacity-20 transition-colors"
             >
               ←
             </button>
@@ -411,7 +411,7 @@ export default function PlacesContent({
                 className={`min-w-[32px] py-2 text-[11px] tabular-nums transition-colors ${
                   currentPage === page
                     ? "text-[#8F3A24] font-medium"
-                    : "text-foreground/30 hover:text-foreground/60"
+                    : "text-foreground/60 hover:text-foreground/70"
                 }`}
                 aria-current={currentPage === page ? "page" : undefined}
               >
@@ -421,7 +421,7 @@ export default function PlacesContent({
             <button
               onClick={() => goToPage(currentPage + 1)}
               disabled={currentPage === totalPages}
-              className="px-3 py-2 text-[11px] text-foreground/35 hover:text-foreground disabled:opacity-20 transition-colors"
+              className="px-3 py-2 text-[11px] text-foreground/60 hover:text-foreground disabled:opacity-20 transition-colors"
             >
               →
             </button>
@@ -432,7 +432,7 @@ export default function PlacesContent({
       {/* ── Featured places — text-link strip ─────────────────────────── */}
       {featured.length > 0 && (
         <section className="px-8 md:px-10 lg:px-14 py-12 border-t border-foreground/[0.08]">
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/35 mb-5">
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-5">
             Featured places
           </p>
           <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-10 lg:gap-x-14">
@@ -458,12 +458,12 @@ export default function PlacesContent({
       {mapPlaces.length > 0 && (
         <section className="px-8 md:px-10 lg:px-14 py-12 border-t border-foreground/[0.08]">
           <div className="flex items-baseline justify-between mb-5">
-            <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/35">
+            <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60">
               The atlas
             </p>
             <Link
               href="/places/map"
-              className="text-[10px] tracking-[0.15em] uppercase text-foreground/35 hover:text-foreground transition-colors"
+              className="text-[10px] tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground transition-colors"
             >
               Open full screen →
             </Link>
@@ -477,7 +477,7 @@ export default function PlacesContent({
           straight off the table.
           ──────────────────────────────────────────────────────────── */}
       <section className="px-8 md:px-10 lg:px-14 py-12 border-t border-foreground/[0.08]">
-        <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/35 mb-6">
+        <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-6">
           Browse by category
         </p>
         <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-10 lg:gap-x-14">
@@ -495,7 +495,7 @@ export default function PlacesContent({
                   <span className="text-sm text-foreground/75 group-hover:text-foreground transition-colors">
                     {c.label}
                   </span>
-                  <span className="text-[10px] tabular-nums text-foreground/25 group-hover:text-foreground/50 transition-colors">
+                  <span className="text-[10px] tabular-nums text-foreground/25 group-hover:text-foreground/70 transition-colors">
                     {categoryCounts[c.label]}
                   </span>
                 </Link>
@@ -511,10 +511,10 @@ export default function PlacesContent({
           ──────────────────────────────────────────────────────────── */}
       {clusters.length > 0 && (
         <section className="px-8 md:px-10 lg:px-14 py-14 border-t border-foreground/[0.08]">
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/35 mb-3">
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-3">
             All places, by destination
           </p>
-          <p className="text-[12.5px] text-foreground/45 max-w-2xl leading-relaxed mb-10">
+          <p className="text-[12.5px] text-foreground/60 max-w-2xl leading-relaxed mb-10">
             Every place in the atlas, listed in full. The grid above paginates — this index doesn't. Use it to scan the whole catalogue or jump straight to a destination.
           </p>
           <div className="space-y-12">
@@ -527,7 +527,7 @@ export default function PlacesContent({
                   <span className="text-sm tracking-[0.04em] text-foreground group-hover:text-foreground/70 transition-colors">
                     {c.title}
                   </span>
-                  <span className="text-[10px] tabular-nums text-foreground/30 group-hover:text-foreground/50 transition-colors">
+                  <span className="text-[10px] tabular-nums text-foreground/60 group-hover:text-foreground/70 transition-colors">
                     {c.count}
                   </span>
                 </Link>
@@ -536,7 +536,7 @@ export default function PlacesContent({
                     <li key={p.slug}>
                       <Link
                         href={`/places/${p.slug}`}
-                        className="block text-[13px] text-foreground/55 hover:text-foreground py-1 transition-colors"
+                        className="block text-[13px] text-foreground/70 hover:text-foreground py-1 transition-colors"
                       >
                         {p.title}
                       </Link>
@@ -551,7 +551,7 @@ export default function PlacesContent({
 
       {/* ── SEO paragraph ────────────────────────────────────────────── */}
       <section className="px-8 md:px-10 lg:px-14 pb-16 border-t border-foreground/[0.08] pt-14">
-        <p className="text-[12.5px] text-foreground/35 leading-[1.7] max-w-2xl">
+        <p className="text-[12.5px] text-foreground/60 leading-[1.7] max-w-2xl">
           From the tanneries of Fès and the kasbahs of the Draa Valley to the Atlantic ramparts of Essaouira and the mountain villages above Chefchaouen — the atlas covers Morocco as it's actually experienced, not as it's usually sold.
         </p>
       </section>
