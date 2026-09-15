@@ -110,7 +110,6 @@ function linkJourneyProse(text: string, currentSlug?: string): React.ReactNode {
   return applyGlossaryToStrings(linkCrossReferences(text, currentSlug));
 }
 import ShareTools from "@/components/ShareTools";
-import JourneyLetter from "@/components/JourneyLetter";
 import TouristTripSchema from "@/components/seo/TouristTripSchema";
 
 
@@ -594,8 +593,11 @@ export default function JourneyDetailContent({
           </div>
 
           {itinerary.length > FREE_DAYS && (
-            <div className="relative -mt-40 pt-40 bg-gradient-to-t from-background via-background to-transparent">
-              <div className="text-center max-w-xl mx-auto pt-10">
+            <div className="mt-4 bg-foreground/[0.04] border border-foreground/[0.08] px-8 py-12 md:py-16">
+              <div className="text-center max-w-xl mx-auto">
+                <p className="text-[11px] tracking-[0.2em] uppercase text-foreground/50 mb-4">
+                  The remaining days
+                </p>
                 <p className="font-serif text-2xl md:text-3xl mb-4">
                   The rest is for those who travel it.
                 </p>
@@ -648,7 +650,6 @@ export default function JourneyDetailContent({
       {/* ── Newsletter invitation ──── */}
       <section className="py-0">
         <div className="container mx-auto px-6 lg:px-16 max-w-3xl">
-          <JourneyLetter />
         </div>
       </section>
 
