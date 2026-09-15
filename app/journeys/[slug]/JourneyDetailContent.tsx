@@ -629,34 +629,29 @@ export default function JourneyDetailContent({
         </div>
       </section>
 
-      {/* ── Plan this journey — inquiry block ─────────────────────── */}
-      <section className="py-16 md:py-24 border-t border-foreground/[0.08]">
-        <div className="container mx-auto px-6 lg:px-16 max-w-3xl">
-          <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/60 mb-4">
-            Private Journeys
-          </p>
-          <h2 className="font-serif text-2xl md:text-[1.75rem] text-foreground mb-5 leading-tight">
-            Plan this journey.
-          </h2>
-          <p className="text-foreground/70 text-[14px] md:text-[15px] leading-relaxed max-w-xl mb-8">
-            This route is private, and shaped around how you want to move through the country. Tell us what you&apos;re hoping to find — we&apos;ll design the trip around it.
-          </p>
-          <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
+      {/* ── Plan this journey — only for short journeys (long ones have the gate) ── */}
+      {itinerary.length <= FREE_DAYS && (
+        <section className="py-16 md:py-24 border-t border-foreground/[0.08]">
+          <div className="container mx-auto px-6 lg:px-16 max-w-3xl">
+            <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/60 mb-4">
+              Private Journeys
+            </p>
+            <h2 className="font-serif text-2xl md:text-[1.75rem] text-foreground mb-5 leading-tight">
+              Travel this, privately.
+            </h2>
+            <p className="text-foreground/70 text-[14px] md:text-[15px] leading-relaxed max-w-xl mb-8">
+              Private, designed and run by us. A €300 deposit begins the work and is
+              credited in full toward the price of your trip.
+            </p>
             <Link
               href={`/plan-your-trip?journey=${slug}`}
-              className="inline-block text-[11px] tracking-[0.12em] uppercase text-foreground hover:text-foreground/70 transition-colors"
+              className="inline-block px-8 py-3 bg-foreground text-background text-[13px] tracking-[0.12em] uppercase hover:opacity-90 transition-opacity"
             >
-              Plan this journey →
-            </Link>
-            <Link
-              href={`/plan-your-trip?journey=${slug}`}
-              className="inline-block text-[11px] tracking-[0.12em] uppercase text-foreground/70 hover:text-foreground transition-colors"
-            >
-              Ask about this route →
+              Begin this journey
             </Link>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* ── Newsletter invitation ──── */}
       <section className="py-0">
