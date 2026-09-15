@@ -51,12 +51,12 @@ export default function KitchenContent({
         <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-4">
           The Kitchen
         </h1>
-        <p className="text-sm text-foreground/55 max-w-2xl leading-relaxed mb-3">
+        <p className="text-sm text-foreground/70 max-w-2xl leading-relaxed mb-3">
           The nursery for The Food of Morocco. Everything the archive already
           holds, grouped the way somebody eats rather than the way the database
           files it.
         </p>
-        <p className="text-sm text-foreground/45 max-w-2xl leading-relaxed">
+        <p className="text-sm text-foreground/60 max-w-2xl leading-relaxed">
           The point of this page is the empty rows. A section with two entries
           is a section that has not been written yet.
         </p>
@@ -72,7 +72,7 @@ export default function KitchenContent({
             ["Unfiled", String(unfiled.length)],
           ].map(([label, value]) => (
             <div key={label}>
-              <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/35 mb-2">
+              <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/60 mb-2">
                 {label}
               </p>
               <p className="font-serif text-2xl tabular-nums">{value}</p>
@@ -83,7 +83,7 @@ export default function KitchenContent({
 
       {/* ── The sections ──────────────────────────────────────────── */}
       <section className="px-8 md:px-10 lg:px-14 py-10 border-t border-foreground/[0.08]">
-        <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/35 mb-6">
+        <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-6">
           Contents
         </p>
 
@@ -101,14 +101,14 @@ export default function KitchenContent({
                     <span className="font-serif text-xl md:text-2xl">
                       {s.label}
                     </span>
-                    <span className="text-[12px] text-foreground/40 truncate hidden md:inline">
+                    <span className="text-[12px] text-foreground/60 truncate hidden md:inline">
                       {s.note}
                     </span>
                   </span>
                   <span className="flex items-baseline gap-4 flex-shrink-0">
                     <span
                       className={`text-[11px] tabular-nums ${
-                        thin ? "text-[#8F3A24]" : "text-foreground/30"
+                        thin ? "text-[#8F3A24]" : "text-foreground/60"
                       }`}
                     >
                       {s.stories.length} essays · {s.places.length} places
@@ -122,11 +122,11 @@ export default function KitchenContent({
                 {isOpen && (
                   <div className="pb-8 grid md:grid-cols-2 gap-x-14 gap-y-8">
                     <div>
-                      <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/35 mb-3">
+                      <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/60 mb-3">
                         Essays
                       </p>
                       {s.stories.length === 0 ? (
-                        <p className="text-[13px] text-foreground/35">
+                        <p className="text-[13px] text-foreground/60">
                           Nothing yet. This section is unwritten.
                         </p>
                       ) : (
@@ -151,11 +151,11 @@ export default function KitchenContent({
                     </div>
 
                     <div>
-                      <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/35 mb-3">
+                      <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/60 mb-3">
                         Places
                       </p>
                       {s.places.length === 0 ? (
-                        <p className="text-[13px] text-foreground/35">
+                        <p className="text-[13px] text-foreground/60">
                           No place in the atlas answers to this yet. This is
                           where the fieldwork goes.
                         </p>
@@ -190,10 +190,10 @@ export default function KitchenContent({
       {/* ── Unfiled ───────────────────────────────────────────────── */}
       {unfiled.length > 0 && (
         <section className="px-8 md:px-10 lg:px-14 py-12 border-t border-foreground/[0.08]">
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/35 mb-3">
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-3">
             Unfiled
           </p>
-          <p className="text-[12.5px] text-foreground/45 max-w-2xl leading-relaxed mb-6">
+          <p className="text-[12.5px] text-foreground/60 max-w-2xl leading-relaxed mb-6">
             Food-shaped essays that no section claimed. Either the section is
             missing or the keywords are.
           </p>
@@ -202,7 +202,7 @@ export default function KitchenContent({
               <li key={u.slug}>
                 <Link
                   href={`/stories/${u.slug}`}
-                  className="block text-[13px] text-foreground/55 hover:text-foreground py-1.5 transition-colors"
+                  className="block text-[13px] text-foreground/70 hover:text-foreground py-1.5 transition-colors"
                 >
                   {u.title}
                 </Link>
@@ -213,8 +213,8 @@ export default function KitchenContent({
       )}
 
       <section className="px-8 md:px-10 lg:px-14 py-12 border-t border-foreground/[0.08]">
-        <p className="text-[12.5px] text-foreground/40 max-w-2xl leading-relaxed">
-          Sections live in <code className="text-foreground/60">app/kitchen/page.tsx</code>.
+        <p className="text-[12.5px] text-foreground/60 max-w-2xl leading-relaxed">
+          Sections live in <code className="text-foreground/70">app/kitchen/page.tsx</code>.
           Rename them, reorder them, add one. Each is a label, a note and a
           keyword pattern, so moving an essay between sections is a matter of
           adjusting the pattern rather than editing the row.
