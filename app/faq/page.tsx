@@ -98,25 +98,25 @@ export default function FAQPage() {
               href="/booking-conditions"
               className="group block border border-foreground/10 p-6 hover:border-foreground/30 transition-colors"
             >
-              <p className="text-xs tracking-[0.15em] uppercase text-foreground/40 mb-2">01</p>
+              <p className="text-xs tracking-[0.15em] uppercase text-foreground/60 mb-2">01</p>
               <h3 className="font-serif text-lg text-white/90 group-hover:text-white transition-colors">Booking Conditions</h3>
-              <p className="text-foreground/40 text-sm mt-2">How it works, what's included, your responsibilities.</p>
+              <p className="text-foreground/60 text-sm mt-2">How it works, what's included, your responsibilities.</p>
             </a>
             <a
               href="/payments"
               className="group block border border-foreground/10 p-6 hover:border-foreground/30 transition-colors"
             >
-              <p className="text-xs tracking-[0.15em] uppercase text-foreground/40 mb-2">02</p>
+              <p className="text-xs tracking-[0.15em] uppercase text-foreground/60 mb-2">02</p>
               <h3 className="font-serif text-lg text-white/90 group-hover:text-white transition-colors">Payments</h3>
-              <p className="text-foreground/40 text-sm mt-2">Deposit, balance, methods, and currency.</p>
+              <p className="text-foreground/60 text-sm mt-2">Deposit, balance, methods, and currency.</p>
             </a>
             <a
               href="/cancellations-and-refunds"
               className="group block border border-foreground/10 p-6 hover:border-foreground/30 transition-colors"
             >
-              <p className="text-xs tracking-[0.15em] uppercase text-foreground/40 mb-2">03</p>
+              <p className="text-xs tracking-[0.15em] uppercase text-foreground/60 mb-2">03</p>
               <h3 className="font-serif text-lg text-white/90 group-hover:text-white transition-colors">Cancellations & Refunds</h3>
-              <p className="text-foreground/40 text-sm mt-2">Clear terms, no surprises.</p>
+              <p className="text-foreground/60 text-sm mt-2">Clear terms, no surprises.</p>
             </a>
           </div>
         </div>
@@ -129,7 +129,7 @@ export default function FAQPage() {
             {faqs.map((faq, index) => (
               <div key={index} className="border-b border-foreground/10 pb-8">
                 <h3 className="font-serif text-xl text-white/90 mb-3">{faq.question}</h3>
-                <p className="text-foreground/50 leading-relaxed">
+                <p className="text-foreground/70 leading-relaxed">
                   {faq.answer}
                 </p>
               </div>
@@ -141,7 +141,7 @@ export default function FAQPage() {
             <h2 className="font-serif text-2xl text-white/90 mb-4">
               Don't See Your Question?
             </h2>
-            <p className="text-foreground/50 mb-8">
+            <p className="text-foreground/70 mb-8">
               We're happy to answer any questions you have. For everyday questions about Morocco — taxis, tipping, what to wear, Ramadan, safety — visit <a href="https://derb.so" className="underline hover:text-white/80 transition-colors">Derb</a>, our city guide.
             </p>
             <a 
