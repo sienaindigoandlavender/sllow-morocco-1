@@ -92,6 +92,19 @@ function applyGlossaryToStrings(node: React.ReactNode): React.ReactNode {
     )
   );
 }
+// How many days are shown in full before the itinerary is gated.
+const FREE_DAYS = 3;
+
+// First sentence (or ~24 words) of a day's narrative — the teaser for gated days.
+function firstLine(text: string): string {
+  if (!text) return "";
+  const clean = text.replace(/\s+/g, " ").trim();
+  const m = clean.match(/^(.*?[.!?])\s/);
+  if (m && m[1].split(" ").length <= 30) return m[1];
+  const parts = clean.split(" ");
+  return parts.slice(0, 24).join(" ") + "…";
+}
+
 function linkJourneyProse(text: string, currentSlug?: string): React.ReactNode {
   if (!text) return text;
   return applyGlossaryToStrings(linkCrossReferences(text, currentSlug));
@@ -556,27 +569,55 @@ export default function JourneyDetailContent({
           <div className="space-y-20">
             {itinerary
               .sort((a, b) => a.dayNumber - b.dayNumber)
-              .map((day) => (
-                <div key={day.dayNumber}>
-                  {day.imageUrl && (
-                    <DayImage src={day.imageUrl} alt={`Day ${day.dayNumber} - ${day.cityName}`} />
-                  )}
+              .map((day, idx) => {
+                const gated = idx >= FREE_DAYS;
+                return (
+                  <div key={day.dayNumber}>
+                    {day.imageUrl && !gated && (
+                      <DayImage src={day.imageUrl} alt={`Day ${day.dayNumber} - ${day.cityName}`} />
+                    )}
 
-                  <p className="text-xs tracking-[0.2em] uppercase text-foreground/70 mb-3">
-                    Day {day.dayNumber}
-                  </p>
+                    <p className="text-xs tracking-[0.2em] uppercase text-foreground/70 mb-3">
+                      Day {day.dayNumber}
+                    </p>
 
-                  <h2 className="font-serif text-2xl md:text-3xl mb-2">
-                    {day.cityName}
-                  </h2>
+                    <h2 className="font-serif text-2xl md:text-3xl mb-2">
+                      {day.cityName}
+                    </h2>
 
-                  <DayMeta day={day} />
+                    {!gated && <DayMeta day={day} />}
 
-                  <p className="text-foreground/75 leading-relaxed text-lg">
-                    {linkJourneyProse(day.description, journey.slug)}
-                  </p>
-                </div>
-              ))}
+                    {gated ? (
+                      <p className="text-foreground/55 leading-relaxed text-lg italic">
+                        {firstLine(day.description)}
+                      </p>
+                    ) : (
+                      <p className="text-foreground/75 leading-relaxed text-lg">
+                        {linkJourneyProse(day.description, journey.slug)}
+                      </p>
+                    )}
+                  </div>
+                );
+              })}
+
+            {itinerary.length > FREE_DAYS && (
+              <div className="border-t border-foreground/[0.08] pt-14 mt-4 text-center">
+                <p className="font-serif text-2xl md:text-3xl mb-4">
+                  The rest of the journey is written for those who travel it.
+                </p>
+                <p className="text-foreground/70 leading-relaxed text-lg max-w-xl mx-auto mb-8">
+                  The full day-by-day — every road, every night, every reason —
+                  is prepared for you once your journey is confirmed. It is not the
+                  kind of thing we leave lying in the open.
+                </p>
+                <a
+                  href="/plan-your-trip"
+                  className="inline-block px-8 py-3 border border-foreground/25 text-[13px] tracking-[0.12em] uppercase text-foreground hover:bg-foreground hover:text-background transition-colors"
+                >
+                  Begin this journey
+                </a>
+              </div>
+            )}
           </div>
         </div>
       </section>
