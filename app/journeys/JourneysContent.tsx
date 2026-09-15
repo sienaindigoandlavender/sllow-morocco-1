@@ -81,7 +81,7 @@ export default function JourneysContent({
         <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground mb-3">
           Journeys
         </h1>
-        <p className="text-sm text-foreground/45 max-w-xl mb-10">
+        <p className="text-sm text-foreground/60 max-w-xl mb-10">
           The traditions we write about, entered in person. A small number of nights and passages we arrange ourselves, for readers who want to stand inside what they have read.
         </p>
         <div className="h-[1px] bg-foreground/12" />
@@ -98,7 +98,7 @@ export default function JourneysContent({
                 className={`text-[11px] tracking-[0.12em] uppercase whitespace-nowrap transition-colors ${
                   activeFilter === f.id
                     ? "text-foreground"
-                    : "text-foreground/35 hover:text-foreground/60"
+                    : "text-foreground/60 hover:text-foreground/70"
                 }`}
               >
                 {f.label}
@@ -109,7 +109,7 @@ export default function JourneysContent({
             <button
               onClick={() => { setSortBy(sortBy === "default" ? "alpha" : "default"); setCurrentPage(1); }}
               className={`text-[11px] tracking-[0.12em] uppercase transition-colors ${
-                sortBy === "alpha" ? "text-foreground" : "text-foreground/35 hover:text-foreground/60"
+                sortBy === "alpha" ? "text-foreground" : "text-foreground/60 hover:text-foreground/70"
               }`}
             >
               A–Z
@@ -122,10 +122,10 @@ export default function JourneysContent({
       <section className="px-8 md:px-10 lg:px-14 pb-16 md:pb-24">
         {!dataLoaded || filteredItems.length === 0 ? (
           <div className="py-20 text-center">
-            <p className="text-foreground/40 mb-4">No journeys match your current filter.</p>
+            <p className="text-foreground/60 mb-4">No journeys match your current filter.</p>
             <button
               onClick={() => { setActiveFilter("all"); setCurrentPage(1); }}
-              className="text-[11px] text-foreground/40 hover:text-foreground/70 underline transition-colors"
+              className="text-[11px] text-foreground/60 hover:text-foreground/70 underline transition-colors"
             >
               Clear filter
             </button>
@@ -158,14 +158,14 @@ export default function JourneysContent({
                         />
                       )}
                     </div>
-                    <p className="text-[10px] text-foreground/40 mb-1.5" itemProp="duration">
+                    <p className="text-[10px] text-foreground/60 mb-1.5" itemProp="duration">
                       {durationLabel}
                     </p>
-                    <h3 className="text-[12px] tracking-[0.04em] uppercase leading-[1.35] text-foreground group-hover:text-foreground/60 transition-colors duration-500" itemProp="name">
+                    <h3 className="text-[12px] tracking-[0.04em] uppercase leading-[1.35] text-foreground group-hover:text-foreground/70 transition-colors duration-500" itemProp="name">
                       {item.title}
                     </h3>
                     {item.price > 0 && item.type === 'journey' && (
-                      <p className="text-[11px] text-foreground/60 mt-1" itemProp="offers" itemScope itemType="https://schema.org/Offer">
+                      <p className="text-[11px] text-foreground/70 mt-1" itemProp="offers" itemScope itemType="https://schema.org/Offer">
                         <span itemProp="price" content={String(item.price)}>
                           From €{item.price.toLocaleString()}
                         </span>
@@ -173,7 +173,7 @@ export default function JourneysContent({
                       </p>
                     )}
                     {item.description && (
-                      <p className="text-[11.5px] text-foreground/45 leading-[1.5] mt-1 line-clamp-2" itemProp="description">
+                      <p className="text-[11.5px] text-foreground/60 leading-[1.5] mt-1 line-clamp-2" itemProp="description">
                         {item.description}
                       </p>
                     )}
@@ -190,7 +190,7 @@ export default function JourneysContent({
             <button
               onClick={() => goToPage(currentPage - 1)}
               disabled={currentPage === 1}
-              className="px-3 py-2 text-[11px] text-foreground/35 hover:text-foreground disabled:opacity-20 transition-colors"
+              className="px-3 py-2 text-[11px] text-foreground/60 hover:text-foreground disabled:opacity-20 transition-colors"
             >
               ←
             </button>
@@ -199,7 +199,7 @@ export default function JourneysContent({
                 key={page}
                 onClick={() => goToPage(page)}
                 className={`min-w-[32px] py-2 text-[11px] transition-colors ${
-                  currentPage === page ? "text-foreground" : "text-foreground/30 hover:text-foreground/60"
+                  currentPage === page ? "text-foreground" : "text-foreground/60 hover:text-foreground/70"
                 }`}
               >
                 {page}
@@ -208,7 +208,7 @@ export default function JourneysContent({
             <button
               onClick={() => goToPage(currentPage + 1)}
               disabled={currentPage === totalPages}
-              className="px-3 py-2 text-[11px] text-foreground/35 hover:text-foreground disabled:opacity-20 transition-colors"
+              className="px-3 py-2 text-[11px] text-foreground/60 hover:text-foreground disabled:opacity-20 transition-colors"
             >
               →
             </button>
@@ -218,7 +218,7 @@ export default function JourneysContent({
 
       {/* ── SEO paragraph ────────────────────────────────────────────── */}
       <section className="px-8 md:px-10 lg:px-14 pb-16 border-t border-foreground/[0.08] pt-14">
-        <p className="text-[12.5px] text-foreground/35 leading-[1.7] max-w-2xl">
+        <p className="text-[12.5px] text-foreground/60 leading-[1.7] max-w-2xl">
           Private journeys, day trips from Marrakech, and overnight experiences across Morocco. Every route is a starting point you can shape around what matters to you.
         </p>
       </section>
