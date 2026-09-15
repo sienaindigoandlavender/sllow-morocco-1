@@ -375,7 +375,7 @@ export default function PlaceDetailContent({
                   {nearPageCount > 0 && (
                     <Link
                       href={`/places/near/${place.slug}`}
-                      className="text-[10px] tracking-[0.15em] uppercase text-foreground/50 hover:text-foreground transition-colors whitespace-nowrap"
+                      className="text-[10px] tracking-[0.15em] uppercase text-foreground/70 hover:text-foreground transition-colors whitespace-nowrap"
                     >
                       All {nearPageCount} nearby →
                     </Link>
@@ -403,8 +403,8 @@ export default function PlaceDetailContent({
           {JOURNEY_CROSSLINKS && place.journeyBridge && (
             <section className="py-12 border-t border-foreground/10">
               <div className="container mx-auto px-6 lg:px-16 max-w-3xl">
-                <p className="text-foreground/60 italic font-serif text-lg leading-relaxed">{place.journeyBridge}</p>
-                <Link href={`/plan-your-trip?place=${place.slug}`} className="inline-block mt-4 text-xs tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground/70 transition-colors">
+                <p className="text-foreground/70 italic font-serif text-lg leading-relaxed">{place.journeyBridge}</p>
+                <Link href={`/plan-your-trip?place=${place.slug}`} className="inline-block mt-4 text-xs tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground/70 transition-colors">
                   Plan a private journey →
                 </Link>
               </div>
@@ -461,8 +461,8 @@ export default function PlaceDetailContent({
 
                 {JOURNEY_CROSSLINKS && place.journeyBridge && (
                   <div className="my-12 py-8 border-t border-b border-foreground/10">
-                    <p className="text-foreground/60 italic font-serif text-lg leading-relaxed">{place.journeyBridge}</p>
-                    <Link href={`/plan-your-trip?place=${place.slug}`} className="inline-block mt-4 text-xs tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground/70 transition-colors">
+                    <p className="text-foreground/70 italic font-serif text-lg leading-relaxed">{place.journeyBridge}</p>
+                    <Link href={`/plan-your-trip?place=${place.slug}`} className="inline-block mt-4 text-xs tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground/70 transition-colors">
                       Plan a private journey →
                     </Link>
                   </div>
@@ -531,16 +531,16 @@ export default function PlaceDetailContent({
         <section className="py-16 md:py-20 border-t border-foreground/[0.08]">
           <div className="container mx-auto px-6 lg:px-16">
             <div className="max-w-3xl mx-auto">
-              <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 mb-6">
+              <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 mb-6">
                 Part of {inCollections.length === 1 ? "the collection" : "these collections"}
               </p>
               <div className="space-y-4">
                 {inCollections.map((c) => (
                   <Link key={c.slug} href={`/collections/${c.slug}`} className="group block">
-                    <span className="font-serif text-xl md:text-2xl text-foreground group-hover:text-foreground/60 transition-colors">
+                    <span className="font-serif text-xl md:text-2xl text-foreground group-hover:text-foreground/70 transition-colors">
                       {c.title}
                     </span>
-                    <span className="text-[14px] text-foreground/45 leading-[1.5] block mt-1">
+                    <span className="text-[14px] text-foreground/60 leading-[1.5] block mt-1">
                       {c.dek}
                     </span>
                   </Link>
@@ -701,7 +701,7 @@ export default function PlaceDetailContent({
             <section className="py-16 md:py-24 border-t border-foreground/10">
               <div className="container mx-auto px-6 lg:px-16">
                 <div className="max-w-xl mx-auto text-center">
-                  <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/50 mb-3">
+                  <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/70 mb-3">
                     Keep exploring
                   </p>
                   <h2 className="font-serif text-2xl md:text-3xl text-foreground/80 mb-8">
@@ -748,7 +748,7 @@ export default function PlaceDetailContent({
               <div className="pr-8 py-8">
                 {prevPlace && (
                   <Link href={`/places/${prevPlace.slug}`} className="group block">
-                    <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/30 mb-2">← Previous</p>
+                    <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/60 mb-2">← Previous</p>
                     <p className="font-serif text-base text-foreground/70 group-hover:text-foreground transition-colors duration-300 leading-snug">
                       {prevPlace.title}
                     </p>
@@ -758,7 +758,7 @@ export default function PlaceDetailContent({
               <div className="pl-8 py-8 text-right">
                 {nextPlace && (
                   <Link href={`/places/${nextPlace.slug}`} className="group block">
-                    <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/30 mb-2">Next →</p>
+                    <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/60 mb-2">Next →</p>
                     <p className="font-serif text-base text-foreground/70 group-hover:text-foreground transition-colors duration-300 leading-snug">
                       {nextPlace.title}
                     </p>
@@ -771,7 +771,7 @@ export default function PlaceDetailContent({
                 href="/places/random"
                 prefetch={false}
                 rel="nofollow"
-                className="text-[10px] tracking-[0.2em] uppercase text-foreground/35 hover:text-foreground transition-colors"
+                className="text-[10px] tracking-[0.2em] uppercase text-foreground/60 hover:text-foreground transition-colors"
               >
                 Take me somewhere else →
               </Link>
