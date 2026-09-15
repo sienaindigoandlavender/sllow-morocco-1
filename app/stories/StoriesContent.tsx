@@ -101,11 +101,11 @@ export default function StoriesContent({
 
         <div className="grid lg:grid-cols-[minmax(0,42rem)_minmax(0,20rem)] gap-y-8 gap-x-16 items-start mb-10">
           <div>
-            <p className="text-sm text-foreground/45 mb-4 leading-relaxed">
+            <p className="text-sm text-foreground/60 mb-4 leading-relaxed">
               The history, craft, food, music, and people that make Morocco make sense.
             </p>
             {formatUpdated(lastUpdated) && (
-              <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/30">
+              <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/60">
                 Updated {formatUpdated(lastUpdated)}
               </p>
             )}
@@ -115,7 +115,7 @@ export default function StoriesContent({
           <div className="lg:pt-1">
             <label
               htmlFor="stories-search"
-              className="block text-[10px] tracking-[0.25em] uppercase text-foreground/35 mb-3"
+              className="block text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-3"
             >
               Search the edit
             </label>
@@ -134,13 +134,13 @@ export default function StoriesContent({
                   type="button"
                   onClick={() => setQuery("")}
                   aria-label="Clear search"
-                  className="absolute right-0 bottom-2 text-foreground/30 hover:text-foreground text-base leading-none transition-colors"
+                  className="absolute right-0 bottom-2 text-foreground/60 hover:text-foreground text-base leading-none transition-colors"
                 >
                   ×
                 </button>
               )}
             </div>
-            <p className="text-[11px] text-foreground/35 mt-2 h-4" aria-live="polite">
+            <p className="text-[11px] text-foreground/60 mt-2 h-4" aria-live="polite">
               {query.trim()
                 ? `${filteredStories.length} ${filteredStories.length === 1 ? "match" : "matches"}`
                 : ""}
@@ -149,7 +149,7 @@ export default function StoriesContent({
               href="/stories/random"
               prefetch={false}
               rel="nofollow"
-              className="inline-block mt-4 text-[10px] tracking-[0.2em] uppercase text-foreground/35 hover:text-foreground transition-colors"
+              className="inline-block mt-4 text-[10px] tracking-[0.2em] uppercase text-foreground/60 hover:text-foreground transition-colors"
             >
               Read something at random →
             </Link>
@@ -176,7 +176,7 @@ export default function StoriesContent({
               key={key}
               onClick={() => { setSortBy(key); setCurrentPage(1); }}
               className={`text-[11px] tracking-[0.12em] uppercase transition-colors ${
-                sortBy === key ? "text-foreground" : "text-foreground/35 hover:text-foreground/60"
+                sortBy === key ? "text-foreground" : "text-foreground/60 hover:text-foreground/70"
               }`}
             >
               {label}
@@ -189,7 +189,7 @@ export default function StoriesContent({
       <section className="px-8 md:px-10 lg:px-14 pb-16 md:pb-24">
         {filteredStories.length === 0 ? (
           <div className="py-20 text-center">
-            <p className="text-foreground/40 mb-4">
+            <p className="text-foreground/60 mb-4">
               {query.trim()
                 ? `Nothing matching “${query.trim()}” in the edit.`
                 : "No stories yet."}
@@ -197,7 +197,7 @@ export default function StoriesContent({
             {query.trim() && (
               <button
                 onClick={() => setQuery("")}
-                className="text-[11px] text-foreground/40 hover:text-foreground/70 underline transition-colors"
+                className="text-[11px] text-foreground/60 hover:text-foreground/70 underline transition-colors"
               >
                 Clear search
               </button>
@@ -219,15 +219,15 @@ export default function StoriesContent({
                   )}
                 </div>
                 {story.mood && (
-                  <p className="text-[10px] text-foreground/40 mb-1.5">
+                  <p className="text-[10px] text-foreground/60 mb-1.5">
                     {story.mood}
                   </p>
                 )}
-                <h3 className="text-[12px] tracking-[0.04em] uppercase leading-[1.35] text-foreground group-hover:text-foreground/60 transition-colors duration-500" itemProp="headline">
+                <h3 className="text-[12px] tracking-[0.04em] uppercase leading-[1.35] text-foreground group-hover:text-foreground/70 transition-colors duration-500" itemProp="headline">
                   {story.title}
                 </h3>
                 {(story.subtitle || dek(story.excerpt)) && (
-                  <p className="text-[11.5px] text-foreground/45 leading-[1.5] mt-1 line-clamp-2" itemProp="description">
+                  <p className="text-[11.5px] text-foreground/60 leading-[1.5] mt-1 line-clamp-2" itemProp="description">
                     {story.subtitle || dek(story.excerpt)}
                   </p>
                 )}
@@ -243,7 +243,7 @@ export default function StoriesContent({
             <button
               onClick={() => goToPage(currentPage - 1)}
               disabled={currentPage === 1}
-              className="px-3 py-2 text-[11px] text-foreground/35 hover:text-foreground disabled:opacity-20 transition-colors"
+              className="px-3 py-2 text-[11px] text-foreground/60 hover:text-foreground disabled:opacity-20 transition-colors"
             >
               ←
             </button>
@@ -271,7 +271,7 @@ export default function StoriesContent({
                     className={`min-w-[32px] py-2 text-[11px] tabular-nums transition-colors ${
                       currentPage === item
                         ? "text-[#8F3A24] font-medium"
-                        : "text-foreground/30 hover:text-foreground/60"
+                        : "text-foreground/60 hover:text-foreground/70"
                     }`}
                     aria-current={currentPage === item ? "page" : undefined}
                   >
@@ -282,7 +282,7 @@ export default function StoriesContent({
             <button
               onClick={() => goToPage(currentPage + 1)}
               disabled={currentPage === totalPages}
-              className="px-3 py-2 text-[11px] text-foreground/35 hover:text-foreground disabled:opacity-20 transition-colors"
+              className="px-3 py-2 text-[11px] text-foreground/60 hover:text-foreground disabled:opacity-20 transition-colors"
             >
               →
             </button>
@@ -295,7 +295,7 @@ export default function StoriesContent({
           this page linked to them before.
           ──────────────────────────────────────────────────────────── */}
       <section className="px-8 md:px-10 lg:px-14 py-12 border-t border-foreground/[0.08]">
-        <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/35 mb-6">
+        <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-6">
           Browse by category
         </p>
         <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-10 lg:gap-x-14">
@@ -312,7 +312,7 @@ export default function StoriesContent({
                   <span className="text-sm text-foreground/75 group-hover:text-foreground transition-colors">
                     {c.label}
                   </span>
-                  <span className="text-[10px] tabular-nums text-foreground/25 group-hover:text-foreground/50 transition-colors">
+                  <span className="text-[10px] tabular-nums text-foreground/25 group-hover:text-foreground/70 transition-colors">
                     {categoryCounts[c.label]}
                   </span>
                 </Link>
@@ -326,10 +326,10 @@ export default function StoriesContent({
           so crawlers don't depend on the client-side paginated grid.
           ──────────────────────────────────────────────────────────── */}
       <section className="px-8 md:px-10 lg:px-14 py-14 border-t border-foreground/[0.08]">
-        <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/35 mb-3">
+        <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-3">
           All stories, by category
         </p>
-        <p className="text-[12.5px] text-foreground/45 max-w-2xl leading-relaxed mb-10">
+        <p className="text-[12.5px] text-foreground/60 max-w-2xl leading-relaxed mb-10">
           Every essay in the edit, listed in full. The grid above paginates — this index doesn't.
         </p>
         <div className="space-y-12">
@@ -350,7 +350,7 @@ export default function StoriesContent({
                     <span className="text-sm tracking-[0.04em] text-foreground group-hover:text-foreground/70 transition-colors">
                       {c.label}
                     </span>
-                    <span className="text-[10px] tabular-nums text-foreground/30 group-hover:text-foreground/50 transition-colors">
+                    <span className="text-[10px] tabular-nums text-foreground/60 group-hover:text-foreground/70 transition-colors">
                       {inCat.length}
                     </span>
                   </Link>
@@ -359,7 +359,7 @@ export default function StoriesContent({
                       <li key={s.slug}>
                         <Link
                           href={`/stories/${s.slug}`}
-                          className="block text-[13px] text-foreground/55 hover:text-foreground py-1 transition-colors"
+                          className="block text-[13px] text-foreground/70 hover:text-foreground py-1 transition-colors"
                         >
                           {s.title}
                         </Link>
@@ -374,7 +374,7 @@ export default function StoriesContent({
 
       {/* ── SEO paragraph ────────────────────────────────────────────── */}
       <section className="px-8 md:px-10 lg:px-14 pb-16 border-t border-foreground/[0.08] pt-14">
-        <p className="text-[12.5px] text-foreground/35 leading-[1.7] max-w-2xl">
+        <p className="text-[12.5px] text-foreground/60 leading-[1.7] max-w-2xl">
           Cultural essays, artisan profiles, and deep-cuts from life in Morocco.
         </p>
       </section>
