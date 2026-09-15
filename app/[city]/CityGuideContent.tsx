@@ -182,7 +182,7 @@ const CITY_DATA: Record<string, {
 
 function WeatherLine({ bestMonths, climate }: { bestMonths: string; climate: string }) {
   return (
-    <div className="flex items-center gap-3 text-[10px] tracking-[0.2em] uppercase text-foreground/40">
+    <div className="flex items-center gap-3 text-[10px] tracking-[0.2em] uppercase text-foreground/60">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <circle cx="12" cy="12" r="4" />
         <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
@@ -198,7 +198,7 @@ function WeatherLine({ bestMonths, climate }: { bestMonths: string; climate: str
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/35 mb-6">
+    <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-6">
       {children}
     </p>
   );
@@ -363,7 +363,7 @@ export default function CityGuideContent({
                   )}
                 </div>
                 {img.caption && (
-                  <figcaption className="text-[11px] text-foreground/45 mt-2.5 leading-[1.45]">
+                  <figcaption className="text-[11px] text-foreground/60 mt-2.5 leading-[1.45]">
                     {img.caption}
                   </figcaption>
                 )}
@@ -406,25 +406,25 @@ export default function CityGuideContent({
                     </span>
                     <div className="flex-1 min-w-0">
                       {place.category && (
-                        <p className="text-[10px] tracking-[0.15em] uppercase text-foreground/35 mb-1">
+                        <p className="text-[10px] tracking-[0.15em] uppercase text-foreground/60 mb-1">
                           {place.category}
                         </p>
                       )}
-                      <h3 className="font-serif text-base group-hover:text-foreground/60 transition-colors">
+                      <h3 className="font-serif text-base group-hover:text-foreground/70 transition-colors">
                         {place.title}
                       </h3>
                       {place.excerpt && (
-                        <p className="text-[12px] text-foreground/50 mt-1 leading-relaxed line-clamp-2">
+                        <p className="text-[12px] text-foreground/70 mt-1 leading-relaxed line-clamp-2">
                           {place.excerpt}
                         </p>
                       )}
                     </div>
-                    <span className="text-foreground/20 group-hover:text-foreground/60 transition-colors text-xs mt-1">→</span>
+                    <span className="text-foreground/20 group-hover:text-foreground/70 transition-colors text-xs mt-1">→</span>
                   </Link>
                 ))}
               </div>
             ) : (
-              <p className="text-sm text-foreground/30">
+              <p className="text-sm text-foreground/60">
                 Places being added — check back soon.
               </p>
             )}
@@ -433,7 +433,7 @@ export default function CityGuideContent({
               <div className="mt-8">
                 <Link
                   href={`/places?destination=${citySlug}`}
-                  className="text-[10px] tracking-[0.2em] uppercase text-foreground/40 hover:text-foreground transition-colors"
+                  className="text-[10px] tracking-[0.2em] uppercase text-foreground/60 hover:text-foreground transition-colors"
                 >
                   All places in {destination.title} →
                 </Link>
@@ -464,15 +464,15 @@ export default function CityGuideContent({
                     )}
                   </div>
                   {story.category && (
-                    <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/30 mb-2">
+                    <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/60 mb-2">
                       {story.category}
                     </p>
                   )}
-                  <h3 className="font-serif text-xl mb-2 group-hover:text-foreground/60 transition-colors">
+                  <h3 className="font-serif text-xl mb-2 group-hover:text-foreground/70 transition-colors">
                     {story.title}
                   </h3>
                   {story.excerpt && (
-                    <p className="text-sm text-foreground/50 leading-relaxed line-clamp-2">
+                    <p className="text-sm text-foreground/70 leading-relaxed line-clamp-2">
                       {story.excerpt}
                     </p>
                   )}
@@ -485,7 +485,7 @@ export default function CityGuideContent({
             <div className="mt-14 text-center">
               <Link
                 href={`/stories?city=${citySlug}`}
-                className="text-[10px] tracking-[0.2em] uppercase text-foreground/40 hover:text-foreground transition-colors"
+                className="text-[10px] tracking-[0.2em] uppercase text-foreground/60 hover:text-foreground transition-colors"
               >
                 More stories →
               </Link>
@@ -516,21 +516,21 @@ export default function CityGuideContent({
                   </div>
                   <div className="flex items-center gap-3 mb-2">
                     {journey.duration_days ? (
-                      <span className="text-[10px] tracking-[0.2em] uppercase text-foreground/35">
+                      <span className="text-[10px] tracking-[0.2em] uppercase text-foreground/60">
                         {journey.duration_days}d
                       </span>
                     ) : null}
                     {journey.category && (
-                      <span className="text-[10px] tracking-[0.2em] uppercase text-foreground/35">
+                      <span className="text-[10px] tracking-[0.2em] uppercase text-foreground/60">
                         {journey.category}
                       </span>
                     )}
                   </div>
-                  <h3 className="font-serif text-xl mb-2 group-hover:text-foreground/60 transition-colors">
+                  <h3 className="font-serif text-xl mb-2 group-hover:text-foreground/70 transition-colors">
                     {journey.title}
                   </h3>
                   {(journey.short_description || journey.arc_description) && (
-                    <p className="text-sm text-foreground/50 leading-relaxed line-clamp-2">
+                    <p className="text-sm text-foreground/70 leading-relaxed line-clamp-2">
                       {journey.short_description || journey.arc_description}
                     </p>
                   )}
@@ -543,7 +543,7 @@ export default function CityGuideContent({
             <div className="mt-14 text-center">
               <Link
                 href="/journeys"
-                className="text-[10px] tracking-[0.2em] uppercase text-foreground/40 hover:text-foreground transition-colors"
+                className="text-[10px] tracking-[0.2em] uppercase text-foreground/60 hover:text-foreground transition-colors"
               >
                 All journeys →
               </Link>
@@ -556,7 +556,7 @@ export default function CityGuideContent({
       {connectingJourneys.length > 0 && (
         <section className="px-8 md:px-10 lg:px-14 pb-14 border-t border-foreground/[0.08] pt-14">
           <div className="mb-12">
-            <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/35 mb-2">
+            <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/60 mb-2">
               You might also consider
             </p>
             <p className="font-serif text-2xl md:text-3xl text-foreground/70">
@@ -589,13 +589,13 @@ export default function CityGuideContent({
                     {/* Route line */}
                     {otherDests.length > 0 && (
                       <div className="flex items-center gap-1.5 mb-3 flex-wrap">
-                        <span className="text-[9px] tracking-[0.2em] uppercase text-foreground/30">
+                        <span className="text-[9px] tracking-[0.2em] uppercase text-foreground/60">
                           {destination.title}
                         </span>
                         {otherDests.map((dest: string) => (
                           <span key={dest} className="flex items-center gap-1.5">
                             <span className="text-foreground/15 text-[9px]">→</span>
-                            <span className="text-[9px] tracking-[0.2em] uppercase text-foreground/30 capitalize">
+                            <span className="text-[9px] tracking-[0.2em] uppercase text-foreground/60 capitalize">
                               {dest.replace(/-/g, " ")}
                             </span>
                           </span>
@@ -605,22 +605,22 @@ export default function CityGuideContent({
 
                     <div className="flex items-center gap-3 mb-2">
                       {journey.duration_days ? (
-                        <span className="text-[10px] tracking-[0.2em] uppercase text-foreground/35">
+                        <span className="text-[10px] tracking-[0.2em] uppercase text-foreground/60">
                           {journey.duration_days}d
                         </span>
                       ) : null}
                       {journey.category && (
-                        <span className="text-[10px] tracking-[0.2em] uppercase text-foreground/35">
+                        <span className="text-[10px] tracking-[0.2em] uppercase text-foreground/60">
                           {journey.category}
                         </span>
                       )}
                     </div>
 
-                    <h3 className="font-serif text-xl mb-2 group-hover:text-foreground/60 transition-colors">
+                    <h3 className="font-serif text-xl mb-2 group-hover:text-foreground/70 transition-colors">
                       {journey.title}
                     </h3>
                     {(journey.short_description || journey.arc_description) && (
-                      <p className="text-sm text-foreground/50 leading-relaxed line-clamp-2">
+                      <p className="text-sm text-foreground/70 leading-relaxed line-clamp-2">
                         {journey.short_description || journey.arc_description}
                       </p>
                     )}
@@ -642,58 +642,58 @@ export default function CityGuideContent({
               <h2 className="font-serif text-2xl md:text-3xl mb-3">
                 {destination.title} is a host city
               </h2>
-              <p className="text-sm text-foreground/50 leading-relaxed mb-10">
+              <p className="text-sm text-foreground/70 leading-relaxed mb-10">
                 Morocco will co-host the 2030 FIFA World Cup alongside Spain and Portugal — the first World Cup to span three continents. Six Moroccan cities will host matches, with {destination.title} among them.
               </p>
 
               <div className="border border-foreground/[0.12] divide-y divide-foreground/[0.08]">
                 <div className="flex items-start gap-6 p-5 md:p-6">
                   <div className="flex-shrink-0">
-                    <svg className="w-5 h-5 text-foreground/30 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                    <svg className="w-5 h-5 text-foreground/60 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                       <path d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5a17.92 17.92 0 01-8.716-2.247m0 0A9.015 9.015 0 003 12c0-1.605.42-3.113 1.157-4.418" />
                     </svg>
                   </div>
                   <div>
-                    <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/30 mb-1">Stadium</p>
+                    <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/60 mb-1">Stadium</p>
                     <p className="font-serif text-lg">{wc.stadium}</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-6 p-5 md:p-6">
                   <div className="flex-shrink-0">
-                    <svg className="w-5 h-5 text-foreground/30 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                    <svg className="w-5 h-5 text-foreground/60 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                       <path d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
                     </svg>
                   </div>
                   <div>
-                    <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/30 mb-1">Capacity</p>
+                    <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/60 mb-1">Capacity</p>
                     <p className="font-serif text-lg">{wc.capacity}</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-6 p-5 md:p-6">
                   <div className="flex-shrink-0">
-                    <svg className="w-5 h-5 text-foreground/30 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                    <svg className="w-5 h-5 text-foreground/60 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                       <path d="M11.42 15.17l-5.58-3.36a.75.75 0 010-1.08l5.58-3.36a.75.75 0 011.16.63v6.7a.75.75 0 01-1.16.63z" />
                       <path d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5m8.25 3v6.75m0 0l-3-3m3 3l3-3M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
                     </svg>
                   </div>
                   <div>
-                    <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/30 mb-1">Status</p>
+                    <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/60 mb-1">Status</p>
                     <p className="text-sm text-foreground/70">{wc.status}</p>
                   </div>
                 </div>
               </div>
 
-              <p className="text-sm text-foreground/50 leading-relaxed mt-6">
+              <p className="text-sm text-foreground/70 leading-relaxed mt-6">
                 {wc.note}
               </p>
 
-              <p className="text-sm text-foreground/40 leading-relaxed mt-6">
+              <p className="text-sm text-foreground/60 leading-relaxed mt-6">
                 Morocco is investing over $1.4 billion across its six World Cup venues. The high-speed rail network — already connecting Tangier to Casablanca — is planned to extend south to Marrakech and Agadir before 2030.
               </p>
 
               <Link
                 href="/morocco-world-cup-2030"
-                className="inline-block mt-6 text-[10px] tracking-[0.15em] uppercase text-foreground/30 hover:text-foreground/60 transition-colors border-b border-foreground/15 pb-1"
+                className="inline-block mt-6 text-[10px] tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground/70 transition-colors border-b border-foreground/15 pb-1"
               >
                 Interactive stadium &amp; infrastructure map &rarr;
               </Link>
@@ -711,13 +711,13 @@ export default function CityGuideContent({
       {TRIP_FUNNEL_PUBLIC && (
       <section className="px-8 md:px-10 lg:px-14 py-14 border-t border-foreground/[0.08]">
         <div className="max-w-xl">
-          <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/30 mb-4">
+          <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/60 mb-4">
             Plan your visit
           </p>
           <h2 className="font-serif text-3xl md:text-4xl mb-6">
             Coming to {destination.title}?
           </h2>
-          <p className="text-sm text-foreground/50 leading-relaxed mb-8">
+          <p className="text-sm text-foreground/70 leading-relaxed mb-8">
             Every journey we design includes private guiding, accommodation chosen for character rather than category, and the kind of access that takes years in Morocco to arrange.
           </p>
           <Link
