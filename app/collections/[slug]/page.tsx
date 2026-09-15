@@ -86,7 +86,7 @@ export default async function CollectionPage({
             className={`text-[10px] tracking-[0.25em] uppercase mb-6 inline-block transition-colors ${
               heroImage
                 ? "text-white/60 hover:text-white"
-                : "text-foreground/40 hover:text-foreground/70"
+                : "text-foreground/60 hover:text-foreground/70"
             }`}
           >
             Collections
@@ -100,7 +100,7 @@ export default async function CollectionPage({
           </h1>
           <p
             className={`text-lg md:text-xl max-w-2xl leading-[1.5] ${
-              heroImage ? "text-white/75" : "text-foreground/60"
+              heroImage ? "text-white/75" : "text-foreground/70"
             }`}
           >
             {collection.dek}
@@ -120,7 +120,7 @@ export default async function CollectionPage({
       {/* ── Stories ──────────────────────────────────────────────── */}
       {stories.length > 0 && (
         <section className="px-8 md:px-10 lg:px-14 py-16 md:py-24">
-          <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/30 mb-10">
+          <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/60 mb-10">
             Stories
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-12">
@@ -136,11 +136,11 @@ export default async function CollectionPage({
                       />
                     )}
                   </div>
-                  <h3 className="text-[12px] tracking-[0.04em] uppercase leading-[1.35] text-foreground group-hover:text-foreground/60 transition-colors duration-500">
+                  <h3 className="text-[12px] tracking-[0.04em] uppercase leading-[1.35] text-foreground group-hover:text-foreground/70 transition-colors duration-500">
                     {story.title}
                   </h3>
                   {story.subtitle && (
-                    <p className="text-[11.5px] text-foreground/45 leading-[1.5] mt-1 line-clamp-2">
+                    <p className="text-[11.5px] text-foreground/60 leading-[1.5] mt-1 line-clamp-2">
                       {story.subtitle}
                     </p>
                   )}
@@ -154,7 +154,7 @@ export default async function CollectionPage({
       {/* ── Places ───────────────────────────────────────────────── */}
       {places.length > 0 && (
         <section className="px-8 md:px-10 lg:px-14 py-16 md:py-24 border-t border-foreground/[0.08]">
-          <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/30 mb-10">
+          <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/60 mb-10">
             Places
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-12">
@@ -170,11 +170,11 @@ export default async function CollectionPage({
                       />
                     )}
                   </div>
-                  <h3 className="text-[12px] tracking-[0.04em] uppercase leading-[1.35] text-foreground group-hover:text-foreground/60 transition-colors duration-500">
+                  <h3 className="text-[12px] tracking-[0.04em] uppercase leading-[1.35] text-foreground group-hover:text-foreground/70 transition-colors duration-500">
                     {place.title}
                   </h3>
                   {place.excerpt && (
-                    <p className="text-[11.5px] text-foreground/45 leading-[1.5] mt-1 line-clamp-2">
+                    <p className="text-[11.5px] text-foreground/60 leading-[1.5] mt-1 line-clamp-2">
                       {place.excerpt}
                     </p>
                   )}
@@ -189,7 +189,7 @@ export default async function CollectionPage({
       <section className="px-8 md:px-10 lg:px-14 py-14 border-t border-foreground/[0.08]">
         <Link
           href="/collections"
-          className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground/70 transition-colors"
+          className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground/70 transition-colors"
         >
           ← All collections
         </Link>
