@@ -50,19 +50,19 @@ export default function StoryCategoryContent({
       <section className="px-8 md:px-16 lg:px-20 pt-24 pb-16 border-b border-border">
         <Link
           href="/stories"
-          className="text-[9px] tracking-[0.3em] uppercase font-mono text-foreground/30 hover:text-foreground transition-colors mb-6 inline-block"
+          className="text-[9px] tracking-[0.3em] uppercase font-mono text-foreground/60 hover:text-foreground transition-colors mb-6 inline-block"
         >
           ← All Stories
         </Link>
         <div className="flex items-end justify-between gap-8">
           <div>
-            <p className="text-[10px] tracking-[0.35em] uppercase font-mono text-foreground/30 mb-3">
+            <p className="text-[10px] tracking-[0.35em] uppercase font-mono text-foreground/60 mb-3">
               {stories.length} {stories.length === 1 ? "story" : "stories"}
             </p>
             <h1 className="font-serif text-5xl md:text-7xl">{categoryLabel}</h1>
           </div>
         </div>
-        <p className="mt-6 text-base text-foreground/60 leading-relaxed max-w-2xl">
+        <p className="mt-6 text-base text-foreground/70 leading-relaxed max-w-2xl">
           {description}
         </p>
       </section>
@@ -70,7 +70,7 @@ export default function StoryCategoryContent({
       {/* ── Stories grid ──────────────────────────────────────────────────── */}
       <section className="px-8 md:px-16 lg:px-20 py-16 md:py-20">
         {sorted.length === 0 ? (
-          <p className="text-sm text-foreground/40">No stories in this category yet.</p>
+          <p className="text-sm text-foreground/60">No stories in this category yet.</p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
             {sorted.map((story, i) => (
@@ -90,27 +90,27 @@ export default function StoryCategoryContent({
                   {/* Meta */}
                   <div className="flex items-center gap-3 mb-2">
                     {story.year && (
-                      <span className="text-[9px] tracking-[0.2em] uppercase font-mono text-foreground/30">
+                      <span className="text-[9px] tracking-[0.2em] uppercase font-mono text-foreground/60">
                         {story.year}
                       </span>
                     )}
                     {story.read_time && (
-                      <span className="text-[9px] tracking-[0.2em] uppercase font-mono text-foreground/30">
+                      <span className="text-[9px] tracking-[0.2em] uppercase font-mono text-foreground/60">
                         {story.read_time} min
                       </span>
                     )}
                   </div>
 
-                  <h2 className="font-serif text-xl mb-2 group-hover:text-foreground/60 transition-colors leading-snug">
+                  <h2 className="font-serif text-xl mb-2 group-hover:text-foreground/70 transition-colors leading-snug">
                     {story.title}
                   </h2>
                   {story.subtitle && (
-                    <p className="text-sm text-foreground/50 mb-2 italic">
+                    <p className="text-sm text-foreground/70 mb-2 italic">
                       {story.subtitle}
                     </p>
                   )}
                   {story.excerpt && (
-                    <p className="text-sm text-foreground/60 leading-relaxed line-clamp-2">
+                    <p className="text-sm text-foreground/70 leading-relaxed line-clamp-2">
                       {story.excerpt}
                     </p>
                   )}
@@ -123,7 +123,7 @@ export default function StoryCategoryContent({
 
       {/* ── Other categories ──────────────────────────────────────────────── */}
       <section className="px-8 md:px-16 lg:px-20 py-12 border-t border-border">
-        <p className="text-[10px] tracking-[0.3em] uppercase font-mono text-foreground/30 mb-6">
+        <p className="text-[10px] tracking-[0.3em] uppercase font-mono text-foreground/60 mb-6">
           Other categories
         </p>
         <div className="flex flex-wrap gap-x-6 gap-y-3">
@@ -131,7 +131,7 @@ export default function StoryCategoryContent({
             <Link
               key={slug}
               href={`/stories/category/${slug}`}
-              className="font-serif text-lg text-foreground/40 hover:text-foreground transition-colors"
+              className="font-serif text-lg text-foreground/60 hover:text-foreground transition-colors"
             >
               {cat.label}
             </Link>
