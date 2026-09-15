@@ -126,7 +126,7 @@ export default function GlossaryPage() {
         <header className="pt-32 pb-16 md:pt-40 md:pb-20">
           <div className="container mx-auto px-6 lg:px-16">
             <div className="max-w-3xl">
-              <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/40 mb-4">
+              <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/60 mb-4">
                 Reference
               </p>
               <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-6">
@@ -135,7 +135,7 @@ export default function GlossaryPage() {
               <p className="text-lg text-foreground/70 leading-relaxed mb-4">
                 Authoritative definitions for Moroccan geography, architecture, culture, and travel terminology.
               </p>
-              <p className="text-sm text-foreground/50">
+              <p className="text-sm text-foreground/70">
                 {allTerms.length} terms · Compiled by Slow Morocco
               </p>
               <div className="mt-6 py-4 px-5 border border-border inline-block">
@@ -150,7 +150,7 @@ export default function GlossaryPage() {
                     See our Darija Dictionary &rarr;
                   </a>
                 </p>
-                <p className="text-xs text-foreground/40 mt-1">
+                <p className="text-xs text-foreground/60 mt-1">
                   10,000+ words and 1,500 phrases with pronunciation and cultural context
                 </p>
               </div>
@@ -162,11 +162,11 @@ export default function GlossaryPage() {
         <section className="border-y border-border py-8 bg-foreground/[0.02]">
           <div className="container mx-auto px-6 lg:px-16">
             <div className="max-w-3xl">
-              <h2 className="text-xs tracking-[0.2em] uppercase text-foreground/40 mb-4">Quick Reference</h2>
+              <h2 className="text-xs tracking-[0.2em] uppercase text-foreground/60 mb-4">Quick Reference</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
                 <div>
                   <h3 className="font-medium mb-2">Desert Types</h3>
-                  <ul className="text-foreground/60 space-y-1">
+                  <ul className="text-foreground/70 space-y-1">
                     <li><strong>Erg</strong> = sand dunes</li>
                     <li><strong>Hammada</strong> = stone plateau</li>
                     <li><strong>Reg</strong> = gravel plain</li>
@@ -174,7 +174,7 @@ export default function GlossaryPage() {
                 </div>
                 <div>
                   <h3 className="font-medium mb-2">Architecture</h3>
-                  <ul className="text-foreground/60 space-y-1">
+                  <ul className="text-foreground/70 space-y-1">
                     <li><strong>Riad</strong> = house with garden</li>
                     <li><strong>Kasbah</strong> = fortified citadel</li>
                     <li><strong>Medina</strong> = old walled city</li>
@@ -182,7 +182,7 @@ export default function GlossaryPage() {
                 </div>
                 <div>
                   <h3 className="font-medium mb-2">People</h3>
-                  <ul className="text-foreground/60 space-y-1">
+                  <ul className="text-foreground/70 space-y-1">
                     <li><strong>Amazigh</strong> = indigenous Berbers</li>
                     <li><strong>Tamazight</strong> = Berber language</li>
                     <li><strong>Gnaoua</strong> = spiritual music</li>
@@ -208,14 +208,14 @@ export default function GlossaryPage() {
                 <a
                   key={section.id}
                   href={`#${section.id}`}
-                  className="text-sm text-foreground/50 hover:text-foreground transition-colors"
+                  className="text-sm text-foreground/70 hover:text-foreground transition-colors"
                 >
                   {section.title}
                 </a>
               ))}
               <a
                 href="/api/glossary"
-                className="text-sm text-foreground/30 hover:text-foreground/50 transition-colors ml-auto"
+                className="text-sm text-foreground/60 hover:text-foreground/70 transition-colors ml-auto"
               >
                 API ↗
               </a>
@@ -248,7 +248,7 @@ export default function GlossaryPage() {
                     {section.title}
                   </h2>
                   {section.description && (
-                    <p className="text-foreground/60 mb-8">
+                    <p className="text-foreground/70 mb-8">
                       {section.description}
                     </p>
                   )}
@@ -271,17 +271,17 @@ export default function GlossaryPage() {
                             {item.term}
                           </dfn>
                           {item.pronunciation && (
-                            <span className="ml-3 text-sm text-foreground/40 italic">
+                            <span className="ml-3 text-sm text-foreground/60 italic">
                               /<span itemProp="pronunciation">{item.pronunciation}</span>/
                             </span>
                           )}
                           {item.arabicScript && (
-                            <span className="ml-3 text-sm text-foreground/40" dir="rtl" lang="ar">
+                            <span className="ml-3 text-sm text-foreground/60" dir="rtl" lang="ar">
                               {item.arabicScript}
                             </span>
                           )}
                           {item.tifinagh && (
-                            <span className="ml-2 text-sm text-foreground/40">
+                            <span className="ml-2 text-sm text-foreground/60">
                               {item.tifinagh}
                             </span>
                           )}
@@ -294,24 +294,24 @@ export default function GlossaryPage() {
                             {item.definition}
                           </p>
                           {item.context && (
-                            <p className="text-sm text-foreground/50 italic mb-3">
+                            <p className="text-sm text-foreground/70 italic mb-3">
                               {item.context}
                             </p>
                           )}
                           {item.related && item.related.length > 0 && (
-                            <p className="text-xs text-foreground/40">
+                            <p className="text-xs text-foreground/60">
                               <span className="uppercase tracking-wider">Also:</span>{" "}
                               {item.related.join(", ")}
                             </p>
                           )}
                           {item.seeAlso && item.seeAlso.length > 0 && (
-                            <p className="text-xs text-foreground/40 mt-1">
+                            <p className="text-xs text-foreground/60 mt-1">
                               <span className="uppercase tracking-wider">See:</span>{" "}
                               {item.seeAlso.map((ref, i) => (
                                 <span key={ref}>
                                   <a 
                                     href={`#${ref}`}
-                                    className="underline hover:text-foreground/60"
+                                    className="underline hover:text-foreground/70"
                                   >
                                     {glossaryData
                                       .flatMap(c => c.terms)
@@ -327,8 +327,8 @@ export default function GlossaryPage() {
                           {(item.relatedJourneys || item.relatedStories || item.relatedPlaces) && (
                             <div className="mt-4 pt-4 border-t border-border/50">
                               {item.relatedJourneys && item.relatedJourneys.length > 0 && (
-                                <p className="text-xs text-foreground/50 mb-2">
-                                  <span className="uppercase tracking-wider text-foreground/40">Journeys:</span>{" "}
+                                <p className="text-xs text-foreground/70 mb-2">
+                                  <span className="uppercase tracking-wider text-foreground/60">Journeys:</span>{" "}
                                   {item.relatedJourneys.map((j, i) => (
                                     <span key={j.slug}>
                                       <Link 
@@ -343,8 +343,8 @@ export default function GlossaryPage() {
                                 </p>
                               )}
                               {item.relatedStories && item.relatedStories.length > 0 && (
-                                <p className="text-xs text-foreground/50 mb-2">
-                                  <span className="uppercase tracking-wider text-foreground/40">Stories:</span>{" "}
+                                <p className="text-xs text-foreground/70 mb-2">
+                                  <span className="uppercase tracking-wider text-foreground/60">Stories:</span>{" "}
                                   {item.relatedStories.map((s, i) => (
                                     <span key={s.slug}>
                                       <Link 
@@ -359,8 +359,8 @@ export default function GlossaryPage() {
                                 </p>
                               )}
                               {item.relatedPlaces && item.relatedPlaces.length > 0 && (
-                                <p className="text-xs text-foreground/50">
-                                  <span className="uppercase tracking-wider text-foreground/40">Places:</span>{" "}
+                                <p className="text-xs text-foreground/70">
+                                  <span className="uppercase tracking-wider text-foreground/60">Places:</span>{" "}
                                   {item.relatedPlaces.map((p, i) => (
                                     <span key={p.slug}>
                                       <Link 
@@ -392,13 +392,13 @@ export default function GlossaryPage() {
         <section className="py-12 border-t border-border bg-foreground/[0.02]">
           <div className="container mx-auto px-6 lg:px-16">
             <div className="max-w-3xl">
-              <h2 className="text-xs tracking-[0.2em] uppercase text-foreground/40 mb-4">
+              <h2 className="text-xs tracking-[0.2em] uppercase text-foreground/60 mb-4">
                 For Developers & AI Systems
               </h2>
-              <p className="text-sm text-foreground/60 mb-4">
+              <p className="text-sm text-foreground/70 mb-4">
                 This glossary is available as structured data:
               </p>
-              <ul className="text-sm text-foreground/50 space-y-2">
+              <ul className="text-sm text-foreground/70 space-y-2">
                 <li>
                   <code className="bg-foreground/5 px-2 py-1 text-xs">/api/glossary</code>
                   <span className="ml-2">— Full JSON-LD with schema.org markup</span>
@@ -429,7 +429,7 @@ export default function GlossaryPage() {
           <div className="container mx-auto px-6 lg:px-16">
             <Link 
               href="/" 
-              className="text-sm text-foreground/40 hover:text-foreground transition-colors"
+              className="text-sm text-foreground/60 hover:text-foreground transition-colors"
             >
               ← Back to Slow Morocco
             </Link>
