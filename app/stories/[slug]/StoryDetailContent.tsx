@@ -177,7 +177,7 @@ export default function StoryDetailContent({
           ══════════════════════════════════════════════════════════════ */}
       <div className="border-b border-foreground/10">
         <div className="max-w-3xl mx-auto px-8 md:px-12 py-5 flex items-center justify-between">
-          <div className="flex items-center gap-4 text-[11px] tracking-[0.12em] uppercase text-foreground/55">
+          <div className="flex items-center gap-4 text-[11px] tracking-[0.12em] uppercase text-foreground/70">
             {story.category && (
               <Link
                 href={`/stories/category/${story.category.toLowerCase()}`}
@@ -233,12 +233,12 @@ export default function StoryDetailContent({
         {/* Journey bridge */}
         {JOURNEY_CROSSLINKS && story.journeyBridge && (
           <div className="my-12 py-8 border-t border-b border-foreground/10">
-            <p className="text-foreground/60 italic font-serif text-lg leading-relaxed">
+            <p className="text-foreground/70 italic font-serif text-lg leading-relaxed">
               {story.journeyBridge}
             </p>
             <Link
               href="/plan-your-trip"
-              className="inline-block mt-4 text-[10px] tracking-[0.2em] uppercase text-foreground/55 hover:text-foreground/80 transition-colors"
+              className="inline-block mt-4 text-[10px] tracking-[0.2em] uppercase text-foreground/70 hover:text-foreground/80 transition-colors"
             >
               Tell us about your trip →
             </Link>
@@ -257,7 +257,7 @@ export default function StoryDetailContent({
               loading="lazy"
               allow="fullscreen"
             />
-            <p className="text-[11px] text-foreground/50 mt-3 text-center">
+            <p className="text-[11px] text-foreground/70 mt-3 text-center">
               Data and visualisation by Dancing with Lions
             </p>
           </>
@@ -268,13 +268,13 @@ export default function StoryDetailContent({
           <>
             <hr className="border-foreground/10 my-12" />
             <div>
-              <h3 className="text-[10px] tracking-[0.25em] uppercase text-foreground/55 mb-6">
+              <h3 className="text-[10px] tracking-[0.25em] uppercase text-foreground/70 mb-6">
                 The Facts
               </h3>
               <ul className="space-y-3">
                 {facts.map((fact, i) => (
-                  <li key={i} className="flex items-start gap-3 text-sm text-foreground/60 leading-relaxed">
-                    <span className="text-foreground/50 mt-0.5 flex-shrink-0">—</span>
+                  <li key={i} className="flex items-start gap-3 text-sm text-foreground/70 leading-relaxed">
+                    <span className="text-foreground/70 mt-0.5 flex-shrink-0">—</span>
                     <span>{fact}</span>
                   </li>
                 ))}
@@ -290,10 +290,10 @@ export default function StoryDetailContent({
           <>
             <hr className="border-foreground/10 my-12" />
             <div className="mb-10">
-              <h3 className="text-[10px] tracking-[0.25em] uppercase text-foreground/55 mb-4">
+              <h3 className="text-[10px] tracking-[0.25em] uppercase text-foreground/70 mb-4">
                 On the map
               </h3>
-              <p className="text-sm text-foreground/55 leading-relaxed">
+              <p className="text-sm text-foreground/70 leading-relaxed">
                 Every kasbah in the atlas, with its position, is at{" "}
                 <Link
                   href="/places/category/kasbahs"
@@ -305,10 +305,10 @@ export default function StoryDetailContent({
               </p>
             </div>
             <div>
-              <h3 className="text-[10px] tracking-[0.25em] uppercase text-foreground/55 mb-4">
+              <h3 className="text-[10px] tracking-[0.25em] uppercase text-foreground/70 mb-4">
                 In the Archive
               </h3>
-              <p className="text-sm text-foreground/55 leading-relaxed">
+              <p className="text-sm text-foreground/70 leading-relaxed">
                 The fortified architecture in this story — kasbahs, ksour, and
                 the earthen building tradition of the Saharan Maghreb — is
                 documented in depth at the{" "}
@@ -331,12 +331,12 @@ export default function StoryDetailContent({
           <>
             <hr className="border-foreground/10 my-12" />
             <div>
-              <h3 className="text-[10px] tracking-[0.25em] uppercase text-foreground/55 mb-4">
+              <h3 className="text-[10px] tracking-[0.25em] uppercase text-foreground/70 mb-4">
                 Sources
               </h3>
               <ul className="space-y-2">
                 {sources.map((source, i) => (
-                  <li key={i} className="text-sm text-foreground/55 leading-relaxed">{source}</li>
+                  <li key={i} className="text-sm text-foreground/70 leading-relaxed">{source}</li>
                 ))}
               </ul>
             </div>
@@ -346,13 +346,13 @@ export default function StoryDetailContent({
         {/* Further reading */}
         {externalLinks && externalLinks.length > 0 && (
           <div className="mt-8">
-            <h3 className="text-[10px] tracking-[0.25em] uppercase text-foreground/55 mb-4">
+            <h3 className="text-[10px] tracking-[0.25em] uppercase text-foreground/70 mb-4">
               Further Reading
             </h3>
             <div className="flex flex-wrap gap-2">
               {externalLinks.map((link, i) => (
                 <a key={i} href={link.url} target="_blank" rel="noopener noreferrer"
-                  className="text-[11px] tracking-[0.1em] uppercase text-foreground/55 hover:text-foreground/80 border border-foreground/10 hover:border-foreground/25 px-3 py-1.5 transition-colors">
+                  className="text-[11px] tracking-[0.1em] uppercase text-foreground/70 hover:text-foreground/80 border border-foreground/10 hover:border-foreground/25 px-3 py-1.5 transition-colors">
                   {link.label} ↗
                 </a>
               ))}
@@ -363,7 +363,7 @@ export default function StoryDetailContent({
         {/* Footer credits + tags */}
         <hr className="border-foreground/10 my-12" />
         <footer>
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[11px] text-foreground/50 mb-8">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[11px] text-foreground/70 mb-8">
             {story.year && <span>{story.year}</span>}
             <span>© Slow Morocco</span>
           </div>
@@ -374,7 +374,7 @@ export default function StoryDetailContent({
                 <Link
                   key={i}
                   href={`/stories?q=${encodeURIComponent(tag)}`}
-                  className="text-[10px] tracking-[0.12em] uppercase text-foreground/50 hover:text-foreground/70 border border-foreground/10 hover:border-foreground/25 px-3 py-1.5 transition-colors"
+                  className="text-[10px] tracking-[0.12em] uppercase text-foreground/70 hover:text-foreground/70 border border-foreground/10 hover:border-foreground/25 px-3 py-1.5 transition-colors"
                 >
                   {tag}
                 </Link>
@@ -386,16 +386,16 @@ export default function StoryDetailContent({
         {/* Part of these collections */}
         {inCollections.length > 0 && (
           <div className="mt-12 pt-8 border-t border-foreground/[0.08]">
-            <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 mb-4">
+            <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 mb-4">
               Part of {inCollections.length === 1 ? "the collection" : "these collections"}
             </p>
             <div className="space-y-3">
               {inCollections.map((c) => (
                 <Link key={c.slug} href={`/collections/${c.slug}`} className="group block">
-                  <span className="font-serif text-lg text-foreground group-hover:text-foreground/60 transition-colors">
+                  <span className="font-serif text-lg text-foreground group-hover:text-foreground/70 transition-colors">
                     {c.title}
                   </span>
-                  <span className="text-[13.5px] text-foreground/45 leading-[1.5] block mt-0.5">
+                  <span className="text-[13.5px] text-foreground/60 leading-[1.5] block mt-0.5">
                     {c.dek}
                   </span>
                 </Link>
@@ -406,10 +406,10 @@ export default function StoryDetailContent({
 
         {/* Ecosystem: Practical questions on Derb */}
         <div className="mt-12 pt-8 border-t border-foreground/[0.08]">
-          <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 mb-4">Practical questions</p>
+          <p className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 mb-4">Practical questions</p>
           <div className="flex flex-wrap gap-3">
             <a href="https://derb.so" target="_blank" rel="noopener noreferrer"
-               className="text-sm text-foreground/50 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">
+               className="text-sm text-foreground/70 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">
               Derb — Urban Reference for Morocco →
             </a>
           </div>
@@ -426,7 +426,7 @@ export default function StoryDetailContent({
             <div className="pr-8 py-8">
               {prevStory && (
                 <Link href={`/stories/${prevStory.slug}`} className="group block">
-                  <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/50 mb-2">← Previous</p>
+                  <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/70 mb-2">← Previous</p>
                   <p className="font-serif text-base text-foreground/70 group-hover:text-foreground transition-colors duration-300 leading-snug">
                     {prevStory.title}
                   </p>
@@ -436,7 +436,7 @@ export default function StoryDetailContent({
             <div className="pl-8 py-8 text-right">
               {nextStory && (
                 <Link href={`/stories/${nextStory.slug}`} className="group block">
-                  <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/50 mb-2">Next →</p>
+                  <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/70 mb-2">Next →</p>
                   <p className="font-serif text-base text-foreground/70 group-hover:text-foreground transition-colors duration-300 leading-snug">
                     {nextStory.title}
                   </p>
@@ -462,7 +462,7 @@ export default function StoryDetailContent({
         <section className="py-20 md:py-28 border-t border-foreground/[0.08]">
           <div className="px-8 md:px-16 lg:px-20">
             <div className="text-center mb-14 md:mb-16">
-              <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/50 mb-3">
+              <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/70 mb-3">
                 Atlas Entries
               </p>
               <h2 className="font-serif text-2xl md:text-[1.75rem] text-foreground/80">
@@ -485,7 +485,7 @@ export default function StoryDetailContent({
                     )}
                   </div>
                   {p.category && (
-                    <p className="text-[10px] text-foreground/60 mb-1.5">
+                    <p className="text-[10px] text-foreground/70 mb-1.5">
                       {p.category}
                     </p>
                   )}
@@ -506,7 +506,7 @@ export default function StoryDetailContent({
         <section className="bg-[#c8c4b8]/30 py-20 md:py-28">
           <div className="px-8 md:px-16 lg:px-20">
             <div className="text-center mb-14 md:mb-16">
-              <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/60 mb-3">
+              <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/70 mb-3">
                 Keep Reading
               </p>
               <h2 className="font-serif text-2xl md:text-[1.75rem] text-foreground/80">
@@ -529,7 +529,7 @@ export default function StoryDetailContent({
                     )}
                   </div>
                   {s.category && (
-                    <p className="text-[10px] text-foreground/60 mb-1.5">
+                    <p className="text-[10px] text-foreground/70 mb-1.5">
                       {s.category}
                     </p>
                   )}
@@ -548,7 +548,7 @@ export default function StoryDetailContent({
             <div className="text-center mt-12">
               <Link
                 href="/stories"
-                className="text-[11px] tracking-[0.15em] uppercase text-foreground/55 hover:text-foreground/80 transition-colors"
+                className="text-[11px] tracking-[0.15em] uppercase text-foreground/70 hover:text-foreground/80 transition-colors"
               >
                 All stories
               </Link>
@@ -564,7 +564,7 @@ export default function StoryDetailContent({
         <section className="py-20 md:py-28 border-t border-foreground/[0.08]">
           <div className="px-8 md:px-16 lg:px-20">
             <div className="text-center mb-14 md:mb-16">
-              <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/50 mb-3">
+              <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/70 mb-3">
                 Private Journeys
               </p>
               <h2 className="font-serif text-2xl md:text-[1.75rem] text-foreground/80">
@@ -584,7 +584,7 @@ export default function StoryDetailContent({
                       />
                     )}
                   </div>
-                  <p className="text-[10px] text-foreground/60 mb-1.5">
+                  <p className="text-[10px] text-foreground/70 mb-1.5">
                     {journey.duration && journey.duration > 0
                       ? `${journey.duration}-Day Journey`
                       : "Private Journey"}
@@ -599,7 +599,7 @@ export default function StoryDetailContent({
             <div className="text-center mt-12">
               <Link
                 href="/journeys"
-                className="text-[11px] tracking-[0.15em] uppercase text-foreground/55 hover:text-foreground/80 transition-colors"
+                className="text-[11px] tracking-[0.15em] uppercase text-foreground/70 hover:text-foreground/80 transition-colors"
               >
                 All journeys
               </Link>
@@ -615,7 +615,7 @@ export default function StoryDetailContent({
         <section className="py-20 md:py-28 border-t border-foreground/[0.08]">
           <div className="px-8 md:px-16 lg:px-20">
             <div className="text-center mb-14 md:mb-16">
-              <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/50 mb-3">
+              <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/70 mb-3">
                 On the Ground
               </p>
               <h2 className="font-serif text-2xl md:text-[1.75rem] text-foreground/80">
@@ -638,7 +638,7 @@ export default function StoryDetailContent({
                     )}
                   </div>
                   {p.category && (
-                    <p className="text-[10px] text-foreground/60 mb-1.5">
+                    <p className="text-[10px] text-foreground/70 mb-1.5">
                       {p.category}
                     </p>
                   )}
@@ -652,7 +652,7 @@ export default function StoryDetailContent({
             <div className="text-center mt-12">
               <Link
                 href="/places"
-                className="text-[11px] tracking-[0.15em] uppercase text-foreground/55 hover:text-foreground/80 transition-colors"
+                className="text-[11px] tracking-[0.15em] uppercase text-foreground/70 hover:text-foreground/80 transition-colors"
               >
                 Explore places
               </Link>
