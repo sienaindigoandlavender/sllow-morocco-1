@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import JourneyDepositModal from "@/components/JourneyDepositModal";
 import Link from "next/link";
 import { cloudinaryUrl } from "@/lib/cloudinary";
 import { ArrowLeft, ChevronLeft, ChevronRight, Bird } from "lucide-react";
@@ -94,7 +93,7 @@ function applyGlossaryToStrings(node: React.ReactNode): React.ReactNode {
   );
 }
 // How many days are shown in full before the itinerary is gated.
-const FREE_DAYS = 3;
+const FREE_DAYS = 2;
 
 // First sentence (or ~24 words) of a day's narrative — the teaser for gated days.
 function firstLine(text: string): string {
@@ -286,7 +285,6 @@ export default function JourneyDetailContent({
   prevJourney,
   nextJourney,
 }: JourneyDetailContentProps) {
-  const [depositOpen, setDepositOpen] = useState(false);
 
   const tripSchema = (
     <TouristTripSchema
@@ -572,10 +570,16 @@ export default function JourneyDetailContent({
             {itinerary
               .sort((a, b) => a.dayNumber - b.dayNumber)
               .map((day, idx) => {
-                const gated = idx >= FREE_DAYS;
+                // Short trips (3 days or fewer) show in full — nothing to gate.
+                // Longer journeys show FREE_DAYS clear, then blur the rest.
+                const blurred = itinerary.length > 3 && idx >= FREE_DAYS;
                 return (
-                  <div key={day.dayNumber}>
-                    {day.imageUrl && !gated && (
+                  <div
+                    key={day.dayNumber}
+                    className={blurred ? "select-none blur-sm pointer-events-none" : ""}
+                    aria-hidden={blurred}
+                  >
+                    {day.imageUrl && (
                       <DayImage src={day.imageUrl} alt={`Day ${day.dayNumber} - ${day.cityName}`} />
                     )}
 
@@ -587,40 +591,36 @@ export default function JourneyDetailContent({
                       {day.cityName}
                     </h2>
 
-                    {!gated && <DayMeta day={day} />}
+                    <DayMeta day={day} />
 
-                    {gated ? (
-                      <p className="text-foreground/55 leading-relaxed text-lg italic">
-                        {firstLine(day.description)}
-                      </p>
-                    ) : (
-                      <p className="text-foreground/75 leading-relaxed text-lg">
-                        {linkJourneyProse(day.description, journey.slug)}
-                      </p>
-                    )}
+                    <p className="text-foreground/75 leading-relaxed text-lg">
+                      {linkJourneyProse(day.description, journey.slug)}
+                    </p>
                   </div>
                 );
               })}
+          </div>
 
-            {itinerary.length > FREE_DAYS && (
-              <div className="border-t border-foreground/[0.08] pt-14 mt-4 text-center">
+          {itinerary.length > 3 && (
+            <div className="relative -mt-40 pt-40 bg-gradient-to-t from-background via-background to-transparent">
+              <div className="text-center max-w-xl mx-auto pt-10">
                 <p className="font-serif text-2xl md:text-3xl mb-4">
-                  The rest of the journey is written for those who travel it.
+                  The rest is for those who travel it.
                 </p>
-                <p className="text-foreground/70 leading-relaxed text-lg max-w-xl mx-auto mb-8">
-                  The full day-by-day — every road, every night, every reason —
-                  is prepared for you once your journey is confirmed. It is not the
-                  kind of thing we leave lying in the open.
+                <p className="text-foreground/70 leading-relaxed text-lg mb-8">
+                  The full day-by-day is not published. It is prepared for travellers
+                  who begin their journey — a €300 deposit, credited in full toward
+                  the price of the trip.
                 </p>
-                <button
-                  onClick={() => setDepositOpen(true)}
-                  className="inline-block px-8 py-3 border border-foreground/25 text-[13px] tracking-[0.12em] uppercase text-foreground hover:bg-foreground hover:text-background transition-colors"
+                <a
+                  href={`/plan-your-trip?journey=${journey.slug}`}
+                  className="inline-block px-8 py-3 bg-foreground text-background text-[13px] tracking-[0.12em] uppercase hover:opacity-90 transition-opacity"
                 >
                   Begin this journey
-                </button>
+                </a>
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </section>
 
@@ -806,13 +806,6 @@ export default function JourneyDetailContent({
           </div>
         </section>
       )}
-
-      <JourneyDepositModal
-        open={depositOpen}
-        onClose={() => setDepositOpen(false)}
-        journeySlug={journey.slug}
-        journeyTitle={journey.title}
-      />
     </div>
   );
 }
