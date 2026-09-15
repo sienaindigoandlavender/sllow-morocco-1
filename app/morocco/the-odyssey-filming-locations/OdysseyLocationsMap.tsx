@@ -139,7 +139,7 @@ export default function OdysseyLocationsMap({ className = "" }: { className?: st
         className="w-full h-[420px] md:h-[480px] rounded-sm overflow-hidden"
         aria-label="Map of The Odyssey's filming locations in Morocco"
       />
-      <p className="text-[10px] tracking-[0.15em] uppercase text-foreground/30 mt-3">
+      <p className="text-[10px] tracking-[0.15em] uppercase text-foreground/60 mt-3">
         Tap a marker · Aït Benhaddou to the White Dune is a 1,300 km span
       </p>
     </div>

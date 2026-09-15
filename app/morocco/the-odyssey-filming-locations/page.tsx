@@ -32,17 +32,17 @@ export default function OdysseyFilmingLocationsPage() {
       <div className="px-6 md:px-14 pt-20 pb-12 border-b border-foreground/[0.08]">
         <Link
           href="/morocco"
-          className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 hover:text-foreground/60 transition-colors mb-8 block"
+          className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 hover:text-foreground/70 transition-colors mb-8 block"
         >
           ← Morocco
         </Link>
-        <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">
+        <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">
           Morocco on screen
         </p>
         <h1 className="font-serif text-4xl md:text-5xl text-foreground leading-[1.1] mb-6 max-w-2xl">
           Where The Odyssey Was Filmed in Morocco
         </h1>
-        <p className="text-base text-foreground/55 leading-relaxed max-w-xl">
+        <p className="text-base text-foreground/70 leading-relaxed max-w-xl">
           The ksar was already nine hundred years old when the crew arrived to
           burn it down. It has played Troy before — and Jerusalem, and Yunkai,
           and the arena town in Gladiator — and it will be someone else&apos;s
@@ -57,7 +57,7 @@ export default function OdysseyFilmingLocationsPage() {
 
       <div className="px-6 md:px-14 py-16 max-w-3xl space-y-12">
         <div>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">
             The aura-farming shot was filmed at Aït Benhaddou
           </p>
           <p className="text-sm text-foreground/65 leading-relaxed mb-4">
@@ -91,7 +91,7 @@ export default function OdysseyFilmingLocationsPage() {
         </div>
 
         <div>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">
             Essaouira has been the Mediterranean since 1949
           </p>
           <p className="text-sm text-foreground/65 leading-relaxed mb-4">
@@ -119,7 +119,7 @@ export default function OdysseyFilmingLocationsPage() {
         </div>
 
         <div>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">
             Charlize Theron&apos;s Calypso is a dune near Dakhla
           </p>
           <p className="text-sm text-foreground/65 leading-relaxed mb-4">
@@ -152,7 +152,7 @@ export default function OdysseyFilmingLocationsPage() {
         </div>
 
         <div>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">
             The lotus-eaters were always in North Africa
           </p>
           <p className="text-sm text-foreground/65 leading-relaxed">
@@ -168,7 +168,7 @@ export default function OdysseyFilmingLocationsPage() {
         </div>
 
         <div>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">
             The map
           </p>
           <OdysseyLocationsMap />

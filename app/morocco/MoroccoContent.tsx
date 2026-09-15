@@ -118,7 +118,7 @@ function Divider() {
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-[10px] tracking-[0.3em] uppercase font-mono text-foreground/30 mb-6">
+    <p className="text-[10px] tracking-[0.3em] uppercase font-mono text-foreground/60 mb-6">
       {children}
     </p>
   );
@@ -162,7 +162,7 @@ export default function MoroccoContent({ cities, stories, cityImages = {} }: Pro
             The country contains more variety than its size should allow — and has been 
             receiving travellers long enough to have developed a particular patience with the surprised.
           </p>
-          <p className="text-sm text-foreground/50 leading-relaxed">
+          <p className="text-sm text-foreground/70 leading-relaxed">
             Morocco doesn't give itself up on the first visit. It arrives sideways: a conversation, a detour, a door left open. Better approached slowly.
           </p>
 
@@ -183,7 +183,7 @@ export default function MoroccoContent({ cities, stories, cityImages = {} }: Pro
               <p className="font-serif text-3xl md:text-4xl text-foreground mb-2">
                 {f.value}
               </p>
-              <p className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/30">
+              <p className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/60">
                 {f.label}
               </p>
             </div>
@@ -202,13 +202,13 @@ export default function MoroccoContent({ cities, stories, cityImages = {} }: Pro
               key={i}
               className="px-8 py-7 border-r border-b border-border"
             >
-              <p className="text-[9px] tracking-[0.25em] uppercase font-mono text-foreground/30 mb-2">
+              <p className="text-[9px] tracking-[0.25em] uppercase font-mono text-foreground/60 mb-2">
                 {e.label}
               </p>
               <p className="font-serif text-base text-foreground mb-1.5">
                 {e.value}
               </p>
-              <p className="text-xs text-foreground/40 leading-relaxed">
+              <p className="text-xs text-foreground/60 leading-relaxed">
                 {e.note}
               </p>
             </div>
@@ -217,7 +217,7 @@ export default function MoroccoContent({ cities, stories, cityImages = {} }: Pro
         <div className="mt-6">
           <Link
             href="/travel"
-            className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/40 hover:text-foreground transition-colors"
+            className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/60 hover:text-foreground transition-colors"
           >
             Full travel guide — visa, transport, money, health →
           </Link>
@@ -235,10 +235,10 @@ export default function MoroccoContent({ cities, stories, cityImages = {} }: Pro
               <p className="font-serif text-lg text-foreground mb-1">
                 {r.name}
               </p>
-              <p className="text-[9px] tracking-[0.2em] uppercase font-mono text-foreground/30 mb-3">
+              <p className="text-[9px] tracking-[0.2em] uppercase font-mono text-foreground/60 mb-3">
                 {r.cities}
               </p>
-              <p className="text-sm text-foreground/50 leading-relaxed">
+              <p className="text-sm text-foreground/70 leading-relaxed">
                 {r.description}
               </p>
             </div>
@@ -294,7 +294,7 @@ export default function MoroccoContent({ cities, stories, cityImages = {} }: Pro
             <SectionLabel>From the archive</SectionLabel>
             <Link
               href="/stories"
-              className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/30 hover:text-foreground transition-colors mb-6"
+              className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/60 hover:text-foreground transition-colors mb-6"
             >
               All stories →
             </Link>
@@ -313,15 +313,15 @@ export default function MoroccoContent({ cities, stories, cityImages = {} }: Pro
                     )}
                   </div>
                   {story.category && (
-                    <p className="text-[10px] tracking-[0.3em] uppercase font-mono text-foreground/30 mb-2">
+                    <p className="text-[10px] tracking-[0.3em] uppercase font-mono text-foreground/60 mb-2">
                       {story.category}
                     </p>
                   )}
-                  <h3 className="font-serif text-xl mb-2 group-hover:text-foreground/60 transition-colors">
+                  <h3 className="font-serif text-xl mb-2 group-hover:text-foreground/70 transition-colors">
                     {story.title}
                   </h3>
                   {story.excerpt && (
-                    <p className="text-sm text-foreground/50 leading-relaxed line-clamp-2">
+                    <p className="text-sm text-foreground/70 leading-relaxed line-clamp-2">
                       {story.excerpt}
                     </p>
                   )}
@@ -362,14 +362,14 @@ export default function MoroccoContent({ cities, stories, cityImages = {} }: Pro
           ].map((item, i) => (
             <div key={i} className="py-6 border-b border-border last:border-0">
               <p className="font-serif text-lg text-foreground mb-2">{item.q}</p>
-              <p className="text-sm text-foreground/55 leading-relaxed">{item.a}</p>
+              <p className="text-sm text-foreground/70 leading-relaxed">{item.a}</p>
             </div>
           ))}
         </div>
         <div className="mt-8">
           <Link
             href="/faq"
-            className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/40 hover:text-foreground transition-colors"
+            className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/60 hover:text-foreground transition-colors"
           >
             More questions →
           </Link>
@@ -384,16 +384,16 @@ export default function MoroccoContent({ cities, stories, cityImages = {} }: Pro
           href="/stories/timeline-of-morocco"
           className="group block max-w-3xl"
         >
-          <p className="text-[10px] tracking-[0.3em] uppercase font-mono text-foreground/30 mb-4">
+          <p className="text-[10px] tracking-[0.3em] uppercase font-mono text-foreground/60 mb-4">
             315,000 BCE — Present
           </p>
           <h2 className="font-serif text-3xl md:text-4xl mb-3 group-hover:text-foreground/70 transition-colors">
             Timeline
           </h2>
-          <p className="text-sm text-foreground/50 leading-relaxed">
+          <p className="text-sm text-foreground/70 leading-relaxed">
             From the oldest Homo sapiens skull on earth to the 2030 World Cup. Every dynasty, every turning point, every invasion and independence — in one vertical line.
           </p>
-          <p className="mt-6 text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/40 group-hover:text-foreground transition-colors">
+          <p className="mt-6 text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/60 group-hover:text-foreground transition-colors">
             Explore the timeline →
           </p>
         </Link>
@@ -403,13 +403,13 @@ export default function MoroccoContent({ cities, stories, cityImages = {} }: Pro
 
       {/* ── Planning Guides ───────────────────────────────────────────────── */}
       <section className="px-8 md:px-16 lg:px-20 py-16">
-        <p className="text-[10px] tracking-[0.3em] uppercase font-mono text-foreground/30 mb-10">
+        <p className="text-[10px] tracking-[0.3em] uppercase font-mono text-foreground/60 mb-10">
           Planning guides
         </p>
 
         {/* Planning */}
         <div className="mb-[2rem]">
-          <p className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/30 mb-6">Planning</p>
+          <p className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/60 mb-6">Planning</p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-foreground/[0.06]">
             {[
               { href: "/morocco/best-time-to-visit", title: "Best time to visit", desc: "Month by month — what's happening, where, and what the weather means." },
@@ -422,8 +422,8 @@ export default function MoroccoContent({ cities, stories, cityImages = {} }: Pro
             ].map((guide) => (
               <Link key={guide.href} href={guide.href} className="group bg-background p-6 hover:bg-foreground/[0.02] transition-colors">
                 <h3 className="font-serif text-base text-foreground mb-1 group-hover:text-foreground/70 transition-colors">{guide.title}</h3>
-                <p className="text-sm text-foreground/40 leading-relaxed mb-3">{guide.desc}</p>
-                <span className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/25 group-hover:text-foreground/50 transition-colors">Read →</span>
+                <p className="text-sm text-foreground/60 leading-relaxed mb-3">{guide.desc}</p>
+                <span className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/25 group-hover:text-foreground/70 transition-colors">Read →</span>
               </Link>
             ))}
           </div>
@@ -431,7 +431,7 @@ export default function MoroccoContent({ cities, stories, cityImages = {} }: Pro
 
         {/* Experiences */}
         <div className="mb-[2rem]">
-          <p className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/30 mb-6">Experiences</p>
+          <p className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/60 mb-6">Experiences</p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-foreground/[0.06]">
             {[
               { href: "/morocco/hammam", title: "The hammam", desc: "Not a spa. A centuries-old institution of hygiene and sociality." },
@@ -443,8 +443,8 @@ export default function MoroccoContent({ cities, stories, cityImages = {} }: Pro
             ].map((guide) => (
               <Link key={guide.href} href={guide.href} className="group bg-background p-6 hover:bg-foreground/[0.02] transition-colors">
                 <h3 className="font-serif text-base text-foreground mb-1 group-hover:text-foreground/70 transition-colors">{guide.title}</h3>
-                <p className="text-sm text-foreground/40 leading-relaxed mb-3">{guide.desc}</p>
-                <span className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/25 group-hover:text-foreground/50 transition-colors">Read →</span>
+                <p className="text-sm text-foreground/60 leading-relaxed mb-3">{guide.desc}</p>
+                <span className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/25 group-hover:text-foreground/70 transition-colors">Read →</span>
               </Link>
             ))}
           </div>
@@ -452,7 +452,7 @@ export default function MoroccoContent({ cities, stories, cityImages = {} }: Pro
 
         {/* Cultural Context */}
         <div>
-          <p className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/30 mb-6">Cultural context</p>
+          <p className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/60 mb-6">Cultural context</p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-foreground/[0.06]">
             {[
               { href: "/morocco/islam-and-daily-life", title: "Islam and daily life", desc: "The call to prayer, the five pillars, what it means to move through a Muslim country." },
@@ -460,12 +460,12 @@ export default function MoroccoContent({ cities, stories, cityImages = {} }: Pro
               { href: "/morocco/jewish-heritage", title: "Jewish heritage", desc: "265,000 Jewish Moroccans at its peak. The Mellah quarters, the synagogues, the museum." },
               { href: "/morocco/amazigh", title: "The Amazigh people", desc: "60-70% of Morocco. The indigenous language, the carpets, the mountains." },
               { href: "/morocco/french-protectorate", title: "The French Protectorate", desc: "1912–1956. Why it explains the Ville Nouvelle, the language, and modern Morocco." },
-              { href: "/plan-your-trip", title: "Plan your journey", desc: "Tell us the shape of your trip. Tailored planning from €300." },
+              { href: "/plan-your-trip", title: "Plan your journey", desc: "Private journeys, designed around you. A €300 deposit begins the work and is credited in full to your trip." },
             ].map((guide) => (
               <Link key={guide.href} href={guide.href} className="group bg-background p-6 hover:bg-foreground/[0.02] transition-colors">
                 <h3 className="font-serif text-base text-foreground mb-1 group-hover:text-foreground/70 transition-colors">{guide.title}</h3>
-                <p className="text-sm text-foreground/40 leading-relaxed mb-3">{guide.desc}</p>
-                <span className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/25 group-hover:text-foreground/50 transition-colors">Read →</span>
+                <p className="text-sm text-foreground/60 leading-relaxed mb-3">{guide.desc}</p>
+                <span className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/25 group-hover:text-foreground/70 transition-colors">Read →</span>
               </Link>
             ))}
           </div>
@@ -478,13 +478,13 @@ export default function MoroccoContent({ cities, stories, cityImages = {} }: Pro
       {TRIP_FUNNEL_PUBLIC && (
       <section className="px-8 md:px-16 lg:px-20 py-20 md:py-28">
         <div className="max-w-xl">
-          <p className="text-[10px] tracking-[0.3em] uppercase font-mono text-foreground/30 mb-4">
+          <p className="text-[10px] tracking-[0.3em] uppercase font-mono text-foreground/60 mb-4">
             Private journeys
           </p>
           <h2 className="font-serif text-3xl md:text-4xl mb-6">
             Ready to go?
           </h2>
-          <p className="text-sm text-foreground/50 leading-relaxed mb-8">
+          <p className="text-sm text-foreground/70 leading-relaxed mb-8">
             Every journey we design is private, unhurried, and built around what 
             Morocco actually is — not the postcard version. Eleven years in the medina 
             means we know the difference.

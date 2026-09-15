@@ -136,14 +136,14 @@ export default function MoroccoTravelGuidePage() {
       <div className="bg-background min-h-screen">
 
         <div className="px-6 md:px-14 pt-20 pb-12 border-b border-foreground/[0.08]">
-          <Link href="/morocco" className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 hover:text-foreground/60 transition-colors mb-8 block">
+          <Link href="/morocco" className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 hover:text-foreground/70 transition-colors mb-8 block">
             ← Morocco
           </Link>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">Planning</p>
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">Planning</p>
           <h1 className="font-serif text-4xl md:text-5xl text-foreground leading-[1.1] mb-6 max-w-2xl">
             Morocco Travel Guide
           </h1>
-          <p className="text-base text-foreground/55 leading-relaxed max-w-xl">
+          <p className="text-base text-foreground/70 leading-relaxed max-w-xl">
             Visa, money, transport, language, health. Everything practical before you arrive.
           </p>
         </div>
@@ -155,7 +155,7 @@ export default function MoroccoTravelGuidePage() {
                 <h2 className="font-serif text-xl text-foreground mb-5 capitalize">{section.title}</h2>
                 <div className="space-y-3">
                   {section.content.split('\n\n').filter(p => p.trim()).map((para, i) => (
-                    <p key={i} className="text-sm text-foreground/60 leading-relaxed">{para}</p>
+                    <p key={i} className="text-sm text-foreground/70 leading-relaxed">{para}</p>
                   ))}
                 </div>
               </div>
@@ -164,13 +164,13 @@ export default function MoroccoTravelGuidePage() {
         </div>
 
         <div className="px-6 md:px-14 py-12 border-t border-foreground/[0.08]">
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-6">Continue planning</p>
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-6">Continue planning</p>
           <div className="flex flex-wrap gap-4">
-            <Link href="/morocco/best-time-to-visit" className="text-sm text-foreground/50 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Best time to visit →</Link>
-            <Link href="/morocco/is-morocco-safe" className="text-sm text-foreground/50 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Is Morocco safe? →</Link>
-            <Link href="/morocco/things-to-do-in-marrakech" className="text-sm text-foreground/50 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Things to do in Marrakech →</Link>
-            <Link href="https://darija.io" className="text-sm text-foreground/50 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Darija dictionary →</Link>
-            <Link href="/plan-your-trip" className="text-sm text-foreground/50 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Plan your trip →</Link>
+            <Link href="/morocco/best-time-to-visit" className="text-sm text-foreground/70 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Best time to visit →</Link>
+            <Link href="/morocco/is-morocco-safe" className="text-sm text-foreground/70 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Is Morocco safe? →</Link>
+            <Link href="/morocco/things-to-do-in-marrakech" className="text-sm text-foreground/70 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Things to do in Marrakech →</Link>
+            <Link href="https://darija.io" className="text-sm text-foreground/70 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Darija dictionary →</Link>
+            <Link href="/plan-your-trip" className="text-sm text-foreground/70 hover:text-foreground transition-colors border-b border-foreground/15 hover:border-foreground/40 pb-0.5">Plan your trip →</Link>
           </div>
         </div>
 

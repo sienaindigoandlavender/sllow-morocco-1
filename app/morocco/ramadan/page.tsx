@@ -11,17 +11,17 @@ export default function RamadanGuidePage() {
   return (
     <div className="bg-background min-h-screen">
       <div className="px-6 md:px-14 pt-20 pb-12 border-b border-foreground/[0.08]">
-        <Link href="/morocco" className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 hover:text-foreground/60 transition-colors mb-8 block">← Morocco</Link>
-        <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">Cultural context</p>
+        <Link href="/morocco" className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 hover:text-foreground/70 transition-colors mb-8 block">← Morocco</Link>
+        <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">Cultural context</p>
         <h1 className="font-serif text-4xl md:text-5xl text-foreground leading-[1.1] mb-6 max-w-2xl">Visiting Morocco During Ramadan</h1>
-        <p className="text-base text-foreground/55 leading-relaxed max-w-xl">Ramadan is the most misunderstood month to visit Morocco. Most tourists avoid it. This is a mistake.</p>
+        <p className="text-base text-foreground/70 leading-relaxed max-w-xl">Ramadan is the most misunderstood month to visit Morocco. Most tourists avoid it. This is a mistake.</p>
       </div>
       <div className="px-6 md:px-14 py-16 max-w-3xl space-y-12">
         <div>
           <p className="font-serif text-xl text-foreground leading-relaxed mb-6">The medinas come alive at night in a way that has no equivalent at any other time of year. The streets after sunset fill with families, the food stalls are at full capacity, the music plays later.</p>
         </div>
         <div>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">What changes</p>
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">What changes</p>
           <div className="space-y-3">
             {[
               { change: "Restaurants", detail: "Most non-tourist restaurants close during daylight hours. Hotels and riads catering to tourists continue to serve breakfast and lunch. The further you are from the tourist medina, the harder it is to find food before sunset." },
@@ -38,13 +38,13 @@ export default function RamadanGuidePage() {
           </div>
         </div>
         <div>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">What to do</p>
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">What to do</p>
           <p className="text-sm text-foreground/65 leading-relaxed mb-4">Organise your day around the Ramadan rhythm rather than fighting it. Mornings are calm and relatively easy — monuments, hammam, souks. Afternoons are slow — riads, reading, rest. Plan activities for after iftar — the city is at full volume from 8pm to well past midnight.</p>
           <p className="text-sm text-foreground/65 leading-relaxed mb-4">If you are invited to break the fast with a Moroccan family — through your riad, through a local contact — accept. It is where you will see Moroccan hospitality at full stretch.</p>
           <p className="text-sm text-foreground/65 leading-relaxed">The last ten nights of Ramadan intensify. Laylat al-Qadr (the Night of Power, one of the last odd nights) is the holiest night of the year — the mosques and zawiyyas are full, the streets alive until dawn.</p>
         </div>
         <div>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">Ramadan dates (approximate)</p>
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">Ramadan dates (approximate)</p>
           <div className="space-y-2">
             {[
               { year: "2025", dates: "March 1 – March 30" },
@@ -53,15 +53,15 @@ export default function RamadanGuidePage() {
             ].map((item) => (
               <div key={item.year} className="flex justify-between py-3 border-b border-foreground/[0.06] text-sm">
                 <span className="text-foreground/65">{item.year}</span>
-                <span className="text-foreground/40">{item.dates}</span>
+                <span className="text-foreground/60">{item.dates}</span>
               </div>
             ))}
           </div>
-          <p className="text-xs text-foreground/30 mt-3">Dates are approximate — the official start depends on moon sighting.</p>
+          <p className="text-xs text-foreground/60 mt-3">Dates are approximate — the official start depends on moon sighting.</p>
         </div>
         <div className="flex flex-wrap gap-4 pt-4 border-t border-foreground/[0.08]">
-          <Link href="/stories/ramadan-moon" className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Read: Ramadan in Morocco →</Link>
-          <Link href="/morocco/islam-and-daily-life" className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Islam and daily life →</Link>
+          <Link href="/stories/ramadan-moon" className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Read: Ramadan in Morocco →</Link>
+          <Link href="/morocco/islam-and-daily-life" className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Islam and daily life →</Link>
         </div>
       </div>
     </div>

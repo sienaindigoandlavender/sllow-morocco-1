@@ -43,17 +43,17 @@ export default function OuarzazateHollywoodPage() {
       <div className="px-6 md:px-14 pt-20 pb-12 border-b border-foreground/[0.08]">
         <Link
           href="/morocco"
-          className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 hover:text-foreground/60 transition-colors mb-8 block"
+          className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 hover:text-foreground/70 transition-colors mb-8 block"
         >
           ← Morocco
         </Link>
-        <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">
+        <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">
           Morocco on screen
         </p>
         <h1 className="font-serif text-4xl md:text-5xl text-foreground leading-[1.1] mb-6 max-w-2xl">
           Ouarzazate, Africa&apos;s Hollywood
         </h1>
-        <p className="text-base text-foreground/55 leading-relaxed max-w-xl">
+        <p className="text-base text-foreground/70 leading-relaxed max-w-xl">
           A desert town of ninety thousand people has played ancient Rome,
           Tibet, Egypt, Jerusalem, Somalia, and Westeros. Sixty years after
           David Lean drove through, Morocco is spending $25 million to make
@@ -63,7 +63,7 @@ export default function OuarzazateHollywoodPage() {
 
       <div className="px-6 md:px-14 py-16 max-w-3xl space-y-12">
         <div>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">
             Why here
           </p>
           <p className="text-sm text-foreground/65 leading-relaxed mb-4">
@@ -86,13 +86,13 @@ export default function OuarzazateHollywoodPage() {
         </div>
 
         <div>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">
             The filmography
           </p>
           <div className="space-y-3">
             {FILMS.map((f) => (
               <div key={f.title} className="flex gap-4 items-baseline">
-                <span className="text-xs text-foreground/35 font-mono w-10 shrink-0">{f.year}</span>
+                <span className="text-xs text-foreground/60 font-mono w-10 shrink-0">{f.year}</span>
                 <div>
                   {"href" in f && f.href ? (
                     <Link href={f.href} className="text-sm text-foreground font-medium underline decoration-foreground/20 hover:decoration-foreground/60 transition-colors">
@@ -101,12 +101,12 @@ export default function OuarzazateHollywoodPage() {
                   ) : (
                     <span className="text-sm text-foreground font-medium">{f.title}</span>
                   )}
-                  <span className="text-sm text-foreground/50"> — {f.note}</span>
+                  <span className="text-sm text-foreground/70"> — {f.note}</span>
                 </div>
               </div>
             ))}
           </div>
-          <p className="text-sm text-foreground/55 leading-relaxed mt-6">
+          <p className="text-sm text-foreground/70 leading-relaxed mt-6">
             The list runs far longer — The Hills Have Eyes, Spy Game, Queen of
             the Desert, a hundred productions nobody remembers and a dozen
             everybody does. For where Nolan&apos;s Odyssey filmed across
@@ -122,7 +122,7 @@ export default function OuarzazateHollywoodPage() {
         </div>
 
         <div>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">
             The Cinema City: keeping the cameras
           </p>
           <p className="text-sm text-foreground/65 leading-relaxed mb-4">
@@ -146,7 +146,7 @@ export default function OuarzazateHollywoodPage() {
         </div>
 
         <div>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">
             Visiting the sets
           </p>
           <div className="space-y-3">
@@ -170,14 +170,14 @@ export default function OuarzazateHollywoodPage() {
             ].map((item) => (
               <div key={item.place}>
                 <p className="text-sm text-foreground font-medium mb-1">{item.place}</p>
-                <p className="text-sm text-foreground/55 leading-relaxed">{item.desc}</p>
+                <p className="text-sm text-foreground/70 leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
         </div>
 
         <div className="pt-8 border-t border-foreground/[0.08]">
-          <p className="text-sm text-foreground/45 leading-relaxed">
+          <p className="text-sm text-foreground/60 leading-relaxed">
             The earthen architecture the cameras keep returning to — the
             kasbahs and ksour of the Drâa and Ounila valleys — is documented
             in depth at the{" "}

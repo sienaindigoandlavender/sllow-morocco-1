@@ -11,14 +11,14 @@ export default function SurfingGuidePage() {
   return (
     <div className="bg-background min-h-screen">
       <div className="px-6 md:px-14 pt-20 pb-12 border-b border-foreground/[0.08]">
-        <Link href="/morocco" className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 hover:text-foreground/60 transition-colors mb-8 block">← Morocco</Link>
-        <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">Experiences</p>
+        <Link href="/morocco" className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 hover:text-foreground/70 transition-colors mb-8 block">← Morocco</Link>
+        <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">Experiences</p>
         <h1 className="font-serif text-4xl md:text-5xl text-foreground leading-[1.1] mb-6 max-w-2xl">Surfing Morocco's Atlantic Coast</h1>
-        <p className="text-base text-foreground/55 leading-relaxed max-w-xl">The Atlantic swell runs consistently along Morocco's coast from October to April. The country has been a surf destination since the 1970s — long enough to have developed infrastructure, short enough that quieter spots still exist.</p>
+        <p className="text-base text-foreground/70 leading-relaxed max-w-xl">The Atlantic swell runs consistently along Morocco's coast from October to April. The country has been a surf destination since the 1970s — long enough to have developed infrastructure, short enough that quieter spots still exist.</p>
       </div>
       <div className="px-6 md:px-14 py-16 max-w-3xl space-y-12">
         <div>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-6">Where to go</p>
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-6">Where to go</p>
           <div className="space-y-px">
             {[
               {
@@ -49,21 +49,21 @@ export default function SurfingGuidePage() {
               <div key={item.spot} className="border border-foreground/[0.08] p-6">
                 <div className="flex items-baseline gap-4 mb-3">
                   <h2 className="font-serif text-xl text-foreground">{item.spot}</h2>
-                  <span className="text-[10px] bg-foreground/[0.04] text-foreground/35 px-2 py-0.5 tracking-wide">{item.level}</span>
+                  <span className="text-[10px] bg-foreground/[0.04] text-foreground/60 px-2 py-0.5 tracking-wide">{item.level}</span>
                 </div>
-                <p className="text-sm text-foreground/60 leading-relaxed mb-3">{item.desc}</p>
-                <p className="text-[11px] text-foreground/35">{item.best}</p>
+                <p className="text-sm text-foreground/70 leading-relaxed mb-3">{item.desc}</p>
+                <p className="text-[11px] text-foreground/60">{item.best}</p>
               </div>
             ))}
           </div>
         </div>
         <div>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-4">Season</p>
+          <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-4">Season</p>
           <p className="text-sm text-foreground/65 leading-relaxed">October to April for ocean surfing — consistent North Atlantic swells, offshore winds, water temperature around 18–22°C. A summer wetsuit (3/2mm) is adequate. Crowds peak at Christmas and Easter — the shoulder months (October/November and March/April) offer the best combination of swell and space.</p>
         </div>
         <div className="flex flex-wrap gap-4 pt-4 border-t border-foreground/[0.08]">
-          <Link href="/taghazout" className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Taghazout guide →</Link>
-          <Link href="/stories/surf-coast-morocco" className="text-[11px] tracking-[0.15em] uppercase text-foreground/40 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Read: The surf coast →</Link>
+          <Link href="/taghazout" className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Taghazout guide →</Link>
+          <Link href="/stories/surf-coast-morocco" className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Read: The surf coast →</Link>
         </div>
       </div>
     </div>
