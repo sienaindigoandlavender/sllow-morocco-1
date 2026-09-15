@@ -58,7 +58,7 @@ export default function NearbyContent({
       <section className="px-8 md:px-10 lg:px-14 pt-24 md:pt-28 pb-6">
         <Link
           href={`/places/${originSlug}`}
-          className="text-[10px] tracking-[0.25em] uppercase text-foreground/30 hover:text-foreground transition-colors mb-6 inline-block"
+          className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 hover:text-foreground transition-colors mb-6 inline-block"
         >
           ← {originTitle}
         </Link>
@@ -67,7 +67,7 @@ export default function NearbyContent({
           {places.length} places within walking distance of {originTitle}
         </h1>
 
-        <p className="text-sm text-foreground/55 max-w-2xl mb-4 leading-relaxed">
+        <p className="text-sm text-foreground/70 max-w-2xl mb-4 leading-relaxed">
           Everything in the atlas inside {radiusKm}km of {originTitle}
           {originDestination ? `, ${originDestination}` : ""}, nearest first.
           Distances are straight-line — the medina will add to every one of
@@ -75,7 +75,7 @@ export default function NearbyContent({
         </p>
 
         {updated && (
-          <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/30">
+          <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/60">
             Updated {updated}
           </p>
         )}
@@ -113,15 +113,15 @@ export default function NearbyContent({
                     </div>
 
                     <div className="min-w-0">
-                      <p className="text-[10px] tracking-[0.15em] uppercase text-foreground/35 mb-2">
+                      <p className="text-[10px] tracking-[0.15em] uppercase text-foreground/60 mb-2">
                         {formatDistance(p.distanceKm)} · about{" "}
                         {walkMinutes(p.distanceKm)} min on foot
                       </p>
-                      <h2 className="font-serif text-xl md:text-2xl text-foreground group-hover:text-foreground/60 transition-colors mb-2">
+                      <h2 className="font-serif text-xl md:text-2xl text-foreground group-hover:text-foreground/70 transition-colors mb-2">
                         {p.title}
                       </h2>
                       {p.excerpt && (
-                        <p className="text-[13px] text-foreground/55 leading-relaxed line-clamp-3 max-w-2xl">
+                        <p className="text-[13px] text-foreground/70 leading-relaxed line-clamp-3 max-w-2xl">
                           {p.excerpt}
                         </p>
                       )}
@@ -134,7 +134,7 @@ export default function NearbyContent({
                     {catSlug && (
                       <Link
                         href={`/places/category/${catSlug}`}
-                        className="text-[10px] tracking-[0.15em] uppercase text-foreground/30 hover:text-foreground transition-colors"
+                        className="text-[10px] tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground transition-colors"
                       >
                         {p.category}
                       </Link>
@@ -155,7 +155,7 @@ export default function NearbyContent({
       <section className="px-8 md:px-10 lg:px-14 py-10 border-t border-foreground/[0.08]">
         <Link
           href="/places"
-          className="text-[10px] tracking-[0.2em] uppercase text-foreground/35 hover:text-foreground transition-colors"
+          className="text-[10px] tracking-[0.2em] uppercase text-foreground/60 hover:text-foreground transition-colors"
         >
           All places →
         </Link>
