@@ -79,7 +79,7 @@ const REGION_INTROS: Record<string, { claim: string; body: string }> = {
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-[10px] tracking-[0.3em] uppercase font-mono text-foreground/30 mb-8">
+    <p className="text-[10px] tracking-[0.3em] uppercase font-mono text-foreground/60 mb-8">
       {children}
     </p>
   );
@@ -188,15 +188,15 @@ export default function RegionContent({
                   )}
                 </div>
                 {place.category && (
-                  <p className="text-[9px] tracking-[0.25em] uppercase font-mono text-foreground/30 mb-1">
+                  <p className="text-[9px] tracking-[0.25em] uppercase font-mono text-foreground/60 mb-1">
                     {place.category}
                   </p>
                 )}
-                <h3 className="font-serif text-lg group-hover:text-foreground/60 transition-colors">
+                <h3 className="font-serif text-lg group-hover:text-foreground/70 transition-colors">
                   {place.title}
                 </h3>
                 {place.excerpt && (
-                  <p className="text-xs text-foreground/40 mt-1 leading-relaxed line-clamp-2">
+                  <p className="text-xs text-foreground/60 mt-1 leading-relaxed line-clamp-2">
                     {place.excerpt}
                   </p>
                 )}
@@ -207,7 +207,7 @@ export default function RegionContent({
             <div className="mt-10">
               <Link
                 href={`/places?region=${regionSlug}`}
-                className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/40 hover:text-foreground transition-colors"
+                className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/60 hover:text-foreground transition-colors"
               >
                 All places in {region.title} →
               </Link>
@@ -234,15 +234,15 @@ export default function RegionContent({
                     )}
                   </div>
                   {story.category && (
-                    <p className="text-[10px] tracking-[0.3em] uppercase font-mono text-foreground/30 mb-2">
+                    <p className="text-[10px] tracking-[0.3em] uppercase font-mono text-foreground/60 mb-2">
                       {story.category}
                     </p>
                   )}
-                  <h3 className="font-serif text-xl mb-2 group-hover:text-foreground/60 transition-colors">
+                  <h3 className="font-serif text-xl mb-2 group-hover:text-foreground/70 transition-colors">
                     {story.title}
                   </h3>
                   {story.excerpt && (
-                    <p className="text-sm text-foreground/50 leading-relaxed line-clamp-2">
+                    <p className="text-sm text-foreground/70 leading-relaxed line-clamp-2">
                       {story.excerpt}
                     </p>
                   )}
@@ -272,21 +272,21 @@ export default function RegionContent({
                   </div>
                   <div className="flex items-center gap-3 mb-2">
                     {journey.duration_days ? (
-                      <span className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/30">
+                      <span className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/60">
                         {journey.duration_days}d
                       </span>
                     ) : null}
                     {journey.category && (
-                      <span className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/30">
+                      <span className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/60">
                         {journey.category}
                       </span>
                     )}
                   </div>
-                  <h3 className="font-serif text-xl mb-2 group-hover:text-foreground/60 transition-colors">
+                  <h3 className="font-serif text-xl mb-2 group-hover:text-foreground/70 transition-colors">
                     {journey.title}
                   </h3>
                   {(journey.short_description || journey.arc_description) && (
-                    <p className="text-sm text-foreground/50 leading-relaxed line-clamp-2">
+                    <p className="text-sm text-foreground/70 leading-relaxed line-clamp-2">
                       {journey.short_description || journey.arc_description}
                     </p>
                   )}
@@ -298,7 +298,7 @@ export default function RegionContent({
             <div className="mt-10">
               <Link
                 href="/journeys"
-                className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/40 hover:text-foreground transition-colors"
+                className="text-[10px] tracking-[0.2em] uppercase font-mono text-foreground/60 hover:text-foreground transition-colors"
               >
                 All journeys →
               </Link>
@@ -311,13 +311,13 @@ export default function RegionContent({
       {TRIP_FUNNEL_PUBLIC && (
       <section className="px-8 md:px-16 lg:px-20 py-20 border-t border-border">
         <div className="max-w-xl">
-          <p className="text-[10px] tracking-[0.3em] uppercase font-mono text-foreground/30 mb-4">
+          <p className="text-[10px] tracking-[0.3em] uppercase font-mono text-foreground/60 mb-4">
             Private journeys
           </p>
           <h2 className="font-serif text-3xl md:text-4xl mb-6">
             Ready to go?
           </h2>
-          <p className="text-sm text-foreground/50 leading-relaxed mb-8">
+          <p className="text-sm text-foreground/70 leading-relaxed mb-8">
             Every journey we design is private, built around what you want to see, and shaped by deep experience inside Morocco.
           </p>
           <Link
