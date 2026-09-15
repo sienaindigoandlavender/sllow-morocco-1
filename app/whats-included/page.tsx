@@ -64,7 +64,7 @@ export default function WhatsIncludedPage() {
     <div className="min-h-screen bg-background text-foreground pt-32 pb-24">
       <div className="container mx-auto px-6 lg:px-16 max-w-4xl">
         <h1 className="font-serif text-4xl md:text-5xl mb-4 text-center">What's Included</h1>
-        <p className="text-foreground/50 text-center text-lg mb-16 max-w-2xl mx-auto">
+        <p className="text-foreground/70 text-center text-lg mb-16 max-w-2xl mx-auto">
           Every Slow Morocco journey is thoughtfully crafted to include everything you need 
           for a seamless, immersive experience.
         </p>
@@ -77,7 +77,7 @@ export default function WhatsIncludedPage() {
                 {category.items.map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <Check className="w-5 h-5 text-foreground mt-0.5 flex-shrink-0" />
-                    <span className="text-foreground/50">{item}</span>
+                    <span className="text-foreground/70">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -89,7 +89,7 @@ export default function WhatsIncludedPage() {
           <h2 className="font-serif text-2xl text-white/90 mb-6 text-center">Not Included</h2>
           <ul className="max-w-md mx-auto space-y-3">
             {notIncluded.map((item) => (
-              <li key={item} className="text-foreground/50 text-center">
+              <li key={item} className="text-foreground/70 text-center">
                 {item}
               </li>
             ))}
