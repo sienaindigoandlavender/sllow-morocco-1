@@ -41,7 +41,7 @@ export default function ContactPage() {
           {submitted ? (
             <div className="py-12 text-center">
               <h3 className="font-serif text-2xl text-foreground/90 mb-4">Thank you.</h3>
-              <p className="text-foreground/50 leading-relaxed">
+              <p className="text-foreground/70 leading-relaxed">
                 We've received your message and will respond within 24 hours.
               </p>
             </div>
@@ -50,7 +50,7 @@ export default function ContactPage() {
               {/* Name Row */}
               <div className="grid grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-xs tracking-[0.2em] uppercase text-foreground/40 mb-4">
+                  <label className="block text-xs tracking-[0.2em] uppercase text-foreground/60 mb-4">
                     First Name
                   </label>
                       <input
@@ -62,7 +62,7 @@ export default function ContactPage() {
                       />
                     </div>
                     <div>
-                      <label className="block text-xs tracking-[0.2em] uppercase text-foreground/40 mb-4">
+                      <label className="block text-xs tracking-[0.2em] uppercase text-foreground/60 mb-4">
                         Last Name
                       </label>
                       <input
@@ -77,7 +77,7 @@ export default function ContactPage() {
 
                   {/* Phone */}
                   <div>
-                    <label className="block text-xs tracking-[0.2em] uppercase text-foreground/40 mb-4">
+                    <label className="block text-xs tracking-[0.2em] uppercase text-foreground/60 mb-4">
                       Phone Number
                     </label>
                     <input
@@ -90,7 +90,7 @@ export default function ContactPage() {
 
                   {/* Email */}
                   <div>
-                    <label className="block text-xs tracking-[0.2em] uppercase text-foreground/40 mb-4">
+                    <label className="block text-xs tracking-[0.2em] uppercase text-foreground/60 mb-4">
                       Email Address
                     </label>
                     <input
@@ -104,7 +104,7 @@ export default function ContactPage() {
 
                   {/* Message */}
                   <div>
-                    <label className="block text-xs tracking-[0.2em] uppercase text-foreground/40 mb-4">
+                    <label className="block text-xs tracking-[0.2em] uppercase text-foreground/60 mb-4">
                       Message (Optional)
                     </label>
                     <textarea
