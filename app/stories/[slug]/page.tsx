@@ -89,11 +89,19 @@ async function getRelatedStories(currentStory: Story, currentSlug: string) {
     // relevance (rather than first-match) tightens the topical cluster —
     // Google reads a well-linked cluster of closely-related pages as topical
     // authority, which lifts the whole group.
-    const storyTags = (currentStory.tags || "")
-      .toLowerCase()
-      .split(",")
-      .map((t) => t.trim())
-      .filter(Boolean);
+    // Tags may be stored either as a comma string ("roman, ancient") or as a
+    // Postgres array literal ({Roman,"olive oil",...}). Strip braces and quotes
+    // before splitting so BOTH formats match — otherwise array-format stories
+    // (73 of them as of Sep 2026) silently fail to link and lose all authority.
+    const parseTags = (raw?: string | null) =>
+      (raw || "")
+        .replace(/[{}"]/g, "")
+        .toLowerCase()
+        .split(",")
+        .map((t) => t.trim())
+        .filter(Boolean);
+
+    const storyTags = parseTags(currentStory.tags);
 
     const scored = stories
       .filter((s) => s.slug !== currentSlug)
@@ -103,7 +111,7 @@ async function getRelatedStories(currentStory: Story, currentSlug: string) {
           score += 3; // same category is the strongest single signal
         }
         if (s.tags && storyTags.length) {
-          const sTags = s.tags.toLowerCase().split(",").map((t) => t.trim());
+          const sTags = parseTags(s.tags);
           const shared = sTags.filter((t) => storyTags.includes(t)).length;
           score += shared * 2; // each shared tag adds weight
         }
