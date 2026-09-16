@@ -3,7 +3,7 @@ import { getStories } from "@/lib/supabase";
 import StoriesContent from "./StoriesContent";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const stories = await getStories({ published: true });
+  const stories = (await getStories({ published: true })).filter((s: any) => s.category !== 'Glossary');
   const n = stories.length;
 
   const title = n > 0 ? `${n} Stories from Morocco` : "The Edit — Cultural Stories";
@@ -39,7 +39,7 @@ interface StoryItem {
 
 async function fetchStories(): Promise<{ stories: StoryItem[]; lastUpdated: string | null }> {
   try {
-    const storiesData = await getStories({ published: true });
+    const storiesData = (await getStories({ published: true })).filter((s: any) => s.category !== 'Glossary');
     const stories = storiesData.map((story) => ({
       slug: story.slug,
       title: story.title,
