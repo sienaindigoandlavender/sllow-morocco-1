@@ -195,7 +195,7 @@ async function getRelatedContent(place: FormattedPlace) {
           const storyTags = (s.tags || "").toLowerCase();
           const storyRegion = (s.region || "").toLowerCase();
           if (destination && (storyTags.includes(destination) || storyRegion.includes(destination))) return true;
-          const placeTagList = placeTags.split(",").map((t: string) => t.trim()).filter(Boolean);
+          const placeTagList = placeTags.replace(/[{}"]/g, "").split(",").map((t: string) => t.trim()).filter(Boolean);
           for (const tag of placeTagList) {
             if (storyTags.includes(tag)) return true;
           }
@@ -215,7 +215,7 @@ async function getRelatedContent(place: FormattedPlace) {
         const storyTags = (s.tags || "").toLowerCase();
         const storyRegion = (s.region || "").toLowerCase();
         if (destination && (storyTags.includes(destination) || storyRegion.includes(destination))) return true;
-        const placeTagList = placeTags.split(",").map((t: string) => t.trim()).filter(Boolean);
+        const placeTagList = placeTags.replace(/[{}"]/g, "").split(",").map((t: string) => t.trim()).filter(Boolean);
         for (const tag of placeTagList) {
           if (storyTags.includes(tag)) return true;
         }
