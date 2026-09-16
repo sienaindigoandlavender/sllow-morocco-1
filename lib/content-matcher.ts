@@ -78,7 +78,10 @@ export function normalizeRegion(region: string): string[] {
  */
 export function parseTags(tags: string): string[] {
   if (!tags) return [];
+  // Tags may be a comma string or a Postgres array literal ({a,"b c"}).
+  // Strip braces and quotes so both formats parse identically.
   return tags
+    .replace(/[{}"]/g, '')
     .split(',')
     .map(t => t.trim().toLowerCase())
     .filter(t => t.length > 0);
