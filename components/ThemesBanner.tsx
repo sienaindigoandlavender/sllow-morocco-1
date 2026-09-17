@@ -28,7 +28,7 @@ export default function ThemesBanner() {
           </span>
         </div>
         <h2 className="font-serif text-[clamp(1.6rem,3.4vw,2.6rem)] font-light tracking-[-0.015em] text-[#0a0a0a] leading-[1.2]">
-          Six ways in. Follow whichever pulls you.
+          The country keeps its meaning in six rooms.
         </h2>
       </div>
 
