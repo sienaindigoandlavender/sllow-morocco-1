@@ -256,7 +256,7 @@ export default function HomeContent({
   // A small cluster of further reads, drawn from DEEPER in the shuffle so they
   // differ from the features above and rotate independently.
   const moreReads = [12, 18, 25, 33, 41].map((n) => at(n)).filter(Boolean);    // 5, spread deep
-  const featuredJourneys = journeys.slice(0, 3);    // 3 items
+  const featuredJourneys = journeys.slice(0, 6);    // up to 6, matching stories & places
   const featuredPlaces = places.slice(0, 6);        // 6 items
 
   return (
