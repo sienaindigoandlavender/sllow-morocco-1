@@ -16,7 +16,7 @@ const HomeCityMap = dynamic(() => import("@/components/HomeCityMap"), {
   ssr: false,
   loading: () => (
     <div className="w-full h-full bg-[#0d0d0d] flex items-center justify-center">
-      <p className="text-[10px] tracking-[0.4em] uppercase text-white/15 font-sans">Morocco</p>
+      <p className="text-[10px] tracking-[0.4em] uppercase text-white/15">Morocco</p>
     </div>
   ),
 });
@@ -155,7 +155,7 @@ function StoryTile({ story }: { story: Story }) {
         )}
       </div>
       {story.category && (
-        <span className="text-[10px] text-[#0a0a0a]/55 tracking-[0.1em] uppercase block mb-1 font-sans">
+        <span className="text-[10px] text-[#0a0a0a]/55 tracking-[0.1em] uppercase block mb-1">
           {story.category}
         </span>
       )}
@@ -182,7 +182,7 @@ function SectionHeader({
       <div className="flex items-end justify-between gap-6 mb-5 md:mb-6">
         <div>
           {kicker && (
-            <span className="block text-[10px] md:text-[11px] tracking-[0.28em] uppercase text-[#E3120B] mb-3 font-sans">
+            <span className="block text-[10px] md:text-[11px] tracking-[0.28em] uppercase text-[#E3120B] mb-3">
               {kicker}
             </span>
           )}
@@ -192,7 +192,7 @@ function SectionHeader({
         </div>
         <Link
           href={href}
-          className="shrink-0 pb-1.5 text-[11px] tracking-[0.14em] uppercase text-[#0a0a0a]/50 hover:text-[#0a0a0a] transition-colors whitespace-nowrap font-sans"
+          className="shrink-0 pb-1.5 text-[11px] tracking-[0.14em] uppercase text-[#0a0a0a]/50 hover:text-[#0a0a0a] transition-colors whitespace-nowrap"
         >
           {linkText} →
         </Link>
@@ -244,7 +244,7 @@ export default function HomeContent({
           {/* Masthead — the constant declaration */}
           <div className="relative z-10 h-full flex flex-col justify-between px-6 md:px-10 lg:px-14 pt-10 md:pt-14 lg:pt-16 pb-16 md:pb-24 lg:pb-28">
             <div>
-              <span className="block text-white/55 text-[10px] md:text-[11px] tracking-[0.32em] uppercase mb-4 md:mb-5 font-sans">
+              <span className="block text-white/55 text-[10px] md:text-[11px] tracking-[0.32em] uppercase mb-4 md:mb-5">
                 A field guide to the deeper country
               </span>
               <div className="flex items-center gap-4 md:gap-6">
@@ -284,7 +284,7 @@ export default function HomeContent({
                 href={heroItem?.href || `/stories/${lead?.slug}`}
                 className="group block max-w-xl lg:max-w-lg"
               >
-                <span className="text-white/60 text-[11px] tracking-[0.25em] uppercase mb-3 block font-sans">
+                <span className="text-white/60 text-[11px] tracking-[0.25em] uppercase mb-3 block">
                   {heroItem?.label || "Editorial"}
                 </span>
                 <h2 className="text-white text-[clamp(1.4rem,3.5vw,2.4rem)] font-light tracking-[-0.01em] leading-[1.12] mb-2 group-hover:text-white/80 transition-colors">
@@ -300,7 +300,7 @@ export default function HomeContent({
               {/* Further reads — a small cluster, bottom-right, rotating from deep in the archive */}
               {moreReads.length > 0 && (
                 <div className="hidden md:block shrink-0 max-w-[15rem] lg:max-w-[17rem] border-t border-white/20 pt-4">
-                  <span className="text-white/50 text-[10px] tracking-[0.25em] uppercase mb-3 block font-sans">
+                  <span className="text-white/50 text-[10px] tracking-[0.25em] uppercase mb-3 block">
                     Also worth your time
                   </span>
                   <ul className="space-y-2.5">
@@ -333,7 +333,7 @@ export default function HomeContent({
           ══════════════════════════════════════════════════ */}
       <section className="px-6 md:px-10 lg:px-14 pt-16 md:pt-24 pb-10 md:pb-16 border-b border-[#0a0a0a]/[0.08]">
         <div className="max-w-2xl mb-12 md:mb-16">
-          <span className="block text-[10px] md:text-[11px] tracking-[0.28em] uppercase text-[#E3120B] mb-4 font-sans">
+          <span className="block text-[10px] md:text-[11px] tracking-[0.28em] uppercase text-[#E3120B] mb-4">
             Where to begin
           </span>
           <h2 className="font-serif text-[clamp(1.9rem,4vw,3.25rem)] font-light tracking-[-0.02em] text-[#0a0a0a] leading-[1.02]">
@@ -352,7 +352,7 @@ export default function HomeContent({
               Hundreds of decoded essays — the history, the craft, the food, the meaning
               beneath the surface. Read the country before you ever set foot in it.
             </p>
-            <span className="mt-5 inline-block text-[11px] tracking-[0.14em] uppercase text-[#0a0a0a]/45 group-hover:text-[#0a0a0a] transition-colors font-sans">
+            <span className="mt-5 inline-block text-[11px] tracking-[0.14em] uppercase text-[#0a0a0a]/45 group-hover:text-[#0a0a0a] transition-colors">
               Start reading →
             </span>
           </Link>
@@ -369,7 +369,7 @@ export default function HomeContent({
                 When reading is no longer enough, we take you — private journeys down the old
                 roads and the slow ones, run by the people who wrote everything you just read.
               </p>
-              <span className="mt-5 inline-block text-[11px] tracking-[0.14em] uppercase text-[#0a0a0a]/45 group-hover:text-[#0a0a0a] transition-colors font-sans">
+              <span className="mt-5 inline-block text-[11px] tracking-[0.14em] uppercase text-[#0a0a0a]/45 group-hover:text-[#0a0a0a] transition-colors">
                 Travel with us →
               </span>
             </Link>
@@ -439,7 +439,7 @@ export default function HomeContent({
                   )}
                 </div>
                 {story.category && (
-                  <span className="text-[10px] text-[#0a0a0a]/50 tracking-[0.06em] uppercase shrink-0 hidden md:block pt-2 font-sans">
+                  <span className="text-[10px] text-[#0a0a0a]/50 tracking-[0.06em] uppercase shrink-0 hidden md:block pt-2">
                     {story.category}
                   </span>
                 )}
@@ -455,7 +455,7 @@ export default function HomeContent({
 
       {/* LEARN TO READ MOROCCO - glossary cluster-essays */}
       <section className="px-6 md:px-10 lg:px-14 py-20 md:py-28 border-t border-[#0a0a0a]/[0.08]">
-        <span className="block text-[10px] md:text-[11px] tracking-[0.28em] uppercase text-[#E3120B] mb-4 font-sans">
+        <span className="block text-[10px] md:text-[11px] tracking-[0.28em] uppercase text-[#E3120B] mb-4">
           The glossary
         </span>
         <h2 className="font-serif text-[clamp(1.9rem,4vw,3.25rem)] font-light tracking-[-0.02em] text-[#0a0a0a] leading-[1.0] mb-5">
@@ -480,7 +480,7 @@ export default function HomeContent({
               <span className="font-serif text-lg md:text-xl font-light tracking-[-0.01em] text-[#0a0a0a] leading-snug group-hover:text-[#0a0a0a]/55 transition-colors">
                 {g.title}
               </span>
-              <span className="text-[10px] tracking-[0.14em] uppercase text-[#0a0a0a]/40 group-hover:text-[#E3120B] transition-colors whitespace-nowrap shrink-0 font-sans">
+              <span className="text-[10px] tracking-[0.14em] uppercase text-[#0a0a0a]/40 group-hover:text-[#E3120B] transition-colors whitespace-nowrap shrink-0">
                 {g.kicker}
               </span>
             </Link>
