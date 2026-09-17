@@ -127,7 +127,7 @@ export default async function CollectionPage({
             {stories.map((story) => (
               <article key={story.slug}>
                 <Link href={`/stories/${story.slug}`} className="group block">
-                  <div className="aspect-[29/39] relative overflow-hidden bg-[#e8e6e1] mb-3.5">
+                  <div className="aspect-[3/4] relative overflow-hidden bg-[#e8e6e1] mb-3.5">
                     {story.hero_image && (
                       <img
                         src={cloudinaryUrl(story.hero_image, 480)}
@@ -161,7 +161,7 @@ export default async function CollectionPage({
             {places.map((place) => (
               <article key={place.slug}>
                 <Link href={`/places/${place.slug}`} className="group block">
-                  <div className="aspect-[29/39] relative overflow-hidden bg-[#e8e6e1] mb-3.5">
+                  <div className="aspect-[3/4] relative overflow-hidden bg-[#e8e6e1] mb-3.5">
                     {place.hero_image && (
                       <img
                         src={cloudinaryUrl(place.hero_image, 480)}
