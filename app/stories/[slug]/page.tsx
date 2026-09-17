@@ -210,10 +210,10 @@ async function getRelatedJourneysSSR(story: Story, slug: string) {
       story.tags || "",
       story.category || "",
       eligible.filter((j) => !pinned.some((p: any) => p.slug === j.slug)).map(shape),
-      3
+      6
     );
 
-    return [...pinned.map((j: any) => shape(j, 1000)), ...matched].slice(0, 3);
+    return [...pinned.map((j: any) => shape(j, 1000)), ...matched].slice(0, 6);
   } catch {
     return [];
   }
