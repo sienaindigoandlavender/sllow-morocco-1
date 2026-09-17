@@ -23,7 +23,7 @@ export default function ThemesBanner() {
       <div className="max-w-2xl mb-12 md:mb-20">
         <div className="flex items-center gap-3 mb-5">
           <span className="h-px w-10 bg-[#0a0a0a]/30" />
-          <span className="text-[11px] tracking-[0.24em] uppercase text-[#0a0a0a]/50 font-sans">
+          <span className="text-[11px] tracking-[0.24em] uppercase text-[#0a0a0a]/50">
             Read the country
           </span>
         </div>
