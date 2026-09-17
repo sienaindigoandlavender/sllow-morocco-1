@@ -211,6 +211,7 @@ export default function HomeContent({
   season,
   places,
   heroItem,
+  testimonials,
 }: HomeContentProps) {
   // The full shuffled archive arrives in `stories`. Spread the sections ACROSS it
   // (not the same top slice) so more of the archive is on the page at once, and it
