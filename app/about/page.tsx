@@ -67,18 +67,18 @@ export default function AboutPage() {
             the page runs out. That is where the journeys begin.
           </p>
           <p>
-            We take a small number of travellers a year down the roads the country keeps to itself
-            — not the highway to the desert but the older way, through the towns that never made the
-            itinerary, at the pace things actually happen. What you have read here, you walk into.
-            The kasbah you understood on the page, you stand inside, and it means more because you
-            already know what it is. The meal is five hundred years of Andalusia and you can taste
-            every one of them, because someone at the table can tell you which century you are
-            tasting.
+            Our journeys take the roads the country keeps to itself — not the highway to the
+            desert but the older way, through the towns that never made the itinerary, at the pace
+            things actually happen. What you have read here, you walk into. The kasbah you understood
+            on the page, you stand inside, and it means more because you already know what it is. The
+            meal is five hundred years of Andalusia, and you taste every one of them, because someone
+            at the table can tell you which century you are tasting.
           </p>
           <p>
-            They are led by the people who wrote the country down. That is the whole of it — you
-            travel with the ones who did the reading, for years, so that you arrive already knowing
-            where you are.
+            Every journey is built for the person taking it — your pace, your appetite, the parts
+            of the country you want to go deepest into. And each is led by the people who wrote the
+            country down, so that you travel with the ones who did the reading, for years, and arrive
+            already knowing where you are.
           </p>
         </div>
       </section>
@@ -110,7 +110,7 @@ export default function AboutPage() {
                 Travel the country
               </h3>
               <p className="text-[14px] md:text-[15px] text-[#0a0a0a]/60 leading-relaxed">
-                Private journeys, down the slower roads, with the people who wrote all of this.
+                Journeys built around you, down the slower roads, with the people who wrote all of this.
               </p>
               <span className="mt-4 inline-block text-[11px] tracking-[0.14em] uppercase text-[#0a0a0a]/45 group-hover:text-[#0a0a0a] transition-colors">
                 The journeys &rarr;
