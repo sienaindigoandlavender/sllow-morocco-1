@@ -27,13 +27,13 @@ export default function KinfolkTile({
           />
         )}
         {badge && (
-          <div className="absolute bottom-3 left-3 bg-white/90 px-2.5 py-1 text-[10px] tracking-[0.08em] uppercase text-[#0a0a0a]">
+          <div className="absolute bottom-3 left-3 bg-white/90 px-2.5 py-1 text-[10px] tracking-[0.08em] uppercase text-[#0a0a0a] font-sans">
             {badge}
           </div>
         )}
       </div>
       {kicker && (
-        <span className="text-[10px] text-[#0a0a0a]/55 tracking-[0.1em] uppercase block mb-1">
+        <span className="text-[10px] text-[#0a0a0a]/55 tracking-[0.1em] uppercase block mb-1 font-sans">
           {kicker}
         </span>
       )}

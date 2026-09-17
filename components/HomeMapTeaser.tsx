@@ -82,7 +82,7 @@ export default function HomeMapTeaser() {
       <div className="max-w-3xl mb-8 md:mb-12">
         <div className="flex items-center gap-3 mb-4">
           <span className="h-px w-10 bg-[#0a0a0a]/30" />
-          <span className="text-[11px] tracking-[0.24em] uppercase text-[#0a0a0a]/50">
+          <span className="text-[11px] tracking-[0.24em] uppercase text-[#0a0a0a]/50 font-sans">
             The atlas
           </span>
         </div>
@@ -101,7 +101,7 @@ export default function HomeMapTeaser() {
           className="w-full h-[360px] md:h-[520px] rounded-sm overflow-hidden ring-1 ring-[#0a0a0a]/10"
           aria-label="Map of Morocco"
         />
-        <div className="mt-6 inline-flex items-center gap-2 text-[11px] tracking-[0.18em] uppercase text-[#0a0a0a]/60 group-hover:text-[#0a0a0a] transition-colors">
+        <div className="mt-6 inline-flex items-center gap-2 text-[11px] tracking-[0.18em] uppercase text-[#0a0a0a]/60 group-hover:text-[#0a0a0a] transition-colors font-sans">
           Open the full map
           <span className="transition-transform duration-300 group-hover:translate-x-1" style={{ color: "#E3120B" }}>→</span>
         </div>

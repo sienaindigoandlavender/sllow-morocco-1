@@ -20,7 +20,7 @@ export default function TimelineTeaser() {
         <div className="max-w-3xl">
           <div className="flex items-center gap-3 mb-6">
             <span className="h-px w-10 bg-[#0a0a0a]/30" />
-            <span className="text-[11px] tracking-[0.24em] uppercase text-[#0a0a0a]/50">
+            <span className="text-[11px] tracking-[0.24em] uppercase text-[#0a0a0a]/50 font-sans">
               Morocco, on one line
             </span>
           </div>
@@ -41,13 +41,13 @@ export default function TimelineTeaser() {
                 </span>
                 <span className="absolute left-0 -translate-x-1/2 mt-3 whitespace-nowrap text-center">
                   <span className="block text-[11px] md:text-xs text-[#0a0a0a] leading-none">{d.label}</span>
-                  <span className="block text-[9px] md:text-[10px] tracking-[0.12em] uppercase text-[#0a0a0a]/45 mt-1">{d.sub}</span>
+                  <span className="block text-[9px] md:text-[10px] tracking-[0.12em] uppercase text-[#0a0a0a]/45 mt-1 font-sans">{d.sub}</span>
                 </span>
               </div>
             ))}
           </div>
 
-          <div className="mt-12 inline-flex items-center gap-2 text-[11px] tracking-[0.18em] uppercase text-[#0a0a0a]/60 group-hover:text-[#0a0a0a] transition-colors duration-300">
+          <div className="mt-12 inline-flex items-center gap-2 text-[11px] tracking-[0.18em] uppercase text-[#0a0a0a]/60 group-hover:text-[#0a0a0a] transition-colors duration-300 font-sans">
             Walk the 315,000 years
             <span className="transition-transform duration-300 group-hover:translate-x-1" style={{ color: "#E3120B" }}>→</span>
           </div>
