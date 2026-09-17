@@ -501,7 +501,7 @@ export default function StoryDetailContent({
               </h2>
             </div>
 
-            <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-10">
+            <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5">
               {mentionedPlaces.slice(0, 6).map((p) => (
                 <KinfolkTile
                   key={p.slug}
@@ -531,8 +531,8 @@ export default function StoryDetailContent({
               </h2>
             </div>
 
-            <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-10">
-              {relatedStories.slice(0, 3).map((s) => (
+            <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5">
+              {relatedStories.slice(0, 6).map((s) => (
                 <KinfolkTile
                   key={s.slug}
                   href={`/stories/${s.slug}`}
@@ -570,8 +570,8 @@ export default function StoryDetailContent({
               </h2>
             </div>
 
-            <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-10">
-              {relatedJourneys.slice(0, 3).map((journey) => (
+            <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5">
+              {relatedJourneys.slice(0, 6).map((journey) => (
                 <KinfolkTile
                   key={journey.slug}
                   href={`/journeys/${journey.slug}`}
@@ -609,8 +609,8 @@ export default function StoryDetailContent({
               </h2>
             </div>
 
-            <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-10">
-              {relatedPlaces.slice(0, 3).map((p) => (
+            <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5">
+              {relatedPlaces.slice(0, 6).map((p) => (
                 <KinfolkTile
                   key={p.slug}
                   href={`/places/${p.slug}`}
