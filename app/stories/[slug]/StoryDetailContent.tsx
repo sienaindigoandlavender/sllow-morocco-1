@@ -1,6 +1,7 @@
 "use client";
 
 import { cloudinaryUrl } from "@/lib/cloudinary";
+import KinfolkTile from "@/components/KinfolkTile";
 import Link from "next/link";
 import { TRIP_FUNNEL_PUBLIC, JOURNEY_CROSSLINKS } from "@/lib/flags";
 import StoryBody from "@/components/StoryBody";
@@ -502,27 +503,13 @@ export default function StoryDetailContent({
 
             <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-10">
               {mentionedPlaces.slice(0, 6).map((p) => (
-                <Link key={p.slug} href={`/places/${p.slug}`} className="group">
-                  <div className="aspect-[29/39] relative overflow-hidden bg-[#e8e6e1] mb-4">
-                    {p.heroImage ? (
-                      <img
-                        src={cloudinaryUrl(p.heroImage, 480)}
-                        alt={p.title}
-                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-[1.2s] ease-out"
-                      />
-                    ) : (
-                      <div className="absolute inset-0 bg-[#e8e6e1]" />
-                    )}
-                  </div>
-                  {p.category && (
-                    <p className="text-[10px] text-foreground/70 mb-1.5">
-                      {p.category}
-                    </p>
-                  )}
-                  <h3 className="text-[12px] tracking-[0.04em] uppercase leading-[1.35] text-foreground group-hover:text-foreground/80 transition-colors duration-500">
-                    {p.title}
-                  </h3>
-                </Link>
+                <KinfolkTile
+                  key={p.slug}
+                  href={`/places/${p.slug}`}
+                  image={p.heroImage}
+                  kicker={p.category || undefined}
+                  title={p.title}
+                />
               ))}
             </div>
           </div>
@@ -546,32 +533,13 @@ export default function StoryDetailContent({
 
             <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-10">
               {relatedStories.slice(0, 3).map((s) => (
-                <Link key={s.slug} href={`/stories/${s.slug}`} className="group">
-                  <div className="aspect-[29/39] relative overflow-hidden bg-[#d5d0c8] mb-4">
-                    {s.heroImage ? (
-                      <img
-                        src={cloudinaryUrl(s.heroImage, 480)}
-                        alt={s.title}
-                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-[1.2s] ease-out"
-                      />
-                    ) : (
-                      <div className="absolute inset-0 bg-[#d5d0c8]" />
-                    )}
-                  </div>
-                  {s.category && (
-                    <p className="text-[10px] text-foreground/70 mb-1.5">
-                      {s.category}
-                    </p>
-                  )}
-                  <h3 className="text-[12px] tracking-[0.04em] uppercase leading-[1.35] text-foreground group-hover:text-foreground/80 transition-colors duration-500">
-                    {s.title}
-                  </h3>
-                  {s.excerpt && (
-                    <p className="text-[11.5px] text-foreground/65 leading-[1.5] mt-1 line-clamp-2">
-                      {s.excerpt}
-                    </p>
-                  )}
-                </Link>
+                <KinfolkTile
+                  key={s.slug}
+                  href={`/stories/${s.slug}`}
+                  image={s.heroImage}
+                  kicker={s.category || undefined}
+                  title={s.title}
+                />
               ))}
             </div>
 
