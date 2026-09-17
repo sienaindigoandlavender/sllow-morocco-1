@@ -4,6 +4,7 @@ import { cloudinaryUrl } from "@/lib/cloudinary";
 import Link from "next/link";
 import EpicCarousel from "@/components/EpicCarousel";
 import TimelineTeaser from "@/components/TimelineTeaser";
+import ThemesBanner from "@/components/ThemesBanner";
 import { TRIP_FUNNEL_PUBLIC } from "@/lib/flags";
 import dynamic from "next/dynamic";
 
@@ -405,16 +406,8 @@ export default function HomeContent({
       {/* ══════════════════════════════════════════════════
           4. THE EDIT — Trimmed editorial row (4 stories only)
           ══════════════════════════════════════════════════ */}
-      {editStories.length > 0 && (
-        <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.08]">
-          <SectionHeader title="The Edit" href="/stories" linkText="Read the stories" />
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-            {editStories.map((story) => (
-              <StoryTile key={story.slug} story={story} />
-            ))}
-          </div>
-        </section>
-      )}
+      {/* Six themed doorways into the archive (replaces the old fixed story row) */}
+      <ThemesBanner />
 
       {/* ══════════════════════════════════════════════════
           5. PLACES — Six vertical tiles + embedded Morocco map
