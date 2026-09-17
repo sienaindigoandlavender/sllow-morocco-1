@@ -40,7 +40,7 @@ export default function KinfolkTile({
       <h3 className="text-[13px] tracking-[0.04em] text-[#0a0a0a] group-hover:text-[#0a0a0a]/70 transition-colors leading-snug font-sans">
         {title}
       </h3>
-      {sub && <p className="text-[12px] text-[#0a0a0a]/55 mt-1 leading-relaxed">{sub}</p>}
+      {sub && <p className="text-[12px] text-[#0a0a0a]/55 mt-1 mb-0 leading-relaxed font-sans">{sub}</p>}
     </Link>
   );
 }
