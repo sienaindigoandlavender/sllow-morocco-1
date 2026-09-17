@@ -3,6 +3,7 @@
 import { cloudinaryUrl } from "@/lib/cloudinary";
 import Link from "next/link";
 import EpicCarousel from "@/components/EpicCarousel";
+import TimelineTeaser from "@/components/TimelineTeaser";
 import { TRIP_FUNNEL_PUBLIC } from "@/lib/flags";
 import dynamic from "next/dynamic";
 
@@ -500,7 +501,45 @@ export default function HomeContent({
             ))}
           </div>
         </section>
+
       )}
+
+      {/* MOROCCO ON ONE LINE — animated doorway into /timeline */}
+      <TimelineTeaser />
+
+      {/* LEARN TO READ MOROCCO - glossary cluster-essays */}
+      <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.08]">
+        <div className="flex items-baseline justify-between mb-4">
+          <h2 className="text-[15px] md:text-base font-light tracking-[-0.01em] text-[#0a0a0a]">
+            Learn to Read Morocco
+          </h2>
+        </div>
+        <p className="text-[13px] md:text-sm text-[#0a0a0a]/55 leading-relaxed max-w-xl mb-8">
+          The vocabulary of a country, decoded. Learn the terms, and the whole place becomes legible.
+        </p>
+        <div className="divide-y divide-[#0a0a0a]/[0.08]">
+          {[
+            { slug: "the-vocabulary-of-the-moroccan-table", title: "The Vocabulary of the Moroccan Table", kicker: "Food & Drink" },
+            { slug: "how-to-read-a-moroccan-building", title: "How to Read a Moroccan Building", kicker: "Architecture" },
+            { slug: "the-language-of-the-loom", title: "The Language of the Loom", kicker: "Textiles" },
+            { slug: "the-trades-that-built-the-medina", title: "The Trades That Built the Medina", kicker: "Craft" },
+            { slug: "the-words-that-have-no-translation", title: "The Words That Have No Translation", kicker: "Culture" },
+            { slug: "the-map-named", title: "The Map, Named", kicker: "Cities & Regions" },
+            { slug: "seven-words-for-a-thousand-years-of-power", title: "Seven Words for a Thousand Years of Power", kicker: "History" },
+            { slug: "reading-the-land", title: "Reading the Land", kicker: "Geography" },
+            { slug: "what-morocco-wears", title: "What Morocco Wears", kicker: "Dress" },
+          ].map((g) => (
+            <Link key={g.slug} href={`/stories/${g.slug}`} className="group flex items-baseline justify-between gap-6 py-4">
+              <span className="text-[15px] md:text-base font-light tracking-[-0.01em] text-[#0a0a0a] leading-snug group-hover:text-[#0a0a0a]/55 transition-colors">
+                {g.title}
+              </span>
+              <span className="text-[10px] tracking-[0.14em] uppercase text-[#0a0a0a]/35 group-hover:text-[#0a0a0a]/70 transition-colors whitespace-nowrap shrink-0">
+                {g.kicker}
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
 
       {/* ══════════════════════════════════════════════════
           9. PRIVATE JOURNEYS CTA STRIP — Final invitation
