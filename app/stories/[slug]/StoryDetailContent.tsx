@@ -572,25 +572,13 @@ export default function StoryDetailContent({
 
             <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-10">
               {relatedJourneys.slice(0, 3).map((journey) => (
-                <Link key={journey.slug} href={`/journeys/${journey.slug}`} className="group">
-                  <div className="aspect-[29/39] relative overflow-hidden bg-[#e8e6e1] mb-4">
-                    {journey.heroImage && (
-                      <img
-                        src={cloudinaryUrl(journey.heroImage, 480)}
-                        alt={journey.title}
-                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-[1.2s] ease-out"
-                      />
-                    )}
-                  </div>
-                  <p className="text-[10px] text-foreground/70 mb-1.5">
-                    {journey.duration && journey.duration > 0
-                      ? `${journey.duration}-Day Journey`
-                      : "Private Journey"}
-                  </p>
-                  <h3 className="text-[12px] tracking-[0.04em] uppercase leading-[1.35] text-foreground group-hover:text-foreground/80 transition-colors duration-500">
-                    {journey.title}
-                  </h3>
-                </Link>
+                <KinfolkTile
+                  key={journey.slug}
+                  href={`/journeys/${journey.slug}`}
+                  image={journey.heroImage}
+                  kicker={journey.duration && journey.duration > 0 ? `${journey.duration}-Day Journey` : "Private Journey"}
+                  title={journey.title}
+                />
               ))}
             </div>
 
@@ -623,27 +611,13 @@ export default function StoryDetailContent({
 
             <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-10">
               {relatedPlaces.slice(0, 3).map((p) => (
-                <Link key={p.slug} href={`/places/${p.slug}`} className="group">
-                  <div className="aspect-[29/39] relative overflow-hidden bg-[#e8e6e1] mb-4">
-                    {p.heroImage ? (
-                      <img
-                        src={cloudinaryUrl(p.heroImage, 480)}
-                        alt={p.title}
-                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-[1.2s] ease-out"
-                      />
-                    ) : (
-                      <div className="absolute inset-0 bg-[#e8e6e1]" />
-                    )}
-                  </div>
-                  {p.category && (
-                    <p className="text-[10px] text-foreground/70 mb-1.5">
-                      {p.category}
-                    </p>
-                  )}
-                  <h3 className="text-[12px] tracking-[0.04em] uppercase leading-[1.35] text-foreground group-hover:text-foreground/80 transition-colors duration-500">
-                    {p.title}
-                  </h3>
-                </Link>
+                <KinfolkTile
+                  key={p.slug}
+                  href={`/places/${p.slug}`}
+                  image={p.heroImage}
+                  kicker={p.category || undefined}
+                  title={p.title}
+                />
               ))}
             </div>
 
