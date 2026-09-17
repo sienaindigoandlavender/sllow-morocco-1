@@ -209,7 +209,7 @@ function JourneysCarousel({ journeys }: { journeys: Journey[] }) {
             href={`/journeys/${journey.slug}`}
             className="flex-shrink-0 w-[280px] group"
           >
-            <div className="relative aspect-[4/5] mb-3 overflow-hidden bg-[#f0f0f0]">
+            <div className="relative aspect-[3/4] mb-3 overflow-hidden bg-[#f0f0f0]">
               {journey.heroImage && (
                 <img
                   src={cloudinaryUrl(journey.heroImage)}
@@ -675,7 +675,7 @@ export default function JourneyDetailContent({
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-4 md:gap-x-5 gap-y-10">
               {relatedPlaces.slice(0, 6).map((place) => (
                 <Link key={place.slug} href={`/places/${place.slug}`} className="group block">
-                  <div className="aspect-[29/39] relative overflow-hidden bg-[#e8e6e1] mb-3.5">
+                  <div className="aspect-[3/4] relative overflow-hidden bg-[#e8e6e1] mb-3.5">
                     {place.heroImage && (
                       <img
                         src={cloudinaryUrl(place.heroImage, 480)}
@@ -724,7 +724,7 @@ export default function JourneyDetailContent({
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-4 md:gap-x-5 gap-y-10">
               {otherJourneys.slice(0, 6).map((journey) => (
                 <Link key={journey.slug} href={`/journeys/${journey.slug}`} className="group block">
-                  <div className="aspect-[29/39] relative overflow-hidden bg-[#d5d0c8] mb-3.5">
+                  <div className="aspect-[3/4] relative overflow-hidden bg-[#d5d0c8] mb-3.5">
                     {journey.heroImage && (
                       <img
                         src={cloudinaryUrl(journey.heroImage, 480)}
@@ -771,7 +771,7 @@ export default function JourneyDetailContent({
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-4 md:gap-x-5 gap-y-10">
               {relatedStories.slice(0, 6).map((story) => (
                 <Link key={story.slug} href={`/stories/${story.slug}`} className="group block">
-                  <div className="aspect-[29/39] relative overflow-hidden bg-[#e8e6e1] mb-3.5">
+                  <div className="aspect-[3/4] relative overflow-hidden bg-[#e8e6e1] mb-3.5">
                     {story.heroImage ? (
                       <img
                         src={cloudinaryUrl(story.heroImage, 480)}
