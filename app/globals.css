@@ -299,6 +299,17 @@ nav, button, .tap-target {
 }
 
 /* Sand background for missing images */
+
+/* Tadelakt plaster — a warm, barely-there wall texture for gray sections.
+   Pure CSS: a fine SVG grain over the light-gray base. Reads as a riad wall,
+   not flat digital gray. Un-copyable: this is the surface of Morocco. */
+.bg-plaster {
+  background-color: #f2f1ef;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.55 0 0 0 0 0.52 0 0 0 0 0.48 0 0 0 0.035 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
 .bg-sand {
   background-color: hsl(var(--sand));
 }

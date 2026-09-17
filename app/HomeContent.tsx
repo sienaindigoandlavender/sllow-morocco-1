@@ -330,7 +330,7 @@ export default function HomeContent({
       {/* ══════════════════════════════════════════════════
           2. THE TWO WAYS IN — Know deeply / Travel deeply
           ══════════════════════════════════════════════════ */}
-      <section className="bg-[#f2f1ef] px-6 md:px-10 lg:px-14 pt-16 md:pt-24 pb-10 md:pb-16 border-b border-[#0a0a0a]/[0.08]">
+      <section className="bg-plaster px-6 md:px-10 lg:px-14 pt-16 md:pt-24 pb-10 md:pb-16 border-b border-[#0a0a0a]/[0.08]">
         <div className="max-w-2xl mb-12 md:mb-16">
           <h2 className="font-serif text-[clamp(1.9rem,4vw,3.25rem)] font-light tracking-[-0.02em] text-[#0a0a0a] leading-[1.05]">
             Read it first. Then, if it won&rsquo;t leave you alone, come.
@@ -394,7 +394,7 @@ export default function HomeContent({
       {/* ══════════════════════════════════════════════════
           7. EDITORIAL INTERLUDE — The month begins when the moon says so
           ══════════════════════════════════════════════════ */}
-      <section className="px-6 md:px-10 lg:px-14 py-20 md:py-32 border-t border-[#0a0a0a]/[0.08]">
+      <section className="bg-plaster px-6 md:px-10 lg:px-14 py-24 md:py-40 border-t border-[#0a0a0a]/[0.08]">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="font-serif text-[clamp(1.8rem,4vw,3.25rem)] font-light tracking-[-0.02em] text-[#0a0a0a] leading-[1.25]">
             The month begins when the moon says so. The city stops. Then the smell of harira.
