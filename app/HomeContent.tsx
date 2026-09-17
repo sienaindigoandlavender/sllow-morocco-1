@@ -5,6 +5,7 @@ import Link from "next/link";
 import EpicCarousel from "@/components/EpicCarousel";
 import TimelineTeaser from "@/components/TimelineTeaser";
 import ThemesBanner from "@/components/ThemesBanner";
+import HomeMapTeaser from "@/components/HomeMapTeaser";
 import { TRIP_FUNNEL_PUBLIC } from "@/lib/flags";
 import dynamic from "next/dynamic";
 
@@ -398,6 +399,9 @@ export default function HomeContent({
           ══════════════════════════════════════════════════ */}
       {/* Six themed doorways into the archive (replaces the old fixed story row) */}
       <ThemesBanner />
+
+      {/* Map teaser — the Atlas Obscura doorway, links to the full /places/map */}
+      <HomeMapTeaser />
 
 
       {/* ══════════════════════════════════════════════════
