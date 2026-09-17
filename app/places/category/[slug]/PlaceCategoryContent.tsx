@@ -121,7 +121,7 @@ export default function PlaceCategoryContent({
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-4 md:gap-x-5 gap-y-10">
             {places.map((p) => (
               <Link key={p.slug} href={`/places/${p.slug}`} className="group block">
-                <div className="aspect-[29/39] relative overflow-hidden bg-[#e8e6e1] mb-3.5">
+                <div className="aspect-[3/4] relative overflow-hidden bg-[#e8e6e1] mb-3.5">
                   {p.heroImage ? (
                     <img
                       src={cloudinaryUrl(p.heroImage, 480)}
@@ -270,7 +270,7 @@ export default function PlaceCategoryContent({
         <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-6">
           Browse by category
         </p>
-        <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-10 lg:gap-x-14">
+        <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-10 lg:gap-x-14">
           {siblings.map((c) => (
             <li key={c.slug}>
               <Link
