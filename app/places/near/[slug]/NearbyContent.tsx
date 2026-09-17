@@ -101,7 +101,7 @@ export default function NearbyContent({
                     className="group flex gap-5 md:gap-8 flex-1 min-w-0"
                   >
                     <div className="w-24 md:w-36 flex-shrink-0">
-                      <div className="aspect-[29/39] relative overflow-hidden bg-[#e8e6e1]">
+                      <div className="aspect-[3/4] relative overflow-hidden bg-[#e8e6e1]">
                         {p.heroImage ? (
                           <img
                             src={cloudinaryUrl(p.heroImage, 360)}
