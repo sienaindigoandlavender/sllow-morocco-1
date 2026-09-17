@@ -37,7 +37,7 @@ export default function KinfolkTile({
           {kicker}
         </span>
       )}
-      <h3 className="text-[13px] tracking-[0.04em] text-[#0a0a0a] group-hover:text-[#0a0a0a]/70 transition-colors leading-snug">
+      <h3 className="text-[13px] tracking-[0.04em] text-[#0a0a0a] group-hover:text-[#0a0a0a]/70 transition-colors leading-snug font-sans">
         {title}
       </h3>
       {sub && <p className="text-[12px] text-[#0a0a0a]/55 mt-1 leading-relaxed">{sub}</p>}
