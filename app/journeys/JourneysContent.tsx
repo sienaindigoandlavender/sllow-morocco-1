@@ -148,7 +148,7 @@ export default function JourneysContent({
               return (
                 <article key={`${item.type}-${item.slug}`} itemScope itemType="https://schema.org/TouristTrip">
                   <Link href={href} className="group block">
-                    <div className="aspect-[29/39] relative overflow-hidden bg-[#e8e6e1] mb-3.5">
+                    <div className="aspect-[3/4] relative overflow-hidden bg-[#e8e6e1] mb-3.5">
                       {item.heroImage && (
                         <img
                           src={cloudinaryUrl(item.heroImage, 480)}
