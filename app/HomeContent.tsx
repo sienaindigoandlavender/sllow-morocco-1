@@ -197,9 +197,17 @@ export default function HomeContent({
   places,
   heroItem,
 }: HomeContentProps) {
-  const lead = stories[0];
-  const editStories = stories.slice(1, 5);          // 4 items
-  const deeperStories = stories.slice(5, 8);        // 3 items
+  // The full shuffled archive arrives in `stories`. Spread the sections ACROSS it
+  // (not the same top slice) so more of the archive is on the page at once, and it
+  // all rotates through over the day. Guard against a short pool with modulo.
+  const pool = stories.length ? stories : [];
+  const at = (n: number) => pool[n % (pool.length || 1)];
+  const lead = pool[0];
+  const editStories = [1, 2, 3, 4].map((n) => at(n)).filter(Boolean);          // 4, top of pool
+  const deeperStories = [5, 6, 7].map((n) => at(n)).filter(Boolean);           // 3, next
+  // A small cluster of further reads, drawn from DEEPER in the shuffle so they
+  // differ from the features above and rotate independently.
+  const moreReads = [12, 18, 25, 33, 41].map((n) => at(n)).filter(Boolean);    // 5, spread deep
   const featuredJourneys = journeys.slice(0, 3);    // 3 items
   const featuredPlaces = places.slice(0, 6);        // 6 items
 
@@ -220,7 +228,7 @@ export default function HomeContent({
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-black/30" />
 
           {/* Masthead — the constant declaration */}
-          <div className="relative z-10 h-full flex flex-col justify-between px-6 md:px-10 lg:px-14 py-10 md:py-14 lg:py-16">
+          <div className="relative z-10 h-full flex flex-col justify-between px-6 md:px-10 lg:px-14 pt-10 md:pt-14 lg:pt-16 pb-16 md:pb-24 lg:pb-28">
             <div className="flex items-center gap-4 md:gap-6">
               <h1 className="text-white text-[clamp(2rem,6vw,4.5rem)] font-light tracking-[-0.02em] leading-none">
                 Morocco, decoded
@@ -250,23 +258,48 @@ export default function HomeContent({
               </p>
             )}
 
-            {/* Rotating feature — links to its own page by type */}
-            <Link
-              href={heroItem?.href || `/stories/${lead?.slug}`}
-              className="group block max-w-xl lg:max-w-lg"
-            >
-              <span className="text-white/60 text-[11px] tracking-[0.25em] uppercase mb-3 block">
-                {heroItem?.label || "Editorial"}
-              </span>
-              <h2 className="text-white text-[clamp(1.4rem,3.5vw,2.4rem)] font-light tracking-[-0.01em] leading-[1.12] mb-2 group-hover:text-white/80 transition-colors">
-                {heroItem?.title || lead?.title}
-              </h2>
-              {(heroItem?.subtitle || lead?.subtitle) && (
-                <p className="text-white/55 text-sm md:text-[15px] leading-relaxed">
-                  {heroItem?.subtitle || lead?.subtitle}
-                </p>
+            {/* Bottom row: rotating feature (left) + a few further reads (right) */}
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+              {/* Rotating feature — links to its own page by type */}
+              <Link
+                href={heroItem?.href || `/stories/${lead?.slug}`}
+                className="group block max-w-xl lg:max-w-lg"
+              >
+                <span className="text-white/60 text-[11px] tracking-[0.25em] uppercase mb-3 block">
+                  {heroItem?.label || "Editorial"}
+                </span>
+                <h2 className="text-white text-[clamp(1.4rem,3.5vw,2.4rem)] font-light tracking-[-0.01em] leading-[1.12] mb-2 group-hover:text-white/80 transition-colors">
+                  {heroItem?.title || lead?.title}
+                </h2>
+                {(heroItem?.subtitle || lead?.subtitle) && (
+                  <p className="text-white/55 text-sm md:text-[15px] leading-relaxed">
+                    {heroItem?.subtitle || lead?.subtitle}
+                  </p>
+                )}
+              </Link>
+
+              {/* Further reads — a small cluster, bottom-right, rotating from deep in the archive */}
+              {moreReads.length > 0 && (
+                <div className="hidden md:block shrink-0 max-w-[15rem] lg:max-w-[17rem] border-t border-white/20 pt-4">
+                  <span className="text-white/50 text-[10px] tracking-[0.25em] uppercase mb-3 block">
+                    Also worth your time
+                  </span>
+                  <ul className="space-y-2.5">
+                    {moreReads.map((r: any) => (
+                      <li key={r.slug}>
+                        <Link
+                          href={`/stories/${r.slug}`}
+                          className="group flex items-baseline gap-2 text-white/75 hover:text-white transition-colors"
+                        >
+                          <span className="text-white/30 group-hover:text-white/60 transition-colors text-xs mt-px">→</span>
+                          <span className="text-[13px] leading-snug font-light tracking-[-0.01em]">{r.title}</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               )}
-            </Link>
+            </div>
           </div>
         </section>
       )}
