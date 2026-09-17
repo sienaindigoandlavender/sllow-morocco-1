@@ -18,7 +18,7 @@
 :root {
   /* Typography */
   --font-display: 'EB Garamond', Georgia, serif;
-  --font-body: 'DM Sans', -apple-system, sans-serif;
+  --font-body: 'EB Garamond', Georgia, serif;
   --font-sans: 'DM Sans', -apple-system, sans-serif;
   
   /* Colors - HSL format for Tailwind compatibility */
