@@ -207,21 +207,31 @@ function StoryTile({ story }: { story: Story }) {
 
 // ─── Section header with rule line ──────────────────────────────────────────
 
-function SectionHeader({ title, href, linkText = "More" }: { title: string; href: string; linkText?: string }) {
+function SectionHeader({
+  title, href, linkText = "More", kicker,
+}: { title: string; href: string; linkText?: string; kicker?: string }) {
   return (
     <>
-      <div className="flex items-baseline justify-between mb-4">
-        <h2 className="text-[15px] md:text-base font-light tracking-[-0.01em] text-[#0a0a0a]">
-          {title}
-        </h2>
+      {/* Magazine department header — kicker, big serif title, heavy rule */}
+      <div className="flex items-end justify-between gap-6 mb-5 md:mb-6">
+        <div>
+          {kicker && (
+            <span className="block text-[10px] md:text-[11px] tracking-[0.28em] uppercase text-[#E3120B] mb-3">
+              {kicker}
+            </span>
+          )}
+          <h2 className="font-serif text-[clamp(1.9rem,4vw,3.25rem)] font-light tracking-[-0.02em] leading-[0.98] text-[#0a0a0a]">
+            {title}
+          </h2>
+        </div>
         <Link
           href={href}
-          className="text-[11px] tracking-[0.08em] uppercase text-[#0a0a0a]/55 hover:text-[#0a0a0a] transition-colors"
+          className="shrink-0 pb-1.5 text-[11px] tracking-[0.14em] uppercase text-[#0a0a0a]/50 hover:text-[#0a0a0a] transition-colors whitespace-nowrap"
         >
           {linkText} →
         </Link>
       </div>
-      <div className="border-t border-[#0a0a0a] mb-10" />
+      <div className="border-t-2 border-[#0a0a0a] mb-10 md:mb-14" />
     </>
   );
 }
@@ -267,10 +277,14 @@ export default function HomeContent({
 
           {/* Masthead — the constant declaration */}
           <div className="relative z-10 h-full flex flex-col justify-between px-6 md:px-10 lg:px-14 pt-10 md:pt-14 lg:pt-16 pb-16 md:pb-24 lg:pb-28">
-            <div className="flex items-center gap-4 md:gap-6">
-              <h1 className="text-white text-[clamp(2rem,6vw,4.5rem)] font-light tracking-[-0.02em] leading-none">
-                Morocco, decoded
-              </h1>
+            <div>
+              <span className="block text-white/55 text-[10px] md:text-[11px] tracking-[0.32em] uppercase mb-4 md:mb-5">
+                A field guide to the deeper country
+              </span>
+              <div className="flex items-center gap-4 md:gap-6">
+                <h1 className="font-serif text-white text-[clamp(2.4rem,7vw,5.5rem)] font-light tracking-[-0.025em] leading-[0.92]">
+                  Morocco, decoded
+                </h1>
               <Link
                 href="/journeys"
                 aria-label="Explore the journeys"
@@ -286,6 +300,7 @@ export default function HomeContent({
                   <path d="M15.5 8.5l-2 5-5 2 2-5 5-2z" />
                 </svg>
               </Link>
+            </div>
             </div>
 
             {/* What month it is. One line, no chrome, and it changes
@@ -352,7 +367,10 @@ export default function HomeContent({
           ══════════════════════════════════════════════════ */}
       <section className="px-6 md:px-10 lg:px-14 pt-16 md:pt-24 pb-10 md:pb-16 border-b border-[#0a0a0a]/[0.08]">
         <div className="max-w-2xl mb-12 md:mb-16">
-          <h2 className="font-serif text-[clamp(1.5rem,3.2vw,2.3rem)] font-light tracking-[-0.015em] text-[#0a0a0a] leading-[1.25]">
+          <span className="block text-[10px] md:text-[11px] tracking-[0.28em] uppercase text-[#E3120B] mb-4">
+            Where to begin
+          </span>
+          <h2 className="font-serif text-[clamp(1.9rem,4vw,3.25rem)] font-light tracking-[-0.02em] text-[#0a0a0a] leading-[1.02]">
             Two ways into Morocco.
           </h2>
         </div>
@@ -420,7 +438,7 @@ export default function HomeContent({
           ══════════════════════════════════════════════════ */}
       {deeperStories.length > 0 && (
         <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.08]">
-          <SectionHeader title="Going Deeper" href="/stories" linkText="Read deeper" />
+          <SectionHeader kicker="The long read" title="Going Deeper" href="/stories" linkText="Read deeper" />
           <div className="divide-y divide-[#0a0a0a]/[0.08]">
             {deeperStories.map((story) => (
               <Link
@@ -504,7 +522,7 @@ export default function HomeContent({
       {/* Stories */}
       {deeperStories.length > 0 && (
         <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.08]">
-          <SectionHeader title="Stories" href="/stories" linkText="All stories" />
+          <SectionHeader kicker="Editorial" title="Stories" href="/stories" linkText="All stories" />
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5">
             {[1, 2, 3, 4, 5, 6].map((n) => at(n)).filter(Boolean).map((story: any) => (
               <KinfolkTile
@@ -522,7 +540,7 @@ export default function HomeContent({
       {/* Places */}
       {featuredPlaces.length > 0 && (
         <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.08]">
-          <SectionHeader title="Places" href="/places" linkText="All places" />
+          <SectionHeader kicker="The atlas" title="Places" href="/places" linkText="All places" />
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5">
             {featuredPlaces.map((p) => (
               <KinfolkTile
@@ -541,7 +559,7 @@ export default function HomeContent({
       {/* Journeys */}
       {TRIP_FUNNEL_PUBLIC && featuredJourneys.length > 0 && (
         <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.08]">
-          <SectionHeader title="Private Journeys" href="/journeys" linkText="All journeys" />
+          <SectionHeader kicker="Travel with us" title="Private Journeys" href="/journeys" linkText="All journeys" />
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5">
             {featuredJourneys.map((j) => (
               <KinfolkTile
