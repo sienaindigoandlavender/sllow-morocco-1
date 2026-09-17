@@ -23,6 +23,9 @@ export default function AboutPage() {
       {/* Opening — the scene, the aha */}
       <section className="px-6 md:px-10 lg:px-14 pt-28 md:pt-40 pb-16 md:pb-24">
         <div className="max-w-3xl">
+          <p className="text-[11px] tracking-[0.24em] uppercase text-[#0a0a0a]/45 mb-8">
+            Decoding Morocco since 2013
+          </p>
           <p className="font-serif text-[clamp(1.5rem,3.4vw,2.4rem)] font-light tracking-[-0.015em] leading-[1.35] text-[#0a0a0a]">
             Every country runs on codes its visitors never see. Slow Morocco writes about the
             unseen ones — the meaning built into a wall, a gesture, a colour, a meal.
@@ -36,6 +39,12 @@ export default function AboutPage() {
           <p>
             Once you can see them, your perception changes, and the country changes with it. You
             do not learn more facts about Morocco. You start to see a different Morocco.
+          </p>
+          <p>
+            We have been at this since 2013 — reading the histories, sitting with the craftsmen,
+            tracing where a word or a pattern came from, and writing it down. Hundreds of pieces now,
+            each one following a single thread of the country until it makes sense. That reading is
+            on the site, and it is where most people meet us.
           </p>
           <p>
           </p>
@@ -52,9 +61,10 @@ export default function AboutPage() {
       <section className="px-6 md:px-10 lg:px-14 py-20 md:py-32">
         <div className="max-w-2xl space-y-7 text-[16px] md:text-[17px] leading-[1.75] text-[#0a0a0a]/80 font-serif">
           <p>
-            You can read the codes here. On a journey, we show them to you on the ground — in the
-            wall in front of you, the meal on the table, the town most people drive past. Reading
-            changes how you see. Standing there changes it more.
+            Reading changes how you see. Standing there changes it more. There comes a point where
+            the page is not enough — where you want to be in the wall, the meal, the town most people
+            drive past, with someone beside you who can tell you what you are looking at. That is when
+            people come to us to travel.
           </p>
           <p>
             The journeys take the older roads, not the highway. You do not visit the country and
