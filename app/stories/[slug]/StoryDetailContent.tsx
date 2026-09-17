@@ -197,9 +197,38 @@ export default function StoryDetailContent({
       </div>
 
       {/* ══════════════════════════════════════════════════════════════
-          BODY — Single centered column, no sidebar
+          BODY — magazine spread: left rail (desktop) + reading column
           ══════════════════════════════════════════════════════════════ */}
-      <article className="max-w-3xl mx-auto px-8 md:px-12 py-14 md:py-20">
+      <div className="max-w-6xl mx-auto px-6 md:px-10 lg:px-12 py-14 md:py-20 flex gap-10 lg:gap-16">
+        {/* Left rail — "More from the archive", desktop only, quiet and secondary */}
+        {relatedStories.length > 0 && (
+          <aside className="hidden lg:block w-56 shrink-0">
+            <div className="sticky top-24">
+              <span className="block text-[10px] tracking-[0.24em] uppercase text-[#E3120B] mb-5">
+                More from the archive
+              </span>
+              <ul className="space-y-6">
+                {relatedStories.slice(0, 6).map((r: any) => (
+                  <li key={r.slug}>
+                    <a href={`/stories/${r.slug}`} className="group block">
+                      {r.category && (
+                        <span className="block text-[9px] tracking-[0.16em] uppercase text-foreground/40 mb-1.5">
+                          {r.category}
+                        </span>
+                      )}
+                      <span className="block font-serif text-[15px] leading-snug tracking-[-0.01em] text-foreground group-hover:text-foreground/55 transition-colors">
+                        {r.title}
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </aside>
+        )}
+
+        {/* Reading column */}
+        <article className="min-w-0 max-w-3xl w-full mx-auto">
 
         {/* Body text */}
         {story.body && <StoryBody content={story.body} inlineImages={images} currentSlug={slug} pullQuote={story.pullQuote} pullQuotePosition={story.pullQuotePosition} asidePlace={asidePlace} />}
@@ -416,6 +445,7 @@ export default function StoryDetailContent({
         </div>
 
       </article>
+      </div>
 
       {/* ══════════════════════════════════════════════════════════════
           PREV / NEXT NAVIGATION
