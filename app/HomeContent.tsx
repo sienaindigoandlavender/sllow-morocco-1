@@ -7,6 +7,7 @@ import TimelineTeaser from "@/components/TimelineTeaser";
 import ThemesBanner from "@/components/ThemesBanner";
 import KinfolkTile from "@/components/KinfolkTile";
 import HomeMapTeaser from "@/components/HomeMapTeaser";
+import ImageBand from "@/components/ImageBand";
 import { TRIP_FUNNEL_PUBLIC } from "@/lib/flags";
 import dynamic from "next/dynamic";
 
@@ -386,13 +387,20 @@ export default function HomeContent({
       {/* Map teaser — the Atlas Obscura doorway, links to the full /places/map */}
       <HomeMapTeaser />
 
+      {/* Full-bleed image band — warmth and breath between white sections */}
+      <ImageBand
+        image="https://res.cloudinary.com/do2ojyohc/image/upload/v1774039524/Camel_caravan_crossing_Saharan_dunes_wngjzj.png"
+        kicker="The south"
+        headline="Some roads are older than the maps that forgot them."
+      />
+
 
       {/* ══════════════════════════════════════════════════
           7. EDITORIAL INTERLUDE — The month begins when the moon says so
           ══════════════════════════════════════════════════ */}
       <section className="px-6 md:px-10 lg:px-14 py-20 md:py-32 border-t border-[#0a0a0a]/[0.08]">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-[clamp(1.5rem,3.4vw,2.6rem)] font-light tracking-[-0.015em] text-[#0a0a0a] leading-[1.2]">
+          <h2 className="font-serif text-[clamp(1.8rem,4vw,3.25rem)] font-light tracking-[-0.02em] text-[#0a0a0a] leading-[1.25]">
             The month begins when the moon says so. The city stops. Then the smell of harira.
           </h2>
         </div>
@@ -446,16 +454,17 @@ export default function HomeContent({
       <TimelineTeaser />
 
       {/* LEARN TO READ MOROCCO - glossary cluster-essays */}
-      <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.08]">
-        <div className="flex items-baseline justify-between mb-4">
-          <h2 className="text-[15px] md:text-base font-light tracking-[-0.01em] text-[#0a0a0a]">
-            Learn to Read Morocco
-          </h2>
-        </div>
-        <p className="text-[13px] md:text-sm text-[#0a0a0a]/55 leading-relaxed max-w-xl mb-8">
+      <section className="px-6 md:px-10 lg:px-14 py-20 md:py-28 border-t border-[#0a0a0a]/[0.08]">
+        <span className="block text-[10px] md:text-[11px] tracking-[0.28em] uppercase text-[#E3120B] mb-4">
+          The glossary
+        </span>
+        <h2 className="font-serif text-[clamp(1.9rem,4vw,3.25rem)] font-light tracking-[-0.02em] text-[#0a0a0a] leading-[1.0] mb-5">
+          Learn to Read Morocco
+        </h2>
+        <p className="text-[14px] md:text-[15px] text-[#0a0a0a]/55 leading-relaxed max-w-xl mb-12">
           The vocabulary of a country, decoded. Learn the terms, and the whole place becomes legible.
         </p>
-        <div className="divide-y divide-[#0a0a0a]/[0.08]">
+        <div className="divide-y divide-[#0a0a0a]/[0.08] border-t-2 border-[#0a0a0a]">
           {[
             { slug: "the-vocabulary-of-the-moroccan-table", title: "The Vocabulary of the Moroccan Table", kicker: "Food & Drink" },
             { slug: "how-to-read-a-moroccan-building", title: "How to Read a Moroccan Building", kicker: "Architecture" },
@@ -467,17 +476,27 @@ export default function HomeContent({
             { slug: "reading-the-land", title: "Reading the Land", kicker: "Geography" },
             { slug: "what-morocco-wears", title: "What Morocco Wears", kicker: "Dress" },
           ].map((g) => (
-            <Link key={g.slug} href={`/stories/${g.slug}`} className="group flex items-baseline justify-between gap-6 py-4">
-              <span className="text-[15px] md:text-base font-light tracking-[-0.01em] text-[#0a0a0a] leading-snug group-hover:text-[#0a0a0a]/55 transition-colors">
+            <Link key={g.slug} href={`/stories/${g.slug}`} className="group flex items-baseline justify-between gap-6 py-4 md:py-5">
+              <span className="font-serif text-lg md:text-xl font-light tracking-[-0.01em] text-[#0a0a0a] leading-snug group-hover:text-[#0a0a0a]/55 transition-colors">
                 {g.title}
               </span>
-              <span className="text-[10px] tracking-[0.14em] uppercase text-[#0a0a0a]/35 group-hover:text-[#0a0a0a]/70 transition-colors whitespace-nowrap shrink-0">
+              <span className="text-[10px] tracking-[0.14em] uppercase text-[#0a0a0a]/40 group-hover:text-[#E3120B] transition-colors whitespace-nowrap shrink-0">
                 {g.kicker}
               </span>
             </Link>
           ))}
         </div>
       </section>
+
+      {/* Full-bleed image band — the second warm moment, low on the page */}
+      <ImageBand
+        image="https://res.cloudinary.com/ddcznjibs/image/upload/v1772838482/Taourirt_Kasbah_rising_above_the_desert_town_lqljat.png"
+        kicker="Travel differently"
+        headline="Come and see the country the way it reveals itself slowly."
+        href="/journeys"
+        linkText="The journeys"
+        height="medium"
+      />
 
       {/* ══════════════════════════════════════════════════
           BROWSE — three unified Kinfolk rows at the foot: stories, places,
