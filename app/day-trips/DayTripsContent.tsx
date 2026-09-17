@@ -72,7 +72,7 @@ export default function DayTripsContent({
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
               {dayTrips.map((trip) => (
                 <Link key={trip.slug} href={`/day-trips/${trip.slug}`} className="group">
-                  <div className="relative aspect-[4/5] mb-6 overflow-hidden bg-foreground/5">
+                  <div className="relative aspect-[3/4] mb-6 overflow-hidden bg-foreground/5">
                     {trip.heroImage && (
                       <img src={cloudinaryUrl(trip.heroImage)} alt={trip.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />
