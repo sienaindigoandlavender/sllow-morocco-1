@@ -139,6 +139,42 @@ function prettifyPlace(raw?: string): string {
 
 // ─── Vertical tile — reused for stories ─────────────────────────────────────
 
+// Unified Kinfolk-style card — one design across stories, places, journeys.
+// Portrait image, small uppercase kicker, quiet title, optional sub-line.
+function KinfolkTile({
+  href, image, kicker, title, sub, badge,
+}: {
+  href: string; image?: string | null; kicker?: string; title: string; sub?: string; badge?: string;
+}) {
+  return (
+    <Link href={href} className="group block min-w-0">
+      <div className="aspect-[3/4] relative overflow-hidden bg-[#f0eeeb] mb-4">
+        {image && (
+          <img
+            src={cloudinaryUrl(image, 700)}
+            alt={title}
+            className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
+          />
+        )}
+        {badge && (
+          <div className="absolute bottom-3 left-3 bg-white/90 px-2.5 py-1 text-[10px] tracking-[0.08em] uppercase text-[#0a0a0a]">
+            {badge}
+          </div>
+        )}
+      </div>
+      {kicker && (
+        <span className="text-[10px] text-[#0a0a0a]/55 tracking-[0.1em] uppercase block mb-1">
+          {kicker}
+        </span>
+      )}
+      <h3 className="text-[13px] tracking-[0.04em] text-[#0a0a0a] group-hover:text-[#0a0a0a]/70 transition-colors leading-snug">
+        {title}
+      </h3>
+      {sub && <p className="text-[12px] text-[#0a0a0a]/55 mt-1 leading-relaxed">{sub}</p>}
+    </Link>
+  );
+}
+
 function StoryTile({ story }: { story: Story }) {
   return (
     <Link href={`/stories/${story.slug}`} className="group block min-w-0">
@@ -356,52 +392,6 @@ export default function HomeContent({
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════
-          3. FEATURED PRIVATE JOURNEYS — Three journeys, clean route lines
-          Appears early so visitors see the service layer immediately.
-          ══════════════════════════════════════════════════ */}
-      {TRIP_FUNNEL_PUBLIC && featuredJourneys.length > 0 && (
-        <section className="px-6 md:px-10 lg:px-14 pt-8 md:pt-12 pb-16 md:pb-24">
-          <SectionHeader title="Private Journeys" href="/journeys" linkText="Explore journeys" />
-          <p className="text-[#0a0a0a]/55 text-[14px] md:text-[15px] leading-relaxed max-w-2xl mb-12 md:mb-14">
-            Private journeys are written, not packaged. Each route traces a different Morocco: the first passage, the desert arc, the deeper country.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
-            {featuredJourneys.map((j) => {
-              const route = formatRoute(j.destinations);
-              return (
-                <Link key={j.slug} href={`/journeys/${j.slug}`} className="group block min-w-0">
-                  <div className="aspect-[4/5] relative overflow-hidden bg-[#f0eeeb] mb-5">
-                    {j.heroImage && (
-                      <img
-                        src={cloudinaryUrl(j.heroImage, 900)}
-                        alt={j.title}
-                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
-                      />
-                    )}
-                    {j.duration && (
-                      <div className="absolute bottom-3 left-3 bg-white/90 px-2.5 py-1 text-[10px] tracking-[0.08em] uppercase text-[#0a0a0a]">
-                        {j.duration}
-                      </div>
-                    )}
-                  </div>
-                  <h3 className="text-[16px] md:text-[17px] font-light tracking-[-0.01em] text-[#0a0a0a] group-hover:text-[#0a0a0a]/55 transition-colors leading-snug mb-2">
-                    {j.title}
-                  </h3>
-                  {route && (
-                    <p className="text-[12.5px] text-[#0a0a0a]/55 leading-relaxed">
-                      {route}
-                    </p>
-                  )}
-                  <span className="text-[11px] text-[#0a0a0a]/35 tracking-[0.08em] uppercase block mt-3">
-                    Bespoke · Private journey
-                  </span>
-                </Link>
-              );
-            })}
-          </div>
-        </section>
-      )}
 
       {/* ══════════════════════════════════════════════════
           4. THE EDIT — Trimmed editorial row (4 stories only)
@@ -409,53 +399,6 @@ export default function HomeContent({
       {/* Six themed doorways into the archive (replaces the old fixed story row) */}
       <ThemesBanner />
 
-      {/* ══════════════════════════════════════════════════
-          5. PLACES — Six vertical tiles + embedded Morocco map
-          ══════════════════════════════════════════════════ */}
-      {featuredPlaces.length > 0 && (
-        <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.08]">
-          <SectionHeader title="Places" href="/places" linkText="Explore places" />
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5">
-            {featuredPlaces.map((p) => (
-              <Link key={p.slug} href={`/places/${p.slug}`} className="group block min-w-0">
-                <div className="aspect-[3/4] relative overflow-hidden bg-[#f0eeeb] mb-4">
-                  {p.heroImage && (
-                    <img
-                      src={cloudinaryUrl(p.heroImage, 600)}
-                      alt={p.title}
-                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
-                    />
-                  )}
-                </div>
-                {p.category && (
-                  <span className="text-[10px] text-[#0a0a0a]/55 tracking-[0.1em] uppercase block mb-1">
-                    {prettifyLabel(p.category)}
-                  </span>
-                )}
-                <h3 className="text-[13px] tracking-[0.04em] text-[#0a0a0a] group-hover:text-[#0a0a0a]/70 transition-colors leading-snug">
-                  {p.title}
-                </h3>
-                {p.destination && (
-                  <p className="text-[12px] text-[#0a0a0a]/55 mt-1">{prettifyPlace(p.destination)}</p>
-                )}
-              </Link>
-            ))}
-          </div>
-
-          {/* Morocco map — visual anchor for Places */}
-          <div className="relative mt-12 md:mt-16 h-[50vh] min-h-[400px] md:h-[55vh] overflow-hidden bg-[#0a0a0a]">
-            <HomeCityMap />
-            <div className="absolute bottom-5 right-5 z-10">
-              <Link
-                href="/places/map"
-                className="text-[10px] tracking-[0.1em] uppercase text-white/45 hover:text-white transition-colors bg-black/40 backdrop-blur-sm px-4 py-2"
-              >
-                Explore places on the map →
-              </Link>
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* ══════════════════════════════════════════════════
           7. EDITORIAL INTERLUDE — The month begins when the moon says so
@@ -548,6 +491,68 @@ export default function HomeContent({
           ))}
         </div>
       </section>
+
+      {/* ══════════════════════════════════════════════════
+          BROWSE — three unified Kinfolk rows at the foot: stories, places,
+          journeys. Same card design across all three. The deep-browse layer.
+          ══════════════════════════════════════════════════ */}
+
+      {/* Stories */}
+      {deeperStories.length > 0 && (
+        <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.08]">
+          <SectionHeader title="Stories" href="/stories" linkText="All stories" />
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5">
+            {[1, 2, 3, 4, 5, 6].map((n) => at(n)).filter(Boolean).map((story: any) => (
+              <KinfolkTile
+                key={story.slug}
+                href={`/stories/${story.slug}`}
+                image={story.heroImage}
+                kicker={story.category ? prettifyLabel(story.category) : undefined}
+                title={story.title}
+              />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Places */}
+      {featuredPlaces.length > 0 && (
+        <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.08]">
+          <SectionHeader title="Places" href="/places" linkText="All places" />
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5">
+            {featuredPlaces.map((p) => (
+              <KinfolkTile
+                key={p.slug}
+                href={`/places/${p.slug}`}
+                image={p.heroImage}
+                kicker={p.category ? prettifyLabel(p.category) : undefined}
+                title={p.title}
+                sub={p.destination ? prettifyPlace(p.destination) : undefined}
+              />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Journeys */}
+      {TRIP_FUNNEL_PUBLIC && featuredJourneys.length > 0 && (
+        <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.08]">
+          <SectionHeader title="Private Journeys" href="/journeys" linkText="All journeys" />
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5">
+            {featuredJourneys.map((j) => (
+              <KinfolkTile
+                key={j.slug}
+                href={`/journeys/${j.slug}`}
+                image={j.heroImage}
+                kicker="Private journey"
+                title={j.title}
+                sub={formatRoute(j.destinations) || undefined}
+                badge={j.duration || undefined}
+              />
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* ══════════════════════════════════════════════════
           9. PRIVATE JOURNEYS CTA STRIP — Final invitation
