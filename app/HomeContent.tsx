@@ -6,7 +6,6 @@ import EpicCarousel from "@/components/EpicCarousel";
 import TimelineTeaser from "@/components/TimelineTeaser";
 import ThemesBanner from "@/components/ThemesBanner";
 import KinfolkTile from "@/components/KinfolkTile";
-import JourneyCard from "@/components/JourneyCard";
 import HomeMapTeaser from "@/components/HomeMapTeaser";
 import ImageBand from "@/components/ImageBand";
 import { TRIP_FUNNEL_PUBLIC } from "@/lib/flags";
@@ -547,13 +546,14 @@ export default function HomeContent({
           <SectionHeader kicker="Travel with us" title="Private Journeys" href="/journeys" linkText="All journeys" />
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5">
             {featuredJourneys.map((j) => (
-              <JourneyCard
+              <KinfolkTile
                 key={j.slug}
                 href={`/journeys/${j.slug}`}
                 image={j.heroImage}
+                kicker="Private journey"
                 title={j.title}
-                route={formatRoute(j.destinations) || undefined}
-                duration={j.duration || undefined}
+                sub={formatRoute(j.destinations) || undefined}
+                badge={j.duration || undefined}
               />
             ))}
           </div>
