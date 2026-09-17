@@ -329,7 +329,7 @@ export default function PlacesContent({
               const dest = destinations.find((d) => d.slug === place.destination);
               return (
                 <Link key={place.slug} href={`/places/${place.slug}`} className="group block">
-                  <div className="aspect-[29/39] relative overflow-hidden bg-[#e8e6e1] mb-3.5">
+                  <div className="aspect-[3/4] relative overflow-hidden bg-[#e8e6e1] mb-3.5">
                     {place.heroImage ? (
                       <img
                         src={cloudinaryUrl(place.heroImage, 480)}
@@ -435,7 +435,7 @@ export default function PlacesContent({
           <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-5">
             Featured places
           </p>
-          <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-10 lg:gap-x-14">
+          <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-10 lg:gap-x-14">
             {featured.map((p) => (
               <li key={p.slug}>
                 <Link
@@ -480,7 +480,7 @@ export default function PlacesContent({
         <p className="text-[10px] tracking-[0.25em] uppercase text-foreground/60 mb-6">
           Browse by category
         </p>
-        <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-10 lg:gap-x-14">
+        <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-10 lg:gap-x-14">
           {PLACE_CATEGORIES.filter((c) => (categoryCounts[c.label] || 0) > 0)
             .sort(
               (a, b) =>
@@ -531,7 +531,7 @@ export default function PlacesContent({
                     {c.count}
                   </span>
                 </Link>
-                <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-10 lg:gap-x-14 gap-y-0.5">
+                <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-10 lg:gap-x-14 gap-y-0.5">
                   {c.places.map((p) => (
                     <li key={p.slug}>
                       <Link
