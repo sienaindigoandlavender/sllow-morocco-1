@@ -576,35 +576,6 @@ export default function HomeContent({
         </section>
       )}
 
-      {/* ══════════════════════════════════════════════════
-          9. PRIVATE JOURNEYS CTA STRIP — Final invitation
-          ══════════════════════════════════════════════════ */}
-      {TRIP_FUNNEL_PUBLIC && (
-      <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.08]">
-        <div className="max-w-2xl">
-          <h2 className="text-[clamp(1.3rem,2.6vw,1.9rem)] font-light tracking-[-0.01em] text-[#0a0a0a] leading-[1.2] mb-4">
-            Private Journeys
-          </h2>
-          <p className="text-[#0a0a0a]/55 text-[14px] md:text-[15px] leading-relaxed mb-8">
-            Quietly designed routes into a slower, deeper Morocco. Private, and shaped around how you want to move through the country.
-          </p>
-          <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
-            <Link
-              href="/plan-your-trip"
-              className="inline-block text-[11px] tracking-[0.12em] uppercase text-[#0a0a0a] hover:text-[#0a0a0a]/55 transition-colors"
-            >
-              Plan a private journey →
-            </Link>
-            <Link
-              href="/journeys"
-              className="inline-block text-[11px] tracking-[0.12em] uppercase text-[#0a0a0a]/55 hover:text-[#0a0a0a] transition-colors"
-            >
-              Explore journeys →
-            </Link>
-          </div>
-        </div>
-      </section>
-      )}
 
     </main>
   );
