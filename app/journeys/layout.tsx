@@ -84,8 +84,8 @@ const journeysFAQs = [
     answer: "A week allows for highlights like Marrakech, the desert, and one other region. 10-14 days lets you explore more deeply—Imperial Cities, Atlas trekking, or the full north-to-south route.",
   },
   {
-    question: "What makes Slow Morocco different from other tour operators?",
-    answer: "Years of building relationships with artisans, musicians, guides, and families across Morocco. We offer access to people and places others miss—not just monuments, but living culture.",
+    question: "What kind of access do Slow Morocco journeys give?",
+    answer: "Years of relationships with artisans, musicians, guides, and families across Morocco — access to people and living culture, not just monuments.",
   },
   {
     question: "Do you offer Morocco desert tours?",
