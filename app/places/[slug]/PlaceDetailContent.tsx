@@ -381,10 +381,10 @@ export default function PlaceDetailContent({
                     </Link>
                   )}
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5">
                   {nearbyPlaces.map((np) => (
                     <Link key={np.slug} href={`/places/${np.slug}`} className="group">
-                      <div className="relative aspect-[4/3] mb-3 overflow-hidden bg-[#e8e0d4]">
+                      <div className="relative aspect-[3/4] mb-3 overflow-hidden bg-[#e8e0d4]">
                         {np.heroImage && (
                           <img src={cloudinaryUrl(np.heroImage)} alt={np.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />
@@ -569,7 +569,7 @@ export default function PlaceDetailContent({
               <div id="place-related-stories-carousel" className="flex gap-6 overflow-x-auto scrollbar-hide" style={{ scrollbarWidth: 'none' }}>
                 {relatedStories.map((story: any) => (
                   <Link key={story.slug} href={`/stories/${story.slug}`} className="group flex-shrink-0 w-[260px]">
-                    <div className="relative aspect-[4/3] mb-4 overflow-hidden bg-[#e8e0d4]">
+                    <div className="relative aspect-[3/4] mb-4 overflow-hidden bg-[#e8e0d4]">
                       {story.heroImage && (<img src={cloudinaryUrl(story.heroImage)} alt={story.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />)}
                     </div>
@@ -600,10 +600,10 @@ export default function PlaceDetailContent({
                 Curated routes that pass through {place.destination.charAt(0).toUpperCase() + place.destination.slice(1)}
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5 max-w-6xl mx-auto">
               {relatedJourneys.slice(0, 3).map((journey: any) => (
                 <Link key={journey.slug} href={`/journeys/${journey.slug}`} className="group">
-                  <div className="relative aspect-[4/5] mb-4 overflow-hidden bg-[#e8e0d4]">
+                  <div className="relative aspect-[3/4] mb-4 overflow-hidden bg-[#e8e0d4]">
                     {journey.heroImage && (
                       <img
                         src={cloudinaryUrl(journey.heroImage)}
@@ -635,10 +635,10 @@ export default function PlaceDetailContent({
               <p className="text-xs tracking-[0.2em] uppercase text-foreground/70 mb-3">Walking Distance</p>
               <h2 className="font-serif text-2xl md:text-3xl">Nearby</h2>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5">
               {nearbyPlaces.map((np) => (
                 <Link key={np.slug} href={`/places/${np.slug}`} className="group">
-                  <div className="relative aspect-[4/3] mb-3 overflow-hidden bg-[#e8e0d4]">
+                  <div className="relative aspect-[3/4] mb-3 overflow-hidden bg-[#e8e0d4]">
                     {np.heroImage && (
                       <img
                         src={cloudinaryUrl(np.heroImage)}
