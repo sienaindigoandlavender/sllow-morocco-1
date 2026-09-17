@@ -21,14 +21,9 @@ export default function ThemesBanner() {
   return (
     <section className="px-6 md:px-10 lg:px-14 py-20 md:py-28 border-t border-[#0a0a0a]/[0.08]">
       <div className="max-w-2xl mb-12 md:mb-20">
-        <div className="flex items-center gap-3 mb-5">
-          <span className="h-px w-10 bg-[#0a0a0a]/30" />
-          <span className="text-[11px] tracking-[0.24em] uppercase text-[#0a0a0a]/50">
-            Read the country
-          </span>
-        </div>
+        
         <h2 className="font-serif text-[clamp(1.6rem,3.4vw,2.6rem)] font-light tracking-[-0.015em] text-[#0a0a0a] leading-[1.2]">
-          The country keeps its meaning in six rooms.
+          Start with what you love. Food, or history, or the way a wall is built.
         </h2>
       </div>
 

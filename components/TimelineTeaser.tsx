@@ -20,9 +20,7 @@ export default function TimelineTeaser() {
         <div className="max-w-3xl">
           <div className="flex items-center gap-3 mb-6">
             <span className="h-px w-10 bg-[#0a0a0a]/30" />
-            <span className="text-[11px] tracking-[0.24em] uppercase text-[#0a0a0a]/50">
-              Morocco, on one line
-            </span>
+            
           </div>
 
           <h2 className="font-serif text-3xl md:text-5xl font-light tracking-[-0.02em] leading-[1.05] text-[#0a0a0a] mb-10">

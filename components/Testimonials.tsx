@@ -14,13 +14,7 @@ export default function Testimonials({ testimonials }: { testimonials: Testimoni
   return (
     <section className="px-6 md:px-10 lg:px-14 py-24 md:py-36 border-t border-[#0a0a0a]/[0.08]">
       <div className="max-w-5xl mx-auto">
-        <div className="flex items-center gap-3 mb-16 md:mb-24 justify-center">
-          <span className="h-px w-10 bg-[#0a0a0a]/30" />
-          <span className="text-[11px] tracking-[0.28em] uppercase text-[#0a0a0a]/50">
-            In their words
-          </span>
-          <span className="h-px w-10 bg-[#0a0a0a]/30" />
-        </div>
+        
 
         <div className="grid md:grid-cols-2 gap-x-16 gap-y-16 md:gap-y-24">
           {testimonials.slice(0, 6).map((t) => (
