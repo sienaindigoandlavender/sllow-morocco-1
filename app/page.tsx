@@ -75,8 +75,8 @@ export default async function HomePage() {
       }));
 
     // Time-seeded shuffle: changes every 3 hours, same for all visitors in that window
-    const THREE_HOURS = 3 * 60 * 60 * 1000;
-    const timeBucket = Math.floor(Date.now() / THREE_HOURS);
+    const ROTATE_MS = 30 * 60 * 1000; // 30 minutes
+    const timeBucket = Math.floor(Date.now() / ROTATE_MS);
 
     // Simple seeded shuffle — deterministic per time bucket
     const seededShuffle = <T,>(arr: T[], seed: number): T[] => {
@@ -95,7 +95,9 @@ export default async function HomePage() {
        first, in November saffron. Off, the shuffle stands on its own,
        which draws on the whole archive instead of four named slugs. */
     const shuffledStories = seededShuffle(allStories, timeBucket);
-    stories = (SEASONAL_HOMEPAGE ? bySeason(shuffledStories) : shuffledStories).slice(0, 17);
+    // Pass the FULL shuffled archive (was capped at 17, which froze the same handful
+    // each window). Sections below spread across it, so the whole archive rotates.
+    stories = SEASONAL_HOMEPAGE ? bySeason(shuffledStories) : shuffledStories;
     journeys = seededShuffle(journeys, timeBucket + 7).slice(0, 8);
 
     // ── Combined hero pool: rotate across journeys, places AND editorials ──
