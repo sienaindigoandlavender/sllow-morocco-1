@@ -505,7 +505,7 @@ export default function CityGuideContent({
             {journeys.slice(0, 6).map((journey) => (
               <article key={journey.slug}>
                 <Link href={`/journeys/${journey.slug}`} className="group">
-                  <div className="aspect-[4/3] relative overflow-hidden bg-foreground/5 mb-5">
+                  <div className="aspect-[3/4] relative overflow-hidden bg-foreground/5 mb-5">
                     {journey.hero_image_url && (
                       <img
                         src={cloudinaryUrl(journey.hero_image_url, 600)}
@@ -576,7 +576,7 @@ export default function CityGuideContent({
               return (
                 <article key={journey.slug}>
                   <Link href={`/journeys/${journey.slug}`} className="group">
-                    <div className="aspect-[4/3] relative overflow-hidden bg-foreground/5 mb-5">
+                    <div className="aspect-[3/4] relative overflow-hidden bg-foreground/5 mb-5">
                       {journey.hero_image_url && (
                         <img
                           src={cloudinaryUrl(journey.hero_image_url, 600)}
