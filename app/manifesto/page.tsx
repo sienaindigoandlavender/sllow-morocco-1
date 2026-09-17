@@ -66,7 +66,7 @@ export default function ManifestoPage() {
             </p>
             <div className="space-y-8 text-lg md:text-xl text-foreground/70 leading-relaxed">
               <p>The zellige cutter who learned from his father.</p>
-              <p>The Gnawa maalem who doesn't play for tour groups.</p>
+              <p>The Gnawa maalem who plays only when the night calls for it.</p>
               <p>
                 The hammam keeper who remembers when there were no tourists at
                 all.
