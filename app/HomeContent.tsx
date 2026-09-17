@@ -8,6 +8,7 @@ import ThemesBanner from "@/components/ThemesBanner";
 import KinfolkTile from "@/components/KinfolkTile";
 import HomeMapTeaser from "@/components/HomeMapTeaser";
 import ImageBand from "@/components/ImageBand";
+import Testimonials from "@/components/Testimonials";
 import { TRIP_FUNNEL_PUBLIC } from "@/lib/flags";
 import dynamic from "next/dynamic";
 
@@ -497,6 +498,9 @@ export default function HomeContent({
         linkText="The journeys"
         height="medium"
       />
+
+      {/* Testimonials — the traveller's voice, the one place transformation is stated */}
+      <Testimonials testimonials={testimonials} />
 
       {/* ══════════════════════════════════════════════════
           BROWSE — three unified Kinfolk rows at the foot: stories, places,
