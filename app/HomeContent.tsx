@@ -333,13 +333,13 @@ export default function HomeContent({
       {/* ══════════════════════════════════════════════════
           2. THE TWO WAYS IN — Know deeply / Travel deeply
           ══════════════════════════════════════════════════ */}
-      <section className="px-6 md:px-10 lg:px-14 pt-16 md:pt-24 pb-10 md:pb-16 border-b border-[#0a0a0a]/[0.08]">
+      <section className="bg-[#f2f1ef] px-6 md:px-10 lg:px-14 pt-16 md:pt-24 pb-10 md:pb-16 border-b border-[#0a0a0a]/[0.08]">
         <div className="max-w-2xl mb-12 md:mb-16">
           <span className="block text-[10px] md:text-[11px] tracking-[0.28em] uppercase text-[#E3120B] mb-4">
-            Where to begin
+            The threshold
           </span>
-          <h2 className="font-serif text-[clamp(1.9rem,4vw,3.25rem)] font-light tracking-[-0.02em] text-[#0a0a0a] leading-[1.02]">
-            Two ways into Morocco.
+          <h2 className="font-serif text-[clamp(1.9rem,4vw,3.25rem)] font-light tracking-[-0.02em] text-[#0a0a0a] leading-[1.05]">
+            A country can be read, or it can be walked.
           </h2>
         </div>
         <div className="grid md:grid-cols-2 gap-12 md:gap-16 lg:gap-24">
