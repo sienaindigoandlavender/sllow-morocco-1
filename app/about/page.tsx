@@ -4,11 +4,11 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "The stories behind the door everyone photographs and nobody explains. Morocco, decoded by the people who live here, and the layers most visitors walk straight past.",
+    "The stories behind the door everyone photographs and nobody explains. Morocco, decoded by the people who live here — the layers beneath the surface.",
   openGraph: {
     title: "About Slow Morocco",
     description:
-      "The layers most visitors walk straight past. Morocco, decoded by the people who live here.",
+      "The layers beneath the surface. Morocco, decoded by the people who live here.",
     url: "https://www.slowmorocco.com/about",
   },
   alternates: {
@@ -39,12 +39,11 @@ export default function AboutPage() {
           </p>
 
           <p>
-            Behind the door everyone stops to photograph, there is a story — and it is almost always better than the door.
+            Behind the door everyone stops to photograph, there is a story — and the story is usually the better half.
           </p>
 
           <p>
-            We are interested in the country underneath the one visitors are
-            handed. Why the great mosque faces slightly the wrong way (someone
+            We are interested in the country underneath the one on the postcards. Why the great mosque faces slightly the wrong way (someone
             made a mistake, and everyone has been too polite to mention it for
             eight hundred years). What the carpet is quietly telling anyone who
             can read it. Why the bread arrives before anything else, and what
@@ -52,8 +51,7 @@ export default function AboutPage() {
           </p>
 
           <p>
-            Most travel writing stops at where to go and what to wear. We keep
-            going — down into the good stuff. How the dye got into the leather.
+            We keep going, down into the good stuff — how the dye got into the leather.
             Who started the tower, and why they walked off and left it. What the
             twenty-four women in the vizier's palace were really fighting about
             (it was not the vizier). Read enough of it and a medina you have
