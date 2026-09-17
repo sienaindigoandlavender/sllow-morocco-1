@@ -1,202 +1,124 @@
 import Link from "next/link";
 import { Metadata } from "next";
+import ImageBand from "@/components/ImageBand";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "The stories behind the door everyone photographs and nobody explains. Morocco, decoded by the people who live here — the layers beneath the surface.",
+    "Slow Morocco decodes the country — the meaning under the tilework, the reason a door is that colour, the depth that takes years to see.",
   openGraph: {
     title: "About Slow Morocco",
     description:
-      "The layers beneath the surface. Morocco, decoded by the people who live here.",
+      "Slow Morocco is the translation. Not the language — the meaning. You arrive unable to read the place, and leave able to.",
     url: "https://www.slowmorocco.com/about",
   },
-  alternates: {
-    canonical: "https://www.slowmorocco.com/about",
-  },
+  alternates: { canonical: "https://www.slowmorocco.com/about" },
 };
 
 export const revalidate = 3600;
 
 export default function AboutPage() {
   return (
-    <div className="bg-background min-h-screen">
-
-      {/* ── Header ───────────────────────────────────────────────── */}
-      <section className="pt-28 md:pt-36 pb-10 px-8 md:px-10 lg:px-14">
-        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground mb-3">
-          About
-        </h1>
-        <div className="h-[1px] bg-foreground/12 mt-10" />
-      </section>
-
-      {/* ── Who we are ───────────────────────────────────────────── */}
-      <section className="px-8 md:px-10 lg:px-14 pb-20 md:pb-28">
-        <div className="max-w-2xl space-y-7 text-[15px] text-foreground/80 leading-[1.8]">
-
-          <p className="text-foreground text-lg leading-[1.7]">
-            We have been decoding Morocco since 2013 — the history, the food, the faith, the small mysteries — for people who would rather understand the country than simply photograph it. Though we understand the urge to photograph it.
+    <main className="bg-white text-[#0a0a0a]">
+      {/* Opening — the scene, the aha */}
+      <section className="px-6 md:px-10 lg:px-14 pt-28 md:pt-40 pb-16 md:pb-24">
+        <div className="max-w-3xl">
+          <p className="font-serif text-[clamp(1.5rem,3.4vw,2.4rem)] font-light tracking-[-0.015em] leading-[1.35] text-[#0a0a0a]">
+            In the south, a man comes to market with his hands stained blue to the wrist. It reads
+            as local colour. It is closer to a bank statement: the indigo he dyes his cloth with is
+            costly, and the stain that will not wash out is how everyone around him knows what he
+            can afford. He is not picturesque. He is telling you something, in a language the
+            country speaks fluently and rarely translates.
           </p>
-
-          <p>
-            Behind the door everyone stops to photograph, there is a story — and the story is usually the better half.
-          </p>
-
-          <p>
-            We are interested in the country underneath the one on the postcards. Why the great mosque faces slightly the wrong way (someone
-            made a mistake, and everyone has been too polite to mention it for
-            eight hundred years). What the carpet is quietly telling anyone who
-            can read it. Why the bread arrives before anything else, and what
-            happens to a guest who refuses it.
-          </p>
-
-          <p>
-            We keep going, down into the good stuff — how the dye got into the leather.
-            Who started the tower, and why they walked off and left it. What the
-            twenty-four women in the vizier's palace were really fighting about
-            (it was not the vizier). Read enough of it and a medina you have
-            crossed a dozen times turns into a city you have never seen.
-          </p>
-
-          <p>
-            And you start noticing things. The tile that is deliberately not
-            quite like its neighbours — because only God makes perfect things,
-            and the craftsman knew better than to try. The lane that is narrow
-            on purpose. The loaf with somebody's initials pressed into it, off
-            to an oven the whole street shares.
-          </p>
-
-          <p>
-            And for those who would rather live it than read it, we build the
-            journeys — 107 of them, private and made to measure. Routes that
-            come home a different way than they set out, that put you up in old
-            kasbahs instead of roadside hotels, that wander into corners most
-            itineraries never find. We know the ground: which roads actually
-            connect, which detour is worth the extra hour, where to sleep and
-            when to move on before the coaches arrive.
-          </p>
-
-          <p>
-            At the moment we are rather taken with the Odyssey — three weeks
-            tracing the Morocco that Christopher Nolan filmed, from the red ksar that
-            played Troy to the white dune at the far edge of the country that
-            played Calypso&apos;s isle. It gives you the idea.{" "}
-            <Link href="/journeys/the-odyssey" className="underline decoration-foreground/25 underline-offset-4 hover:decoration-foreground/60 transition-colors">
-              Have a look
-            </Link>
-            , or{" "}
-            <Link href="/journeys" className="underline decoration-foreground/25 underline-offset-4 hover:decoration-foreground/60 transition-colors">
-              wander through all 107
-            </Link>
-            .
-          </p>
-
-          <p>
-            Understand the country first. Then go and enjoy it properly.
-          </p>
-
-
         </div>
       </section>
 
-      {/* ── The people ───────────────────────────────────────────── */}
-      <section className="px-8 md:px-10 lg:px-14 py-20 md:py-28 border-t border-foreground/[0.08]">
-        <p className="text-[12px] tracking-[0.14em] uppercase text-foreground/60 mb-12">
-          The people
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-10 gap-y-12 max-w-5xl">
-          {[
-            {
-              name: "Mohammed",
-              role: "Co-Founder",
-              bio: "Born in the Atlas. Built Slow Morocco from the ground up.",
-              image: "/team/Mohammed.jpg",
-            },
-            {
-              name: "Hassan",
-              role: "Guide",
-              bio: "Born in the Sahara, trained in hospitality. Patient, attentive, speaks four languages.",
-              image: "/team/Hassan.jpg",
-            },
-            {
-              name: "Youssef",
-              role: "Guide & Driver",
-              bio: "Knows every route, every shortcut, every safe stopping point.",
-              image: "/team/Youssef.jpg",
-            },
-          ].map((person) => (
-            <div key={person.name}>
-              <div className="aspect-[4/5] overflow-hidden bg-foreground/[0.04] mb-4">
-                <img
-                  src={person.image}
-                  alt={person.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <h3 className="font-serif text-xl text-foreground">{person.name}</h3>
-              <p className="text-[11px] tracking-[0.12em] uppercase text-foreground/60 mt-1 mb-2">
-                {person.role}
+      {/* What Slow Morocco is */}
+      <section className="px-6 md:px-10 lg:px-14 pb-20 md:pb-28">
+        <div className="max-w-2xl space-y-7 text-[16px] md:text-[17px] leading-[1.75] text-[#0a0a0a]/80 font-serif">
+          <p>
+            Slow Morocco is the translation. We take the country apart one thread at a time and
+            write down what it means — the colour of a door, the geometry of a courtyard, the four
+            hundred years a Moroccan dynasty ruled part of Spain. Hundreds of pieces, and counting:
+            the food, the music, the sacred, the trades, the long line of dynasties who came from
+            the margins and took the centre.
+          </p>
+          <p>
+            We do not summarise Morocco. We decode it. There is a difference between being shown a
+            country and being able to read it, and the second is the whole of what we do. You
+            arrive unable to read the place. You leave able to.
+          </p>
+        </div>
+      </section>
+
+      {/* Full-bleed image */}
+      <ImageBand
+        image="https://res.cloudinary.com/do2ojyohc/image/upload/v1789649344/history_gvgo0a.png"
+        headline="Every wall in this country is a sentence."
+      />
+
+      {/* Why travel with us — shown, not argued */}
+      <section className="px-6 md:px-10 lg:px-14 py-20 md:py-32">
+        <div className="max-w-2xl space-y-7 text-[16px] md:text-[17px] leading-[1.75] text-[#0a0a0a]/80 font-serif">
+          <p>
+            Everything on this site is free to read, and most people will stop there — which is as
+            it should be. But a door you have read about is not the same as a door you are standing
+            in front of while someone tells you who painted it that colour and why. At some point
+            the page runs out. That is where the journeys begin.
+          </p>
+          <p>
+            We take a small number of travellers a year down the roads the country keeps to itself
+            — not the highway to the desert but the older way, through the towns that never made the
+            itinerary, at the pace things actually happen. What you have read here, you walk into.
+            The kasbah you understood on the page, you stand inside, and it means more because you
+            already know what it is. The meal is five hundred years of Andalusia and you can taste
+            every one of them, because someone at the table can tell you which century you are
+            tasting.
+          </p>
+          <p>
+            They are led by the people who wrote the country down. That is the whole of it — you
+            travel with the ones who did the reading, for years, so that you arrive already knowing
+            where you are.
+          </p>
+        </div>
+      </section>
+
+      {/* Full-bleed image */}
+      <ImageBand
+        image="https://res.cloudinary.com/ddcznjibs/image/upload/v1772838482/Taourirt_Kasbah_rising_above_the_desert_town_lqljat.png"
+        headline="Read it first. Then, if it won&rsquo;t leave you alone, come."
+        height="medium"
+      />
+
+      {/* The two doors */}
+      <section className="px-6 md:px-10 lg:px-14 py-24 md:py-32">
+        <div className="max-w-3xl">
+          <div className="grid md:grid-cols-2 gap-12 md:gap-16 border-t border-[#0a0a0a]/[0.1] pt-12">
+            <Link href="/stories" className="group block">
+              <h3 className="font-serif text-2xl md:text-3xl font-light tracking-[-0.015em] mb-2 group-hover:text-[#0a0a0a]/55 transition-colors">
+                Read the country
+              </h3>
+              <p className="text-[14px] md:text-[15px] text-[#0a0a0a]/60 leading-relaxed">
+                Hundreds of decoded pieces. Free, as far down as you care to go.
               </p>
-              <p className="text-[14px] text-foreground/70 leading-[1.7]">
-                {person.bio}
+              <span className="mt-4 inline-block text-[11px] tracking-[0.14em] uppercase text-[#0a0a0a]/45 group-hover:text-[#0a0a0a] transition-colors">
+                The stories &rarr;
+              </span>
+            </Link>
+            <Link href="/journeys" className="group block">
+              <h3 className="font-serif text-2xl md:text-3xl font-light tracking-[-0.015em] mb-2 group-hover:text-[#0a0a0a]/55 transition-colors">
+                Travel the country
+              </h3>
+              <p className="text-[14px] md:text-[15px] text-[#0a0a0a]/60 leading-relaxed">
+                Private journeys, down the slower roads, with the people who wrote all of this.
               </p>
-            </div>
-          ))}
+              <span className="mt-4 inline-block text-[11px] tracking-[0.14em] uppercase text-[#0a0a0a]/45 group-hover:text-[#0a0a0a] transition-colors">
+                The journeys &rarr;
+              </span>
+            </Link>
+          </div>
         </div>
       </section>
-
-      {/* ── What lives here ──────────────────────────────────────── */}
-      <section className="px-8 md:px-10 lg:px-14 py-20 md:py-28 border-t border-foreground/[0.08]">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-12 gap-y-10 max-w-5xl">
-          {[
-            {
-              title: "Stories",
-              body: "The history, craft, food and people, written the way someone who has lived here for years would tell you over a long dinner.",
-              href: "/stories",
-            },
-            {
-              title: "Places",
-              body: "Cities, villages and landmarks, with the meaning a guidebook leaves out. What happened here, and why it still matters.",
-              href: "/places",
-            },
-            {
-              title: "Collections",
-              body: "The archive read in order. Water from the tunnel to the gold it paid for, the trades from apprentice to maallem, three deserts that are not the same desert.",
-              href: "/collections",
-            },
-            {
-              title: "Glossary",
-              body: "The words behind the country: food, faith, craft and custom, explained so the next thing you read makes far more sense.",
-              href: "/glossary",
-            },
-          ].map((item) => (
-            <div key={item.title}>
-              <Link href={item.href} className="group block">
-                <h2 className="text-[12px] tracking-[0.04em] uppercase text-foreground group-hover:text-foreground/70 transition-colors mb-3">
-                  {item.title}
-                </h2>
-                <p className="text-[14px] text-foreground/70 leading-[1.7]">{item.body}</p>
-              </Link>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── Contact ──────────────────────────────────────────────── */}
-      <section className="px-8 md:px-10 lg:px-14 py-14 border-t border-foreground/[0.08]">
-        <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-4">
-          <p className="text-[14px] text-foreground/60">
-            Questions, commissions, or a story you think we've missed.
-          </p>
-          <Link
-            href="/contact"
-            className="text-[11px] tracking-[0.12em] uppercase text-foreground/60 hover:text-foreground/70 transition-colors"
-          >
-            Get in touch
-          </Link>
-        </div>
-      </section>
-
-    </div>
+    </main>
   );
 }
