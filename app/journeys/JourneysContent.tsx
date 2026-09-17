@@ -148,32 +148,24 @@ export default function JourneysContent({
               return (
                 <article key={`${item.type}-${item.slug}`} itemScope itemType="https://schema.org/TouristTrip">
                   <Link href={href} className="group block">
-                    <div className="aspect-[3/4] relative overflow-hidden bg-[#e8e6e1] mb-3.5">
+                    <div className="aspect-[3/4] relative overflow-hidden bg-[#f0eeeb] mb-4">
                       {item.heroImage && (
                         <img
                           src={cloudinaryUrl(item.heroImage, 480)}
                           alt={item.title}
-                          className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-[1.2s] ease-out"
+                          className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
                           itemProp="image"
                         />
                       )}
                     </div>
-                    <p className="text-[10px] text-foreground/60 mb-1.5" itemProp="duration">
+                    <span className="block text-[10px] text-[#0a0a0a]/55 tracking-[0.1em] uppercase mb-1 font-sans" itemProp="duration">
                       {durationLabel}
-                    </p>
-                    <h3 className="text-[12px] tracking-[0.04em] uppercase leading-[1.35] text-foreground group-hover:text-foreground/70 transition-colors duration-500" itemProp="name">
+                    </span>
+                    <h3 className="text-[13px] tracking-[0.04em] text-[#0a0a0a] group-hover:text-[#0a0a0a]/70 transition-colors leading-snug" itemProp="name">
                       {item.title}
                     </h3>
-                    {item.price > 0 && item.type === 'journey' && (
-                      <p className="text-[11px] text-foreground/70 mt-1" itemProp="offers" itemScope itemType="https://schema.org/Offer">
-                        <span itemProp="price" content={String(item.price)}>
-                          From €{item.price.toLocaleString()}
-                        </span>
-                        <span itemProp="priceCurrency" content="EUR"> per person</span>
-                      </p>
-                    )}
                     {item.description && (
-                      <p className="text-[11.5px] text-foreground/60 leading-[1.5] mt-1 line-clamp-2" itemProp="description">
+                      <p className="text-[12px] text-[#0a0a0a]/55 leading-relaxed mt-1 mb-0 line-clamp-2 font-sans" itemProp="description">
                         {item.description}
                       </p>
                     )}
