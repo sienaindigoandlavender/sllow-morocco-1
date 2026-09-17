@@ -25,7 +25,7 @@
 // Keep this true while the front door is closed. That is the whole
 // point of splitting them.
 
-export const TRIP_FUNNEL_PUBLIC = false;
+export const TRIP_FUNNEL_PUBLIC = true;
 export const JOURNEY_CROSSLINKS = true;
 
 /**
