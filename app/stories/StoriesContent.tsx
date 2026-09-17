@@ -208,7 +208,7 @@ export default function StoriesContent({
           {paginatedStories.map((story) => (
             <article key={story.slug} itemScope itemType="https://schema.org/Article">
               <Link href={`/stories/${story.slug}`} className="group block">
-                <div className="aspect-[29/39] relative overflow-hidden bg-[#e8e6e1] mb-3.5">
+                <div className="aspect-[3/4] relative overflow-hidden bg-[#e8e6e1] mb-3.5">
                   {story.heroImage && (
                     <img
                       src={cloudinaryUrl(story.heroImage, 480)}
