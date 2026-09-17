@@ -310,48 +310,47 @@ export default function HomeContent({
       <EpicCarousel />
 
       {/* ══════════════════════════════════════════════════
-          2. ORIENTATION — Three pathways (editorial table of contents)
+          2. THE TWO WAYS IN — Know deeply / Travel deeply
           ══════════════════════════════════════════════════ */}
-      <section className="px-6 md:px-10 lg:px-14 pt-14 md:pt-20 pb-8 md:pb-12 border-b border-[#0a0a0a]/[0.08]">
-        <div className="grid md:grid-cols-3 gap-10 md:gap-12 lg:gap-16">
+      <section className="px-6 md:px-10 lg:px-14 pt-16 md:pt-24 pb-10 md:pb-16 border-b border-[#0a0a0a]/[0.08]">
+        <div className="max-w-2xl mb-12 md:mb-16">
+          <h2 className="font-serif text-[clamp(1.5rem,3.2vw,2.3rem)] font-light tracking-[-0.015em] text-[#0a0a0a] leading-[1.25]">
+            Two ways into Morocco.
+          </h2>
+        </div>
+        <div className="grid md:grid-cols-2 gap-12 md:gap-16 lg:gap-24">
           <Link href="/stories" className="group block">
             <span className="text-[clamp(2.75rem,5vw,4rem)] font-light text-[#0a0a0a]/20 tracking-[-0.02em] leading-none block mb-5 md:mb-6">
               01
             </span>
-            <h3 className="text-[18px] md:text-[19px] font-light tracking-[-0.01em] text-[#0a0a0a] mb-3 group-hover:text-[#0a0a0a]/50 transition-colors">
-              Explore Morocco
+            <h3 className="font-serif text-2xl md:text-3xl font-light tracking-[-0.015em] text-[#0a0a0a] mb-3 group-hover:text-[#0a0a0a]/55 transition-colors">
+              Know Morocco deeply
             </h3>
-            <p className="text-[13.5px] text-[#0a0a0a]/55 leading-relaxed">
-              Essays and places that reveal the country slowly — the layers most visitors pass straight through.
+            <p className="text-[14px] md:text-[15px] text-[#0a0a0a]/60 leading-relaxed max-w-md">
+              Hundreds of decoded essays — the history, the craft, the food, the meaning
+              beneath the surface. Read the country before you ever set foot in it.
             </p>
+            <span className="mt-5 inline-block text-[11px] tracking-[0.14em] uppercase text-[#0a0a0a]/45 group-hover:text-[#0a0a0a] transition-colors">
+              Start reading →
+            </span>
           </Link>
 
           {TRIP_FUNNEL_PUBLIC && (
-            <>
-          <Link href="/journeys" className="group block">
-            <span className="text-[clamp(2.75rem,5vw,4rem)] font-light text-[#0a0a0a]/20 tracking-[-0.02em] leading-none block mb-5 md:mb-6">
-              02
-            </span>
-            <h3 className="text-[18px] md:text-[19px] font-light tracking-[-0.01em] text-[#0a0a0a] mb-3 group-hover:text-[#0a0a0a]/50 transition-colors">
-              Private Journeys
-            </h3>
-            <p className="text-[13.5px] text-[#0a0a0a]/55 leading-relaxed">
-              Private routes into the Morocco most visitors only skim.
-            </p>
-          </Link>
-
-          <Link href="/plan-your-trip" className="group block">
-            <span className="text-[clamp(2.75rem,5vw,4rem)] font-light text-[#0a0a0a]/20 tracking-[-0.02em] leading-none block mb-5 md:mb-6">
-              03
-            </span>
-            <h3 className="text-[18px] md:text-[19px] font-light tracking-[-0.01em] text-[#0a0a0a] mb-3 group-hover:text-[#0a0a0a]/50 transition-colors">
-              Plan Your Trip
-            </h3>
-            <p className="text-[13.5px] text-[#0a0a0a]/55 leading-relaxed">
-              Visas, seasons, money — and the things locals assume you already know.
-            </p>
-          </Link>
-            </>
+            <Link href="/journeys" className="group block">
+              <span className="text-[clamp(2.75rem,5vw,4rem)] font-light text-[#0a0a0a]/20 tracking-[-0.02em] leading-none block mb-5 md:mb-6">
+                02
+              </span>
+              <h3 className="font-serif text-2xl md:text-3xl font-light tracking-[-0.015em] text-[#0a0a0a] mb-3 group-hover:text-[#0a0a0a]/55 transition-colors">
+                Travel Morocco deeply
+              </h3>
+              <p className="text-[14px] md:text-[15px] text-[#0a0a0a]/60 leading-relaxed max-w-md">
+                When reading is no longer enough, we take you — private journeys down the old
+                roads and the slow ones, run by the people who wrote everything you just read.
+              </p>
+              <span className="mt-5 inline-block text-[11px] tracking-[0.14em] uppercase text-[#0a0a0a]/45 group-hover:text-[#0a0a0a] transition-colors">
+                Travel with us →
+              </span>
+            </Link>
           )}
         </div>
       </section>
@@ -466,23 +465,6 @@ export default function HomeContent({
       )}
 
       {/* ══════════════════════════════════════════════════
-          6. THE VISA — Dedicated editorial note
-          ══════════════════════════════════════════════════ */}
-      <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.08]">
-        <Link href="/visa-info" className="group block max-w-3xl">
-          <span className="text-[10px] text-[#0a0a0a]/40 tracking-[0.14em] uppercase block mb-4">
-            The Visa
-          </span>
-          <h2 className="text-[clamp(1.4rem,3vw,2.2rem)] font-light tracking-[-0.01em] text-[#0a0a0a] leading-[1.2] mb-6 group-hover:text-[#0a0a0a]/55 transition-colors">
-            Citizens of 65+ countries enter visa-free — here is what you actually need.
-          </h2>
-          <span className="text-[11px] tracking-[0.12em] uppercase text-[#0a0a0a]/45 group-hover:text-[#0a0a0a] transition-colors">
-            See the visa guide →
-          </span>
-        </Link>
-      </section>
-
-      {/* ══════════════════════════════════════════════════
           7. EDITORIAL INTERLUDE — The month begins when the moon says so
           ══════════════════════════════════════════════════ */}
       <section className="px-6 md:px-10 lg:px-14 py-20 md:py-32 border-t border-[#0a0a0a]/[0.08]">
@@ -584,7 +566,7 @@ export default function HomeContent({
             Private Journeys
           </h2>
           <p className="text-[#0a0a0a]/55 text-[14px] md:text-[15px] leading-relaxed mb-8">
-            Quietly designed routes into the Morocco most visitors only skim. Private, and shaped around how you want to move through the country.
+            Quietly designed routes into a slower, deeper Morocco. Private, and shaped around how you want to move through the country.
           </p>
           <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
             <Link
