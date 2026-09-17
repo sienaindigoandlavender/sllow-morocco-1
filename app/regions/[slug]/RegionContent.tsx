@@ -138,7 +138,7 @@ export default function RegionContent({
       {destinations.length > 0 && (
         <section className="px-8 md:px-16 lg:px-20 pb-20 border-t border-border pt-16">
           <SectionLabel>Cities & destinations</SectionLabel>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {destinations.map((dest) => (
               <Link
                 key={dest.slug}
@@ -178,7 +178,7 @@ export default function RegionContent({
                 href={`/places/${place.slug}`}
                 className="group"
               >
-                <div className="aspect-[4/3] relative overflow-hidden bg-foreground/5 mb-4">
+                <div className="aspect-[3/4] relative overflow-hidden bg-foreground/5 mb-4">
                   {place.hero_image && (
                     <img
                       src={cloudinaryUrl(place.hero_image)}
@@ -261,7 +261,7 @@ export default function RegionContent({
             {journeys.slice(0, 6).map((journey) => (
               <article key={journey.slug}>
                 <Link href={`/journeys/${journey.slug}`} className="group">
-                  <div className="aspect-[4/3] relative overflow-hidden bg-foreground/5 mb-5">
+                  <div className="aspect-[3/4] relative overflow-hidden bg-foreground/5 mb-5">
                     {journey.hero_image_url && (
                       <img
                         src={cloudinaryUrl(journey.hero_image_url)}
