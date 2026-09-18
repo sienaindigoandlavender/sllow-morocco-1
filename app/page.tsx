@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getJourneys, getStories, getPlaces, getWebsiteSettings, getTestimonials, getDestinations } from "@/lib/supabase";
+import { getJourneys, getStories, getPlaces, getWebsiteSettings, getTestimonials, getDestinations, getPublishedStoryBodySlugs } from "@/lib/supabase";
 import HomeContent from "./HomeContent";
 import { bySeason, seasonNow } from "@/lib/seasonal";
 import { SEASONAL_HOMEPAGE } from "@/lib/flags";
@@ -29,14 +29,21 @@ export default async function HomePage() {
   let settings: Record<string, string> = {};
 
   try {
-    const [journeysData, storiesData, placesData, settingsData, testimonialsData, destinationsData] = await Promise.all([
+    const [journeysData, storiesData, placesData, settingsData, testimonialsData, destinationsData, storyBodySlugs] = await Promise.all([
       getJourneys({ published: true }),
       getStories({ published: true }),
       getPlaces({ published: true }),
       getWebsiteSettings(),
       getTestimonials({ published: true }),
       getDestinations({ published: true }),
+      getPublishedStoryBodySlugs(),
     ]);
+
+    // A published story with a hero image but no body opens to a blank page —
+    // getStories() omits body (egress), so nothing here can see it is empty.
+    // Only feature stories that actually have words. Empty set => query failed,
+    // so fall back to not filtering rather than blanking the homepage.
+    const hasBody = (slug: string) => storyBodySlugs.size === 0 || storyBodySlugs.has(slug);
 
     // Format journeys
     const allJourneys = journeysData.map((j) => ({
@@ -63,6 +70,7 @@ export default async function HomePage() {
     // Format stories — rotate the lead (hero) story every 3 hours
     const allStories = storiesData
       .filter((s) => s.hero_image)
+      .filter((s) => hasBody(s.slug))
       .map((s) => ({
         slug: s.slug,
         title: s.title,
