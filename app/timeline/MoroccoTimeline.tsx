@@ -96,7 +96,7 @@ export default function MoroccoTimeline() {
   );
 
   return (
-    <section className="relative w-full bg-white text-[#0a0a0a]">
+    <section className="relative w-full bg-[#f2f1ef] text-[#0a0a0a]">
       <div className="hidden md:block fixed top-0 right-0 h-full w-px bg-[#0a0a0a]/10 z-10">
         <div className="absolute right-0 w-px bg-[#0a0a0a]/40 transition-all duration-500" style={{ top: 0, height: `${pct}%` }} />
         <div className="absolute right-0 w-[7px] h-[7px] -translate-x-[3px] transition-all duration-500"
