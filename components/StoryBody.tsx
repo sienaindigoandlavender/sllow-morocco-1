@@ -5,6 +5,7 @@ import { linkGlossaryTermsText, linkGlossaryTermsHTML } from '@/lib/glossary-lin
 import { linkDerbTermsText, linkDerbTermsHTML } from '@/lib/derb-linker';
 import { linkCrossReferences, linkCrossReferencesHTML } from '@/lib/story-linker';
 import TimelineTeaser from "@/components/TimelineTeaser";
+import FestivalCalendar from "@/components/FestivalCalendar";
 import Aside from "@/components/Aside";
 
 interface InlineImage {
@@ -201,14 +202,17 @@ export default function StoryBody({ content, inlineImages = [], currentSlug, pul
   const ASIDE_RE = /\{\{aside:(light|souk|hour|harvest|hijri|prayer|distance|weather)\}\}/i;
   /* {{timeline}} swaps its marker paragraph for the interactive timeline teaser. */
   const TIMELINE_RE = /\{\{timeline\}\}/i;
+  /* {{calendar}} swaps its marker paragraph for the interactive festival calendar. */
+  const CALENDAR_RE = /\{\{calendar\}\}/i;
 
   // HTML content — inject images at paragraph boundaries
   if (isHTML(content)) {
     const pqText = pullQuote && pullQuote.trim() ? pullQuote.trim() : null;
     const hasAside = ASIDE_RE.test(content);
     const hasTimeline = TIMELINE_RE.test(content);
+    const hasCalendar = CALENDAR_RE.test(content);
 
-    if (inlineImages.length === 0 && !pqText && !hasAside && !hasTimeline) {
+    if (inlineImages.length === 0 && !pqText && !hasAside && !hasTimeline && !hasCalendar) {
       return (
         <div className="prose prose-lg max-w-none story-html-body"
           dangerouslySetInnerHTML={{ __html: prepareHTML(content, currentSlug) }} />
@@ -235,6 +239,9 @@ export default function StoryBody({ content, inlineImages = [], currentSlug, pul
         if (TIMELINE_RE.test(buffer)) {
           // The marker paragraph is replaced by the interactive timeline teaser.
           nodes.push(<TimelineTeaser key={`timeline-${i}`} />);
+        } else if (CALENDAR_RE.test(buffer)) {
+          // The marker paragraph is replaced by the interactive festival calendar.
+          nodes.push(<FestivalCalendar key={`calendar-${i}`} />);
         } else if (asideMatch) {
           // The marker paragraph is replaced, not annotated.
           nodes.push(
