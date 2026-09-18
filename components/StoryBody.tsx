@@ -149,6 +149,28 @@ function prepareHTML(html: string, currentSlug?: string): string {
   return processed;
 }
 
+// Some bodies separate paragraphs with <br><br> (or blank lines) instead of
+// wrapping each one in <p>…</p>. When such a body ALSO carries a block that sits
+// in its own <p> — a shortcode paragraph like <p>{{aside:harvest}}</p> — the </p>
+// splitter downstream sees only that single </p>, sweeps ALL the preceding text
+// into one buffer, then (finding the shortcode) replaces the whole buffer with
+// just the component and throws the article away. This normalises any
+// <br>/blank-line body into real <p> paragraphs first, so the splitter and the
+// shortcode detection behave. Bodies already built from <p> blocks pass through
+// unchanged (idempotent). Block-level elements — the inline SVG maps, lists,
+// headings, figures — are preserved and never wrapped in <p>.
+const BLOCK_START = /^<(svg|ul|ol|figure|blockquote|h[1-6]|div|table|img|iframe|pre|hr)[\s>/]/i;
+function normalizeParagraphs(html: string): string {
+  // Only act when the body actually uses <br>/blank-line breaks; a clean <p> body
+  // with no such breaks is returned untouched.
+  if (!/<br\s*\/?>/i.test(html) && !/\n{2,}/.test(html)) return html;
+  const segments = html
+    .split(/(?:\s*<br\s*\/?>\s*)+|\n{2,}|<\/p>\s*<p>|<\/p>|<p>/i)
+    .map((s) => s.trim())
+    .filter(Boolean);
+  return segments.map((s) => (BLOCK_START.test(s) ? s : `<p>${s}</p>`)).join('\n');
+}
+
 // Inline image block between paragraphs
 function InlineImageBlock({ img }: { img: InlineImage }) {
   return (
@@ -207,19 +229,23 @@ export default function StoryBody({ content, inlineImages = [], currentSlug, pul
 
   // HTML content — inject images at paragraph boundaries
   if (isHTML(content)) {
+    // Normalise <br>/blank-line paragraph bodies into real <p> blocks before the
+    // </p> splitter runs — otherwise a lone shortcode-in-<p> makes the splitter
+    // sweep the whole article into one buffer and discard it (see normalizeParagraphs).
+    const body = normalizeParagraphs(content);
     const pqText = pullQuote && pullQuote.trim() ? pullQuote.trim() : null;
-    const hasAside = ASIDE_RE.test(content);
-    const hasTimeline = TIMELINE_RE.test(content);
-    const hasCalendar = CALENDAR_RE.test(content);
+    const hasAside = ASIDE_RE.test(body);
+    const hasTimeline = TIMELINE_RE.test(body);
+    const hasCalendar = CALENDAR_RE.test(body);
 
     if (inlineImages.length === 0 && !pqText && !hasAside && !hasTimeline && !hasCalendar) {
       return (
         <div className="prose prose-lg max-w-none story-html-body"
-          dangerouslySetInnerHTML={{ __html: prepareHTML(content, currentSlug) }} />
+          dangerouslySetInnerHTML={{ __html: prepareHTML(body, currentSlug) }} />
       );
     }
     // Split HTML at </p> boundaries to inject images and/or the pull-quote
-    const parts = content.split(/(<\/p>)/i);
+    const parts = body.split(/(<\/p>)/i);
     // Count total paragraphs to place the pull-quote (~40% by default)
     const totalParas = parts.filter((p) => /<\/p>/i.test(p)).length;
     const pqAfter = pqText
