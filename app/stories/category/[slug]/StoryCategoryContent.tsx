@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import KinfolkTile from "@/components/KinfolkTile";
 import { cloudinaryUrl } from "@/lib/cloudinary";
 
 interface Story {
@@ -72,50 +73,15 @@ export default function StoryCategoryContent({
         {sorted.length === 0 ? (
           <p className="text-sm text-foreground/60">No stories in this category yet.</p>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
-            {sorted.map((story, i) => (
-              <article key={story.slug} className={i === 0 ? "md:col-span-2 lg:col-span-1" : ""}>
-                <Link href={`/stories/${story.slug}`} className="group">
-                  {/* Image */}
-                  <div className="aspect-[3/4] relative overflow-hidden bg-[#f0f0f0] mb-5">
-                    {story.hero_image && (
-                      <img
-                        src={cloudinaryUrl(story.hero_image, 600)}
-                        alt={story.title}
-                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
-                      />
-                    )}
-                  </div>
-
-                  {/* Meta */}
-                  <div className="flex items-center gap-3 mb-2">
-                    {story.year && (
-                      <span className="text-[9px] tracking-[0.2em] uppercase font-mono text-foreground/60">
-                        {story.year}
-                      </span>
-                    )}
-                    {story.read_time && (
-                      <span className="text-[9px] tracking-[0.2em] uppercase font-mono text-foreground/60">
-                        {story.read_time} min
-                      </span>
-                    )}
-                  </div>
-
-                  <h2 className="font-serif text-xl mb-2 group-hover:text-foreground/70 transition-colors leading-snug">
-                    {story.title}
-                  </h2>
-                  {story.subtitle && (
-                    <p className="text-sm text-foreground/70 mb-2 italic">
-                      {story.subtitle}
-                    </p>
-                  )}
-                  {story.excerpt && (
-                    <p className="text-sm text-foreground/70 leading-relaxed line-clamp-2">
-                      {story.excerpt}
-                    </p>
-                  )}
-                </Link>
-              </article>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5">
+            {sorted.map((story) => (
+              <KinfolkTile
+                key={story.slug}
+                href={`/stories/${story.slug}`}
+                image={story.hero_image}
+                kicker={story.category || undefined}
+                title={story.title}
+              />
             ))}
           </div>
         )}
