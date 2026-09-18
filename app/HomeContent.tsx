@@ -5,6 +5,7 @@ import Link from "next/link";
 import EpicCarousel from "@/components/EpicCarousel";
 import TimelineTeaser from "@/components/TimelineTeaser";
 import FestivalCalendarTeaser from "@/components/FestivalCalendarTeaser";
+import FestivalCalendar from "@/components/FestivalCalendar";
 import ThemesBanner from "@/components/ThemesBanner";
 import KinfolkTile from "@/components/KinfolkTile";
 import HomeMapTeaser from "@/components/HomeMapTeaser";
@@ -323,8 +324,9 @@ export default function HomeContent({
         </section>
       )}
 
-      {/* THE FESTIVAL YEAR — white banner into the festival calendar, directly below the hero */}
+      {/* THE FESTIVAL YEAR — white banner + the interactive calendar beneath it, directly below the hero */}
       <FestivalCalendarTeaser />
+      <FestivalCalendar />
 
       {/* ══════════════════════════════════════════════════
           1b. EPIC — the extraordinary layer (dark, cinematic band)
