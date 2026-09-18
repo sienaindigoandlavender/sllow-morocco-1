@@ -57,9 +57,10 @@ export default async function AboutJourneysPage() {
       <section className="px-8 md:px-10 lg:px-14 pb-16 md:pb-20">
         <div className="max-w-2xl space-y-7 text-[15px] text-foreground/80 leading-[1.8]">
           <p>
-            Alongside the writing, we arrange a small number of private
-            journeys each year — for readers who want to see the Morocco we
-            write about, in the company of the people who know it.
+            We have been guiding travellers to Morocco since 2013 — journeys we
+            design for those who want to experience the Morocco we write about,
+            decoded and entered in person, in the company of the people who
+            know it.
           </p>
           <p>
             These are not packages. Nothing runs to a fixed departure, and you
