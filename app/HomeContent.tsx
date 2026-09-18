@@ -323,6 +323,9 @@ export default function HomeContent({
         </section>
       )}
 
+      {/* THE FESTIVAL YEAR — white banner into the festival calendar, directly below the hero */}
+      <FestivalCalendarTeaser />
+
       {/* ══════════════════════════════════════════════════
           1b. EPIC — the extraordinary layer (dark, cinematic band)
           ══════════════════════════════════════════════════ */}
@@ -449,9 +452,6 @@ export default function HomeContent({
 
       {/* MOROCCO ON ONE LINE — animated doorway into /timeline */}
       <TimelineTeaser />
-
-      {/* THE FESTIVAL YEAR — animated doorway into the festival calendar */}
-      <FestivalCalendarTeaser />
 
       {/* LEARN TO READ MOROCCO - glossary cluster-essays */}
       <section className="px-6 md:px-10 lg:px-14 py-20 md:py-28 border-t border-[#0a0a0a]/[0.08]">
