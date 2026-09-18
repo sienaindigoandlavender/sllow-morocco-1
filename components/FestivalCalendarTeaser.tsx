@@ -1,11 +1,10 @@
 "use client";
 
-import Link from "next/link";
-
 /**
- * Homepage banner into the festival calendar. Deliberately WHITE (paper), so it
- * reads against the light-grey calendar it opens and the grey timeline teaser
- * further down. House serif, the last beat in signal red, one travelling pulse.
+ * Homepage banner that sits directly above the interactive FestivalCalendar.
+ * White (paper), so it reads against the light-grey calendar beneath it. House
+ * serif, the last beat in signal red. It is a header, not a doorway — the live
+ * calendar is right below — so there is no link and no call to action.
  *
  * The line breathes with the year: each month carries its own three-beat tableau
  * tied to that month's festival, and during Ramadan the moon/harira line returns
@@ -53,40 +52,30 @@ export default function FestivalCalendarTeaser() {
   const line = isRamadan(now) ? RAMADAN : MONTH_LINES[now.getMonth()];
 
   return (
-    <Link href="/stories/the-festival-calendar" className="group block no-underline">
-      <section className="w-full px-6 md:px-10 lg:px-14 py-20 md:py-28 bg-[#FAF9F6] border-t border-b border-[#0a0a0a]/10">
-        <div className="max-w-3xl">
-          <div className="flex items-center gap-3 mb-7">
-            <span className="h-px w-10 bg-[#0a0a0a]/30" />
-            <span className="text-[10px] tracking-[0.24em] uppercase text-[#0a0a0a]/55">
-              The festival year
-            </span>
-          </div>
-
-          <h2 className="font-serif text-3xl md:text-5xl font-light tracking-[-0.02em] leading-[1.12] text-[#0a0a0a]">
-            {line.a}{" "}
-            <span className="text-[#0a0a0a]/55">{line.b}</span>{" "}
-            <span style={{ color: "#E3120B" }}>{line.c}</span>
-          </h2>
-
-          <div className="mt-12 flex items-center gap-3">
-            <span className="relative block rounded-full" style={{ width: 8, height: 8 }}>
-              <span className="fy-ping absolute inset-0 rounded-full" style={{ background: "#E3120B" }} />
-              <span className="absolute inset-0 rounded-full bg-[#0a0a0a]" />
-            </span>
-            <span className="inline-flex items-center gap-2 text-[11px] tracking-[0.18em] uppercase text-[#0a0a0a]/60 group-hover:text-[#0a0a0a] transition-colors duration-300">
-              A festival every month — see the whole year
-              <span className="transition-transform duration-300 group-hover:translate-x-1" style={{ color: "#E3120B" }}>→</span>
-            </span>
-          </div>
+    <section className="w-full px-6 md:px-10 lg:px-14 py-20 md:py-28 bg-[#FAF9F6] border-t border-[#0a0a0a]/10">
+      <div className="max-w-3xl">
+        <div className="flex items-center gap-3 mb-7">
+          <span className="relative block rounded-full" style={{ width: 7, height: 7 }}>
+            <span className="fy-ping absolute inset-0 rounded-full" style={{ background: "#E3120B" }} />
+            <span className="absolute inset-0 rounded-full bg-[#0a0a0a]" />
+          </span>
+          <span className="text-[10px] tracking-[0.24em] uppercase text-[#0a0a0a]/55">
+            The festival year
+          </span>
         </div>
 
-        <style>{`
-          @keyframes fy-ping { 0% { transform: scale(1); opacity: 0.5; } 70%,100% { transform: scale(3.5); opacity: 0; } }
-          .fy-ping { animation: fy-ping 3.4s cubic-bezier(0,0,0.2,1) infinite; }
-          @media (prefers-reduced-motion: reduce) { .fy-ping { animation: none; opacity: 0; } }
-        `}</style>
-      </section>
-    </Link>
+        <h2 className="font-serif text-3xl md:text-5xl font-light tracking-[-0.02em] leading-[1.12] text-[#0a0a0a]">
+          {line.a}{" "}
+          <span className="text-[#0a0a0a]/55">{line.b}</span>{" "}
+          <span style={{ color: "#E3120B" }}>{line.c}</span>
+        </h2>
+      </div>
+
+      <style>{`
+        @keyframes fy-ping { 0% { transform: scale(1); opacity: 0.5; } 70%,100% { transform: scale(3.5); opacity: 0; } }
+        .fy-ping { animation: fy-ping 3.4s cubic-bezier(0,0,0.2,1) infinite; }
+        @media (prefers-reduced-motion: reduce) { .fy-ping { animation: none; opacity: 0; } }
+      `}</style>
+    </section>
   );
 }
