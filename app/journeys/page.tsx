@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getJourneys as getJourneysFromSupabase, getDayTrips as getDayTripsFromSupabase } from "@/lib/supabase";
+import { getJourneys as getJourneysFromSupabase, getDayTrips as getDayTripsFromSupabase, getTestimonials } from "@/lib/supabase";
 import JourneysContent from "./JourneysContent";
 
 export const metadata: Metadata = {
@@ -102,6 +102,15 @@ export default async function JourneysPage() {
   const visibleJourneys = journeys.filter((j) => !j.hidden);
   const dataLoaded = journeys.length > 0 || dayTrips.length > 0;
 
+  // The traveller's own voice, surfaced at the decision moment.
+  const testimonialsData = await getTestimonials({ published: true });
+  const testimonials = testimonialsData.map((t) => ({
+    id: t.testimonial_id,
+    quote: t.quote,
+    author: t.author,
+    journeyTitle: t.journey_title || undefined,
+  }));
+
   return (
     <JourneysContent
       initialJourneys={journeys}
@@ -109,6 +118,7 @@ export default async function JourneysPage() {
       dayTrips={dayTrips}
       overnightTrips={overnightTrips}
       dataLoaded={dataLoaded}
+      testimonials={testimonials}
     />
   );
 }

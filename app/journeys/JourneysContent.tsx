@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { cloudinaryUrl } from "@/lib/cloudinary";
+import Testimonials from "@/components/Testimonials";
 
 interface SearchableItem {
   type: 'journey' | 'daytrip' | 'overnight';
@@ -26,6 +27,7 @@ interface JourneysContentProps {
   dayTrips: SearchableItem[];
   overnightTrips: SearchableItem[];
   dataLoaded?: boolean;
+  testimonials?: { id: string; quote: string; author: string; journeyTitle?: string }[];
 }
 
 const ITEMS_PER_PAGE = 24;
@@ -36,6 +38,7 @@ export default function JourneysContent({
   dayTrips: initialDayTrips,
   overnightTrips: initialOvernightTrips,
   dataLoaded = true,
+  testimonials = [],
 }: JourneysContentProps) {
   const [allJourneys] = useState<SearchableItem[]>(initialJourneys);
   const [visibleJourneys] = useState<SearchableItem[]>(initialVisibleJourneys);
@@ -207,6 +210,9 @@ export default function JourneysContent({
           </div>
         )}
       </section>
+
+      {/* ── The traveller's voice ────────────────────────────────────── */}
+      <Testimonials testimonials={testimonials} />
 
       {/* ── SEO paragraph ────────────────────────────────────────────── */}
       <section className="px-8 md:px-10 lg:px-14 pb-16 border-t border-foreground/[0.08] pt-14">
