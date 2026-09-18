@@ -4,6 +4,7 @@ import { cloudinaryUrl } from "@/lib/cloudinary";
 import Link from "next/link";
 import EpicCarousel from "@/components/EpicCarousel";
 import TimelineTeaser from "@/components/TimelineTeaser";
+import FestivalCalendarTeaser from "@/components/FestivalCalendarTeaser";
 import ThemesBanner from "@/components/ThemesBanner";
 import KinfolkTile from "@/components/KinfolkTile";
 import HomeMapTeaser from "@/components/HomeMapTeaser";
@@ -448,6 +449,9 @@ export default function HomeContent({
 
       {/* MOROCCO ON ONE LINE — animated doorway into /timeline */}
       <TimelineTeaser />
+
+      {/* THE FESTIVAL YEAR — animated doorway into the festival calendar */}
+      <FestivalCalendarTeaser />
 
       {/* LEARN TO READ MOROCCO - glossary cluster-essays */}
       <section className="px-6 md:px-10 lg:px-14 py-20 md:py-28 border-t border-[#0a0a0a]/[0.08]">
