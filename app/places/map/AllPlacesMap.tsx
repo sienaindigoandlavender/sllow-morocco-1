@@ -190,7 +190,7 @@ export default function AllPlacesMap({ places, total, embedded = false }: Props)
 
       map.current = new mapboxgl.Map({
         container: mapContainer.current,
-        style: "mapbox://styles/mapbox/dark-v11",
+        style: "mapbox://styles/mapbox/light-v11", // light, not the dark brick view
         center: [-6.5, 31.5],
         zoom: 5.2,
         minZoom: 3,
@@ -327,7 +327,7 @@ map.current.on("load", () => applyMoroccoWorldview(map.current));
   // ── UI ────────────────────────────────────────────────────────────────────────
   return (
     <div
-      className="relative w-full bg-[#0e0e0e]"
+      className="relative w-full bg-[#e8e6e2]"
       style={{
         height: embedded ? "clamp(420px, 70vh, 680px)" : "100dvh",
         overflow: "hidden",
