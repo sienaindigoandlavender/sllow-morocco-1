@@ -142,7 +142,7 @@ export default function FAQPage() {
               Don't See Your Question?
             </h2>
             <p className="text-foreground/70 mb-8">
-              We're happy to answer any questions you have. For everyday questions about Morocco — taxis, tipping, what to wear, Ramadan, safety — visit <a href="https://derb.so" className="underline hover:text-white/80 transition-colors">Derb</a>, our city guide.
+              Ask us anything. For the everyday questions — taxis, tipping, what to wear, Ramadan, safety — <a href="https://derb.so" className="underline hover:text-white/80 transition-colors">Derb</a>, our city guide, has the ground-level answers.
             </p>
             <a 
               href="/contact" 
