@@ -96,6 +96,16 @@ export default function StoryDetailContent({
     ? story.tags.split(",").map((t) => t.trim()).filter(Boolean)
     : [];
 
+  // Editorial dateline — "Month YYYY" from the publication date. Kept to
+  // month + year rather than a full timestamp so it reads as a masthead
+  // line, not a log entry. Renders nothing if the date is missing or unparseable.
+  const publishedDate = (() => {
+    if (!story.publishedAt) return null;
+    const d = new Date(story.publishedAt);
+    if (Number.isNaN(d.getTime())) return null;
+    return d.toLocaleDateString("en-GB", { month: "long", year: "numeric" });
+  })();
+
   return (
     <div className="bg-background text-foreground min-h-screen">
       <ArticleSchema
@@ -178,16 +188,22 @@ export default function StoryDetailContent({
           ══════════════════════════════════════════════════════════════ */}
       <div className="border-b border-foreground/10">
         <div className="max-w-3xl mx-auto px-8 md:px-12 py-5 flex items-center justify-between">
-          <div className="flex items-center gap-4 text-[11px] tracking-[0.12em] uppercase text-foreground/70">
-            {story.category && (
-              <Link
-                href={`/stories/category/${story.category.toLowerCase()}`}
-                className="hover:text-foreground/80 transition-colors"
-              >
-                {story.category}
-              </Link>
-            )}
-            {story.readTime && <span>{story.readTime} min</span>}
+          <div className="flex flex-col gap-1.5">
+            <div className="flex items-center gap-4 text-[11px] tracking-[0.12em] uppercase text-foreground/70">
+              {story.category && (
+                <Link
+                  href={`/stories/category/${story.category.toLowerCase()}`}
+                  className="hover:text-foreground/80 transition-colors"
+                >
+                  {story.category}
+                </Link>
+              )}
+              {publishedDate && <span>{publishedDate}</span>}
+              {story.readTime && <span>{story.readTime} min</span>}
+            </div>
+            <span className="text-[10px] tracking-[0.16em] uppercase text-foreground/45">
+              Published by Dance with Lions
+            </span>
           </div>
           <ShareTools
             title={story.title}
