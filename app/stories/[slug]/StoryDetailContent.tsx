@@ -453,24 +453,64 @@ export default function StoryDetailContent({
           ══════════════════════════════════════════════════════════════ */}
       {(prevStory || nextStory) && (
         <div className="max-w-3xl mx-auto px-8 md:px-12 border-t border-foreground/10">
-          <div className="grid grid-cols-2 divide-x divide-foreground/10 py-1">
-            <div className="pr-8 py-8">
+          <div className="grid grid-cols-2 divide-x divide-foreground/10">
+            <div className="pr-6 md:pr-10 py-10 md:py-12">
               {prevStory && (
-                <Link href={`/stories/${prevStory.slug}`} className="group block">
-                  <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/70 mb-2">← Previous</p>
-                  <p className="font-serif text-base text-foreground/70 group-hover:text-foreground transition-colors duration-300 leading-snug">
-                    {prevStory.title}
-                  </p>
+                <Link
+                  href={`/stories/${prevStory.slug}`}
+                  className="group flex items-center gap-4 md:gap-6"
+                >
+                  <svg
+                    viewBox="0 0 44 16"
+                    aria-hidden="true"
+                    className="w-7 md:w-9 h-4 shrink-0 text-foreground/35 group-hover:text-foreground transition-all duration-300 ease-out group-hover:-translate-x-1.5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <line x1="43" y1="8" x2="2" y2="8" />
+                    <polyline points="9,1 2,8 9,15" />
+                  </svg>
+                  <span className="min-w-0">
+                    <span className="block text-[10px] tracking-[0.25em] uppercase text-foreground/45 mb-1.5">
+                      Previous
+                    </span>
+                    <span className="block font-serif text-base md:text-lg text-foreground/70 group-hover:text-foreground transition-colors duration-300 leading-snug">
+                      {prevStory.title}
+                    </span>
+                  </span>
                 </Link>
               )}
             </div>
-            <div className="pl-8 py-8 text-right">
+            <div className="pl-6 md:pl-10 py-10 md:py-12">
               {nextStory && (
-                <Link href={`/stories/${nextStory.slug}`} className="group block">
-                  <p className="text-[10px] tracking-[0.2em] uppercase text-foreground/70 mb-2">Next →</p>
-                  <p className="font-serif text-base text-foreground/70 group-hover:text-foreground transition-colors duration-300 leading-snug">
-                    {nextStory.title}
-                  </p>
+                <Link
+                  href={`/stories/${nextStory.slug}`}
+                  className="group flex items-center justify-end gap-4 md:gap-6 text-right"
+                >
+                  <span className="min-w-0">
+                    <span className="block text-[10px] tracking-[0.25em] uppercase text-foreground/45 mb-1.5">
+                      Next
+                    </span>
+                    <span className="block font-serif text-base md:text-lg text-foreground/70 group-hover:text-foreground transition-colors duration-300 leading-snug">
+                      {nextStory.title}
+                    </span>
+                  </span>
+                  <svg
+                    viewBox="0 0 44 16"
+                    aria-hidden="true"
+                    className="w-7 md:w-9 h-4 shrink-0 text-foreground/35 group-hover:text-foreground transition-all duration-300 ease-out group-hover:translate-x-1.5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <line x1="1" y1="8" x2="42" y2="8" />
+                    <polyline points="35,1 42,8 35,15" />
+                  </svg>
                 </Link>
               )}
             </div>
