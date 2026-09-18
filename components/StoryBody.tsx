@@ -4,6 +4,7 @@ import React from 'react';
 import { linkGlossaryTermsText, linkGlossaryTermsHTML } from '@/lib/glossary-linker';
 import { linkDerbTermsText, linkDerbTermsHTML } from '@/lib/derb-linker';
 import { linkCrossReferences, linkCrossReferencesHTML } from '@/lib/story-linker';
+import TimelineTeaser from "@/components/TimelineTeaser";
 import Aside from "@/components/Aside";
 
 interface InlineImage {
@@ -198,13 +199,16 @@ export default function StoryBody({ content, inlineImages = [], currentSlug, pul
      where the line falls; this just swaps the marker paragraph for
      the component. See components/Aside.tsx. */
   const ASIDE_RE = /\{\{aside:(light|souk|hour|harvest|hijri|prayer|distance|weather)\}\}/i;
+  /* {{timeline}} swaps its marker paragraph for the interactive timeline teaser. */
+  const TIMELINE_RE = /\{\{timeline\}\}/i;
 
   // HTML content — inject images at paragraph boundaries
   if (isHTML(content)) {
     const pqText = pullQuote && pullQuote.trim() ? pullQuote.trim() : null;
     const hasAside = ASIDE_RE.test(content);
+    const hasTimeline = TIMELINE_RE.test(content);
 
-    if (inlineImages.length === 0 && !pqText && !hasAside) {
+    if (inlineImages.length === 0 && !pqText && !hasAside && !hasTimeline) {
       return (
         <div className="prose prose-lg max-w-none story-html-body"
           dangerouslySetInnerHTML={{ __html: prepareHTML(content, currentSlug) }} />
@@ -228,7 +232,10 @@ export default function StoryBody({ content, inlineImages = [], currentSlug, pul
         paraCount++;
         buffer += part;
         const asideMatch = buffer.match(ASIDE_RE);
-        if (asideMatch) {
+        if (TIMELINE_RE.test(buffer)) {
+          // The marker paragraph is replaced by the interactive timeline teaser.
+          nodes.push(<TimelineTeaser key={`timeline-${i}`} />);
+        } else if (asideMatch) {
           // The marker paragraph is replaced, not annotated.
           nodes.push(
             <Aside key={`aside-${i}`} kind={asideMatch[1].toLowerCase() as any} place={asidePlace} />
