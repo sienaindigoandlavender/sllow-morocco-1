@@ -4,7 +4,7 @@ import JourneysContent from "./JourneysContent";
 
 export const metadata: Metadata = {
   title: "Private Journeys",
-  description: "Private journeys through imperial cities, Atlas Mountains, Sahara desert, and Atlantic coast — designed by the people who decode Morocco, for travellers who want to stand inside what they have read.",
+  description: "We have been guiding travellers to Morocco since 2013. Private journeys through the imperial cities, the Atlas Mountains, the Sahara desert and the Atlantic coast — designed for those who want to experience Morocco, decoded.",
   alternates: { canonical: "https://www.slowmorocco.com/journeys" },
   openGraph: {
     title: "Private Journeys | Slow Morocco",

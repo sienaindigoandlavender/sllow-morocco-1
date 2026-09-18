@@ -4,7 +4,7 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata: Metadata = {
   title: "Journeys",
-  description: "The traditions we write about, entered in person. A small number of nights and passages Slow Morocco arranges directly, for readers who want to stand inside what they have read.",
+  description: "We have been guiding travellers to Morocco since 2013. Journeys we design for those who want to experience Morocco, decoded.",
   keywords: [
     "Morocco tours",
     "Morocco itinerary",
@@ -112,7 +112,7 @@ const itemListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   name: "Slow Morocco Journeys",
-  description: "The traditions Slow Morocco writes about, arranged in person as a small number of nights and passages.",
+  description: "We have been guiding travellers to Morocco since 2013. Journeys we design for those who want to experience Morocco, decoded.",
   url: "https://www.slowmorocco.com/journeys",
   numberOfItems: 100,
   itemListOrder: "https://schema.org/ItemListUnordered",

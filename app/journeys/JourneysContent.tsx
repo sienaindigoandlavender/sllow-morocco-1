@@ -82,7 +82,7 @@ export default function JourneysContent({
           Journeys
         </h1>
         <p className="text-sm text-foreground/60 max-w-xl mb-10">
-          The traditions we write about, entered in person. A small number of nights and passages we arrange ourselves, for readers who want to stand inside what they have read.
+          We have been guiding travellers to Morocco since 2013. Journeys we design for those who want to experience Morocco, decoded.
         </p>
         <div className="h-[1px] bg-foreground/12" />
       </section>
