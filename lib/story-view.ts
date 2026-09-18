@@ -44,6 +44,7 @@ export interface StoryView {
   journeyBridge?: string;
   pullQuote?: string;
   pullQuotePosition?: number;
+  publishedAt?: string;
 }
 
 // Map a raw database row (snake_case, nullable) to the camelCase view model.
@@ -77,5 +78,6 @@ export function mapStory(row: Story): StoryView {
     journeyBridge: row.journey_bridge ?? undefined,
     pullQuote: row.pull_quote ?? undefined,
     pullQuotePosition: row.pull_quote_position ?? undefined,
+    publishedAt: row.created_at ?? undefined,
   };
 }
