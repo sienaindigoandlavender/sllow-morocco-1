@@ -103,7 +103,7 @@ export default function NewsletterSignup({
               </button>
             </form>
             <p className="text-xs text-stone-500 mt-2">
-              Occasional updates. Unsubscribe anytime.
+              Morocco, decoded. Sent when there is something worth your time.
             </p>
           </>
         )}
@@ -117,7 +117,7 @@ export default function NewsletterSignup({
   // Default variant - full form with label
   return (
     <div className={className}>
-      <h3 className="font-serif text-lg mb-3">Stay in Touch</h3>
+      <h3 className="font-serif text-lg mb-3">The Letter</h3>
       {status === "success" ? (
         <p className="text-olive">{message}</p>
       ) : (
@@ -146,7 +146,7 @@ export default function NewsletterSignup({
             </button>
           </form>
           <p className="text-xs text-stone-500 mt-3">
-            Occasional updates. Unsubscribe anytime.
+            Morocco, decoded. Sent when there is something worth your time.
           </p>
         </>
       )}

@@ -90,7 +90,7 @@ export default function JourneyLetter() {
             )}
 
             <p className="text-xs text-muted-foreground mt-4">
-              No frequency promises. Unsubscribe anytime.
+              Morocco, decoded. Sent when it matters.
             </p>
           </>
         )}
