@@ -364,14 +364,14 @@ export default function GentleContent({
           <div className="max-w-5xl mx-auto">
             <div className="mb-14">
               <p className="text-xs tracking-[0.3em] uppercase text-white/30 mb-3">Getting started</p>
-              <h2 id="process-heading" className="font-serif text-3xl text-white">Simple. No pressure.</h2>
+              <h2 id="process-heading" className="font-serif text-3xl text-white">Four steps, at your pace.</h2>
             </div>
 
             <div className="grid md:grid-cols-4 gap-8">
               {[
                 { n: "1", title: "We talk", body: "Email us at hello@slowmorocco.com. Tell us about you, who you're travelling with, and what matters most." },
                 { n: "2", title: "We design", body: "A journey shaped around your pace, your needs, your interests. A plan built around you, not a template." },
-                { n: "3", title: "You decide", body: "No deposit until you're ready. Take your time. Ask every question. Change your mind if you need to." },
+                { n: "3", title: "You decide", body: "You choose when to begin. The deposit comes only when the plan is right, and every question is answered before it does." },
                 { n: "4", title: "We're there", body: "From airport to airport, you're never alone. We handle everything, every day." },
               ].map(({ n, title, body }) => (
                 <div key={n}>
