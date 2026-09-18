@@ -2,10 +2,10 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Contact Us",
-  description: "Get in touch with Slow Morocco. Questions about our journeys? Ready to start planning? We'd love to hear from you.",
+  description: "Begin a private journey, or ask us anything about Morocco. We reply within a day.",
   openGraph: {
     title: "Contact | Slow Morocco",
-    description: "Get in touch with Slow Morocco. Questions about our journeys? Ready to start planning?",
+    description: "Begin a private journey, or ask us anything about Morocco.",
     url: "https://www.slowmorocco.com/contact",
   },
   alternates: {
