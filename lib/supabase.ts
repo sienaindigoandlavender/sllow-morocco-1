@@ -702,6 +702,22 @@ export async function getStories(options?: {
   return data as Story[];
 }
 
+// Slugs of published stories that actually have body content. Selected as slug
+// ONLY (body is excluded from listings for egress) and filtered server-side, so
+// the homepage can avoid featuring stub stories that open to a blank page —
+// hero image and meta bar, but no words. Returns an empty set on error, which
+// callers treat as "don't filter" so a failed query never empties the homepage.
+export async function getPublishedStoryBodySlugs(): Promise<Set<string>> {
+  const { data, error } = await supabase
+    .from("stories")
+    .select("slug")
+    .eq("published", true)
+    .not("body", "is", null)
+    .neq("body", "");
+  if (error) { console.error("Error fetching story body slugs:", error); return new Set<string>(); }
+  return new Set<string>((data || []).map((r: any) => r.slug));
+}
+
 export async function getStoryBySlug(slug: string) {
   const { data, error } = await supabase.from("stories").select("*").eq("slug", slug).single();
   if (error) { console.error("Error fetching story:", error); return null; }
