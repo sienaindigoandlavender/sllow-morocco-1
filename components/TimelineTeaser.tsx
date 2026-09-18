@@ -16,7 +16,7 @@ const DOTS = [
 export default function TimelineTeaser() {
   return (
     <Link href="/timeline" className="group block no-underline">
-      <section className="w-full px-6 md:px-10 lg:px-14 py-16 md:py-24 bg-white border-t border-[#0a0a0a]/10">
+      <section className="w-full px-6 md:px-10 lg:px-14 py-16 md:py-24 bg-[#f2f1ef] border-t border-[#0a0a0a]/10">
         <div className="max-w-3xl">
           <div className="flex items-center gap-3 mb-6">
             <span className="h-px w-10 bg-[#0a0a0a]/30" />
