@@ -324,10 +324,6 @@ export default function HomeContent({
         </section>
       )}
 
-      {/* THE FESTIVAL YEAR — white banner + the interactive calendar beneath it, directly below the hero */}
-      <FestivalCalendarTeaser />
-      <FestivalCalendar />
-
       {/* ══════════════════════════════════════════════════
           1b. EPIC — the extraordinary layer (dark, cinematic band)
           ══════════════════════════════════════════════════ */}
@@ -398,15 +394,10 @@ export default function HomeContent({
 
 
       {/* ══════════════════════════════════════════════════
-          7. EDITORIAL INTERLUDE — The month begins when the moon says so
+          7. THE FESTIVAL YEAR — the harira banner (now month-aware) + the interactive calendar beneath it
           ══════════════════════════════════════════════════ */}
-      <section className="bg-plaster px-6 md:px-10 lg:px-14 py-24 md:py-40 border-t border-[#0a0a0a]/[0.08]">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="font-serif text-[clamp(1.8rem,4vw,3.25rem)] font-light tracking-[-0.02em] text-[#0a0a0a] leading-[1.25]">
-            The month begins when the moon says so. The city stops. Then the smell of harira.
-          </h2>
-        </div>
-      </section>
+      <FestivalCalendarTeaser />
+      <FestivalCalendar />
 
       {/* ══════════════════════════════════════════════════
           8. GOING DEEPER — Kinfolk-style list: square image + large title
