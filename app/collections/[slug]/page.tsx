@@ -126,7 +126,7 @@ export default async function CollectionPage({
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-12">
             {stories.map((story) => (
               <article key={story.slug}>
-                <Link href={`/stories/${story.slug}`} className="group block">
+                <Link href={`/stories/${story.slug}?from=${slug}`} className="group block">
                   <div className="aspect-[3/4] relative overflow-hidden bg-[#e8e6e1] mb-3.5">
                     {story.hero_image && (
                       <img
