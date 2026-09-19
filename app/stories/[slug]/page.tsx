@@ -2,7 +2,8 @@ import { permanentRedirect } from "next/navigation";
 import { Metadata } from "next";
 import { getStoryBySlug, getStories, getJourneys, getStoryImages, getPlaces, getPlaceBySlug} from "@/lib/supabase";
 import { findRelatedJourneys } from "@/lib/content-matcher";
-import { getCollectionsForStory } from "@/lib/collections";
+import { getCollectionsForStory, getNextInCollection } from "@/lib/collections";
+import type { OnwardStory } from "@/components/OnwardPath";
 import { mapStory, type StoryView as Story } from "@/lib/story-view";
 import StoryDetailContent from "./StoryDetailContent";
 
@@ -221,10 +222,13 @@ async function getRelatedJourneysSSR(story: Story, slug: string) {
 
 export default async function StoryPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<{ from?: string }>;
 }) {
   const { slug } = await params;
+  const { from } = await searchParams;
 
   // Honour index_status/redirect_to before doing any other fetching.
   const rawStory = await getStoryBySlug(slug);
@@ -256,6 +260,27 @@ export default async function StoryPage({
   const currentIndex = allStoriesList.findIndex((s) => s.slug === slug);
   const prevStory = currentIndex > 0 ? { slug: allStoriesList[currentIndex - 1].slug, title: allStoriesList[currentIndex - 1].title } : null;
   const nextStory = currentIndex < allStoriesList.length - 1 ? { slug: allStoriesList[currentIndex + 1].slug, title: allStoriesList[currentIndex + 1].title } : null;
+
+  // The onward path (the rabbit hole). If the reader arrived from a collection —
+  // or the story simply belongs to one — offer the NEXT story in that ordered
+  // collection instead of the arbitrary date-neighbour. The story's own first
+  // collection is the fallback, because a sequence is a stronger offer than a pile.
+  const onwardCollection =
+    (from ? inCollections.find((c) => c.slug === from) : undefined) || inCollections[0] || null;
+  let onward:
+    | { label: string; slug: string; next: OnwardStory | null }
+    | null = null;
+  if (onwardCollection) {
+    const nextSlug = getNextInCollection(onwardCollection.slug, slug);
+    const nx = nextSlug ? allStoriesList.find((s) => s.slug === nextSlug) : null;
+    onward = {
+      label: onwardCollection.title,
+      slug: onwardCollection.slug,
+      next: nx
+        ? { slug: nx.slug, title: nx.title, subtitle: nx.subtitle ?? null, heroImage: nx.hero_image ?? null }
+        : null,
+    };
+  }
 
   const BASE_URL = "https://www.slowmorocco.com";
   const articleJsonLd = {
@@ -339,6 +364,7 @@ export default async function StoryPage({
         externalLinks={externalLinks}
         prevStory={prevStory}
         nextStory={nextStory}
+        onward={onward}
       />
     </>
   );

@@ -9,6 +9,7 @@ import ShareTools from "@/components/ShareTools";
 import SeasonalBadge from "@/components/SeasonalBadge";
 import dynamic from "next/dynamic";
 import NewsletterCapture from "@/components/NewsletterCapture";
+import OnwardPath, { type OnwardStory } from "@/components/OnwardPath";
 import ArticleSchema from "@/components/seo/ArticleSchema";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import type { StoryView as Story } from "@/lib/story-view";
@@ -63,6 +64,7 @@ interface StoryDetailContentProps {
   externalLinks?: Array<{ label: string; url: string; type?: string }> | null;
   prevStory?: NavItem | null;
   nextStory?: NavItem | null;
+  onward?: { label: string; slug: string; next: OnwardStory | null } | null;
   inCollections?: { slug: string; title: string; dek: string }[];
   /* Coordinates for an {{aside:distance}} marker, resolved on the
      server from the story's place_slug. Null for stories without one. */
@@ -82,6 +84,7 @@ export default function StoryDetailContent({
   externalLinks,
   prevStory,
   nextStory,
+  onward = null,
   inCollections = [],
 }: StoryDetailContentProps) {
   const sources = story.sources
@@ -465,9 +468,19 @@ export default function StoryDetailContent({
       </div>
 
       {/* ══════════════════════════════════════════════════════════════
-          PREV / NEXT NAVIGATION
+          THE ONWARD PATH — the rabbit hole. When the story sits in a
+          collection (or the reader arrived from one), offer the next
+          entry in that sequence instead of the flat archive walk.
           ══════════════════════════════════════════════════════════════ */}
-      {(prevStory || nextStory) && (
+      {onward && (
+        <OnwardPath label={onward.label} slug={onward.slug} next={onward.next} />
+      )}
+
+      {/* ══════════════════════════════════════════════════════════════
+          PREV / NEXT NAVIGATION — the fallback archive walk, only when
+          the story has no collection sequence to follow.
+          ══════════════════════════════════════════════════════════════ */}
+      {!onward && (prevStory || nextStory) && (
         <div className="max-w-3xl mx-auto px-8 md:px-12 border-t border-foreground/10">
           <div className="grid grid-cols-2 divide-x divide-foreground/10">
             <div className="pr-6 md:pr-10 py-10 md:py-12">
