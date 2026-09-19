@@ -673,3 +673,18 @@ export function getCollectionsForPlace(placeSlug: string): CollectionRef[] {
     ({ slug, title, dek }) => ({ slug, title, dek })
   );
 }
+
+// The next story in a collection's ordered sequence, or null at the end.
+// A collection is a ranked argument, so "next" is the following entry in the
+// list — not a neighbour by date. This powers the onward path: the rabbit hole
+// that keeps a reader walking one idea instead of landing on a pile.
+export function getNextInCollection(
+  collectionSlug: string,
+  currentStorySlug: string
+): string | null {
+  const c = getCollection(collectionSlug);
+  if (!c) return null;
+  const i = c.storySlugs.indexOf(currentStorySlug);
+  if (i === -1 || i >= c.storySlugs.length - 1) return null;
+  return c.storySlugs[i + 1];
+}
