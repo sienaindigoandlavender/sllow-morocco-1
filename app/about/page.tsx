@@ -85,6 +85,21 @@ export default function AboutPage() {
         height="medium"
       />
 
+      {/* Manifesto link — what we look for */}
+      <section className="px-6 md:px-10 lg:px-14 pt-20 md:pt-28">
+        <Link href="/against-perfect" className="group block max-w-3xl">
+          <p className="text-[11px] tracking-[0.24em] uppercase text-[#0a0a0a]/45 mb-5">
+            What we look for
+          </p>
+          <p className="font-serif text-[clamp(1.4rem,3.2vw,2.2rem)] font-light tracking-[-0.015em] leading-[1.25] text-[#0a0a0a] group-hover:text-[#0a0a0a]/55 transition-colors">
+            The best thing in Morocco looks like a mistake. We go after the real, never the shiny.
+          </p>
+          <span className="mt-5 inline-block text-[11px] tracking-[0.14em] uppercase text-[#0a0a0a]/45 group-hover:text-[#C2410C] transition-colors">
+            Read the manifesto &rarr;
+          </span>
+        </Link>
+      </section>
+
       {/* The two doors */}
       <section className="px-6 md:px-10 lg:px-14 py-24 md:py-32">
         <div className="max-w-3xl">
