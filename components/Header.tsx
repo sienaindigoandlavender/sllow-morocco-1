@@ -128,6 +128,7 @@ export default function Header() {
                 { href: "/stories", label: "Stories" },
                 { href: "/places", label: "Places" },
                 { href: "/journeys", label: "Journeys" },
+                { href: "/plan-your-trip", label: "Plan Your Trip" },
                 { href: "/collections", label: "Collections" },
                 { href: "/stories/category/before-you-go", label: "Before You Go" },
                 { href: "https://darija.io", label: "Darija" },
