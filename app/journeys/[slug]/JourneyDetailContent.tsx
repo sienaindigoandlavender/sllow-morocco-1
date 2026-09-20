@@ -415,90 +415,19 @@ export default function JourneyDetailContent({
 
             <div className="bg-foreground/[0.03] p-8 md:p-12">
               <h2 className="font-serif text-2xl md:text-3xl mb-8">
-                Request This Journey
+                Begin this journey
               </h2>
-              
-              <form 
-                action="/api/plan-your-trip" 
-                method="POST"
-                className="space-y-6"
+              <p className="text-foreground/70 text-[15px] leading-[1.7] mb-8 max-w-xl">
+                We design privately, and once. Planning opens with a &euro;300
+                deposit, credited in full to your journey &mdash; it holds your dates
+                and starts the work. Everything after that is a conversation.
+              </p>
+              <Link
+                href={`/plan-your-trip?journey=${journey.slug}`}
+                className="inline-block bg-foreground text-background px-12 py-4 text-xs tracking-[0.2em] uppercase hover:bg-foreground/90 transition-colors"
               >
-                <input type="hidden" name="journey" value={journey.title} />
-                <input type="hidden" name="journeyType" value="epic" />
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-xs tracking-[0.15em] uppercase text-foreground/70 mb-2">
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      required
-                      className="w-full bg-transparent border-b border-foreground/15 py-3 text-foreground focus:border-foreground focus:outline-none transition-colors"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs tracking-[0.15em] uppercase text-foreground/70 mb-2">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      required
-                      className="w-full bg-transparent border-b border-foreground/15 py-3 text-foreground focus:border-foreground focus:outline-none transition-colors"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-xs tracking-[0.15em] uppercase text-foreground/70 mb-2">
-                      Preferred Dates
-                    </label>
-                    <input
-                      type="text"
-                      name="dates"
-                      placeholder="e.g., March 2025"
-                      className="w-full bg-transparent border-b border-foreground/15 py-3 text-foreground placeholder:text-foreground/25 focus:border-foreground focus:outline-none transition-colors"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs tracking-[0.15em] uppercase text-foreground/70 mb-2">
-                      Number of Guests
-                    </label>
-                    <input
-                      type="number"
-                      name="guests"
-                      min="1"
-                      max="8"
-                      placeholder="2"
-                      className="w-full bg-transparent border-b border-foreground/15 py-3 text-foreground placeholder:text-foreground/25 focus:border-foreground focus:outline-none transition-colors"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-xs tracking-[0.15em] uppercase text-foreground/70 mb-2">
-                    Tell us about yourself
-                  </label>
-                  <textarea
-                    name="message"
-                    rows={4}
-                    placeholder="What draws you to this journey? Any relevant experience?"
-                    className="w-full bg-transparent border-b border-foreground/15 py-3 text-foreground placeholder:text-foreground/25 focus:border-foreground focus:outline-none transition-colors resize-none"
-                  />
-                </div>
-
-                <div className="pt-4">
-                  <button
-                    type="submit"
-                    className="w-full md:w-auto bg-foreground text-background px-12 py-4 text-xs tracking-[0.2em] uppercase hover:bg-foreground/90 transition-colors"
-                  >
-                    Request Details
-                  </button>
-                </div>
-              </form>
+                Begin this journey &rarr;
+              </Link>
             </div>
           </div>
         </section>
