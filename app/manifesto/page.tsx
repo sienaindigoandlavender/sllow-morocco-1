@@ -1,95 +1,143 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "The Anti-Tourism Manifesto",
+  title: "The Manifesto",
   description:
-    "Slow Morocco exists because we got tired of watching it. Twenty years of networks. The people who don't advertise. We introduce you. That's it.",
+    "Slow Morocco exists because we got tired of watching it. We skip the tourist routes and go after the real — the ugly interesting, not the perfect stylish. We introduce you. That's it.",
   openGraph: {
-    title: "The Anti-Tourism Manifesto | Slow Morocco",
+    title: "The Manifesto | Slow Morocco",
     description:
-      "Slow Morocco exists because we got tired of watching it. Twenty years of networks. We introduce you. That's it.",
+      "We skip the tourist routes and go after the real — the ugly interesting, not the perfect stylish. We introduce you. That's it.",
     url: "https://www.slowmorocco.com/manifesto",
   },
-  alternates: {
-    canonical: "https://www.slowmorocco.com/manifesto",
-  },
+  alternates: { canonical: "https://www.slowmorocco.com/manifesto" },
 };
+
+export const revalidate = 3600;
 
 export default function ManifestoPage() {
   return (
-    <div className="bg-background text-foreground min-h-screen">
-      {/* Hero */}
-      <section className="min-h-screen flex items-center justify-center relative">
-        <div className="absolute inset-0 bg-[url('/images/texture-grain.png')] opacity-[0.03] pointer-events-none" />
-        <div className="container mx-auto px-6 lg:px-16 max-w-4xl relative z-10">
-          <p className="text-xs tracking-[0.4em] uppercase text-foreground/60 mb-8 text-center">
-            Slow Morocco
+    <main className="bg-white text-[#0a0a0a]">
+      {/* Opening */}
+      <section className="px-6 md:px-10 lg:px-14 pt-28 md:pt-40 pb-14 md:pb-20">
+        <div className="max-w-3xl">
+          <p className="text-[11px] tracking-[0.28em] uppercase text-[#0a0a0a]/45 mb-8">
+            Slow Morocco — the manifesto
           </p>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-center leading-tight mb-6">
-            The Anti-Tourism Manifesto
+          <h1 className="font-serif text-[clamp(2rem,5.5vw,3.75rem)] font-light tracking-[-0.02em] leading-[1.08]">
+            We got tired of watching it.
           </h1>
         </div>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2">
-          <div className="w-[1px] h-16 bg-gradient-to-b from-white/0 via-white/20 to-white/0" />
-        </div>
       </section>
 
-      {/* The Problem */}
-      <section className="py-24 md:py-32 border-t border-foreground/10">
-        <div className="container mx-auto px-6 lg:px-16 max-w-3xl">
-          <p className="text-xl md:text-2xl lg:text-3xl leading-relaxed text-foreground/70 font-serif">
-            The carpet merchant will tell you it's antique. It isn't. The guide
-            will take you to his cousin's shop. The hotel will call the rooftop
-            'authentic Marrakech' while serving the same tagine as every other
-            rooftop.
+      {/* Body — the lie */}
+      <section className="px-6 md:px-10 lg:px-14 pb-10 md:pb-16">
+        <div className="max-w-2xl space-y-7 text-[17px] md:text-[19px] leading-[1.72] text-[#0a0a0a]/85 font-serif">
+          <p>
+            The carpet merchant will tell you it&rsquo;s antique. It isn&rsquo;t.
+            The guide will walk you to his cousin&rsquo;s shop. The hotel calls its
+            rooftop &ldquo;authentic Marrakech&rdquo; and sends up the same tagine as
+            every other rooftop on the block. This is the Morocco most people are
+            sold — a set, dressed for a photograph, with the cost of the show built
+            into the bill.
+          </p>
+          <p>
+            And the whole world has gone that way. Everything is lit well, shot in
+            slow motion, styled to be posted and not lived. Everyone is chasing the
+            best — the best riad, the best view, the best rooftop at the best hour,
+            the ten sights you must see before the ten thousand people reading the
+            same list beat you to them. Morocco has been photographed half to death
+            by people all hunting the same shot.
           </p>
         </div>
       </section>
 
-      {/* The Statement */}
-      <section className="py-24 md:py-32 bg-[#0d0d0d]">
-        <div className="container mx-auto px-6 lg:px-16 max-w-4xl text-center">
-          <p className="text-3xl md:text-4xl lg:text-5xl font-serif italic text-white/90 leading-tight">
+      {/* Statement 1 */}
+      <section className="px-6 md:px-10 lg:px-14 py-10 md:py-16">
+        <div className="max-w-3xl">
+          <p className="font-serif text-[clamp(1.6rem,4vw,2.75rem)] font-light tracking-[-0.015em] leading-[1.15]">
             Slow Morocco exists because we got tired of watching it.
           </p>
         </div>
       </section>
 
-      {/* The Network */}
-      <section className="py-24 md:py-32 border-t border-foreground/10">
-        <div className="container mx-auto px-6 lg:px-16 max-w-3xl">
-          <div className="space-y-12">
-            <p className="text-xl md:text-2xl leading-relaxed text-foreground/70">
-              Twenty years of networks.
-            </p>
-            <div className="space-y-8 text-lg md:text-xl text-foreground/70 leading-relaxed">
-              <p>The zellige cutter who learned from his father.</p>
-              <p>The Gnawa maalem who plays only when the night calls for it.</p>
-              <p>
-                The hammam keeper who remembers when there were no tourists at
-                all.
-              </p>
-            </div>
-            <p className="text-xl md:text-2xl leading-relaxed text-foreground/70">
-              These people don't advertise. They don't need to.
-            </p>
-          </div>
+      {/* Body — the real doesn't shine */}
+      <section className="px-6 md:px-10 lg:px-14 pb-10 md:pb-16">
+        <div className="max-w-2xl space-y-7 text-[17px] md:text-[19px] leading-[1.72] text-[#0a0a0a]/85 font-serif">
+          <p>
+            We&rsquo;re not doing that. Perfect looks beautiful and says nothing,
+            because perfect has nothing left to discover. Perfect is what you make
+            when you&rsquo;re afraid of being wrong.
+          </p>
+          <p>
+            The things worth crossing a country for rarely shine. A door going grey
+            and soft with age. A shrine down an alley that isn&rsquo;t on any map. A
+            weaver working a pattern her town has argued over for two hundred years.
+            None of it is styled. None of it is ranked. All of it is real.
+          </p>
         </div>
       </section>
 
-      {/* The Promise */}
-      <section className="py-32 md:py-40 bg-[#f5f5f5]">
-        <div className="container mx-auto px-6 lg:px-16 max-w-3xl text-center">
-          <p className="text-4xl md:text-5xl lg:text-6xl font-serif text-[#1a1a1a]/90 leading-tight">
-            We introduce you.
-          </p>
-          <p className="text-4xl md:text-5xl lg:text-6xl font-serif text-[#1a1a1a]/50 mt-4">
-            That's it.
+      {/* Statement 2 */}
+      <section className="px-6 md:px-10 lg:px-14 py-12 md:py-20 border-y border-[#0a0a0a]/[0.1] my-4 md:my-8">
+        <div className="max-w-3xl">
+          <p className="font-serif text-[clamp(1.6rem,4vw,2.75rem)] font-light tracking-[-0.015em] leading-[1.15]">
+            Not the coolest anything.
+            <br />
+            <span className="text-[#C2410C]">The realest everything.</span>
           </p>
         </div>
       </section>
-    </div>
+
+      {/* Body — the network + the ethos */}
+      <section className="px-6 md:px-10 lg:px-14 py-10 md:py-16">
+        <div className="max-w-2xl space-y-7 text-[17px] md:text-[19px] leading-[1.72] text-[#0a0a0a]/85 font-serif">
+          <p>
+            The ugly delicious and the ugly interesting. The real Morocco runs on
+            people who never advertise, because they never had to: the zellige
+            cutter who learned the geometry from his father, the Gnawa maalem who
+            plays only when the night asks for it, the hammam keeper who remembers
+            when there were no tourists at all.
+          </p>
+          <p>
+            We don&rsquo;t believe in the best. We don&rsquo;t trust the man who
+            tells you where to go — we&rsquo;re not sure he&rsquo;s ever been curious
+            in his life. We&rsquo;d rather be curious than correct, and hand you
+            something &ldquo;fine&rdquo; you never forget than something flawless you
+            do. And we don&rsquo;t know everything. Years in, we still get lost,
+            still get handed things we can&rsquo;t name. That&rsquo;s the whole
+            point. The day you&rsquo;ve got Morocco figured out is the day you stop
+            seeing it.
+          </p>
+          <p>
+            So skip the routes. Don&rsquo;t chase the shiny thing. The people who
+            make this country worth the trip aren&rsquo;t on any list, because the
+            real was never for sale.
+          </p>
+        </div>
+      </section>
+
+      {/* Close */}
+      <section className="px-6 md:px-10 lg:px-14 py-16 md:py-24 border-t border-[#0a0a0a]/[0.1]">
+        <div className="max-w-3xl">
+          <p className="font-serif text-[clamp(2rem,5vw,3.25rem)] font-light tracking-[-0.02em] leading-[1.1]">
+            We introduce you.
+          </p>
+          <p className="font-serif text-[clamp(2rem,5vw,3.25rem)] font-light tracking-[-0.02em] leading-[1.1] text-[#0a0a0a]/40 mt-1">
+            That&rsquo;s it.
+          </p>
+        </div>
+      </section>
+
+      {/* Nod */}
+      <section className="px-6 md:px-10 lg:px-14 pb-28 md:pb-40 pt-8">
+        <div className="max-w-2xl">
+          <p className="text-[13px] text-[#0a0a0a]/45 italic font-serif">
+            With a nod to David Chang, who told travellers to throw away the phone
+            and eat the dodgy sandwich.
+          </p>
+        </div>
+      </section>
+    </main>
   );
 }
