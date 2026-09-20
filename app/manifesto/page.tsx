@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "The Manifesto",
@@ -153,7 +154,14 @@ export default function ManifestoPage() {
         <div className="max-w-2xl">
           <p className="text-[16px] md:text-[18px] text-[#0a0a0a]/60 italic font-serif leading-[1.6]">
             With a nod to the visionary, game-changing Chef David Chang, who told
-            travellers to throw away the phone and eat the dodgy sandwich.
+            travellers to throw away the phone and eat{" "}
+            <Link
+              href="/stories/first-the-liver-then-the-head"
+              className="underline decoration-[#0a0a0a]/25 underline-offset-2 hover:decoration-[#C2410C] hover:text-[#0a0a0a]/80 transition-colors"
+            >
+              the dodgy sandwich
+            </Link>
+            .
           </p>
           <p className="text-[13px] md:text-[14px] text-[#0a0a0a]/45 italic font-serif leading-[1.6] mt-3">
             And to the Skin Horse, who said it first, in Margery Williams&rsquo;s{" "}
