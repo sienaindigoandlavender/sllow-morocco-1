@@ -35,19 +35,20 @@ export default function ManifestoPage() {
       <section className="px-6 md:px-10 lg:px-14 pb-10 md:pb-16">
         <div className="max-w-2xl space-y-7 text-[17px] md:text-[19px] leading-[1.72] text-[#0a0a0a]/85 font-serif">
           <p>
-            There is a version of Morocco dressed for the camera. A rooftop that
-            calls itself authentic and sends up the same tagine as every other
-            rooftop on the block. An antique made last spring. The one photograph
-            everyone comes home with, because everyone stood in the same spot to
-            take it. It is a set, and it is beautiful, and it is the thinnest slice
-            of the country there is.
+            The carpet merchant will tell you it&rsquo;s antique. It isn&rsquo;t.
+            The guide will walk you to his cousin&rsquo;s shop. The hotel calls its
+            rooftop &ldquo;authentic Marrakech&rdquo; and sends up the same tagine as
+            every other rooftop on the block. This is the Morocco most people are
+            sold — a set, dressed for a photograph, with the cost of the show built
+            into the bill.
           </p>
           <p>
-            And the whole world has gone that way. Everything lit well, shot in slow
-            motion, styled to be posted and not lived — the best riad, the best
-            view, the best rooftop at the best hour, the ten sights to see before
-            the list resets and names ten more. The country hasn&rsquo;t gotten
-            smaller. The way we&rsquo;re taught to look at it has.
+            And the whole world has gone that way. Everything is lit well, shot in
+            slow motion, styled to be posted and not lived. Everyone is chasing the
+            best — the best riad, the best view, the best rooftop at the best hour,
+            the ten sights you must see before the ten thousand people reading the
+            same list beat you to them. Morocco has been photographed half to death
+            by people all hunting the same shot.
           </p>
         </div>
       </section>
@@ -119,13 +120,14 @@ export default function ManifestoPage() {
             when there were no tourists at all.
           </p>
           <p>
-            We don&rsquo;t believe in the best. A list can tell you where to go,
-            never why — and it was never curious in the first place. We&rsquo;d
-            rather be curious than correct, and hand you something &ldquo;fine&rdquo;
-            you never forget than something flawless you do. And we don&rsquo;t know
-            everything. Years in, we still get lost, still get handed things we
-            can&rsquo;t name. That&rsquo;s the whole point. The day you&rsquo;ve got
-            Morocco figured out is the day you stop seeing it.
+            We don&rsquo;t believe in the best. We don&rsquo;t trust the man who
+            tells you where to go — we&rsquo;re not sure he&rsquo;s ever been curious
+            in his life. We&rsquo;d rather be curious than correct, and hand you
+            something &ldquo;fine&rdquo; you never forget than something flawless you
+            do. And we don&rsquo;t know everything. Years in, we still get lost,
+            still get handed things we can&rsquo;t name. That&rsquo;s the whole
+            point. The day you&rsquo;ve got Morocco figured out is the day you stop
+            seeing it.
           </p>
           <p>
             So skip the routes. Don&rsquo;t chase the shiny thing. The people who
