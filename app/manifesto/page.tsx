@@ -106,6 +106,26 @@ export default function ManifestoPage() {
         </div>
       </section>
 
+      {/* Body — the performance is the doorway */}
+      <section className="px-6 md:px-10 lg:px-14 py-10 md:py-16">
+        <div className="max-w-2xl space-y-7 text-[17px] md:text-[19px] leading-[1.72] text-[#0a0a0a]/85 font-serif">
+          <p>
+            None of this means skip the show. The snake charmer, the lantern light,
+            the mint tea poured from a height — the performance is part of the magic.
+            Being above it isn&rsquo;t taste; it&rsquo;s snobbery in better clothes.
+            Watch it. Love it. Then keep walking, because the spectacle is the
+            doorway, not the room.
+          </p>
+          <p>
+            The tourist stops at the show and goes home with the photograph. The
+            traveller lets it pull them in — into the hammam, the offal sandwich, the
+            back room where the real thing is happening — and comes home changed.
+            That crossing is everything: the line between seeing a place and being
+            let inside it.
+          </p>
+        </div>
+      </section>
+
       {/* Body — the network + the ethos */}
       <section className="px-6 md:px-10 lg:px-14 py-10 md:py-16">
         <div className="max-w-2xl space-y-7 text-[17px] md:text-[19px] leading-[1.72] text-[#0a0a0a]/85 font-serif">
