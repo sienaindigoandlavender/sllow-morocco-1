@@ -22,12 +22,9 @@ export default function ManifestoPage() {
       {/* Opening */}
       <section className="px-6 md:px-10 lg:px-14 pt-28 md:pt-40 pb-14 md:pb-20">
         <div className="max-w-3xl">
-          <p className="text-[11px] tracking-[0.28em] uppercase text-[#0a0a0a]/45 mb-8">
+          <p className="text-[11px] tracking-[0.28em] uppercase text-[#0a0a0a]/45">
             Slow Morocco — the manifesto
           </p>
-          <h1 className="font-serif text-[clamp(2rem,5.5vw,3.75rem)] font-light tracking-[-0.02em] leading-[1.08]">
-            We got tired of watching it.
-          </h1>
         </div>
       </section>
 
@@ -56,9 +53,9 @@ export default function ManifestoPage() {
       {/* Statement 1 */}
       <section className="px-6 md:px-10 lg:px-14 py-10 md:py-16">
         <div className="max-w-3xl">
-          <p className="font-serif text-[clamp(1.6rem,4vw,2.75rem)] font-light tracking-[-0.015em] leading-[1.15]">
+          <h1 className="font-serif text-[clamp(1.6rem,4vw,2.75rem)] font-light tracking-[-0.015em] leading-[1.15]">
             Slow Morocco exists because we got tired of watching it.
-          </p>
+          </h1>
         </div>
       </section>
 
