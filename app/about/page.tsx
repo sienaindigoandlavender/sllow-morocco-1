@@ -87,7 +87,7 @@ export default function AboutPage() {
 
       {/* Manifesto link — what we look for */}
       <section className="px-6 md:px-10 lg:px-14 pt-20 md:pt-28">
-        <Link href="/against-perfect" className="group block max-w-3xl">
+        <Link href="/manifesto" className="group block max-w-3xl">
           <p className="text-[11px] tracking-[0.24em] uppercase text-[#0a0a0a]/45 mb-5">
             What we look for
           </p>
