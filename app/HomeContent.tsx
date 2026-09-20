@@ -392,6 +392,21 @@ export default function HomeContent({
         headline="Some roads are older than the maps that forgot them."
       />
 
+      {/* MANIFESTO — the ethos band, links to /against-perfect */}
+      <section className="px-6 md:px-10 lg:px-14 py-20 md:py-28 border-t border-[#0a0a0a]/[0.08]">
+        <Link href="/against-perfect" className="group block max-w-3xl">
+          <p className="text-[11px] tracking-[0.28em] uppercase text-[#0a0a0a]/45 mb-6">
+            What we look for
+          </p>
+          <p className="font-serif text-[clamp(1.5rem,3.6vw,2.6rem)] font-light tracking-[-0.015em] leading-[1.18] text-[#0a0a0a] group-hover:text-[#0a0a0a]/55 transition-colors">
+            The best thing in Marrakech looks like a mistake.
+          </p>
+          <span className="mt-6 inline-block text-[11px] tracking-[0.14em] uppercase text-[#0a0a0a]/45 group-hover:text-[#C2410C] transition-colors">
+            Read the manifesto &rarr;
+          </span>
+        </Link>
+      </section>
+
 
       {/* ══════════════════════════════════════════════════
           7. THE FESTIVAL YEAR — the harira banner (now month-aware) + the interactive calendar beneath it
