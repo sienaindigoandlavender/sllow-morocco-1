@@ -89,6 +89,25 @@ export default function ManifestoPage() {
         </div>
       </section>
 
+      {/* Body — the Velveteen turn: what "real" means */}
+      <section className="px-6 md:px-10 lg:px-14 py-10 md:py-16">
+        <div className="max-w-2xl space-y-7 text-[17px] md:text-[19px] leading-[1.72] text-[#0a0a0a]/85 font-serif">
+          <p>
+            Someone wrote this down a hundred years before the food writers found
+            it. A stuffed rabbit asks an old toy horse how a toy becomes real, and
+            the horse tells him: it happens when you are loved for a long time —
+            until your fur is rubbed off and your joints go loose and your eyes drop
+            out — and by then you are shabby, and none of it matters, because once
+            you are real you can&rsquo;t be ugly, except to people who don&rsquo;t
+            understand.
+          </p>
+          <p>
+            The shiny riad is a toy still in its box. The grey door, soft with age,
+            has been loved into being real — and that is the whole difference.
+          </p>
+        </div>
+      </section>
+
       {/* Body — the network + the ethos */}
       <section className="px-6 md:px-10 lg:px-14 py-10 md:py-16">
         <div className="max-w-2xl space-y-7 text-[17px] md:text-[19px] leading-[1.72] text-[#0a0a0a]/85 font-serif">
@@ -132,9 +151,13 @@ export default function ManifestoPage() {
       {/* Nod */}
       <section className="px-6 md:px-10 lg:px-14 pb-28 md:pb-40 pt-8">
         <div className="max-w-2xl">
-          <p className="text-[13px] text-[#0a0a0a]/45 italic font-serif">
-            With a nod to David Chang, who told travellers to throw away the phone
-            and eat the dodgy sandwich.
+          <p className="text-[16px] md:text-[18px] text-[#0a0a0a]/60 italic font-serif leading-[1.6]">
+            With a nod to the visionary, game-changing Chef David Chang, who told
+            travellers to throw away the phone and eat the dodgy sandwich.
+          </p>
+          <p className="text-[13px] md:text-[14px] text-[#0a0a0a]/45 italic font-serif leading-[1.6] mt-3">
+            And to the Skin Horse, who said it first, in Margery Williams&rsquo;s{" "}
+            <em>The Velveteen Rabbit</em> (1922).
           </p>
         </div>
       </section>
