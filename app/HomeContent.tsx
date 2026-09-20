@@ -392,9 +392,9 @@ export default function HomeContent({
         headline="Some roads are older than the maps that forgot them."
       />
 
-      {/* MANIFESTO — the ethos band, links to /against-perfect */}
+      {/* MANIFESTO — the ethos band, links to /manifesto */}
       <section className="px-6 md:px-10 lg:px-14 py-20 md:py-28 border-t border-[#0a0a0a]/[0.08]">
-        <Link href="/against-perfect" className="group block max-w-3xl">
+        <Link href="/manifesto" className="group block max-w-3xl">
           <p className="text-[11px] tracking-[0.28em] uppercase text-[#0a0a0a]/45 mb-6">
             What we look for
           </p>
