@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import JourneyDoor from "@/components/JourneyDoor";
 
 export const metadata: Metadata = {
   title: "Atlas Mountains Trekking in Morocco: Toubkal and Beyond",
@@ -50,6 +51,7 @@ export default function AtlasTrekkingPage() {
           <Link href="/imlil" className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Imlil destination guide →</Link>
           <Link href="/stories/four-peaks-morocco" className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Read: The four peaks →</Link>
         </div>
+      <JourneyDoor />
       </div>
     </div>
   );

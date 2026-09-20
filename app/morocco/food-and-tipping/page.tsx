@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import JourneyDoor from "@/components/JourneyDoor";
 
 export const metadata: Metadata = {
   title: "What to Eat in Morocco and Tipping Culture",
@@ -75,6 +76,7 @@ export default function FoodAndTippingPage() {
           <Link href="/stories/couscous-friday" className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Read: The Friday couscous →</Link>
           <Link href="/morocco/cooking-class" className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Cooking classes →</Link>
         </div>
+      <JourneyDoor />
       </div>
     </div>
   );

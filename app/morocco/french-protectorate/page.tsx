@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import NewsletterCapture from "@/components/NewsletterCapture";
 
 export const metadata: Metadata = {
   title: "Was Morocco a French Colony? No — a Protectorate (1912–1956)",
@@ -47,6 +48,9 @@ export default function FrenchProtectoratePage() {
           <Link href="/stories/french-protectorate" className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Read: The French Protectorate in Morocco →</Link>
           <Link href="/stories/dynasty-timeline" className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Read: Moroccan dynasties →</Link>
         </div>
+      <div className="border-t border-foreground/[0.08] pt-14 md:pt-20 mt-6">
+        <NewsletterCapture />
+      </div>
       </div>
     </div>
   );

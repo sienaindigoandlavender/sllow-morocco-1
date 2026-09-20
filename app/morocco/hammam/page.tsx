@@ -8,6 +8,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import Link from "next/link";
+import JourneyDoor from "@/components/JourneyDoor";
 
 export const metadata: Metadata = {
   title: "Hammam in Morocco: What to Expect and How to Go",
@@ -58,6 +59,7 @@ export default function HammamGuidePage() {
             <Link href="/morocco/things-to-do-in-marrakech" className="text-[11px] tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground border-b border-foreground/15 pb-0.5 transition-colors">Things to do in Marrakech →</Link>
           </div>
         </div>
+      <JourneyDoor />
       </div>
     </>
   );
