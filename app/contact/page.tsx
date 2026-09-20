@@ -1,132 +1,75 @@
-"use client";
-
-import { useState } from "react";
+import { Metadata } from "next";
+import Link from "next/link";
 import PageBanner from "@/components/PageBanner";
 
+export const metadata: Metadata = {
+  title: "Contact",
+  description:
+    "Planning a journey begins at Plan Your Trip. For a correction, a permission, or a question about the writing, write to us directly.",
+  openGraph: {
+    title: "Contact | Slow Morocco",
+    description:
+      "Journeys begin at Plan Your Trip. Everything else, by letter.",
+    url: "https://www.slowmorocco.com/contact",
+  },
+  alternates: { canonical: "https://www.slowmorocco.com/contact" },
+};
+
+export const revalidate = 3600;
+
 export default function ContactPage() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-  const [submitting, setSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitting(true);
-    
-    // TODO: Connect to API
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    setSubmitted(true);
-    setSubmitting(false);
-  };
-
   return (
     <div className="bg-background text-foreground min-h-screen">
-      {/* Immersive Hero Banner */}
       <PageBanner
         slug="contact"
         fallback={{
-          title: "Send us a note",
-          subtitle: "We respond to every inquiry within 24 hours.",
+          title: "Write to us",
+          subtitle: "Journeys begin at Plan Your Trip. Everything else, by letter.",
           label: "Get in Touch",
         }}
       />
 
-      {/* Contact Form Section */}
       <section className="py-16 md:py-24">
-        <div className="container mx-auto px-6 lg:px-16 max-w-3xl">
-          {submitted ? (
-            <div className="py-12 text-center">
-              <h3 className="font-serif text-2xl text-foreground/90 mb-4">Thank you.</h3>
-              <p className="text-foreground/70 leading-relaxed">
-                We've received your message and will respond within 24 hours.
-              </p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-8">
-              {/* Name Row */}
-              <div className="grid grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-xs tracking-[0.2em] uppercase text-foreground/60 mb-4">
-                    First Name
-                  </label>
-                      <input
-                        type="text"
-                        value={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
-                        required
-                        className="w-full border-b border-foreground/20 bg-transparent py-3 text-lg text-foreground focus:outline-none focus:border-foreground/60 transition-colors"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-xs tracking-[0.2em] uppercase text-foreground/60 mb-4">
-                        Last Name
-                      </label>
-                      <input
-                        type="text"
-                        value={lastName}
-                        onChange={(e) => setLastName(e.target.value)}
-                        required
-                        className="w-full border-b border-foreground/20 bg-transparent py-3 text-lg text-foreground focus:outline-none focus:border-foreground/60 transition-colors"
-                      />
-                    </div>
-                  </div>
+        <div className="container mx-auto px-6 lg:px-16 max-w-2xl space-y-14">
 
-                  {/* Phone */}
-                  <div>
-                    <label className="block text-xs tracking-[0.2em] uppercase text-foreground/60 mb-4">
-                      Phone Number
-                    </label>
-                    <input
-                      type="tel"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      className="w-full border-b border-foreground/20 bg-transparent py-3 text-lg text-foreground focus:outline-none focus:border-foreground/60 transition-colors"
-                    />
-                  </div>
+          {/* Planning a journey → the deposit door */}
+          <div>
+            <p className="text-[11px] tracking-[0.28em] uppercase text-foreground/45 mb-5">
+              Planning a journey
+            </p>
+            <p className="font-serif text-[clamp(1.4rem,3vw,2rem)] font-light leading-[1.3] text-foreground mb-6">
+              This is where it begins.
+            </p>
+            <p className="text-[16px] leading-[1.75] text-foreground/70 mb-7">
+              We design privately, and we design once. Tell us who is travelling
+              and what draws you, and the work starts from there.
+            </p>
+            <Link
+              href="/plan-your-trip"
+              className="inline-block border border-foreground px-9 py-4 text-[11px] tracking-[0.2em] uppercase hover:bg-foreground hover:text-background transition-colors"
+            >
+              Plan your trip &rarr;
+            </Link>
+          </div>
 
-                  {/* Email */}
-                  <div>
-                    <label className="block text-xs tracking-[0.2em] uppercase text-foreground/60 mb-4">
-                      Email Address
-                    </label>
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                      className="w-full border-b border-foreground/20 bg-transparent py-3 text-lg text-foreground focus:outline-none focus:border-foreground/60 transition-colors"
-                    />
-                  </div>
+          {/* Everything else → the letter */}
+          <div className="border-t border-foreground/10 pt-14">
+            <p className="text-[11px] tracking-[0.28em] uppercase text-foreground/45 mb-5">
+              Everything else
+            </p>
+            <p className="text-[16px] leading-[1.75] text-foreground/70 mb-6">
+              A correction, a permission, a source we should have read, or a
+              question about the writing &mdash; write to us directly. We read
+              everything.
+            </p>
+            <a
+              href="mailto:hello@slowmorocco.com"
+              className="font-serif text-[clamp(1.2rem,2.6vw,1.7rem)] text-foreground hover:text-foreground/55 transition-colors underline decoration-foreground/20 underline-offset-4"
+            >
+              hello@slowmorocco.com
+            </a>
+          </div>
 
-                  {/* Message */}
-                  <div>
-                    <label className="block text-xs tracking-[0.2em] uppercase text-foreground/60 mb-4">
-                      Message (Optional)
-                    </label>
-                    <textarea
-                      value={message}
-                      onChange={(e) => setMessage(e.target.value)}
-                      rows={4}
-                      className="w-full border-b border-foreground/20 bg-transparent py-3 text-lg text-foreground focus:outline-none focus:border-foreground/60 transition-colors resize-none"
-                    />
-                  </div>
-
-                  {/* Submit Button */}
-                  <div className="pt-4">
-                    <button
-                      type="submit"
-                      disabled={submitting}
-                      className="inline-block border border-foreground px-10 py-4 text-xs tracking-[0.2em] uppercase hover:bg-foreground hover:text-background transition-colors disabled:opacity-50"
-                    >
-                      {submitting ? "Sending..." : "Submit"}
-                    </button>
-                  </div>
-                </form>
-              )}
         </div>
       </section>
     </div>
