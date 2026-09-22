@@ -53,6 +53,10 @@ const nextConfig = {
       // Old riad story URL from GSC 404 list.
       { source: "/morocco/inside-the-riad", destination: "https://www.riaddisiena.com", permanent: true },
 
+      // ---- Sept 22, 2026: renamed journey, retired the disputed-territory slug ----
+      { source: "/journeys/western-sahara-expedition-8-days", destination: "/journeys/atlantic-sahara-8-days", permanent: true },
+      { source: "/journeys/western-sahara-expedition-8-days/", destination: "/journeys/atlantic-sahara-8-days", permanent: true },
+
       // ---- Darija → darija.io (exact legacy slugs) ----
       { source: "/3SH-rin", destination: "https://darija.io", permanent: true },
       { source: "/3SH-rin/", destination: "https://darija.io", permanent: true },
