@@ -1,4 +1,4 @@
-import { permanentRedirect } from "next/navigation";
+import { permanentRedirect, redirect } from "next/navigation";
 import { Metadata } from "next";
 import { getStoryBySlug, getStories, getJourneys, getStoryImages, getPlaces, getPlaceBySlug} from "@/lib/supabase";
 import { findRelatedJourneys } from "@/lib/content-matcher";
@@ -244,7 +244,7 @@ export default async function StoryPage({
     // This retires the GSC 404s for /stories/maghreb-compared,
     // /stories/the-horses-of-morocco, /stories/the-atlantic-spine,
     // /stories/the, etc. without manual next.config entries.
-    permanentRedirect("/stories");
+    redirect("/stories");
   }
 
   const { story, mapData, externalLinks } = storyResult;
