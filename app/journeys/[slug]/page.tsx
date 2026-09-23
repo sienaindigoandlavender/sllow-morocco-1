@@ -4,7 +4,12 @@ import { getJourneyBySlug, getRoutesByIds, getJourneys, getStories, getPlaces, g
 import { findRelatedStories, parseDestinations } from "@/lib/content-matcher";
 import JourneyDetailContent from "./JourneyDetailContent";
 
-export const revalidate = 10;
+// Read live on every request. These pages are low-traffic and gated, and
+// caching here is dangerous: if a journey's URL is hit before its row exists
+// or is published, a "not found → redirect" gets cached in Vercel's Data
+// Cache and PERSISTS ACROSS DEPLOYS, so the journey bounces to /journeys
+// forever even once the row is live. force-dynamic reads Supabase fresh.
+export const dynamic = "force-dynamic";
 
 const BASE_URL = "https://www.slowmorocco.com";
 
