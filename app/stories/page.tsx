@@ -2,9 +2,18 @@ import type { Metadata } from "next";
 import { getStories } from "@/lib/supabase";
 import StoriesContent from "./StoriesContent";
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata(
+  { searchParams }: { searchParams?: Record<string, string | string[] | undefined> }
+): Promise<Metadata> {
   const stories = (await getStories({ published: true })).filter((s: any) => s.category !== 'Glossary');
   const n = stories.length;
+
+  // Filtered views (/stories?q=… , /stories?city=…) are this same page with a
+  // client-side filter applied — identical server HTML. Google was indexing
+  // them as duplicates of /stories ("duplicate without user-selected
+  // canonical"). Keep the canonical on the clean URL and noindex any param
+  // view so only /stories itself is indexed.
+  const isFiltered = !!searchParams && Object.keys(searchParams).length > 0;
 
   const title = n > 0 ? `${n} Stories from Morocco` : "The Edit — Cultural Stories";
   const description =
@@ -16,6 +25,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title,
     description,
     alternates: { canonical: "https://www.slowmorocco.com/stories" },
+    robots: isFiltered ? { index: false, follow: true } : undefined,
     openGraph: {
       title: `${title} | Slow Morocco`,
       description,
