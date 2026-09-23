@@ -1,4 +1,4 @@
-import { permanentRedirect } from "next/navigation";
+import { redirect } from "next/navigation";
 import { Metadata } from "next";
 import { getJourneyBySlug, getRoutesByIds, getJourneys, getStories, getPlaces, getAllPlaceFirstImages } from "@/lib/supabase";
 import { findRelatedStories, parseDestinations } from "@/lib/content-matcher";
@@ -277,7 +277,7 @@ export default async function JourneyDetailPage({
     // Journey was deleted or renamed in Supabase. 301 to the index
     // instead of serving a 404 — stops deleted journeys from
     // accumulating in GSC and removes the need for manual redirects.
-    permanentRedirect("/journeys");
+    redirect("/journeys");
   }
 
   const otherJourneys = await getOtherJourneys(slug);
