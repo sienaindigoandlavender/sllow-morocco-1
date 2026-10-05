@@ -111,12 +111,6 @@ function pathsFor(table: string, record: Row, oldRecord: Row): string[] {
       break;
     }
 
-    case "gentle_journeys":
-    case "gentle_settings": {
-      paths.push("/go/gentle", "/api/gentle-journeys");
-      break;
-    }
-
     case "testimonials": {
       paths.push("/", "/api/testimonials", "/about");
       break;

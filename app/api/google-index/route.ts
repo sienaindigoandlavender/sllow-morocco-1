@@ -158,7 +158,6 @@ const STATIC_PAGES = [
   "", "/journeys", "/stories", "/places", "/about", "/plan-your-trip",
   "/manifesto", "/faq", "/contact", "/whats-included", "/visa-info",
   "/guides", "/epic", "/glossary",
-  "/go/gentle",
   "/health-safety", "/travel-insurance", "/cancellation-policy",
   "/terms", "/privacy", "/disclaimer", "/intellectual-property",
 ];

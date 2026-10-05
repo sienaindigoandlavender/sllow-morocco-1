@@ -47,7 +47,6 @@ export default function SearchModal({ isOpen, onClose, initialQuery = "" }: Sear
     // { title: "What's Included", slug: "/whats-included", subtitle: "Everything in a Slow Morocco journey" },
     { title: "About Slow Morocco", slug: "/about", subtitle: "Who we are" },
     // { title: "Epic Journeys", slug: "/epic", subtitle: "Transmission-level private journeys" },
-    // { title: "Gentle Journeys", slug: "/go/gentle", subtitle: "Accessible Morocco for all abilities" },
     { title: "Darija — Moroccan Arabic", slug: "https://darija.io", subtitle: "Dictionary and phrases" },
     { title: "Darija Dictionary", slug: "https://darija.io", subtitle: "10,000+ Moroccan Arabic words" },
     { title: "Darija Phrases", slug: "https://darija.io/how-to-say", subtitle: "1,500+ everyday phrases" },
