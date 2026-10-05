@@ -150,28 +150,6 @@ export interface ChatbotTraining {
   sort_order: number | null;
 }
 
-export interface GentleJourney {
-  id: number;
-  journey_id: string;
-  title: string;
-  slug: string | null;
-  hero_image_url: string | null;
-  tagline: string | null;
-  description: string | null;
-  duration_days: number | null;
-  price_eur: number | null;
-  route_cities: string | null;
-  highlights: string | null;
-  accessibility_notes: string | null;
-  published: boolean;
-  sort_order: number | null;
-}
-
-export interface GentleSetting {
-  key: string;
-  value: string | null;
-}
-
 export interface WebsiteTeamMember {
   id: number;
   team_id: string;
@@ -957,26 +935,6 @@ export async function getChatbotTraining() {
   const { data, error } = await supabase.from("chatbot_training").select("*").order("sort_order", { ascending: true });
   if (error) { console.error("Error fetching chatbot training:", error); return []; }
   return data as ChatbotTraining[];
-}
-
-// =============================================
-// GENTLE JOURNEYS
-// =============================================
-
-export async function getGentleJourneys(options?: { published?: boolean }) {
-  let query = supabase.from("gentle_journeys").select("*");
-  if (options?.published !== undefined) query = query.eq("published", options.published);
-  const { data, error } = await query.order("sort_order", { ascending: true });
-  if (error) { console.error("Error fetching gentle journeys:", error); return []; }
-  return data as GentleJourney[];
-}
-
-export async function getGentleSettings(): Promise<Record<string, string>> {
-  const { data, error } = await supabase.from("gentle_settings").select("*");
-  if (error) { console.error("Error fetching gentle settings:", error); return {}; }
-  const map: Record<string, string> = {};
-  (data as GentleSetting[]).forEach((s) => { if (s.key) map[s.key] = s.value || ""; });
-  return map;
 }
 
 export async function getWebsiteTeam(options?: { published?: boolean; showOnGentle?: boolean }) {

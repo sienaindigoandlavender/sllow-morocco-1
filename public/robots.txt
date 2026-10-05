@@ -29,7 +29,7 @@ Disallow: /stories/random
 # This line is the third lock.
 Disallow: /kitchen
 # Tour-operating surface — publication-only. These routes are noindex and
-# reachable by direct link only. /journeys and /go/gentle were never indexed,
+# reachable by direct link only. /journeys was never indexed,
 # so blocking crawl here is safe. The newly-noindexed pages (/plan-your-trip,
 # /epic, /whats-included, /regions, /your-morocco,
 # (/destinations was un-noindexed in September 2026 — every row now has
@@ -38,7 +38,7 @@ Disallow: /kitchen
 # /sahara-tour-from-marrakech) are deliberately NOT disallowed yet: Google must
 # be able to crawl them to see the noindex tag and drop them from the index.
 # Once they've fallen out of results, add them here to block crawl entirely.
-# /go/gentle now indexable — accessible-travel landing page
+# /go/gentle removed in Oct 2026 — now 301s to /journeys via next.config.js
 # OG share-card images: noindex assets, not pages. Blocking them stops
 # Googlebot from spending crawl budget on ~10k dynamic image renders
 # (which intermittently 5xx under rapid crawling and clutter Search Console).
