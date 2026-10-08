@@ -12,6 +12,7 @@
 export interface GuideStep {
   title: string;
   body: string;
+  link?: { href: string; label: string };
 }
 
 // Stops along the route map. coords are [lng, lat] for the interactive map.
@@ -74,7 +75,7 @@ export const GUIDES: Guide[] = [
           },
           {
             title: "Grand taxi to Imlil",
-            body: "The shared taxis for Imlil leave from Bab er Robb. Take a seat, or the whole car.",
+            body: "The shared taxis for Imlil leave from Bab er Robb. Roughly 70–100 dh a seat, or pay for the whole car.",
           },
         ],
       },
@@ -84,8 +85,8 @@ export const GUIDES: Guide[] = [
         heading: "Bab er Robb to Riad di Siena",
         steps: [
           { title: "Drops you at Bab er Robb", body: "By Sidi Mimoun, between Hotel Tazi and the road to the Kasbah neighbourhood." },
-          { title: "Walk to Café Medina Rouge", body: "10–15 minutes, past the horse-carriage stand." },
-          { title: "Into the lanes to the riad", body: "Follow the directions we send you — not Google Maps. riaddisiena.com/directions" },
+          { title: "Walk to Café Medina Rouge", body: "About 10–15 minutes: from Bab er Robb, head toward Jemaa el-Fna, past the horse-carriage stand, and on to Café Medina Rouge." },
+          { title: "Into the lanes to the riad", body: "From the café, follow the directions we send you — not Google Maps.", link: { href: "https://www.riaddisiena.com/directions", label: "Open our directions →" } },
         ],
       },
     ],
