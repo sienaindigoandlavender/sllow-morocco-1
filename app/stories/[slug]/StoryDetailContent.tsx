@@ -95,10 +95,6 @@ export default function StoryDetailContent({
     ? story.the_facts.split(";;").map((f) => f.trim()).filter(Boolean)
     : [];
 
-  const tags = story.tags
-    ? story.tags.split(",").map((t) => t.trim()).filter(Boolean)
-    : [];
-
   // Editorial dateline — "Month YYYY" from the publication date. Kept to
   // month + year rather than a full timestamp so it reads as a masthead
   // line, not a log entry. Renders nothing if the date is missing or unparseable.
@@ -202,7 +198,6 @@ export default function StoryDetailContent({
                 </Link>
               )}
               {publishedDate && <span>{publishedDate}</span>}
-              {story.readTime && <span>{story.readTime} min</span>}
             </div>
             <span className="text-[10px] tracking-[0.16em] uppercase text-foreground/45">
               Published by Dance with Lions
@@ -409,27 +404,13 @@ export default function StoryDetailContent({
           </div>
         )}
 
-        {/* Footer credits + tags */}
+        {/* Footer credits */}
         <hr className="border-foreground/10 my-12" />
         <footer>
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[11px] text-foreground/70 mb-8">
             {story.year && <span>{story.year}</span>}
             <span>© Slow Morocco</span>
           </div>
-
-          {tags.length > 0 && (
-            <div className="flex flex-wrap gap-2">
-              {tags.map((tag, i) => (
-                <Link
-                  key={i}
-                  href={`/stories?q=${encodeURIComponent(tag)}`}
-                  className="text-[10px] tracking-[0.12em] uppercase text-foreground/70 hover:text-foreground/70 border border-foreground/10 hover:border-foreground/25 px-3 py-1.5 transition-colors"
-                >
-                  {tag}
-                </Link>
-              ))}
-            </div>
-          )}
         </footer>
 
         {/* Part of these collections */}
