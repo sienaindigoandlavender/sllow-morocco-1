@@ -41,7 +41,7 @@ export default function StoriesContent({
   dataLoaded = true,
 }: StoriesContentProps) {
   const [currentPage, setCurrentPage] = useState(1);
-  const [sortBy, setSortBy] = useState<"newest" | "oldest" | "alpha">("newest");
+  const [sortBy] = useState<"newest" | "oldest" | "alpha">("newest");
   const [query, setQuery] = useState("");
 
   const categoryCounts = useMemo(() => {
@@ -159,31 +159,10 @@ export default function StoriesContent({
         <div className="h-[1px] bg-foreground/12" />
       </section>
 
-      {/* ── Sort ──────────────────────────────────────────────────────
-          Category filtering lives at /stories/category/[slug] — real
-          pages with their own intros, rather than a client-side filter
-          that changes nothing in the URL. The seventeen-item row that
-          used to sit here truncated after "Movies" on any normal screen.
-          ──────────────────────────────────────────────────────────── */}
-      <section className="px-8 md:px-10 lg:px-14 pb-6 sticky top-16 md:top-20 bg-background z-40">
-        <div className="flex items-center justify-end gap-5 py-3">
-          {([
-            ["newest", "Newest"],
-            ["oldest", "Oldest"],
-            ["alpha", "A–Z"],
-          ] as const).map(([key, label]) => (
-            <button
-              key={key}
-              onClick={() => { setSortBy(key); setCurrentPage(1); }}
-              className={`text-[11px] tracking-[0.12em] uppercase transition-colors ${
-                sortBy === key ? "text-foreground" : "text-foreground/60 hover:text-foreground/70"
-              }`}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-      </section>
+      {/* Category filtering lives at /stories/category/[slug] — real
+          pages with their own intros. A "newest/oldest" toggle read as a
+          blog; the edit is presented as a curated whole, searched above
+          and browsed by desk below, not sorted by date. */}
 
       {/* ── Grid — 6 across, Kinfolk portrait cards ──────────────────── */}
       <section className="px-8 md:px-10 lg:px-14 pb-16 md:pb-24">
