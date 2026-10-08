@@ -58,10 +58,9 @@ export const GUIDES: Guide[] = [
     standfirst:
       "The grand taxis to Imlil leave from Bab er Robb. Here is how to reach them from the station, and how to find the riad.",
     route: [
-      { name: "Marrakech", note: "450 m", coords: [-7.9891, 31.6258] },
-      { name: "Bab er Robb", note: "grand taxis", coords: [-7.9930, 31.6180] },
-      { name: "Asni", note: "change", coords: [-7.9800, 31.2547] },
-      { name: "Imlil", note: "1,740 m", coords: [-7.9196, 31.1362] },
+      { name: "Gare Guéliz", note: "arrival", coords: [-8.0206, 31.6307] },
+      { name: "Bab er Robb", note: "grand taxis to Imlil", coords: [-7.9930, 31.6180] },
+      { name: "Riad di Siena", note: "via Café Medina Rouge", coords: [-7.9903, 31.6267] },
     ],
     sections: [
       {
@@ -71,7 +70,7 @@ export const GUIDES: Guide[] = [
         steps: [
           {
             title: "Petit taxi across town",
-            body: "From the Guéliz station, take a petit taxi to Bab er Robb — about 10 minutes, 20–30 dh.",
+            body: "From the Guéliz station, take a petit taxi to Bab er Robb, by Sidi Mimoun — between Hotel Tazi and the road to the Kasbah neighbourhood. About 10 minutes, 20–30 dh.",
           },
           {
             title: "Grand taxi to Imlil",
@@ -84,9 +83,9 @@ export const GUIDES: Guide[] = [
         kicker: "Getting to the riad",
         heading: "Bab er Robb to Riad di Siena",
         steps: [
-          { title: "Drops you at Bab er Robb", body: "By Sidi Mimoun." },
+          { title: "Drops you at Bab er Robb", body: "By Sidi Mimoun, between Hotel Tazi and the road to the Kasbah neighbourhood." },
           { title: "Walk to Café Medina Rouge", body: "10–15 minutes, past the horse-carriage stand." },
-          { title: "Into the lanes to the riad", body: "Follow our directions: riaddisiena.com/directions" },
+          { title: "Into the lanes to the riad", body: "Follow the directions we send you — not Google Maps. riaddisiena.com/directions" },
         ],
       },
     ],
