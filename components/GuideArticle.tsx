@@ -21,6 +21,16 @@ function Steps({ steps }: { steps: GuideStep[] }) {
           <div>
             <span className="font-serif text-lg font-medium block mb-1">{s.title}</span>
             <p className="text-foreground/80 leading-relaxed max-w-[58ch]">{s.body}</p>
+            {s.link ? (
+              <a
+                href={s.link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mt-2 font-sans text-[13px] tracking-[0.04em] text-[#E3120B] border-b border-[#E3120B]/40 hover:border-[#E3120B] transition-colors"
+              >
+                {s.link.label}
+              </a>
+            ) : null}
           </div>
         </li>
       ))}
