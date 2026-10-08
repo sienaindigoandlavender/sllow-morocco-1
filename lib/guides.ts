@@ -80,11 +80,14 @@ export const GUIDES: Guide[] = [
         ],
       },
       {
-        kind: "prose",
+        kind: "steps",
         kicker: "Getting to the riad",
         heading: "Bab er Robb to Riad di Siena",
-        body:
-          "Coming back, the grand taxi drops you at Bab er Robb. From there it is a 10–15 minute walk: head to Café Medina Rouge, then into the lanes to the riad. Follow our directions — Google Maps is unreliable in the medina.",
+        steps: [
+          { title: "Drops you at Bab er Robb", body: "By Sidi Mimoun." },
+          { title: "Walk to Café Medina Rouge", body: "10–15 minutes, past the horse-carriage stand." },
+          { title: "Into the lanes to the riad", body: "Follow our directions: riaddisiena.com/directions" },
+        ],
       },
     ],
   },
