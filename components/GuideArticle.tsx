@@ -37,6 +37,26 @@ function SectionHead({ kicker, heading }: { kicker: string; heading: string }) {
   );
 }
 
+function RidgeLine() {
+  return (
+    <svg
+      viewBox="0 0 720 110"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+      className="block w-full h-[64px] md:h-[92px] mt-10 text-foreground"
+    >
+      <path
+        d="M0 104 L70 66 L120 82 L190 40 L232 62 L300 24 L352 54 L430 16 L470 50 L548 60 L604 34 L676 72 L720 50"
+        fill="none"
+        stroke="currentColor"
+        strokeOpacity="0.2"
+        strokeWidth="1.5"
+      />
+      <path d="M430 16 L430 2 L452 7 L430 12 Z" fill="#E3120B" />
+    </svg>
+  );
+}
+
 export default function GuideArticle({ guide }: { guide: Guide }) {
   return (
     <div className="min-h-screen bg-background text-foreground pt-32 pb-24">
@@ -50,6 +70,8 @@ export default function GuideArticle({ guide }: { guide: Guide }) {
             {guide.standfirst}
           </p>
         </header>
+
+        <RidgeLine />
 
         {guide.route && guide.route.length > 1 ? <GuideRouteMap stops={guide.route} /> : null}
 
