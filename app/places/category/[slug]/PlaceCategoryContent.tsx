@@ -181,15 +181,10 @@ export default function PlaceCategoryContent({
                   href={`/stories/${st.slug}`}
                   className="group block border-b border-foreground/[0.08] hover:border-foreground/40 py-4 transition-colors"
                 >
-                  <div className="flex items-baseline justify-between gap-3 mb-1.5">
+                  <div className="mb-1.5">
                     <span className="font-serif text-base text-foreground group-hover:text-foreground/70 transition-colors">
                       {st.title}
                     </span>
-                    {st.readTime ? (
-                      <span className="text-[10px] tabular-nums text-foreground/25 whitespace-nowrap">
-                        {st.readTime} min
-                      </span>
-                    ) : null}
                   </div>
                   {st.subtitle && (
                     <p className="text-[12px] text-foreground/60 leading-[1.5] line-clamp-2">
